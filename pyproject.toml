@@ -37,7 +37,7 @@ test = ["pytest>=7"]
 
 [project.urls]
 Homepage = "https://akademtech.org"
-Source = "https://github.com/akademtech/akademtranslit"
+Source = "https://github.com/AkademTech/akademtranslit"
 
 [tool.setuptools.packages.find]
 where = ["src"]
