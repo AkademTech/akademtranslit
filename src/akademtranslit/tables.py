@@ -120,6 +120,9 @@ LATIN_1995_TO_CYRILLIC = (
     ("sh", "ш"),
     ("ch", "ч"),
     ("ts", "ц"),
+    # y before oʻ is й + ў, not ё: yoʻq -> йўқ, yoʻl -> йўл. Must precede
+    # ``yo``, which would otherwise take the o and strand the turned comma.
+    ("y" + "o" + TURNED_COMMA, "йў"),
     ("yo", "ё"),
     ("yu", "ю"),
     ("ya", "я"),
