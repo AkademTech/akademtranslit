@@ -136,12 +136,13 @@ pivot for every conversion.
 
 ### Context-dependent rules
 
-Three readings depend on position rather than on the letter alone:
+Four readings depend on position rather than on the letter alone:
 
 | Rule | Example |
 | --- | --- |
 | `е` is `ye` word-initially and after a vowel, `e` otherwise | Ер → Yer, поезд → poyezd, тезда → tezda |
 | `ц` is `ts` after a vowel, `s` otherwise | милиция → militsiya, функция → funksiya, цирк → sirk |
+| `ts` is `т` + `с` before an Uzbek suffix, `т` + `ш` before `h`, `ц` otherwise — a heuristic, see below | ketsa → кетса, hayotsiz → ҳаётсиз, adabiyotshunos → адабиётшунос, operatsiya → операция |
 | `с` before `ҳ` takes a separator in `latin_1995` | Исҳоқ → Isʼhoq (not `Ishoq`) |
 
 That last one is worth a note. In `latin_1995`, `sh` is a digraph, so a genuine
@@ -149,6 +150,45 @@ s+h sequence has to be separated with the tutuq belgisi or it reads as `ш`. The
 2026 alphabet does not need the separator, because `ş` carries that sound —
 `Isʼhoq` becomes simply `Ishoq`, while `ish` (work) becomes `iş`. The pair
 survives the round trip in both directions.
+
+The `ts` rule needs a note of its own. In loanwords `ts` is the letter `ц`;
+where a stem ending in `t` meets a suffix beginning with `s` it is two letters:
+`ketsa` (if he goes) is кетса, not кеца. There is no dictionary, only a short
+list of loanwords, so the reading comes from the shape of the word. The checks
+run in order and the first that applies wins:
+
+- the `s` starts `sh` → `т` + `ш`: adabiyotshunos → адабиётшунос;
+- the word starts with `ts` → `ц`: tsement → цемент;
+- `i` and then a vowel or `y` follow → `ц`: operatsiya → операция, ratsion → рацион;
+- a loanword whose tail would pass for suffixes → `ц`. The list: names in
+  `-mitsin`, `-floksatsin` and `-leytsin`, plus `glitsin`, `amikatsin` and
+  `aktsiz`; and words beginning with one of the `-ица` stems `tablits`,
+  `teplits`, `stolits`, `ulits`, `bolnits`, `granits`, `gostinits`
+  (`TS_LOANWORD_STEMS` in `tables.py`). Inflected forms count too:
+  levofloksatsinni → левофлоксацинни, tablitsada → таблицада. The list exists
+  to split `ts`; it is not a dictionary and is not meant to grow. Uzbek words
+  with the same endings keep `т` + `с` — bitsa, oʻqitsa, koʻrsatsin, and nouns
+  in `-kt` with `-siz` such as kontaktsiz;
+- the rest of the word is Uzbek suffixes → `т` + `с`. The `s` must open one of
+  `-sa`, `-sak`, `-sam`, `-sang`, `-sangiz`, `-salar`, `-sin`, `-sinlar`,
+  `-siz`, `-sizlik` or `-sevar`, and anything after it must be further suffixes
+  (`-lik`, `-lar`, `-ga`, `-da`, `-ni`, `-man`, `-mi`, …): ketsinmi → кетсинми,
+  hayotsizlik → ҳаётсизлик. Starting with the right letters is not enough, so
+  meditsina (`sin` + `a`) and natsizm (`siz` + `m`) keep `ц`;
+- otherwise `ц`: leykotsit → лейкоцит, protsent → процент.
+
+The known misses:
+
+- A loanword off that list whose tail looks like a suffix gets `т` + `с`:
+  oksitotsin → окситотсин (окситоцин), doksorubitsin → доксорубитсин,
+  rifampitsin → рифампитсин. Before 0.1.1 these came out right.
+- A stem on the list also takes a native ending: granitsiz (granite + `-siz`)
+  → границиз, not гранитсиз.
+- An Uzbek word whose `t` + `s` boundary is not in the list keeps `ц`:
+  compounds such as oʻtsoʻndirgich → ўцўндиргич (ўтсўндиргич) and
+  soatsoz → соацоз (соатсоз), and suffixes such as `-simon` (otsimon → оцимон).
+- pitsa and nitsa are wrong either way: питса and нитса now, пица and ница
+  before 0.1.1, пицца and Ницца in fact.
 
 ### The two modifier marks
 
@@ -163,9 +203,14 @@ makes the conversion idempotent and its output safe to store.
 
 ## Guarantees, and their limits
 
-**Lossless.** `latin_1995` ↔ `latin_2026` round-trips exactly, always. Cyrillic
-→ Latin → Cyrillic round-trips exactly over the native Uzbek letter inventory.
-Both are enforced by the test suite.
+**Lossless.** `latin_1995` ↔ `latin_2026` round-trips exactly for text in
+canonical form: marks written as `ʻ` and `ʼ`, and each word in lower case,
+with an initial capital, or in all caps (`OʻZBEKISTON` included). Other input
+comes back canonicalised — `o'zbek` as `oʻzbek`, `McDonald` as `Mcdonald`.
+Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter
+inventory, with one gap: `т` followed by `с` comes back as `ц` unless the `s`
+starts a suffix the `ts` rule knows (`ўтсўндиргич`, `соатсоз`; see
+Context-dependent rules). Both are enforced by the test suite.
 
 **Known lossy mappings.** Four Cyrillic letters occur only in Russian
 loanwords, and folding them is deliberate:
@@ -205,10 +250,12 @@ python3 -m venv .venv
 .venv/bin/python -m pytest
 ```
 
-The suite covers the alphabet letter by letter in both directions, the three
+The suite covers the alphabet letter by letter in both directions, the four
 context rules, the round-trip tiers above, casing (including ALL-CAPS, where
-`ШОШИМОВА` must give `ŞOŞIMOVA` and not `Şoşimova`), and the cross-script
-normalization contract.
+`ШОШИМОВА` must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
+`ЎЗБЕКИСТОН`), and the cross-script normalization contract.
+`tests/test_regressions.py` pins every defect fixed since 0.1.0; see
+[CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

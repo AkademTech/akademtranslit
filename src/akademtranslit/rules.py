@@ -4,7 +4,7 @@ The tables in :mod:`akademtranslit.tables` cover characters whose reading never
 changes. This module covers the ones that do, plus the machinery that applies
 both: tokenisation, greedy longest-match rewriting, and case restoration.
 
-Three positional rules are implemented:
+Four positional rules are implemented:
 
 ``е``
     Read ``ye`` at the start of a word and after a vowel or a soft/hard sign
@@ -16,6 +16,15 @@ Three positional rules are implemented:
     word-initially or after a consonant (цирк -> sirk, функция -> funksiya).
     A heuristic, not a bijection: ц occurs only in loanwords and their spelling
     is genuinely inconsistent. See the lossy-mapping table in the README.
+
+``ts``
+    The Latin -> Cyrillic side of the same letter. ``ts`` is ц in loanwords
+    (operatsiya -> операция, leykotsit -> лейкоцит) but т + с where a stem
+    ending in t meets an Uzbek suffix beginning with s (ketsa -> кетса,
+    hayotsiz -> ҳаётсиз), and т + ш where the s opens the ``sh`` digraph
+    (adabiyotshunos -> адабиётшунос). Decided from the shape of the whole word
+    and a short list of loanwords; :func:`_ts_splits` lists the checks in
+    order.
 
 ``с`` before ``ҳ``
     Written ``sʼh`` in ``latin_1995`` so it is not misread as the ``sh``
@@ -35,6 +44,8 @@ from .tables import (
     LATIN_1995_TO_CYRILLIC,
     LATIN_2026_INPUT_ALIASES,
     LATIN_2026_TO_1995_STEPS,
+    LATIN_VOWELS,
+    TS_LOANWORD_STEMS,
     TURNED_COMMA,
     TUTUQ,
 )
@@ -91,8 +102,12 @@ def apply_case(source: str, result: str) -> str:
     Length changes freely between input and output (``ш`` is one character,
     ``sh`` is two), so casing is decided from the source and re-applied, never
     copied position by position.
+
+    Only letters that have case take part. ``ʻ`` and ``ʼ`` are letters to
+    Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all-caps and
+    gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``.
     """
-    letters = [ch for ch in source if ch.isalpha()]
+    letters = [ch for ch in source if ch.lower() != ch.upper()]
     if not letters or not result:
         return result
     if len(letters) > 1 and all(ch.isupper() for ch in letters):
@@ -148,6 +163,75 @@ def cyrillic_word_to_latin_1995(word: str) -> str:
 
 # --- latin_1995 -> Cyrillic --------------------------------------------------
 
+# Suffixes that begin with s and attach to a stem ending in t. A ``ts`` whose s
+# opens one of these is т + с: ketsa, ketsin, hayotsiz, mehnatsevar.
+_TS_SUFFIXES = (
+    "sa", "sak", "sam", "sang", "sangiz", "salar",  # conditional
+    "sin", "sinlar",                                # third-person imperative
+    "siz", "sizlik",                                # privative
+    "sevar",                                        # -loving
+)
+
+# What may follow those, any number of times. No bare vowel or lone consonant
+# belongs here: that is what keeps meditsina (sin + a) and natsizm (siz + m) ц.
+_TS_FOLLOWERS = (
+    "lik", "ligi", "lar", "roq",                    # derivation, plural
+    "ga", "ka", "da", "dan", "ni", "ning",          # case
+    "man", "san", "miz", "siz", "dir",              # person
+    "mi", "chi",                                    # particles
+)
+
+_TS_SUFFIX_RE = re.compile(
+    "(?:" + "|".join(_TS_SUFFIXES) + ")(?:" + "|".join(_TS_FOLLOWERS) + ")*"
+)
+
+_VOWELS_AND_Y = LATIN_VOWELS | {"y"}
+
+
+def _ts_splits(word: str, i: int) -> bool:
+    """True if the ``ts`` at ``word[i]`` is т + с rather than the letter ц.
+
+    Checked in order; the first that applies decides:
+
+    0. The s opens ``sh`` or ``sʼh``: т + ш (adabiyotshunos -> адабиётшунос).
+    1. Word-initial: ц (tsement, tsinga).
+    2. ``i`` and then a vowel or ``y`` follow: ц (operatsiya, ratsion,
+       patsiyent).
+    3. A known loan the suffix check would misread: ц. Each is matched where
+       the ts is, so inflected forms hold too (azitromitsinni, tablitsada).
+
+       a. ``-mitsin`` and ``glitsin`` (azitromitsin, gentamitsin).
+       b. ``-floksatsin``, ``-leytsin`` and ``amikatsin`` (levofloksatsin,
+          izoleytsin).
+       c. ``aktsiz`` (excise). Only this stem: a general "k before ts" rule
+          would also take kontaktsiz and effektsiz, which are т + с.
+       d. A stem from :data:`~akademtranslit.tables.TS_LOANWORD_STEMS`, the
+          ``-ица`` nouns (tablitsa, teplitsalar).
+
+    4. The s opens an Uzbek suffix and everything after it is suffixes: т + с
+       (ketsa, ketsinmi, hayotsizlik). Starting with the right letters is not
+       enough -- meditsina and natsizm stay ц.
+    5. Otherwise ц, the table's reading (leykotsit, protsent, litsey).
+    """
+    rest = word[i + 1:]
+    if rest.startswith("sh") or rest.startswith("s" + TUTUQ + "h"):
+        return True
+    if i == 0:
+        return False
+    if word[i + 2:i + 3] == "i" and word[i + 3:i + 4] in _VOWELS_AND_Y:
+        return False
+    if word.startswith("in", i + 2) and (word.endswith("mi", 0, i) or word[:i] == "gli"):
+        return False
+    if word.startswith("in", i + 2) and (
+        word.endswith(("floksa", "ley"), 0, i) or word[:i] == "amika"
+    ):
+        return False
+    if word[:i] == "ak":
+        return False
+    if word[:i + 2] in TS_LOANWORD_STEMS:
+        return False
+    return _TS_SUFFIX_RE.fullmatch(rest) is not None
+
 
 def latin_1995_word_to_cyrillic(word: str) -> str:
     """Convert one lowercase ``latin_1995`` word to Cyrillic."""
@@ -163,6 +247,12 @@ def latin_1995_word_to_cyrillic(word: str) -> str:
             continue
         if word[i] == "e":
             out.append("э" if i == 0 else "е")
+            i += 1
+            continue
+        # ts is ц (the table's row) unless the word splits it. Then only the t
+        # is taken here, and the table reads what follows as s or sh.
+        if word.startswith("ts", i) and _ts_splits(word, i):
+            out.append("т")
             i += 1
             continue
 
