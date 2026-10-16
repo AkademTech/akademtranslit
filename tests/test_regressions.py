@@ -312,3 +312,46 @@ def test_x3_other_casing_is_unchanged(source, target, text, expected):
 )
 def test_x3_round_trip(text, via):
     assert _round_trip(text, via) == text
+
+
+# --- Cyrillic -> Latin: е, ц and ь -------------------------------------------
+#
+# Unchanged in 0.1.1, and passing on 0.1.0 as well. Pinned here because the
+# ts rule above is the return half of the ц rule below.
+
+
+@pytest.mark.parametrize(
+    "cyrillic,latin",
+    [
+        ("Ер", "Yer"),          # word-initial: ye
+        ("поезд", "poyezd"),    # after a vowel: ye
+        ("пьеса", "pyesa"),     # after ь: ye
+        ("тезда", "tezda"),     # elsewhere: e
+        ("кеча", "kecha"),
+    ],
+)
+def test_reverse_e_rule(cyrillic, latin):
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin
+
+
+@pytest.mark.parametrize(
+    "cyrillic,latin",
+    [
+        ("милиция", "militsiya"),   # after a vowel: ts
+        ("цирк", "sirk"),           # word-initial: s
+        ("концерт", "konsert"),     # after a consonant: s
+    ],
+)
+def test_reverse_tse_rule(cyrillic, latin):
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin
+
+
+@pytest.mark.parametrize(
+    "cyrillic,latin",
+    [
+        ("компьютер", "kompyuter"),
+        ("июнь", "iyun"),
+    ],
+)
+def test_reverse_soft_sign_is_dropped(cyrillic, latin):
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin
