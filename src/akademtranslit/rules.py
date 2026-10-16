@@ -22,8 +22,9 @@ Four positional rules are implemented:
     (operatsiya -> операция, leykotsit -> лейкоцит) but т + с where a stem
     ending in t meets an Uzbek suffix beginning with s (ketsa -> кетса,
     hayotsiz -> ҳаётсиз), and т + ш where the s opens the ``sh`` digraph
-    (adabiyotshunos -> адабиётшунос). Decided from the shape of the whole word,
-    without a dictionary; :func:`_ts_splits` lists the checks in order.
+    (adabiyotshunos -> адабиётшунос). Decided from the shape of the whole word
+    and a short list of loanwords; :func:`_ts_splits` lists the checks in
+    order.
 
 ``с`` before ``ҳ``
     Written ``sʼh`` in ``latin_1995`` so it is not misread as the ``sh``
@@ -44,6 +45,7 @@ from .tables import (
     LATIN_2026_INPUT_ALIASES,
     LATIN_2026_TO_1995_STEPS,
     LATIN_VOWELS,
+    TS_LOANWORD_STEMS,
     TURNED_COMMA,
     TUTUQ,
 )
@@ -195,8 +197,17 @@ def _ts_splits(word: str, i: int) -> bool:
     1. Word-initial: ц (tsement, tsinga).
     2. ``i`` and then a vowel or ``y`` follow: ц (operatsiya, ratsion,
        patsiyent).
-    3. A known loan the suffix check would misread: ц in ``-mitsin``
-       (azitromitsin, and azitromitsinni) and in ``glitsin``.
+    3. A known loan the suffix check would misread: ц. Each is matched where
+       the ts is, so inflected forms hold too (azitromitsinni, tablitsada).
+
+       a. ``-mitsin`` and ``glitsin`` (azitromitsin, gentamitsin).
+       b. ``-floksatsin``, ``-leytsin`` and ``amikatsin`` (levofloksatsin,
+          izoleytsin).
+       c. ``aktsiz`` (excise). Only this stem: a general "k before ts" rule
+          would also take kontaktsiz and effektsiz, which are т + с.
+       d. A stem from :data:`~akademtranslit.tables.TS_LOANWORD_STEMS`, the
+          ``-ица`` nouns (tablitsa, teplitsalar).
+
     4. The s opens an Uzbek suffix and everything after it is suffixes: т + с
        (ketsa, ketsinmi, hayotsizlik). Starting with the right letters is not
        enough -- meditsina and natsizm stay ц.
@@ -210,6 +221,14 @@ def _ts_splits(word: str, i: int) -> bool:
     if word[i + 2:i + 3] == "i" and word[i + 3:i + 4] in _VOWELS_AND_Y:
         return False
     if word.startswith("in", i + 2) and (word.endswith("mi", 0, i) or word[:i] == "gli"):
+        return False
+    if word.startswith("in", i + 2) and (
+        word.endswith(("floksa", "ley"), 0, i) or word[:i] == "amika"
+    ):
+        return False
+    if word[:i] == "ak":
+        return False
+    if word[:i + 2] in TS_LOANWORD_STEMS:
         return False
     return _TS_SUFFIX_RE.fullmatch(rest) is not None
 

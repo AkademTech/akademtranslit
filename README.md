@@ -153,14 +153,22 @@ survives the round trip in both directions.
 
 The `ts` rule needs a note of its own. In loanwords `ts` is the letter `ц`;
 where a stem ending in `t` meets a suffix beginning with `s` it is two letters:
-`ketsa` (if he goes) is кетса, not кеца. There is no dictionary, so the reading
-comes from the shape of the word. The checks run in order and the first that
-applies wins:
+`ketsa` (if he goes) is кетса, not кеца. There is no dictionary, only a short
+list of loanwords, so the reading comes from the shape of the word. The checks
+run in order and the first that applies wins:
 
 - the `s` starts `sh` → `т` + `ш`: adabiyotshunos → адабиётшунос;
 - the word starts with `ts` → `ц`: tsement → цемент;
 - `i` and then a vowel or `y` follow → `ц`: operatsiya → операция, ratsion → рацион;
-- `-mitsin` and `glitsin` → `ц`: azitromitsin → азитромицин, glitsin → глицин;
+- a loanword whose tail would pass for suffixes → `ц`. The list: names in
+  `-mitsin`, `-floksatsin` and `-leytsin`, plus `glitsin`, `amikatsin` and
+  `aktsiz`; and words beginning with one of the `-ица` stems `tablits`,
+  `teplits`, `stolits`, `ulits`, `bolnits`, `granits`, `gostinits`
+  (`TS_LOANWORD_STEMS` in `tables.py`). Inflected forms count too:
+  levofloksatsinni → левофлоксацинни, tablitsada → таблицада. The list exists
+  to split `ts`; it is not a dictionary and is not meant to grow. Uzbek words
+  with the same endings keep `т` + `с` — bitsa, oʻqitsa, koʻrsatsin, and nouns
+  in `-kt` with `-siz` such as kontaktsiz;
 - the rest of the word is Uzbek suffixes → `т` + `с`. The `s` must open one of
   `-sa`, `-sak`, `-sam`, `-sang`, `-sangiz`, `-salar`, `-sin`, `-sinlar`,
   `-siz`, `-sizlik` or `-sevar`, and anything after it must be further suffixes
@@ -171,13 +179,16 @@ applies wins:
 
 The known misses:
 
-- A loanword whose tail looks like a suffix gets `т` + `с`: aktsiz → актсиз
-  (акциз), teplitsa → теплитса (теплица), siprofloksatsin → сипрофлоксатсин
-  (ципрофлоксацин). Before 0.1.1 these came out right.
+- A loanword off that list whose tail looks like a suffix gets `т` + `с`:
+  oksitotsin → окситотсин (окситоцин), doksorubitsin → доксорубитсин,
+  rifampitsin → рифампитсин. Before 0.1.1 these came out right.
+- A stem on the list also takes a native ending: granitsiz (granite + `-siz`)
+  → границиз, not гранитсиз.
 - An Uzbek word whose `t` + `s` boundary is not in the list keeps `ц`:
   compounds such as oʻtsoʻndirgich → ўцўндиргич (ўтсўндиргич) and
   soatsoz → соацоз (соатсоз), and suffixes such as `-simon` (otsimon → оцимон).
-- pitsa is wrong either way: питса now, пица before 0.1.1, пицца in fact.
+- pitsa and nitsa are wrong either way: питса and нитса now, пица and ница
+  before 0.1.1, пицца and Ницца in fact.
 
 ### The two modifier marks
 

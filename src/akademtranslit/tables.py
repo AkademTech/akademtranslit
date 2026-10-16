@@ -157,6 +157,15 @@ LATIN_1995_TO_CYRILLIC = (
 #: Latin vowels, for the reverse ``e``/``ye`` rule.
 LATIN_VOWELS = frozenset("aeiouö")
 
+#: Loanword stems whose final ``ts`` is ц even though the rest of the word reads
+#: like an Uzbek suffix: without this, tablitsa would be tablit + -sa. These are
+#: the Russian ``-ица`` nouns common in Uzbek text, and a word must begin with
+#: one. The list exists to split ts, not as a dictionary, and is meant to stay
+#: this short.
+TS_LOANWORD_STEMS = (
+    "tablits", "teplits", "stolits", "ulits", "bolnits", "granits", "gostinits",
+)
+
 # --- the 2026 reform ---------------------------------------------------------
 #
 # The whole reform is these four rows. Keeping it as one small table is

@@ -248,6 +248,108 @@ def test_x2_round_trip(text, via):
     assert _round_trip(text, via) == text
 
 
+# --- X2, continued: loanwords the suffix check misread -----------------------
+#
+# Check 4 reads any tail that looks like suffixes as т + с, and some loanwords
+# have such a tail: tablitsa looks like tablit + -sa, leytsin like leyt + -sin.
+# These were ц in 0.1.0 and are again, through checks 3b-3d.
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("levofloksatsin", "левофлоксацин"),
+        ("ofloksatsin", "офлоксацин"),
+        ("moksifloksatsin", "моксифлоксацин"),
+        ("siprofloksatsin", "сипрофлоксацин"),   # only the ts; the s- is not restored
+        ("levofloksatsinni", "левофлоксацинни"),
+        ("amikatsin", "амикацин"),
+        ("leytsin", "лейцин"),
+        ("izoleytsin", "изолейцин"),
+    ],
+)
+def test_x2_check3b_tsin_names(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("aktsiz", "акциз"),
+        ("aktsizlar", "акцизлар"),
+        ("aktsizni", "акцизни"),
+    ],
+)
+def test_x2_check3c_aktsiz(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        # A noun ending in -kt takes -siz like any other: a rule keyed on the
+        # k alone would turn these into ц.
+        ("kontaktsiz", "контактсиз"),
+        ("kontaktsizlik", "контактсизлик"),
+        ("effektsiz", "эффектсиз"),
+        ("effektsizligi", "эффектсизлиги"),
+        ("faktsiz", "фактсиз"),
+        ("proyektsiz", "проектсиз"),
+        ("intellektsiz", "интеллектсиз"),
+    ],
+)
+def test_x2_check3c_is_not_a_rule_about_k(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("tablitsa", "таблица"),
+        ("tablitsada", "таблицада"),
+        ("teplitsa", "теплица"),
+        ("teplitsalar", "теплицалар"),
+        ("stolitsa", "столица"),
+        ("ulitsa", "улица"),
+        ("bolnitsa", "болница"),   # ь is never restored
+        ("granitsa", "граница"),
+        ("gostinitsa", "гостиница"),
+    ],
+)
+def test_x2_check3d_loanword_stems(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        # The same endings on Uzbek verbs, which is why 3b-3d name exact stems
+        # rather than -itsa or -atsin.
+        ("bitsa", "битса"),
+        ("oʻqitsa", "ўқитса"),
+        ("eshitsa", "эшитса"),
+        ("quritsa", "қуритса"),
+        ("ilitsa", "илитса"),
+        ("tanitsa", "танитса"),
+        ("koʻrsatsin", "кўрсатсин"),
+        ("yaratsin", "яратсин"),
+        ("oʻrgatsin", "ўргатсин"),
+        ("uzatsin", "узатсин"),
+        ("qaytsa", "қайтса"),
+        ("tortsa", "тортса"),
+        ("yurtsiz", "юртсиз"),
+    ],
+)
+def test_x2_uzbek_words_beside_the_loanwords_keep_t_plus_s(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize("via", BOTH_LATINS)
+@pytest.mark.parametrize("text", ["таблица", "теплица", "улица", "левофлоксацин", "амикацин"])
+def test_x2_loanword_round_trip(text, via):
+    assert _round_trip(text, via) == text
+
+
 # --- X3: ʻ and ʼ do not count when deciding case ------------------------------
 #
 # apply_case counted letters with str.isalpha(). ʻ (U+02BB) and ʼ (U+02BC) are
