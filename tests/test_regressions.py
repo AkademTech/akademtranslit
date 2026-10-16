@@ -246,3 +246,69 @@ def test_x2_check4_needs_the_whole_tail(latin, expected):
 )
 def test_x2_round_trip(text, via):
     assert _round_trip(text, via) == text
+
+
+# --- X3: ʻ and ʼ do not count when deciding case ------------------------------
+#
+# apply_case counted letters with str.isalpha(). ʻ (U+02BB) and ʼ (U+02BC) are
+# letters to Unicode but have no case, so an all-caps word containing one never
+# looked all-caps: OʻZBEKISTON came out as Ўзбекистон.
+
+X3_TO_CYRILLIC = [
+    ("OʻZBEKISTON", "ЎЗБЕКИСТОН"),
+    ("GʻOYA", "ҒОЯ"),
+    ("GʻALLA", "ҒАЛЛА"),
+    ("SOʻM", "СЎМ"),
+    ("YOʻL", "ЙЎЛ"),   # needs X1 too
+    ("YOʻQ", "ЙЎҚ"),
+]
+
+
+@pytest.mark.parametrize("mark", APOSTROPHES, ids=APOSTROPHE_IDS)
+@pytest.mark.parametrize("latin,expected", X3_TO_CYRILLIC)
+def test_x3_all_caps_with_turned_comma_to_cyrillic(latin, expected, mark):
+    spelled = latin.replace("ʻ", mark)
+    assert convert(spelled, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("OʻZBEKISTON", "ÖZBEKISTON"),
+        ("GʻALLA", "ĞALLA"),
+    ],
+)
+def test_x3_all_caps_with_turned_comma_to_latin_2026(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=LATIN_2026) == expected
+
+
+def test_x3_all_caps_with_tutuq_belgisi():
+    assert convert("MAʼNO", source=LATIN_1995, target=CYRILLIC) == "МАЪНО"
+    assert convert("SHEʼR", source=LATIN_1995, target=CYRILLIC) == "ШЕЪР"
+
+
+@pytest.mark.parametrize(
+    "source,target,text,expected",
+    [
+        (LATIN_1995, CYRILLIC, "SHAHAR", "ШАҲАР"),
+        (LATIN_1995, CYRILLIC, "Shahar", "Шаҳар"),
+        (LATIN_1995, CYRILLIC, "Choy", "Чой"),
+        (LATIN_1995, CYRILLIC, "CHOY", "ЧОЙ"),
+        (LATIN_1995, CYRILLIC, "Oʻzbekiston", "Ўзбекистон"),
+        (LATIN_1995, CYRILLIC, "Gʻalla", "Ғалла"),
+        (CYRILLIC, LATIN_1995, "ШАҲАР", "SHAHAR"),
+        (CYRILLIC, LATIN_1995, "Шаҳар", "Shahar"),
+    ],
+)
+def test_x3_other_casing_is_unchanged(source, target, text, expected):
+    """A digraph takes its case from its first letter; one capital stays one."""
+    assert convert(text, source=source, target=target) == expected
+
+
+@pytest.mark.parametrize("via", BOTH_LATINS)
+@pytest.mark.parametrize(
+    "text",
+    ["ЎЗБЕКИСТОН", "ЙЎЛ", "СЎМ", "ҒОЯ", "ҒАЛЛА", "ШАҲАР", "МАЪНО"],
+)
+def test_x3_round_trip(text, via):
+    assert _round_trip(text, via) == text

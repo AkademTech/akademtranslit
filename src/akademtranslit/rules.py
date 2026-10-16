@@ -100,8 +100,12 @@ def apply_case(source: str, result: str) -> str:
     Length changes freely between input and output (``ш`` is one character,
     ``sh`` is two), so casing is decided from the source and re-applied, never
     copied position by position.
+
+    Only letters that have case take part. ``ʻ`` and ``ʼ`` are letters to
+    Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all-caps and
+    gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``.
     """
-    letters = [ch for ch in source if ch.isalpha()]
+    letters = [ch for ch in source if ch.lower() != ch.upper()]
     if not letters or not result:
         return result
     if len(letters) > 1 and all(ch.isupper() for ch in letters):
