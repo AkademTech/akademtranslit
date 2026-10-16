@@ -63,3 +63,186 @@ def test_x1_yo_without_a_following_mark_is_still_yo(latin, expected):
 @pytest.mark.parametrize("text", ["йўқ", "йўл", "Йўлдош", "йўтал"])
 def test_x1_round_trip(text, via):
     assert _round_trip(text, via) == text
+
+
+# --- X2: ts at an Uzbek suffix boundary is т + с, not ц ----------------------
+#
+# The ``ts`` row read every t + s as ц, so ketsa came out as кеца and hayotsiz
+# as ҳаёциз. ts is now decided per word, by the ordered checks in
+# rules._ts_splits; each check has its own test below.
+
+X2_SUFFIX_CASES = [
+    ("ketsa", "кетса"),
+    ("aytsa", "айтса"),
+    ("tutsa", "тутса"),
+    ("yetsa", "етса"),
+    ("oʻtsa", "ўтса"),
+    ("kutsangiz", "кутсангиз"),
+    ("aytsangizchi", "айтсангизчи"),
+    ("ketsin", "кетсин"),
+    ("bitsin", "битсин"),
+    ("oʻqitsin", "ўқитсин"),
+    ("eshitsin", "эшитсин"),
+    ("ketsinmi", "кетсинми"),
+    ("hayotsiz", "ҳаётсиз"),
+    ("mehnatsiz", "меҳнатсиз"),
+    ("otsiz", "отсиз"),
+    ("hayotsizlik", "ҳаётсизлик"),
+    ("hayotsizman", "ҳаётсизман"),
+    ("mehnatsevar", "меҳнатсевар"),
+]
+
+# Correct in 0.1.0 and must stay so.
+X2_LOANWORDS = [
+    ("militsiya", "милиция"),
+    ("reanimatsiya", "реанимация"),
+    ("natsional", "национал"),
+    ("intubatsiyasiz", "интубациясиз"),
+    ("sotsiologiya", "социология"),
+    ("leykotsit", "лейкоцит"),
+    ("eritrotsit", "эритроцит"),
+    ("trombotsit", "тромбоцит"),
+    ("limfotsit", "лимфоцит"),
+    ("protsent", "процент"),
+    ("platsenta", "плацента"),
+    ("litsey", "лицей"),
+    ("atseton", "ацетон"),
+    ("farmatsevt", "фармацевт"),
+    ("detsibel", "децибел"),
+    ("spetsifik", "специфик"),
+    ("meditsina", "медицина"),
+    ("vaktsina", "вакцина"),
+    ("natsizm", "нацизм"),
+    ("azitromitsin", "азитромицин"),
+    ("glitsin", "глицин"),
+]
+
+
+@pytest.mark.parametrize("latin,expected", X2_SUFFIX_CASES)
+def test_x2_suffix_after_t_is_t_plus_s(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize("latin,expected", X2_LOANWORDS)
+def test_x2_loanwords_keep_tse(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+def test_x2_case_is_kept():
+    assert convert("KETSA", source=LATIN_1995, target=CYRILLIC) == "КЕТСА"
+    assert convert("Hayotsiz", source=LATIN_1995, target=CYRILLIC) == "Ҳаётсиз"
+
+
+# Check 0: the s is the first half of sh, so there is no ts at all.
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("adabiyotshunos", "адабиётшунос"),
+        ("adabiyotshunoslik", "адабиётшунослик"),
+        ("sanʼatshunos", "санъатшунос"),
+    ],
+)
+def test_x2_check0_s_opening_sh(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+def test_x2_check0_from_latin_2026():
+    assert convert("adabiyotşunos", source=LATIN_2026, target=CYRILLIC) == "адабиётшунос"
+
+
+# Check 1: word-initial ts is ц. tsinga is the case that needs it -- its tail
+# reads as sin + ga, which check 4 would otherwise split.
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("tsement", "цемент"),
+        ("tsar", "цар"),
+        ("tsitokin", "цитокин"),
+        ("tsinga", "цинга"),
+    ],
+)
+def test_x2_check1_word_initial(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+# Check 2: ts + i + vowel or y, the -tsiya / -tsion / -tsiy family.
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("operatsiya", "операция"),
+        ("informatsiya", "информация"),
+        ("ratsion", "рацион"),
+        ("patsiyent", "пациент"),
+        ("sotsial", "социал"),
+    ],
+)
+def test_x2_check2_before_i_and_a_vowel(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+# Check 3: loans whose tail looks like the -sin suffix. Matched where the ts
+# is, not at the end of the word, so the inflected forms hold too.
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("azitromitsin", "азитромицин"),
+        ("streptomitsin", "стрептомицин"),
+        ("gentamitsin", "гентамицин"),
+        ("glitsin", "глицин"),
+        ("azitromitsinni", "азитромицинни"),
+        ("glitsinning", "глициннинг"),
+    ],
+)
+def test_x2_check3_known_loans(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+# Check 4: the whole tail has to be suffixes.
+
+
+@pytest.mark.parametrize(
+    "latin,expected",
+    [
+        ("mehnatsizligi", "меҳнатсизлиги"),   # siz + ligi
+        ("hayotsizlikni", "ҳаётсизликни"),    # sizlik + ni
+        ("ketsangizlar", "кетсангизлар"),     # sangiz + lar
+        ("mehnatsizroq", "меҳнатсизроқ"),     # siz + roq
+        ("hayotsizsan", "ҳаётсизсан"),        # siz + san
+        ("patsiyentsiz", "пациентсиз"),       # check 2, then check 4
+        ("meditsina", "медицина"),            # sin + a: a is not a suffix here
+        ("vaktsina", "вакцина"),
+        ("natsizm", "нацизм"),                # siz + m
+    ],
+)
+def test_x2_check4_needs_the_whole_tail(latin, expected):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == expected
+
+
+@pytest.mark.parametrize("via", BOTH_LATINS)
+@pytest.mark.parametrize(
+    "text",
+    [
+        "кетса",
+        "айтса",
+        "тутса",
+        "ўтса",
+        "кетсин",
+        "ҳаётсиз",
+        "КЕТСА",
+        "ҲАЁТСИЗ",
+        "милиция",
+        "лейкоцит",
+        "адабиётшунос",
+        "санъатшунос",
+    ],
+)
+def test_x2_round_trip(text, via):
+    assert _round_trip(text, via) == text

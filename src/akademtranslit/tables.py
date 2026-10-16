@@ -107,7 +107,7 @@ CYRILLIC_TO_LATIN_1995 = {
 
 #: ``latin_1995`` to Cyrillic, longest match first. The engine tries these in
 #: order at each position, so digraphs must precede their component letters.
-#: Positional readings (``e`` vs ``ye``) are resolved in
+#: Positional readings (``e`` vs ``ye``, ``ts`` as ц or т + с) are resolved in
 #: :mod:`akademtranslit.rules`.
 LATIN_1995_TO_CYRILLIC = (
     # The s+h sequence, written with a tutuq belgisi so it is not read as the
@@ -119,6 +119,7 @@ LATIN_1995_TO_CYRILLIC = (
     # Digraphs.
     ("sh", "ш"),
     ("ch", "ч"),
+    # The default only: rules.py splits ts into т + с at a suffix boundary.
     ("ts", "ц"),
     # y before oʻ is й + ў, not ё: yoʻq -> йўқ, yoʻl -> йўл. Must precede
     # ``yo``, which would otherwise take the o and strand the turned comma.
