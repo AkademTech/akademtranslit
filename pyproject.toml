@@ -53,7 +53,7 @@ where = ["src"]
 akademtranslit = ["py.typed"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "-q"
+testpaths = ["tests", "src"]
+addopts = "-q --doctest-modules"
 # So `pytest` works straight from a clone, with no install step.
 pythonpath = ["src"]

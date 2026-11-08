@@ -169,13 +169,13 @@ TS_LOANWORD_STEMS = (
 
 # --- the 2026 reform ---------------------------------------------------------
 #
-# The whole reform is these four rows. Keeping it as one small table is
-# deliberate: if the final decree settles on a different glyph for one of them,
-# exactly one line here changes and the rest of the library follows.
+# The whole reform is these four rows, as set by Law No. O'RQ-1184 (signed
+# 21 October 2026, in force from 22 April 2027). Keeping it as one small table
+# means a change to a glyph is one line here.
 #
-# NOTE: an earlier draft of the reform proposed ``ō`` (o with macron) rather
-# than ``ö`` for ``oʻ``. This library emits ``ö`` and accepts ``ō`` on input as
-# an alias, so text written under either convention reads correctly.
+# The law writes ``ö`` for ``oʻ``. Earlier drafts used ``ō`` (o with macron) or
+# ``ǒ``; both are accepted on input as aliases (LATIN_2026_INPUT_ALIASES) so
+# that draft-era text reads correctly, and neither is ever output.
 
 #: The four letters the reform changes, as a plain correspondence table. This is
 #: the reform, and it is exposed for callers that want to render it (keyboards,
