@@ -172,8 +172,9 @@ run in order and the first that applies wins:
 - the rest of the word is Uzbek suffixes → `т` + `с`. The `s` must open one of
   `-sa`, `-sak`, `-sam`, `-sang`, `-sangiz`, `-salar`, `-sin`, `-sinlar`,
   `-siz`, `-sizlik` or `-sevar`, and anything after it must be further suffixes
-  (`-lik`, `-lar`, `-ga`, `-da`, `-ni`, `-man`, `-mi`, …): ketsinmi → кетсинми,
-  hayotsizlik → ҳаётсизлик. Starting with the right letters is not enough, so
+  or particles (`-lik`, `-lar`, `-ga`, `-da`, `-ni`, `-man`, `-mi`, `-gina`,
+  `-yu`, `-ku`, `-yoq`, `-mikan`, …): ketsinmi → кетсинми, hayotsizlik →
+  ҳаётсизлик, aytsangizgina → айтсангизгина. Starting with the right letters is not enough, so
   meditsina (`sin` + `a`) and natsizm (`siz` + `m`) keep `ц`;
 - otherwise `ц`: leykotsit → лейкоцит, protsent → процент.
 

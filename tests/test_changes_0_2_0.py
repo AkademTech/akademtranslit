@@ -73,3 +73,52 @@ def test_hard_sign_normalize_is_unchanged():
     """normalize() strips the tutuq belgisi anyway, so its keys do not move."""
     assert normalize("объект") == normalize("obyekt") == "obyekt"
     assert normalize("мўъжиза") == normalize("moʻjiza") == "mojiza"
+
+
+# --- ts before particles that follow a suffix ---------------------------------
+#
+# The ts rule reads ts as т + с when the rest of the word is suffixes, but the
+# particles that can close a verb form were missing from the list of what may
+# follow, so aytsangizgina came out as айцангизгина.
+
+TS_PARTICLES = [
+    ("aytsangizgina", "айтсангизгина"),   # -gina
+    ("aytsakkina", "айтсаккина"),         # -kina
+    ("ketsayu", "кетсаю"),                # -yu
+    ("ketsinu", "кетсину"),               # -u
+    ("ketsaku", "кетсаку"),               # -ku
+    ("ketsayoq", "кетсаёқ"),              # -yoq
+    ("tutsinmikan", "тутсинмикан"),       # -mikan
+]
+
+# Loanwords whose ц must not move.
+TS_PARTICLES_UNCHANGED = [
+    ("meditsina", "медицина"),
+    ("natsizm", "нацизм"),
+    ("protsent", "процент"),
+    ("litsey", "лицей"),
+    ("tsement", "цемент"),
+    ("vaktsina", "вакцина"),
+]
+
+
+@pytest.mark.parametrize("latin,cyrillic", TS_PARTICLES)
+def test_ts_before_a_particle_is_t_plus_s(latin, cyrillic):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == cyrillic
+
+
+@pytest.mark.parametrize("latin,cyrillic", TS_PARTICLES_UNCHANGED)
+def test_ts_particles_leave_loanwords_alone(latin, cyrillic):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == cyrillic
+
+
+def test_ts_particles_from_latin_2026_and_in_caps():
+    assert convert("aytsangizgina", source=LATIN_2026, target=CYRILLIC) == "айтсангизгина"
+    assert convert("KETSAYU", source=LATIN_1995, target=CYRILLIC) == "КЕТСАЮ"
+
+
+@pytest.mark.parametrize("via", [LATIN_1995, LATIN_2026])
+@pytest.mark.parametrize("cyrillic", [c for _, c in TS_PARTICLES])
+def test_ts_particles_round_trip(cyrillic, via):
+    latin = convert(cyrillic, source=CYRILLIC, target=via)
+    assert convert(latin, source=via, target=CYRILLIC) == cyrillic

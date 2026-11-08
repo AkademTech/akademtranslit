@@ -196,6 +196,7 @@ _TS_FOLLOWERS = (
     "ga", "ka", "da", "dan", "ni", "ning",          # case
     "man", "san", "miz", "siz", "dir",              # person
     "mi", "chi",                                    # particles
+    "gina", "kina", "yu", "u", "ku", "yoq", "mikan",  # particles that close a verb form
 )
 
 _TS_SUFFIX_RE = re.compile(
