@@ -7,11 +7,13 @@ build/
 dist/
 
 # Environments
-.venv/
+.venv*/
 venv/
 env/
 
 # Tooling
+.audit/
+.wheeltest/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
