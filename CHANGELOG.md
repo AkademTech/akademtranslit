@@ -82,6 +82,10 @@ Golden diff, 0.1.1 → 0.2.0, over 1121 inputs
 - The version is read from `akademtranslit.__version__`; the build needs
   `setuptools>=77`.
 - Version classifiers name only the Python versions the test suite has run on.
+- Dropped the `Natural Language :: Uzbek` classifier: it is not in the PyPI
+  classifier list, and PyPI rejects uploads that carry it.
+  `tools/check_classifiers.py` now checks the list in CI and before every
+  release.
 - Still Python 3.9 or newer, and still no dependencies.
 
 ## 0.1.1 — 2026-10-16
