@@ -24,6 +24,7 @@ key that makes one word searchable across all three.
 
 from __future__ import annotations
 
+from .apostrophes import normalize_apostrophes
 from .collation import sort_key
 from .normalize import fold_cyrillic, is_cyrillic, normalize
 from .rules import (
@@ -65,6 +66,7 @@ __all__ = [
     "fold_cyrillic",
     "is_cyrillic",
     "normalize",
+    "normalize_apostrophes",
     "sort_key",
     "to_cyrillic",
     "to_latin",
