@@ -34,6 +34,8 @@ jobs:
           fi
       - name: Golden vectors
         run: uv run --no-project --python 3.12 -- python tools/golden.py --check
+      - name: Validate classifiers
+        run: uv run --no-project --python 3.12 --with trove-classifiers -- python tools/check_classifiers.py
       - name: Build sdist and wheel
         run: uv build --out-dir dist
       - name: Check metadata
