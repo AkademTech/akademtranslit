@@ -26,6 +26,7 @@ from __future__ import annotations
 
 from .apostrophes import normalize_apostrophes
 from .collation import sort_key
+from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
 from .rules import (
     cyrillic_word_to_latin_1995,
@@ -62,11 +63,13 @@ __all__ = [
     "TUTUQ",
     "__version__",
     "convert",
+    "cyrillic_language",
     "detect_script",
     "fold_cyrillic",
     "is_cyrillic",
     "normalize",
     "normalize_apostrophes",
+    "script_class",
     "sort_key",
     "to_cyrillic",
     "to_latin",
