@@ -208,12 +208,14 @@ canonical form: marks written as `ʻ` and `ʼ`, and each word in lower case,
 with an initial capital, or in all caps (`OʻZBEKISTON` included). Other input
 comes back canonicalised — `o'zbek` as `oʻzbek`, `McDonald` as `Mcdonald`.
 Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter
-inventory, with one gap: `т` followed by `с` comes back as `ц` unless the `s`
+inventory, with two gaps: `т` followed by `с` comes back as `ц` unless the `s`
 starts a suffix the `ts` rule knows (`ўтсўндиргич`, `соатсоз`; see
-Context-dependent rules). Both are enforced by the test suite.
+Context-dependent rules), and `ъ` after `ў` does not come back (`мўъжиза` →
+`moʻjiza` → `мўжиза`). Both are enforced by the test suite.
 
 **Known lossy mappings.** Four Cyrillic letters occur only in Russian
-loanwords, and folding them is deliberate:
+loanwords, and folding them is deliberate; `ъ` is dropped where the 1995
+spelling drops it:
 
 | Letter | Behaviour | Reason |
 | --- | --- | --- |
@@ -221,6 +223,7 @@ loanwords, and folding them is deliberate:
 | ы | merges with и → `i` | no distinct sound in Uzbek |
 | ь | dropped | not represented in either Latin alphabet |
 | ц | positional `ts`/`s`, not reversible | a heuristic; loanword spelling is genuinely inconsistent |
+| ъ | dropped after a consonant before `е ё ю я` and after `ў` (`объект` → `obyekt`, `мўъжиза` → `moʻjiza`), `ʼ` elsewhere; not reversible | the 1995 spelling writes no mark there, so the Latin side has nothing to restore it from |
 
 **Script detection is a heuristic.** A `latin_2026` string containing none of
 the four reformed letters is indistinguishable from a `latin_1995` one. That is

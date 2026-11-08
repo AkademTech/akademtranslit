@@ -62,8 +62,9 @@ APOSTROPHE_VARIANTS = (
 CYRILLIC_VOWELS = frozenset("аеёиоуўэюяы")
 
 #: Context-free Cyrillic to ``latin_1995``. Lowercase keys; case is restored by
-#: the caller. Entries whose reading depends on position (``е``, ``ц``, and
-#: ``с`` before ``ҳ``) are handled in :mod:`akademtranslit.rules` instead.
+#: the caller. Entries whose reading depends on position (``е``, ``ц``, ``с``
+#: before ``ҳ``, and ``ъ`` where it is dropped) are handled in
+#: :mod:`akademtranslit.rules` instead.
 CYRILLIC_TO_LATIN_1995 = {
     "а": "a",
     "б": "b",

@@ -4,7 +4,7 @@ The tables in :mod:`akademtranslit.tables` cover characters whose reading never
 changes. This module covers the ones that do, plus the machinery that applies
 both: tokenisation, greedy longest-match rewriting, and case restoration.
 
-Four positional rules are implemented:
+Five positional rules are implemented:
 
 ``е``
     Read ``ye`` at the start of a word and after a vowel or a soft/hard sign
@@ -30,6 +30,12 @@ Four positional rules are implemented:
     Written ``sʼh`` in ``latin_1995`` so it is not misread as the ``sh``
     digraph (исҳоқ -> isʼhoq, not ishoq). In ``latin_2026`` the separator is
     unnecessary, because ``ş`` carries the digraph's sound.
+
+``ъ``
+    Dropped after a consonant before ``е ё ю я`` (объект -> obyekt, съёмка ->
+    syomka) and after ``ў`` (мўъжиза -> moʻjiza); the tutuq belgisi ``ʼ``
+    everywhere else (маъно -> maʼno, санъат -> sanʼat). Not reversible: the
+    Latin side has nothing to restore it from.
 """
 
 from __future__ import annotations
@@ -136,6 +142,11 @@ def map_words(text: str, transform) -> str:
 
 # --- Cyrillic -> latin_1995 --------------------------------------------------
 
+# For the ъ rule: the consonants it may follow, and the letters that begin with
+# a y sound in Latin.
+_CYRILLIC_CONSONANTS = frozenset("бвгджзйклмнпрстфхцчшщқғҳ")
+_CYRILLIC_IOTATED = frozenset("еёюя")
+
 
 def cyrillic_word_to_latin_1995(word: str) -> str:
     """Convert one lowercase Cyrillic word to ``latin_1995``."""
@@ -156,6 +167,12 @@ def cyrillic_word_to_latin_1995(word: str) -> str:
         elif ch == "с" and nxt == "ҳ":
             # Emit the separator now; the ҳ that follows supplies the h.
             out.append("s" + TUTUQ)
+        elif ch == "ъ" and (
+            prev == "ў" or (prev in _CYRILLIC_CONSONANTS and nxt in _CYRILLIC_IOTATED)
+        ):
+            # The 1995 spelling writes no mark here: объект -> obyekt,
+            # мўъжиза -> moʻjiza. Elsewhere ъ is the tutuq belgisi.
+            continue
         else:
             out.append(CYRILLIC_TO_LATIN_1995.get(ch, ch))
     return "".join(out)
