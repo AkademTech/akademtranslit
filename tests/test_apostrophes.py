@@ -130,11 +130,5 @@ def test_unicode_ascii_unicode_round_trip():
 
 @pytest.mark.parametrize("style", ["unicode", "ascii"])
 def test_normalize_gives_the_same_key_either_way(style):
-    # Inputs with U+00B4 (acute accent) are left out. normalize() applies NFKC
-    # first, which turns U+00B4 into a space and a combining accent, so
-    # normalize("o´zbek") is "o zbek" while normalize("oʻzbek") is "ozbek". That
-    # is how normalize() already behaves; this function does not change it.
     for text in _golden_texts():
-        if "´" in text:
-            continue
         assert normalize(normalize_apostrophes(text, style)) == normalize(text), text

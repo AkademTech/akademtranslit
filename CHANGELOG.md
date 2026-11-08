@@ -44,6 +44,11 @@
   `ц` again (`окситоцин`, `рифампицин`, `доксорубицин`), as in 0.1.0; 0.1.1
   gave `окситотсин`. Verbs with the same ending (`bitsin`, `ketsin`) keep
   `т` + `с`.
+- `normalize`: `´` (U+00B4) reads as an apostrophe, like the other seven
+  marks. Unicode normalization (NFKC) used to turn it into a space and a
+  combining accent, so `normalize("o´zbek")` was `"o zbek"`; it is now
+  `"ozbek"`, the same key as `oʻzbek` and `o'zbek`. No other input's key
+  changes.
 
 ### Output changes
 
@@ -52,7 +57,7 @@ Golden diff, 0.1.1 → 0.2.0, over 1121 inputs
 
 | Field | Changed |
 | --- | ---: |
-| `normalize` | 0 |
+| `normalize` | 5 |
 | `detect_script` | 0 |
 | `to_cyrillic` | 13 |
 | `to_latin_1995` | 9 |
@@ -64,6 +69,9 @@ Golden diff, 0.1.1 → 0.2.0, over 1121 inputs
 - `to_cyrillic`: seven particle forms (`aytsangizgina` `айцангизгина` →
   `айтсангизгина`) and six drug names (`oksitotsin` `окситотсин` →
   `окситоцин`).
+- `normalize`: the five inputs with `´` inside a word: `o´zbek` `o zbek` →
+  `ozbek`, `g´alaba`, `ma´no`, `jur´at` and `O´ZBEKISTON` likewise. A search
+  index built with 0.1.x needs these keys rebuilt.
 
 ### Packaging
 

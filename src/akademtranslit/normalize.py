@@ -68,6 +68,9 @@ _LATIN_2026_FOLD = {
 
 _MARKS = frozenset(APOSTROPHE_VARIANTS) | {TURNED_COMMA, TUTUQ}
 
+# U+00B4 ACUTE ACCENT, the one apostrophe variant that NFKC decomposes.
+_ACUTE_ACCENT = "´"
+
 _NON_ALNUM_RE = re.compile(r"[^a-z0-9]")
 _WHITESPACE_RE = re.compile(r"\s+")
 _LATIN_RE = re.compile(r"[A-Za-z]")
@@ -122,6 +125,9 @@ def normalize(text: str) -> str:
     if not text or not text.strip():
         return ""
 
+    # U+00B4 is one of the apostrophe variants, but NFKC would turn it into a
+    # space and a combining accent (o´zbek -> "o zbek"). Make it a mark first.
+    text = text.replace(_ACUTE_ACCENT, TUTUQ)
     text = unicodedata.normalize("NFKC", text)
     text = text.lower()
     if is_cyrillic(text):

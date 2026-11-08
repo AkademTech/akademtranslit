@@ -30692,7 +30692,7 @@
   "c0880": {
    "cyrillic_language": "unknown",
    "detect_script": "latin_1995",
-   "normalize": "o zbek",
+   "normalize": "ozbek",
    "normalize_apostrophes_ascii": "o'zbek",
    "normalize_apostrophes_unicode": "oʻzbek",
    "script_class": "latin",
@@ -30893,7 +30893,7 @@
   "c0886": {
    "cyrillic_language": "unknown",
    "detect_script": "latin_1995",
-   "normalize": "g alaba",
+   "normalize": "galaba",
    "normalize_apostrophes_ascii": "g'alaba",
    "normalize_apostrophes_unicode": "gʻalaba",
    "script_class": "latin",
@@ -31085,7 +31085,7 @@
   "c0892": {
    "cyrillic_language": "unknown",
    "detect_script": "latin_1995",
-   "normalize": "ma no",
+   "normalize": "mano",
    "normalize_apostrophes_ascii": "ma'no",
    "normalize_apostrophes_unicode": "maʼno",
    "script_class": "latin",
@@ -31300,7 +31300,7 @@
   "c0899": {
    "cyrillic_language": "unknown",
    "detect_script": "latin_1995",
-   "normalize": "jur at",
+   "normalize": "jurat",
    "normalize_apostrophes_ascii": "jur'at",
    "normalize_apostrophes_unicode": "jurʼat",
    "script_class": "latin",
@@ -31636,7 +31636,7 @@
   "c0911": {
    "cyrillic_language": "unknown",
    "detect_script": "latin_1995",
-   "normalize": "o zbekiston",
+   "normalize": "ozbekiston",
    "normalize_apostrophes_ascii": "O'ZBEKISTON",
    "normalize_apostrophes_unicode": "OʻZBEKISTON",
    "script_class": "latin",

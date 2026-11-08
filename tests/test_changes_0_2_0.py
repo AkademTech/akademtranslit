@@ -189,3 +189,38 @@ def test_separated_s_and_h_is_unchanged():
     assert convert("Исҳоқ", source=CYRILLIC, target=LATIN_2026) == "Ishoq"
     assert convert("Isʼhoq", source=LATIN_1995, target=CYRILLIC) == "Исҳоқ"
     assert convert("Ishoq", source=LATIN_2026, target=CYRILLIC) == "Исҳоқ"
+
+
+# --- normalize: U+00B4 reads as an apostrophe ---------------------------------
+#
+# NFKC turns U+00B4 (acute accent) into a space and a combining accent, so
+# normalize("o´zbek") was "o zbek" while every other spelling gave "ozbek".
+# U+00B4 now becomes the tutuq belgisi before NFKC, like the other marks.
+
+NORMALIZE_MARKS = ["ʻ", "ʼ", "‘", "’", "`", "'", "´", "ʹ"]
+NORMALIZE_MARK_IDS = [f"U+{ord(m):04X}" for m in NORMALIZE_MARKS]
+
+
+@pytest.mark.parametrize(
+    "template,key",
+    [
+        ("o_zbek", "ozbek"),
+        ("g_alaba", "galaba"),
+        ("ma_no", "mano"),
+        ("jur_at", "jurat"),
+        ("O_ZBEKISTON", "ozbekiston"),
+    ],
+)
+def test_normalize_gives_one_key_for_every_apostrophe(template, key):
+    keys = {mark: normalize(template.replace("_", mark)) for mark in NORMALIZE_MARKS}
+    assert keys == {mark: key for mark in NORMALIZE_MARKS}
+
+
+@pytest.mark.parametrize("mark", NORMALIZE_MARKS, ids=NORMALIZE_MARK_IDS)
+def test_normalize_acute_accent_matches_the_other_marks(mark):
+    assert normalize("o´zbek tili") == normalize("o" + mark + "zbek tili") == "ozbek tili"
+
+
+def test_normalize_a_lone_acute_accent_is_still_dropped():
+    assert normalize("´") == ""
+    assert normalize("bog´") == normalize("bogʻ") == "bog"

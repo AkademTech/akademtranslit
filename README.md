@@ -100,7 +100,8 @@ True
 ```
 
 `normalize` is idempotent and folds orthography, case, punctuation and every
-apostrophe style in use.
+apostrophe style in use: all eight accepted marks (see below) give the same
+key, so `o'zbek`, `o’zbek`, `o´zbek` and `oʻzbek` all match.
 
 ### Sort in alphabetical order
 
@@ -261,7 +262,9 @@ Input accepts eight characters for either mark: `ʻ` U+02BB, `ʼ` U+02BC, `’`
 U+2019, `‘` U+2018, `´` U+00B4, `ʹ` U+02B9, `'` U+0027 and `` ` `` U+0060.
 Conversion always emits the canonical two, which makes it idempotent and its
 output safe to store; `normalize_apostrophes` does the same without converting,
-or writes `'` for both with `style="ascii"`.
+or writes `'` for both with `style="ascii"`. `normalize` drops all eight, so the
+mark a word was typed with never changes its key (since 0.2.0 this includes
+`´`, which Unicode normalization used to turn into a space).
 
 ## Guarantees, and their limits
 
