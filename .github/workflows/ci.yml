@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+        include:
+          - os: macos-latest
+            python: "3.14"
+          - os: windows-latest
+            python: "3.14"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
+        with:
+          enable-cache: false
+      - name: Test suite
+        run: uv run --no-project --python ${{ matrix.python }} --with pytest -- python -m pytest
+      - name: Golden vectors
+        run: uv run --no-project --python ${{ matrix.python }} -- python tools/golden.py --check
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
+        with:
+          enable-cache: false
+      - name: Build sdist and wheel
+        run: uv build --out-dir dist
+      - name: Check metadata
+        run: uvx twine check --strict dist/*
+      - name: Test the installed wheel in a clean Python 3.9
+        run: |
+          uv venv --python 3.9 .wheeltest
+          uv pip install --python .wheeltest/bin/python dist/*.whl pytest
+          .wheeltest/bin/python -m pytest -o pythonpath= -o addopts= tests
