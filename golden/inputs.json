@@ -1,0 +1,8393 @@
+{
+ "cases": [
+  {
+   "id": "c0001",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "а"
+  },
+  {
+   "id": "c0002",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "А"
+  },
+  {
+   "id": "c0003",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "бахт"
+  },
+  {
+   "id": "c0004",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БАХТ"
+  },
+  {
+   "id": "c0005",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "б"
+  },
+  {
+   "id": "c0006",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Б"
+  },
+  {
+   "id": "c0007",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "табиат"
+  },
+  {
+   "id": "c0008",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ТАБИАТ"
+  },
+  {
+   "id": "c0009",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "в"
+  },
+  {
+   "id": "c0010",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "В"
+  },
+  {
+   "id": "c0011",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "дарвоза"
+  },
+  {
+   "id": "c0012",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ДАРВОЗА"
+  },
+  {
+   "id": "c0013",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "г"
+  },
+  {
+   "id": "c0014",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Г"
+  },
+  {
+   "id": "c0015",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "бугун"
+  },
+  {
+   "id": "c0016",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БУГУН"
+  },
+  {
+   "id": "c0017",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "д"
+  },
+  {
+   "id": "c0018",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Д"
+  },
+  {
+   "id": "c0019",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "одам"
+  },
+  {
+   "id": "c0020",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ОДАМ"
+  },
+  {
+   "id": "c0021",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "е"
+  },
+  {
+   "id": "c0022",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Е"
+  },
+  {
+   "id": "c0023",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "кеча"
+  },
+  {
+   "id": "c0024",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "КЕЧА"
+  },
+  {
+   "id": "c0025",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ё"
+  },
+  {
+   "id": "c0026",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ё"
+  },
+  {
+   "id": "c0027",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing",
+    "context"
+   ],
+   "text": "ҳаёт"
+  },
+  {
+   "id": "c0028",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ҲАЁТ"
+  },
+  {
+   "id": "c0029",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ж"
+  },
+  {
+   "id": "c0030",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ж"
+  },
+  {
+   "id": "c0031",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ажойиб"
+  },
+  {
+   "id": "c0032",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "АЖОЙИБ"
+  },
+  {
+   "id": "c0033",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "з"
+  },
+  {
+   "id": "c0034",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "З"
+  },
+  {
+   "id": "c0035",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "озод"
+  },
+  {
+   "id": "c0036",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ОЗОД"
+  },
+  {
+   "id": "c0037",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "и"
+  },
+  {
+   "id": "c0038",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "И"
+  },
+  {
+   "id": "c0039",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "китоб"
+  },
+  {
+   "id": "c0040",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "КИТОБ"
+  },
+  {
+   "id": "c0041",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "й"
+  },
+  {
+   "id": "c0042",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Й"
+  },
+  {
+   "id": "c0043",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "майдон"
+  },
+  {
+   "id": "c0044",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "МАЙДОН"
+  },
+  {
+   "id": "c0045",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "к"
+  },
+  {
+   "id": "c0046",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "К"
+  },
+  {
+   "id": "c0047",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "бекат"
+  },
+  {
+   "id": "c0048",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БЕКАТ"
+  },
+  {
+   "id": "c0049",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "л"
+  },
+  {
+   "id": "c0050",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Л"
+  },
+  {
+   "id": "c0051",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "олма"
+  },
+  {
+   "id": "c0052",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ОЛМА"
+  },
+  {
+   "id": "c0053",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "м"
+  },
+  {
+   "id": "c0054",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "М"
+  },
+  {
+   "id": "c0055",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "омад"
+  },
+  {
+   "id": "c0056",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ОМАД"
+  },
+  {
+   "id": "c0057",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "н"
+  },
+  {
+   "id": "c0058",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Н"
+  },
+  {
+   "id": "c0059",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "дунё"
+  },
+  {
+   "id": "c0060",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ДУНЁ"
+  },
+  {
+   "id": "c0061",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "о"
+  },
+  {
+   "id": "c0062",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "О"
+  },
+  {
+   "id": "c0063",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "бола"
+  },
+  {
+   "id": "c0064",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БОЛА"
+  },
+  {
+   "id": "c0065",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "п"
+  },
+  {
+   "id": "c0066",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "П"
+  },
+  {
+   "id": "c0067",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "капалак"
+  },
+  {
+   "id": "c0068",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "КАПАЛАК"
+  },
+  {
+   "id": "c0069",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "р"
+  },
+  {
+   "id": "c0070",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Р"
+  },
+  {
+   "id": "c0071",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ариқ"
+  },
+  {
+   "id": "c0072",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "АРИҚ"
+  },
+  {
+   "id": "c0073",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "с"
+  },
+  {
+   "id": "c0074",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "С"
+  },
+  {
+   "id": "c0075",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "асал"
+  },
+  {
+   "id": "c0076",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "АСАЛ"
+  },
+  {
+   "id": "c0077",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "т"
+  },
+  {
+   "id": "c0078",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Т"
+  },
+  {
+   "id": "c0079",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ота"
+  },
+  {
+   "id": "c0080",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ОТА"
+  },
+  {
+   "id": "c0081",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "у"
+  },
+  {
+   "id": "c0082",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "У"
+  },
+  {
+   "id": "c0083",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "булут"
+  },
+  {
+   "id": "c0084",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БУЛУТ"
+  },
+  {
+   "id": "c0085",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ф"
+  },
+  {
+   "id": "c0086",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ф"
+  },
+  {
+   "id": "c0087",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "сафар"
+  },
+  {
+   "id": "c0088",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "САФАР"
+  },
+  {
+   "id": "c0089",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "х"
+  },
+  {
+   "id": "c0090",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Х"
+  },
+  {
+   "id": "c0091",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ахлоқ"
+  },
+  {
+   "id": "c0092",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "АХЛОҚ"
+  },
+  {
+   "id": "c0093",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ц"
+  },
+  {
+   "id": "c0094",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ц"
+  },
+  {
+   "id": "c0095",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing",
+    "context"
+   ],
+   "text": "милиция"
+  },
+  {
+   "id": "c0096",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "МИЛИЦИЯ"
+  },
+  {
+   "id": "c0097",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ч"
+  },
+  {
+   "id": "c0098",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ч"
+  },
+  {
+   "id": "c0099",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "очиқ"
+  },
+  {
+   "id": "c0100",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ОЧИҚ"
+  },
+  {
+   "id": "c0101",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "ш"
+  },
+  {
+   "id": "c0102",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ш"
+  },
+  {
+   "id": "c0103",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "бошқа"
+  },
+  {
+   "id": "c0104",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БОШҚА"
+  },
+  {
+   "id": "c0105",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ъ"
+  },
+  {
+   "id": "c0106",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ъ"
+  },
+  {
+   "id": "c0107",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing",
+    "context",
+    "rules-0.2.0"
+   ],
+   "text": "маъно"
+  },
+  {
+   "id": "c0108",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing",
+    "context"
+   ],
+   "text": "МАЪНО"
+  },
+  {
+   "id": "c0109",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ь"
+  },
+  {
+   "id": "c0110",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ь"
+  },
+  {
+   "id": "c0111",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing",
+    "context"
+   ],
+   "text": "альбом"
+  },
+  {
+   "id": "c0112",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "АЛЬБОМ"
+  },
+  {
+   "id": "c0113",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "э"
+  },
+  {
+   "id": "c0114",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Э"
+  },
+  {
+   "id": "c0115",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "поэма"
+  },
+  {
+   "id": "c0116",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ПОЭМА"
+  },
+  {
+   "id": "c0117",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ю"
+  },
+  {
+   "id": "c0118",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ю"
+  },
+  {
+   "id": "c0119",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "сюжет"
+  },
+  {
+   "id": "c0120",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "СЮЖЕТ"
+  },
+  {
+   "id": "c0121",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "я"
+  },
+  {
+   "id": "c0122",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Я"
+  },
+  {
+   "id": "c0123",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ҳаяжон"
+  },
+  {
+   "id": "c0124",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ҲАЯЖОН"
+  },
+  {
+   "id": "c0125",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ў"
+  },
+  {
+   "id": "c0126",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ў"
+  },
+  {
+   "id": "c0127",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "кўз"
+  },
+  {
+   "id": "c0128",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "КЎЗ"
+  },
+  {
+   "id": "c0129",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "қ"
+  },
+  {
+   "id": "c0130",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Қ"
+  },
+  {
+   "id": "c0131",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ақл"
+  },
+  {
+   "id": "c0132",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "АҚЛ"
+  },
+  {
+   "id": "c0133",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ғ"
+  },
+  {
+   "id": "c0134",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ғ"
+  },
+  {
+   "id": "c0135",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "боғбон"
+  },
+  {
+   "id": "c0136",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "БОҒБОН"
+  },
+  {
+   "id": "c0137",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "ҳ"
+  },
+  {
+   "id": "c0138",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "Ҳ"
+  },
+  {
+   "id": "c0139",
+   "tags": [
+    "alphabet",
+    "cyrillic"
+   ],
+   "text": "шаҳар"
+  },
+  {
+   "id": "c0140",
+   "tags": [
+    "alphabet",
+    "cyrillic",
+    "existing"
+   ],
+   "text": "ШАҲАР"
+  },
+  {
+   "id": "c0141",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing",
+    "api-examples"
+   ],
+   "text": "a"
+  },
+  {
+   "id": "c0142",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "context"
+   ],
+   "text": "A"
+  },
+  {
+   "id": "c0143",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing"
+   ],
+   "text": "baxt"
+  },
+  {
+   "id": "c0144",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "BAXT"
+  },
+  {
+   "id": "c0145",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "b"
+  },
+  {
+   "id": "c0146",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "B"
+  },
+  {
+   "id": "c0147",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "api-examples"
+   ],
+   "text": "tabiat"
+  },
+  {
+   "id": "c0148",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "TABIAT"
+  },
+  {
+   "id": "c0149",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "d"
+  },
+  {
+   "id": "c0150",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "D"
+  },
+  {
+   "id": "c0151",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "odam"
+  },
+  {
+   "id": "c0152",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ODAM"
+  },
+  {
+   "id": "c0153",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "e"
+  },
+  {
+   "id": "c0154",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "E"
+  },
+  {
+   "id": "c0155",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing"
+   ],
+   "text": "kecha"
+  },
+  {
+   "id": "c0156",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "KECHA"
+  },
+  {
+   "id": "c0157",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "f"
+  },
+  {
+   "id": "c0158",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "F"
+  },
+  {
+   "id": "c0159",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "safar"
+  },
+  {
+   "id": "c0160",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "SAFAR"
+  },
+  {
+   "id": "c0161",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "g"
+  },
+  {
+   "id": "c0162",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "G"
+  },
+  {
+   "id": "c0163",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "bugun"
+  },
+  {
+   "id": "c0164",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "BUGUN"
+  },
+  {
+   "id": "c0165",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "h"
+  },
+  {
+   "id": "c0166",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "H"
+  },
+  {
+   "id": "c0167",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "bahor"
+  },
+  {
+   "id": "c0168",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "BAHOR"
+  },
+  {
+   "id": "c0169",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing"
+   ],
+   "text": "i"
+  },
+  {
+   "id": "c0170",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "I"
+  },
+  {
+   "id": "c0171",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing"
+   ],
+   "text": "kitob"
+  },
+  {
+   "id": "c0172",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "KITOB"
+  },
+  {
+   "id": "c0173",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "j"
+  },
+  {
+   "id": "c0174",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "J"
+  },
+  {
+   "id": "c0175",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ajoyib"
+  },
+  {
+   "id": "c0176",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "AJOYIB"
+  },
+  {
+   "id": "c0177",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "k"
+  },
+  {
+   "id": "c0178",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "K"
+  },
+  {
+   "id": "c0179",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "bekat"
+  },
+  {
+   "id": "c0180",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "BEKAT"
+  },
+  {
+   "id": "c0181",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "l"
+  },
+  {
+   "id": "c0182",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "L"
+  },
+  {
+   "id": "c0183",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing",
+    "api-examples"
+   ],
+   "text": "olma"
+  },
+  {
+   "id": "c0184",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "OLMA"
+  },
+  {
+   "id": "c0185",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "m"
+  },
+  {
+   "id": "c0186",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "M"
+  },
+  {
+   "id": "c0187",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "omad"
+  },
+  {
+   "id": "c0188",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "OMAD"
+  },
+  {
+   "id": "c0189",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "n"
+  },
+  {
+   "id": "c0190",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "N"
+  },
+  {
+   "id": "c0191",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "dunyo"
+  },
+  {
+   "id": "c0192",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "DUNYO"
+  },
+  {
+   "id": "c0193",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "o"
+  },
+  {
+   "id": "c0194",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "O"
+  },
+  {
+   "id": "c0195",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "bola"
+  },
+  {
+   "id": "c0196",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "BOLA"
+  },
+  {
+   "id": "c0197",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "p"
+  },
+  {
+   "id": "c0198",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "P"
+  },
+  {
+   "id": "c0199",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "kapalak"
+  },
+  {
+   "id": "c0200",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "KAPALAK"
+  },
+  {
+   "id": "c0201",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "q"
+  },
+  {
+   "id": "c0202",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "Q"
+  },
+  {
+   "id": "c0203",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "aql"
+  },
+  {
+   "id": "c0204",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "AQL"
+  },
+  {
+   "id": "c0205",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "r"
+  },
+  {
+   "id": "c0206",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "R"
+  },
+  {
+   "id": "c0207",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ariq"
+  },
+  {
+   "id": "c0208",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ARIQ"
+  },
+  {
+   "id": "c0209",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "s"
+  },
+  {
+   "id": "c0210",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "S"
+  },
+  {
+   "id": "c0211",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "asal"
+  },
+  {
+   "id": "c0212",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ASAL"
+  },
+  {
+   "id": "c0213",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "t"
+  },
+  {
+   "id": "c0214",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "T"
+  },
+  {
+   "id": "c0215",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ota"
+  },
+  {
+   "id": "c0216",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "OTA"
+  },
+  {
+   "id": "c0217",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "u"
+  },
+  {
+   "id": "c0218",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "U"
+  },
+  {
+   "id": "c0219",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "bulut"
+  },
+  {
+   "id": "c0220",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "BULUT"
+  },
+  {
+   "id": "c0221",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "v"
+  },
+  {
+   "id": "c0222",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "V"
+  },
+  {
+   "id": "c0223",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "darvoza"
+  },
+  {
+   "id": "c0224",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "DARVOZA"
+  },
+  {
+   "id": "c0225",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "x"
+  },
+  {
+   "id": "c0226",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "X"
+  },
+  {
+   "id": "c0227",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "axloq"
+  },
+  {
+   "id": "c0228",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "AXLOQ"
+  },
+  {
+   "id": "c0229",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "y"
+  },
+  {
+   "id": "c0230",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "Y"
+  },
+  {
+   "id": "c0231",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "existing"
+   ],
+   "text": "maydon"
+  },
+  {
+   "id": "c0232",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "MAYDON"
+  },
+  {
+   "id": "c0233",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "z"
+  },
+  {
+   "id": "c0234",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "Z"
+  },
+  {
+   "id": "c0235",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "ozod"
+  },
+  {
+   "id": "c0236",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026"
+   ],
+   "text": "OZOD"
+  },
+  {
+   "id": "c0237",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "existing"
+   ],
+   "text": "oʻ"
+  },
+  {
+   "id": "c0238",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "Oʻ"
+  },
+  {
+   "id": "c0239",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "koʻz"
+  },
+  {
+   "id": "c0240",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "KOʻZ"
+  },
+  {
+   "id": "c0241",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "existing"
+   ],
+   "text": "gʻ"
+  },
+  {
+   "id": "c0242",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "Gʻ"
+  },
+  {
+   "id": "c0243",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "bogʻbon"
+  },
+  {
+   "id": "c0244",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "BOGʻBON"
+  },
+  {
+   "id": "c0245",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "existing"
+   ],
+   "text": "sh"
+  },
+  {
+   "id": "c0246",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "Sh"
+  },
+  {
+   "id": "c0247",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "SH"
+  },
+  {
+   "id": "c0248",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "boshqa"
+  },
+  {
+   "id": "c0249",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "BOSHQA"
+  },
+  {
+   "id": "c0250",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "existing"
+   ],
+   "text": "ch"
+  },
+  {
+   "id": "c0251",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "Ch"
+  },
+  {
+   "id": "c0252",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "CH"
+  },
+  {
+   "id": "c0253",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "ochiq"
+  },
+  {
+   "id": "c0254",
+   "tags": [
+    "alphabet",
+    "latin_1995"
+   ],
+   "text": "OCHIQ"
+  },
+  {
+   "id": "c0255",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "ğ"
+  },
+  {
+   "id": "c0256",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "Ğ"
+  },
+  {
+   "id": "c0257",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "boğbon"
+  },
+  {
+   "id": "c0258",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "BOĞBON"
+  },
+  {
+   "id": "c0259",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "ö"
+  },
+  {
+   "id": "c0260",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "Ö"
+  },
+  {
+   "id": "c0261",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "köz"
+  },
+  {
+   "id": "c0262",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "KÖZ"
+  },
+  {
+   "id": "c0263",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "ş"
+  },
+  {
+   "id": "c0264",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "Ş"
+  },
+  {
+   "id": "c0265",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "başqa"
+  },
+  {
+   "id": "c0266",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "BAŞQA"
+  },
+  {
+   "id": "c0267",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "ç"
+  },
+  {
+   "id": "c0268",
+   "tags": [
+    "alphabet",
+    "latin_2026",
+    "reform-2026"
+   ],
+   "text": "Ç"
+  },
+  {
+   "id": "c0269",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "oçiq"
+  },
+  {
+   "id": "c0270",
+   "tags": [
+    "alphabet",
+    "latin_2026"
+   ],
+   "text": "OÇIQ"
+  },
+  {
+   "id": "c0271",
+   "tags": [
+    "alphabet",
+    "latin_1995",
+    "latin_2026",
+    "tutuq",
+    "existing"
+   ],
+   "text": "ʼ"
+  },
+  {
+   "id": "c0272",
+   "tags": [
+    "existing"
+   ],
+   "text": "Tаshkent"
+  },
+  {
+   "id": "c0273",
+   "tags": [
+    "existing"
+   ],
+   "text": "Özbekiston"
+  },
+  {
+   "id": "c0274",
+   "tags": [
+    "existing"
+   ],
+   "text": "Özbekiston"
+  },
+  {
+   "id": "c0275",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "Şoşimova"
+  },
+  {
+   "id": "c0276",
+   "tags": [
+    "existing"
+   ],
+   "text": "Shoshimova"
+  },
+  {
+   "id": "c0277",
+   "tags": [
+    "existing"
+   ],
+   "text": "Шошимова"
+  },
+  {
+   "id": "c0278",
+   "tags": [
+    "existing"
+   ],
+   "text": "SHOSHIMOVA"
+  },
+  {
+   "id": "c0279",
+   "tags": [
+    "existing"
+   ],
+   "text": "şoşimova"
+  },
+  {
+   "id": "c0280",
+   "tags": [
+    "existing"
+   ],
+   "text": "Çorshanbiyev"
+  },
+  {
+   "id": "c0281",
+   "tags": [
+    "existing"
+   ],
+   "text": "Chorshanbiyev"
+  },
+  {
+   "id": "c0282",
+   "tags": [
+    "existing"
+   ],
+   "text": "Чоршанбиев"
+  },
+  {
+   "id": "c0283",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ğafurov"
+  },
+  {
+   "id": "c0284",
+   "tags": [
+    "existing"
+   ],
+   "text": "Gʻafurov"
+  },
+  {
+   "id": "c0285",
+   "tags": [
+    "existing"
+   ],
+   "text": "G'afurov"
+  },
+  {
+   "id": "c0286",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ғафуров"
+  },
+  {
+   "id": "c0287",
+   "tags": [
+    "existing"
+   ],
+   "text": "Gafurov"
+  },
+  {
+   "id": "c0288",
+   "tags": [
+    "existing"
+   ],
+   "text": "Oʻzbekiston"
+  },
+  {
+   "id": "c0289",
+   "tags": [
+    "existing"
+   ],
+   "text": "O'zbekiston"
+  },
+  {
+   "id": "c0290",
+   "tags": [
+    "existing"
+   ],
+   "text": "O’zbekiston"
+  },
+  {
+   "id": "c0291",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "Ўзбекистон"
+  },
+  {
+   "id": "c0292",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "Toşkent davlat universiteti"
+  },
+  {
+   "id": "c0293",
+   "tags": [
+    "existing"
+   ],
+   "text": "Toshkent davlat universiteti"
+  },
+  {
+   "id": "c0294",
+   "tags": [
+    "existing"
+   ],
+   "text": "Тошкент давлат университети"
+  },
+  {
+   "id": "c0295",
+   "tags": [
+    "existing"
+   ],
+   "text": "ilmiy tadqiqot"
+  },
+  {
+   "id": "c0296",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ilmiy Tadqiqot"
+  },
+  {
+   "id": "c0297",
+   "tags": [
+    "existing"
+   ],
+   "text": "ИЛМИЙ ТАДҚИҚОТ"
+  },
+  {
+   "id": "c0298",
+   "tags": [
+    "existing"
+   ],
+   "text": "илмий тадқиқот"
+  },
+  {
+   "id": "c0299",
+   "tags": [
+    "existing"
+   ],
+   "text": "Qaşqadaryo"
+  },
+  {
+   "id": "c0300",
+   "tags": [
+    "existing"
+   ],
+   "text": "Qashqadaryo"
+  },
+  {
+   "id": "c0301",
+   "tags": [
+    "existing"
+   ],
+   "text": "Қашқадарё"
+  },
+  {
+   "id": "c0302",
+   "tags": [
+    "existing"
+   ],
+   "text": "Uluğbek"
+  },
+  {
+   "id": "c0303",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ulugʻbek"
+  },
+  {
+   "id": "c0304",
+   "tags": [
+    "existing"
+   ],
+   "text": "Улуғбек"
+  },
+  {
+   "id": "c0305",
+   "tags": [
+    "existing"
+   ],
+   "text": "ozbekiston 2026"
+  },
+  {
+   "id": "c0306",
+   "tags": [
+    "existing"
+   ],
+   "text": "toshkent"
+  },
+  {
+   "id": "c0307",
+   "tags": [
+    "existing"
+   ],
+   "text": "ilmiy jurnal 2026 yil 12 son"
+  },
+  {
+   "id": "c0308",
+   "tags": [
+    "existing"
+   ],
+   "text": "ab"
+  },
+  {
+   "id": "c0309",
+   "tags": [
+    "existing"
+   ],
+   "text": "ozbekiston"
+  },
+  {
+   "id": "c0310",
+   "tags": [
+    "existing"
+   ],
+   "text": "Oʻzbekiston Respublikasi"
+  },
+  {
+   "id": "c0311",
+   "tags": [
+    "existing"
+   ],
+   "text": "ozbekiston respublikasi"
+  },
+  {
+   "id": "c0312",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ўзбекистон Республикаси"
+  },
+  {
+   "id": "c0313",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "Özbekiston Respublikasi"
+  },
+  {
+   "id": "c0314",
+   "tags": [
+    "existing"
+   ],
+   "text": "Тошкент тиббиёт академияси"
+  },
+  {
+   "id": "c0315",
+   "tags": [
+    "existing"
+   ],
+   "text": "toshkent tibbiyot akademiyasi"
+  },
+  {
+   "id": "c0316",
+   "tags": [
+    "existing"
+   ],
+   "text": "Toshkent tibbiyot akademiyasi"
+  },
+  {
+   "id": "c0317",
+   "tags": [
+    "existing",
+    "mixed"
+   ],
+   "text": ""
+  },
+  {
+   "id": "c0318",
+   "tags": [
+    "existing"
+   ],
+   "text": "   "
+  },
+  {
+   "id": "c0319",
+   "tags": [
+    "existing"
+   ],
+   "text": "\t\n"
+  },
+  {
+   "id": "c0320",
+   "tags": [
+    "existing"
+   ],
+   "text": "...Toshkent,   davlat!!!"
+  },
+  {
+   "id": "c0321",
+   "tags": [
+    "existing"
+   ],
+   "text": "Toshkent davlat"
+  },
+  {
+   "id": "c0322",
+   "tags": [
+    "existing"
+   ],
+   "text": "«Oʻzbekiston» — 2026"
+  },
+  {
+   "id": "c0323",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "TOSHKENT"
+  },
+  {
+   "id": "c0324",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "ŞOŞIMOVA"
+  },
+  {
+   "id": "c0325",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ilmiy jurnal, 2026-yil, 12-son"
+  },
+  {
+   "id": "c0326",
+   "tags": [
+    "existing"
+   ],
+   "text": "Tashkent"
+  },
+  {
+   "id": "c0327",
+   "tags": [
+    "existing"
+   ],
+   "text": "aѫb"
+  },
+  {
+   "id": "c0328",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "Ōzbekiston"
+  },
+  {
+   "id": "c0329",
+   "tags": [
+    "existing"
+   ],
+   "text": "Xomidov"
+  },
+  {
+   "id": "c0330",
+   "tags": [
+    "existing"
+   ],
+   "text": "Khomidov"
+  },
+  {
+   "id": "c0331",
+   "tags": [
+    "existing"
+   ],
+   "text": "Jasur"
+  },
+  {
+   "id": "c0332",
+   "tags": [
+    "existing"
+   ],
+   "text": "Zhasur"
+  },
+  {
+   "id": "c0333",
+   "tags": [
+    "existing"
+   ],
+   "text": "Самарқанд"
+  },
+  {
+   "id": "c0334",
+   "tags": [
+    "existing"
+   ],
+   "text": "Тошкент 2026"
+  },
+  {
+   "id": "c0335",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "Toshkent"
+  },
+  {
+   "id": "c0336",
+   "tags": [
+    "existing"
+   ],
+   "text": "Toşkent"
+  },
+  {
+   "id": "c0337",
+   "tags": [
+    "existing",
+    "mixed"
+   ],
+   "text": "2026"
+  },
+  {
+   "id": "c0338",
+   "tags": [
+    "existing"
+   ],
+   "text": "Toshkent viloyati Тошкент"
+  },
+  {
+   "id": "c0339",
+   "tags": [
+    "existing"
+   ],
+   "text": "ʻ"
+  },
+  {
+   "id": "c0340",
+   "tags": [
+    "existing"
+   ],
+   "text": "'"
+  },
+  {
+   "id": "c0341",
+   "tags": [
+    "existing"
+   ],
+   "text": "‘"
+  },
+  {
+   "id": "c0342",
+   "tags": [
+    "existing"
+   ],
+   "text": "’"
+  },
+  {
+   "id": "c0343",
+   "tags": [
+    "existing"
+   ],
+   "text": "yoʻq"
+  },
+  {
+   "id": "c0344",
+   "tags": [
+    "existing"
+   ],
+   "text": "йўқ"
+  },
+  {
+   "id": "c0345",
+   "tags": [
+    "existing"
+   ],
+   "text": "yoʻl"
+  },
+  {
+   "id": "c0346",
+   "tags": [
+    "existing"
+   ],
+   "text": "йўл"
+  },
+  {
+   "id": "c0347",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yoʻl"
+  },
+  {
+   "id": "c0348",
+   "tags": [
+    "existing"
+   ],
+   "text": "Йўл"
+  },
+  {
+   "id": "c0349",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yoʻldosh"
+  },
+  {
+   "id": "c0350",
+   "tags": [
+    "existing"
+   ],
+   "text": "Йўлдош"
+  },
+  {
+   "id": "c0351",
+   "tags": [
+    "existing"
+   ],
+   "text": "yoʻtal"
+  },
+  {
+   "id": "c0352",
+   "tags": [
+    "existing"
+   ],
+   "text": "йўтал"
+  },
+  {
+   "id": "c0353",
+   "tags": [
+    "existing"
+   ],
+   "text": "ketsa"
+  },
+  {
+   "id": "c0354",
+   "tags": [
+    "existing"
+   ],
+   "text": "кетса"
+  },
+  {
+   "id": "c0355",
+   "tags": [
+    "existing"
+   ],
+   "text": "aytsa"
+  },
+  {
+   "id": "c0356",
+   "tags": [
+    "existing"
+   ],
+   "text": "айтса"
+  },
+  {
+   "id": "c0357",
+   "tags": [
+    "existing"
+   ],
+   "text": "tutsa"
+  },
+  {
+   "id": "c0358",
+   "tags": [
+    "existing"
+   ],
+   "text": "тутса"
+  },
+  {
+   "id": "c0359",
+   "tags": [
+    "existing"
+   ],
+   "text": "yetsa"
+  },
+  {
+   "id": "c0360",
+   "tags": [
+    "existing"
+   ],
+   "text": "етса"
+  },
+  {
+   "id": "c0361",
+   "tags": [
+    "existing"
+   ],
+   "text": "oʻtsa"
+  },
+  {
+   "id": "c0362",
+   "tags": [
+    "existing"
+   ],
+   "text": "ўтса"
+  },
+  {
+   "id": "c0363",
+   "tags": [
+    "existing"
+   ],
+   "text": "kutsangiz"
+  },
+  {
+   "id": "c0364",
+   "tags": [
+    "existing"
+   ],
+   "text": "кутсангиз"
+  },
+  {
+   "id": "c0365",
+   "tags": [
+    "existing"
+   ],
+   "text": "aytsangizchi"
+  },
+  {
+   "id": "c0366",
+   "tags": [
+    "existing"
+   ],
+   "text": "айтсангизчи"
+  },
+  {
+   "id": "c0367",
+   "tags": [
+    "existing",
+    "rules-0.2.0"
+   ],
+   "text": "ketsin"
+  },
+  {
+   "id": "c0368",
+   "tags": [
+    "existing"
+   ],
+   "text": "кетсин"
+  },
+  {
+   "id": "c0369",
+   "tags": [
+    "existing",
+    "rules-0.2.0"
+   ],
+   "text": "bitsin"
+  },
+  {
+   "id": "c0370",
+   "tags": [
+    "existing"
+   ],
+   "text": "битсин"
+  },
+  {
+   "id": "c0371",
+   "tags": [
+    "existing"
+   ],
+   "text": "oʻqitsin"
+  },
+  {
+   "id": "c0372",
+   "tags": [
+    "existing"
+   ],
+   "text": "ўқитсин"
+  },
+  {
+   "id": "c0373",
+   "tags": [
+    "existing"
+   ],
+   "text": "eshitsin"
+  },
+  {
+   "id": "c0374",
+   "tags": [
+    "existing"
+   ],
+   "text": "эшитсин"
+  },
+  {
+   "id": "c0375",
+   "tags": [
+    "existing"
+   ],
+   "text": "ketsinmi"
+  },
+  {
+   "id": "c0376",
+   "tags": [
+    "existing"
+   ],
+   "text": "кетсинми"
+  },
+  {
+   "id": "c0377",
+   "tags": [
+    "existing"
+   ],
+   "text": "hayotsiz"
+  },
+  {
+   "id": "c0378",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҳаётсиз"
+  },
+  {
+   "id": "c0379",
+   "tags": [
+    "existing"
+   ],
+   "text": "mehnatsiz"
+  },
+  {
+   "id": "c0380",
+   "tags": [
+    "existing"
+   ],
+   "text": "меҳнатсиз"
+  },
+  {
+   "id": "c0381",
+   "tags": [
+    "existing"
+   ],
+   "text": "otsiz"
+  },
+  {
+   "id": "c0382",
+   "tags": [
+    "existing"
+   ],
+   "text": "отсиз"
+  },
+  {
+   "id": "c0383",
+   "tags": [
+    "existing"
+   ],
+   "text": "hayotsizlik"
+  },
+  {
+   "id": "c0384",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҳаётсизлик"
+  },
+  {
+   "id": "c0385",
+   "tags": [
+    "existing"
+   ],
+   "text": "hayotsizman"
+  },
+  {
+   "id": "c0386",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҳаётсизман"
+  },
+  {
+   "id": "c0387",
+   "tags": [
+    "existing"
+   ],
+   "text": "mehnatsevar"
+  },
+  {
+   "id": "c0388",
+   "tags": [
+    "existing"
+   ],
+   "text": "меҳнатсевар"
+  },
+  {
+   "id": "c0389",
+   "tags": [
+    "existing"
+   ],
+   "text": "militsiya"
+  },
+  {
+   "id": "c0390",
+   "tags": [
+    "existing"
+   ],
+   "text": "reanimatsiya"
+  },
+  {
+   "id": "c0391",
+   "tags": [
+    "existing"
+   ],
+   "text": "реанимация"
+  },
+  {
+   "id": "c0392",
+   "tags": [
+    "existing"
+   ],
+   "text": "natsional"
+  },
+  {
+   "id": "c0393",
+   "tags": [
+    "existing"
+   ],
+   "text": "национал"
+  },
+  {
+   "id": "c0394",
+   "tags": [
+    "existing"
+   ],
+   "text": "intubatsiyasiz"
+  },
+  {
+   "id": "c0395",
+   "tags": [
+    "existing"
+   ],
+   "text": "интубациясиз"
+  },
+  {
+   "id": "c0396",
+   "tags": [
+    "existing"
+   ],
+   "text": "sotsiologiya"
+  },
+  {
+   "id": "c0397",
+   "tags": [
+    "existing"
+   ],
+   "text": "социология"
+  },
+  {
+   "id": "c0398",
+   "tags": [
+    "existing"
+   ],
+   "text": "leykotsit"
+  },
+  {
+   "id": "c0399",
+   "tags": [
+    "existing"
+   ],
+   "text": "лейкоцит"
+  },
+  {
+   "id": "c0400",
+   "tags": [
+    "existing"
+   ],
+   "text": "eritrotsit"
+  },
+  {
+   "id": "c0401",
+   "tags": [
+    "existing"
+   ],
+   "text": "эритроцит"
+  },
+  {
+   "id": "c0402",
+   "tags": [
+    "existing"
+   ],
+   "text": "trombotsit"
+  },
+  {
+   "id": "c0403",
+   "tags": [
+    "existing"
+   ],
+   "text": "тромбоцит"
+  },
+  {
+   "id": "c0404",
+   "tags": [
+    "existing"
+   ],
+   "text": "limfotsit"
+  },
+  {
+   "id": "c0405",
+   "tags": [
+    "existing"
+   ],
+   "text": "лимфоцит"
+  },
+  {
+   "id": "c0406",
+   "tags": [
+    "existing",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "protsent"
+  },
+  {
+   "id": "c0407",
+   "tags": [
+    "existing",
+    "context",
+    "consumer-report"
+   ],
+   "text": "процент"
+  },
+  {
+   "id": "c0408",
+   "tags": [
+    "existing"
+   ],
+   "text": "platsenta"
+  },
+  {
+   "id": "c0409",
+   "tags": [
+    "existing"
+   ],
+   "text": "плацента"
+  },
+  {
+   "id": "c0410",
+   "tags": [
+    "existing",
+    "rules-0.2.0"
+   ],
+   "text": "litsey"
+  },
+  {
+   "id": "c0411",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "лицей"
+  },
+  {
+   "id": "c0412",
+   "tags": [
+    "existing"
+   ],
+   "text": "atseton"
+  },
+  {
+   "id": "c0413",
+   "tags": [
+    "existing"
+   ],
+   "text": "ацетон"
+  },
+  {
+   "id": "c0414",
+   "tags": [
+    "existing"
+   ],
+   "text": "farmatsevt"
+  },
+  {
+   "id": "c0415",
+   "tags": [
+    "existing"
+   ],
+   "text": "фармацевт"
+  },
+  {
+   "id": "c0416",
+   "tags": [
+    "existing"
+   ],
+   "text": "detsibel"
+  },
+  {
+   "id": "c0417",
+   "tags": [
+    "existing"
+   ],
+   "text": "децибел"
+  },
+  {
+   "id": "c0418",
+   "tags": [
+    "existing"
+   ],
+   "text": "spetsifik"
+  },
+  {
+   "id": "c0419",
+   "tags": [
+    "existing"
+   ],
+   "text": "специфик"
+  },
+  {
+   "id": "c0420",
+   "tags": [
+    "existing",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "meditsina"
+  },
+  {
+   "id": "c0421",
+   "tags": [
+    "existing",
+    "consumer-report"
+   ],
+   "text": "медицина"
+  },
+  {
+   "id": "c0422",
+   "tags": [
+    "existing",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "vaktsina"
+  },
+  {
+   "id": "c0423",
+   "tags": [
+    "existing",
+    "consumer-report"
+   ],
+   "text": "вакцина"
+  },
+  {
+   "id": "c0424",
+   "tags": [
+    "existing",
+    "rules-0.2.0"
+   ],
+   "text": "natsizm"
+  },
+  {
+   "id": "c0425",
+   "tags": [
+    "existing"
+   ],
+   "text": "нацизм"
+  },
+  {
+   "id": "c0426",
+   "tags": [
+    "existing"
+   ],
+   "text": "azitromitsin"
+  },
+  {
+   "id": "c0427",
+   "tags": [
+    "existing"
+   ],
+   "text": "азитромицин"
+  },
+  {
+   "id": "c0428",
+   "tags": [
+    "existing"
+   ],
+   "text": "glitsin"
+  },
+  {
+   "id": "c0429",
+   "tags": [
+    "existing"
+   ],
+   "text": "глицин"
+  },
+  {
+   "id": "c0430",
+   "tags": [
+    "existing"
+   ],
+   "text": "КЕТСА"
+  },
+  {
+   "id": "c0431",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ҳаётсиз"
+  },
+  {
+   "id": "c0432",
+   "tags": [
+    "existing"
+   ],
+   "text": "адабиётшунос"
+  },
+  {
+   "id": "c0433",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҲАЁТСИЗ"
+  },
+  {
+   "id": "c0434",
+   "tags": [
+    "existing"
+   ],
+   "text": "санъатшунос"
+  },
+  {
+   "id": "c0435",
+   "tags": [
+    "existing"
+   ],
+   "text": "таблица"
+  },
+  {
+   "id": "c0436",
+   "tags": [
+    "existing"
+   ],
+   "text": "теплица"
+  },
+  {
+   "id": "c0437",
+   "tags": [
+    "existing"
+   ],
+   "text": "улица"
+  },
+  {
+   "id": "c0438",
+   "tags": [
+    "existing"
+   ],
+   "text": "левофлоксацин"
+  },
+  {
+   "id": "c0439",
+   "tags": [
+    "existing"
+   ],
+   "text": "амикацин"
+  },
+  {
+   "id": "c0440",
+   "tags": [
+    "existing",
+    "context",
+    "apostrophe"
+   ],
+   "text": "OʻZBEKISTON"
+  },
+  {
+   "id": "c0441",
+   "tags": [
+    "existing"
+   ],
+   "text": "ЎЗБЕКИСТОН"
+  },
+  {
+   "id": "c0442",
+   "tags": [
+    "existing"
+   ],
+   "text": "GʻOYA"
+  },
+  {
+   "id": "c0443",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҒОЯ"
+  },
+  {
+   "id": "c0444",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "GʻALLA"
+  },
+  {
+   "id": "c0445",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "ҒАЛЛА"
+  },
+  {
+   "id": "c0446",
+   "tags": [
+    "existing"
+   ],
+   "text": "SOʻM"
+  },
+  {
+   "id": "c0447",
+   "tags": [
+    "existing"
+   ],
+   "text": "СЎМ"
+  },
+  {
+   "id": "c0448",
+   "tags": [
+    "existing"
+   ],
+   "text": "YOʻL"
+  },
+  {
+   "id": "c0449",
+   "tags": [
+    "existing"
+   ],
+   "text": "ЙЎЛ"
+  },
+  {
+   "id": "c0450",
+   "tags": [
+    "existing"
+   ],
+   "text": "YOʻQ"
+  },
+  {
+   "id": "c0451",
+   "tags": [
+    "existing"
+   ],
+   "text": "ЙЎҚ"
+  },
+  {
+   "id": "c0452",
+   "tags": [
+    "existing"
+   ],
+   "text": "ШЕЪР"
+  },
+  {
+   "id": "c0453",
+   "tags": [
+    "existing"
+   ],
+   "text": "yöl"
+  },
+  {
+   "id": "c0454",
+   "tags": [
+    "existing"
+   ],
+   "text": "boʻyoq"
+  },
+  {
+   "id": "c0455",
+   "tags": [
+    "existing"
+   ],
+   "text": "бўёқ"
+  },
+  {
+   "id": "c0456",
+   "tags": [
+    "existing"
+   ],
+   "text": "qoʻyosh"
+  },
+  {
+   "id": "c0457",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "қўёш"
+  },
+  {
+   "id": "c0458",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "yoz"
+  },
+  {
+   "id": "c0459",
+   "tags": [
+    "existing",
+    "context",
+    "api-examples"
+   ],
+   "text": "ёз"
+  },
+  {
+   "id": "c0460",
+   "tags": [
+    "existing"
+   ],
+   "text": "KETSA"
+  },
+  {
+   "id": "c0461",
+   "tags": [
+    "existing"
+   ],
+   "text": "Hayotsiz"
+  },
+  {
+   "id": "c0462",
+   "tags": [
+    "existing"
+   ],
+   "text": "adabiyotshunos"
+  },
+  {
+   "id": "c0463",
+   "tags": [
+    "existing"
+   ],
+   "text": "adabiyotshunoslik"
+  },
+  {
+   "id": "c0464",
+   "tags": [
+    "existing"
+   ],
+   "text": "адабиётшунослик"
+  },
+  {
+   "id": "c0465",
+   "tags": [
+    "existing"
+   ],
+   "text": "sanʼatshunos"
+  },
+  {
+   "id": "c0466",
+   "tags": [
+    "existing"
+   ],
+   "text": "adabiyotşunos"
+  },
+  {
+   "id": "c0467",
+   "tags": [
+    "existing",
+    "rules-0.2.0"
+   ],
+   "text": "tsement"
+  },
+  {
+   "id": "c0468",
+   "tags": [
+    "existing"
+   ],
+   "text": "цемент"
+  },
+  {
+   "id": "c0469",
+   "tags": [
+    "existing"
+   ],
+   "text": "tsar"
+  },
+  {
+   "id": "c0470",
+   "tags": [
+    "existing"
+   ],
+   "text": "цар"
+  },
+  {
+   "id": "c0471",
+   "tags": [
+    "existing"
+   ],
+   "text": "tsitokin"
+  },
+  {
+   "id": "c0472",
+   "tags": [
+    "existing"
+   ],
+   "text": "цитокин"
+  },
+  {
+   "id": "c0473",
+   "tags": [
+    "existing"
+   ],
+   "text": "tsinga"
+  },
+  {
+   "id": "c0474",
+   "tags": [
+    "existing"
+   ],
+   "text": "цинга"
+  },
+  {
+   "id": "c0475",
+   "tags": [
+    "existing"
+   ],
+   "text": "operatsiya"
+  },
+  {
+   "id": "c0476",
+   "tags": [
+    "existing"
+   ],
+   "text": "операция"
+  },
+  {
+   "id": "c0477",
+   "tags": [
+    "existing"
+   ],
+   "text": "informatsiya"
+  },
+  {
+   "id": "c0478",
+   "tags": [
+    "existing"
+   ],
+   "text": "информация"
+  },
+  {
+   "id": "c0479",
+   "tags": [
+    "existing"
+   ],
+   "text": "ratsion"
+  },
+  {
+   "id": "c0480",
+   "tags": [
+    "existing"
+   ],
+   "text": "рацион"
+  },
+  {
+   "id": "c0481",
+   "tags": [
+    "existing"
+   ],
+   "text": "patsiyent"
+  },
+  {
+   "id": "c0482",
+   "tags": [
+    "existing"
+   ],
+   "text": "пациент"
+  },
+  {
+   "id": "c0483",
+   "tags": [
+    "existing"
+   ],
+   "text": "sotsial"
+  },
+  {
+   "id": "c0484",
+   "tags": [
+    "existing"
+   ],
+   "text": "социал"
+  },
+  {
+   "id": "c0485",
+   "tags": [
+    "existing"
+   ],
+   "text": "streptomitsin"
+  },
+  {
+   "id": "c0486",
+   "tags": [
+    "existing"
+   ],
+   "text": "стрептомицин"
+  },
+  {
+   "id": "c0487",
+   "tags": [
+    "existing"
+   ],
+   "text": "gentamitsin"
+  },
+  {
+   "id": "c0488",
+   "tags": [
+    "existing"
+   ],
+   "text": "гентамицин"
+  },
+  {
+   "id": "c0489",
+   "tags": [
+    "existing"
+   ],
+   "text": "azitromitsinni"
+  },
+  {
+   "id": "c0490",
+   "tags": [
+    "existing"
+   ],
+   "text": "азитромицинни"
+  },
+  {
+   "id": "c0491",
+   "tags": [
+    "existing"
+   ],
+   "text": "glitsinning"
+  },
+  {
+   "id": "c0492",
+   "tags": [
+    "existing"
+   ],
+   "text": "глициннинг"
+  },
+  {
+   "id": "c0493",
+   "tags": [
+    "existing"
+   ],
+   "text": "mehnatsizligi"
+  },
+  {
+   "id": "c0494",
+   "tags": [
+    "existing"
+   ],
+   "text": "меҳнатсизлиги"
+  },
+  {
+   "id": "c0495",
+   "tags": [
+    "existing"
+   ],
+   "text": "hayotsizlikni"
+  },
+  {
+   "id": "c0496",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҳаётсизликни"
+  },
+  {
+   "id": "c0497",
+   "tags": [
+    "existing"
+   ],
+   "text": "ketsangizlar"
+  },
+  {
+   "id": "c0498",
+   "tags": [
+    "existing"
+   ],
+   "text": "кетсангизлар"
+  },
+  {
+   "id": "c0499",
+   "tags": [
+    "existing"
+   ],
+   "text": "mehnatsizroq"
+  },
+  {
+   "id": "c0500",
+   "tags": [
+    "existing"
+   ],
+   "text": "меҳнатсизроқ"
+  },
+  {
+   "id": "c0501",
+   "tags": [
+    "existing"
+   ],
+   "text": "hayotsizsan"
+  },
+  {
+   "id": "c0502",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҳаётсизсан"
+  },
+  {
+   "id": "c0503",
+   "tags": [
+    "existing"
+   ],
+   "text": "patsiyentsiz"
+  },
+  {
+   "id": "c0504",
+   "tags": [
+    "existing"
+   ],
+   "text": "пациентсиз"
+  },
+  {
+   "id": "c0505",
+   "tags": [
+    "existing"
+   ],
+   "text": "levofloksatsin"
+  },
+  {
+   "id": "c0506",
+   "tags": [
+    "existing"
+   ],
+   "text": "ofloksatsin"
+  },
+  {
+   "id": "c0507",
+   "tags": [
+    "existing"
+   ],
+   "text": "офлоксацин"
+  },
+  {
+   "id": "c0508",
+   "tags": [
+    "existing"
+   ],
+   "text": "moksifloksatsin"
+  },
+  {
+   "id": "c0509",
+   "tags": [
+    "existing"
+   ],
+   "text": "моксифлоксацин"
+  },
+  {
+   "id": "c0510",
+   "tags": [
+    "existing"
+   ],
+   "text": "siprofloksatsin"
+  },
+  {
+   "id": "c0511",
+   "tags": [
+    "existing"
+   ],
+   "text": "сипрофлоксацин"
+  },
+  {
+   "id": "c0512",
+   "tags": [
+    "existing"
+   ],
+   "text": "levofloksatsinni"
+  },
+  {
+   "id": "c0513",
+   "tags": [
+    "existing"
+   ],
+   "text": "левофлоксацинни"
+  },
+  {
+   "id": "c0514",
+   "tags": [
+    "existing"
+   ],
+   "text": "amikatsin"
+  },
+  {
+   "id": "c0515",
+   "tags": [
+    "existing"
+   ],
+   "text": "leytsin"
+  },
+  {
+   "id": "c0516",
+   "tags": [
+    "existing"
+   ],
+   "text": "лейцин"
+  },
+  {
+   "id": "c0517",
+   "tags": [
+    "existing"
+   ],
+   "text": "izoleytsin"
+  },
+  {
+   "id": "c0518",
+   "tags": [
+    "existing"
+   ],
+   "text": "изолейцин"
+  },
+  {
+   "id": "c0519",
+   "tags": [
+    "existing"
+   ],
+   "text": "aktsiz"
+  },
+  {
+   "id": "c0520",
+   "tags": [
+    "existing"
+   ],
+   "text": "акциз"
+  },
+  {
+   "id": "c0521",
+   "tags": [
+    "existing"
+   ],
+   "text": "aktsizlar"
+  },
+  {
+   "id": "c0522",
+   "tags": [
+    "existing"
+   ],
+   "text": "акцизлар"
+  },
+  {
+   "id": "c0523",
+   "tags": [
+    "existing"
+   ],
+   "text": "aktsizni"
+  },
+  {
+   "id": "c0524",
+   "tags": [
+    "existing"
+   ],
+   "text": "акцизни"
+  },
+  {
+   "id": "c0525",
+   "tags": [
+    "existing"
+   ],
+   "text": "kontaktsiz"
+  },
+  {
+   "id": "c0526",
+   "tags": [
+    "existing"
+   ],
+   "text": "контактсиз"
+  },
+  {
+   "id": "c0527",
+   "tags": [
+    "existing"
+   ],
+   "text": "kontaktsizlik"
+  },
+  {
+   "id": "c0528",
+   "tags": [
+    "existing"
+   ],
+   "text": "контактсизлик"
+  },
+  {
+   "id": "c0529",
+   "tags": [
+    "existing"
+   ],
+   "text": "effektsiz"
+  },
+  {
+   "id": "c0530",
+   "tags": [
+    "existing"
+   ],
+   "text": "эффектсиз"
+  },
+  {
+   "id": "c0531",
+   "tags": [
+    "existing"
+   ],
+   "text": "effektsizligi"
+  },
+  {
+   "id": "c0532",
+   "tags": [
+    "existing"
+   ],
+   "text": "эффектсизлиги"
+  },
+  {
+   "id": "c0533",
+   "tags": [
+    "existing"
+   ],
+   "text": "faktsiz"
+  },
+  {
+   "id": "c0534",
+   "tags": [
+    "existing"
+   ],
+   "text": "фактсиз"
+  },
+  {
+   "id": "c0535",
+   "tags": [
+    "existing"
+   ],
+   "text": "proyektsiz"
+  },
+  {
+   "id": "c0536",
+   "tags": [
+    "existing"
+   ],
+   "text": "проектсиз"
+  },
+  {
+   "id": "c0537",
+   "tags": [
+    "existing"
+   ],
+   "text": "intellektsiz"
+  },
+  {
+   "id": "c0538",
+   "tags": [
+    "existing"
+   ],
+   "text": "интеллектсиз"
+  },
+  {
+   "id": "c0539",
+   "tags": [
+    "existing"
+   ],
+   "text": "tablitsa"
+  },
+  {
+   "id": "c0540",
+   "tags": [
+    "existing"
+   ],
+   "text": "tablitsada"
+  },
+  {
+   "id": "c0541",
+   "tags": [
+    "existing"
+   ],
+   "text": "таблицада"
+  },
+  {
+   "id": "c0542",
+   "tags": [
+    "existing"
+   ],
+   "text": "teplitsa"
+  },
+  {
+   "id": "c0543",
+   "tags": [
+    "existing"
+   ],
+   "text": "teplitsalar"
+  },
+  {
+   "id": "c0544",
+   "tags": [
+    "existing"
+   ],
+   "text": "теплицалар"
+  },
+  {
+   "id": "c0545",
+   "tags": [
+    "existing"
+   ],
+   "text": "stolitsa"
+  },
+  {
+   "id": "c0546",
+   "tags": [
+    "existing"
+   ],
+   "text": "столица"
+  },
+  {
+   "id": "c0547",
+   "tags": [
+    "existing"
+   ],
+   "text": "ulitsa"
+  },
+  {
+   "id": "c0548",
+   "tags": [
+    "existing"
+   ],
+   "text": "bolnitsa"
+  },
+  {
+   "id": "c0549",
+   "tags": [
+    "existing"
+   ],
+   "text": "болница"
+  },
+  {
+   "id": "c0550",
+   "tags": [
+    "existing"
+   ],
+   "text": "granitsa"
+  },
+  {
+   "id": "c0551",
+   "tags": [
+    "existing"
+   ],
+   "text": "граница"
+  },
+  {
+   "id": "c0552",
+   "tags": [
+    "existing"
+   ],
+   "text": "gostinitsa"
+  },
+  {
+   "id": "c0553",
+   "tags": [
+    "existing"
+   ],
+   "text": "гостиница"
+  },
+  {
+   "id": "c0554",
+   "tags": [
+    "existing"
+   ],
+   "text": "bitsa"
+  },
+  {
+   "id": "c0555",
+   "tags": [
+    "existing"
+   ],
+   "text": "битса"
+  },
+  {
+   "id": "c0556",
+   "tags": [
+    "existing"
+   ],
+   "text": "oʻqitsa"
+  },
+  {
+   "id": "c0557",
+   "tags": [
+    "existing"
+   ],
+   "text": "ўқитса"
+  },
+  {
+   "id": "c0558",
+   "tags": [
+    "existing"
+   ],
+   "text": "eshitsa"
+  },
+  {
+   "id": "c0559",
+   "tags": [
+    "existing"
+   ],
+   "text": "эшитса"
+  },
+  {
+   "id": "c0560",
+   "tags": [
+    "existing"
+   ],
+   "text": "quritsa"
+  },
+  {
+   "id": "c0561",
+   "tags": [
+    "existing"
+   ],
+   "text": "қуритса"
+  },
+  {
+   "id": "c0562",
+   "tags": [
+    "existing"
+   ],
+   "text": "ilitsa"
+  },
+  {
+   "id": "c0563",
+   "tags": [
+    "existing"
+   ],
+   "text": "илитса"
+  },
+  {
+   "id": "c0564",
+   "tags": [
+    "existing"
+   ],
+   "text": "tanitsa"
+  },
+  {
+   "id": "c0565",
+   "tags": [
+    "existing"
+   ],
+   "text": "танитса"
+  },
+  {
+   "id": "c0566",
+   "tags": [
+    "existing"
+   ],
+   "text": "koʻrsatsin"
+  },
+  {
+   "id": "c0567",
+   "tags": [
+    "existing"
+   ],
+   "text": "кўрсатсин"
+  },
+  {
+   "id": "c0568",
+   "tags": [
+    "existing"
+   ],
+   "text": "yaratsin"
+  },
+  {
+   "id": "c0569",
+   "tags": [
+    "existing"
+   ],
+   "text": "яратсин"
+  },
+  {
+   "id": "c0570",
+   "tags": [
+    "existing"
+   ],
+   "text": "oʻrgatsin"
+  },
+  {
+   "id": "c0571",
+   "tags": [
+    "existing"
+   ],
+   "text": "ўргатсин"
+  },
+  {
+   "id": "c0572",
+   "tags": [
+    "existing"
+   ],
+   "text": "uzatsin"
+  },
+  {
+   "id": "c0573",
+   "tags": [
+    "existing"
+   ],
+   "text": "узатсин"
+  },
+  {
+   "id": "c0574",
+   "tags": [
+    "existing"
+   ],
+   "text": "qaytsa"
+  },
+  {
+   "id": "c0575",
+   "tags": [
+    "existing"
+   ],
+   "text": "қайтса"
+  },
+  {
+   "id": "c0576",
+   "tags": [
+    "existing"
+   ],
+   "text": "tortsa"
+  },
+  {
+   "id": "c0577",
+   "tags": [
+    "existing"
+   ],
+   "text": "тортса"
+  },
+  {
+   "id": "c0578",
+   "tags": [
+    "existing"
+   ],
+   "text": "yurtsiz"
+  },
+  {
+   "id": "c0579",
+   "tags": [
+    "existing"
+   ],
+   "text": "юртсиз"
+  },
+  {
+   "id": "c0580",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "ÖZBEKISTON"
+  },
+  {
+   "id": "c0581",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "ĞALLA"
+  },
+  {
+   "id": "c0582",
+   "tags": [
+    "existing"
+   ],
+   "text": "MAʼNO"
+  },
+  {
+   "id": "c0583",
+   "tags": [
+    "existing"
+   ],
+   "text": "SHEʼR"
+  },
+  {
+   "id": "c0584",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "SHAHAR"
+  },
+  {
+   "id": "c0585",
+   "tags": [
+    "existing"
+   ],
+   "text": "Shahar"
+  },
+  {
+   "id": "c0586",
+   "tags": [
+    "existing"
+   ],
+   "text": "Шаҳар"
+  },
+  {
+   "id": "c0587",
+   "tags": [
+    "existing"
+   ],
+   "text": "Choy"
+  },
+  {
+   "id": "c0588",
+   "tags": [
+    "existing"
+   ],
+   "text": "Чой"
+  },
+  {
+   "id": "c0589",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "CHOY"
+  },
+  {
+   "id": "c0590",
+   "tags": [
+    "existing"
+   ],
+   "text": "ЧОЙ"
+  },
+  {
+   "id": "c0591",
+   "tags": [
+    "existing"
+   ],
+   "text": "Gʻalla"
+  },
+  {
+   "id": "c0592",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ғалла"
+  },
+  {
+   "id": "c0593",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "Ер"
+  },
+  {
+   "id": "c0594",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yer"
+  },
+  {
+   "id": "c0595",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "поезд"
+  },
+  {
+   "id": "c0596",
+   "tags": [
+    "existing"
+   ],
+   "text": "poyezd"
+  },
+  {
+   "id": "c0597",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "пьеса"
+  },
+  {
+   "id": "c0598",
+   "tags": [
+    "existing"
+   ],
+   "text": "pyesa"
+  },
+  {
+   "id": "c0599",
+   "tags": [
+    "existing"
+   ],
+   "text": "тезда"
+  },
+  {
+   "id": "c0600",
+   "tags": [
+    "existing"
+   ],
+   "text": "tezda"
+  },
+  {
+   "id": "c0601",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "цирк"
+  },
+  {
+   "id": "c0602",
+   "tags": [
+    "existing"
+   ],
+   "text": "sirk"
+  },
+  {
+   "id": "c0603",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "концерт"
+  },
+  {
+   "id": "c0604",
+   "tags": [
+    "existing"
+   ],
+   "text": "konsert"
+  },
+  {
+   "id": "c0605",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "компьютер"
+  },
+  {
+   "id": "c0606",
+   "tags": [
+    "existing"
+   ],
+   "text": "kompyuter"
+  },
+  {
+   "id": "c0607",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "июнь"
+  },
+  {
+   "id": "c0608",
+   "tags": [
+    "existing"
+   ],
+   "text": "iyun"
+  },
+  {
+   "id": "c0609",
+   "tags": [
+    "existing"
+   ],
+   "text": "Mirzo Ulugʻbek"
+  },
+  {
+   "id": "c0610",
+   "tags": [
+    "existing"
+   ],
+   "text": "Alisher Navoiy"
+  },
+  {
+   "id": "c0611",
+   "tags": [
+    "existing"
+   ],
+   "text": "togʻ"
+  },
+  {
+   "id": "c0612",
+   "tags": [
+    "existing"
+   ],
+   "text": "yogʻ"
+  },
+  {
+   "id": "c0613",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "maʼno"
+  },
+  {
+   "id": "c0614",
+   "tags": [
+    "existing",
+    "context",
+    "consumer-report",
+    "rules-0.2.0",
+    "api-examples"
+   ],
+   "text": "Isʼhoq"
+  },
+  {
+   "id": "c0615",
+   "tags": [
+    "existing"
+   ],
+   "text": "choʻqqi"
+  },
+  {
+   "id": "c0616",
+   "tags": [
+    "existing"
+   ],
+   "text": "gʻishtli"
+  },
+  {
+   "id": "c0617",
+   "tags": [
+    "existing"
+   ],
+   "text": "Oʻzbek tili va adabiyoti"
+  },
+  {
+   "id": "c0618",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "Тошкент"
+  },
+  {
+   "id": "c0619",
+   "tags": [
+    "existing"
+   ],
+   "text": "Бухоро"
+  },
+  {
+   "id": "c0620",
+   "tags": [
+    "existing"
+   ],
+   "text": "Сурхондарё"
+  },
+  {
+   "id": "c0621",
+   "tags": [
+    "existing"
+   ],
+   "text": "Алишер Навоий"
+  },
+  {
+   "id": "c0622",
+   "tags": [
+    "existing"
+   ],
+   "text": "Мирзо Улуғбек"
+  },
+  {
+   "id": "c0623",
+   "tags": [
+    "existing"
+   ],
+   "text": "Абу Райҳон Беруний"
+  },
+  {
+   "id": "c0624",
+   "tags": [
+    "existing"
+   ],
+   "text": "Заҳириддин Муҳаммад Бобур"
+  },
+  {
+   "id": "c0625",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "ШОШИМОВА"
+  },
+  {
+   "id": "c0626",
+   "tags": [
+    "existing",
+    "context",
+    "rules-0.2.0"
+   ],
+   "text": "шеър"
+  },
+  {
+   "id": "c0627",
+   "tags": [
+    "existing"
+   ],
+   "text": "тоғ"
+  },
+  {
+   "id": "c0628",
+   "tags": [
+    "existing"
+   ],
+   "text": "Эркин"
+  },
+  {
+   "id": "c0629",
+   "tags": [
+    "existing"
+   ],
+   "text": "эшик"
+  },
+  {
+   "id": "c0630",
+   "tags": [
+    "existing",
+    "context",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "Исҳоқ"
+  },
+  {
+   "id": "c0631",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "юлдуз"
+  },
+  {
+   "id": "c0632",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "яшил"
+  },
+  {
+   "id": "c0633",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ўзбек тили ва адабиёти"
+  },
+  {
+   "id": "c0634",
+   "tags": [
+    "existing"
+   ],
+   "text": "Тошкент давлат университети, 2026-йил"
+  },
+  {
+   "id": "c0635",
+   "tags": [
+    "existing",
+    "consumer-report",
+    "reform-2026",
+    "rules-0.2.0"
+   ],
+   "text": "Ishoq"
+  },
+  {
+   "id": "c0636",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "iş"
+  },
+  {
+   "id": "c0637",
+   "tags": [
+    "existing"
+   ],
+   "text": "борш"
+  },
+  {
+   "id": "c0638",
+   "tags": [
+    "existing"
+   ],
+   "text": "albom"
+  },
+  {
+   "id": "c0639",
+   "tags": [
+    "existing"
+   ],
+   "text": "албом"
+  },
+  {
+   "id": "c0640",
+   "tags": [
+    "existing",
+    "consumer-report"
+   ],
+   "text": "funksiya"
+  },
+  {
+   "id": "c0641",
+   "tags": [
+    "existing"
+   ],
+   "text": "revolyutsiya"
+  },
+  {
+   "id": "c0642",
+   "tags": [
+    "existing"
+   ],
+   "text": "сирк"
+  },
+  {
+   "id": "c0643",
+   "tags": [
+    "existing"
+   ],
+   "text": "Ишоқ"
+  },
+  {
+   "id": "c0644",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "щ"
+  },
+  {
+   "id": "c0645",
+   "tags": [
+    "existing"
+   ],
+   "text": "borsh"
+  },
+  {
+   "id": "c0646",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "ы"
+  },
+  {
+   "id": "c0647",
+   "tags": [
+    "existing",
+    "context",
+    "consumer-report"
+   ],
+   "text": "функция"
+  },
+  {
+   "id": "c0648",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "революция"
+  },
+  {
+   "id": "c0649",
+   "tags": [
+    "existing"
+   ],
+   "text": "sʼh"
+  },
+  {
+   "id": "c0650",
+   "tags": [
+    "existing"
+   ],
+   "text": "Abu Rayhon Beruniy"
+  },
+  {
+   "id": "c0651",
+   "tags": [
+    "existing"
+   ],
+   "text": "Samarqand"
+  },
+  {
+   "id": "c0652",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "Alişer Navoiy"
+  },
+  {
+   "id": "c0653",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "Mirzo Uluğbek"
+  },
+  {
+   "id": "c0654",
+   "tags": [
+    "existing"
+   ],
+   "text": "aʼzo"
+  },
+  {
+   "id": "c0655",
+   "tags": [
+    "existing"
+   ],
+   "text": "sheʼr"
+  },
+  {
+   "id": "c0656",
+   "tags": [
+    "existing"
+   ],
+   "text": "иш"
+  },
+  {
+   "id": "c0657",
+   "tags": [
+    "existing"
+   ],
+   "text": "исҳоқ"
+  },
+  {
+   "id": "c0658",
+   "tags": [
+    "existing"
+   ],
+   "text": "O‘zbekiston"
+  },
+  {
+   "id": "c0659",
+   "tags": [
+    "existing"
+   ],
+   "text": "O`zbekiston"
+  },
+  {
+   "id": "c0660",
+   "tags": [
+    "existing"
+   ],
+   "text": "ўзбек"
+  },
+  {
+   "id": "c0661",
+   "tags": [
+    "existing"
+   ],
+   "text": "ғалаба"
+  },
+  {
+   "id": "c0662",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "oʻzbek"
+  },
+  {
+   "id": "c0663",
+   "tags": [
+    "existing"
+   ],
+   "text": "ёғ"
+  },
+  {
+   "id": "c0664",
+   "tags": [
+    "existing"
+   ],
+   "text": "'салом'"
+  },
+  {
+   "id": "c0665",
+   "tags": [
+    "existing",
+    "context",
+    "api-examples"
+   ],
+   "text": "ер"
+  },
+  {
+   "id": "c0666",
+   "tags": [
+    "existing"
+   ],
+   "text": "yer"
+  },
+  {
+   "id": "c0667",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "театр"
+  },
+  {
+   "id": "c0668",
+   "tags": [
+    "existing"
+   ],
+   "text": "teatr"
+  },
+  {
+   "id": "c0669",
+   "tags": [
+    "existing"
+   ],
+   "text": "Erkin"
+  },
+  {
+   "id": "c0670",
+   "tags": [
+    "existing"
+   ],
+   "text": "eshik"
+  },
+  {
+   "id": "c0671",
+   "tags": [
+    "existing"
+   ],
+   "text": "муаллиф"
+  },
+  {
+   "id": "c0672",
+   "tags": [
+    "existing"
+   ],
+   "text": "muallif"
+  },
+  {
+   "id": "c0673",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "аъзо"
+  },
+  {
+   "id": "c0674",
+   "tags": [
+    "existing",
+    "reform-2026"
+   ],
+   "text": "ishoq"
+  },
+  {
+   "id": "c0675",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "o'zbek"
+  },
+  {
+   "id": "c0676",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "ma'no"
+  },
+  {
+   "id": "c0677",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "g'alaba"
+  },
+  {
+   "id": "c0678",
+   "tags": [
+    "existing",
+    "apostrophe",
+    "quotes"
+   ],
+   "text": "'salom'"
+  },
+  {
+   "id": "c0679",
+   "tags": [
+    "existing"
+   ],
+   "text": "абвгдеёжзийклмнопрстуфхцчшъэюяўқғҳ"
+  },
+  {
+   "id": "c0680",
+   "tags": [
+    "existing"
+   ],
+   "text": "абвгдёжзийклмнопрстуфхчшъьыэюяўқғҳщ"
+  },
+  {
+   "id": "c0681",
+   "tags": [
+    "existing"
+   ],
+   "text": "аср"
+  },
+  {
+   "id": "c0682",
+   "tags": [
+    "existing"
+   ],
+   "text": "asr"
+  },
+  {
+   "id": "c0683",
+   "tags": [
+    "existing"
+   ],
+   "text": "вақт"
+  },
+  {
+   "id": "c0684",
+   "tags": [
+    "existing"
+   ],
+   "text": "vaqt"
+  },
+  {
+   "id": "c0685",
+   "tags": [
+    "existing"
+   ],
+   "text": "гул"
+  },
+  {
+   "id": "c0686",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "gul"
+  },
+  {
+   "id": "c0687",
+   "tags": [
+    "existing"
+   ],
+   "text": "дала"
+  },
+  {
+   "id": "c0688",
+   "tags": [
+    "existing"
+   ],
+   "text": "dala"
+  },
+  {
+   "id": "c0689",
+   "tags": [
+    "existing"
+   ],
+   "text": "ёзма"
+  },
+  {
+   "id": "c0690",
+   "tags": [
+    "existing"
+   ],
+   "text": "yozma"
+  },
+  {
+   "id": "c0691",
+   "tags": [
+    "existing"
+   ],
+   "text": "жасур"
+  },
+  {
+   "id": "c0692",
+   "tags": [
+    "existing"
+   ],
+   "text": "jasur"
+  },
+  {
+   "id": "c0693",
+   "tags": [
+    "existing"
+   ],
+   "text": "замин"
+  },
+  {
+   "id": "c0694",
+   "tags": [
+    "existing"
+   ],
+   "text": "zamin"
+  },
+  {
+   "id": "c0695",
+   "tags": [
+    "existing"
+   ],
+   "text": "илм"
+  },
+  {
+   "id": "c0696",
+   "tags": [
+    "existing"
+   ],
+   "text": "ilm"
+  },
+  {
+   "id": "c0697",
+   "tags": [
+    "existing"
+   ],
+   "text": "лаган"
+  },
+  {
+   "id": "c0698",
+   "tags": [
+    "existing"
+   ],
+   "text": "lagan"
+  },
+  {
+   "id": "c0699",
+   "tags": [
+    "existing"
+   ],
+   "text": "макон"
+  },
+  {
+   "id": "c0700",
+   "tags": [
+    "existing"
+   ],
+   "text": "makon"
+  },
+  {
+   "id": "c0701",
+   "tags": [
+    "existing"
+   ],
+   "text": "нур"
+  },
+  {
+   "id": "c0702",
+   "tags": [
+    "existing"
+   ],
+   "text": "nur"
+  },
+  {
+   "id": "c0703",
+   "tags": [
+    "existing"
+   ],
+   "text": "пахта"
+  },
+  {
+   "id": "c0704",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "paxta"
+  },
+  {
+   "id": "c0705",
+   "tags": [
+    "existing"
+   ],
+   "text": "рақам"
+  },
+  {
+   "id": "c0706",
+   "tags": [
+    "existing"
+   ],
+   "text": "raqam"
+  },
+  {
+   "id": "c0707",
+   "tags": [
+    "existing"
+   ],
+   "text": "сано"
+  },
+  {
+   "id": "c0708",
+   "tags": [
+    "existing"
+   ],
+   "text": "sano"
+  },
+  {
+   "id": "c0709",
+   "tags": [
+    "existing"
+   ],
+   "text": "тил"
+  },
+  {
+   "id": "c0710",
+   "tags": [
+    "existing"
+   ],
+   "text": "til"
+  },
+  {
+   "id": "c0711",
+   "tags": [
+    "existing"
+   ],
+   "text": "уста"
+  },
+  {
+   "id": "c0712",
+   "tags": [
+    "existing"
+   ],
+   "text": "usta"
+  },
+  {
+   "id": "c0713",
+   "tags": [
+    "existing"
+   ],
+   "text": "фан"
+  },
+  {
+   "id": "c0714",
+   "tags": [
+    "existing"
+   ],
+   "text": "fan"
+  },
+  {
+   "id": "c0715",
+   "tags": [
+    "existing"
+   ],
+   "text": "хона"
+  },
+  {
+   "id": "c0716",
+   "tags": [
+    "existing"
+   ],
+   "text": "xona"
+  },
+  {
+   "id": "c0717",
+   "tags": [
+    "existing"
+   ],
+   "text": "чора"
+  },
+  {
+   "id": "c0718",
+   "tags": [
+    "existing"
+   ],
+   "text": "chora"
+  },
+  {
+   "id": "c0719",
+   "tags": [
+    "existing"
+   ],
+   "text": "çora"
+  },
+  {
+   "id": "c0720",
+   "tags": [
+    "existing"
+   ],
+   "text": "шамол"
+  },
+  {
+   "id": "c0721",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "shamol"
+  },
+  {
+   "id": "c0722",
+   "tags": [
+    "existing"
+   ],
+   "text": "şamol"
+  },
+  {
+   "id": "c0723",
+   "tags": [
+    "existing"
+   ],
+   "text": "eşik"
+  },
+  {
+   "id": "c0724",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "yulduz"
+  },
+  {
+   "id": "c0725",
+   "tags": [
+    "existing",
+    "context"
+   ],
+   "text": "yashil"
+  },
+  {
+   "id": "c0726",
+   "tags": [
+    "existing"
+   ],
+   "text": "yaşil"
+  },
+  {
+   "id": "c0727",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "ўрик"
+  },
+  {
+   "id": "c0728",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "oʻrik"
+  },
+  {
+   "id": "c0729",
+   "tags": [
+    "existing"
+   ],
+   "text": "örik"
+  },
+  {
+   "id": "c0730",
+   "tags": [
+    "existing"
+   ],
+   "text": "қалам"
+  },
+  {
+   "id": "c0731",
+   "tags": [
+    "existing"
+   ],
+   "text": "qalam"
+  },
+  {
+   "id": "c0732",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "gʻalaba"
+  },
+  {
+   "id": "c0733",
+   "tags": [
+    "existing"
+   ],
+   "text": "ğalaba"
+  },
+  {
+   "id": "c0734",
+   "tags": [
+    "existing",
+    "api-examples"
+   ],
+   "text": "hayot"
+  },
+  {
+   "id": "c0735",
+   "tags": [
+    "existing"
+   ],
+   "text": "Zahiriddin Muhammad Bobur"
+  },
+  {
+   "id": "c0736",
+   "tags": [
+    "existing"
+   ],
+   "text": "Surxondaryo"
+  },
+  {
+   "id": "c0737",
+   "tags": [
+    "existing"
+   ],
+   "text": "Özbek tili va adabiyoti"
+  },
+  {
+   "id": "c0738",
+   "tags": [
+    "existing"
+   ],
+   "text": "Toʻqqiz"
+  },
+  {
+   "id": "c0739",
+   "tags": [
+    "existing"
+   ],
+   "text": "Töqqiz"
+  },
+  {
+   "id": "c0740",
+   "tags": [
+    "existing"
+   ],
+   "text": "Özbekiston  Respublikasi!"
+  },
+  {
+   "id": "c0741",
+   "tags": [
+    "existing"
+   ],
+   "text": "Mirzo Ulugʻbek nomidagi Oʻzbekiston Milliy universiteti"
+  },
+  {
+   "id": "c0742",
+   "tags": [
+    "existing"
+   ],
+   "text": "Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti"
+  },
+  {
+   "id": "c0743",
+   "tags": [
+    "existing"
+   ],
+   "text": "Şoşimova N."
+  },
+  {
+   "id": "c0744",
+   "tags": [
+    "existing"
+   ],
+   "text": "Shoshimova N."
+  },
+  {
+   "id": "c0745",
+   "tags": [
+    "existing"
+   ],
+   "text": "Шошимова Н."
+  },
+  {
+   "id": "c0746",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo'q"
+  },
+  {
+   "id": "c0747",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo‘q"
+  },
+  {
+   "id": "c0748",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo’q"
+  },
+  {
+   "id": "c0749",
+   "tags": [
+    "existing"
+   ],
+   "text": "yoʼq"
+  },
+  {
+   "id": "c0750",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo'l"
+  },
+  {
+   "id": "c0751",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo‘l"
+  },
+  {
+   "id": "c0752",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo’l"
+  },
+  {
+   "id": "c0753",
+   "tags": [
+    "existing"
+   ],
+   "text": "yoʼl"
+  },
+  {
+   "id": "c0754",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yo'l"
+  },
+  {
+   "id": "c0755",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yo‘l"
+  },
+  {
+   "id": "c0756",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yo’l"
+  },
+  {
+   "id": "c0757",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yoʼl"
+  },
+  {
+   "id": "c0758",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yo'ldosh"
+  },
+  {
+   "id": "c0759",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yo‘ldosh"
+  },
+  {
+   "id": "c0760",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yo’ldosh"
+  },
+  {
+   "id": "c0761",
+   "tags": [
+    "existing"
+   ],
+   "text": "Yoʼldosh"
+  },
+  {
+   "id": "c0762",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo'tal"
+  },
+  {
+   "id": "c0763",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo‘tal"
+  },
+  {
+   "id": "c0764",
+   "tags": [
+    "existing"
+   ],
+   "text": "yo’tal"
+  },
+  {
+   "id": "c0765",
+   "tags": [
+    "existing"
+   ],
+   "text": "yoʼtal"
+  },
+  {
+   "id": "c0766",
+   "tags": [
+    "existing",
+    "apostrophe",
+    "api-examples"
+   ],
+   "text": "O'ZBEKISTON"
+  },
+  {
+   "id": "c0767",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "O‘ZBEKISTON"
+  },
+  {
+   "id": "c0768",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "O’ZBEKISTON"
+  },
+  {
+   "id": "c0769",
+   "tags": [
+    "existing",
+    "apostrophe"
+   ],
+   "text": "OʼZBEKISTON"
+  },
+  {
+   "id": "c0770",
+   "tags": [
+    "existing"
+   ],
+   "text": "G'OYA"
+  },
+  {
+   "id": "c0771",
+   "tags": [
+    "existing"
+   ],
+   "text": "G‘OYA"
+  },
+  {
+   "id": "c0772",
+   "tags": [
+    "existing"
+   ],
+   "text": "G’OYA"
+  },
+  {
+   "id": "c0773",
+   "tags": [
+    "existing"
+   ],
+   "text": "GʼOYA"
+  },
+  {
+   "id": "c0774",
+   "tags": [
+    "existing"
+   ],
+   "text": "G'ALLA"
+  },
+  {
+   "id": "c0775",
+   "tags": [
+    "existing"
+   ],
+   "text": "G‘ALLA"
+  },
+  {
+   "id": "c0776",
+   "tags": [
+    "existing"
+   ],
+   "text": "G’ALLA"
+  },
+  {
+   "id": "c0777",
+   "tags": [
+    "existing"
+   ],
+   "text": "GʼALLA"
+  },
+  {
+   "id": "c0778",
+   "tags": [
+    "existing"
+   ],
+   "text": "SO'M"
+  },
+  {
+   "id": "c0779",
+   "tags": [
+    "existing"
+   ],
+   "text": "SO‘M"
+  },
+  {
+   "id": "c0780",
+   "tags": [
+    "existing"
+   ],
+   "text": "SO’M"
+  },
+  {
+   "id": "c0781",
+   "tags": [
+    "existing"
+   ],
+   "text": "SOʼM"
+  },
+  {
+   "id": "c0782",
+   "tags": [
+    "existing"
+   ],
+   "text": "YO'L"
+  },
+  {
+   "id": "c0783",
+   "tags": [
+    "existing"
+   ],
+   "text": "YO‘L"
+  },
+  {
+   "id": "c0784",
+   "tags": [
+    "existing"
+   ],
+   "text": "YO’L"
+  },
+  {
+   "id": "c0785",
+   "tags": [
+    "existing"
+   ],
+   "text": "YOʼL"
+  },
+  {
+   "id": "c0786",
+   "tags": [
+    "existing"
+   ],
+   "text": "YO'Q"
+  },
+  {
+   "id": "c0787",
+   "tags": [
+    "existing"
+   ],
+   "text": "YO‘Q"
+  },
+  {
+   "id": "c0788",
+   "tags": [
+    "existing"
+   ],
+   "text": "YO’Q"
+  },
+  {
+   "id": "c0789",
+   "tags": [
+    "existing"
+   ],
+   "text": "YOʼQ"
+  },
+  {
+   "id": "c0790",
+   "tags": [
+    "existing"
+   ],
+   "text": "аa"
+  },
+  {
+   "id": "c0791",
+   "tags": [
+    "existing"
+   ],
+   "text": "бa"
+  },
+  {
+   "id": "c0792",
+   "tags": [
+    "existing"
+   ],
+   "text": "вa"
+  },
+  {
+   "id": "c0793",
+   "tags": [
+    "existing"
+   ],
+   "text": "гa"
+  },
+  {
+   "id": "c0794",
+   "tags": [
+    "existing"
+   ],
+   "text": "дa"
+  },
+  {
+   "id": "c0795",
+   "tags": [
+    "existing"
+   ],
+   "text": "еa"
+  },
+  {
+   "id": "c0796",
+   "tags": [
+    "existing"
+   ],
+   "text": "ёa"
+  },
+  {
+   "id": "c0797",
+   "tags": [
+    "existing"
+   ],
+   "text": "жa"
+  },
+  {
+   "id": "c0798",
+   "tags": [
+    "existing"
+   ],
+   "text": "зa"
+  },
+  {
+   "id": "c0799",
+   "tags": [
+    "existing"
+   ],
+   "text": "иa"
+  },
+  {
+   "id": "c0800",
+   "tags": [
+    "existing"
+   ],
+   "text": "йa"
+  },
+  {
+   "id": "c0801",
+   "tags": [
+    "existing"
+   ],
+   "text": "кa"
+  },
+  {
+   "id": "c0802",
+   "tags": [
+    "existing"
+   ],
+   "text": "лa"
+  },
+  {
+   "id": "c0803",
+   "tags": [
+    "existing"
+   ],
+   "text": "мa"
+  },
+  {
+   "id": "c0804",
+   "tags": [
+    "existing"
+   ],
+   "text": "нa"
+  },
+  {
+   "id": "c0805",
+   "tags": [
+    "existing"
+   ],
+   "text": "оa"
+  },
+  {
+   "id": "c0806",
+   "tags": [
+    "existing"
+   ],
+   "text": "пa"
+  },
+  {
+   "id": "c0807",
+   "tags": [
+    "existing"
+   ],
+   "text": "рa"
+  },
+  {
+   "id": "c0808",
+   "tags": [
+    "existing"
+   ],
+   "text": "сa"
+  },
+  {
+   "id": "c0809",
+   "tags": [
+    "existing"
+   ],
+   "text": "тa"
+  },
+  {
+   "id": "c0810",
+   "tags": [
+    "existing"
+   ],
+   "text": "уa"
+  },
+  {
+   "id": "c0811",
+   "tags": [
+    "existing"
+   ],
+   "text": "фa"
+  },
+  {
+   "id": "c0812",
+   "tags": [
+    "existing"
+   ],
+   "text": "хa"
+  },
+  {
+   "id": "c0813",
+   "tags": [
+    "existing"
+   ],
+   "text": "цa"
+  },
+  {
+   "id": "c0814",
+   "tags": [
+    "existing"
+   ],
+   "text": "чa"
+  },
+  {
+   "id": "c0815",
+   "tags": [
+    "existing"
+   ],
+   "text": "шa"
+  },
+  {
+   "id": "c0816",
+   "tags": [
+    "existing"
+   ],
+   "text": "ъa"
+  },
+  {
+   "id": "c0817",
+   "tags": [
+    "existing"
+   ],
+   "text": "эa"
+  },
+  {
+   "id": "c0818",
+   "tags": [
+    "existing"
+   ],
+   "text": "юa"
+  },
+  {
+   "id": "c0819",
+   "tags": [
+    "existing"
+   ],
+   "text": "яa"
+  },
+  {
+   "id": "c0820",
+   "tags": [
+    "existing"
+   ],
+   "text": "ўa"
+  },
+  {
+   "id": "c0821",
+   "tags": [
+    "existing"
+   ],
+   "text": "қa"
+  },
+  {
+   "id": "c0822",
+   "tags": [
+    "existing"
+   ],
+   "text": "ғa"
+  },
+  {
+   "id": "c0823",
+   "tags": [
+    "existing"
+   ],
+   "text": "ҳa"
+  },
+  {
+   "id": "c0824",
+   "tags": [
+    "context"
+   ],
+   "text": "ЕР"
+  },
+  {
+   "id": "c0825",
+   "tags": [
+    "context"
+   ],
+   "text": "елка"
+  },
+  {
+   "id": "c0826",
+   "tags": [
+    "context"
+   ],
+   "text": "Европа"
+  },
+  {
+   "id": "c0827",
+   "tags": [
+    "context"
+   ],
+   "text": "мева"
+  },
+  {
+   "id": "c0828",
+   "tags": [
+    "context"
+   ],
+   "text": "келди"
+  },
+  {
+   "id": "c0829",
+   "tags": [
+    "context"
+   ],
+   "text": "оила"
+  },
+  {
+   "id": "c0830",
+   "tags": [
+    "context"
+   ],
+   "text": "Йил"
+  },
+  {
+   "id": "c0831",
+   "tags": [
+    "context"
+   ],
+   "text": "аёл"
+  },
+  {
+   "id": "c0832",
+   "tags": [
+    "context"
+   ],
+   "text": "Елена"
+  },
+  {
+   "id": "c0833",
+   "tags": [
+    "context"
+   ],
+   "text": "Цирк"
+  },
+  {
+   "id": "c0834",
+   "tags": [
+    "context"
+   ],
+   "text": "ЦИРК"
+  },
+  {
+   "id": "c0835",
+   "tags": [
+    "context"
+   ],
+   "text": "акция"
+  },
+  {
+   "id": "c0836",
+   "tags": [
+    "context"
+   ],
+   "text": "станция"
+  },
+  {
+   "id": "c0837",
+   "tags": [
+    "context"
+   ],
+   "text": "цех"
+  },
+  {
+   "id": "c0838",
+   "tags": [
+    "context"
+   ],
+   "text": "Цемент"
+  },
+  {
+   "id": "c0839",
+   "tags": [
+    "context"
+   ],
+   "text": "tsirk"
+  },
+  {
+   "id": "c0840",
+   "tags": [
+    "context"
+   ],
+   "text": "aksiya"
+  },
+  {
+   "id": "c0841",
+   "tags": [
+    "context"
+   ],
+   "text": "stansiya"
+  },
+  {
+   "id": "c0842",
+   "tags": [
+    "context"
+   ],
+   "text": "kontsert"
+  },
+  {
+   "id": "c0843",
+   "tags": [
+    "context"
+   ],
+   "text": "TSEMENT"
+  },
+  {
+   "id": "c0844",
+   "tags": [
+    "context"
+   ],
+   "text": "Tsement"
+  },
+  {
+   "id": "c0845",
+   "tags": [
+    "context"
+   ],
+   "text": "ИСҲОҚ"
+  },
+  {
+   "id": "c0846",
+   "tags": [
+    "context"
+   ],
+   "text": "асҳоб"
+  },
+  {
+   "id": "c0847",
+   "tags": [
+    "context"
+   ],
+   "text": "ISʼHOQ"
+  },
+  {
+   "id": "c0848",
+   "tags": [
+    "context"
+   ],
+   "text": "asʼhob"
+  },
+  {
+   "id": "c0849",
+   "tags": [
+    "context"
+   ],
+   "text": "Isʼhoqov"
+  },
+  {
+   "id": "c0850",
+   "tags": [
+    "context"
+   ],
+   "text": "аъло"
+  },
+  {
+   "id": "c0851",
+   "tags": [
+    "context",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "мўъжиза"
+  },
+  {
+   "id": "c0852",
+   "tags": [
+    "context",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "объект"
+  },
+  {
+   "id": "c0853",
+   "tags": [
+    "context"
+   ],
+   "text": "қатъий"
+  },
+  {
+   "id": "c0854",
+   "tags": [
+    "context",
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "таъсир"
+  },
+  {
+   "id": "c0855",
+   "tags": [
+    "context"
+   ],
+   "text": "Маъмур"
+  },
+  {
+   "id": "c0856",
+   "tags": [
+    "context"
+   ],
+   "text": "бульвар"
+  },
+  {
+   "id": "c0857",
+   "tags": [
+    "context"
+   ],
+   "text": "фильм"
+  },
+  {
+   "id": "c0858",
+   "tags": [
+    "context"
+   ],
+   "text": "ФИЛЬМ"
+  },
+  {
+   "id": "c0859",
+   "tags": [
+    "context"
+   ],
+   "text": "Ёқут"
+  },
+  {
+   "id": "c0860",
+   "tags": [
+    "context"
+   ],
+   "text": "ЁЗ"
+  },
+  {
+   "id": "c0861",
+   "tags": [
+    "context"
+   ],
+   "text": "Юсуф"
+  },
+  {
+   "id": "c0862",
+   "tags": [
+    "context"
+   ],
+   "text": "ЮЛДУЗ"
+  },
+  {
+   "id": "c0863",
+   "tags": [
+    "context"
+   ],
+   "text": "Яшил"
+  },
+  {
+   "id": "c0864",
+   "tags": [
+    "context"
+   ],
+   "text": "дарё"
+  },
+  {
+   "id": "c0865",
+   "tags": [
+    "context"
+   ],
+   "text": "ғоя"
+  },
+  {
+   "id": "c0866",
+   "tags": [
+    "context"
+   ],
+   "text": "Yoqut"
+  },
+  {
+   "id": "c0867",
+   "tags": [
+    "context"
+   ],
+   "text": "Yusuf"
+  },
+  {
+   "id": "c0868",
+   "tags": [
+    "context"
+   ],
+   "text": "daryo"
+  },
+  {
+   "id": "c0869",
+   "tags": [
+    "context"
+   ],
+   "text": "gʻoya"
+  },
+  {
+   "id": "c0870",
+   "tags": [
+    "context"
+   ],
+   "text": "OʻzBEKISTON"
+  },
+  {
+   "id": "c0871",
+   "tags": [
+    "context"
+   ],
+   "text": "ÇOY"
+  },
+  {
+   "id": "c0872",
+   "tags": [
+    "context"
+   ],
+   "text": "McDonald"
+  },
+  {
+   "id": "c0873",
+   "tags": [
+    "context"
+   ],
+   "text": "ToshKent"
+  },
+  {
+   "id": "c0874",
+   "tags": [
+    "context"
+   ],
+   "text": "tOSHKENT"
+  },
+  {
+   "id": "c0875",
+   "tags": [
+    "context"
+   ],
+   "text": "AB"
+  },
+  {
+   "id": "c0876",
+   "tags": [
+    "context"
+   ],
+   "text": "Ab"
+  },
+  {
+   "id": "c0877",
+   "tags": [
+    "apostrophe",
+    "ecosystem"
+   ],
+   "text": "oʼzbek"
+  },
+  {
+   "id": "c0878",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "o’zbek"
+  },
+  {
+   "id": "c0879",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "o‘zbek"
+  },
+  {
+   "id": "c0880",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "o´zbek"
+  },
+  {
+   "id": "c0881",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "oʹzbek"
+  },
+  {
+   "id": "c0882",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "o`zbek"
+  },
+  {
+   "id": "c0883",
+   "tags": [
+    "apostrophe",
+    "ecosystem"
+   ],
+   "text": "gʼalaba"
+  },
+  {
+   "id": "c0884",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "g’alaba"
+  },
+  {
+   "id": "c0885",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "g‘alaba"
+  },
+  {
+   "id": "c0886",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "g´alaba"
+  },
+  {
+   "id": "c0887",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "gʹalaba"
+  },
+  {
+   "id": "c0888",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "g`alaba"
+  },
+  {
+   "id": "c0889",
+   "tags": [
+    "apostrophe",
+    "ecosystem"
+   ],
+   "text": "maʻno"
+  },
+  {
+   "id": "c0890",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "ma’no"
+  },
+  {
+   "id": "c0891",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "ma‘no"
+  },
+  {
+   "id": "c0892",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "ma´no"
+  },
+  {
+   "id": "c0893",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "maʹno"
+  },
+  {
+   "id": "c0894",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "ma`no"
+  },
+  {
+   "id": "c0895",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jurʻat"
+  },
+  {
+   "id": "c0896",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jurʼat"
+  },
+  {
+   "id": "c0897",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jur’at"
+  },
+  {
+   "id": "c0898",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jur‘at"
+  },
+  {
+   "id": "c0899",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jur´at"
+  },
+  {
+   "id": "c0900",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jurʹat"
+  },
+  {
+   "id": "c0901",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jur'at"
+  },
+  {
+   "id": "c0902",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "jur`at"
+  },
+  {
+   "id": "c0903",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bogʻ"
+  },
+  {
+   "id": "c0904",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bogʼ"
+  },
+  {
+   "id": "c0905",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bog’"
+  },
+  {
+   "id": "c0906",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bog‘"
+  },
+  {
+   "id": "c0907",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bog´"
+  },
+  {
+   "id": "c0908",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bogʹ"
+  },
+  {
+   "id": "c0909",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bog'"
+  },
+  {
+   "id": "c0910",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "bog`"
+  },
+  {
+   "id": "c0911",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "O´ZBEKISTON"
+  },
+  {
+   "id": "c0912",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "OʹZBEKISTON"
+  },
+  {
+   "id": "c0913",
+   "tags": [
+    "apostrophe"
+   ],
+   "text": "O`ZBEKISTON"
+  },
+  {
+   "id": "c0914",
+   "tags": [
+    "apostrophe",
+    "quotes"
+   ],
+   "text": "‘salom’"
+  },
+  {
+   "id": "c0915",
+   "tags": [
+    "apostrophe",
+    "quotes"
+   ],
+   "text": "\"salom\""
+  },
+  {
+   "id": "c0916",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Mayer"
+  },
+  {
+   "id": "c0917",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Aliyev"
+  },
+  {
+   "id": "c0918",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Aliev"
+  },
+  {
+   "id": "c0919",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Алиев"
+  },
+  {
+   "id": "c0920",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Валиев"
+  },
+  {
+   "id": "c0921",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Valiyev"
+  },
+  {
+   "id": "c0922",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Valiev"
+  },
+  {
+   "id": "c0923",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "boʼg"
+  },
+  {
+   "id": "c0924",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Oʼzbekiston"
+  },
+  {
+   "id": "c0925",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Аliyev"
+  },
+  {
+   "id": "c0926",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Tоshkent"
+  },
+  {
+   "id": "c0927",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Аli Valiyev"
+  },
+  {
+   "id": "c0928",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Алiев"
+  },
+  {
+   "id": "c0929",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "iлм"
+  },
+  {
+   "id": "c0930",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "jасур"
+  },
+  {
+   "id": "c0931",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Тоjиев"
+  },
+  {
+   "id": "c0932",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Алієв"
+  },
+  {
+   "id": "c0933",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ілм"
+  },
+  {
+   "id": "c0934",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "јасур"
+  },
+  {
+   "id": "c0935",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Тојиев"
+  },
+  {
+   "id": "c0936",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ә"
+  },
+  {
+   "id": "c0937",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ө"
+  },
+  {
+   "id": "c0938",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ү"
+  },
+  {
+   "id": "c0939",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ң"
+  },
+  {
+   "id": "c0940",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Нөкис"
+  },
+  {
+   "id": "c0941",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "әке"
+  },
+  {
+   "id": "c0942",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "үй"
+  },
+  {
+   "id": "c0943",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "қоңыр"
+  },
+  {
+   "id": "c0944",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "á"
+  },
+  {
+   "id": "c0945",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ó"
+  },
+  {
+   "id": "c0946",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ú"
+  },
+  {
+   "id": "c0947",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ń"
+  },
+  {
+   "id": "c0948",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "ı"
+  },
+  {
+   "id": "c0949",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "Nókis"
+  },
+  {
+   "id": "c0950",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "áke"
+  },
+  {
+   "id": "c0951",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "úy"
+  },
+  {
+   "id": "c0952",
+   "tags": [
+    "ecosystem"
+   ],
+   "text": "qońır"
+  },
+  {
+   "id": "c0953",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "puls"
+  },
+  {
+   "id": "c0954",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "pulsi"
+  },
+  {
+   "id": "c0955",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "kalsiy"
+  },
+  {
+   "id": "c0956",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "mmol"
+  },
+  {
+   "id": "c0957",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "пульс"
+  },
+  {
+   "id": "c0958",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "пульси"
+  },
+  {
+   "id": "c0959",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "кальций"
+  },
+  {
+   "id": "c0960",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "ммоль"
+  },
+  {
+   "id": "c0961",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "reaksiya"
+  },
+  {
+   "id": "c0962",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "sistit"
+  },
+  {
+   "id": "c0963",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "sikl"
+  },
+  {
+   "id": "c0964",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "asfiksiya"
+  },
+  {
+   "id": "c0965",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "реакция"
+  },
+  {
+   "id": "c0966",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "цистит"
+  },
+  {
+   "id": "c0967",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "цикл"
+  },
+  {
+   "id": "c0968",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "асфиксия"
+  },
+  {
+   "id": "c0969",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "sitologiya"
+  },
+  {
+   "id": "c0970",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "albumin"
+  },
+  {
+   "id": "c0971",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "sitologiyasi"
+  },
+  {
+   "id": "c0972",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "sening"
+  },
+  {
+   "id": "c0973",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "kelgan"
+  },
+  {
+   "id": "c0974",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "bilan"
+  },
+  {
+   "id": "c0975",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "цитология"
+  },
+  {
+   "id": "c0976",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "альбумин"
+  },
+  {
+   "id": "c0977",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "цитологияси"
+  },
+  {
+   "id": "c0978",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "subyektiv"
+  },
+  {
+   "id": "c0979",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "podyezd"
+  },
+  {
+   "id": "c0980",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "premyer"
+  },
+  {
+   "id": "c0981",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "субъектив"
+  },
+  {
+   "id": "c0982",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "подъезд"
+  },
+  {
+   "id": "c0983",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "премьер"
+  },
+  {
+   "id": "c0984",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "SpO2"
+  },
+  {
+   "id": "c0985",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "pH"
+  },
+  {
+   "id": "c0986",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "EEG"
+  },
+  {
+   "id": "c0987",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "UTT"
+  },
+  {
+   "id": "c0988",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "ЭЭГ"
+  },
+  {
+   "id": "c0989",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "УТТ"
+  },
+  {
+   "id": "c0990",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "B12"
+  },
+  {
+   "id": "c0991",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "PaCO2"
+  },
+  {
+   "id": "c0992",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "aytsangizgina"
+  },
+  {
+   "id": "c0993",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "aytsakkina"
+  },
+  {
+   "id": "c0994",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "ketsayu"
+  },
+  {
+   "id": "c0995",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "ketsaku"
+  },
+  {
+   "id": "c0996",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "ketsayoq"
+  },
+  {
+   "id": "c0997",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "tutsinmikan"
+  },
+  {
+   "id": "c0998",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "ketsinu"
+  },
+  {
+   "id": "c0999",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "айтсангизгина"
+  },
+  {
+   "id": "c1000",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "айтсаккина"
+  },
+  {
+   "id": "c1001",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "кетсаю"
+  },
+  {
+   "id": "c1002",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "кетсаку"
+  },
+  {
+   "id": "c1003",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "кетсаёқ"
+  },
+  {
+   "id": "c1004",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "тутсинмикан"
+  },
+  {
+   "id": "c1005",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "кетсину"
+  },
+  {
+   "id": "c1006",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "инъекция"
+  },
+  {
+   "id": "c1007",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "съёмка"
+  },
+  {
+   "id": "c1008",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "адъютант"
+  },
+  {
+   "id": "c1009",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "мўътабар"
+  },
+  {
+   "id": "c1010",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "маъюс"
+  },
+  {
+   "id": "c1011",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "санъат"
+  },
+  {
+   "id": "c1012",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "obyekt"
+  },
+  {
+   "id": "c1013",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "inyeksiya"
+  },
+  {
+   "id": "c1014",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "syomka"
+  },
+  {
+   "id": "c1015",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "adyutant"
+  },
+  {
+   "id": "c1016",
+   "tags": [
+    "consumer-report",
+    "rules-0.2.0"
+   ],
+   "text": "moʻjiza"
+  },
+  {
+   "id": "c1017",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "moʻtabar"
+  },
+  {
+   "id": "c1018",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "maʼyus"
+  },
+  {
+   "id": "c1019",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "sanʼat"
+  },
+  {
+   "id": "c1020",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "taʼsir"
+  },
+  {
+   "id": "c1021",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "moʻtadil"
+  },
+  {
+   "id": "c1022",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "мўътадил"
+  },
+  {
+   "id": "c1023",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "rahatsizlantiradi"
+  },
+  {
+   "id": "c1024",
+   "tags": [
+    "consumer-report"
+   ],
+   "text": "раҳатсизлантиради"
+  },
+  {
+   "id": "c1025",
+   "tags": [
+    "mixed"
+   ],
+   "text": "08.11.2026"
+  },
+  {
+   "id": "c1026",
+   "tags": [
+    "mixed"
+   ],
+   "text": "2026-11-08"
+  },
+  {
+   "id": "c1027",
+   "tags": [
+    "mixed"
+   ],
+   "text": "12:30"
+  },
+  {
+   "id": "c1028",
+   "tags": [
+    "mixed"
+   ],
+   "text": "3,14"
+  },
+  {
+   "id": "c1029",
+   "tags": [
+    "mixed"
+   ],
+   "text": "1 000 000"
+  },
+  {
+   "id": "c1030",
+   "tags": [
+    "mixed"
+   ],
+   "text": "№ 12"
+  },
+  {
+   "id": "c1031",
+   "tags": [
+    "mixed"
+   ],
+   "text": "10.1234/abcd.5678"
+  },
+  {
+   "id": "c1032",
+   "tags": [
+    "mixed"
+   ],
+   "text": "DOI: 10.1234/abcd.5678"
+  },
+  {
+   "id": "c1033",
+   "tags": [
+    "mixed"
+   ],
+   "text": "https://doi.org/10.1234/abcd.5678"
+  },
+  {
+   "id": "c1034",
+   "tags": [
+    "mixed"
+   ],
+   "text": "https://example.org/uz/kitob?id=12&til=uz"
+  },
+  {
+   "id": "c1035",
+   "tags": [
+    "mixed"
+   ],
+   "text": "info@example.org"
+  },
+  {
+   "id": "c1036",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Yozing: info@example.org"
+  },
+  {
+   "id": "c1037",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Ёзинг: info@example.org"
+  },
+  {
+   "id": "c1038",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Salom, dunyo!"
+  },
+  {
+   "id": "c1039",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Салом, дунё!"
+  },
+  {
+   "id": "c1040",
+   "tags": [
+    "mixed"
+   ],
+   "text": "«Oʻzbekiston»"
+  },
+  {
+   "id": "c1041",
+   "tags": [
+    "mixed"
+   ],
+   "text": "«Ўзбекистон»"
+  },
+  {
+   "id": "c1042",
+   "tags": [
+    "mixed"
+   ],
+   "text": "„Toshkent“"
+  },
+  {
+   "id": "c1043",
+   "tags": [
+    "mixed"
+   ],
+   "text": "(Toshkent)"
+  },
+  {
+   "id": "c1044",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Toshkent—Samarqand"
+  },
+  {
+   "id": "c1045",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Тошкент – Самарқанд"
+  },
+  {
+   "id": "c1046",
+   "tags": [
+    "mixed"
+   ],
+   "text": "..."
+  },
+  {
+   "id": "c1047",
+   "tags": [
+    "mixed"
+   ],
+   "text": "?!"
+  },
+  {
+   "id": "c1048",
+   "tags": [
+    "mixed"
+   ],
+   "text": ";"
+  },
+  {
+   "id": "c1049",
+   "tags": [
+    "mixed"
+   ],
+   "text": "-"
+  },
+  {
+   "id": "c1050",
+   "tags": [
+    "mixed"
+   ],
+   "text": "—"
+  },
+  {
+   "id": "c1051",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Toshkent\nSamarqand"
+  },
+  {
+   "id": "c1052",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Тошкент\nСамарқанд"
+  },
+  {
+   "id": "c1053",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Birinchi qator\r\nIkkinchi qator"
+  },
+  {
+   "id": "c1054",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Bir\n\nIkki"
+  },
+  {
+   "id": "c1055",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Toshkent\tSamarqand"
+  },
+  {
+   "id": "c1056",
+   "tags": [
+    "mixed"
+   ],
+   "text": " "
+  },
+  {
+   "id": "c1057",
+   "tags": [
+    "mixed"
+   ],
+   "text": "  "
+  },
+  {
+   "id": "c1058",
+   "tags": [
+    "mixed"
+   ],
+   "text": "\t"
+  },
+  {
+   "id": "c1059",
+   "tags": [
+    "mixed"
+   ],
+   "text": "\n"
+  },
+  {
+   "id": "c1060",
+   "tags": [
+    "mixed"
+   ],
+   "text": " "
+  },
+  {
+   "id": "c1061",
+   "tags": [
+    "mixed"
+   ],
+   "text": " Toshkent "
+  },
+  {
+   "id": "c1062",
+   "tags": [
+    "mixed"
+   ],
+   "text": "3-sinf"
+  },
+  {
+   "id": "c1063",
+   "tags": [
+    "mixed"
+   ],
+   "text": "XXI asr"
+  },
+  {
+   "id": "c1064",
+   "tags": [
+    "mixed"
+   ],
+   "text": "XXI аср"
+  },
+  {
+   "id": "c1065",
+   "tags": [
+    "mixed"
+   ],
+   "text": "12-son, 3-jild"
+  },
+  {
+   "id": "c1066",
+   "tags": [
+    "mixed"
+   ],
+   "text": "ISBN 978-0-00-000000-0"
+  },
+  {
+   "id": "c1067",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Ali, Vali va Gʻani"
+  },
+  {
+   "id": "c1068",
+   "tags": [
+    "mixed"
+   ],
+   "text": "Али, Вали ва Ғани"
+  },
+  {
+   "id": "c1069",
+   "tags": [
+    "reform-2026",
+    "api-examples"
+   ],
+   "text": "şahar"
+  },
+  {
+   "id": "c1070",
+   "tags": [
+    "reform-2026",
+    "api-examples"
+   ],
+   "text": "çaqmoq"
+  },
+  {
+   "id": "c1071",
+   "tags": [
+    "reform-2026",
+    "api-examples"
+   ],
+   "text": "ğoz"
+  },
+  {
+   "id": "c1072",
+   "tags": [
+    "reform-2026",
+    "api-examples"
+   ],
+   "text": "ördak"
+  },
+  {
+   "id": "c1073",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ŞAHAR"
+  },
+  {
+   "id": "c1074",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ÇAQMOQ"
+  },
+  {
+   "id": "c1075",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ĞOZ"
+  },
+  {
+   "id": "c1076",
+   "tags": [
+    "reform-2026",
+    "api-examples"
+   ],
+   "text": "ÖRDAK"
+  },
+  {
+   "id": "c1077",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ō"
+  },
+  {
+   "id": "c1078",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ǒ"
+  },
+  {
+   "id": "c1079",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "Ō"
+  },
+  {
+   "id": "c1080",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "Ǒ"
+  },
+  {
+   "id": "c1081",
+   "tags": [
+    "reform-2026",
+    "api-examples"
+   ],
+   "text": "ōrdak"
+  },
+  {
+   "id": "c1082",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ǒrdak"
+  },
+  {
+   "id": "c1083",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ŌRDAK"
+  },
+  {
+   "id": "c1084",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "Ǒzbekiston"
+  },
+  {
+   "id": "c1085",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "ISHOQ"
+  },
+  {
+   "id": "c1086",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "çöl"
+  },
+  {
+   "id": "c1087",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "Çirçiq"
+  },
+  {
+   "id": "c1088",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "Ğijduvon"
+  },
+  {
+   "id": "c1089",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "Şahrisabz"
+  },
+  {
+   "id": "c1090",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "özbek"
+  },
+  {
+   "id": "c1091",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "işçi"
+  },
+  {
+   "id": "c1092",
+   "tags": [
+    "reform-2026"
+   ],
+   "text": "öçmas"
+  },
+  {
+   "id": "c1093",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "oksitotsin"
+  },
+  {
+   "id": "c1094",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "doksorubitsin"
+  },
+  {
+   "id": "c1095",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "rifampitsin"
+  },
+  {
+   "id": "c1096",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "oksitotsinni"
+  },
+  {
+   "id": "c1097",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "rifampitsinga"
+  },
+  {
+   "id": "c1098",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "doksorubitsinning"
+  },
+  {
+   "id": "c1099",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "oʻtsin"
+  },
+  {
+   "id": "c1100",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "yetsin"
+  },
+  {
+   "id": "c1101",
+   "tags": [
+    "rules-0.2.0"
+   ],
+   "text": "aytsin"
+  },
+  {
+   "id": "c1102",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "sabr"
+  },
+  {
+   "id": "c1103",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "Ördak"
+  },
+  {
+   "id": "c1104",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "zarar"
+  },
+  {
+   "id": "c1105",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "gʻoz"
+  },
+  {
+   "id": "c1106",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "choy"
+  },
+  {
+   "id": "c1107",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "Ishonch"
+  },
+  {
+   "id": "c1108",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "o'rik"
+  },
+  {
+   "id": "c1109",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "ялпиз"
+  },
+  {
+   "id": "c1110",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "қовун"
+  },
+  {
+   "id": "c1111",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "ғоз"
+  },
+  {
+   "id": "c1112",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "ҳаво"
+  },
+  {
+   "id": "c1113",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "жуда"
+  },
+  {
+   "id": "c1114",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "щи"
+  },
+  {
+   "id": "c1115",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "Ali Valiyev"
+  },
+  {
+   "id": "c1116",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "Alijon"
+  },
+  {
+   "id": "c1117",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "2-son"
+  },
+  {
+   "id": "c1118",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "Мы здесь"
+  },
+  {
+   "id": "c1119",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "бир"
+  },
+  {
+   "id": "c1120",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "Қўшиқ ва щи"
+  },
+  {
+   "id": "c1121",
+   "tags": [
+    "api-examples"
+   ],
+   "text": "123"
+  }
+ ],
+ "schema": "akademtranslit-golden-inputs/1"
+}

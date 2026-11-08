@@ -62,8 +62,9 @@ APOSTROPHE_VARIANTS = (
 CYRILLIC_VOWELS = frozenset("аеёиоуўэюяы")
 
 #: Context-free Cyrillic to ``latin_1995``. Lowercase keys; case is restored by
-#: the caller. Entries whose reading depends on position (``е``, ``ц``, and
-#: ``с`` before ``ҳ``) are handled in :mod:`akademtranslit.rules` instead.
+#: the caller. Entries whose reading depends on position (``е``, ``ц``, ``с``
+#: before ``ҳ``, and ``ъ`` where it is dropped) are handled in
+#: :mod:`akademtranslit.rules` instead.
 CYRILLIC_TO_LATIN_1995 = {
     "а": "a",
     "б": "b",
@@ -168,13 +169,13 @@ TS_LOANWORD_STEMS = (
 
 # --- the 2026 reform ---------------------------------------------------------
 #
-# The whole reform is these four rows. Keeping it as one small table is
-# deliberate: if the final decree settles on a different glyph for one of them,
-# exactly one line here changes and the rest of the library follows.
+# The whole reform is these four rows, as set by Law No. O'RQ-1184 (signed
+# 21 October 2026, in force from 22 April 2027). Keeping it as one small table
+# means a change to a glyph is one line here.
 #
-# NOTE: an earlier draft of the reform proposed ``ō`` (o with macron) rather
-# than ``ö`` for ``oʻ``. This library emits ``ö`` and accepts ``ō`` on input as
-# an alias, so text written under either convention reads correctly.
+# The law writes ``ö`` for ``oʻ``. Earlier drafts used ``ō`` (o with macron) or
+# ``ǒ``; both are accepted on input as aliases (LATIN_2026_INPUT_ALIASES) so
+# that draft-era text reads correctly, and neither is ever output.
 
 #: The four letters the reform changes, as a plain correspondence table. This is
 #: the reform, and it is exposed for callers that want to render it (keyboards,
@@ -211,10 +212,30 @@ LATIN_2026_INPUT_ALIASES = (
     ("ǒ", "ö"),
 )
 
-#: The 28 letters of the reformed alphabet, in alphabetical order, plus the
-#: tutuq belgisi. Exposed for callers building keyboards, sort keys or
-#: validators.
+# --- alphabets -----------------------------------------------------------------
+#
+# The letters of each orthography in its alphabetical order. Exposed for callers
+# building keyboards, sort keys or validators; :func:`akademtranslit.sort_key`
+# sorts by them.
+
+#: The 28 letters of the 2026 alphabet, in the order of Law No. O'RQ-1184.
+#: The tutuq belgisi belongs to the alphabet but is not a letter: see TUTUQ.
 LATIN_2026_ALPHABET = (
-    "a", "b", "ç", "d", "e", "f", "g", "ğ", "h", "i", "j", "k", "l", "m",
-    "n", "o", "ö", "p", "q", "r", "s", "ş", "t", "u", "v", "x", "y", "z",
+    "a", "b", "d", "e", "f", "g", "ğ", "h", "i", "j", "k", "l", "m", "n",
+    "o", "ö", "p", "q", "r", "s", "ş", "ç", "t", "u", "v", "x", "y", "z",
+)
+
+#: The 1995 alphabet in sorting order: 24 letters, then oʻ gʻ sh ch
+#: (the order of the CLDR "uz" collation). The tutuq belgisi and ng are not units.
+LATIN_1995_ALPHABET = (
+    "a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+    "p", "q", "r", "s", "t", "u", "v", "x", "y", "z",
+    "o" + TURNED_COMMA, "g" + TURNED_COMMA, "sh", "ch",
+)
+
+#: The 35 letters of the Uzbek Cyrillic alphabet; Ў Қ Ғ Ҳ follow Я.
+CYRILLIC_ALPHABET = (
+    "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м",
+    "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "ъ", "ь",
+    "э", "ю", "я", "ў", "қ", "ғ", "ҳ",
 )

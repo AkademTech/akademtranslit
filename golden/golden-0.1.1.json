@@ -1,0 +1,7854 @@
+{
+ "inputs_sha256": "48d3b85f8d54f106f5824dbcfbe918e640ee2cfe30f8303673500543687f11d8",
+ "library_version": "0.1.1",
+ "results": {
+  "c0001": {
+   "detect_script": "cyrillic",
+   "normalize": "a",
+   "to_cyrillic": "а",
+   "to_latin_1995": "a",
+   "to_latin_2026": "a"
+  },
+  "c0002": {
+   "detect_script": "cyrillic",
+   "normalize": "a",
+   "to_cyrillic": "А",
+   "to_latin_1995": "A",
+   "to_latin_2026": "A"
+  },
+  "c0003": {
+   "detect_script": "cyrillic",
+   "normalize": "baxt",
+   "to_cyrillic": "бахт",
+   "to_latin_1995": "baxt",
+   "to_latin_2026": "baxt"
+  },
+  "c0004": {
+   "detect_script": "cyrillic",
+   "normalize": "baxt",
+   "to_cyrillic": "БАХТ",
+   "to_latin_1995": "BAXT",
+   "to_latin_2026": "BAXT"
+  },
+  "c0005": {
+   "detect_script": "cyrillic",
+   "normalize": "b",
+   "to_cyrillic": "б",
+   "to_latin_1995": "b",
+   "to_latin_2026": "b"
+  },
+  "c0006": {
+   "detect_script": "cyrillic",
+   "normalize": "b",
+   "to_cyrillic": "Б",
+   "to_latin_1995": "B",
+   "to_latin_2026": "B"
+  },
+  "c0007": {
+   "detect_script": "cyrillic",
+   "normalize": "tabiat",
+   "to_cyrillic": "табиат",
+   "to_latin_1995": "tabiat",
+   "to_latin_2026": "tabiat"
+  },
+  "c0008": {
+   "detect_script": "cyrillic",
+   "normalize": "tabiat",
+   "to_cyrillic": "ТАБИАТ",
+   "to_latin_1995": "TABIAT",
+   "to_latin_2026": "TABIAT"
+  },
+  "c0009": {
+   "detect_script": "cyrillic",
+   "normalize": "v",
+   "to_cyrillic": "в",
+   "to_latin_1995": "v",
+   "to_latin_2026": "v"
+  },
+  "c0010": {
+   "detect_script": "cyrillic",
+   "normalize": "v",
+   "to_cyrillic": "В",
+   "to_latin_1995": "V",
+   "to_latin_2026": "V"
+  },
+  "c0011": {
+   "detect_script": "cyrillic",
+   "normalize": "darvoza",
+   "to_cyrillic": "дарвоза",
+   "to_latin_1995": "darvoza",
+   "to_latin_2026": "darvoza"
+  },
+  "c0012": {
+   "detect_script": "cyrillic",
+   "normalize": "darvoza",
+   "to_cyrillic": "ДАРВОЗА",
+   "to_latin_1995": "DARVOZA",
+   "to_latin_2026": "DARVOZA"
+  },
+  "c0013": {
+   "detect_script": "cyrillic",
+   "normalize": "g",
+   "to_cyrillic": "г",
+   "to_latin_1995": "g",
+   "to_latin_2026": "g"
+  },
+  "c0014": {
+   "detect_script": "cyrillic",
+   "normalize": "g",
+   "to_cyrillic": "Г",
+   "to_latin_1995": "G",
+   "to_latin_2026": "G"
+  },
+  "c0015": {
+   "detect_script": "cyrillic",
+   "normalize": "bugun",
+   "to_cyrillic": "бугун",
+   "to_latin_1995": "bugun",
+   "to_latin_2026": "bugun"
+  },
+  "c0016": {
+   "detect_script": "cyrillic",
+   "normalize": "bugun",
+   "to_cyrillic": "БУГУН",
+   "to_latin_1995": "BUGUN",
+   "to_latin_2026": "BUGUN"
+  },
+  "c0017": {
+   "detect_script": "cyrillic",
+   "normalize": "d",
+   "to_cyrillic": "д",
+   "to_latin_1995": "d",
+   "to_latin_2026": "d"
+  },
+  "c0018": {
+   "detect_script": "cyrillic",
+   "normalize": "d",
+   "to_cyrillic": "Д",
+   "to_latin_1995": "D",
+   "to_latin_2026": "D"
+  },
+  "c0019": {
+   "detect_script": "cyrillic",
+   "normalize": "odam",
+   "to_cyrillic": "одам",
+   "to_latin_1995": "odam",
+   "to_latin_2026": "odam"
+  },
+  "c0020": {
+   "detect_script": "cyrillic",
+   "normalize": "odam",
+   "to_cyrillic": "ОДАМ",
+   "to_latin_1995": "ODAM",
+   "to_latin_2026": "ODAM"
+  },
+  "c0021": {
+   "detect_script": "cyrillic",
+   "normalize": "ye",
+   "to_cyrillic": "е",
+   "to_latin_1995": "ye",
+   "to_latin_2026": "ye"
+  },
+  "c0022": {
+   "detect_script": "cyrillic",
+   "normalize": "ye",
+   "to_cyrillic": "Е",
+   "to_latin_1995": "Ye",
+   "to_latin_2026": "Ye"
+  },
+  "c0023": {
+   "detect_script": "cyrillic",
+   "normalize": "kecha",
+   "to_cyrillic": "кеча",
+   "to_latin_1995": "kecha",
+   "to_latin_2026": "keça"
+  },
+  "c0024": {
+   "detect_script": "cyrillic",
+   "normalize": "kecha",
+   "to_cyrillic": "КЕЧА",
+   "to_latin_1995": "KECHA",
+   "to_latin_2026": "KEÇA"
+  },
+  "c0025": {
+   "detect_script": "cyrillic",
+   "normalize": "yo",
+   "to_cyrillic": "ё",
+   "to_latin_1995": "yo",
+   "to_latin_2026": "yo"
+  },
+  "c0026": {
+   "detect_script": "cyrillic",
+   "normalize": "yo",
+   "to_cyrillic": "Ё",
+   "to_latin_1995": "Yo",
+   "to_latin_2026": "Yo"
+  },
+  "c0027": {
+   "detect_script": "cyrillic",
+   "normalize": "hayot",
+   "to_cyrillic": "ҳаёт",
+   "to_latin_1995": "hayot",
+   "to_latin_2026": "hayot"
+  },
+  "c0028": {
+   "detect_script": "cyrillic",
+   "normalize": "hayot",
+   "to_cyrillic": "ҲАЁТ",
+   "to_latin_1995": "HAYOT",
+   "to_latin_2026": "HAYOT"
+  },
+  "c0029": {
+   "detect_script": "cyrillic",
+   "normalize": "j",
+   "to_cyrillic": "ж",
+   "to_latin_1995": "j",
+   "to_latin_2026": "j"
+  },
+  "c0030": {
+   "detect_script": "cyrillic",
+   "normalize": "j",
+   "to_cyrillic": "Ж",
+   "to_latin_1995": "J",
+   "to_latin_2026": "J"
+  },
+  "c0031": {
+   "detect_script": "cyrillic",
+   "normalize": "ajoyib",
+   "to_cyrillic": "ажойиб",
+   "to_latin_1995": "ajoyib",
+   "to_latin_2026": "ajoyib"
+  },
+  "c0032": {
+   "detect_script": "cyrillic",
+   "normalize": "ajoyib",
+   "to_cyrillic": "АЖОЙИБ",
+   "to_latin_1995": "AJOYIB",
+   "to_latin_2026": "AJOYIB"
+  },
+  "c0033": {
+   "detect_script": "cyrillic",
+   "normalize": "z",
+   "to_cyrillic": "з",
+   "to_latin_1995": "z",
+   "to_latin_2026": "z"
+  },
+  "c0034": {
+   "detect_script": "cyrillic",
+   "normalize": "z",
+   "to_cyrillic": "З",
+   "to_latin_1995": "Z",
+   "to_latin_2026": "Z"
+  },
+  "c0035": {
+   "detect_script": "cyrillic",
+   "normalize": "ozod",
+   "to_cyrillic": "озод",
+   "to_latin_1995": "ozod",
+   "to_latin_2026": "ozod"
+  },
+  "c0036": {
+   "detect_script": "cyrillic",
+   "normalize": "ozod",
+   "to_cyrillic": "ОЗОД",
+   "to_latin_1995": "OZOD",
+   "to_latin_2026": "OZOD"
+  },
+  "c0037": {
+   "detect_script": "cyrillic",
+   "normalize": "i",
+   "to_cyrillic": "и",
+   "to_latin_1995": "i",
+   "to_latin_2026": "i"
+  },
+  "c0038": {
+   "detect_script": "cyrillic",
+   "normalize": "i",
+   "to_cyrillic": "И",
+   "to_latin_1995": "I",
+   "to_latin_2026": "I"
+  },
+  "c0039": {
+   "detect_script": "cyrillic",
+   "normalize": "kitob",
+   "to_cyrillic": "китоб",
+   "to_latin_1995": "kitob",
+   "to_latin_2026": "kitob"
+  },
+  "c0040": {
+   "detect_script": "cyrillic",
+   "normalize": "kitob",
+   "to_cyrillic": "КИТОБ",
+   "to_latin_1995": "KITOB",
+   "to_latin_2026": "KITOB"
+  },
+  "c0041": {
+   "detect_script": "cyrillic",
+   "normalize": "y",
+   "to_cyrillic": "й",
+   "to_latin_1995": "y",
+   "to_latin_2026": "y"
+  },
+  "c0042": {
+   "detect_script": "cyrillic",
+   "normalize": "y",
+   "to_cyrillic": "Й",
+   "to_latin_1995": "Y",
+   "to_latin_2026": "Y"
+  },
+  "c0043": {
+   "detect_script": "cyrillic",
+   "normalize": "maydon",
+   "to_cyrillic": "майдон",
+   "to_latin_1995": "maydon",
+   "to_latin_2026": "maydon"
+  },
+  "c0044": {
+   "detect_script": "cyrillic",
+   "normalize": "maydon",
+   "to_cyrillic": "МАЙДОН",
+   "to_latin_1995": "MAYDON",
+   "to_latin_2026": "MAYDON"
+  },
+  "c0045": {
+   "detect_script": "cyrillic",
+   "normalize": "k",
+   "to_cyrillic": "к",
+   "to_latin_1995": "k",
+   "to_latin_2026": "k"
+  },
+  "c0046": {
+   "detect_script": "cyrillic",
+   "normalize": "k",
+   "to_cyrillic": "К",
+   "to_latin_1995": "K",
+   "to_latin_2026": "K"
+  },
+  "c0047": {
+   "detect_script": "cyrillic",
+   "normalize": "bekat",
+   "to_cyrillic": "бекат",
+   "to_latin_1995": "bekat",
+   "to_latin_2026": "bekat"
+  },
+  "c0048": {
+   "detect_script": "cyrillic",
+   "normalize": "bekat",
+   "to_cyrillic": "БЕКАТ",
+   "to_latin_1995": "BEKAT",
+   "to_latin_2026": "BEKAT"
+  },
+  "c0049": {
+   "detect_script": "cyrillic",
+   "normalize": "l",
+   "to_cyrillic": "л",
+   "to_latin_1995": "l",
+   "to_latin_2026": "l"
+  },
+  "c0050": {
+   "detect_script": "cyrillic",
+   "normalize": "l",
+   "to_cyrillic": "Л",
+   "to_latin_1995": "L",
+   "to_latin_2026": "L"
+  },
+  "c0051": {
+   "detect_script": "cyrillic",
+   "normalize": "olma",
+   "to_cyrillic": "олма",
+   "to_latin_1995": "olma",
+   "to_latin_2026": "olma"
+  },
+  "c0052": {
+   "detect_script": "cyrillic",
+   "normalize": "olma",
+   "to_cyrillic": "ОЛМА",
+   "to_latin_1995": "OLMA",
+   "to_latin_2026": "OLMA"
+  },
+  "c0053": {
+   "detect_script": "cyrillic",
+   "normalize": "m",
+   "to_cyrillic": "м",
+   "to_latin_1995": "m",
+   "to_latin_2026": "m"
+  },
+  "c0054": {
+   "detect_script": "cyrillic",
+   "normalize": "m",
+   "to_cyrillic": "М",
+   "to_latin_1995": "M",
+   "to_latin_2026": "M"
+  },
+  "c0055": {
+   "detect_script": "cyrillic",
+   "normalize": "omad",
+   "to_cyrillic": "омад",
+   "to_latin_1995": "omad",
+   "to_latin_2026": "omad"
+  },
+  "c0056": {
+   "detect_script": "cyrillic",
+   "normalize": "omad",
+   "to_cyrillic": "ОМАД",
+   "to_latin_1995": "OMAD",
+   "to_latin_2026": "OMAD"
+  },
+  "c0057": {
+   "detect_script": "cyrillic",
+   "normalize": "n",
+   "to_cyrillic": "н",
+   "to_latin_1995": "n",
+   "to_latin_2026": "n"
+  },
+  "c0058": {
+   "detect_script": "cyrillic",
+   "normalize": "n",
+   "to_cyrillic": "Н",
+   "to_latin_1995": "N",
+   "to_latin_2026": "N"
+  },
+  "c0059": {
+   "detect_script": "cyrillic",
+   "normalize": "dunyo",
+   "to_cyrillic": "дунё",
+   "to_latin_1995": "dunyo",
+   "to_latin_2026": "dunyo"
+  },
+  "c0060": {
+   "detect_script": "cyrillic",
+   "normalize": "dunyo",
+   "to_cyrillic": "ДУНЁ",
+   "to_latin_1995": "DUNYO",
+   "to_latin_2026": "DUNYO"
+  },
+  "c0061": {
+   "detect_script": "cyrillic",
+   "normalize": "o",
+   "to_cyrillic": "о",
+   "to_latin_1995": "o",
+   "to_latin_2026": "o"
+  },
+  "c0062": {
+   "detect_script": "cyrillic",
+   "normalize": "o",
+   "to_cyrillic": "О",
+   "to_latin_1995": "O",
+   "to_latin_2026": "O"
+  },
+  "c0063": {
+   "detect_script": "cyrillic",
+   "normalize": "bola",
+   "to_cyrillic": "бола",
+   "to_latin_1995": "bola",
+   "to_latin_2026": "bola"
+  },
+  "c0064": {
+   "detect_script": "cyrillic",
+   "normalize": "bola",
+   "to_cyrillic": "БОЛА",
+   "to_latin_1995": "BOLA",
+   "to_latin_2026": "BOLA"
+  },
+  "c0065": {
+   "detect_script": "cyrillic",
+   "normalize": "p",
+   "to_cyrillic": "п",
+   "to_latin_1995": "p",
+   "to_latin_2026": "p"
+  },
+  "c0066": {
+   "detect_script": "cyrillic",
+   "normalize": "p",
+   "to_cyrillic": "П",
+   "to_latin_1995": "P",
+   "to_latin_2026": "P"
+  },
+  "c0067": {
+   "detect_script": "cyrillic",
+   "normalize": "kapalak",
+   "to_cyrillic": "капалак",
+   "to_latin_1995": "kapalak",
+   "to_latin_2026": "kapalak"
+  },
+  "c0068": {
+   "detect_script": "cyrillic",
+   "normalize": "kapalak",
+   "to_cyrillic": "КАПАЛАК",
+   "to_latin_1995": "KAPALAK",
+   "to_latin_2026": "KAPALAK"
+  },
+  "c0069": {
+   "detect_script": "cyrillic",
+   "normalize": "r",
+   "to_cyrillic": "р",
+   "to_latin_1995": "r",
+   "to_latin_2026": "r"
+  },
+  "c0070": {
+   "detect_script": "cyrillic",
+   "normalize": "r",
+   "to_cyrillic": "Р",
+   "to_latin_1995": "R",
+   "to_latin_2026": "R"
+  },
+  "c0071": {
+   "detect_script": "cyrillic",
+   "normalize": "ariq",
+   "to_cyrillic": "ариқ",
+   "to_latin_1995": "ariq",
+   "to_latin_2026": "ariq"
+  },
+  "c0072": {
+   "detect_script": "cyrillic",
+   "normalize": "ariq",
+   "to_cyrillic": "АРИҚ",
+   "to_latin_1995": "ARIQ",
+   "to_latin_2026": "ARIQ"
+  },
+  "c0073": {
+   "detect_script": "cyrillic",
+   "normalize": "s",
+   "to_cyrillic": "с",
+   "to_latin_1995": "s",
+   "to_latin_2026": "s"
+  },
+  "c0074": {
+   "detect_script": "cyrillic",
+   "normalize": "s",
+   "to_cyrillic": "С",
+   "to_latin_1995": "S",
+   "to_latin_2026": "S"
+  },
+  "c0075": {
+   "detect_script": "cyrillic",
+   "normalize": "asal",
+   "to_cyrillic": "асал",
+   "to_latin_1995": "asal",
+   "to_latin_2026": "asal"
+  },
+  "c0076": {
+   "detect_script": "cyrillic",
+   "normalize": "asal",
+   "to_cyrillic": "АСАЛ",
+   "to_latin_1995": "ASAL",
+   "to_latin_2026": "ASAL"
+  },
+  "c0077": {
+   "detect_script": "cyrillic",
+   "normalize": "t",
+   "to_cyrillic": "т",
+   "to_latin_1995": "t",
+   "to_latin_2026": "t"
+  },
+  "c0078": {
+   "detect_script": "cyrillic",
+   "normalize": "t",
+   "to_cyrillic": "Т",
+   "to_latin_1995": "T",
+   "to_latin_2026": "T"
+  },
+  "c0079": {
+   "detect_script": "cyrillic",
+   "normalize": "ota",
+   "to_cyrillic": "ота",
+   "to_latin_1995": "ota",
+   "to_latin_2026": "ota"
+  },
+  "c0080": {
+   "detect_script": "cyrillic",
+   "normalize": "ota",
+   "to_cyrillic": "ОТА",
+   "to_latin_1995": "OTA",
+   "to_latin_2026": "OTA"
+  },
+  "c0081": {
+   "detect_script": "cyrillic",
+   "normalize": "u",
+   "to_cyrillic": "у",
+   "to_latin_1995": "u",
+   "to_latin_2026": "u"
+  },
+  "c0082": {
+   "detect_script": "cyrillic",
+   "normalize": "u",
+   "to_cyrillic": "У",
+   "to_latin_1995": "U",
+   "to_latin_2026": "U"
+  },
+  "c0083": {
+   "detect_script": "cyrillic",
+   "normalize": "bulut",
+   "to_cyrillic": "булут",
+   "to_latin_1995": "bulut",
+   "to_latin_2026": "bulut"
+  },
+  "c0084": {
+   "detect_script": "cyrillic",
+   "normalize": "bulut",
+   "to_cyrillic": "БУЛУТ",
+   "to_latin_1995": "BULUT",
+   "to_latin_2026": "BULUT"
+  },
+  "c0085": {
+   "detect_script": "cyrillic",
+   "normalize": "f",
+   "to_cyrillic": "ф",
+   "to_latin_1995": "f",
+   "to_latin_2026": "f"
+  },
+  "c0086": {
+   "detect_script": "cyrillic",
+   "normalize": "f",
+   "to_cyrillic": "Ф",
+   "to_latin_1995": "F",
+   "to_latin_2026": "F"
+  },
+  "c0087": {
+   "detect_script": "cyrillic",
+   "normalize": "safar",
+   "to_cyrillic": "сафар",
+   "to_latin_1995": "safar",
+   "to_latin_2026": "safar"
+  },
+  "c0088": {
+   "detect_script": "cyrillic",
+   "normalize": "safar",
+   "to_cyrillic": "САФАР",
+   "to_latin_1995": "SAFAR",
+   "to_latin_2026": "SAFAR"
+  },
+  "c0089": {
+   "detect_script": "cyrillic",
+   "normalize": "x",
+   "to_cyrillic": "х",
+   "to_latin_1995": "x",
+   "to_latin_2026": "x"
+  },
+  "c0090": {
+   "detect_script": "cyrillic",
+   "normalize": "x",
+   "to_cyrillic": "Х",
+   "to_latin_1995": "X",
+   "to_latin_2026": "X"
+  },
+  "c0091": {
+   "detect_script": "cyrillic",
+   "normalize": "axloq",
+   "to_cyrillic": "ахлоқ",
+   "to_latin_1995": "axloq",
+   "to_latin_2026": "axloq"
+  },
+  "c0092": {
+   "detect_script": "cyrillic",
+   "normalize": "axloq",
+   "to_cyrillic": "АХЛОҚ",
+   "to_latin_1995": "AXLOQ",
+   "to_latin_2026": "AXLOQ"
+  },
+  "c0093": {
+   "detect_script": "cyrillic",
+   "normalize": "s",
+   "to_cyrillic": "ц",
+   "to_latin_1995": "s",
+   "to_latin_2026": "s"
+  },
+  "c0094": {
+   "detect_script": "cyrillic",
+   "normalize": "s",
+   "to_cyrillic": "Ц",
+   "to_latin_1995": "S",
+   "to_latin_2026": "S"
+  },
+  "c0095": {
+   "detect_script": "cyrillic",
+   "normalize": "militsiya",
+   "to_cyrillic": "милиция",
+   "to_latin_1995": "militsiya",
+   "to_latin_2026": "militsiya"
+  },
+  "c0096": {
+   "detect_script": "cyrillic",
+   "normalize": "militsiya",
+   "to_cyrillic": "МИЛИЦИЯ",
+   "to_latin_1995": "MILITSIYA",
+   "to_latin_2026": "MILITSIYA"
+  },
+  "c0097": {
+   "detect_script": "cyrillic",
+   "normalize": "ch",
+   "to_cyrillic": "ч",
+   "to_latin_1995": "ch",
+   "to_latin_2026": "ç"
+  },
+  "c0098": {
+   "detect_script": "cyrillic",
+   "normalize": "ch",
+   "to_cyrillic": "Ч",
+   "to_latin_1995": "Ch",
+   "to_latin_2026": "Ç"
+  },
+  "c0099": {
+   "detect_script": "cyrillic",
+   "normalize": "ochiq",
+   "to_cyrillic": "очиқ",
+   "to_latin_1995": "ochiq",
+   "to_latin_2026": "oçiq"
+  },
+  "c0100": {
+   "detect_script": "cyrillic",
+   "normalize": "ochiq",
+   "to_cyrillic": "ОЧИҚ",
+   "to_latin_1995": "OCHIQ",
+   "to_latin_2026": "OÇIQ"
+  },
+  "c0101": {
+   "detect_script": "cyrillic",
+   "normalize": "sh",
+   "to_cyrillic": "ш",
+   "to_latin_1995": "sh",
+   "to_latin_2026": "ş"
+  },
+  "c0102": {
+   "detect_script": "cyrillic",
+   "normalize": "sh",
+   "to_cyrillic": "Ш",
+   "to_latin_1995": "Sh",
+   "to_latin_2026": "Ş"
+  },
+  "c0103": {
+   "detect_script": "cyrillic",
+   "normalize": "boshqa",
+   "to_cyrillic": "бошқа",
+   "to_latin_1995": "boshqa",
+   "to_latin_2026": "boşqa"
+  },
+  "c0104": {
+   "detect_script": "cyrillic",
+   "normalize": "boshqa",
+   "to_cyrillic": "БОШҚА",
+   "to_latin_1995": "BOSHQA",
+   "to_latin_2026": "BOŞQA"
+  },
+  "c0105": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "ъ",
+   "to_latin_1995": "ʼ",
+   "to_latin_2026": "ʼ"
+  },
+  "c0106": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "Ъ",
+   "to_latin_1995": "ʼ",
+   "to_latin_2026": "ʼ"
+  },
+  "c0107": {
+   "detect_script": "cyrillic",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0108": {
+   "detect_script": "cyrillic",
+   "normalize": "mano",
+   "to_cyrillic": "МАЪНО",
+   "to_latin_1995": "MAʼNO",
+   "to_latin_2026": "MAʼNO"
+  },
+  "c0109": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "ь",
+   "to_latin_1995": "",
+   "to_latin_2026": ""
+  },
+  "c0110": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "Ь",
+   "to_latin_1995": "",
+   "to_latin_2026": ""
+  },
+  "c0111": {
+   "detect_script": "cyrillic",
+   "normalize": "albom",
+   "to_cyrillic": "альбом",
+   "to_latin_1995": "albom",
+   "to_latin_2026": "albom"
+  },
+  "c0112": {
+   "detect_script": "cyrillic",
+   "normalize": "albom",
+   "to_cyrillic": "АЛЬБОМ",
+   "to_latin_1995": "ALBOM",
+   "to_latin_2026": "ALBOM"
+  },
+  "c0113": {
+   "detect_script": "cyrillic",
+   "normalize": "e",
+   "to_cyrillic": "э",
+   "to_latin_1995": "e",
+   "to_latin_2026": "e"
+  },
+  "c0114": {
+   "detect_script": "cyrillic",
+   "normalize": "e",
+   "to_cyrillic": "Э",
+   "to_latin_1995": "E",
+   "to_latin_2026": "E"
+  },
+  "c0115": {
+   "detect_script": "cyrillic",
+   "normalize": "poema",
+   "to_cyrillic": "поэма",
+   "to_latin_1995": "poema",
+   "to_latin_2026": "poema"
+  },
+  "c0116": {
+   "detect_script": "cyrillic",
+   "normalize": "poema",
+   "to_cyrillic": "ПОЭМА",
+   "to_latin_1995": "POEMA",
+   "to_latin_2026": "POEMA"
+  },
+  "c0117": {
+   "detect_script": "cyrillic",
+   "normalize": "yu",
+   "to_cyrillic": "ю",
+   "to_latin_1995": "yu",
+   "to_latin_2026": "yu"
+  },
+  "c0118": {
+   "detect_script": "cyrillic",
+   "normalize": "yu",
+   "to_cyrillic": "Ю",
+   "to_latin_1995": "Yu",
+   "to_latin_2026": "Yu"
+  },
+  "c0119": {
+   "detect_script": "cyrillic",
+   "normalize": "syujet",
+   "to_cyrillic": "сюжет",
+   "to_latin_1995": "syujet",
+   "to_latin_2026": "syujet"
+  },
+  "c0120": {
+   "detect_script": "cyrillic",
+   "normalize": "syujet",
+   "to_cyrillic": "СЮЖЕТ",
+   "to_latin_1995": "SYUJET",
+   "to_latin_2026": "SYUJET"
+  },
+  "c0121": {
+   "detect_script": "cyrillic",
+   "normalize": "ya",
+   "to_cyrillic": "я",
+   "to_latin_1995": "ya",
+   "to_latin_2026": "ya"
+  },
+  "c0122": {
+   "detect_script": "cyrillic",
+   "normalize": "ya",
+   "to_cyrillic": "Я",
+   "to_latin_1995": "Ya",
+   "to_latin_2026": "Ya"
+  },
+  "c0123": {
+   "detect_script": "cyrillic",
+   "normalize": "hayajon",
+   "to_cyrillic": "ҳаяжон",
+   "to_latin_1995": "hayajon",
+   "to_latin_2026": "hayajon"
+  },
+  "c0124": {
+   "detect_script": "cyrillic",
+   "normalize": "hayajon",
+   "to_cyrillic": "ҲАЯЖОН",
+   "to_latin_1995": "HAYAJON",
+   "to_latin_2026": "HAYAJON"
+  },
+  "c0125": {
+   "detect_script": "cyrillic",
+   "normalize": "o",
+   "to_cyrillic": "ў",
+   "to_latin_1995": "oʻ",
+   "to_latin_2026": "ö"
+  },
+  "c0126": {
+   "detect_script": "cyrillic",
+   "normalize": "o",
+   "to_cyrillic": "Ў",
+   "to_latin_1995": "Oʻ",
+   "to_latin_2026": "Ö"
+  },
+  "c0127": {
+   "detect_script": "cyrillic",
+   "normalize": "koz",
+   "to_cyrillic": "кўз",
+   "to_latin_1995": "koʻz",
+   "to_latin_2026": "köz"
+  },
+  "c0128": {
+   "detect_script": "cyrillic",
+   "normalize": "koz",
+   "to_cyrillic": "КЎЗ",
+   "to_latin_1995": "KOʻZ",
+   "to_latin_2026": "KÖZ"
+  },
+  "c0129": {
+   "detect_script": "cyrillic",
+   "normalize": "q",
+   "to_cyrillic": "қ",
+   "to_latin_1995": "q",
+   "to_latin_2026": "q"
+  },
+  "c0130": {
+   "detect_script": "cyrillic",
+   "normalize": "q",
+   "to_cyrillic": "Қ",
+   "to_latin_1995": "Q",
+   "to_latin_2026": "Q"
+  },
+  "c0131": {
+   "detect_script": "cyrillic",
+   "normalize": "aql",
+   "to_cyrillic": "ақл",
+   "to_latin_1995": "aql",
+   "to_latin_2026": "aql"
+  },
+  "c0132": {
+   "detect_script": "cyrillic",
+   "normalize": "aql",
+   "to_cyrillic": "АҚЛ",
+   "to_latin_1995": "AQL",
+   "to_latin_2026": "AQL"
+  },
+  "c0133": {
+   "detect_script": "cyrillic",
+   "normalize": "g",
+   "to_cyrillic": "ғ",
+   "to_latin_1995": "gʻ",
+   "to_latin_2026": "ğ"
+  },
+  "c0134": {
+   "detect_script": "cyrillic",
+   "normalize": "g",
+   "to_cyrillic": "Ғ",
+   "to_latin_1995": "Gʻ",
+   "to_latin_2026": "Ğ"
+  },
+  "c0135": {
+   "detect_script": "cyrillic",
+   "normalize": "bogbon",
+   "to_cyrillic": "боғбон",
+   "to_latin_1995": "bogʻbon",
+   "to_latin_2026": "boğbon"
+  },
+  "c0136": {
+   "detect_script": "cyrillic",
+   "normalize": "bogbon",
+   "to_cyrillic": "БОҒБОН",
+   "to_latin_1995": "BOGʻBON",
+   "to_latin_2026": "BOĞBON"
+  },
+  "c0137": {
+   "detect_script": "cyrillic",
+   "normalize": "h",
+   "to_cyrillic": "ҳ",
+   "to_latin_1995": "h",
+   "to_latin_2026": "h"
+  },
+  "c0138": {
+   "detect_script": "cyrillic",
+   "normalize": "h",
+   "to_cyrillic": "Ҳ",
+   "to_latin_1995": "H",
+   "to_latin_2026": "H"
+  },
+  "c0139": {
+   "detect_script": "cyrillic",
+   "normalize": "shahar",
+   "to_cyrillic": "шаҳар",
+   "to_latin_1995": "shahar",
+   "to_latin_2026": "şahar"
+  },
+  "c0140": {
+   "detect_script": "cyrillic",
+   "normalize": "shahar",
+   "to_cyrillic": "ШАҲАР",
+   "to_latin_1995": "SHAHAR",
+   "to_latin_2026": "ŞAHAR"
+  },
+  "c0141": {
+   "detect_script": "latin_1995",
+   "normalize": "a",
+   "to_cyrillic": "а",
+   "to_latin_1995": "a",
+   "to_latin_2026": "a"
+  },
+  "c0142": {
+   "detect_script": "latin_1995",
+   "normalize": "a",
+   "to_cyrillic": "А",
+   "to_latin_1995": "A",
+   "to_latin_2026": "A"
+  },
+  "c0143": {
+   "detect_script": "latin_1995",
+   "normalize": "baxt",
+   "to_cyrillic": "бахт",
+   "to_latin_1995": "baxt",
+   "to_latin_2026": "baxt"
+  },
+  "c0144": {
+   "detect_script": "latin_1995",
+   "normalize": "baxt",
+   "to_cyrillic": "БАХТ",
+   "to_latin_1995": "BAXT",
+   "to_latin_2026": "BAXT"
+  },
+  "c0145": {
+   "detect_script": "latin_1995",
+   "normalize": "b",
+   "to_cyrillic": "б",
+   "to_latin_1995": "b",
+   "to_latin_2026": "b"
+  },
+  "c0146": {
+   "detect_script": "latin_1995",
+   "normalize": "b",
+   "to_cyrillic": "Б",
+   "to_latin_1995": "B",
+   "to_latin_2026": "B"
+  },
+  "c0147": {
+   "detect_script": "latin_1995",
+   "normalize": "tabiat",
+   "to_cyrillic": "табиат",
+   "to_latin_1995": "tabiat",
+   "to_latin_2026": "tabiat"
+  },
+  "c0148": {
+   "detect_script": "latin_1995",
+   "normalize": "tabiat",
+   "to_cyrillic": "ТАБИАТ",
+   "to_latin_1995": "TABIAT",
+   "to_latin_2026": "TABIAT"
+  },
+  "c0149": {
+   "detect_script": "latin_1995",
+   "normalize": "d",
+   "to_cyrillic": "д",
+   "to_latin_1995": "d",
+   "to_latin_2026": "d"
+  },
+  "c0150": {
+   "detect_script": "latin_1995",
+   "normalize": "d",
+   "to_cyrillic": "Д",
+   "to_latin_1995": "D",
+   "to_latin_2026": "D"
+  },
+  "c0151": {
+   "detect_script": "latin_1995",
+   "normalize": "odam",
+   "to_cyrillic": "одам",
+   "to_latin_1995": "odam",
+   "to_latin_2026": "odam"
+  },
+  "c0152": {
+   "detect_script": "latin_1995",
+   "normalize": "odam",
+   "to_cyrillic": "ОДАМ",
+   "to_latin_1995": "ODAM",
+   "to_latin_2026": "ODAM"
+  },
+  "c0153": {
+   "detect_script": "latin_1995",
+   "normalize": "e",
+   "to_cyrillic": "э",
+   "to_latin_1995": "e",
+   "to_latin_2026": "e"
+  },
+  "c0154": {
+   "detect_script": "latin_1995",
+   "normalize": "e",
+   "to_cyrillic": "Э",
+   "to_latin_1995": "E",
+   "to_latin_2026": "E"
+  },
+  "c0155": {
+   "detect_script": "latin_1995",
+   "normalize": "kecha",
+   "to_cyrillic": "кеча",
+   "to_latin_1995": "kecha",
+   "to_latin_2026": "keça"
+  },
+  "c0156": {
+   "detect_script": "latin_1995",
+   "normalize": "kecha",
+   "to_cyrillic": "КЕЧА",
+   "to_latin_1995": "KECHA",
+   "to_latin_2026": "KEÇA"
+  },
+  "c0157": {
+   "detect_script": "latin_1995",
+   "normalize": "f",
+   "to_cyrillic": "ф",
+   "to_latin_1995": "f",
+   "to_latin_2026": "f"
+  },
+  "c0158": {
+   "detect_script": "latin_1995",
+   "normalize": "f",
+   "to_cyrillic": "Ф",
+   "to_latin_1995": "F",
+   "to_latin_2026": "F"
+  },
+  "c0159": {
+   "detect_script": "latin_1995",
+   "normalize": "safar",
+   "to_cyrillic": "сафар",
+   "to_latin_1995": "safar",
+   "to_latin_2026": "safar"
+  },
+  "c0160": {
+   "detect_script": "latin_1995",
+   "normalize": "safar",
+   "to_cyrillic": "САФАР",
+   "to_latin_1995": "SAFAR",
+   "to_latin_2026": "SAFAR"
+  },
+  "c0161": {
+   "detect_script": "latin_1995",
+   "normalize": "g",
+   "to_cyrillic": "г",
+   "to_latin_1995": "g",
+   "to_latin_2026": "g"
+  },
+  "c0162": {
+   "detect_script": "latin_1995",
+   "normalize": "g",
+   "to_cyrillic": "Г",
+   "to_latin_1995": "G",
+   "to_latin_2026": "G"
+  },
+  "c0163": {
+   "detect_script": "latin_1995",
+   "normalize": "bugun",
+   "to_cyrillic": "бугун",
+   "to_latin_1995": "bugun",
+   "to_latin_2026": "bugun"
+  },
+  "c0164": {
+   "detect_script": "latin_1995",
+   "normalize": "bugun",
+   "to_cyrillic": "БУГУН",
+   "to_latin_1995": "BUGUN",
+   "to_latin_2026": "BUGUN"
+  },
+  "c0165": {
+   "detect_script": "latin_1995",
+   "normalize": "h",
+   "to_cyrillic": "ҳ",
+   "to_latin_1995": "h",
+   "to_latin_2026": "h"
+  },
+  "c0166": {
+   "detect_script": "latin_1995",
+   "normalize": "h",
+   "to_cyrillic": "Ҳ",
+   "to_latin_1995": "H",
+   "to_latin_2026": "H"
+  },
+  "c0167": {
+   "detect_script": "latin_1995",
+   "normalize": "bahor",
+   "to_cyrillic": "баҳор",
+   "to_latin_1995": "bahor",
+   "to_latin_2026": "bahor"
+  },
+  "c0168": {
+   "detect_script": "latin_1995",
+   "normalize": "bahor",
+   "to_cyrillic": "БАҲОР",
+   "to_latin_1995": "BAHOR",
+   "to_latin_2026": "BAHOR"
+  },
+  "c0169": {
+   "detect_script": "latin_1995",
+   "normalize": "i",
+   "to_cyrillic": "и",
+   "to_latin_1995": "i",
+   "to_latin_2026": "i"
+  },
+  "c0170": {
+   "detect_script": "latin_1995",
+   "normalize": "i",
+   "to_cyrillic": "И",
+   "to_latin_1995": "I",
+   "to_latin_2026": "I"
+  },
+  "c0171": {
+   "detect_script": "latin_1995",
+   "normalize": "kitob",
+   "to_cyrillic": "китоб",
+   "to_latin_1995": "kitob",
+   "to_latin_2026": "kitob"
+  },
+  "c0172": {
+   "detect_script": "latin_1995",
+   "normalize": "kitob",
+   "to_cyrillic": "КИТОБ",
+   "to_latin_1995": "KITOB",
+   "to_latin_2026": "KITOB"
+  },
+  "c0173": {
+   "detect_script": "latin_1995",
+   "normalize": "j",
+   "to_cyrillic": "ж",
+   "to_latin_1995": "j",
+   "to_latin_2026": "j"
+  },
+  "c0174": {
+   "detect_script": "latin_1995",
+   "normalize": "j",
+   "to_cyrillic": "Ж",
+   "to_latin_1995": "J",
+   "to_latin_2026": "J"
+  },
+  "c0175": {
+   "detect_script": "latin_1995",
+   "normalize": "ajoyib",
+   "to_cyrillic": "ажойиб",
+   "to_latin_1995": "ajoyib",
+   "to_latin_2026": "ajoyib"
+  },
+  "c0176": {
+   "detect_script": "latin_1995",
+   "normalize": "ajoyib",
+   "to_cyrillic": "АЖОЙИБ",
+   "to_latin_1995": "AJOYIB",
+   "to_latin_2026": "AJOYIB"
+  },
+  "c0177": {
+   "detect_script": "latin_1995",
+   "normalize": "k",
+   "to_cyrillic": "к",
+   "to_latin_1995": "k",
+   "to_latin_2026": "k"
+  },
+  "c0178": {
+   "detect_script": "latin_1995",
+   "normalize": "k",
+   "to_cyrillic": "К",
+   "to_latin_1995": "K",
+   "to_latin_2026": "K"
+  },
+  "c0179": {
+   "detect_script": "latin_1995",
+   "normalize": "bekat",
+   "to_cyrillic": "бекат",
+   "to_latin_1995": "bekat",
+   "to_latin_2026": "bekat"
+  },
+  "c0180": {
+   "detect_script": "latin_1995",
+   "normalize": "bekat",
+   "to_cyrillic": "БЕКАТ",
+   "to_latin_1995": "BEKAT",
+   "to_latin_2026": "BEKAT"
+  },
+  "c0181": {
+   "detect_script": "latin_1995",
+   "normalize": "l",
+   "to_cyrillic": "л",
+   "to_latin_1995": "l",
+   "to_latin_2026": "l"
+  },
+  "c0182": {
+   "detect_script": "latin_1995",
+   "normalize": "l",
+   "to_cyrillic": "Л",
+   "to_latin_1995": "L",
+   "to_latin_2026": "L"
+  },
+  "c0183": {
+   "detect_script": "latin_1995",
+   "normalize": "olma",
+   "to_cyrillic": "олма",
+   "to_latin_1995": "olma",
+   "to_latin_2026": "olma"
+  },
+  "c0184": {
+   "detect_script": "latin_1995",
+   "normalize": "olma",
+   "to_cyrillic": "ОЛМА",
+   "to_latin_1995": "OLMA",
+   "to_latin_2026": "OLMA"
+  },
+  "c0185": {
+   "detect_script": "latin_1995",
+   "normalize": "m",
+   "to_cyrillic": "м",
+   "to_latin_1995": "m",
+   "to_latin_2026": "m"
+  },
+  "c0186": {
+   "detect_script": "latin_1995",
+   "normalize": "m",
+   "to_cyrillic": "М",
+   "to_latin_1995": "M",
+   "to_latin_2026": "M"
+  },
+  "c0187": {
+   "detect_script": "latin_1995",
+   "normalize": "omad",
+   "to_cyrillic": "омад",
+   "to_latin_1995": "omad",
+   "to_latin_2026": "omad"
+  },
+  "c0188": {
+   "detect_script": "latin_1995",
+   "normalize": "omad",
+   "to_cyrillic": "ОМАД",
+   "to_latin_1995": "OMAD",
+   "to_latin_2026": "OMAD"
+  },
+  "c0189": {
+   "detect_script": "latin_1995",
+   "normalize": "n",
+   "to_cyrillic": "н",
+   "to_latin_1995": "n",
+   "to_latin_2026": "n"
+  },
+  "c0190": {
+   "detect_script": "latin_1995",
+   "normalize": "n",
+   "to_cyrillic": "Н",
+   "to_latin_1995": "N",
+   "to_latin_2026": "N"
+  },
+  "c0191": {
+   "detect_script": "latin_1995",
+   "normalize": "dunyo",
+   "to_cyrillic": "дунё",
+   "to_latin_1995": "dunyo",
+   "to_latin_2026": "dunyo"
+  },
+  "c0192": {
+   "detect_script": "latin_1995",
+   "normalize": "dunyo",
+   "to_cyrillic": "ДУНЁ",
+   "to_latin_1995": "DUNYO",
+   "to_latin_2026": "DUNYO"
+  },
+  "c0193": {
+   "detect_script": "latin_1995",
+   "normalize": "o",
+   "to_cyrillic": "о",
+   "to_latin_1995": "o",
+   "to_latin_2026": "o"
+  },
+  "c0194": {
+   "detect_script": "latin_1995",
+   "normalize": "o",
+   "to_cyrillic": "О",
+   "to_latin_1995": "O",
+   "to_latin_2026": "O"
+  },
+  "c0195": {
+   "detect_script": "latin_1995",
+   "normalize": "bola",
+   "to_cyrillic": "бола",
+   "to_latin_1995": "bola",
+   "to_latin_2026": "bola"
+  },
+  "c0196": {
+   "detect_script": "latin_1995",
+   "normalize": "bola",
+   "to_cyrillic": "БОЛА",
+   "to_latin_1995": "BOLA",
+   "to_latin_2026": "BOLA"
+  },
+  "c0197": {
+   "detect_script": "latin_1995",
+   "normalize": "p",
+   "to_cyrillic": "п",
+   "to_latin_1995": "p",
+   "to_latin_2026": "p"
+  },
+  "c0198": {
+   "detect_script": "latin_1995",
+   "normalize": "p",
+   "to_cyrillic": "П",
+   "to_latin_1995": "P",
+   "to_latin_2026": "P"
+  },
+  "c0199": {
+   "detect_script": "latin_1995",
+   "normalize": "kapalak",
+   "to_cyrillic": "капалак",
+   "to_latin_1995": "kapalak",
+   "to_latin_2026": "kapalak"
+  },
+  "c0200": {
+   "detect_script": "latin_1995",
+   "normalize": "kapalak",
+   "to_cyrillic": "КАПАЛАК",
+   "to_latin_1995": "KAPALAK",
+   "to_latin_2026": "KAPALAK"
+  },
+  "c0201": {
+   "detect_script": "latin_1995",
+   "normalize": "q",
+   "to_cyrillic": "қ",
+   "to_latin_1995": "q",
+   "to_latin_2026": "q"
+  },
+  "c0202": {
+   "detect_script": "latin_1995",
+   "normalize": "q",
+   "to_cyrillic": "Қ",
+   "to_latin_1995": "Q",
+   "to_latin_2026": "Q"
+  },
+  "c0203": {
+   "detect_script": "latin_1995",
+   "normalize": "aql",
+   "to_cyrillic": "ақл",
+   "to_latin_1995": "aql",
+   "to_latin_2026": "aql"
+  },
+  "c0204": {
+   "detect_script": "latin_1995",
+   "normalize": "aql",
+   "to_cyrillic": "АҚЛ",
+   "to_latin_1995": "AQL",
+   "to_latin_2026": "AQL"
+  },
+  "c0205": {
+   "detect_script": "latin_1995",
+   "normalize": "r",
+   "to_cyrillic": "р",
+   "to_latin_1995": "r",
+   "to_latin_2026": "r"
+  },
+  "c0206": {
+   "detect_script": "latin_1995",
+   "normalize": "r",
+   "to_cyrillic": "Р",
+   "to_latin_1995": "R",
+   "to_latin_2026": "R"
+  },
+  "c0207": {
+   "detect_script": "latin_1995",
+   "normalize": "ariq",
+   "to_cyrillic": "ариқ",
+   "to_latin_1995": "ariq",
+   "to_latin_2026": "ariq"
+  },
+  "c0208": {
+   "detect_script": "latin_1995",
+   "normalize": "ariq",
+   "to_cyrillic": "АРИҚ",
+   "to_latin_1995": "ARIQ",
+   "to_latin_2026": "ARIQ"
+  },
+  "c0209": {
+   "detect_script": "latin_1995",
+   "normalize": "s",
+   "to_cyrillic": "с",
+   "to_latin_1995": "s",
+   "to_latin_2026": "s"
+  },
+  "c0210": {
+   "detect_script": "latin_1995",
+   "normalize": "s",
+   "to_cyrillic": "С",
+   "to_latin_1995": "S",
+   "to_latin_2026": "S"
+  },
+  "c0211": {
+   "detect_script": "latin_1995",
+   "normalize": "asal",
+   "to_cyrillic": "асал",
+   "to_latin_1995": "asal",
+   "to_latin_2026": "asal"
+  },
+  "c0212": {
+   "detect_script": "latin_1995",
+   "normalize": "asal",
+   "to_cyrillic": "АСАЛ",
+   "to_latin_1995": "ASAL",
+   "to_latin_2026": "ASAL"
+  },
+  "c0213": {
+   "detect_script": "latin_1995",
+   "normalize": "t",
+   "to_cyrillic": "т",
+   "to_latin_1995": "t",
+   "to_latin_2026": "t"
+  },
+  "c0214": {
+   "detect_script": "latin_1995",
+   "normalize": "t",
+   "to_cyrillic": "Т",
+   "to_latin_1995": "T",
+   "to_latin_2026": "T"
+  },
+  "c0215": {
+   "detect_script": "latin_1995",
+   "normalize": "ota",
+   "to_cyrillic": "ота",
+   "to_latin_1995": "ota",
+   "to_latin_2026": "ota"
+  },
+  "c0216": {
+   "detect_script": "latin_1995",
+   "normalize": "ota",
+   "to_cyrillic": "ОТА",
+   "to_latin_1995": "OTA",
+   "to_latin_2026": "OTA"
+  },
+  "c0217": {
+   "detect_script": "latin_1995",
+   "normalize": "u",
+   "to_cyrillic": "у",
+   "to_latin_1995": "u",
+   "to_latin_2026": "u"
+  },
+  "c0218": {
+   "detect_script": "latin_1995",
+   "normalize": "u",
+   "to_cyrillic": "У",
+   "to_latin_1995": "U",
+   "to_latin_2026": "U"
+  },
+  "c0219": {
+   "detect_script": "latin_1995",
+   "normalize": "bulut",
+   "to_cyrillic": "булут",
+   "to_latin_1995": "bulut",
+   "to_latin_2026": "bulut"
+  },
+  "c0220": {
+   "detect_script": "latin_1995",
+   "normalize": "bulut",
+   "to_cyrillic": "БУЛУТ",
+   "to_latin_1995": "BULUT",
+   "to_latin_2026": "BULUT"
+  },
+  "c0221": {
+   "detect_script": "latin_1995",
+   "normalize": "v",
+   "to_cyrillic": "в",
+   "to_latin_1995": "v",
+   "to_latin_2026": "v"
+  },
+  "c0222": {
+   "detect_script": "latin_1995",
+   "normalize": "v",
+   "to_cyrillic": "В",
+   "to_latin_1995": "V",
+   "to_latin_2026": "V"
+  },
+  "c0223": {
+   "detect_script": "latin_1995",
+   "normalize": "darvoza",
+   "to_cyrillic": "дарвоза",
+   "to_latin_1995": "darvoza",
+   "to_latin_2026": "darvoza"
+  },
+  "c0224": {
+   "detect_script": "latin_1995",
+   "normalize": "darvoza",
+   "to_cyrillic": "ДАРВОЗА",
+   "to_latin_1995": "DARVOZA",
+   "to_latin_2026": "DARVOZA"
+  },
+  "c0225": {
+   "detect_script": "latin_1995",
+   "normalize": "x",
+   "to_cyrillic": "х",
+   "to_latin_1995": "x",
+   "to_latin_2026": "x"
+  },
+  "c0226": {
+   "detect_script": "latin_1995",
+   "normalize": "x",
+   "to_cyrillic": "Х",
+   "to_latin_1995": "X",
+   "to_latin_2026": "X"
+  },
+  "c0227": {
+   "detect_script": "latin_1995",
+   "normalize": "axloq",
+   "to_cyrillic": "ахлоқ",
+   "to_latin_1995": "axloq",
+   "to_latin_2026": "axloq"
+  },
+  "c0228": {
+   "detect_script": "latin_1995",
+   "normalize": "axloq",
+   "to_cyrillic": "АХЛОҚ",
+   "to_latin_1995": "AXLOQ",
+   "to_latin_2026": "AXLOQ"
+  },
+  "c0229": {
+   "detect_script": "latin_1995",
+   "normalize": "y",
+   "to_cyrillic": "й",
+   "to_latin_1995": "y",
+   "to_latin_2026": "y"
+  },
+  "c0230": {
+   "detect_script": "latin_1995",
+   "normalize": "y",
+   "to_cyrillic": "Й",
+   "to_latin_1995": "Y",
+   "to_latin_2026": "Y"
+  },
+  "c0231": {
+   "detect_script": "latin_1995",
+   "normalize": "maydon",
+   "to_cyrillic": "майдон",
+   "to_latin_1995": "maydon",
+   "to_latin_2026": "maydon"
+  },
+  "c0232": {
+   "detect_script": "latin_1995",
+   "normalize": "maydon",
+   "to_cyrillic": "МАЙДОН",
+   "to_latin_1995": "MAYDON",
+   "to_latin_2026": "MAYDON"
+  },
+  "c0233": {
+   "detect_script": "latin_1995",
+   "normalize": "z",
+   "to_cyrillic": "з",
+   "to_latin_1995": "z",
+   "to_latin_2026": "z"
+  },
+  "c0234": {
+   "detect_script": "latin_1995",
+   "normalize": "z",
+   "to_cyrillic": "З",
+   "to_latin_1995": "Z",
+   "to_latin_2026": "Z"
+  },
+  "c0235": {
+   "detect_script": "latin_1995",
+   "normalize": "ozod",
+   "to_cyrillic": "озод",
+   "to_latin_1995": "ozod",
+   "to_latin_2026": "ozod"
+  },
+  "c0236": {
+   "detect_script": "latin_1995",
+   "normalize": "ozod",
+   "to_cyrillic": "ОЗОД",
+   "to_latin_1995": "OZOD",
+   "to_latin_2026": "OZOD"
+  },
+  "c0237": {
+   "detect_script": "latin_1995",
+   "normalize": "o",
+   "to_cyrillic": "ў",
+   "to_latin_1995": "oʻ",
+   "to_latin_2026": "ö"
+  },
+  "c0238": {
+   "detect_script": "latin_1995",
+   "normalize": "o",
+   "to_cyrillic": "Ў",
+   "to_latin_1995": "Oʻ",
+   "to_latin_2026": "Ö"
+  },
+  "c0239": {
+   "detect_script": "latin_1995",
+   "normalize": "koz",
+   "to_cyrillic": "кўз",
+   "to_latin_1995": "koʻz",
+   "to_latin_2026": "köz"
+  },
+  "c0240": {
+   "detect_script": "latin_1995",
+   "normalize": "koz",
+   "to_cyrillic": "КЎЗ",
+   "to_latin_1995": "KOʻZ",
+   "to_latin_2026": "KÖZ"
+  },
+  "c0241": {
+   "detect_script": "latin_1995",
+   "normalize": "g",
+   "to_cyrillic": "ғ",
+   "to_latin_1995": "gʻ",
+   "to_latin_2026": "ğ"
+  },
+  "c0242": {
+   "detect_script": "latin_1995",
+   "normalize": "g",
+   "to_cyrillic": "Ғ",
+   "to_latin_1995": "Gʻ",
+   "to_latin_2026": "Ğ"
+  },
+  "c0243": {
+   "detect_script": "latin_1995",
+   "normalize": "bogbon",
+   "to_cyrillic": "боғбон",
+   "to_latin_1995": "bogʻbon",
+   "to_latin_2026": "boğbon"
+  },
+  "c0244": {
+   "detect_script": "latin_1995",
+   "normalize": "bogbon",
+   "to_cyrillic": "БОҒБОН",
+   "to_latin_1995": "BOGʻBON",
+   "to_latin_2026": "BOĞBON"
+  },
+  "c0245": {
+   "detect_script": "latin_1995",
+   "normalize": "sh",
+   "to_cyrillic": "ш",
+   "to_latin_1995": "sh",
+   "to_latin_2026": "ş"
+  },
+  "c0246": {
+   "detect_script": "latin_1995",
+   "normalize": "sh",
+   "to_cyrillic": "Ш",
+   "to_latin_1995": "Sh",
+   "to_latin_2026": "Ş"
+  },
+  "c0247": {
+   "detect_script": "latin_1995",
+   "normalize": "sh",
+   "to_cyrillic": "Ш",
+   "to_latin_1995": "SH",
+   "to_latin_2026": "Ş"
+  },
+  "c0248": {
+   "detect_script": "latin_1995",
+   "normalize": "boshqa",
+   "to_cyrillic": "бошқа",
+   "to_latin_1995": "boshqa",
+   "to_latin_2026": "boşqa"
+  },
+  "c0249": {
+   "detect_script": "latin_1995",
+   "normalize": "boshqa",
+   "to_cyrillic": "БОШҚА",
+   "to_latin_1995": "BOSHQA",
+   "to_latin_2026": "BOŞQA"
+  },
+  "c0250": {
+   "detect_script": "latin_1995",
+   "normalize": "ch",
+   "to_cyrillic": "ч",
+   "to_latin_1995": "ch",
+   "to_latin_2026": "ç"
+  },
+  "c0251": {
+   "detect_script": "latin_1995",
+   "normalize": "ch",
+   "to_cyrillic": "Ч",
+   "to_latin_1995": "Ch",
+   "to_latin_2026": "Ç"
+  },
+  "c0252": {
+   "detect_script": "latin_1995",
+   "normalize": "ch",
+   "to_cyrillic": "Ч",
+   "to_latin_1995": "CH",
+   "to_latin_2026": "Ç"
+  },
+  "c0253": {
+   "detect_script": "latin_1995",
+   "normalize": "ochiq",
+   "to_cyrillic": "очиқ",
+   "to_latin_1995": "ochiq",
+   "to_latin_2026": "oçiq"
+  },
+  "c0254": {
+   "detect_script": "latin_1995",
+   "normalize": "ochiq",
+   "to_cyrillic": "ОЧИҚ",
+   "to_latin_1995": "OCHIQ",
+   "to_latin_2026": "OÇIQ"
+  },
+  "c0255": {
+   "detect_script": "latin_2026",
+   "normalize": "g",
+   "to_cyrillic": "ғ",
+   "to_latin_1995": "gʻ",
+   "to_latin_2026": "ğ"
+  },
+  "c0256": {
+   "detect_script": "latin_2026",
+   "normalize": "g",
+   "to_cyrillic": "Ғ",
+   "to_latin_1995": "Gʻ",
+   "to_latin_2026": "Ğ"
+  },
+  "c0257": {
+   "detect_script": "latin_2026",
+   "normalize": "bogbon",
+   "to_cyrillic": "боғбон",
+   "to_latin_1995": "bogʻbon",
+   "to_latin_2026": "boğbon"
+  },
+  "c0258": {
+   "detect_script": "latin_2026",
+   "normalize": "bogbon",
+   "to_cyrillic": "БОҒБОН",
+   "to_latin_1995": "BOGʻBON",
+   "to_latin_2026": "BOĞBON"
+  },
+  "c0259": {
+   "detect_script": "latin_2026",
+   "normalize": "o",
+   "to_cyrillic": "ў",
+   "to_latin_1995": "oʻ",
+   "to_latin_2026": "ö"
+  },
+  "c0260": {
+   "detect_script": "latin_2026",
+   "normalize": "o",
+   "to_cyrillic": "Ў",
+   "to_latin_1995": "Oʻ",
+   "to_latin_2026": "Ö"
+  },
+  "c0261": {
+   "detect_script": "latin_2026",
+   "normalize": "koz",
+   "to_cyrillic": "кўз",
+   "to_latin_1995": "koʻz",
+   "to_latin_2026": "köz"
+  },
+  "c0262": {
+   "detect_script": "latin_2026",
+   "normalize": "koz",
+   "to_cyrillic": "КЎЗ",
+   "to_latin_1995": "KOʻZ",
+   "to_latin_2026": "KÖZ"
+  },
+  "c0263": {
+   "detect_script": "latin_2026",
+   "normalize": "sh",
+   "to_cyrillic": "ш",
+   "to_latin_1995": "sh",
+   "to_latin_2026": "ş"
+  },
+  "c0264": {
+   "detect_script": "latin_2026",
+   "normalize": "sh",
+   "to_cyrillic": "Ш",
+   "to_latin_1995": "Sh",
+   "to_latin_2026": "Ş"
+  },
+  "c0265": {
+   "detect_script": "latin_2026",
+   "normalize": "bashqa",
+   "to_cyrillic": "башқа",
+   "to_latin_1995": "bashqa",
+   "to_latin_2026": "başqa"
+  },
+  "c0266": {
+   "detect_script": "latin_2026",
+   "normalize": "bashqa",
+   "to_cyrillic": "БАШҚА",
+   "to_latin_1995": "BASHQA",
+   "to_latin_2026": "BAŞQA"
+  },
+  "c0267": {
+   "detect_script": "latin_2026",
+   "normalize": "ch",
+   "to_cyrillic": "ч",
+   "to_latin_1995": "ch",
+   "to_latin_2026": "ç"
+  },
+  "c0268": {
+   "detect_script": "latin_2026",
+   "normalize": "ch",
+   "to_cyrillic": "Ч",
+   "to_latin_1995": "Ch",
+   "to_latin_2026": "Ç"
+  },
+  "c0269": {
+   "detect_script": "latin_2026",
+   "normalize": "ochiq",
+   "to_cyrillic": "очиқ",
+   "to_latin_1995": "ochiq",
+   "to_latin_2026": "oçiq"
+  },
+  "c0270": {
+   "detect_script": "latin_2026",
+   "normalize": "ochiq",
+   "to_cyrillic": "ОЧИҚ",
+   "to_latin_1995": "OCHIQ",
+   "to_latin_2026": "OÇIQ"
+  },
+  "c0271": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "ъ",
+   "to_latin_1995": "ʼ",
+   "to_latin_2026": "ʼ"
+  },
+  "c0272": {
+   "detect_script": "cyrillic",
+   "normalize": "tashkent",
+   "to_cyrillic": "Tаshkent",
+   "to_latin_1995": "Tashkent",
+   "to_latin_2026": "Taşkent"
+  },
+  "c0273": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ӧзбекистон",
+   "to_latin_1995": "Özbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0274": {
+   "detect_script": "latin_2026",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0275": {
+   "detect_script": "latin_2026",
+   "normalize": "shoshimova",
+   "to_cyrillic": "Шошимова",
+   "to_latin_1995": "Shoshimova",
+   "to_latin_2026": "Şoşimova"
+  },
+  "c0276": {
+   "detect_script": "latin_1995",
+   "normalize": "shoshimova",
+   "to_cyrillic": "Шошимова",
+   "to_latin_1995": "Shoshimova",
+   "to_latin_2026": "Şoşimova"
+  },
+  "c0277": {
+   "detect_script": "cyrillic",
+   "normalize": "shoshimova",
+   "to_cyrillic": "Шошимова",
+   "to_latin_1995": "Shoshimova",
+   "to_latin_2026": "Şoşimova"
+  },
+  "c0278": {
+   "detect_script": "latin_1995",
+   "normalize": "shoshimova",
+   "to_cyrillic": "ШОШИМОВА",
+   "to_latin_1995": "SHOSHIMOVA",
+   "to_latin_2026": "ŞOŞIMOVA"
+  },
+  "c0279": {
+   "detect_script": "latin_2026",
+   "normalize": "shoshimova",
+   "to_cyrillic": "шошимова",
+   "to_latin_1995": "shoshimova",
+   "to_latin_2026": "şoşimova"
+  },
+  "c0280": {
+   "detect_script": "latin_2026",
+   "normalize": "chorshanbiyev",
+   "to_cyrillic": "Чорсҳанбиев",
+   "to_latin_1995": "Chorsʼhanbiyev",
+   "to_latin_2026": "Çorshanbiyev"
+  },
+  "c0281": {
+   "detect_script": "latin_1995",
+   "normalize": "chorshanbiyev",
+   "to_cyrillic": "Чоршанбиев",
+   "to_latin_1995": "Chorshanbiyev",
+   "to_latin_2026": "Çorşanbiyev"
+  },
+  "c0282": {
+   "detect_script": "cyrillic",
+   "normalize": "chorshanbiyev",
+   "to_cyrillic": "Чоршанбиев",
+   "to_latin_1995": "Chorshanbiyev",
+   "to_latin_2026": "Çorşanbiyev"
+  },
+  "c0283": {
+   "detect_script": "latin_2026",
+   "normalize": "gafurov",
+   "to_cyrillic": "Ғафуров",
+   "to_latin_1995": "Gʻafurov",
+   "to_latin_2026": "Ğafurov"
+  },
+  "c0284": {
+   "detect_script": "latin_1995",
+   "normalize": "gafurov",
+   "to_cyrillic": "Ғафуров",
+   "to_latin_1995": "Gʻafurov",
+   "to_latin_2026": "Ğafurov"
+  },
+  "c0285": {
+   "detect_script": "latin_1995",
+   "normalize": "gafurov",
+   "to_cyrillic": "Ғафуров",
+   "to_latin_1995": "Gʻafurov",
+   "to_latin_2026": "Ğafurov"
+  },
+  "c0286": {
+   "detect_script": "cyrillic",
+   "normalize": "gafurov",
+   "to_cyrillic": "Ғафуров",
+   "to_latin_1995": "Gʻafurov",
+   "to_latin_2026": "Ğafurov"
+  },
+  "c0287": {
+   "detect_script": "latin_1995",
+   "normalize": "gafurov",
+   "to_cyrillic": "Гафуров",
+   "to_latin_1995": "Gafurov",
+   "to_latin_2026": "Gafurov"
+  },
+  "c0288": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0289": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0290": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0291": {
+   "detect_script": "cyrillic",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0292": {
+   "detect_script": "latin_2026",
+   "normalize": "toshkent davlat universiteti",
+   "to_cyrillic": "Тошкент давлат университети",
+   "to_latin_1995": "Toshkent davlat universiteti",
+   "to_latin_2026": "Toşkent davlat universiteti"
+  },
+  "c0293": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent davlat universiteti",
+   "to_cyrillic": "Тошкент давлат университети",
+   "to_latin_1995": "Toshkent davlat universiteti",
+   "to_latin_2026": "Toşkent davlat universiteti"
+  },
+  "c0294": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent davlat universiteti",
+   "to_cyrillic": "Тошкент давлат университети",
+   "to_latin_1995": "Toshkent davlat universiteti",
+   "to_latin_2026": "Toşkent davlat universiteti"
+  },
+  "c0295": {
+   "detect_script": "latin_1995",
+   "normalize": "ilmiy tadqiqot",
+   "to_cyrillic": "илмий тадқиқот",
+   "to_latin_1995": "ilmiy tadqiqot",
+   "to_latin_2026": "ilmiy tadqiqot"
+  },
+  "c0296": {
+   "detect_script": "latin_1995",
+   "normalize": "ilmiy tadqiqot",
+   "to_cyrillic": "Илмий Тадқиқот",
+   "to_latin_1995": "Ilmiy Tadqiqot",
+   "to_latin_2026": "Ilmiy Tadqiqot"
+  },
+  "c0297": {
+   "detect_script": "cyrillic",
+   "normalize": "ilmiy tadqiqot",
+   "to_cyrillic": "ИЛМИЙ ТАДҚИҚОТ",
+   "to_latin_1995": "ILMIY TADQIQOT",
+   "to_latin_2026": "ILMIY TADQIQOT"
+  },
+  "c0298": {
+   "detect_script": "cyrillic",
+   "normalize": "ilmiy tadqiqot",
+   "to_cyrillic": "илмий тадқиқот",
+   "to_latin_1995": "ilmiy tadqiqot",
+   "to_latin_2026": "ilmiy tadqiqot"
+  },
+  "c0299": {
+   "detect_script": "latin_2026",
+   "normalize": "qashqadaryo",
+   "to_cyrillic": "Қашқадарё",
+   "to_latin_1995": "Qashqadaryo",
+   "to_latin_2026": "Qaşqadaryo"
+  },
+  "c0300": {
+   "detect_script": "latin_1995",
+   "normalize": "qashqadaryo",
+   "to_cyrillic": "Қашқадарё",
+   "to_latin_1995": "Qashqadaryo",
+   "to_latin_2026": "Qaşqadaryo"
+  },
+  "c0301": {
+   "detect_script": "cyrillic",
+   "normalize": "qashqadaryo",
+   "to_cyrillic": "Қашқадарё",
+   "to_latin_1995": "Qashqadaryo",
+   "to_latin_2026": "Qaşqadaryo"
+  },
+  "c0302": {
+   "detect_script": "latin_2026",
+   "normalize": "ulugbek",
+   "to_cyrillic": "Улуғбек",
+   "to_latin_1995": "Ulugʻbek",
+   "to_latin_2026": "Uluğbek"
+  },
+  "c0303": {
+   "detect_script": "latin_1995",
+   "normalize": "ulugbek",
+   "to_cyrillic": "Улуғбек",
+   "to_latin_1995": "Ulugʻbek",
+   "to_latin_2026": "Uluğbek"
+  },
+  "c0304": {
+   "detect_script": "cyrillic",
+   "normalize": "ulugbek",
+   "to_cyrillic": "Улуғбек",
+   "to_latin_1995": "Ulugʻbek",
+   "to_latin_2026": "Uluğbek"
+  },
+  "c0305": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston 2026",
+   "to_cyrillic": "озбекистон 2026",
+   "to_latin_1995": "ozbekiston 2026",
+   "to_latin_2026": "ozbekiston 2026"
+  },
+  "c0306": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "тошкент",
+   "to_latin_1995": "toshkent",
+   "to_latin_2026": "toşkent"
+  },
+  "c0307": {
+   "detect_script": "latin_1995",
+   "normalize": "ilmiy jurnal 2026 yil 12 son",
+   "to_cyrillic": "илмий журнал 2026 йил 12 сон",
+   "to_latin_1995": "ilmiy jurnal 2026 yil 12 son",
+   "to_latin_2026": "ilmiy jurnal 2026 yil 12 son"
+  },
+  "c0308": {
+   "detect_script": "latin_1995",
+   "normalize": "ab",
+   "to_cyrillic": "аб",
+   "to_latin_1995": "ab",
+   "to_latin_2026": "ab"
+  },
+  "c0309": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "озбекистон",
+   "to_latin_1995": "ozbekiston",
+   "to_latin_2026": "ozbekiston"
+  },
+  "c0310": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston respublikasi",
+   "to_cyrillic": "Ўзбекистон Республикаси",
+   "to_latin_1995": "Oʻzbekiston Respublikasi",
+   "to_latin_2026": "Özbekiston Respublikasi"
+  },
+  "c0311": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston respublikasi",
+   "to_cyrillic": "озбекистон республикаси",
+   "to_latin_1995": "ozbekiston respublikasi",
+   "to_latin_2026": "ozbekiston respublikasi"
+  },
+  "c0312": {
+   "detect_script": "cyrillic",
+   "normalize": "ozbekiston respublikasi",
+   "to_cyrillic": "Ўзбекистон Республикаси",
+   "to_latin_1995": "Oʻzbekiston Respublikasi",
+   "to_latin_2026": "Özbekiston Respublikasi"
+  },
+  "c0313": {
+   "detect_script": "latin_2026",
+   "normalize": "ozbekiston respublikasi",
+   "to_cyrillic": "Ўзбекистон Республикаси",
+   "to_latin_1995": "Oʻzbekiston Respublikasi",
+   "to_latin_2026": "Özbekiston Respublikasi"
+  },
+  "c0314": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent tibbiyot akademiyasi",
+   "to_cyrillic": "Тошкент тиббиёт академияси",
+   "to_latin_1995": "Toshkent tibbiyot akademiyasi",
+   "to_latin_2026": "Toşkent tibbiyot akademiyasi"
+  },
+  "c0315": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent tibbiyot akademiyasi",
+   "to_cyrillic": "тошкент тиббиёт академияси",
+   "to_latin_1995": "toshkent tibbiyot akademiyasi",
+   "to_latin_2026": "toşkent tibbiyot akademiyasi"
+  },
+  "c0316": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent tibbiyot akademiyasi",
+   "to_cyrillic": "Тошкент тиббиёт академияси",
+   "to_latin_1995": "Toshkent tibbiyot akademiyasi",
+   "to_latin_2026": "Toşkent tibbiyot akademiyasi"
+  },
+  "c0317": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "",
+   "to_latin_1995": "",
+   "to_latin_2026": ""
+  },
+  "c0318": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "   ",
+   "to_latin_1995": "   ",
+   "to_latin_2026": "   "
+  },
+  "c0319": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "\t\n",
+   "to_latin_1995": "\t\n",
+   "to_latin_2026": "\t\n"
+  },
+  "c0320": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent davlat",
+   "to_cyrillic": "...Тошкент,   давлат!!!",
+   "to_latin_1995": "...Toshkent,   davlat!!!",
+   "to_latin_2026": "...Toşkent,   davlat!!!"
+  },
+  "c0321": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent davlat",
+   "to_cyrillic": "Тошкент давлат",
+   "to_latin_1995": "Toshkent davlat",
+   "to_latin_2026": "Toşkent davlat"
+  },
+  "c0322": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston 2026",
+   "to_cyrillic": "«Ўзбекистон» — 2026",
+   "to_latin_1995": "«Oʻzbekiston» — 2026",
+   "to_latin_2026": "«Özbekiston» — 2026"
+  },
+  "c0323": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "ТОШКЕНТ",
+   "to_latin_1995": "TOSHKENT",
+   "to_latin_2026": "TOŞKENT"
+  },
+  "c0324": {
+   "detect_script": "latin_2026",
+   "normalize": "shoshimova",
+   "to_cyrillic": "ШОШИМОВА",
+   "to_latin_1995": "SHOSHIMOVA",
+   "to_latin_2026": "ŞOŞIMOVA"
+  },
+  "c0325": {
+   "detect_script": "latin_1995",
+   "normalize": "ilmiy jurnal 2026 yil 12 son",
+   "to_cyrillic": "Илмий журнал, 2026-йил, 12-сон",
+   "to_latin_1995": "Ilmiy jurnal, 2026-yil, 12-son",
+   "to_latin_2026": "Ilmiy jurnal, 2026-yil, 12-son"
+  },
+  "c0326": {
+   "detect_script": "latin_1995",
+   "normalize": "tashkent",
+   "to_cyrillic": "Ташкент",
+   "to_latin_1995": "Tashkent",
+   "to_latin_2026": "Taşkent"
+  },
+  "c0327": {
+   "detect_script": "cyrillic",
+   "normalize": "ab",
+   "to_cyrillic": "aѫb",
+   "to_latin_1995": "aѫb",
+   "to_latin_2026": "aѫb"
+  },
+  "c0328": {
+   "detect_script": "latin_2026",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Ōzbekiston"
+  },
+  "c0329": {
+   "detect_script": "latin_1995",
+   "normalize": "xomidov",
+   "to_cyrillic": "Хомидов",
+   "to_latin_1995": "Xomidov",
+   "to_latin_2026": "Xomidov"
+  },
+  "c0330": {
+   "detect_script": "latin_1995",
+   "normalize": "khomidov",
+   "to_cyrillic": "Кҳомидов",
+   "to_latin_1995": "Khomidov",
+   "to_latin_2026": "Khomidov"
+  },
+  "c0331": {
+   "detect_script": "latin_1995",
+   "normalize": "jasur",
+   "to_cyrillic": "Жасур",
+   "to_latin_1995": "Jasur",
+   "to_latin_2026": "Jasur"
+  },
+  "c0332": {
+   "detect_script": "latin_1995",
+   "normalize": "zhasur",
+   "to_cyrillic": "Зҳасур",
+   "to_latin_1995": "Zhasur",
+   "to_latin_2026": "Zhasur"
+  },
+  "c0333": {
+   "detect_script": "cyrillic",
+   "normalize": "samarqand",
+   "to_cyrillic": "Самарқанд",
+   "to_latin_1995": "Samarqand",
+   "to_latin_2026": "Samarqand"
+  },
+  "c0334": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent 2026",
+   "to_cyrillic": "Тошкент 2026",
+   "to_latin_1995": "Toshkent 2026",
+   "to_latin_2026": "Toşkent 2026"
+  },
+  "c0335": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "Тошкент",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c0336": {
+   "detect_script": "latin_2026",
+   "normalize": "toshkent",
+   "to_cyrillic": "Тошкент",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c0337": {
+   "detect_script": "latin_1995",
+   "normalize": "2026",
+   "to_cyrillic": "2026",
+   "to_latin_1995": "2026",
+   "to_latin_2026": "2026"
+  },
+  "c0338": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent viloyati toshkent",
+   "to_cyrillic": "Toshkent viloyati Тошкент",
+   "to_latin_1995": "Toshkent viloyati Toshkent",
+   "to_latin_2026": "Toşkent viloyati Toşkent"
+  },
+  "c0339": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "ъ",
+   "to_latin_1995": "ʼ",
+   "to_latin_2026": "ʼ"
+  },
+  "c0340": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "'",
+   "to_latin_1995": "'",
+   "to_latin_2026": "'"
+  },
+  "c0341": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "‘",
+   "to_latin_1995": "‘",
+   "to_latin_2026": "‘"
+  },
+  "c0342": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "’",
+   "to_latin_1995": "’",
+   "to_latin_2026": "’"
+  },
+  "c0343": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "йўқ",
+   "to_latin_1995": "yoʻq",
+   "to_latin_2026": "yöq"
+  },
+  "c0344": {
+   "detect_script": "cyrillic",
+   "normalize": "yoq",
+   "to_cyrillic": "йўқ",
+   "to_latin_1995": "yoʻq",
+   "to_latin_2026": "yöq"
+  },
+  "c0345": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0346": {
+   "detect_script": "cyrillic",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0347": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "Йўл",
+   "to_latin_1995": "Yoʻl",
+   "to_latin_2026": "Yöl"
+  },
+  "c0348": {
+   "detect_script": "cyrillic",
+   "normalize": "yol",
+   "to_cyrillic": "Йўл",
+   "to_latin_1995": "Yoʻl",
+   "to_latin_2026": "Yöl"
+  },
+  "c0349": {
+   "detect_script": "latin_1995",
+   "normalize": "yoldosh",
+   "to_cyrillic": "Йўлдош",
+   "to_latin_1995": "Yoʻldosh",
+   "to_latin_2026": "Yöldoş"
+  },
+  "c0350": {
+   "detect_script": "cyrillic",
+   "normalize": "yoldosh",
+   "to_cyrillic": "Йўлдош",
+   "to_latin_1995": "Yoʻldosh",
+   "to_latin_2026": "Yöldoş"
+  },
+  "c0351": {
+   "detect_script": "latin_1995",
+   "normalize": "yotal",
+   "to_cyrillic": "йўтал",
+   "to_latin_1995": "yoʻtal",
+   "to_latin_2026": "yötal"
+  },
+  "c0352": {
+   "detect_script": "cyrillic",
+   "normalize": "yotal",
+   "to_cyrillic": "йўтал",
+   "to_latin_1995": "yoʻtal",
+   "to_latin_2026": "yötal"
+  },
+  "c0353": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsa",
+   "to_cyrillic": "кетса",
+   "to_latin_1995": "ketsa",
+   "to_latin_2026": "ketsa"
+  },
+  "c0354": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsa",
+   "to_cyrillic": "кетса",
+   "to_latin_1995": "ketsa",
+   "to_latin_2026": "ketsa"
+  },
+  "c0355": {
+   "detect_script": "latin_1995",
+   "normalize": "aytsa",
+   "to_cyrillic": "айтса",
+   "to_latin_1995": "aytsa",
+   "to_latin_2026": "aytsa"
+  },
+  "c0356": {
+   "detect_script": "cyrillic",
+   "normalize": "aytsa",
+   "to_cyrillic": "айтса",
+   "to_latin_1995": "aytsa",
+   "to_latin_2026": "aytsa"
+  },
+  "c0357": {
+   "detect_script": "latin_1995",
+   "normalize": "tutsa",
+   "to_cyrillic": "тутса",
+   "to_latin_1995": "tutsa",
+   "to_latin_2026": "tutsa"
+  },
+  "c0358": {
+   "detect_script": "cyrillic",
+   "normalize": "tutsa",
+   "to_cyrillic": "тутса",
+   "to_latin_1995": "tutsa",
+   "to_latin_2026": "tutsa"
+  },
+  "c0359": {
+   "detect_script": "latin_1995",
+   "normalize": "yetsa",
+   "to_cyrillic": "етса",
+   "to_latin_1995": "yetsa",
+   "to_latin_2026": "yetsa"
+  },
+  "c0360": {
+   "detect_script": "cyrillic",
+   "normalize": "yetsa",
+   "to_cyrillic": "етса",
+   "to_latin_1995": "yetsa",
+   "to_latin_2026": "yetsa"
+  },
+  "c0361": {
+   "detect_script": "latin_1995",
+   "normalize": "otsa",
+   "to_cyrillic": "ўтса",
+   "to_latin_1995": "oʻtsa",
+   "to_latin_2026": "ötsa"
+  },
+  "c0362": {
+   "detect_script": "cyrillic",
+   "normalize": "otsa",
+   "to_cyrillic": "ўтса",
+   "to_latin_1995": "oʻtsa",
+   "to_latin_2026": "ötsa"
+  },
+  "c0363": {
+   "detect_script": "latin_1995",
+   "normalize": "kutsangiz",
+   "to_cyrillic": "кутсангиз",
+   "to_latin_1995": "kutsangiz",
+   "to_latin_2026": "kutsangiz"
+  },
+  "c0364": {
+   "detect_script": "cyrillic",
+   "normalize": "kutsangiz",
+   "to_cyrillic": "кутсангиз",
+   "to_latin_1995": "kutsangiz",
+   "to_latin_2026": "kutsangiz"
+  },
+  "c0365": {
+   "detect_script": "latin_1995",
+   "normalize": "aytsangizchi",
+   "to_cyrillic": "айтсангизчи",
+   "to_latin_1995": "aytsangizchi",
+   "to_latin_2026": "aytsangizçi"
+  },
+  "c0366": {
+   "detect_script": "cyrillic",
+   "normalize": "aytsangizchi",
+   "to_cyrillic": "айтсангизчи",
+   "to_latin_1995": "aytsangizchi",
+   "to_latin_2026": "aytsangizçi"
+  },
+  "c0367": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsin",
+   "to_cyrillic": "кетсин",
+   "to_latin_1995": "ketsin",
+   "to_latin_2026": "ketsin"
+  },
+  "c0368": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsin",
+   "to_cyrillic": "кетсин",
+   "to_latin_1995": "ketsin",
+   "to_latin_2026": "ketsin"
+  },
+  "c0369": {
+   "detect_script": "latin_1995",
+   "normalize": "bitsin",
+   "to_cyrillic": "битсин",
+   "to_latin_1995": "bitsin",
+   "to_latin_2026": "bitsin"
+  },
+  "c0370": {
+   "detect_script": "cyrillic",
+   "normalize": "bitsin",
+   "to_cyrillic": "битсин",
+   "to_latin_1995": "bitsin",
+   "to_latin_2026": "bitsin"
+  },
+  "c0371": {
+   "detect_script": "latin_1995",
+   "normalize": "oqitsin",
+   "to_cyrillic": "ўқитсин",
+   "to_latin_1995": "oʻqitsin",
+   "to_latin_2026": "öqitsin"
+  },
+  "c0372": {
+   "detect_script": "cyrillic",
+   "normalize": "oqitsin",
+   "to_cyrillic": "ўқитсин",
+   "to_latin_1995": "oʻqitsin",
+   "to_latin_2026": "öqitsin"
+  },
+  "c0373": {
+   "detect_script": "latin_1995",
+   "normalize": "eshitsin",
+   "to_cyrillic": "эшитсин",
+   "to_latin_1995": "eshitsin",
+   "to_latin_2026": "eşitsin"
+  },
+  "c0374": {
+   "detect_script": "cyrillic",
+   "normalize": "eshitsin",
+   "to_cyrillic": "эшитсин",
+   "to_latin_1995": "eshitsin",
+   "to_latin_2026": "eşitsin"
+  },
+  "c0375": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsinmi",
+   "to_cyrillic": "кетсинми",
+   "to_latin_1995": "ketsinmi",
+   "to_latin_2026": "ketsinmi"
+  },
+  "c0376": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsinmi",
+   "to_cyrillic": "кетсинми",
+   "to_latin_1995": "ketsinmi",
+   "to_latin_2026": "ketsinmi"
+  },
+  "c0377": {
+   "detect_script": "latin_1995",
+   "normalize": "hayotsiz",
+   "to_cyrillic": "ҳаётсиз",
+   "to_latin_1995": "hayotsiz",
+   "to_latin_2026": "hayotsiz"
+  },
+  "c0378": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsiz",
+   "to_cyrillic": "ҳаётсиз",
+   "to_latin_1995": "hayotsiz",
+   "to_latin_2026": "hayotsiz"
+  },
+  "c0379": {
+   "detect_script": "latin_1995",
+   "normalize": "mehnatsiz",
+   "to_cyrillic": "меҳнатсиз",
+   "to_latin_1995": "mehnatsiz",
+   "to_latin_2026": "mehnatsiz"
+  },
+  "c0380": {
+   "detect_script": "cyrillic",
+   "normalize": "mehnatsiz",
+   "to_cyrillic": "меҳнатсиз",
+   "to_latin_1995": "mehnatsiz",
+   "to_latin_2026": "mehnatsiz"
+  },
+  "c0381": {
+   "detect_script": "latin_1995",
+   "normalize": "otsiz",
+   "to_cyrillic": "отсиз",
+   "to_latin_1995": "otsiz",
+   "to_latin_2026": "otsiz"
+  },
+  "c0382": {
+   "detect_script": "cyrillic",
+   "normalize": "otsiz",
+   "to_cyrillic": "отсиз",
+   "to_latin_1995": "otsiz",
+   "to_latin_2026": "otsiz"
+  },
+  "c0383": {
+   "detect_script": "latin_1995",
+   "normalize": "hayotsizlik",
+   "to_cyrillic": "ҳаётсизлик",
+   "to_latin_1995": "hayotsizlik",
+   "to_latin_2026": "hayotsizlik"
+  },
+  "c0384": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsizlik",
+   "to_cyrillic": "ҳаётсизлик",
+   "to_latin_1995": "hayotsizlik",
+   "to_latin_2026": "hayotsizlik"
+  },
+  "c0385": {
+   "detect_script": "latin_1995",
+   "normalize": "hayotsizman",
+   "to_cyrillic": "ҳаётсизман",
+   "to_latin_1995": "hayotsizman",
+   "to_latin_2026": "hayotsizman"
+  },
+  "c0386": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsizman",
+   "to_cyrillic": "ҳаётсизман",
+   "to_latin_1995": "hayotsizman",
+   "to_latin_2026": "hayotsizman"
+  },
+  "c0387": {
+   "detect_script": "latin_1995",
+   "normalize": "mehnatsevar",
+   "to_cyrillic": "меҳнатсевар",
+   "to_latin_1995": "mehnatsevar",
+   "to_latin_2026": "mehnatsevar"
+  },
+  "c0388": {
+   "detect_script": "cyrillic",
+   "normalize": "mehnatsevar",
+   "to_cyrillic": "меҳнатсевар",
+   "to_latin_1995": "mehnatsevar",
+   "to_latin_2026": "mehnatsevar"
+  },
+  "c0389": {
+   "detect_script": "latin_1995",
+   "normalize": "militsiya",
+   "to_cyrillic": "милиция",
+   "to_latin_1995": "militsiya",
+   "to_latin_2026": "militsiya"
+  },
+  "c0390": {
+   "detect_script": "latin_1995",
+   "normalize": "reanimatsiya",
+   "to_cyrillic": "реанимация",
+   "to_latin_1995": "reanimatsiya",
+   "to_latin_2026": "reanimatsiya"
+  },
+  "c0391": {
+   "detect_script": "cyrillic",
+   "normalize": "reanimatsiya",
+   "to_cyrillic": "реанимация",
+   "to_latin_1995": "reanimatsiya",
+   "to_latin_2026": "reanimatsiya"
+  },
+  "c0392": {
+   "detect_script": "latin_1995",
+   "normalize": "natsional",
+   "to_cyrillic": "национал",
+   "to_latin_1995": "natsional",
+   "to_latin_2026": "natsional"
+  },
+  "c0393": {
+   "detect_script": "cyrillic",
+   "normalize": "natsional",
+   "to_cyrillic": "национал",
+   "to_latin_1995": "natsional",
+   "to_latin_2026": "natsional"
+  },
+  "c0394": {
+   "detect_script": "latin_1995",
+   "normalize": "intubatsiyasiz",
+   "to_cyrillic": "интубациясиз",
+   "to_latin_1995": "intubatsiyasiz",
+   "to_latin_2026": "intubatsiyasiz"
+  },
+  "c0395": {
+   "detect_script": "cyrillic",
+   "normalize": "intubatsiyasiz",
+   "to_cyrillic": "интубациясиз",
+   "to_latin_1995": "intubatsiyasiz",
+   "to_latin_2026": "intubatsiyasiz"
+  },
+  "c0396": {
+   "detect_script": "latin_1995",
+   "normalize": "sotsiologiya",
+   "to_cyrillic": "социология",
+   "to_latin_1995": "sotsiologiya",
+   "to_latin_2026": "sotsiologiya"
+  },
+  "c0397": {
+   "detect_script": "cyrillic",
+   "normalize": "sotsiologiya",
+   "to_cyrillic": "социология",
+   "to_latin_1995": "sotsiologiya",
+   "to_latin_2026": "sotsiologiya"
+  },
+  "c0398": {
+   "detect_script": "latin_1995",
+   "normalize": "leykotsit",
+   "to_cyrillic": "лейкоцит",
+   "to_latin_1995": "leykotsit",
+   "to_latin_2026": "leykotsit"
+  },
+  "c0399": {
+   "detect_script": "cyrillic",
+   "normalize": "leykotsit",
+   "to_cyrillic": "лейкоцит",
+   "to_latin_1995": "leykotsit",
+   "to_latin_2026": "leykotsit"
+  },
+  "c0400": {
+   "detect_script": "latin_1995",
+   "normalize": "eritrotsit",
+   "to_cyrillic": "эритроцит",
+   "to_latin_1995": "eritrotsit",
+   "to_latin_2026": "eritrotsit"
+  },
+  "c0401": {
+   "detect_script": "cyrillic",
+   "normalize": "eritrotsit",
+   "to_cyrillic": "эритроцит",
+   "to_latin_1995": "eritrotsit",
+   "to_latin_2026": "eritrotsit"
+  },
+  "c0402": {
+   "detect_script": "latin_1995",
+   "normalize": "trombotsit",
+   "to_cyrillic": "тромбоцит",
+   "to_latin_1995": "trombotsit",
+   "to_latin_2026": "trombotsit"
+  },
+  "c0403": {
+   "detect_script": "cyrillic",
+   "normalize": "trombotsit",
+   "to_cyrillic": "тромбоцит",
+   "to_latin_1995": "trombotsit",
+   "to_latin_2026": "trombotsit"
+  },
+  "c0404": {
+   "detect_script": "latin_1995",
+   "normalize": "limfotsit",
+   "to_cyrillic": "лимфоцит",
+   "to_latin_1995": "limfotsit",
+   "to_latin_2026": "limfotsit"
+  },
+  "c0405": {
+   "detect_script": "cyrillic",
+   "normalize": "limfotsit",
+   "to_cyrillic": "лимфоцит",
+   "to_latin_1995": "limfotsit",
+   "to_latin_2026": "limfotsit"
+  },
+  "c0406": {
+   "detect_script": "latin_1995",
+   "normalize": "protsent",
+   "to_cyrillic": "процент",
+   "to_latin_1995": "protsent",
+   "to_latin_2026": "protsent"
+  },
+  "c0407": {
+   "detect_script": "cyrillic",
+   "normalize": "protsent",
+   "to_cyrillic": "процент",
+   "to_latin_1995": "protsent",
+   "to_latin_2026": "protsent"
+  },
+  "c0408": {
+   "detect_script": "latin_1995",
+   "normalize": "platsenta",
+   "to_cyrillic": "плацента",
+   "to_latin_1995": "platsenta",
+   "to_latin_2026": "platsenta"
+  },
+  "c0409": {
+   "detect_script": "cyrillic",
+   "normalize": "platsenta",
+   "to_cyrillic": "плацента",
+   "to_latin_1995": "platsenta",
+   "to_latin_2026": "platsenta"
+  },
+  "c0410": {
+   "detect_script": "latin_1995",
+   "normalize": "litsey",
+   "to_cyrillic": "лицей",
+   "to_latin_1995": "litsey",
+   "to_latin_2026": "litsey"
+  },
+  "c0411": {
+   "detect_script": "cyrillic",
+   "normalize": "litsey",
+   "to_cyrillic": "лицей",
+   "to_latin_1995": "litsey",
+   "to_latin_2026": "litsey"
+  },
+  "c0412": {
+   "detect_script": "latin_1995",
+   "normalize": "atseton",
+   "to_cyrillic": "ацетон",
+   "to_latin_1995": "atseton",
+   "to_latin_2026": "atseton"
+  },
+  "c0413": {
+   "detect_script": "cyrillic",
+   "normalize": "atseton",
+   "to_cyrillic": "ацетон",
+   "to_latin_1995": "atseton",
+   "to_latin_2026": "atseton"
+  },
+  "c0414": {
+   "detect_script": "latin_1995",
+   "normalize": "farmatsevt",
+   "to_cyrillic": "фармацевт",
+   "to_latin_1995": "farmatsevt",
+   "to_latin_2026": "farmatsevt"
+  },
+  "c0415": {
+   "detect_script": "cyrillic",
+   "normalize": "farmatsevt",
+   "to_cyrillic": "фармацевт",
+   "to_latin_1995": "farmatsevt",
+   "to_latin_2026": "farmatsevt"
+  },
+  "c0416": {
+   "detect_script": "latin_1995",
+   "normalize": "detsibel",
+   "to_cyrillic": "децибел",
+   "to_latin_1995": "detsibel",
+   "to_latin_2026": "detsibel"
+  },
+  "c0417": {
+   "detect_script": "cyrillic",
+   "normalize": "detsibel",
+   "to_cyrillic": "децибел",
+   "to_latin_1995": "detsibel",
+   "to_latin_2026": "detsibel"
+  },
+  "c0418": {
+   "detect_script": "latin_1995",
+   "normalize": "spetsifik",
+   "to_cyrillic": "специфик",
+   "to_latin_1995": "spetsifik",
+   "to_latin_2026": "spetsifik"
+  },
+  "c0419": {
+   "detect_script": "cyrillic",
+   "normalize": "spetsifik",
+   "to_cyrillic": "специфик",
+   "to_latin_1995": "spetsifik",
+   "to_latin_2026": "spetsifik"
+  },
+  "c0420": {
+   "detect_script": "latin_1995",
+   "normalize": "meditsina",
+   "to_cyrillic": "медицина",
+   "to_latin_1995": "meditsina",
+   "to_latin_2026": "meditsina"
+  },
+  "c0421": {
+   "detect_script": "cyrillic",
+   "normalize": "meditsina",
+   "to_cyrillic": "медицина",
+   "to_latin_1995": "meditsina",
+   "to_latin_2026": "meditsina"
+  },
+  "c0422": {
+   "detect_script": "latin_1995",
+   "normalize": "vaktsina",
+   "to_cyrillic": "вакцина",
+   "to_latin_1995": "vaktsina",
+   "to_latin_2026": "vaktsina"
+  },
+  "c0423": {
+   "detect_script": "cyrillic",
+   "normalize": "vaksina",
+   "to_cyrillic": "вакцина",
+   "to_latin_1995": "vaksina",
+   "to_latin_2026": "vaksina"
+  },
+  "c0424": {
+   "detect_script": "latin_1995",
+   "normalize": "natsizm",
+   "to_cyrillic": "нацизм",
+   "to_latin_1995": "natsizm",
+   "to_latin_2026": "natsizm"
+  },
+  "c0425": {
+   "detect_script": "cyrillic",
+   "normalize": "natsizm",
+   "to_cyrillic": "нацизм",
+   "to_latin_1995": "natsizm",
+   "to_latin_2026": "natsizm"
+  },
+  "c0426": {
+   "detect_script": "latin_1995",
+   "normalize": "azitromitsin",
+   "to_cyrillic": "азитромицин",
+   "to_latin_1995": "azitromitsin",
+   "to_latin_2026": "azitromitsin"
+  },
+  "c0427": {
+   "detect_script": "cyrillic",
+   "normalize": "azitromitsin",
+   "to_cyrillic": "азитромицин",
+   "to_latin_1995": "azitromitsin",
+   "to_latin_2026": "azitromitsin"
+  },
+  "c0428": {
+   "detect_script": "latin_1995",
+   "normalize": "glitsin",
+   "to_cyrillic": "глицин",
+   "to_latin_1995": "glitsin",
+   "to_latin_2026": "glitsin"
+  },
+  "c0429": {
+   "detect_script": "cyrillic",
+   "normalize": "glitsin",
+   "to_cyrillic": "глицин",
+   "to_latin_1995": "glitsin",
+   "to_latin_2026": "glitsin"
+  },
+  "c0430": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsa",
+   "to_cyrillic": "КЕТСА",
+   "to_latin_1995": "KETSA",
+   "to_latin_2026": "KETSA"
+  },
+  "c0431": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsiz",
+   "to_cyrillic": "Ҳаётсиз",
+   "to_latin_1995": "Hayotsiz",
+   "to_latin_2026": "Hayotsiz"
+  },
+  "c0432": {
+   "detect_script": "cyrillic",
+   "normalize": "adabiyotshunos",
+   "to_cyrillic": "адабиётшунос",
+   "to_latin_1995": "adabiyotshunos",
+   "to_latin_2026": "adabiyotşunos"
+  },
+  "c0433": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsiz",
+   "to_cyrillic": "ҲАЁТСИЗ",
+   "to_latin_1995": "HAYOTSIZ",
+   "to_latin_2026": "HAYOTSIZ"
+  },
+  "c0434": {
+   "detect_script": "cyrillic",
+   "normalize": "sanatshunos",
+   "to_cyrillic": "санъатшунос",
+   "to_latin_1995": "sanʼatshunos",
+   "to_latin_2026": "sanʼatşunos"
+  },
+  "c0435": {
+   "detect_script": "cyrillic",
+   "normalize": "tablitsa",
+   "to_cyrillic": "таблица",
+   "to_latin_1995": "tablitsa",
+   "to_latin_2026": "tablitsa"
+  },
+  "c0436": {
+   "detect_script": "cyrillic",
+   "normalize": "teplitsa",
+   "to_cyrillic": "теплица",
+   "to_latin_1995": "teplitsa",
+   "to_latin_2026": "teplitsa"
+  },
+  "c0437": {
+   "detect_script": "cyrillic",
+   "normalize": "ulitsa",
+   "to_cyrillic": "улица",
+   "to_latin_1995": "ulitsa",
+   "to_latin_2026": "ulitsa"
+  },
+  "c0438": {
+   "detect_script": "cyrillic",
+   "normalize": "levofloksatsin",
+   "to_cyrillic": "левофлоксацин",
+   "to_latin_1995": "levofloksatsin",
+   "to_latin_2026": "levofloksatsin"
+  },
+  "c0439": {
+   "detect_script": "cyrillic",
+   "normalize": "amikatsin",
+   "to_cyrillic": "амикацин",
+   "to_latin_1995": "amikatsin",
+   "to_latin_2026": "amikatsin"
+  },
+  "c0440": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0441": {
+   "detect_script": "cyrillic",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0442": {
+   "detect_script": "latin_1995",
+   "normalize": "goya",
+   "to_cyrillic": "ҒОЯ",
+   "to_latin_1995": "GʻOYA",
+   "to_latin_2026": "ĞOYA"
+  },
+  "c0443": {
+   "detect_script": "cyrillic",
+   "normalize": "goya",
+   "to_cyrillic": "ҒОЯ",
+   "to_latin_1995": "GʻOYA",
+   "to_latin_2026": "ĞOYA"
+  },
+  "c0444": {
+   "detect_script": "latin_1995",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0445": {
+   "detect_script": "cyrillic",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0446": {
+   "detect_script": "latin_1995",
+   "normalize": "som",
+   "to_cyrillic": "СЎМ",
+   "to_latin_1995": "SOʻM",
+   "to_latin_2026": "SÖM"
+  },
+  "c0447": {
+   "detect_script": "cyrillic",
+   "normalize": "som",
+   "to_cyrillic": "СЎМ",
+   "to_latin_1995": "SOʻM",
+   "to_latin_2026": "SÖM"
+  },
+  "c0448": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "ЙЎЛ",
+   "to_latin_1995": "YOʻL",
+   "to_latin_2026": "YÖL"
+  },
+  "c0449": {
+   "detect_script": "cyrillic",
+   "normalize": "yol",
+   "to_cyrillic": "ЙЎЛ",
+   "to_latin_1995": "YOʻL",
+   "to_latin_2026": "YÖL"
+  },
+  "c0450": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "ЙЎҚ",
+   "to_latin_1995": "YOʻQ",
+   "to_latin_2026": "YÖQ"
+  },
+  "c0451": {
+   "detect_script": "cyrillic",
+   "normalize": "yoq",
+   "to_cyrillic": "ЙЎҚ",
+   "to_latin_1995": "YOʻQ",
+   "to_latin_2026": "YÖQ"
+  },
+  "c0452": {
+   "detect_script": "cyrillic",
+   "normalize": "sher",
+   "to_cyrillic": "ШЕЪР",
+   "to_latin_1995": "SHEʼR",
+   "to_latin_2026": "ŞEʼR"
+  },
+  "c0453": {
+   "detect_script": "latin_2026",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0454": {
+   "detect_script": "latin_1995",
+   "normalize": "boyoq",
+   "to_cyrillic": "бўёқ",
+   "to_latin_1995": "boʻyoq",
+   "to_latin_2026": "böyoq"
+  },
+  "c0455": {
+   "detect_script": "cyrillic",
+   "normalize": "boyoq",
+   "to_cyrillic": "бўёқ",
+   "to_latin_1995": "boʻyoq",
+   "to_latin_2026": "böyoq"
+  },
+  "c0456": {
+   "detect_script": "latin_1995",
+   "normalize": "qoyosh",
+   "to_cyrillic": "қўёш",
+   "to_latin_1995": "qoʻyosh",
+   "to_latin_2026": "qöyoş"
+  },
+  "c0457": {
+   "detect_script": "cyrillic",
+   "normalize": "qoyosh",
+   "to_cyrillic": "қўёш",
+   "to_latin_1995": "qoʻyosh",
+   "to_latin_2026": "qöyoş"
+  },
+  "c0458": {
+   "detect_script": "latin_1995",
+   "normalize": "yoz",
+   "to_cyrillic": "ёз",
+   "to_latin_1995": "yoz",
+   "to_latin_2026": "yoz"
+  },
+  "c0459": {
+   "detect_script": "cyrillic",
+   "normalize": "yoz",
+   "to_cyrillic": "ёз",
+   "to_latin_1995": "yoz",
+   "to_latin_2026": "yoz"
+  },
+  "c0460": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsa",
+   "to_cyrillic": "КЕТСА",
+   "to_latin_1995": "KETSA",
+   "to_latin_2026": "KETSA"
+  },
+  "c0461": {
+   "detect_script": "latin_1995",
+   "normalize": "hayotsiz",
+   "to_cyrillic": "Ҳаётсиз",
+   "to_latin_1995": "Hayotsiz",
+   "to_latin_2026": "Hayotsiz"
+  },
+  "c0462": {
+   "detect_script": "latin_1995",
+   "normalize": "adabiyotshunos",
+   "to_cyrillic": "адабиётшунос",
+   "to_latin_1995": "adabiyotshunos",
+   "to_latin_2026": "adabiyotşunos"
+  },
+  "c0463": {
+   "detect_script": "latin_1995",
+   "normalize": "adabiyotshunoslik",
+   "to_cyrillic": "адабиётшунослик",
+   "to_latin_1995": "adabiyotshunoslik",
+   "to_latin_2026": "adabiyotşunoslik"
+  },
+  "c0464": {
+   "detect_script": "cyrillic",
+   "normalize": "adabiyotshunoslik",
+   "to_cyrillic": "адабиётшунослик",
+   "to_latin_1995": "adabiyotshunoslik",
+   "to_latin_2026": "adabiyotşunoslik"
+  },
+  "c0465": {
+   "detect_script": "latin_1995",
+   "normalize": "sanatshunos",
+   "to_cyrillic": "санъатшунос",
+   "to_latin_1995": "sanʼatshunos",
+   "to_latin_2026": "sanʼatşunos"
+  },
+  "c0466": {
+   "detect_script": "latin_2026",
+   "normalize": "adabiyotshunos",
+   "to_cyrillic": "адабиётшунос",
+   "to_latin_1995": "adabiyotshunos",
+   "to_latin_2026": "adabiyotşunos"
+  },
+  "c0467": {
+   "detect_script": "latin_1995",
+   "normalize": "tsement",
+   "to_cyrillic": "цемент",
+   "to_latin_1995": "tsement",
+   "to_latin_2026": "tsement"
+  },
+  "c0468": {
+   "detect_script": "cyrillic",
+   "normalize": "sement",
+   "to_cyrillic": "цемент",
+   "to_latin_1995": "sement",
+   "to_latin_2026": "sement"
+  },
+  "c0469": {
+   "detect_script": "latin_1995",
+   "normalize": "tsar",
+   "to_cyrillic": "цар",
+   "to_latin_1995": "tsar",
+   "to_latin_2026": "tsar"
+  },
+  "c0470": {
+   "detect_script": "cyrillic",
+   "normalize": "sar",
+   "to_cyrillic": "цар",
+   "to_latin_1995": "sar",
+   "to_latin_2026": "sar"
+  },
+  "c0471": {
+   "detect_script": "latin_1995",
+   "normalize": "tsitokin",
+   "to_cyrillic": "цитокин",
+   "to_latin_1995": "tsitokin",
+   "to_latin_2026": "tsitokin"
+  },
+  "c0472": {
+   "detect_script": "cyrillic",
+   "normalize": "sitokin",
+   "to_cyrillic": "цитокин",
+   "to_latin_1995": "sitokin",
+   "to_latin_2026": "sitokin"
+  },
+  "c0473": {
+   "detect_script": "latin_1995",
+   "normalize": "tsinga",
+   "to_cyrillic": "цинга",
+   "to_latin_1995": "tsinga",
+   "to_latin_2026": "tsinga"
+  },
+  "c0474": {
+   "detect_script": "cyrillic",
+   "normalize": "singa",
+   "to_cyrillic": "цинга",
+   "to_latin_1995": "singa",
+   "to_latin_2026": "singa"
+  },
+  "c0475": {
+   "detect_script": "latin_1995",
+   "normalize": "operatsiya",
+   "to_cyrillic": "операция",
+   "to_latin_1995": "operatsiya",
+   "to_latin_2026": "operatsiya"
+  },
+  "c0476": {
+   "detect_script": "cyrillic",
+   "normalize": "operatsiya",
+   "to_cyrillic": "операция",
+   "to_latin_1995": "operatsiya",
+   "to_latin_2026": "operatsiya"
+  },
+  "c0477": {
+   "detect_script": "latin_1995",
+   "normalize": "informatsiya",
+   "to_cyrillic": "информация",
+   "to_latin_1995": "informatsiya",
+   "to_latin_2026": "informatsiya"
+  },
+  "c0478": {
+   "detect_script": "cyrillic",
+   "normalize": "informatsiya",
+   "to_cyrillic": "информация",
+   "to_latin_1995": "informatsiya",
+   "to_latin_2026": "informatsiya"
+  },
+  "c0479": {
+   "detect_script": "latin_1995",
+   "normalize": "ratsion",
+   "to_cyrillic": "рацион",
+   "to_latin_1995": "ratsion",
+   "to_latin_2026": "ratsion"
+  },
+  "c0480": {
+   "detect_script": "cyrillic",
+   "normalize": "ratsion",
+   "to_cyrillic": "рацион",
+   "to_latin_1995": "ratsion",
+   "to_latin_2026": "ratsion"
+  },
+  "c0481": {
+   "detect_script": "latin_1995",
+   "normalize": "patsiyent",
+   "to_cyrillic": "пациент",
+   "to_latin_1995": "patsiyent",
+   "to_latin_2026": "patsiyent"
+  },
+  "c0482": {
+   "detect_script": "cyrillic",
+   "normalize": "patsiyent",
+   "to_cyrillic": "пациент",
+   "to_latin_1995": "patsiyent",
+   "to_latin_2026": "patsiyent"
+  },
+  "c0483": {
+   "detect_script": "latin_1995",
+   "normalize": "sotsial",
+   "to_cyrillic": "социал",
+   "to_latin_1995": "sotsial",
+   "to_latin_2026": "sotsial"
+  },
+  "c0484": {
+   "detect_script": "cyrillic",
+   "normalize": "sotsial",
+   "to_cyrillic": "социал",
+   "to_latin_1995": "sotsial",
+   "to_latin_2026": "sotsial"
+  },
+  "c0485": {
+   "detect_script": "latin_1995",
+   "normalize": "streptomitsin",
+   "to_cyrillic": "стрептомицин",
+   "to_latin_1995": "streptomitsin",
+   "to_latin_2026": "streptomitsin"
+  },
+  "c0486": {
+   "detect_script": "cyrillic",
+   "normalize": "streptomitsin",
+   "to_cyrillic": "стрептомицин",
+   "to_latin_1995": "streptomitsin",
+   "to_latin_2026": "streptomitsin"
+  },
+  "c0487": {
+   "detect_script": "latin_1995",
+   "normalize": "gentamitsin",
+   "to_cyrillic": "гентамицин",
+   "to_latin_1995": "gentamitsin",
+   "to_latin_2026": "gentamitsin"
+  },
+  "c0488": {
+   "detect_script": "cyrillic",
+   "normalize": "gentamitsin",
+   "to_cyrillic": "гентамицин",
+   "to_latin_1995": "gentamitsin",
+   "to_latin_2026": "gentamitsin"
+  },
+  "c0489": {
+   "detect_script": "latin_1995",
+   "normalize": "azitromitsinni",
+   "to_cyrillic": "азитромицинни",
+   "to_latin_1995": "azitromitsinni",
+   "to_latin_2026": "azitromitsinni"
+  },
+  "c0490": {
+   "detect_script": "cyrillic",
+   "normalize": "azitromitsinni",
+   "to_cyrillic": "азитромицинни",
+   "to_latin_1995": "azitromitsinni",
+   "to_latin_2026": "azitromitsinni"
+  },
+  "c0491": {
+   "detect_script": "latin_1995",
+   "normalize": "glitsinning",
+   "to_cyrillic": "глициннинг",
+   "to_latin_1995": "glitsinning",
+   "to_latin_2026": "glitsinning"
+  },
+  "c0492": {
+   "detect_script": "cyrillic",
+   "normalize": "glitsinning",
+   "to_cyrillic": "глициннинг",
+   "to_latin_1995": "glitsinning",
+   "to_latin_2026": "glitsinning"
+  },
+  "c0493": {
+   "detect_script": "latin_1995",
+   "normalize": "mehnatsizligi",
+   "to_cyrillic": "меҳнатсизлиги",
+   "to_latin_1995": "mehnatsizligi",
+   "to_latin_2026": "mehnatsizligi"
+  },
+  "c0494": {
+   "detect_script": "cyrillic",
+   "normalize": "mehnatsizligi",
+   "to_cyrillic": "меҳнатсизлиги",
+   "to_latin_1995": "mehnatsizligi",
+   "to_latin_2026": "mehnatsizligi"
+  },
+  "c0495": {
+   "detect_script": "latin_1995",
+   "normalize": "hayotsizlikni",
+   "to_cyrillic": "ҳаётсизликни",
+   "to_latin_1995": "hayotsizlikni",
+   "to_latin_2026": "hayotsizlikni"
+  },
+  "c0496": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsizlikni",
+   "to_cyrillic": "ҳаётсизликни",
+   "to_latin_1995": "hayotsizlikni",
+   "to_latin_2026": "hayotsizlikni"
+  },
+  "c0497": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsangizlar",
+   "to_cyrillic": "кетсангизлар",
+   "to_latin_1995": "ketsangizlar",
+   "to_latin_2026": "ketsangizlar"
+  },
+  "c0498": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsangizlar",
+   "to_cyrillic": "кетсангизлар",
+   "to_latin_1995": "ketsangizlar",
+   "to_latin_2026": "ketsangizlar"
+  },
+  "c0499": {
+   "detect_script": "latin_1995",
+   "normalize": "mehnatsizroq",
+   "to_cyrillic": "меҳнатсизроқ",
+   "to_latin_1995": "mehnatsizroq",
+   "to_latin_2026": "mehnatsizroq"
+  },
+  "c0500": {
+   "detect_script": "cyrillic",
+   "normalize": "mehnatsizroq",
+   "to_cyrillic": "меҳнатсизроқ",
+   "to_latin_1995": "mehnatsizroq",
+   "to_latin_2026": "mehnatsizroq"
+  },
+  "c0501": {
+   "detect_script": "latin_1995",
+   "normalize": "hayotsizsan",
+   "to_cyrillic": "ҳаётсизсан",
+   "to_latin_1995": "hayotsizsan",
+   "to_latin_2026": "hayotsizsan"
+  },
+  "c0502": {
+   "detect_script": "cyrillic",
+   "normalize": "hayotsizsan",
+   "to_cyrillic": "ҳаётсизсан",
+   "to_latin_1995": "hayotsizsan",
+   "to_latin_2026": "hayotsizsan"
+  },
+  "c0503": {
+   "detect_script": "latin_1995",
+   "normalize": "patsiyentsiz",
+   "to_cyrillic": "пациентсиз",
+   "to_latin_1995": "patsiyentsiz",
+   "to_latin_2026": "patsiyentsiz"
+  },
+  "c0504": {
+   "detect_script": "cyrillic",
+   "normalize": "patsiyentsiz",
+   "to_cyrillic": "пациентсиз",
+   "to_latin_1995": "patsiyentsiz",
+   "to_latin_2026": "patsiyentsiz"
+  },
+  "c0505": {
+   "detect_script": "latin_1995",
+   "normalize": "levofloksatsin",
+   "to_cyrillic": "левофлоксацин",
+   "to_latin_1995": "levofloksatsin",
+   "to_latin_2026": "levofloksatsin"
+  },
+  "c0506": {
+   "detect_script": "latin_1995",
+   "normalize": "ofloksatsin",
+   "to_cyrillic": "офлоксацин",
+   "to_latin_1995": "ofloksatsin",
+   "to_latin_2026": "ofloksatsin"
+  },
+  "c0507": {
+   "detect_script": "cyrillic",
+   "normalize": "ofloksatsin",
+   "to_cyrillic": "офлоксацин",
+   "to_latin_1995": "ofloksatsin",
+   "to_latin_2026": "ofloksatsin"
+  },
+  "c0508": {
+   "detect_script": "latin_1995",
+   "normalize": "moksifloksatsin",
+   "to_cyrillic": "моксифлоксацин",
+   "to_latin_1995": "moksifloksatsin",
+   "to_latin_2026": "moksifloksatsin"
+  },
+  "c0509": {
+   "detect_script": "cyrillic",
+   "normalize": "moksifloksatsin",
+   "to_cyrillic": "моксифлоксацин",
+   "to_latin_1995": "moksifloksatsin",
+   "to_latin_2026": "moksifloksatsin"
+  },
+  "c0510": {
+   "detect_script": "latin_1995",
+   "normalize": "siprofloksatsin",
+   "to_cyrillic": "сипрофлоксацин",
+   "to_latin_1995": "siprofloksatsin",
+   "to_latin_2026": "siprofloksatsin"
+  },
+  "c0511": {
+   "detect_script": "cyrillic",
+   "normalize": "siprofloksatsin",
+   "to_cyrillic": "сипрофлоксацин",
+   "to_latin_1995": "siprofloksatsin",
+   "to_latin_2026": "siprofloksatsin"
+  },
+  "c0512": {
+   "detect_script": "latin_1995",
+   "normalize": "levofloksatsinni",
+   "to_cyrillic": "левофлоксацинни",
+   "to_latin_1995": "levofloksatsinni",
+   "to_latin_2026": "levofloksatsinni"
+  },
+  "c0513": {
+   "detect_script": "cyrillic",
+   "normalize": "levofloksatsinni",
+   "to_cyrillic": "левофлоксацинни",
+   "to_latin_1995": "levofloksatsinni",
+   "to_latin_2026": "levofloksatsinni"
+  },
+  "c0514": {
+   "detect_script": "latin_1995",
+   "normalize": "amikatsin",
+   "to_cyrillic": "амикацин",
+   "to_latin_1995": "amikatsin",
+   "to_latin_2026": "amikatsin"
+  },
+  "c0515": {
+   "detect_script": "latin_1995",
+   "normalize": "leytsin",
+   "to_cyrillic": "лейцин",
+   "to_latin_1995": "leytsin",
+   "to_latin_2026": "leytsin"
+  },
+  "c0516": {
+   "detect_script": "cyrillic",
+   "normalize": "leysin",
+   "to_cyrillic": "лейцин",
+   "to_latin_1995": "leysin",
+   "to_latin_2026": "leysin"
+  },
+  "c0517": {
+   "detect_script": "latin_1995",
+   "normalize": "izoleytsin",
+   "to_cyrillic": "изолейцин",
+   "to_latin_1995": "izoleytsin",
+   "to_latin_2026": "izoleytsin"
+  },
+  "c0518": {
+   "detect_script": "cyrillic",
+   "normalize": "izoleysin",
+   "to_cyrillic": "изолейцин",
+   "to_latin_1995": "izoleysin",
+   "to_latin_2026": "izoleysin"
+  },
+  "c0519": {
+   "detect_script": "latin_1995",
+   "normalize": "aktsiz",
+   "to_cyrillic": "акциз",
+   "to_latin_1995": "aktsiz",
+   "to_latin_2026": "aktsiz"
+  },
+  "c0520": {
+   "detect_script": "cyrillic",
+   "normalize": "aksiz",
+   "to_cyrillic": "акциз",
+   "to_latin_1995": "aksiz",
+   "to_latin_2026": "aksiz"
+  },
+  "c0521": {
+   "detect_script": "latin_1995",
+   "normalize": "aktsizlar",
+   "to_cyrillic": "акцизлар",
+   "to_latin_1995": "aktsizlar",
+   "to_latin_2026": "aktsizlar"
+  },
+  "c0522": {
+   "detect_script": "cyrillic",
+   "normalize": "aksizlar",
+   "to_cyrillic": "акцизлар",
+   "to_latin_1995": "aksizlar",
+   "to_latin_2026": "aksizlar"
+  },
+  "c0523": {
+   "detect_script": "latin_1995",
+   "normalize": "aktsizni",
+   "to_cyrillic": "акцизни",
+   "to_latin_1995": "aktsizni",
+   "to_latin_2026": "aktsizni"
+  },
+  "c0524": {
+   "detect_script": "cyrillic",
+   "normalize": "aksizni",
+   "to_cyrillic": "акцизни",
+   "to_latin_1995": "aksizni",
+   "to_latin_2026": "aksizni"
+  },
+  "c0525": {
+   "detect_script": "latin_1995",
+   "normalize": "kontaktsiz",
+   "to_cyrillic": "контактсиз",
+   "to_latin_1995": "kontaktsiz",
+   "to_latin_2026": "kontaktsiz"
+  },
+  "c0526": {
+   "detect_script": "cyrillic",
+   "normalize": "kontaktsiz",
+   "to_cyrillic": "контактсиз",
+   "to_latin_1995": "kontaktsiz",
+   "to_latin_2026": "kontaktsiz"
+  },
+  "c0527": {
+   "detect_script": "latin_1995",
+   "normalize": "kontaktsizlik",
+   "to_cyrillic": "контактсизлик",
+   "to_latin_1995": "kontaktsizlik",
+   "to_latin_2026": "kontaktsizlik"
+  },
+  "c0528": {
+   "detect_script": "cyrillic",
+   "normalize": "kontaktsizlik",
+   "to_cyrillic": "контактсизлик",
+   "to_latin_1995": "kontaktsizlik",
+   "to_latin_2026": "kontaktsizlik"
+  },
+  "c0529": {
+   "detect_script": "latin_1995",
+   "normalize": "effektsiz",
+   "to_cyrillic": "эффектсиз",
+   "to_latin_1995": "effektsiz",
+   "to_latin_2026": "effektsiz"
+  },
+  "c0530": {
+   "detect_script": "cyrillic",
+   "normalize": "effektsiz",
+   "to_cyrillic": "эффектсиз",
+   "to_latin_1995": "effektsiz",
+   "to_latin_2026": "effektsiz"
+  },
+  "c0531": {
+   "detect_script": "latin_1995",
+   "normalize": "effektsizligi",
+   "to_cyrillic": "эффектсизлиги",
+   "to_latin_1995": "effektsizligi",
+   "to_latin_2026": "effektsizligi"
+  },
+  "c0532": {
+   "detect_script": "cyrillic",
+   "normalize": "effektsizligi",
+   "to_cyrillic": "эффектсизлиги",
+   "to_latin_1995": "effektsizligi",
+   "to_latin_2026": "effektsizligi"
+  },
+  "c0533": {
+   "detect_script": "latin_1995",
+   "normalize": "faktsiz",
+   "to_cyrillic": "фактсиз",
+   "to_latin_1995": "faktsiz",
+   "to_latin_2026": "faktsiz"
+  },
+  "c0534": {
+   "detect_script": "cyrillic",
+   "normalize": "faktsiz",
+   "to_cyrillic": "фактсиз",
+   "to_latin_1995": "faktsiz",
+   "to_latin_2026": "faktsiz"
+  },
+  "c0535": {
+   "detect_script": "latin_1995",
+   "normalize": "proyektsiz",
+   "to_cyrillic": "проектсиз",
+   "to_latin_1995": "proyektsiz",
+   "to_latin_2026": "proyektsiz"
+  },
+  "c0536": {
+   "detect_script": "cyrillic",
+   "normalize": "proyektsiz",
+   "to_cyrillic": "проектсиз",
+   "to_latin_1995": "proyektsiz",
+   "to_latin_2026": "proyektsiz"
+  },
+  "c0537": {
+   "detect_script": "latin_1995",
+   "normalize": "intellektsiz",
+   "to_cyrillic": "интеллектсиз",
+   "to_latin_1995": "intellektsiz",
+   "to_latin_2026": "intellektsiz"
+  },
+  "c0538": {
+   "detect_script": "cyrillic",
+   "normalize": "intellektsiz",
+   "to_cyrillic": "интеллектсиз",
+   "to_latin_1995": "intellektsiz",
+   "to_latin_2026": "intellektsiz"
+  },
+  "c0539": {
+   "detect_script": "latin_1995",
+   "normalize": "tablitsa",
+   "to_cyrillic": "таблица",
+   "to_latin_1995": "tablitsa",
+   "to_latin_2026": "tablitsa"
+  },
+  "c0540": {
+   "detect_script": "latin_1995",
+   "normalize": "tablitsada",
+   "to_cyrillic": "таблицада",
+   "to_latin_1995": "tablitsada",
+   "to_latin_2026": "tablitsada"
+  },
+  "c0541": {
+   "detect_script": "cyrillic",
+   "normalize": "tablitsada",
+   "to_cyrillic": "таблицада",
+   "to_latin_1995": "tablitsada",
+   "to_latin_2026": "tablitsada"
+  },
+  "c0542": {
+   "detect_script": "latin_1995",
+   "normalize": "teplitsa",
+   "to_cyrillic": "теплица",
+   "to_latin_1995": "teplitsa",
+   "to_latin_2026": "teplitsa"
+  },
+  "c0543": {
+   "detect_script": "latin_1995",
+   "normalize": "teplitsalar",
+   "to_cyrillic": "теплицалар",
+   "to_latin_1995": "teplitsalar",
+   "to_latin_2026": "teplitsalar"
+  },
+  "c0544": {
+   "detect_script": "cyrillic",
+   "normalize": "teplitsalar",
+   "to_cyrillic": "теплицалар",
+   "to_latin_1995": "teplitsalar",
+   "to_latin_2026": "teplitsalar"
+  },
+  "c0545": {
+   "detect_script": "latin_1995",
+   "normalize": "stolitsa",
+   "to_cyrillic": "столица",
+   "to_latin_1995": "stolitsa",
+   "to_latin_2026": "stolitsa"
+  },
+  "c0546": {
+   "detect_script": "cyrillic",
+   "normalize": "stolitsa",
+   "to_cyrillic": "столица",
+   "to_latin_1995": "stolitsa",
+   "to_latin_2026": "stolitsa"
+  },
+  "c0547": {
+   "detect_script": "latin_1995",
+   "normalize": "ulitsa",
+   "to_cyrillic": "улица",
+   "to_latin_1995": "ulitsa",
+   "to_latin_2026": "ulitsa"
+  },
+  "c0548": {
+   "detect_script": "latin_1995",
+   "normalize": "bolnitsa",
+   "to_cyrillic": "болница",
+   "to_latin_1995": "bolnitsa",
+   "to_latin_2026": "bolnitsa"
+  },
+  "c0549": {
+   "detect_script": "cyrillic",
+   "normalize": "bolnitsa",
+   "to_cyrillic": "болница",
+   "to_latin_1995": "bolnitsa",
+   "to_latin_2026": "bolnitsa"
+  },
+  "c0550": {
+   "detect_script": "latin_1995",
+   "normalize": "granitsa",
+   "to_cyrillic": "граница",
+   "to_latin_1995": "granitsa",
+   "to_latin_2026": "granitsa"
+  },
+  "c0551": {
+   "detect_script": "cyrillic",
+   "normalize": "granitsa",
+   "to_cyrillic": "граница",
+   "to_latin_1995": "granitsa",
+   "to_latin_2026": "granitsa"
+  },
+  "c0552": {
+   "detect_script": "latin_1995",
+   "normalize": "gostinitsa",
+   "to_cyrillic": "гостиница",
+   "to_latin_1995": "gostinitsa",
+   "to_latin_2026": "gostinitsa"
+  },
+  "c0553": {
+   "detect_script": "cyrillic",
+   "normalize": "gostinitsa",
+   "to_cyrillic": "гостиница",
+   "to_latin_1995": "gostinitsa",
+   "to_latin_2026": "gostinitsa"
+  },
+  "c0554": {
+   "detect_script": "latin_1995",
+   "normalize": "bitsa",
+   "to_cyrillic": "битса",
+   "to_latin_1995": "bitsa",
+   "to_latin_2026": "bitsa"
+  },
+  "c0555": {
+   "detect_script": "cyrillic",
+   "normalize": "bitsa",
+   "to_cyrillic": "битса",
+   "to_latin_1995": "bitsa",
+   "to_latin_2026": "bitsa"
+  },
+  "c0556": {
+   "detect_script": "latin_1995",
+   "normalize": "oqitsa",
+   "to_cyrillic": "ўқитса",
+   "to_latin_1995": "oʻqitsa",
+   "to_latin_2026": "öqitsa"
+  },
+  "c0557": {
+   "detect_script": "cyrillic",
+   "normalize": "oqitsa",
+   "to_cyrillic": "ўқитса",
+   "to_latin_1995": "oʻqitsa",
+   "to_latin_2026": "öqitsa"
+  },
+  "c0558": {
+   "detect_script": "latin_1995",
+   "normalize": "eshitsa",
+   "to_cyrillic": "эшитса",
+   "to_latin_1995": "eshitsa",
+   "to_latin_2026": "eşitsa"
+  },
+  "c0559": {
+   "detect_script": "cyrillic",
+   "normalize": "eshitsa",
+   "to_cyrillic": "эшитса",
+   "to_latin_1995": "eshitsa",
+   "to_latin_2026": "eşitsa"
+  },
+  "c0560": {
+   "detect_script": "latin_1995",
+   "normalize": "quritsa",
+   "to_cyrillic": "қуритса",
+   "to_latin_1995": "quritsa",
+   "to_latin_2026": "quritsa"
+  },
+  "c0561": {
+   "detect_script": "cyrillic",
+   "normalize": "quritsa",
+   "to_cyrillic": "қуритса",
+   "to_latin_1995": "quritsa",
+   "to_latin_2026": "quritsa"
+  },
+  "c0562": {
+   "detect_script": "latin_1995",
+   "normalize": "ilitsa",
+   "to_cyrillic": "илитса",
+   "to_latin_1995": "ilitsa",
+   "to_latin_2026": "ilitsa"
+  },
+  "c0563": {
+   "detect_script": "cyrillic",
+   "normalize": "ilitsa",
+   "to_cyrillic": "илитса",
+   "to_latin_1995": "ilitsa",
+   "to_latin_2026": "ilitsa"
+  },
+  "c0564": {
+   "detect_script": "latin_1995",
+   "normalize": "tanitsa",
+   "to_cyrillic": "танитса",
+   "to_latin_1995": "tanitsa",
+   "to_latin_2026": "tanitsa"
+  },
+  "c0565": {
+   "detect_script": "cyrillic",
+   "normalize": "tanitsa",
+   "to_cyrillic": "танитса",
+   "to_latin_1995": "tanitsa",
+   "to_latin_2026": "tanitsa"
+  },
+  "c0566": {
+   "detect_script": "latin_1995",
+   "normalize": "korsatsin",
+   "to_cyrillic": "кўрсатсин",
+   "to_latin_1995": "koʻrsatsin",
+   "to_latin_2026": "körsatsin"
+  },
+  "c0567": {
+   "detect_script": "cyrillic",
+   "normalize": "korsatsin",
+   "to_cyrillic": "кўрсатсин",
+   "to_latin_1995": "koʻrsatsin",
+   "to_latin_2026": "körsatsin"
+  },
+  "c0568": {
+   "detect_script": "latin_1995",
+   "normalize": "yaratsin",
+   "to_cyrillic": "яратсин",
+   "to_latin_1995": "yaratsin",
+   "to_latin_2026": "yaratsin"
+  },
+  "c0569": {
+   "detect_script": "cyrillic",
+   "normalize": "yaratsin",
+   "to_cyrillic": "яратсин",
+   "to_latin_1995": "yaratsin",
+   "to_latin_2026": "yaratsin"
+  },
+  "c0570": {
+   "detect_script": "latin_1995",
+   "normalize": "orgatsin",
+   "to_cyrillic": "ўргатсин",
+   "to_latin_1995": "oʻrgatsin",
+   "to_latin_2026": "örgatsin"
+  },
+  "c0571": {
+   "detect_script": "cyrillic",
+   "normalize": "orgatsin",
+   "to_cyrillic": "ўргатсин",
+   "to_latin_1995": "oʻrgatsin",
+   "to_latin_2026": "örgatsin"
+  },
+  "c0572": {
+   "detect_script": "latin_1995",
+   "normalize": "uzatsin",
+   "to_cyrillic": "узатсин",
+   "to_latin_1995": "uzatsin",
+   "to_latin_2026": "uzatsin"
+  },
+  "c0573": {
+   "detect_script": "cyrillic",
+   "normalize": "uzatsin",
+   "to_cyrillic": "узатсин",
+   "to_latin_1995": "uzatsin",
+   "to_latin_2026": "uzatsin"
+  },
+  "c0574": {
+   "detect_script": "latin_1995",
+   "normalize": "qaytsa",
+   "to_cyrillic": "қайтса",
+   "to_latin_1995": "qaytsa",
+   "to_latin_2026": "qaytsa"
+  },
+  "c0575": {
+   "detect_script": "cyrillic",
+   "normalize": "qaytsa",
+   "to_cyrillic": "қайтса",
+   "to_latin_1995": "qaytsa",
+   "to_latin_2026": "qaytsa"
+  },
+  "c0576": {
+   "detect_script": "latin_1995",
+   "normalize": "tortsa",
+   "to_cyrillic": "тортса",
+   "to_latin_1995": "tortsa",
+   "to_latin_2026": "tortsa"
+  },
+  "c0577": {
+   "detect_script": "cyrillic",
+   "normalize": "tortsa",
+   "to_cyrillic": "тортса",
+   "to_latin_1995": "tortsa",
+   "to_latin_2026": "tortsa"
+  },
+  "c0578": {
+   "detect_script": "latin_1995",
+   "normalize": "yurtsiz",
+   "to_cyrillic": "юртсиз",
+   "to_latin_1995": "yurtsiz",
+   "to_latin_2026": "yurtsiz"
+  },
+  "c0579": {
+   "detect_script": "cyrillic",
+   "normalize": "yurtsiz",
+   "to_cyrillic": "юртсиз",
+   "to_latin_1995": "yurtsiz",
+   "to_latin_2026": "yurtsiz"
+  },
+  "c0580": {
+   "detect_script": "latin_2026",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0581": {
+   "detect_script": "latin_2026",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0582": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "МАЪНО",
+   "to_latin_1995": "MAʼNO",
+   "to_latin_2026": "MAʼNO"
+  },
+  "c0583": {
+   "detect_script": "latin_1995",
+   "normalize": "sher",
+   "to_cyrillic": "ШЕЪР",
+   "to_latin_1995": "SHEʼR",
+   "to_latin_2026": "ŞEʼR"
+  },
+  "c0584": {
+   "detect_script": "latin_1995",
+   "normalize": "shahar",
+   "to_cyrillic": "ШАҲАР",
+   "to_latin_1995": "SHAHAR",
+   "to_latin_2026": "ŞAHAR"
+  },
+  "c0585": {
+   "detect_script": "latin_1995",
+   "normalize": "shahar",
+   "to_cyrillic": "Шаҳар",
+   "to_latin_1995": "Shahar",
+   "to_latin_2026": "Şahar"
+  },
+  "c0586": {
+   "detect_script": "cyrillic",
+   "normalize": "shahar",
+   "to_cyrillic": "Шаҳар",
+   "to_latin_1995": "Shahar",
+   "to_latin_2026": "Şahar"
+  },
+  "c0587": {
+   "detect_script": "latin_1995",
+   "normalize": "choy",
+   "to_cyrillic": "Чой",
+   "to_latin_1995": "Choy",
+   "to_latin_2026": "Çoy"
+  },
+  "c0588": {
+   "detect_script": "cyrillic",
+   "normalize": "choy",
+   "to_cyrillic": "Чой",
+   "to_latin_1995": "Choy",
+   "to_latin_2026": "Çoy"
+  },
+  "c0589": {
+   "detect_script": "latin_1995",
+   "normalize": "choy",
+   "to_cyrillic": "ЧОЙ",
+   "to_latin_1995": "CHOY",
+   "to_latin_2026": "ÇOY"
+  },
+  "c0590": {
+   "detect_script": "cyrillic",
+   "normalize": "choy",
+   "to_cyrillic": "ЧОЙ",
+   "to_latin_1995": "CHOY",
+   "to_latin_2026": "ÇOY"
+  },
+  "c0591": {
+   "detect_script": "latin_1995",
+   "normalize": "galla",
+   "to_cyrillic": "Ғалла",
+   "to_latin_1995": "Gʻalla",
+   "to_latin_2026": "Ğalla"
+  },
+  "c0592": {
+   "detect_script": "cyrillic",
+   "normalize": "galla",
+   "to_cyrillic": "Ғалла",
+   "to_latin_1995": "Gʻalla",
+   "to_latin_2026": "Ğalla"
+  },
+  "c0593": {
+   "detect_script": "cyrillic",
+   "normalize": "yer",
+   "to_cyrillic": "Ер",
+   "to_latin_1995": "Yer",
+   "to_latin_2026": "Yer"
+  },
+  "c0594": {
+   "detect_script": "latin_1995",
+   "normalize": "yer",
+   "to_cyrillic": "Ер",
+   "to_latin_1995": "Yer",
+   "to_latin_2026": "Yer"
+  },
+  "c0595": {
+   "detect_script": "cyrillic",
+   "normalize": "poyezd",
+   "to_cyrillic": "поезд",
+   "to_latin_1995": "poyezd",
+   "to_latin_2026": "poyezd"
+  },
+  "c0596": {
+   "detect_script": "latin_1995",
+   "normalize": "poyezd",
+   "to_cyrillic": "поезд",
+   "to_latin_1995": "poyezd",
+   "to_latin_2026": "poyezd"
+  },
+  "c0597": {
+   "detect_script": "cyrillic",
+   "normalize": "pyesa",
+   "to_cyrillic": "пьеса",
+   "to_latin_1995": "pyesa",
+   "to_latin_2026": "pyesa"
+  },
+  "c0598": {
+   "detect_script": "latin_1995",
+   "normalize": "pyesa",
+   "to_cyrillic": "песа",
+   "to_latin_1995": "pyesa",
+   "to_latin_2026": "pyesa"
+  },
+  "c0599": {
+   "detect_script": "cyrillic",
+   "normalize": "tezda",
+   "to_cyrillic": "тезда",
+   "to_latin_1995": "tezda",
+   "to_latin_2026": "tezda"
+  },
+  "c0600": {
+   "detect_script": "latin_1995",
+   "normalize": "tezda",
+   "to_cyrillic": "тезда",
+   "to_latin_1995": "tezda",
+   "to_latin_2026": "tezda"
+  },
+  "c0601": {
+   "detect_script": "cyrillic",
+   "normalize": "sirk",
+   "to_cyrillic": "цирк",
+   "to_latin_1995": "sirk",
+   "to_latin_2026": "sirk"
+  },
+  "c0602": {
+   "detect_script": "latin_1995",
+   "normalize": "sirk",
+   "to_cyrillic": "сирк",
+   "to_latin_1995": "sirk",
+   "to_latin_2026": "sirk"
+  },
+  "c0603": {
+   "detect_script": "cyrillic",
+   "normalize": "konsert",
+   "to_cyrillic": "концерт",
+   "to_latin_1995": "konsert",
+   "to_latin_2026": "konsert"
+  },
+  "c0604": {
+   "detect_script": "latin_1995",
+   "normalize": "konsert",
+   "to_cyrillic": "консерт",
+   "to_latin_1995": "konsert",
+   "to_latin_2026": "konsert"
+  },
+  "c0605": {
+   "detect_script": "cyrillic",
+   "normalize": "kompyuter",
+   "to_cyrillic": "компьютер",
+   "to_latin_1995": "kompyuter",
+   "to_latin_2026": "kompyuter"
+  },
+  "c0606": {
+   "detect_script": "latin_1995",
+   "normalize": "kompyuter",
+   "to_cyrillic": "компютер",
+   "to_latin_1995": "kompyuter",
+   "to_latin_2026": "kompyuter"
+  },
+  "c0607": {
+   "detect_script": "cyrillic",
+   "normalize": "iyun",
+   "to_cyrillic": "июнь",
+   "to_latin_1995": "iyun",
+   "to_latin_2026": "iyun"
+  },
+  "c0608": {
+   "detect_script": "latin_1995",
+   "normalize": "iyun",
+   "to_cyrillic": "июн",
+   "to_latin_1995": "iyun",
+   "to_latin_2026": "iyun"
+  },
+  "c0609": {
+   "detect_script": "latin_1995",
+   "normalize": "mirzo ulugbek",
+   "to_cyrillic": "Мирзо Улуғбек",
+   "to_latin_1995": "Mirzo Ulugʻbek",
+   "to_latin_2026": "Mirzo Uluğbek"
+  },
+  "c0610": {
+   "detect_script": "latin_1995",
+   "normalize": "alisher navoiy",
+   "to_cyrillic": "Алишер Навоий",
+   "to_latin_1995": "Alisher Navoiy",
+   "to_latin_2026": "Alişer Navoiy"
+  },
+  "c0611": {
+   "detect_script": "latin_1995",
+   "normalize": "tog",
+   "to_cyrillic": "тоғ",
+   "to_latin_1995": "togʻ",
+   "to_latin_2026": "toğ"
+  },
+  "c0612": {
+   "detect_script": "latin_1995",
+   "normalize": "yog",
+   "to_cyrillic": "ёғ",
+   "to_latin_1995": "yogʻ",
+   "to_latin_2026": "yoğ"
+  },
+  "c0613": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0614": {
+   "detect_script": "latin_1995",
+   "normalize": "ishoq",
+   "to_cyrillic": "Исҳоқ",
+   "to_latin_1995": "Isʼhoq",
+   "to_latin_2026": "Ishoq"
+  },
+  "c0615": {
+   "detect_script": "latin_1995",
+   "normalize": "choqqi",
+   "to_cyrillic": "чўққи",
+   "to_latin_1995": "choʻqqi",
+   "to_latin_2026": "çöqqi"
+  },
+  "c0616": {
+   "detect_script": "latin_1995",
+   "normalize": "gishtli",
+   "to_cyrillic": "ғиштли",
+   "to_latin_1995": "gʻishtli",
+   "to_latin_2026": "ğiştli"
+  },
+  "c0617": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek tili va adabiyoti",
+   "to_cyrillic": "Ўзбек тили ва адабиёти",
+   "to_latin_1995": "Oʻzbek tili va adabiyoti",
+   "to_latin_2026": "Özbek tili va adabiyoti"
+  },
+  "c0618": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent",
+   "to_cyrillic": "Тошкент",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c0619": {
+   "detect_script": "cyrillic",
+   "normalize": "buxoro",
+   "to_cyrillic": "Бухоро",
+   "to_latin_1995": "Buxoro",
+   "to_latin_2026": "Buxoro"
+  },
+  "c0620": {
+   "detect_script": "cyrillic",
+   "normalize": "surxondaryo",
+   "to_cyrillic": "Сурхондарё",
+   "to_latin_1995": "Surxondaryo",
+   "to_latin_2026": "Surxondaryo"
+  },
+  "c0621": {
+   "detect_script": "cyrillic",
+   "normalize": "alisher navoiy",
+   "to_cyrillic": "Алишер Навоий",
+   "to_latin_1995": "Alisher Navoiy",
+   "to_latin_2026": "Alişer Navoiy"
+  },
+  "c0622": {
+   "detect_script": "cyrillic",
+   "normalize": "mirzo ulugbek",
+   "to_cyrillic": "Мирзо Улуғбек",
+   "to_latin_1995": "Mirzo Ulugʻbek",
+   "to_latin_2026": "Mirzo Uluğbek"
+  },
+  "c0623": {
+   "detect_script": "cyrillic",
+   "normalize": "abu rayhon beruniy",
+   "to_cyrillic": "Абу Райҳон Беруний",
+   "to_latin_1995": "Abu Rayhon Beruniy",
+   "to_latin_2026": "Abu Rayhon Beruniy"
+  },
+  "c0624": {
+   "detect_script": "cyrillic",
+   "normalize": "zahiriddin muhammad bobur",
+   "to_cyrillic": "Заҳириддин Муҳаммад Бобур",
+   "to_latin_1995": "Zahiriddin Muhammad Bobur",
+   "to_latin_2026": "Zahiriddin Muhammad Bobur"
+  },
+  "c0625": {
+   "detect_script": "cyrillic",
+   "normalize": "shoshimova",
+   "to_cyrillic": "ШОШИМОВА",
+   "to_latin_1995": "SHOSHIMOVA",
+   "to_latin_2026": "ŞOŞIMOVA"
+  },
+  "c0626": {
+   "detect_script": "cyrillic",
+   "normalize": "sher",
+   "to_cyrillic": "шеър",
+   "to_latin_1995": "sheʼr",
+   "to_latin_2026": "şeʼr"
+  },
+  "c0627": {
+   "detect_script": "cyrillic",
+   "normalize": "tog",
+   "to_cyrillic": "тоғ",
+   "to_latin_1995": "togʻ",
+   "to_latin_2026": "toğ"
+  },
+  "c0628": {
+   "detect_script": "cyrillic",
+   "normalize": "erkin",
+   "to_cyrillic": "Эркин",
+   "to_latin_1995": "Erkin",
+   "to_latin_2026": "Erkin"
+  },
+  "c0629": {
+   "detect_script": "cyrillic",
+   "normalize": "eshik",
+   "to_cyrillic": "эшик",
+   "to_latin_1995": "eshik",
+   "to_latin_2026": "eşik"
+  },
+  "c0630": {
+   "detect_script": "cyrillic",
+   "normalize": "ishoq",
+   "to_cyrillic": "Исҳоқ",
+   "to_latin_1995": "Isʼhoq",
+   "to_latin_2026": "Ishoq"
+  },
+  "c0631": {
+   "detect_script": "cyrillic",
+   "normalize": "yulduz",
+   "to_cyrillic": "юлдуз",
+   "to_latin_1995": "yulduz",
+   "to_latin_2026": "yulduz"
+  },
+  "c0632": {
+   "detect_script": "cyrillic",
+   "normalize": "yashil",
+   "to_cyrillic": "яшил",
+   "to_latin_1995": "yashil",
+   "to_latin_2026": "yaşil"
+  },
+  "c0633": {
+   "detect_script": "cyrillic",
+   "normalize": "ozbek tili va adabiyoti",
+   "to_cyrillic": "Ўзбек тили ва адабиёти",
+   "to_latin_1995": "Oʻzbek tili va adabiyoti",
+   "to_latin_2026": "Özbek tili va adabiyoti"
+  },
+  "c0634": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent davlat universiteti 2026 yil",
+   "to_cyrillic": "Тошкент давлат университети, 2026-йил",
+   "to_latin_1995": "Toshkent davlat universiteti, 2026-yil",
+   "to_latin_2026": "Toşkent davlat universiteti, 2026-yil"
+  },
+  "c0635": {
+   "detect_script": "latin_1995",
+   "normalize": "ishoq",
+   "to_cyrillic": "Ишоқ",
+   "to_latin_1995": "Ishoq",
+   "to_latin_2026": "Işoq"
+  },
+  "c0636": {
+   "detect_script": "latin_2026",
+   "normalize": "ish",
+   "to_cyrillic": "иш",
+   "to_latin_1995": "ish",
+   "to_latin_2026": "iş"
+  },
+  "c0637": {
+   "detect_script": "cyrillic",
+   "normalize": "borsh",
+   "to_cyrillic": "борш",
+   "to_latin_1995": "borsh",
+   "to_latin_2026": "borş"
+  },
+  "c0638": {
+   "detect_script": "latin_1995",
+   "normalize": "albom",
+   "to_cyrillic": "албом",
+   "to_latin_1995": "albom",
+   "to_latin_2026": "albom"
+  },
+  "c0639": {
+   "detect_script": "cyrillic",
+   "normalize": "albom",
+   "to_cyrillic": "албом",
+   "to_latin_1995": "albom",
+   "to_latin_2026": "albom"
+  },
+  "c0640": {
+   "detect_script": "latin_1995",
+   "normalize": "funksiya",
+   "to_cyrillic": "функсия",
+   "to_latin_1995": "funksiya",
+   "to_latin_2026": "funksiya"
+  },
+  "c0641": {
+   "detect_script": "latin_1995",
+   "normalize": "revolyutsiya",
+   "to_cyrillic": "революция",
+   "to_latin_1995": "revolyutsiya",
+   "to_latin_2026": "revolyutsiya"
+  },
+  "c0642": {
+   "detect_script": "cyrillic",
+   "normalize": "sirk",
+   "to_cyrillic": "сирк",
+   "to_latin_1995": "sirk",
+   "to_latin_2026": "sirk"
+  },
+  "c0643": {
+   "detect_script": "cyrillic",
+   "normalize": "ishoq",
+   "to_cyrillic": "Ишоқ",
+   "to_latin_1995": "Ishoq",
+   "to_latin_2026": "Işoq"
+  },
+  "c0644": {
+   "detect_script": "cyrillic",
+   "normalize": "sh",
+   "to_cyrillic": "щ",
+   "to_latin_1995": "sh",
+   "to_latin_2026": "ş"
+  },
+  "c0645": {
+   "detect_script": "latin_1995",
+   "normalize": "borsh",
+   "to_cyrillic": "борш",
+   "to_latin_1995": "borsh",
+   "to_latin_2026": "borş"
+  },
+  "c0646": {
+   "detect_script": "cyrillic",
+   "normalize": "i",
+   "to_cyrillic": "ы",
+   "to_latin_1995": "i",
+   "to_latin_2026": "i"
+  },
+  "c0647": {
+   "detect_script": "cyrillic",
+   "normalize": "funksiya",
+   "to_cyrillic": "функция",
+   "to_latin_1995": "funksiya",
+   "to_latin_2026": "funksiya"
+  },
+  "c0648": {
+   "detect_script": "cyrillic",
+   "normalize": "revolyutsiya",
+   "to_cyrillic": "революция",
+   "to_latin_1995": "revolyutsiya",
+   "to_latin_2026": "revolyutsiya"
+  },
+  "c0649": {
+   "detect_script": "latin_1995",
+   "normalize": "sh",
+   "to_cyrillic": "сҳ",
+   "to_latin_1995": "sʼh",
+   "to_latin_2026": "sh"
+  },
+  "c0650": {
+   "detect_script": "latin_1995",
+   "normalize": "abu rayhon beruniy",
+   "to_cyrillic": "Абу Райҳон Беруний",
+   "to_latin_1995": "Abu Rayhon Beruniy",
+   "to_latin_2026": "Abu Rayhon Beruniy"
+  },
+  "c0651": {
+   "detect_script": "latin_1995",
+   "normalize": "samarqand",
+   "to_cyrillic": "Самарқанд",
+   "to_latin_1995": "Samarqand",
+   "to_latin_2026": "Samarqand"
+  },
+  "c0652": {
+   "detect_script": "latin_2026",
+   "normalize": "alisher navoiy",
+   "to_cyrillic": "Алишер Навоий",
+   "to_latin_1995": "Alisher Navoiy",
+   "to_latin_2026": "Alişer Navoiy"
+  },
+  "c0653": {
+   "detect_script": "latin_2026",
+   "normalize": "mirzo ulugbek",
+   "to_cyrillic": "Мирзо Улуғбек",
+   "to_latin_1995": "Mirzo Ulugʻbek",
+   "to_latin_2026": "Mirzo Uluğbek"
+  },
+  "c0654": {
+   "detect_script": "latin_1995",
+   "normalize": "azo",
+   "to_cyrillic": "аъзо",
+   "to_latin_1995": "aʼzo",
+   "to_latin_2026": "aʼzo"
+  },
+  "c0655": {
+   "detect_script": "latin_1995",
+   "normalize": "sher",
+   "to_cyrillic": "шеър",
+   "to_latin_1995": "sheʼr",
+   "to_latin_2026": "şeʼr"
+  },
+  "c0656": {
+   "detect_script": "cyrillic",
+   "normalize": "ish",
+   "to_cyrillic": "иш",
+   "to_latin_1995": "ish",
+   "to_latin_2026": "iş"
+  },
+  "c0657": {
+   "detect_script": "cyrillic",
+   "normalize": "ishoq",
+   "to_cyrillic": "исҳоқ",
+   "to_latin_1995": "isʼhoq",
+   "to_latin_2026": "ishoq"
+  },
+  "c0658": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0659": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0660": {
+   "detect_script": "cyrillic",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0661": {
+   "detect_script": "cyrillic",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0662": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0663": {
+   "detect_script": "cyrillic",
+   "normalize": "yog",
+   "to_cyrillic": "ёғ",
+   "to_latin_1995": "yogʻ",
+   "to_latin_2026": "yoğ"
+  },
+  "c0664": {
+   "detect_script": "cyrillic",
+   "normalize": "salom",
+   "to_cyrillic": "'салом'",
+   "to_latin_1995": "'salom'",
+   "to_latin_2026": "'salom'"
+  },
+  "c0665": {
+   "detect_script": "cyrillic",
+   "normalize": "yer",
+   "to_cyrillic": "ер",
+   "to_latin_1995": "yer",
+   "to_latin_2026": "yer"
+  },
+  "c0666": {
+   "detect_script": "latin_1995",
+   "normalize": "yer",
+   "to_cyrillic": "ер",
+   "to_latin_1995": "yer",
+   "to_latin_2026": "yer"
+  },
+  "c0667": {
+   "detect_script": "cyrillic",
+   "normalize": "teatr",
+   "to_cyrillic": "театр",
+   "to_latin_1995": "teatr",
+   "to_latin_2026": "teatr"
+  },
+  "c0668": {
+   "detect_script": "latin_1995",
+   "normalize": "teatr",
+   "to_cyrillic": "театр",
+   "to_latin_1995": "teatr",
+   "to_latin_2026": "teatr"
+  },
+  "c0669": {
+   "detect_script": "latin_1995",
+   "normalize": "erkin",
+   "to_cyrillic": "Эркин",
+   "to_latin_1995": "Erkin",
+   "to_latin_2026": "Erkin"
+  },
+  "c0670": {
+   "detect_script": "latin_1995",
+   "normalize": "eshik",
+   "to_cyrillic": "эшик",
+   "to_latin_1995": "eshik",
+   "to_latin_2026": "eşik"
+  },
+  "c0671": {
+   "detect_script": "cyrillic",
+   "normalize": "muallif",
+   "to_cyrillic": "муаллиф",
+   "to_latin_1995": "muallif",
+   "to_latin_2026": "muallif"
+  },
+  "c0672": {
+   "detect_script": "latin_1995",
+   "normalize": "muallif",
+   "to_cyrillic": "муаллиф",
+   "to_latin_1995": "muallif",
+   "to_latin_2026": "muallif"
+  },
+  "c0673": {
+   "detect_script": "cyrillic",
+   "normalize": "azo",
+   "to_cyrillic": "аъзо",
+   "to_latin_1995": "aʼzo",
+   "to_latin_2026": "aʼzo"
+  },
+  "c0674": {
+   "detect_script": "latin_1995",
+   "normalize": "ishoq",
+   "to_cyrillic": "ишоқ",
+   "to_latin_1995": "ishoq",
+   "to_latin_2026": "işoq"
+  },
+  "c0675": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0676": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0677": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0678": {
+   "detect_script": "latin_1995",
+   "normalize": "salom",
+   "to_cyrillic": "'салом'",
+   "to_latin_1995": "'salom'",
+   "to_latin_2026": "'salom'"
+  },
+  "c0679": {
+   "detect_script": "cyrillic",
+   "normalize": "abvgdeyojziyklmnoprstufxschsheyuyaoqgh",
+   "to_cyrillic": "абвгдеёжзийклмнопрстуфхцчшъэюяўқғҳ",
+   "to_latin_1995": "abvgdeyojziyklmnoprstufxschshʼeyuyaoʻqgʻh",
+   "to_latin_2026": "abvgdeyojziyklmnoprstufxsçşʼeyuyaöqğh"
+  },
+  "c0680": {
+   "detect_script": "cyrillic",
+   "normalize": "abvgdyojziyklmnoprstufxchshieyuyaoqghsh",
+   "to_cyrillic": "абвгдёжзийклмнопрстуфхчшъьыэюяўқғҳщ",
+   "to_latin_1995": "abvgdyojziyklmnoprstufxchshʼieyuyaoʻqgʻhsh",
+   "to_latin_2026": "abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş"
+  },
+  "c0681": {
+   "detect_script": "cyrillic",
+   "normalize": "asr",
+   "to_cyrillic": "аср",
+   "to_latin_1995": "asr",
+   "to_latin_2026": "asr"
+  },
+  "c0682": {
+   "detect_script": "latin_1995",
+   "normalize": "asr",
+   "to_cyrillic": "аср",
+   "to_latin_1995": "asr",
+   "to_latin_2026": "asr"
+  },
+  "c0683": {
+   "detect_script": "cyrillic",
+   "normalize": "vaqt",
+   "to_cyrillic": "вақт",
+   "to_latin_1995": "vaqt",
+   "to_latin_2026": "vaqt"
+  },
+  "c0684": {
+   "detect_script": "latin_1995",
+   "normalize": "vaqt",
+   "to_cyrillic": "вақт",
+   "to_latin_1995": "vaqt",
+   "to_latin_2026": "vaqt"
+  },
+  "c0685": {
+   "detect_script": "cyrillic",
+   "normalize": "gul",
+   "to_cyrillic": "гул",
+   "to_latin_1995": "gul",
+   "to_latin_2026": "gul"
+  },
+  "c0686": {
+   "detect_script": "latin_1995",
+   "normalize": "gul",
+   "to_cyrillic": "гул",
+   "to_latin_1995": "gul",
+   "to_latin_2026": "gul"
+  },
+  "c0687": {
+   "detect_script": "cyrillic",
+   "normalize": "dala",
+   "to_cyrillic": "дала",
+   "to_latin_1995": "dala",
+   "to_latin_2026": "dala"
+  },
+  "c0688": {
+   "detect_script": "latin_1995",
+   "normalize": "dala",
+   "to_cyrillic": "дала",
+   "to_latin_1995": "dala",
+   "to_latin_2026": "dala"
+  },
+  "c0689": {
+   "detect_script": "cyrillic",
+   "normalize": "yozma",
+   "to_cyrillic": "ёзма",
+   "to_latin_1995": "yozma",
+   "to_latin_2026": "yozma"
+  },
+  "c0690": {
+   "detect_script": "latin_1995",
+   "normalize": "yozma",
+   "to_cyrillic": "ёзма",
+   "to_latin_1995": "yozma",
+   "to_latin_2026": "yozma"
+  },
+  "c0691": {
+   "detect_script": "cyrillic",
+   "normalize": "jasur",
+   "to_cyrillic": "жасур",
+   "to_latin_1995": "jasur",
+   "to_latin_2026": "jasur"
+  },
+  "c0692": {
+   "detect_script": "latin_1995",
+   "normalize": "jasur",
+   "to_cyrillic": "жасур",
+   "to_latin_1995": "jasur",
+   "to_latin_2026": "jasur"
+  },
+  "c0693": {
+   "detect_script": "cyrillic",
+   "normalize": "zamin",
+   "to_cyrillic": "замин",
+   "to_latin_1995": "zamin",
+   "to_latin_2026": "zamin"
+  },
+  "c0694": {
+   "detect_script": "latin_1995",
+   "normalize": "zamin",
+   "to_cyrillic": "замин",
+   "to_latin_1995": "zamin",
+   "to_latin_2026": "zamin"
+  },
+  "c0695": {
+   "detect_script": "cyrillic",
+   "normalize": "ilm",
+   "to_cyrillic": "илм",
+   "to_latin_1995": "ilm",
+   "to_latin_2026": "ilm"
+  },
+  "c0696": {
+   "detect_script": "latin_1995",
+   "normalize": "ilm",
+   "to_cyrillic": "илм",
+   "to_latin_1995": "ilm",
+   "to_latin_2026": "ilm"
+  },
+  "c0697": {
+   "detect_script": "cyrillic",
+   "normalize": "lagan",
+   "to_cyrillic": "лаган",
+   "to_latin_1995": "lagan",
+   "to_latin_2026": "lagan"
+  },
+  "c0698": {
+   "detect_script": "latin_1995",
+   "normalize": "lagan",
+   "to_cyrillic": "лаган",
+   "to_latin_1995": "lagan",
+   "to_latin_2026": "lagan"
+  },
+  "c0699": {
+   "detect_script": "cyrillic",
+   "normalize": "makon",
+   "to_cyrillic": "макон",
+   "to_latin_1995": "makon",
+   "to_latin_2026": "makon"
+  },
+  "c0700": {
+   "detect_script": "latin_1995",
+   "normalize": "makon",
+   "to_cyrillic": "макон",
+   "to_latin_1995": "makon",
+   "to_latin_2026": "makon"
+  },
+  "c0701": {
+   "detect_script": "cyrillic",
+   "normalize": "nur",
+   "to_cyrillic": "нур",
+   "to_latin_1995": "nur",
+   "to_latin_2026": "nur"
+  },
+  "c0702": {
+   "detect_script": "latin_1995",
+   "normalize": "nur",
+   "to_cyrillic": "нур",
+   "to_latin_1995": "nur",
+   "to_latin_2026": "nur"
+  },
+  "c0703": {
+   "detect_script": "cyrillic",
+   "normalize": "paxta",
+   "to_cyrillic": "пахта",
+   "to_latin_1995": "paxta",
+   "to_latin_2026": "paxta"
+  },
+  "c0704": {
+   "detect_script": "latin_1995",
+   "normalize": "paxta",
+   "to_cyrillic": "пахта",
+   "to_latin_1995": "paxta",
+   "to_latin_2026": "paxta"
+  },
+  "c0705": {
+   "detect_script": "cyrillic",
+   "normalize": "raqam",
+   "to_cyrillic": "рақам",
+   "to_latin_1995": "raqam",
+   "to_latin_2026": "raqam"
+  },
+  "c0706": {
+   "detect_script": "latin_1995",
+   "normalize": "raqam",
+   "to_cyrillic": "рақам",
+   "to_latin_1995": "raqam",
+   "to_latin_2026": "raqam"
+  },
+  "c0707": {
+   "detect_script": "cyrillic",
+   "normalize": "sano",
+   "to_cyrillic": "сано",
+   "to_latin_1995": "sano",
+   "to_latin_2026": "sano"
+  },
+  "c0708": {
+   "detect_script": "latin_1995",
+   "normalize": "sano",
+   "to_cyrillic": "сано",
+   "to_latin_1995": "sano",
+   "to_latin_2026": "sano"
+  },
+  "c0709": {
+   "detect_script": "cyrillic",
+   "normalize": "til",
+   "to_cyrillic": "тил",
+   "to_latin_1995": "til",
+   "to_latin_2026": "til"
+  },
+  "c0710": {
+   "detect_script": "latin_1995",
+   "normalize": "til",
+   "to_cyrillic": "тил",
+   "to_latin_1995": "til",
+   "to_latin_2026": "til"
+  },
+  "c0711": {
+   "detect_script": "cyrillic",
+   "normalize": "usta",
+   "to_cyrillic": "уста",
+   "to_latin_1995": "usta",
+   "to_latin_2026": "usta"
+  },
+  "c0712": {
+   "detect_script": "latin_1995",
+   "normalize": "usta",
+   "to_cyrillic": "уста",
+   "to_latin_1995": "usta",
+   "to_latin_2026": "usta"
+  },
+  "c0713": {
+   "detect_script": "cyrillic",
+   "normalize": "fan",
+   "to_cyrillic": "фан",
+   "to_latin_1995": "fan",
+   "to_latin_2026": "fan"
+  },
+  "c0714": {
+   "detect_script": "latin_1995",
+   "normalize": "fan",
+   "to_cyrillic": "фан",
+   "to_latin_1995": "fan",
+   "to_latin_2026": "fan"
+  },
+  "c0715": {
+   "detect_script": "cyrillic",
+   "normalize": "xona",
+   "to_cyrillic": "хона",
+   "to_latin_1995": "xona",
+   "to_latin_2026": "xona"
+  },
+  "c0716": {
+   "detect_script": "latin_1995",
+   "normalize": "xona",
+   "to_cyrillic": "хона",
+   "to_latin_1995": "xona",
+   "to_latin_2026": "xona"
+  },
+  "c0717": {
+   "detect_script": "cyrillic",
+   "normalize": "chora",
+   "to_cyrillic": "чора",
+   "to_latin_1995": "chora",
+   "to_latin_2026": "çora"
+  },
+  "c0718": {
+   "detect_script": "latin_1995",
+   "normalize": "chora",
+   "to_cyrillic": "чора",
+   "to_latin_1995": "chora",
+   "to_latin_2026": "çora"
+  },
+  "c0719": {
+   "detect_script": "latin_2026",
+   "normalize": "chora",
+   "to_cyrillic": "чора",
+   "to_latin_1995": "chora",
+   "to_latin_2026": "çora"
+  },
+  "c0720": {
+   "detect_script": "cyrillic",
+   "normalize": "shamol",
+   "to_cyrillic": "шамол",
+   "to_latin_1995": "shamol",
+   "to_latin_2026": "şamol"
+  },
+  "c0721": {
+   "detect_script": "latin_1995",
+   "normalize": "shamol",
+   "to_cyrillic": "шамол",
+   "to_latin_1995": "shamol",
+   "to_latin_2026": "şamol"
+  },
+  "c0722": {
+   "detect_script": "latin_2026",
+   "normalize": "shamol",
+   "to_cyrillic": "шамол",
+   "to_latin_1995": "shamol",
+   "to_latin_2026": "şamol"
+  },
+  "c0723": {
+   "detect_script": "latin_2026",
+   "normalize": "eshik",
+   "to_cyrillic": "эшик",
+   "to_latin_1995": "eshik",
+   "to_latin_2026": "eşik"
+  },
+  "c0724": {
+   "detect_script": "latin_1995",
+   "normalize": "yulduz",
+   "to_cyrillic": "юлдуз",
+   "to_latin_1995": "yulduz",
+   "to_latin_2026": "yulduz"
+  },
+  "c0725": {
+   "detect_script": "latin_1995",
+   "normalize": "yashil",
+   "to_cyrillic": "яшил",
+   "to_latin_1995": "yashil",
+   "to_latin_2026": "yaşil"
+  },
+  "c0726": {
+   "detect_script": "latin_2026",
+   "normalize": "yashil",
+   "to_cyrillic": "яшил",
+   "to_latin_1995": "yashil",
+   "to_latin_2026": "yaşil"
+  },
+  "c0727": {
+   "detect_script": "cyrillic",
+   "normalize": "orik",
+   "to_cyrillic": "ўрик",
+   "to_latin_1995": "oʻrik",
+   "to_latin_2026": "örik"
+  },
+  "c0728": {
+   "detect_script": "latin_1995",
+   "normalize": "orik",
+   "to_cyrillic": "ўрик",
+   "to_latin_1995": "oʻrik",
+   "to_latin_2026": "örik"
+  },
+  "c0729": {
+   "detect_script": "latin_2026",
+   "normalize": "orik",
+   "to_cyrillic": "ўрик",
+   "to_latin_1995": "oʻrik",
+   "to_latin_2026": "örik"
+  },
+  "c0730": {
+   "detect_script": "cyrillic",
+   "normalize": "qalam",
+   "to_cyrillic": "қалам",
+   "to_latin_1995": "qalam",
+   "to_latin_2026": "qalam"
+  },
+  "c0731": {
+   "detect_script": "latin_1995",
+   "normalize": "qalam",
+   "to_cyrillic": "қалам",
+   "to_latin_1995": "qalam",
+   "to_latin_2026": "qalam"
+  },
+  "c0732": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0733": {
+   "detect_script": "latin_2026",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0734": {
+   "detect_script": "latin_1995",
+   "normalize": "hayot",
+   "to_cyrillic": "ҳаёт",
+   "to_latin_1995": "hayot",
+   "to_latin_2026": "hayot"
+  },
+  "c0735": {
+   "detect_script": "latin_1995",
+   "normalize": "zahiriddin muhammad bobur",
+   "to_cyrillic": "Заҳириддин Муҳаммад Бобур",
+   "to_latin_1995": "Zahiriddin Muhammad Bobur",
+   "to_latin_2026": "Zahiriddin Muhammad Bobur"
+  },
+  "c0736": {
+   "detect_script": "latin_1995",
+   "normalize": "surxondaryo",
+   "to_cyrillic": "Сурхондарё",
+   "to_latin_1995": "Surxondaryo",
+   "to_latin_2026": "Surxondaryo"
+  },
+  "c0737": {
+   "detect_script": "latin_2026",
+   "normalize": "ozbek tili va adabiyoti",
+   "to_cyrillic": "Ўзбек тили ва адабиёти",
+   "to_latin_1995": "Oʻzbek tili va adabiyoti",
+   "to_latin_2026": "Özbek tili va adabiyoti"
+  },
+  "c0738": {
+   "detect_script": "latin_1995",
+   "normalize": "toqqiz",
+   "to_cyrillic": "Тўққиз",
+   "to_latin_1995": "Toʻqqiz",
+   "to_latin_2026": "Töqqiz"
+  },
+  "c0739": {
+   "detect_script": "latin_2026",
+   "normalize": "toqqiz",
+   "to_cyrillic": "Тўққиз",
+   "to_latin_1995": "Toʻqqiz",
+   "to_latin_2026": "Töqqiz"
+  },
+  "c0740": {
+   "detect_script": "latin_2026",
+   "normalize": "ozbekiston respublikasi",
+   "to_cyrillic": "Ўзбекистон  Республикаси!",
+   "to_latin_1995": "Oʻzbekiston  Respublikasi!",
+   "to_latin_2026": "Özbekiston  Respublikasi!"
+  },
+  "c0741": {
+   "detect_script": "latin_1995",
+   "normalize": "mirzo ulugbek nomidagi ozbekiston milliy universiteti",
+   "to_cyrillic": "Мирзо Улуғбек номидаги Ўзбекистон Миллий университети",
+   "to_latin_1995": "Mirzo Ulugʻbek nomidagi Oʻzbekiston Milliy universiteti",
+   "to_latin_2026": "Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti"
+  },
+  "c0742": {
+   "detect_script": "latin_2026",
+   "normalize": "mirzo ulugbek nomidagi ozbekiston milliy universiteti",
+   "to_cyrillic": "Мирзо Улуғбек номидаги Ўзбекистон Миллий университети",
+   "to_latin_1995": "Mirzo Ulugʻbek nomidagi Oʻzbekiston Milliy universiteti",
+   "to_latin_2026": "Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti"
+  },
+  "c0743": {
+   "detect_script": "latin_2026",
+   "normalize": "shoshimova n",
+   "to_cyrillic": "Шошимова Н.",
+   "to_latin_1995": "Shoshimova N.",
+   "to_latin_2026": "Şoşimova N."
+  },
+  "c0744": {
+   "detect_script": "latin_1995",
+   "normalize": "shoshimova n",
+   "to_cyrillic": "Шошимова Н.",
+   "to_latin_1995": "Shoshimova N.",
+   "to_latin_2026": "Şoşimova N."
+  },
+  "c0745": {
+   "detect_script": "cyrillic",
+   "normalize": "shoshimova n",
+   "to_cyrillic": "Шошимова Н.",
+   "to_latin_1995": "Shoshimova N.",
+   "to_latin_2026": "Şoşimova N."
+  },
+  "c0746": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "йўқ",
+   "to_latin_1995": "yoʻq",
+   "to_latin_2026": "yöq"
+  },
+  "c0747": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "йўқ",
+   "to_latin_1995": "yoʻq",
+   "to_latin_2026": "yöq"
+  },
+  "c0748": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "йўқ",
+   "to_latin_1995": "yoʻq",
+   "to_latin_2026": "yöq"
+  },
+  "c0749": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "йўқ",
+   "to_latin_1995": "yoʻq",
+   "to_latin_2026": "yöq"
+  },
+  "c0750": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0751": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0752": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0753": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "йўл",
+   "to_latin_1995": "yoʻl",
+   "to_latin_2026": "yöl"
+  },
+  "c0754": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "Йўл",
+   "to_latin_1995": "Yoʻl",
+   "to_latin_2026": "Yöl"
+  },
+  "c0755": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "Йўл",
+   "to_latin_1995": "Yoʻl",
+   "to_latin_2026": "Yöl"
+  },
+  "c0756": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "Йўл",
+   "to_latin_1995": "Yoʻl",
+   "to_latin_2026": "Yöl"
+  },
+  "c0757": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "Йўл",
+   "to_latin_1995": "Yoʻl",
+   "to_latin_2026": "Yöl"
+  },
+  "c0758": {
+   "detect_script": "latin_1995",
+   "normalize": "yoldosh",
+   "to_cyrillic": "Йўлдош",
+   "to_latin_1995": "Yoʻldosh",
+   "to_latin_2026": "Yöldoş"
+  },
+  "c0759": {
+   "detect_script": "latin_1995",
+   "normalize": "yoldosh",
+   "to_cyrillic": "Йўлдош",
+   "to_latin_1995": "Yoʻldosh",
+   "to_latin_2026": "Yöldoş"
+  },
+  "c0760": {
+   "detect_script": "latin_1995",
+   "normalize": "yoldosh",
+   "to_cyrillic": "Йўлдош",
+   "to_latin_1995": "Yoʻldosh",
+   "to_latin_2026": "Yöldoş"
+  },
+  "c0761": {
+   "detect_script": "latin_1995",
+   "normalize": "yoldosh",
+   "to_cyrillic": "Йўлдош",
+   "to_latin_1995": "Yoʻldosh",
+   "to_latin_2026": "Yöldoş"
+  },
+  "c0762": {
+   "detect_script": "latin_1995",
+   "normalize": "yotal",
+   "to_cyrillic": "йўтал",
+   "to_latin_1995": "yoʻtal",
+   "to_latin_2026": "yötal"
+  },
+  "c0763": {
+   "detect_script": "latin_1995",
+   "normalize": "yotal",
+   "to_cyrillic": "йўтал",
+   "to_latin_1995": "yoʻtal",
+   "to_latin_2026": "yötal"
+  },
+  "c0764": {
+   "detect_script": "latin_1995",
+   "normalize": "yotal",
+   "to_cyrillic": "йўтал",
+   "to_latin_1995": "yoʻtal",
+   "to_latin_2026": "yötal"
+  },
+  "c0765": {
+   "detect_script": "latin_1995",
+   "normalize": "yotal",
+   "to_cyrillic": "йўтал",
+   "to_latin_1995": "yoʻtal",
+   "to_latin_2026": "yötal"
+  },
+  "c0766": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0767": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0768": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0769": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0770": {
+   "detect_script": "latin_1995",
+   "normalize": "goya",
+   "to_cyrillic": "ҒОЯ",
+   "to_latin_1995": "GʻOYA",
+   "to_latin_2026": "ĞOYA"
+  },
+  "c0771": {
+   "detect_script": "latin_1995",
+   "normalize": "goya",
+   "to_cyrillic": "ҒОЯ",
+   "to_latin_1995": "GʻOYA",
+   "to_latin_2026": "ĞOYA"
+  },
+  "c0772": {
+   "detect_script": "latin_1995",
+   "normalize": "goya",
+   "to_cyrillic": "ҒОЯ",
+   "to_latin_1995": "GʻOYA",
+   "to_latin_2026": "ĞOYA"
+  },
+  "c0773": {
+   "detect_script": "latin_1995",
+   "normalize": "goya",
+   "to_cyrillic": "ҒОЯ",
+   "to_latin_1995": "GʻOYA",
+   "to_latin_2026": "ĞOYA"
+  },
+  "c0774": {
+   "detect_script": "latin_1995",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0775": {
+   "detect_script": "latin_1995",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0776": {
+   "detect_script": "latin_1995",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0777": {
+   "detect_script": "latin_1995",
+   "normalize": "galla",
+   "to_cyrillic": "ҒАЛЛА",
+   "to_latin_1995": "GʻALLA",
+   "to_latin_2026": "ĞALLA"
+  },
+  "c0778": {
+   "detect_script": "latin_1995",
+   "normalize": "som",
+   "to_cyrillic": "СЎМ",
+   "to_latin_1995": "SOʻM",
+   "to_latin_2026": "SÖM"
+  },
+  "c0779": {
+   "detect_script": "latin_1995",
+   "normalize": "som",
+   "to_cyrillic": "СЎМ",
+   "to_latin_1995": "SOʻM",
+   "to_latin_2026": "SÖM"
+  },
+  "c0780": {
+   "detect_script": "latin_1995",
+   "normalize": "som",
+   "to_cyrillic": "СЎМ",
+   "to_latin_1995": "SOʻM",
+   "to_latin_2026": "SÖM"
+  },
+  "c0781": {
+   "detect_script": "latin_1995",
+   "normalize": "som",
+   "to_cyrillic": "СЎМ",
+   "to_latin_1995": "SOʻM",
+   "to_latin_2026": "SÖM"
+  },
+  "c0782": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "ЙЎЛ",
+   "to_latin_1995": "YOʻL",
+   "to_latin_2026": "YÖL"
+  },
+  "c0783": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "ЙЎЛ",
+   "to_latin_1995": "YOʻL",
+   "to_latin_2026": "YÖL"
+  },
+  "c0784": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "ЙЎЛ",
+   "to_latin_1995": "YOʻL",
+   "to_latin_2026": "YÖL"
+  },
+  "c0785": {
+   "detect_script": "latin_1995",
+   "normalize": "yol",
+   "to_cyrillic": "ЙЎЛ",
+   "to_latin_1995": "YOʻL",
+   "to_latin_2026": "YÖL"
+  },
+  "c0786": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "ЙЎҚ",
+   "to_latin_1995": "YOʻQ",
+   "to_latin_2026": "YÖQ"
+  },
+  "c0787": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "ЙЎҚ",
+   "to_latin_1995": "YOʻQ",
+   "to_latin_2026": "YÖQ"
+  },
+  "c0788": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "ЙЎҚ",
+   "to_latin_1995": "YOʻQ",
+   "to_latin_2026": "YÖQ"
+  },
+  "c0789": {
+   "detect_script": "latin_1995",
+   "normalize": "yoq",
+   "to_cyrillic": "ЙЎҚ",
+   "to_latin_1995": "YOʻQ",
+   "to_latin_2026": "YÖQ"
+  },
+  "c0790": {
+   "detect_script": "cyrillic",
+   "normalize": "aa",
+   "to_cyrillic": "аa",
+   "to_latin_1995": "aa",
+   "to_latin_2026": "aa"
+  },
+  "c0791": {
+   "detect_script": "cyrillic",
+   "normalize": "ba",
+   "to_cyrillic": "бa",
+   "to_latin_1995": "ba",
+   "to_latin_2026": "ba"
+  },
+  "c0792": {
+   "detect_script": "cyrillic",
+   "normalize": "va",
+   "to_cyrillic": "вa",
+   "to_latin_1995": "va",
+   "to_latin_2026": "va"
+  },
+  "c0793": {
+   "detect_script": "cyrillic",
+   "normalize": "ga",
+   "to_cyrillic": "гa",
+   "to_latin_1995": "ga",
+   "to_latin_2026": "ga"
+  },
+  "c0794": {
+   "detect_script": "cyrillic",
+   "normalize": "da",
+   "to_cyrillic": "дa",
+   "to_latin_1995": "da",
+   "to_latin_2026": "da"
+  },
+  "c0795": {
+   "detect_script": "cyrillic",
+   "normalize": "yea",
+   "to_cyrillic": "еa",
+   "to_latin_1995": "yea",
+   "to_latin_2026": "yea"
+  },
+  "c0796": {
+   "detect_script": "cyrillic",
+   "normalize": "yoa",
+   "to_cyrillic": "ёa",
+   "to_latin_1995": "yoa",
+   "to_latin_2026": "yoa"
+  },
+  "c0797": {
+   "detect_script": "cyrillic",
+   "normalize": "ja",
+   "to_cyrillic": "жa",
+   "to_latin_1995": "ja",
+   "to_latin_2026": "ja"
+  },
+  "c0798": {
+   "detect_script": "cyrillic",
+   "normalize": "za",
+   "to_cyrillic": "зa",
+   "to_latin_1995": "za",
+   "to_latin_2026": "za"
+  },
+  "c0799": {
+   "detect_script": "cyrillic",
+   "normalize": "ia",
+   "to_cyrillic": "иa",
+   "to_latin_1995": "ia",
+   "to_latin_2026": "ia"
+  },
+  "c0800": {
+   "detect_script": "cyrillic",
+   "normalize": "ya",
+   "to_cyrillic": "йa",
+   "to_latin_1995": "ya",
+   "to_latin_2026": "ya"
+  },
+  "c0801": {
+   "detect_script": "cyrillic",
+   "normalize": "ka",
+   "to_cyrillic": "кa",
+   "to_latin_1995": "ka",
+   "to_latin_2026": "ka"
+  },
+  "c0802": {
+   "detect_script": "cyrillic",
+   "normalize": "la",
+   "to_cyrillic": "лa",
+   "to_latin_1995": "la",
+   "to_latin_2026": "la"
+  },
+  "c0803": {
+   "detect_script": "cyrillic",
+   "normalize": "ma",
+   "to_cyrillic": "мa",
+   "to_latin_1995": "ma",
+   "to_latin_2026": "ma"
+  },
+  "c0804": {
+   "detect_script": "cyrillic",
+   "normalize": "na",
+   "to_cyrillic": "нa",
+   "to_latin_1995": "na",
+   "to_latin_2026": "na"
+  },
+  "c0805": {
+   "detect_script": "cyrillic",
+   "normalize": "oa",
+   "to_cyrillic": "оa",
+   "to_latin_1995": "oa",
+   "to_latin_2026": "oa"
+  },
+  "c0806": {
+   "detect_script": "cyrillic",
+   "normalize": "pa",
+   "to_cyrillic": "пa",
+   "to_latin_1995": "pa",
+   "to_latin_2026": "pa"
+  },
+  "c0807": {
+   "detect_script": "cyrillic",
+   "normalize": "ra",
+   "to_cyrillic": "рa",
+   "to_latin_1995": "ra",
+   "to_latin_2026": "ra"
+  },
+  "c0808": {
+   "detect_script": "cyrillic",
+   "normalize": "sa",
+   "to_cyrillic": "сa",
+   "to_latin_1995": "sa",
+   "to_latin_2026": "sa"
+  },
+  "c0809": {
+   "detect_script": "cyrillic",
+   "normalize": "ta",
+   "to_cyrillic": "тa",
+   "to_latin_1995": "ta",
+   "to_latin_2026": "ta"
+  },
+  "c0810": {
+   "detect_script": "cyrillic",
+   "normalize": "ua",
+   "to_cyrillic": "уa",
+   "to_latin_1995": "ua",
+   "to_latin_2026": "ua"
+  },
+  "c0811": {
+   "detect_script": "cyrillic",
+   "normalize": "fa",
+   "to_cyrillic": "фa",
+   "to_latin_1995": "fa",
+   "to_latin_2026": "fa"
+  },
+  "c0812": {
+   "detect_script": "cyrillic",
+   "normalize": "xa",
+   "to_cyrillic": "хa",
+   "to_latin_1995": "xa",
+   "to_latin_2026": "xa"
+  },
+  "c0813": {
+   "detect_script": "cyrillic",
+   "normalize": "sa",
+   "to_cyrillic": "цa",
+   "to_latin_1995": "sa",
+   "to_latin_2026": "sa"
+  },
+  "c0814": {
+   "detect_script": "cyrillic",
+   "normalize": "cha",
+   "to_cyrillic": "чa",
+   "to_latin_1995": "cha",
+   "to_latin_2026": "ça"
+  },
+  "c0815": {
+   "detect_script": "cyrillic",
+   "normalize": "sha",
+   "to_cyrillic": "шa",
+   "to_latin_1995": "sha",
+   "to_latin_2026": "şa"
+  },
+  "c0816": {
+   "detect_script": "cyrillic",
+   "normalize": "a",
+   "to_cyrillic": "ъa",
+   "to_latin_1995": "ʼa",
+   "to_latin_2026": "ʼa"
+  },
+  "c0817": {
+   "detect_script": "cyrillic",
+   "normalize": "ea",
+   "to_cyrillic": "эa",
+   "to_latin_1995": "ea",
+   "to_latin_2026": "ea"
+  },
+  "c0818": {
+   "detect_script": "cyrillic",
+   "normalize": "yua",
+   "to_cyrillic": "юa",
+   "to_latin_1995": "yua",
+   "to_latin_2026": "yua"
+  },
+  "c0819": {
+   "detect_script": "cyrillic",
+   "normalize": "yaa",
+   "to_cyrillic": "яa",
+   "to_latin_1995": "yaa",
+   "to_latin_2026": "yaa"
+  },
+  "c0820": {
+   "detect_script": "cyrillic",
+   "normalize": "oa",
+   "to_cyrillic": "ўa",
+   "to_latin_1995": "oʻa",
+   "to_latin_2026": "öa"
+  },
+  "c0821": {
+   "detect_script": "cyrillic",
+   "normalize": "qa",
+   "to_cyrillic": "қa",
+   "to_latin_1995": "qa",
+   "to_latin_2026": "qa"
+  },
+  "c0822": {
+   "detect_script": "cyrillic",
+   "normalize": "ga",
+   "to_cyrillic": "ғa",
+   "to_latin_1995": "gʻa",
+   "to_latin_2026": "ğa"
+  },
+  "c0823": {
+   "detect_script": "cyrillic",
+   "normalize": "ha",
+   "to_cyrillic": "ҳa",
+   "to_latin_1995": "ha",
+   "to_latin_2026": "ha"
+  },
+  "c0824": {
+   "detect_script": "cyrillic",
+   "normalize": "yer",
+   "to_cyrillic": "ЕР",
+   "to_latin_1995": "YER",
+   "to_latin_2026": "YER"
+  },
+  "c0825": {
+   "detect_script": "cyrillic",
+   "normalize": "yelka",
+   "to_cyrillic": "елка",
+   "to_latin_1995": "yelka",
+   "to_latin_2026": "yelka"
+  },
+  "c0826": {
+   "detect_script": "cyrillic",
+   "normalize": "yevropa",
+   "to_cyrillic": "Европа",
+   "to_latin_1995": "Yevropa",
+   "to_latin_2026": "Yevropa"
+  },
+  "c0827": {
+   "detect_script": "cyrillic",
+   "normalize": "meva",
+   "to_cyrillic": "мева",
+   "to_latin_1995": "meva",
+   "to_latin_2026": "meva"
+  },
+  "c0828": {
+   "detect_script": "cyrillic",
+   "normalize": "keldi",
+   "to_cyrillic": "келди",
+   "to_latin_1995": "keldi",
+   "to_latin_2026": "keldi"
+  },
+  "c0829": {
+   "detect_script": "cyrillic",
+   "normalize": "oila",
+   "to_cyrillic": "оила",
+   "to_latin_1995": "oila",
+   "to_latin_2026": "oila"
+  },
+  "c0830": {
+   "detect_script": "cyrillic",
+   "normalize": "yil",
+   "to_cyrillic": "Йил",
+   "to_latin_1995": "Yil",
+   "to_latin_2026": "Yil"
+  },
+  "c0831": {
+   "detect_script": "cyrillic",
+   "normalize": "ayol",
+   "to_cyrillic": "аёл",
+   "to_latin_1995": "ayol",
+   "to_latin_2026": "ayol"
+  },
+  "c0832": {
+   "detect_script": "cyrillic",
+   "normalize": "yelena",
+   "to_cyrillic": "Елена",
+   "to_latin_1995": "Yelena",
+   "to_latin_2026": "Yelena"
+  },
+  "c0833": {
+   "detect_script": "cyrillic",
+   "normalize": "sirk",
+   "to_cyrillic": "Цирк",
+   "to_latin_1995": "Sirk",
+   "to_latin_2026": "Sirk"
+  },
+  "c0834": {
+   "detect_script": "cyrillic",
+   "normalize": "sirk",
+   "to_cyrillic": "ЦИРК",
+   "to_latin_1995": "SIRK",
+   "to_latin_2026": "SIRK"
+  },
+  "c0835": {
+   "detect_script": "cyrillic",
+   "normalize": "aksiya",
+   "to_cyrillic": "акция",
+   "to_latin_1995": "aksiya",
+   "to_latin_2026": "aksiya"
+  },
+  "c0836": {
+   "detect_script": "cyrillic",
+   "normalize": "stansiya",
+   "to_cyrillic": "станция",
+   "to_latin_1995": "stansiya",
+   "to_latin_2026": "stansiya"
+  },
+  "c0837": {
+   "detect_script": "cyrillic",
+   "normalize": "sex",
+   "to_cyrillic": "цех",
+   "to_latin_1995": "sex",
+   "to_latin_2026": "sex"
+  },
+  "c0838": {
+   "detect_script": "cyrillic",
+   "normalize": "sement",
+   "to_cyrillic": "Цемент",
+   "to_latin_1995": "Sement",
+   "to_latin_2026": "Sement"
+  },
+  "c0839": {
+   "detect_script": "latin_1995",
+   "normalize": "tsirk",
+   "to_cyrillic": "цирк",
+   "to_latin_1995": "tsirk",
+   "to_latin_2026": "tsirk"
+  },
+  "c0840": {
+   "detect_script": "latin_1995",
+   "normalize": "aksiya",
+   "to_cyrillic": "аксия",
+   "to_latin_1995": "aksiya",
+   "to_latin_2026": "aksiya"
+  },
+  "c0841": {
+   "detect_script": "latin_1995",
+   "normalize": "stansiya",
+   "to_cyrillic": "стансия",
+   "to_latin_1995": "stansiya",
+   "to_latin_2026": "stansiya"
+  },
+  "c0842": {
+   "detect_script": "latin_1995",
+   "normalize": "kontsert",
+   "to_cyrillic": "концерт",
+   "to_latin_1995": "kontsert",
+   "to_latin_2026": "kontsert"
+  },
+  "c0843": {
+   "detect_script": "latin_1995",
+   "normalize": "tsement",
+   "to_cyrillic": "ЦЕМЕНТ",
+   "to_latin_1995": "TSEMENT",
+   "to_latin_2026": "TSEMENT"
+  },
+  "c0844": {
+   "detect_script": "latin_1995",
+   "normalize": "tsement",
+   "to_cyrillic": "Цемент",
+   "to_latin_1995": "Tsement",
+   "to_latin_2026": "Tsement"
+  },
+  "c0845": {
+   "detect_script": "cyrillic",
+   "normalize": "ishoq",
+   "to_cyrillic": "ИСҲОҚ",
+   "to_latin_1995": "ISʼHOQ",
+   "to_latin_2026": "ISHOQ"
+  },
+  "c0846": {
+   "detect_script": "cyrillic",
+   "normalize": "ashob",
+   "to_cyrillic": "асҳоб",
+   "to_latin_1995": "asʼhob",
+   "to_latin_2026": "ashob"
+  },
+  "c0847": {
+   "detect_script": "latin_1995",
+   "normalize": "ishoq",
+   "to_cyrillic": "ИСҲОҚ",
+   "to_latin_1995": "ISʼHOQ",
+   "to_latin_2026": "ISHOQ"
+  },
+  "c0848": {
+   "detect_script": "latin_1995",
+   "normalize": "ashob",
+   "to_cyrillic": "асҳоб",
+   "to_latin_1995": "asʼhob",
+   "to_latin_2026": "ashob"
+  },
+  "c0849": {
+   "detect_script": "latin_1995",
+   "normalize": "ishoqov",
+   "to_cyrillic": "Исҳоқов",
+   "to_latin_1995": "Isʼhoqov",
+   "to_latin_2026": "Ishoqov"
+  },
+  "c0850": {
+   "detect_script": "cyrillic",
+   "normalize": "alo",
+   "to_cyrillic": "аъло",
+   "to_latin_1995": "aʼlo",
+   "to_latin_2026": "aʼlo"
+  },
+  "c0851": {
+   "detect_script": "cyrillic",
+   "normalize": "mojiza",
+   "to_cyrillic": "мўъжиза",
+   "to_latin_1995": "moʻʼjiza",
+   "to_latin_2026": "möʼjiza"
+  },
+  "c0852": {
+   "detect_script": "cyrillic",
+   "normalize": "obyekt",
+   "to_cyrillic": "объект",
+   "to_latin_1995": "obʼyekt",
+   "to_latin_2026": "obʼyekt"
+  },
+  "c0853": {
+   "detect_script": "cyrillic",
+   "normalize": "qatiy",
+   "to_cyrillic": "қатъий",
+   "to_latin_1995": "qatʼiy",
+   "to_latin_2026": "qatʼiy"
+  },
+  "c0854": {
+   "detect_script": "cyrillic",
+   "normalize": "tasir",
+   "to_cyrillic": "таъсир",
+   "to_latin_1995": "taʼsir",
+   "to_latin_2026": "taʼsir"
+  },
+  "c0855": {
+   "detect_script": "cyrillic",
+   "normalize": "mamur",
+   "to_cyrillic": "Маъмур",
+   "to_latin_1995": "Maʼmur",
+   "to_latin_2026": "Maʼmur"
+  },
+  "c0856": {
+   "detect_script": "cyrillic",
+   "normalize": "bulvar",
+   "to_cyrillic": "бульвар",
+   "to_latin_1995": "bulvar",
+   "to_latin_2026": "bulvar"
+  },
+  "c0857": {
+   "detect_script": "cyrillic",
+   "normalize": "film",
+   "to_cyrillic": "фильм",
+   "to_latin_1995": "film",
+   "to_latin_2026": "film"
+  },
+  "c0858": {
+   "detect_script": "cyrillic",
+   "normalize": "film",
+   "to_cyrillic": "ФИЛЬМ",
+   "to_latin_1995": "FILM",
+   "to_latin_2026": "FILM"
+  },
+  "c0859": {
+   "detect_script": "cyrillic",
+   "normalize": "yoqut",
+   "to_cyrillic": "Ёқут",
+   "to_latin_1995": "Yoqut",
+   "to_latin_2026": "Yoqut"
+  },
+  "c0860": {
+   "detect_script": "cyrillic",
+   "normalize": "yoz",
+   "to_cyrillic": "ЁЗ",
+   "to_latin_1995": "YOZ",
+   "to_latin_2026": "YOZ"
+  },
+  "c0861": {
+   "detect_script": "cyrillic",
+   "normalize": "yusuf",
+   "to_cyrillic": "Юсуф",
+   "to_latin_1995": "Yusuf",
+   "to_latin_2026": "Yusuf"
+  },
+  "c0862": {
+   "detect_script": "cyrillic",
+   "normalize": "yulduz",
+   "to_cyrillic": "ЮЛДУЗ",
+   "to_latin_1995": "YULDUZ",
+   "to_latin_2026": "YULDUZ"
+  },
+  "c0863": {
+   "detect_script": "cyrillic",
+   "normalize": "yashil",
+   "to_cyrillic": "Яшил",
+   "to_latin_1995": "Yashil",
+   "to_latin_2026": "Yaşil"
+  },
+  "c0864": {
+   "detect_script": "cyrillic",
+   "normalize": "daryo",
+   "to_cyrillic": "дарё",
+   "to_latin_1995": "daryo",
+   "to_latin_2026": "daryo"
+  },
+  "c0865": {
+   "detect_script": "cyrillic",
+   "normalize": "goya",
+   "to_cyrillic": "ғоя",
+   "to_latin_1995": "gʻoya",
+   "to_latin_2026": "ğoya"
+  },
+  "c0866": {
+   "detect_script": "latin_1995",
+   "normalize": "yoqut",
+   "to_cyrillic": "Ёқут",
+   "to_latin_1995": "Yoqut",
+   "to_latin_2026": "Yoqut"
+  },
+  "c0867": {
+   "detect_script": "latin_1995",
+   "normalize": "yusuf",
+   "to_cyrillic": "Юсуф",
+   "to_latin_1995": "Yusuf",
+   "to_latin_2026": "Yusuf"
+  },
+  "c0868": {
+   "detect_script": "latin_1995",
+   "normalize": "daryo",
+   "to_cyrillic": "дарё",
+   "to_latin_1995": "daryo",
+   "to_latin_2026": "daryo"
+  },
+  "c0869": {
+   "detect_script": "latin_1995",
+   "normalize": "goya",
+   "to_cyrillic": "ғоя",
+   "to_latin_1995": "gʻoya",
+   "to_latin_2026": "ğoya"
+  },
+  "c0870": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0871": {
+   "detect_script": "latin_2026",
+   "normalize": "choy",
+   "to_cyrillic": "ЧОЙ",
+   "to_latin_1995": "CHOY",
+   "to_latin_2026": "ÇOY"
+  },
+  "c0872": {
+   "detect_script": "latin_1995",
+   "normalize": "mcdonald",
+   "to_cyrillic": "Мcдоналд",
+   "to_latin_1995": "Mcdonald",
+   "to_latin_2026": "Mcdonald"
+  },
+  "c0873": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "Тошкент",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c0874": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "тошкент",
+   "to_latin_1995": "toshkent",
+   "to_latin_2026": "toşkent"
+  },
+  "c0875": {
+   "detect_script": "latin_1995",
+   "normalize": "ab",
+   "to_cyrillic": "АБ",
+   "to_latin_1995": "AB",
+   "to_latin_2026": "AB"
+  },
+  "c0876": {
+   "detect_script": "latin_1995",
+   "normalize": "ab",
+   "to_cyrillic": "Аб",
+   "to_latin_1995": "Ab",
+   "to_latin_2026": "Ab"
+  },
+  "c0877": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0878": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0879": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0880": {
+   "detect_script": "latin_1995",
+   "normalize": "o zbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0881": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0882": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
+  },
+  "c0883": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0884": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0885": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0886": {
+   "detect_script": "latin_1995",
+   "normalize": "g alaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0887": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0888": {
+   "detect_script": "latin_1995",
+   "normalize": "galaba",
+   "to_cyrillic": "ғалаба",
+   "to_latin_1995": "gʻalaba",
+   "to_latin_2026": "ğalaba"
+  },
+  "c0889": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0890": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0891": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0892": {
+   "detect_script": "latin_1995",
+   "normalize": "ma no",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0893": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0894": {
+   "detect_script": "latin_1995",
+   "normalize": "mano",
+   "to_cyrillic": "маъно",
+   "to_latin_1995": "maʼno",
+   "to_latin_2026": "maʼno"
+  },
+  "c0895": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0896": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0897": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0898": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0899": {
+   "detect_script": "latin_1995",
+   "normalize": "jur at",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0900": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0901": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0902": {
+   "detect_script": "latin_1995",
+   "normalize": "jurat",
+   "to_cyrillic": "журъат",
+   "to_latin_1995": "jurʼat",
+   "to_latin_2026": "jurʼat"
+  },
+  "c0903": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0904": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0905": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0906": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0907": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0908": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0909": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0910": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "боғ",
+   "to_latin_1995": "bogʻ",
+   "to_latin_2026": "boğ"
+  },
+  "c0911": {
+   "detect_script": "latin_1995",
+   "normalize": "o zbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0912": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0913": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "ЎЗБЕКИСТОН",
+   "to_latin_1995": "OʻZBEKISTON",
+   "to_latin_2026": "ÖZBEKISTON"
+  },
+  "c0914": {
+   "detect_script": "latin_1995",
+   "normalize": "salom",
+   "to_cyrillic": "‘салом’",
+   "to_latin_1995": "‘salom’",
+   "to_latin_2026": "‘salom’"
+  },
+  "c0915": {
+   "detect_script": "latin_1995",
+   "normalize": "salom",
+   "to_cyrillic": "\"салом\"",
+   "to_latin_1995": "\"salom\"",
+   "to_latin_2026": "\"salom\""
+  },
+  "c0916": {
+   "detect_script": "latin_1995",
+   "normalize": "mayer",
+   "to_cyrillic": "Маер",
+   "to_latin_1995": "Mayer",
+   "to_latin_2026": "Mayer"
+  },
+  "c0917": {
+   "detect_script": "latin_1995",
+   "normalize": "aliyev",
+   "to_cyrillic": "Алиев",
+   "to_latin_1995": "Aliyev",
+   "to_latin_2026": "Aliyev"
+  },
+  "c0918": {
+   "detect_script": "latin_1995",
+   "normalize": "aliev",
+   "to_cyrillic": "Алиев",
+   "to_latin_1995": "Aliev",
+   "to_latin_2026": "Aliev"
+  },
+  "c0919": {
+   "detect_script": "cyrillic",
+   "normalize": "aliyev",
+   "to_cyrillic": "Алиев",
+   "to_latin_1995": "Aliyev",
+   "to_latin_2026": "Aliyev"
+  },
+  "c0920": {
+   "detect_script": "cyrillic",
+   "normalize": "valiyev",
+   "to_cyrillic": "Валиев",
+   "to_latin_1995": "Valiyev",
+   "to_latin_2026": "Valiyev"
+  },
+  "c0921": {
+   "detect_script": "latin_1995",
+   "normalize": "valiyev",
+   "to_cyrillic": "Валиев",
+   "to_latin_1995": "Valiyev",
+   "to_latin_2026": "Valiyev"
+  },
+  "c0922": {
+   "detect_script": "latin_1995",
+   "normalize": "valiev",
+   "to_cyrillic": "Валиев",
+   "to_latin_1995": "Valiev",
+   "to_latin_2026": "Valiev"
+  },
+  "c0923": {
+   "detect_script": "latin_1995",
+   "normalize": "bog",
+   "to_cyrillic": "бўг",
+   "to_latin_1995": "boʻg",
+   "to_latin_2026": "bög"
+  },
+  "c0924": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
+  },
+  "c0925": {
+   "detect_script": "cyrillic",
+   "normalize": "aliyev",
+   "to_cyrillic": "Аliyev",
+   "to_latin_1995": "Aliyev",
+   "to_latin_2026": "Aliyev"
+  },
+  "c0926": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent",
+   "to_cyrillic": "Tоshkent",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c0927": {
+   "detect_script": "cyrillic",
+   "normalize": "ali valiyev",
+   "to_cyrillic": "Аli Valiyev",
+   "to_latin_1995": "Ali Valiyev",
+   "to_latin_2026": "Ali Valiyev"
+  },
+  "c0928": {
+   "detect_script": "cyrillic",
+   "normalize": "aliev",
+   "to_cyrillic": "Алiев",
+   "to_latin_1995": "Aliev",
+   "to_latin_2026": "Aliev"
+  },
+  "c0929": {
+   "detect_script": "cyrillic",
+   "normalize": "ilm",
+   "to_cyrillic": "iлм",
+   "to_latin_1995": "ilm",
+   "to_latin_2026": "ilm"
+  },
+  "c0930": {
+   "detect_script": "cyrillic",
+   "normalize": "jasur",
+   "to_cyrillic": "jасур",
+   "to_latin_1995": "jasur",
+   "to_latin_2026": "jasur"
+  },
+  "c0931": {
+   "detect_script": "cyrillic",
+   "normalize": "tojiyev",
+   "to_cyrillic": "Тоjиев",
+   "to_latin_1995": "Tojiyev",
+   "to_latin_2026": "Tojiyev"
+  },
+  "c0932": {
+   "detect_script": "cyrillic",
+   "normalize": "aliev",
+   "to_cyrillic": "Алієв",
+   "to_latin_1995": "Alієv",
+   "to_latin_2026": "Alієv"
+  },
+  "c0933": {
+   "detect_script": "cyrillic",
+   "normalize": "ilm",
+   "to_cyrillic": "ілм",
+   "to_latin_1995": "іlm",
+   "to_latin_2026": "іlm"
+  },
+  "c0934": {
+   "detect_script": "cyrillic",
+   "normalize": "jasur",
+   "to_cyrillic": "јасур",
+   "to_latin_1995": "јasur",
+   "to_latin_2026": "јasur"
+  },
+  "c0935": {
+   "detect_script": "cyrillic",
+   "normalize": "tojiyev",
+   "to_cyrillic": "Тојиев",
+   "to_latin_1995": "Toјiyev",
+   "to_latin_2026": "Toјiyev"
+  },
+  "c0936": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "ә",
+   "to_latin_1995": "ә",
+   "to_latin_2026": "ә"
+  },
+  "c0937": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "ө",
+   "to_latin_1995": "ө",
+   "to_latin_2026": "ө"
+  },
+  "c0938": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "ү",
+   "to_latin_1995": "ү",
+   "to_latin_2026": "ү"
+  },
+  "c0939": {
+   "detect_script": "cyrillic",
+   "normalize": "",
+   "to_cyrillic": "ң",
+   "to_latin_1995": "ң",
+   "to_latin_2026": "ң"
+  },
+  "c0940": {
+   "detect_script": "cyrillic",
+   "normalize": "nkis",
+   "to_cyrillic": "Нөкис",
+   "to_latin_1995": "Nөkis",
+   "to_latin_2026": "Nөkis"
+  },
+  "c0941": {
+   "detect_script": "cyrillic",
+   "normalize": "ke",
+   "to_cyrillic": "әке",
+   "to_latin_1995": "әke",
+   "to_latin_2026": "әke"
+  },
+  "c0942": {
+   "detect_script": "cyrillic",
+   "normalize": "y",
+   "to_cyrillic": "үй",
+   "to_latin_1995": "үy",
+   "to_latin_2026": "үy"
+  },
+  "c0943": {
+   "detect_script": "cyrillic",
+   "normalize": "qoir",
+   "to_cyrillic": "қоңыр",
+   "to_latin_1995": "qoңir",
+   "to_latin_2026": "qoңir"
+  },
+  "c0944": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "á",
+   "to_latin_1995": "á",
+   "to_latin_2026": "á"
+  },
+  "c0945": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "ó",
+   "to_latin_1995": "ó",
+   "to_latin_2026": "ó"
+  },
+  "c0946": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "ú",
+   "to_latin_1995": "ú",
+   "to_latin_2026": "ú"
+  },
+  "c0947": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "ń",
+   "to_latin_1995": "ń",
+   "to_latin_2026": "ń"
+  },
+  "c0948": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "ı",
+   "to_latin_1995": "ı",
+   "to_latin_2026": "ı"
+  },
+  "c0949": {
+   "detect_script": "latin_1995",
+   "normalize": "n kis",
+   "to_cyrillic": "Нóкис",
+   "to_latin_1995": "Nókis",
+   "to_latin_2026": "Nókis"
+  },
+  "c0950": {
+   "detect_script": "latin_1995",
+   "normalize": "ke",
+   "to_cyrillic": "áке",
+   "to_latin_1995": "áke",
+   "to_latin_2026": "áke"
+  },
+  "c0951": {
+   "detect_script": "latin_1995",
+   "normalize": "y",
+   "to_cyrillic": "úй",
+   "to_latin_1995": "úy",
+   "to_latin_2026": "úy"
+  },
+  "c0952": {
+   "detect_script": "latin_1995",
+   "normalize": "qo r",
+   "to_cyrillic": "қоńıр",
+   "to_latin_1995": "qońır",
+   "to_latin_2026": "qońır"
+  },
+  "c0953": {
+   "detect_script": "latin_1995",
+   "normalize": "puls",
+   "to_cyrillic": "пулс",
+   "to_latin_1995": "puls",
+   "to_latin_2026": "puls"
+  },
+  "c0954": {
+   "detect_script": "latin_1995",
+   "normalize": "pulsi",
+   "to_cyrillic": "пулси",
+   "to_latin_1995": "pulsi",
+   "to_latin_2026": "pulsi"
+  },
+  "c0955": {
+   "detect_script": "latin_1995",
+   "normalize": "kalsiy",
+   "to_cyrillic": "калсий",
+   "to_latin_1995": "kalsiy",
+   "to_latin_2026": "kalsiy"
+  },
+  "c0956": {
+   "detect_script": "latin_1995",
+   "normalize": "mmol",
+   "to_cyrillic": "ммол",
+   "to_latin_1995": "mmol",
+   "to_latin_2026": "mmol"
+  },
+  "c0957": {
+   "detect_script": "cyrillic",
+   "normalize": "puls",
+   "to_cyrillic": "пульс",
+   "to_latin_1995": "puls",
+   "to_latin_2026": "puls"
+  },
+  "c0958": {
+   "detect_script": "cyrillic",
+   "normalize": "pulsi",
+   "to_cyrillic": "пульси",
+   "to_latin_1995": "pulsi",
+   "to_latin_2026": "pulsi"
+  },
+  "c0959": {
+   "detect_script": "cyrillic",
+   "normalize": "kalsiy",
+   "to_cyrillic": "кальций",
+   "to_latin_1995": "kalsiy",
+   "to_latin_2026": "kalsiy"
+  },
+  "c0960": {
+   "detect_script": "cyrillic",
+   "normalize": "mmol",
+   "to_cyrillic": "ммоль",
+   "to_latin_1995": "mmol",
+   "to_latin_2026": "mmol"
+  },
+  "c0961": {
+   "detect_script": "latin_1995",
+   "normalize": "reaksiya",
+   "to_cyrillic": "реаксия",
+   "to_latin_1995": "reaksiya",
+   "to_latin_2026": "reaksiya"
+  },
+  "c0962": {
+   "detect_script": "latin_1995",
+   "normalize": "sistit",
+   "to_cyrillic": "систит",
+   "to_latin_1995": "sistit",
+   "to_latin_2026": "sistit"
+  },
+  "c0963": {
+   "detect_script": "latin_1995",
+   "normalize": "sikl",
+   "to_cyrillic": "сикл",
+   "to_latin_1995": "sikl",
+   "to_latin_2026": "sikl"
+  },
+  "c0964": {
+   "detect_script": "latin_1995",
+   "normalize": "asfiksiya",
+   "to_cyrillic": "асфиксия",
+   "to_latin_1995": "asfiksiya",
+   "to_latin_2026": "asfiksiya"
+  },
+  "c0965": {
+   "detect_script": "cyrillic",
+   "normalize": "reaksiya",
+   "to_cyrillic": "реакция",
+   "to_latin_1995": "reaksiya",
+   "to_latin_2026": "reaksiya"
+  },
+  "c0966": {
+   "detect_script": "cyrillic",
+   "normalize": "sistit",
+   "to_cyrillic": "цистит",
+   "to_latin_1995": "sistit",
+   "to_latin_2026": "sistit"
+  },
+  "c0967": {
+   "detect_script": "cyrillic",
+   "normalize": "sikl",
+   "to_cyrillic": "цикл",
+   "to_latin_1995": "sikl",
+   "to_latin_2026": "sikl"
+  },
+  "c0968": {
+   "detect_script": "cyrillic",
+   "normalize": "asfiksiya",
+   "to_cyrillic": "асфиксия",
+   "to_latin_1995": "asfiksiya",
+   "to_latin_2026": "asfiksiya"
+  },
+  "c0969": {
+   "detect_script": "latin_1995",
+   "normalize": "sitologiya",
+   "to_cyrillic": "ситология",
+   "to_latin_1995": "sitologiya",
+   "to_latin_2026": "sitologiya"
+  },
+  "c0970": {
+   "detect_script": "latin_1995",
+   "normalize": "albumin",
+   "to_cyrillic": "албумин",
+   "to_latin_1995": "albumin",
+   "to_latin_2026": "albumin"
+  },
+  "c0971": {
+   "detect_script": "latin_1995",
+   "normalize": "sitologiyasi",
+   "to_cyrillic": "ситологияси",
+   "to_latin_1995": "sitologiyasi",
+   "to_latin_2026": "sitologiyasi"
+  },
+  "c0972": {
+   "detect_script": "latin_1995",
+   "normalize": "sening",
+   "to_cyrillic": "сенинг",
+   "to_latin_1995": "sening",
+   "to_latin_2026": "sening"
+  },
+  "c0973": {
+   "detect_script": "latin_1995",
+   "normalize": "kelgan",
+   "to_cyrillic": "келган",
+   "to_latin_1995": "kelgan",
+   "to_latin_2026": "kelgan"
+  },
+  "c0974": {
+   "detect_script": "latin_1995",
+   "normalize": "bilan",
+   "to_cyrillic": "билан",
+   "to_latin_1995": "bilan",
+   "to_latin_2026": "bilan"
+  },
+  "c0975": {
+   "detect_script": "cyrillic",
+   "normalize": "sitologiya",
+   "to_cyrillic": "цитология",
+   "to_latin_1995": "sitologiya",
+   "to_latin_2026": "sitologiya"
+  },
+  "c0976": {
+   "detect_script": "cyrillic",
+   "normalize": "albumin",
+   "to_cyrillic": "альбумин",
+   "to_latin_1995": "albumin",
+   "to_latin_2026": "albumin"
+  },
+  "c0977": {
+   "detect_script": "cyrillic",
+   "normalize": "sitologiyasi",
+   "to_cyrillic": "цитологияси",
+   "to_latin_1995": "sitologiyasi",
+   "to_latin_2026": "sitologiyasi"
+  },
+  "c0978": {
+   "detect_script": "latin_1995",
+   "normalize": "subyektiv",
+   "to_cyrillic": "субектив",
+   "to_latin_1995": "subyektiv",
+   "to_latin_2026": "subyektiv"
+  },
+  "c0979": {
+   "detect_script": "latin_1995",
+   "normalize": "podyezd",
+   "to_cyrillic": "подезд",
+   "to_latin_1995": "podyezd",
+   "to_latin_2026": "podyezd"
+  },
+  "c0980": {
+   "detect_script": "latin_1995",
+   "normalize": "premyer",
+   "to_cyrillic": "премер",
+   "to_latin_1995": "premyer",
+   "to_latin_2026": "premyer"
+  },
+  "c0981": {
+   "detect_script": "cyrillic",
+   "normalize": "subyektiv",
+   "to_cyrillic": "субъектив",
+   "to_latin_1995": "subʼyektiv",
+   "to_latin_2026": "subʼyektiv"
+  },
+  "c0982": {
+   "detect_script": "cyrillic",
+   "normalize": "podyezd",
+   "to_cyrillic": "подъезд",
+   "to_latin_1995": "podʼyezd",
+   "to_latin_2026": "podʼyezd"
+  },
+  "c0983": {
+   "detect_script": "cyrillic",
+   "normalize": "premyer",
+   "to_cyrillic": "премьер",
+   "to_latin_1995": "premyer",
+   "to_latin_2026": "premyer"
+  },
+  "c0984": {
+   "detect_script": "latin_1995",
+   "normalize": "spo2",
+   "to_cyrillic": "Спо2",
+   "to_latin_1995": "Spo2",
+   "to_latin_2026": "Spo2"
+  },
+  "c0985": {
+   "detect_script": "latin_1995",
+   "normalize": "ph",
+   "to_cyrillic": "пҳ",
+   "to_latin_1995": "ph",
+   "to_latin_2026": "ph"
+  },
+  "c0986": {
+   "detect_script": "latin_1995",
+   "normalize": "eeg",
+   "to_cyrillic": "ЭЕГ",
+   "to_latin_1995": "EEG",
+   "to_latin_2026": "EEG"
+  },
+  "c0987": {
+   "detect_script": "latin_1995",
+   "normalize": "utt",
+   "to_cyrillic": "УТТ",
+   "to_latin_1995": "UTT",
+   "to_latin_2026": "UTT"
+  },
+  "c0988": {
+   "detect_script": "cyrillic",
+   "normalize": "eeg",
+   "to_cyrillic": "ЭЭГ",
+   "to_latin_1995": "EEG",
+   "to_latin_2026": "EEG"
+  },
+  "c0989": {
+   "detect_script": "cyrillic",
+   "normalize": "utt",
+   "to_cyrillic": "УТТ",
+   "to_latin_1995": "UTT",
+   "to_latin_2026": "UTT"
+  },
+  "c0990": {
+   "detect_script": "latin_1995",
+   "normalize": "b12",
+   "to_cyrillic": "Б12",
+   "to_latin_1995": "B12",
+   "to_latin_2026": "B12"
+  },
+  "c0991": {
+   "detect_script": "latin_1995",
+   "normalize": "paco2",
+   "to_cyrillic": "Паcо2",
+   "to_latin_1995": "Paco2",
+   "to_latin_2026": "Paco2"
+  },
+  "c0992": {
+   "detect_script": "latin_1995",
+   "normalize": "aytsangizgina",
+   "to_cyrillic": "айцангизгина",
+   "to_latin_1995": "aytsangizgina",
+   "to_latin_2026": "aytsangizgina"
+  },
+  "c0993": {
+   "detect_script": "latin_1995",
+   "normalize": "aytsakkina",
+   "to_cyrillic": "айцаккина",
+   "to_latin_1995": "aytsakkina",
+   "to_latin_2026": "aytsakkina"
+  },
+  "c0994": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsayu",
+   "to_cyrillic": "кецаю",
+   "to_latin_1995": "ketsayu",
+   "to_latin_2026": "ketsayu"
+  },
+  "c0995": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsaku",
+   "to_cyrillic": "кецаку",
+   "to_latin_1995": "ketsaku",
+   "to_latin_2026": "ketsaku"
+  },
+  "c0996": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsayoq",
+   "to_cyrillic": "кецаёқ",
+   "to_latin_1995": "ketsayoq",
+   "to_latin_2026": "ketsayoq"
+  },
+  "c0997": {
+   "detect_script": "latin_1995",
+   "normalize": "tutsinmikan",
+   "to_cyrillic": "туцинмикан",
+   "to_latin_1995": "tutsinmikan",
+   "to_latin_2026": "tutsinmikan"
+  },
+  "c0998": {
+   "detect_script": "latin_1995",
+   "normalize": "ketsinu",
+   "to_cyrillic": "кецину",
+   "to_latin_1995": "ketsinu",
+   "to_latin_2026": "ketsinu"
+  },
+  "c0999": {
+   "detect_script": "cyrillic",
+   "normalize": "aytsangizgina",
+   "to_cyrillic": "айтсангизгина",
+   "to_latin_1995": "aytsangizgina",
+   "to_latin_2026": "aytsangizgina"
+  },
+  "c1000": {
+   "detect_script": "cyrillic",
+   "normalize": "aytsakkina",
+   "to_cyrillic": "айтсаккина",
+   "to_latin_1995": "aytsakkina",
+   "to_latin_2026": "aytsakkina"
+  },
+  "c1001": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsayu",
+   "to_cyrillic": "кетсаю",
+   "to_latin_1995": "ketsayu",
+   "to_latin_2026": "ketsayu"
+  },
+  "c1002": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsaku",
+   "to_cyrillic": "кетсаку",
+   "to_latin_1995": "ketsaku",
+   "to_latin_2026": "ketsaku"
+  },
+  "c1003": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsayoq",
+   "to_cyrillic": "кетсаёқ",
+   "to_latin_1995": "ketsayoq",
+   "to_latin_2026": "ketsayoq"
+  },
+  "c1004": {
+   "detect_script": "cyrillic",
+   "normalize": "tutsinmikan",
+   "to_cyrillic": "тутсинмикан",
+   "to_latin_1995": "tutsinmikan",
+   "to_latin_2026": "tutsinmikan"
+  },
+  "c1005": {
+   "detect_script": "cyrillic",
+   "normalize": "ketsinu",
+   "to_cyrillic": "кетсину",
+   "to_latin_1995": "ketsinu",
+   "to_latin_2026": "ketsinu"
+  },
+  "c1006": {
+   "detect_script": "cyrillic",
+   "normalize": "inyeksiya",
+   "to_cyrillic": "инъекция",
+   "to_latin_1995": "inʼyeksiya",
+   "to_latin_2026": "inʼyeksiya"
+  },
+  "c1007": {
+   "detect_script": "cyrillic",
+   "normalize": "syomka",
+   "to_cyrillic": "съёмка",
+   "to_latin_1995": "sʼyomka",
+   "to_latin_2026": "sʼyomka"
+  },
+  "c1008": {
+   "detect_script": "cyrillic",
+   "normalize": "adyutant",
+   "to_cyrillic": "адъютант",
+   "to_latin_1995": "adʼyutant",
+   "to_latin_2026": "adʼyutant"
+  },
+  "c1009": {
+   "detect_script": "cyrillic",
+   "normalize": "motabar",
+   "to_cyrillic": "мўътабар",
+   "to_latin_1995": "moʻʼtabar",
+   "to_latin_2026": "möʼtabar"
+  },
+  "c1010": {
+   "detect_script": "cyrillic",
+   "normalize": "mayus",
+   "to_cyrillic": "маъюс",
+   "to_latin_1995": "maʼyus",
+   "to_latin_2026": "maʼyus"
+  },
+  "c1011": {
+   "detect_script": "cyrillic",
+   "normalize": "sanat",
+   "to_cyrillic": "санъат",
+   "to_latin_1995": "sanʼat",
+   "to_latin_2026": "sanʼat"
+  },
+  "c1012": {
+   "detect_script": "latin_1995",
+   "normalize": "obyekt",
+   "to_cyrillic": "обект",
+   "to_latin_1995": "obyekt",
+   "to_latin_2026": "obyekt"
+  },
+  "c1013": {
+   "detect_script": "latin_1995",
+   "normalize": "inyeksiya",
+   "to_cyrillic": "инексия",
+   "to_latin_1995": "inyeksiya",
+   "to_latin_2026": "inyeksiya"
+  },
+  "c1014": {
+   "detect_script": "latin_1995",
+   "normalize": "syomka",
+   "to_cyrillic": "сёмка",
+   "to_latin_1995": "syomka",
+   "to_latin_2026": "syomka"
+  },
+  "c1015": {
+   "detect_script": "latin_1995",
+   "normalize": "adyutant",
+   "to_cyrillic": "адютант",
+   "to_latin_1995": "adyutant",
+   "to_latin_2026": "adyutant"
+  },
+  "c1016": {
+   "detect_script": "latin_1995",
+   "normalize": "mojiza",
+   "to_cyrillic": "мўжиза",
+   "to_latin_1995": "moʻjiza",
+   "to_latin_2026": "möjiza"
+  },
+  "c1017": {
+   "detect_script": "latin_1995",
+   "normalize": "motabar",
+   "to_cyrillic": "мўтабар",
+   "to_latin_1995": "moʻtabar",
+   "to_latin_2026": "mötabar"
+  },
+  "c1018": {
+   "detect_script": "latin_1995",
+   "normalize": "mayus",
+   "to_cyrillic": "маъюс",
+   "to_latin_1995": "maʼyus",
+   "to_latin_2026": "maʼyus"
+  },
+  "c1019": {
+   "detect_script": "latin_1995",
+   "normalize": "sanat",
+   "to_cyrillic": "санъат",
+   "to_latin_1995": "sanʼat",
+   "to_latin_2026": "sanʼat"
+  },
+  "c1020": {
+   "detect_script": "latin_1995",
+   "normalize": "tasir",
+   "to_cyrillic": "таъсир",
+   "to_latin_1995": "taʼsir",
+   "to_latin_2026": "taʼsir"
+  },
+  "c1021": {
+   "detect_script": "latin_1995",
+   "normalize": "motadil",
+   "to_cyrillic": "мўтадил",
+   "to_latin_1995": "moʻtadil",
+   "to_latin_2026": "mötadil"
+  },
+  "c1022": {
+   "detect_script": "cyrillic",
+   "normalize": "motadil",
+   "to_cyrillic": "мўътадил",
+   "to_latin_1995": "moʻʼtadil",
+   "to_latin_2026": "möʼtadil"
+  },
+  "c1023": {
+   "detect_script": "latin_1995",
+   "normalize": "rahatsizlantiradi",
+   "to_cyrillic": "раҳацизлантиради",
+   "to_latin_1995": "rahatsizlantiradi",
+   "to_latin_2026": "rahatsizlantiradi"
+  },
+  "c1024": {
+   "detect_script": "cyrillic",
+   "normalize": "rahatsizlantiradi",
+   "to_cyrillic": "раҳатсизлантиради",
+   "to_latin_1995": "rahatsizlantiradi",
+   "to_latin_2026": "rahatsizlantiradi"
+  },
+  "c1025": {
+   "detect_script": "latin_1995",
+   "normalize": "08 11 2026",
+   "to_cyrillic": "08.11.2026",
+   "to_latin_1995": "08.11.2026",
+   "to_latin_2026": "08.11.2026"
+  },
+  "c1026": {
+   "detect_script": "latin_1995",
+   "normalize": "2026 11 08",
+   "to_cyrillic": "2026-11-08",
+   "to_latin_1995": "2026-11-08",
+   "to_latin_2026": "2026-11-08"
+  },
+  "c1027": {
+   "detect_script": "latin_1995",
+   "normalize": "12 30",
+   "to_cyrillic": "12:30",
+   "to_latin_1995": "12:30",
+   "to_latin_2026": "12:30"
+  },
+  "c1028": {
+   "detect_script": "latin_1995",
+   "normalize": "3 14",
+   "to_cyrillic": "3,14",
+   "to_latin_1995": "3,14",
+   "to_latin_2026": "3,14"
+  },
+  "c1029": {
+   "detect_script": "latin_1995",
+   "normalize": "1 000 000",
+   "to_cyrillic": "1 000 000",
+   "to_latin_1995": "1 000 000",
+   "to_latin_2026": "1 000 000"
+  },
+  "c1030": {
+   "detect_script": "latin_1995",
+   "normalize": "no 12",
+   "to_cyrillic": "№ 12",
+   "to_latin_1995": "№ 12",
+   "to_latin_2026": "№ 12"
+  },
+  "c1031": {
+   "detect_script": "latin_1995",
+   "normalize": "10 1234 abcd 5678",
+   "to_cyrillic": "10.1234/абcд.5678",
+   "to_latin_1995": "10.1234/abcd.5678",
+   "to_latin_2026": "10.1234/abcd.5678"
+  },
+  "c1032": {
+   "detect_script": "latin_1995",
+   "normalize": "doi 10 1234 abcd 5678",
+   "to_cyrillic": "ДОИ: 10.1234/абcд.5678",
+   "to_latin_1995": "DOI: 10.1234/abcd.5678",
+   "to_latin_2026": "DOI: 10.1234/abcd.5678"
+  },
+  "c1033": {
+   "detect_script": "latin_1995",
+   "normalize": "https doi org 10 1234 abcd 5678",
+   "to_cyrillic": "ҳттпс://дои.орг/10.1234/абcд.5678",
+   "to_latin_1995": "https://doi.org/10.1234/abcd.5678",
+   "to_latin_2026": "https://doi.org/10.1234/abcd.5678"
+  },
+  "c1034": {
+   "detect_script": "latin_1995",
+   "normalize": "https example org uz kitob id 12 til uz",
+   "to_cyrillic": "ҳттпс://эхампле.орг/уз/китоб?ид=12&тил=уз",
+   "to_latin_1995": "https://example.org/uz/kitob?id=12&til=uz",
+   "to_latin_2026": "https://example.org/uz/kitob?id=12&til=uz"
+  },
+  "c1035": {
+   "detect_script": "latin_1995",
+   "normalize": "info example org",
+   "to_cyrillic": "инфо@эхампле.орг",
+   "to_latin_1995": "info@example.org",
+   "to_latin_2026": "info@example.org"
+  },
+  "c1036": {
+   "detect_script": "latin_1995",
+   "normalize": "yozing info example org",
+   "to_cyrillic": "Ёзинг: инфо@эхампле.орг",
+   "to_latin_1995": "Yozing: info@example.org",
+   "to_latin_2026": "Yozing: info@example.org"
+  },
+  "c1037": {
+   "detect_script": "cyrillic",
+   "normalize": "yozing info example org",
+   "to_cyrillic": "Ёзинг: info@example.org",
+   "to_latin_1995": "Yozing: info@example.org",
+   "to_latin_2026": "Yozing: info@example.org"
+  },
+  "c1038": {
+   "detect_script": "latin_1995",
+   "normalize": "salom dunyo",
+   "to_cyrillic": "Салом, дунё!",
+   "to_latin_1995": "Salom, dunyo!",
+   "to_latin_2026": "Salom, dunyo!"
+  },
+  "c1039": {
+   "detect_script": "cyrillic",
+   "normalize": "salom dunyo",
+   "to_cyrillic": "Салом, дунё!",
+   "to_latin_1995": "Salom, dunyo!",
+   "to_latin_2026": "Salom, dunyo!"
+  },
+  "c1040": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "«Ўзбекистон»",
+   "to_latin_1995": "«Oʻzbekiston»",
+   "to_latin_2026": "«Özbekiston»"
+  },
+  "c1041": {
+   "detect_script": "cyrillic",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "«Ўзбекистон»",
+   "to_latin_1995": "«Oʻzbekiston»",
+   "to_latin_2026": "«Özbekiston»"
+  },
+  "c1042": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "„Тошкент“",
+   "to_latin_1995": "„Toshkent“",
+   "to_latin_2026": "„Toşkent“"
+  },
+  "c1043": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": "(Тошкент)",
+   "to_latin_1995": "(Toshkent)",
+   "to_latin_2026": "(Toşkent)"
+  },
+  "c1044": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent samarqand",
+   "to_cyrillic": "Тошкент—Самарқанд",
+   "to_latin_1995": "Toshkent—Samarqand",
+   "to_latin_2026": "Toşkent—Samarqand"
+  },
+  "c1045": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent samarqand",
+   "to_cyrillic": "Тошкент – Самарқанд",
+   "to_latin_1995": "Toshkent – Samarqand",
+   "to_latin_2026": "Toşkent – Samarqand"
+  },
+  "c1046": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "...",
+   "to_latin_1995": "...",
+   "to_latin_2026": "..."
+  },
+  "c1047": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "?!",
+   "to_latin_1995": "?!",
+   "to_latin_2026": "?!"
+  },
+  "c1048": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": ";",
+   "to_latin_1995": ";",
+   "to_latin_2026": ";"
+  },
+  "c1049": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "-",
+   "to_latin_1995": "-",
+   "to_latin_2026": "-"
+  },
+  "c1050": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "—",
+   "to_latin_1995": "—",
+   "to_latin_2026": "—"
+  },
+  "c1051": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent samarqand",
+   "to_cyrillic": "Тошкент\nСамарқанд",
+   "to_latin_1995": "Toshkent\nSamarqand",
+   "to_latin_2026": "Toşkent\nSamarqand"
+  },
+  "c1052": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent samarqand",
+   "to_cyrillic": "Тошкент\nСамарқанд",
+   "to_latin_1995": "Toshkent\nSamarqand",
+   "to_latin_2026": "Toşkent\nSamarqand"
+  },
+  "c1053": {
+   "detect_script": "latin_1995",
+   "normalize": "birinchi qator ikkinchi qator",
+   "to_cyrillic": "Биринчи қатор\r\nИккинчи қатор",
+   "to_latin_1995": "Birinchi qator\r\nIkkinchi qator",
+   "to_latin_2026": "Birinçi qator\r\nIkkinçi qator"
+  },
+  "c1054": {
+   "detect_script": "latin_1995",
+   "normalize": "bir ikki",
+   "to_cyrillic": "Бир\n\nИкки",
+   "to_latin_1995": "Bir\n\nIkki",
+   "to_latin_2026": "Bir\n\nIkki"
+  },
+  "c1055": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent samarqand",
+   "to_cyrillic": "Тошкент\tСамарқанд",
+   "to_latin_1995": "Toshkent\tSamarqand",
+   "to_latin_2026": "Toşkent\tSamarqand"
+  },
+  "c1056": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": " ",
+   "to_latin_1995": " ",
+   "to_latin_2026": " "
+  },
+  "c1057": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "  ",
+   "to_latin_1995": "  ",
+   "to_latin_2026": "  "
+  },
+  "c1058": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "\t",
+   "to_latin_1995": "\t",
+   "to_latin_2026": "\t"
+  },
+  "c1059": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": "\n",
+   "to_latin_1995": "\n",
+   "to_latin_2026": "\n"
+  },
+  "c1060": {
+   "detect_script": "latin_1995",
+   "normalize": "",
+   "to_cyrillic": " ",
+   "to_latin_1995": " ",
+   "to_latin_2026": " "
+  },
+  "c1061": {
+   "detect_script": "latin_1995",
+   "normalize": "toshkent",
+   "to_cyrillic": " Тошкент ",
+   "to_latin_1995": " Toshkent ",
+   "to_latin_2026": " Toşkent "
+  },
+  "c1062": {
+   "detect_script": "latin_1995",
+   "normalize": "3 sinf",
+   "to_cyrillic": "3-синф",
+   "to_latin_1995": "3-sinf",
+   "to_latin_2026": "3-sinf"
+  },
+  "c1063": {
+   "detect_script": "latin_1995",
+   "normalize": "xxi asr",
+   "to_cyrillic": "ХХИ аср",
+   "to_latin_1995": "XXI asr",
+   "to_latin_2026": "XXI asr"
+  },
+  "c1064": {
+   "detect_script": "cyrillic",
+   "normalize": "xxi asr",
+   "to_cyrillic": "XXI аср",
+   "to_latin_1995": "XXI asr",
+   "to_latin_2026": "XXI asr"
+  },
+  "c1065": {
+   "detect_script": "latin_1995",
+   "normalize": "12 son 3 jild",
+   "to_cyrillic": "12-сон, 3-жилд",
+   "to_latin_1995": "12-son, 3-jild",
+   "to_latin_2026": "12-son, 3-jild"
+  },
+  "c1066": {
+   "detect_script": "latin_1995",
+   "normalize": "isbn 978 0 00 000000 0",
+   "to_cyrillic": "ИСБН 978-0-00-000000-0",
+   "to_latin_1995": "ISBN 978-0-00-000000-0",
+   "to_latin_2026": "ISBN 978-0-00-000000-0"
+  },
+  "c1067": {
+   "detect_script": "latin_1995",
+   "normalize": "ali vali va gani",
+   "to_cyrillic": "Али, Вали ва Ғани",
+   "to_latin_1995": "Ali, Vali va Gʻani",
+   "to_latin_2026": "Ali, Vali va Ğani"
+  },
+  "c1068": {
+   "detect_script": "cyrillic",
+   "normalize": "ali vali va gani",
+   "to_cyrillic": "Али, Вали ва Ғани",
+   "to_latin_1995": "Ali, Vali va Gʻani",
+   "to_latin_2026": "Ali, Vali va Ğani"
+  },
+  "c1069": {
+   "detect_script": "latin_2026",
+   "normalize": "shahar",
+   "to_cyrillic": "шаҳар",
+   "to_latin_1995": "shahar",
+   "to_latin_2026": "şahar"
+  },
+  "c1070": {
+   "detect_script": "latin_2026",
+   "normalize": "chaqmoq",
+   "to_cyrillic": "чақмоқ",
+   "to_latin_1995": "chaqmoq",
+   "to_latin_2026": "çaqmoq"
+  },
+  "c1071": {
+   "detect_script": "latin_2026",
+   "normalize": "goz",
+   "to_cyrillic": "ғоз",
+   "to_latin_1995": "gʻoz",
+   "to_latin_2026": "ğoz"
+  },
+  "c1072": {
+   "detect_script": "latin_2026",
+   "normalize": "ordak",
+   "to_cyrillic": "ўрдак",
+   "to_latin_1995": "oʻrdak",
+   "to_latin_2026": "ördak"
+  },
+  "c1073": {
+   "detect_script": "latin_2026",
+   "normalize": "shahar",
+   "to_cyrillic": "ШАҲАР",
+   "to_latin_1995": "SHAHAR",
+   "to_latin_2026": "ŞAHAR"
+  },
+  "c1074": {
+   "detect_script": "latin_2026",
+   "normalize": "chaqmoq",
+   "to_cyrillic": "ЧАҚМОҚ",
+   "to_latin_1995": "CHAQMOQ",
+   "to_latin_2026": "ÇAQMOQ"
+  },
+  "c1075": {
+   "detect_script": "latin_2026",
+   "normalize": "goz",
+   "to_cyrillic": "ҒОЗ",
+   "to_latin_1995": "GʻOZ",
+   "to_latin_2026": "ĞOZ"
+  },
+  "c1076": {
+   "detect_script": "latin_2026",
+   "normalize": "ordak",
+   "to_cyrillic": "ЎРДАК",
+   "to_latin_1995": "OʻRDAK",
+   "to_latin_2026": "ÖRDAK"
+  },
+  "c1077": {
+   "detect_script": "latin_2026",
+   "normalize": "o",
+   "to_cyrillic": "ў",
+   "to_latin_1995": "oʻ",
+   "to_latin_2026": "ō"
+  },
+  "c1078": {
+   "detect_script": "latin_2026",
+   "normalize": "o",
+   "to_cyrillic": "ў",
+   "to_latin_1995": "oʻ",
+   "to_latin_2026": "ǒ"
+  },
+  "c1079": {
+   "detect_script": "latin_2026",
+   "normalize": "o",
+   "to_cyrillic": "Ў",
+   "to_latin_1995": "Oʻ",
+   "to_latin_2026": "Ō"
+  },
+  "c1080": {
+   "detect_script": "latin_1995",
+   "normalize": "o",
+   "to_cyrillic": "Ǒ",
+   "to_latin_1995": "Ǒ",
+   "to_latin_2026": "Ǒ"
+  },
+  "c1081": {
+   "detect_script": "latin_2026",
+   "normalize": "ordak",
+   "to_cyrillic": "ўрдак",
+   "to_latin_1995": "oʻrdak",
+   "to_latin_2026": "ōrdak"
+  },
+  "c1082": {
+   "detect_script": "latin_2026",
+   "normalize": "ordak",
+   "to_cyrillic": "ўрдак",
+   "to_latin_1995": "oʻrdak",
+   "to_latin_2026": "ǒrdak"
+  },
+  "c1083": {
+   "detect_script": "latin_2026",
+   "normalize": "ordak",
+   "to_cyrillic": "ЎРДАК",
+   "to_latin_1995": "OʻRDAK",
+   "to_latin_2026": "ŌRDAK"
+  },
+  "c1084": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbekiston",
+   "to_cyrillic": "Ǒзбекистон",
+   "to_latin_1995": "Ǒzbekiston",
+   "to_latin_2026": "Ǒzbekiston"
+  },
+  "c1085": {
+   "detect_script": "latin_1995",
+   "normalize": "ishoq",
+   "to_cyrillic": "ИШОҚ",
+   "to_latin_1995": "ISHOQ",
+   "to_latin_2026": "IŞOQ"
+  },
+  "c1086": {
+   "detect_script": "latin_2026",
+   "normalize": "chol",
+   "to_cyrillic": "чўл",
+   "to_latin_1995": "choʻl",
+   "to_latin_2026": "çöl"
+  },
+  "c1087": {
+   "detect_script": "latin_2026",
+   "normalize": "chirchiq",
+   "to_cyrillic": "Чирчиқ",
+   "to_latin_1995": "Chirchiq",
+   "to_latin_2026": "Çirçiq"
+  },
+  "c1088": {
+   "detect_script": "latin_2026",
+   "normalize": "gijduvon",
+   "to_cyrillic": "Ғиждувон",
+   "to_latin_1995": "Gʻijduvon",
+   "to_latin_2026": "Ğijduvon"
+  },
+  "c1089": {
+   "detect_script": "latin_2026",
+   "normalize": "shahrisabz",
+   "to_cyrillic": "Шаҳрисабз",
+   "to_latin_1995": "Shahrisabz",
+   "to_latin_2026": "Şahrisabz"
+  },
+  "c1090": {
+   "detect_script": "latin_1995",
+   "normalize": "ozbek",
+   "to_cyrillic": "ӧзбек",
+   "to_latin_1995": "özbek",
+   "to_latin_2026": "özbek"
+  },
+  "c1091": {
+   "detect_script": "latin_2026",
+   "normalize": "ishchi",
+   "to_cyrillic": "ишчи",
+   "to_latin_1995": "ishchi",
+   "to_latin_2026": "işçi"
+  },
+  "c1092": {
+   "detect_script": "latin_2026",
+   "normalize": "ochmas",
+   "to_cyrillic": "ўчмас",
+   "to_latin_1995": "oʻchmas",
+   "to_latin_2026": "öçmas"
+  },
+  "c1093": {
+   "detect_script": "latin_1995",
+   "normalize": "oksitotsin",
+   "to_cyrillic": "окситотсин",
+   "to_latin_1995": "oksitotsin",
+   "to_latin_2026": "oksitotsin"
+  },
+  "c1094": {
+   "detect_script": "latin_1995",
+   "normalize": "doksorubitsin",
+   "to_cyrillic": "доксорубитсин",
+   "to_latin_1995": "doksorubitsin",
+   "to_latin_2026": "doksorubitsin"
+  },
+  "c1095": {
+   "detect_script": "latin_1995",
+   "normalize": "rifampitsin",
+   "to_cyrillic": "рифампитсин",
+   "to_latin_1995": "rifampitsin",
+   "to_latin_2026": "rifampitsin"
+  },
+  "c1096": {
+   "detect_script": "latin_1995",
+   "normalize": "oksitotsinni",
+   "to_cyrillic": "окситотсинни",
+   "to_latin_1995": "oksitotsinni",
+   "to_latin_2026": "oksitotsinni"
+  },
+  "c1097": {
+   "detect_script": "latin_1995",
+   "normalize": "rifampitsinga",
+   "to_cyrillic": "рифампитсинга",
+   "to_latin_1995": "rifampitsinga",
+   "to_latin_2026": "rifampitsinga"
+  },
+  "c1098": {
+   "detect_script": "latin_1995",
+   "normalize": "doksorubitsinning",
+   "to_cyrillic": "доксорубитсиннинг",
+   "to_latin_1995": "doksorubitsinning",
+   "to_latin_2026": "doksorubitsinning"
+  },
+  "c1099": {
+   "detect_script": "latin_1995",
+   "normalize": "otsin",
+   "to_cyrillic": "ўтсин",
+   "to_latin_1995": "oʻtsin",
+   "to_latin_2026": "ötsin"
+  },
+  "c1100": {
+   "detect_script": "latin_1995",
+   "normalize": "yetsin",
+   "to_cyrillic": "етсин",
+   "to_latin_1995": "yetsin",
+   "to_latin_2026": "yetsin"
+  },
+  "c1101": {
+   "detect_script": "latin_1995",
+   "normalize": "aytsin",
+   "to_cyrillic": "айтсин",
+   "to_latin_1995": "aytsin",
+   "to_latin_2026": "aytsin"
+  },
+  "c1102": {
+   "detect_script": "latin_1995",
+   "normalize": "sabr",
+   "to_cyrillic": "сабр",
+   "to_latin_1995": "sabr",
+   "to_latin_2026": "sabr"
+  },
+  "c1103": {
+   "detect_script": "latin_2026",
+   "normalize": "ordak",
+   "to_cyrillic": "Ўрдак",
+   "to_latin_1995": "Oʻrdak",
+   "to_latin_2026": "Ördak"
+  },
+  "c1104": {
+   "detect_script": "latin_1995",
+   "normalize": "zarar",
+   "to_cyrillic": "зарар",
+   "to_latin_1995": "zarar",
+   "to_latin_2026": "zarar"
+  },
+  "c1105": {
+   "detect_script": "latin_1995",
+   "normalize": "goz",
+   "to_cyrillic": "ғоз",
+   "to_latin_1995": "gʻoz",
+   "to_latin_2026": "ğoz"
+  },
+  "c1106": {
+   "detect_script": "latin_1995",
+   "normalize": "choy",
+   "to_cyrillic": "чой",
+   "to_latin_1995": "choy",
+   "to_latin_2026": "çoy"
+  },
+  "c1107": {
+   "detect_script": "latin_1995",
+   "normalize": "ishonch",
+   "to_cyrillic": "Ишонч",
+   "to_latin_1995": "Ishonch",
+   "to_latin_2026": "Işonç"
+  },
+  "c1108": {
+   "detect_script": "latin_1995",
+   "normalize": "orik",
+   "to_cyrillic": "ўрик",
+   "to_latin_1995": "oʻrik",
+   "to_latin_2026": "örik"
+  },
+  "c1109": {
+   "detect_script": "cyrillic",
+   "normalize": "yalpiz",
+   "to_cyrillic": "ялпиз",
+   "to_latin_1995": "yalpiz",
+   "to_latin_2026": "yalpiz"
+  },
+  "c1110": {
+   "detect_script": "cyrillic",
+   "normalize": "qovun",
+   "to_cyrillic": "қовун",
+   "to_latin_1995": "qovun",
+   "to_latin_2026": "qovun"
+  },
+  "c1111": {
+   "detect_script": "cyrillic",
+   "normalize": "goz",
+   "to_cyrillic": "ғоз",
+   "to_latin_1995": "gʻoz",
+   "to_latin_2026": "ğoz"
+  },
+  "c1112": {
+   "detect_script": "cyrillic",
+   "normalize": "havo",
+   "to_cyrillic": "ҳаво",
+   "to_latin_1995": "havo",
+   "to_latin_2026": "havo"
+  },
+  "c1113": {
+   "detect_script": "cyrillic",
+   "normalize": "juda",
+   "to_cyrillic": "жуда",
+   "to_latin_1995": "juda",
+   "to_latin_2026": "juda"
+  },
+  "c1114": {
+   "detect_script": "cyrillic",
+   "normalize": "shi",
+   "to_cyrillic": "щи",
+   "to_latin_1995": "shi",
+   "to_latin_2026": "şi"
+  },
+  "c1115": {
+   "detect_script": "latin_1995",
+   "normalize": "ali valiyev",
+   "to_cyrillic": "Али Валиев",
+   "to_latin_1995": "Ali Valiyev",
+   "to_latin_2026": "Ali Valiyev"
+  },
+  "c1116": {
+   "detect_script": "latin_1995",
+   "normalize": "alijon",
+   "to_cyrillic": "Алижон",
+   "to_latin_1995": "Alijon",
+   "to_latin_2026": "Alijon"
+  },
+  "c1117": {
+   "detect_script": "latin_1995",
+   "normalize": "2 son",
+   "to_cyrillic": "2-сон",
+   "to_latin_1995": "2-son",
+   "to_latin_2026": "2-son"
+  },
+  "c1118": {
+   "detect_script": "cyrillic",
+   "normalize": "mi zdes",
+   "to_cyrillic": "Мы здесь",
+   "to_latin_1995": "Mi zdes",
+   "to_latin_2026": "Mi zdes"
+  },
+  "c1119": {
+   "detect_script": "cyrillic",
+   "normalize": "bir",
+   "to_cyrillic": "бир",
+   "to_latin_1995": "bir",
+   "to_latin_2026": "bir"
+  },
+  "c1120": {
+   "detect_script": "cyrillic",
+   "normalize": "qoshiq va shi",
+   "to_cyrillic": "Қўшиқ ва щи",
+   "to_latin_1995": "Qoʻshiq va shi",
+   "to_latin_2026": "Qöşiq va şi"
+  },
+  "c1121": {
+   "detect_script": "latin_1995",
+   "normalize": "123",
+   "to_cyrillic": "123",
+   "to_latin_1995": "123",
+   "to_latin_2026": "123"
+  }
+ },
+ "schema": "akademtranslit-golden/1"
+}

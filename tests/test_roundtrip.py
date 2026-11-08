@@ -8,8 +8,9 @@ Tier 1  latin_1995 <-> latin_2026 is lossless in both directions, always.
 Tier 2  cyrillic -> latin -> cyrillic is lossless over the native Uzbek letter
         inventory.
 Tier 3  Four Cyrillic letters that occur only in Russian loanwords are lossy by
-        design. Those are asserted here as lossy, so a future change that
-        silently alters the behaviour fails the suite.
+        design, and so is ъ where the 1995 spelling drops it. Those are
+        asserted here as lossy, so a future change that silently alters the
+        behaviour fails the suite.
 """
 
 from __future__ import annotations
@@ -69,6 +70,9 @@ def test_tier1_holds_for_the_reverse_starting_point():
 
 # --- tier 2: Cyrillic round trip over the native inventory -------------------
 
+# Words with ъ after ў or between a consonant and е ё ю я (мўъжиза, объект) are
+# not listed: latin_1995 drops that ъ and nothing brings it back. They are
+# tier 3, below.
 NATIVE_CYRILLIC = [
     "Тошкент",
     "Самарқанд",
@@ -142,6 +146,20 @@ def test_tier3_yeru_merges_with_i():
 def test_tier3_soft_sign_is_not_recoverable():
     assert convert("альбом", source=CYRILLIC, target=LATIN_1995) == "albom"
     assert convert("albom", source=LATIN_1995, target=CYRILLIC) == "албом"
+
+
+@pytest.mark.parametrize(
+    "cyrillic,latin,back",
+    [
+        ("объект", "obyekt", "обект"),
+        ("съёмка", "syomka", "сёмка"),
+        ("мўъжиза", "moʻjiza", "мўжиза"),
+    ],
+)
+def test_tier3_dropped_hard_sign_is_not_recoverable(cyrillic, latin, back):
+    """ъ after ў, or between a consonant and е ё ю я, is not written in latin_1995."""
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == back
 
 
 def test_tier3_tse_is_positional_and_not_reversible():

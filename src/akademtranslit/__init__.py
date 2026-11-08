@@ -24,6 +24,9 @@ key that makes one word searchable across all three.
 
 from __future__ import annotations
 
+from .apostrophes import normalize_apostrophes
+from .collation import sort_key
+from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
 from .rules import (
     cyrillic_word_to_latin_1995,
@@ -34,7 +37,9 @@ from .rules import (
 )
 from .tables import (
     CYRILLIC,
+    CYRILLIC_ALPHABET,
     LATIN_1995,
+    LATIN_1995_ALPHABET,
     LATIN_2026,
     LATIN_2026_ALPHABET,
     REFORM_PAIRS,
@@ -43,11 +48,13 @@ from .tables import (
     TUTUQ,
 )
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 __all__ = [
     "CYRILLIC",
+    "CYRILLIC_ALPHABET",
     "LATIN_1995",
+    "LATIN_1995_ALPHABET",
     "LATIN_2026",
     "LATIN_2026_ALPHABET",
     "REFORM_PAIRS",
@@ -56,10 +63,14 @@ __all__ = [
     "TUTUQ",
     "__version__",
     "convert",
+    "cyrillic_language",
     "detect_script",
     "fold_cyrillic",
     "is_cyrillic",
     "normalize",
+    "normalize_apostrophes",
+    "script_class",
+    "sort_key",
     "to_cyrillic",
     "to_latin",
 ]
