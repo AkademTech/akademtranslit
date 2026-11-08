@@ -218,7 +218,10 @@ def _ts_splits(word: str, i: int) -> bool:
     3. A known loan the suffix check would misread: ц. Each is matched where
        the ts is, so inflected forms hold too (azitromitsinni, tablitsada).
 
-       a. ``-mitsin`` and ``glitsin`` (azitromitsin, gentamitsin).
+       a. ``-mitsin`` and ``-rubitsin``, plus ``glitsin``, ``oksitotsin`` and
+          ``rifampitsin`` (azitromitsin, doksorubitsin). Exact names and
+          endings only: a general ``-itsin`` rule would also take bitsin and
+          the other verbs in ``-t`` + ``-sin``, which are т + с.
        b. ``-floksatsin``, ``-leytsin`` and ``amikatsin`` (levofloksatsin,
           izoleytsin).
        c. ``aktsiz`` (excise). Only this stem: a general "k before ts" rule
@@ -238,7 +241,9 @@ def _ts_splits(word: str, i: int) -> bool:
         return False
     if word[i + 2:i + 3] == "i" and word[i + 3:i + 4] in _VOWELS_AND_Y:
         return False
-    if word.startswith("in", i + 2) and (word.endswith("mi", 0, i) or word[:i] == "gli"):
+    if word.startswith("in", i + 2) and (
+        word.endswith(("mi", "rubi"), 0, i) or word[:i] in ("gli", "oksito", "rifampi")
+    ):
         return False
     if word.startswith("in", i + 2) and (
         word.endswith(("floksa", "ley"), 0, i) or word[:i] == "amika"

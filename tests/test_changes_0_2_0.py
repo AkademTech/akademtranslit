@@ -122,3 +122,70 @@ def test_ts_particles_from_latin_2026_and_in_caps():
 def test_ts_particles_round_trip(cyrillic, via):
     latin = convert(cyrillic, source=CYRILLIC, target=via)
     assert convert(latin, source=via, target=CYRILLIC) == cyrillic
+
+
+# --- -tsin drug names: ц again, as in 0.1.0 -----------------------------------
+#
+# The suffix check reads oksitotsin as oksitot + -sin, so 0.1.1 gave
+# окситотсин where 0.1.0 had окситоцин. These names are matched exactly (and
+# the -rubitsin family by its ending); there is no general -itsin rule, because
+# Uzbek verbs end the same way.
+
+TSIN_DRUGS = [
+    ("oksitotsin", "окситоцин"),
+    ("doksorubitsin", "доксорубицин"),
+    ("rifampitsin", "рифампицин"),
+    ("oksitotsinni", "окситоцинни"),
+    ("rifampitsinga", "рифампицинга"),
+    ("doksorubitsinning", "доксорубициннинг"),
+    ("epirubitsin", "эпирубицин"),
+    ("daunorubitsin", "даунорубицин"),
+]
+
+# Verb + -sin, the same letters: т + с stays.
+TSIN_VERBS = [
+    ("bitsin", "битсин"),
+    ("ketsin", "кетсин"),
+    ("oʻtsin", "ўтсин"),
+    ("yetsin", "етсин"),
+    ("aytsin", "айтсин"),
+    ("oʻqitsin", "ўқитсин"),
+    ("eshitsin", "эшитсин"),
+    ("quritsin", "қуритсин"),
+]
+
+
+@pytest.mark.parametrize("latin,cyrillic", TSIN_DRUGS)
+def test_tsin_drug_names_keep_tse(latin, cyrillic):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == cyrillic
+
+
+@pytest.mark.parametrize("latin,cyrillic", TSIN_VERBS)
+def test_tsin_verbs_keep_t_plus_s(latin, cyrillic):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == cyrillic
+
+
+def test_tsin_drug_names_from_latin_2026_and_in_caps():
+    assert convert("oksitotsin", source=LATIN_2026, target=CYRILLIC) == "окситоцин"
+    assert convert("RIFAMPITSIN", source=LATIN_1995, target=CYRILLIC) == "РИФАМПИЦИН"
+    assert convert("Doksorubitsin", source=LATIN_1995, target=CYRILLIC) == "Доксорубицин"
+
+
+@pytest.mark.parametrize("via", [LATIN_1995, LATIN_2026])
+@pytest.mark.parametrize("cyrillic", [c for _, c in TSIN_DRUGS])
+def test_tsin_drug_names_round_trip(cyrillic, via):
+    latin = convert(cyrillic, source=CYRILLIC, target=via)
+    assert convert(latin, source=via, target=CYRILLIC) == cyrillic
+
+
+# --- Isʼhoq: unchanged ---------------------------------------------------------
+#
+# latin_1995 separates s and h with the tutuq belgisi; latin_2026 needs no
+# separator. Pinned here so a later "fix" has to change this test on purpose.
+
+
+def test_separated_s_and_h_is_unchanged():
+    assert convert("Исҳоқ", source=CYRILLIC, target=LATIN_1995) == "Isʼhoq"
+    assert convert("Исҳоқ", source=CYRILLIC, target=LATIN_2026) == "Ishoq"
+    assert convert("Isʼhoq", source=LATIN_1995, target=CYRILLIC) == "Исҳоқ"
+    assert convert("Ishoq", source=LATIN_2026, target=CYRILLIC) == "Исҳоқ"

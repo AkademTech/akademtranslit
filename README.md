@@ -161,8 +161,9 @@ run in order and the first that applies wins:
 - the word starts with `ts` → `ц`: tsement → цемент;
 - `i` and then a vowel or `y` follow → `ц`: operatsiya → операция, ratsion → рацион;
 - a loanword whose tail would pass for suffixes → `ц`. The list: names in
-  `-mitsin`, `-floksatsin` and `-leytsin`, plus `glitsin`, `amikatsin` and
-  `aktsiz`; and words beginning with one of the `-ица` stems `tablits`,
+  `-mitsin`, `-rubitsin`, `-floksatsin` and `-leytsin`, plus `glitsin`,
+  `oksitotsin`, `rifampitsin`, `amikatsin` and `aktsiz`; and words beginning
+  with one of the `-ица` stems `tablits`,
   `teplits`, `stolits`, `ulits`, `bolnits`, `granits`, `gostinits`
   (`TS_LOANWORD_STEMS` in `tables.py`). Inflected forms count too:
   levofloksatsinni → левофлоксацинни, tablitsada → таблицада. The list exists
@@ -181,8 +182,8 @@ run in order and the first that applies wins:
 The known misses:
 
 - A loanword off that list whose tail looks like a suffix gets `т` + `с`:
-  oksitotsin → окситотсин (окситоцин), doksorubitsin → доксорубитсин,
-  rifampitsin → рифампитсин. Before 0.1.1 these came out right.
+  karbetotsin → карбетотсин (карбетоцин). oksitotsin, rifampitsin and the
+  `-rubitsin` names had this problem in 0.1.1 and are on the list since 0.2.0.
 - A stem on the list also takes a native ending: granitsiz (granite + `-siz`)
   → границиз, not гранитсиз.
 - An Uzbek word whose `t` + `s` boundary is not in the list keeps `ц`:
