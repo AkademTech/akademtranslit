@@ -34,7 +34,9 @@ from .rules import (
 )
 from .tables import (
     CYRILLIC,
+    CYRILLIC_ALPHABET,
     LATIN_1995,
+    LATIN_1995_ALPHABET,
     LATIN_2026,
     LATIN_2026_ALPHABET,
     REFORM_PAIRS,
@@ -47,7 +49,9 @@ __version__ = "0.2.0"
 
 __all__ = [
     "CYRILLIC",
+    "CYRILLIC_ALPHABET",
     "LATIN_1995",
+    "LATIN_1995_ALPHABET",
     "LATIN_2026",
     "LATIN_2026_ALPHABET",
     "REFORM_PAIRS",

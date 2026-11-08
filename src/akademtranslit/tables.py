@@ -211,10 +211,30 @@ LATIN_2026_INPUT_ALIASES = (
     ("ǒ", "ö"),
 )
 
-#: The 28 letters of the reformed alphabet, in alphabetical order, plus the
-#: tutuq belgisi. Exposed for callers building keyboards, sort keys or
-#: validators.
+# --- alphabets -----------------------------------------------------------------
+#
+# The letters of each orthography in its alphabetical order. Exposed for callers
+# building keyboards, sort keys or validators; :func:`akademtranslit.sort_key`
+# sorts by them.
+
+#: The 28 letters of the 2026 alphabet, in the order of Law No. O'RQ-1184.
+#: The tutuq belgisi belongs to the alphabet but is not a letter: see TUTUQ.
 LATIN_2026_ALPHABET = (
-    "a", "b", "ç", "d", "e", "f", "g", "ğ", "h", "i", "j", "k", "l", "m",
-    "n", "o", "ö", "p", "q", "r", "s", "ş", "t", "u", "v", "x", "y", "z",
+    "a", "b", "d", "e", "f", "g", "ğ", "h", "i", "j", "k", "l", "m", "n",
+    "o", "ö", "p", "q", "r", "s", "ş", "ç", "t", "u", "v", "x", "y", "z",
+)
+
+#: The 1995 alphabet in sorting order: 24 letters, then oʻ gʻ sh ch
+#: (the order of the CLDR "uz" collation). The tutuq belgisi and ng are not units.
+LATIN_1995_ALPHABET = (
+    "a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
+    "p", "q", "r", "s", "t", "u", "v", "x", "y", "z",
+    "o" + TURNED_COMMA, "g" + TURNED_COMMA, "sh", "ch",
+)
+
+#: The 35 letters of the Uzbek Cyrillic alphabet; Ў Қ Ғ Ҳ follow Я.
+CYRILLIC_ALPHABET = (
+    "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м",
+    "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "ъ", "ь",
+    "э", "ю", "я", "ў", "қ", "ғ", "ҳ",
 )
