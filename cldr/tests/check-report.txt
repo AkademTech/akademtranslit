@@ -1,0 +1,244 @@
+ICU 74.2, Unicode 15.1, akademtranslit 0.2.0, 1121 golden inputs, 545 inputs in the 2026 orthography (golden and derived)
+
+## 1995 -> 2026 and 2026 -> 1995 against the library
+- 1995->2026 c0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Özbekiston', library 'Özbekiston'
+- 1995->2026 c0339 [a lone mark outside a word]: 'ʻ' -> CLDR 'ʻ', library 'ʼ'
+- 1995->2026 c0870 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'OʻzBEKISTON' -> CLDR 'ÖzBEKISTON', library 'Özbekiston'
+- 1995->2026 c0872 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'McDonald' -> CLDR 'McDonald', library 'Mcdonald'
+- 1995->2026 c0873 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'ToshKent' -> CLDR 'ToşKent', library 'Toşkent'
+- 1995->2026 c0874 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'tOSHKENT' -> CLDR 'tOŞKENT', library 'toşkent'
+- 1995->2026 c0984 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'SpO2' -> CLDR 'SpO2', library 'Spo2'
+- 1995->2026 c0985 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'pH' -> CLDR 'pH', library 'ph'
+- 1995->2026 c0991 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'PaCO2' -> CLDR 'PaCO2', library 'Paco2'
+- 1995->2026 c1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'özbek', library 'özbek'
+1995->2026: 572 inputs, 10 differ — case: the library re-cases mixed-case words, the transform keeps each letter's case: 7, decomposed input: the transform normalizes it, the library does not: 2, a lone mark outside a word: 1
+- 2026->1995 dc0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Oʻzbekiston', library 'Özbekiston'
+- 2026->1995 dc1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'oʻzbek', library 'özbek'
+2026->1995: 545 inputs, 2 differ — decomposed input: the transform normalizes it, the library does not: 2
+
+## Cyrillic -> 2026
+inputs: 435
+differs from existing uz_Cyrl-uz_Latn + 1995->2026: 9
+- c0022: 'Е' -> new 'Ye', via existing 'YE'
+- c0026: 'Ё' -> new 'Yo', via existing 'YO'
+- c0094: 'Ц' -> new 'Ts', via existing 'TS'
+- c0118: 'Ю' -> new 'Yu', via existing 'YU'
+- c0122: 'Я' -> new 'Ya', via existing 'YA'
+- c0630: 'Исҳоқ' -> new 'Ishoq', via existing 'Işoq'
+- c0657: 'исҳоқ' -> new 'ishoq', via existing 'işoq'
+- c0845: 'ИСҲОҚ' -> new 'ISHOQ', via existing 'IŞOQ'
+- c0846: 'асҳоб' -> new 'ashob', via existing 'aşob'
+differs from the library: 44 — ц: library ts/s by position, CLDR ts: 29, ъ: library drops it before е ё ю я after a consonant and after ў: 9, letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them: 6
+- c0093 [ц: library ts/s by position, CLDR ts]: 'ц' -> CLDR 'ts', library 's'
+- c0094 [ц: library ts/s by position, CLDR ts]: 'Ц' -> CLDR 'Ts', library 'S'
+- c0423 [ц: library ts/s by position, CLDR ts]: 'вакцина' -> CLDR 'vaktsina', library 'vaksina'
+- c0468 [ц: library ts/s by position, CLDR ts]: 'цемент' -> CLDR 'tsement', library 'sement'
+- c0470 [ц: library ts/s by position, CLDR ts]: 'цар' -> CLDR 'tsar', library 'sar'
+- c0472 [ц: library ts/s by position, CLDR ts]: 'цитокин' -> CLDR 'tsitokin', library 'sitokin'
+- c0474 [ц: library ts/s by position, CLDR ts]: 'цинга' -> CLDR 'tsinga', library 'singa'
+- c0516 [ц: library ts/s by position, CLDR ts]: 'лейцин' -> CLDR 'leytsin', library 'leysin'
+- c0518 [ц: library ts/s by position, CLDR ts]: 'изолейцин' -> CLDR 'izoleytsin', library 'izoleysin'
+- c0520 [ц: library ts/s by position, CLDR ts]: 'акциз' -> CLDR 'aktsiz', library 'aksiz'
+- c0522 [ц: library ts/s by position, CLDR ts]: 'акцизлар' -> CLDR 'aktsizlar', library 'aksizlar'
+- c0524 [ц: library ts/s by position, CLDR ts]: 'акцизни' -> CLDR 'aktsizni', library 'aksizni'
+- c0601 [ц: library ts/s by position, CLDR ts]: 'цирк' -> CLDR 'tsirk', library 'sirk'
+- c0603 [ц: library ts/s by position, CLDR ts]: 'концерт' -> CLDR 'kontsert', library 'konsert'
+- c0644 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'щ' -> CLDR 'щ', library 'ş'
+- c0646 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'ы' -> CLDR 'ы', library 'i'
+- c0647 [ц: library ts/s by position, CLDR ts]: 'функция' -> CLDR 'funktsiya', library 'funksiya'
+- c0679 [ц: library ts/s by position, CLDR ts]: 'абвгдеёжзийклмнопрстуфхцчшъэюяўқғҳ' -> CLDR 'abvgdeyojziyklmnoprstufxtsçşʼeyuyaöqğh', library 'abvgdeyojziyklmnoprstufxsçşʼeyuyaöqğh'
+- c0680 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'абвгдёжзийклмнопрстуфхчшъьыэюяўқғҳщ' -> CLDR 'abvgdyojziyklmnoprstufxçşʼыeyuyaöqğhщ', library 'abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş'
+- c0833 [ц: library ts/s by position, CLDR ts]: 'Цирк' -> CLDR 'Tsirk', library 'Sirk'
+- c0834 [ц: library ts/s by position, CLDR ts]: 'ЦИРК' -> CLDR 'TSIRK', library 'SIRK'
+- c0835 [ц: library ts/s by position, CLDR ts]: 'акция' -> CLDR 'aktsiya', library 'aksiya'
+- c0836 [ц: library ts/s by position, CLDR ts]: 'станция' -> CLDR 'stantsiya', library 'stansiya'
+- c0837 [ц: library ts/s by position, CLDR ts]: 'цех' -> CLDR 'tsex', library 'sex'
+- c0838 [ц: library ts/s by position, CLDR ts]: 'Цемент' -> CLDR 'Tsement', library 'Sement'
+- c0851 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'мўъжиза' -> CLDR 'möʼjiza', library 'möjiza'
+- c0852 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'объект' -> CLDR 'obʼyekt', library 'obyekt'
+- c0943 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'қоңыр' -> CLDR 'qoңыr', library 'qoңir'
+- c0959 [ц: library ts/s by position, CLDR ts]: 'кальций' -> CLDR 'kaltsiy', library 'kalsiy'
+- c0965 [ц: library ts/s by position, CLDR ts]: 'реакция' -> CLDR 'reaktsiya', library 'reaksiya'
+- c0966 [ц: library ts/s by position, CLDR ts]: 'цистит' -> CLDR 'tsistit', library 'sistit'
+- c0967 [ц: library ts/s by position, CLDR ts]: 'цикл' -> CLDR 'tsikl', library 'sikl'
+- c0975 [ц: library ts/s by position, CLDR ts]: 'цитология' -> CLDR 'tsitologiya', library 'sitologiya'
+- c0977 [ц: library ts/s by position, CLDR ts]: 'цитологияси' -> CLDR 'tsitologiyasi', library 'sitologiyasi'
+- c0981 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'субъектив' -> CLDR 'subʼyektiv', library 'subyektiv'
+- c0982 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'подъезд' -> CLDR 'podʼyezd', library 'podyezd'
+- c1006 [ц: library ts/s by position, CLDR ts]: 'инъекция' -> CLDR 'inʼyektsiya', library 'inyeksiya'
+- c1007 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'съёмка' -> CLDR 'sʼyomka', library 'syomka'
+- c1008 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'адъютант' -> CLDR 'adʼyutant', library 'adyutant'
+- c1009 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'мўътабар' -> CLDR 'möʼtabar', library 'mötabar'
+- c1022 [ъ: library drops it before е ё ю я after a consonant and after ў]: 'мўътадил' -> CLDR 'möʼtadil', library 'mötadil'
+- c1114 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'щи' -> CLDR 'щi', library 'şi'
+- c1118 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'Мы здесь' -> CLDR 'Mы zdes', library 'Mi zdes'
+- c1120 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'Қўшиқ ва щи' -> CLDR 'Qöşiq va щi', library 'Qöşiq va şi'
+  (expected: с + ҳ, which the existing transform writes as the digraph sh; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)
+
+## Round trips
+Cyrillic -> 2026 -> Cyrillic: 357 of 435 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 290)
+- c0105: 'ъ' -> 'ʼ' -> 'Ъ' (existing 1995 round trip: 'Ъ')
+- c0109: 'ь' -> '' -> '' (existing 1995 round trip: '')
+- c0110: 'Ь' -> '' -> '' (existing 1995 round trip: '')
+- c0111: 'альбом' -> 'albom' -> 'албом' (existing 1995 round trip: 'албом')
+- c0112: 'АЛЬБОМ' -> 'ALBOM' -> 'АЛБОМ' (existing 1995 round trip: 'АЛБОМ')
+- c0115: 'поэма' -> 'poema' -> 'поема' (existing 1995 round trip: 'поэма')
+- c0116: 'ПОЭМА' -> 'POEMA' -> 'ПОЕМА' (existing 1995 round trip: 'ПОЭМА')
+- c0354: 'кетса' -> 'ketsa' -> 'кеца' (existing 1995 round trip: 'кэца')
+- c0356: 'айтса' -> 'aytsa' -> 'айца' (existing 1995 round trip: 'айца')
+- c0358: 'тутса' -> 'tutsa' -> 'туца' (existing 1995 round trip: 'туца')
+- c0360: 'етса' -> 'yetsa' -> 'еца' (existing 1995 round trip: 'еца')
+- c0362: 'ўтса' -> 'ötsa' -> 'ўца' (existing 1995 round trip: 'ўца')
+- c0364: 'кутсангиз' -> 'kutsangiz' -> 'куцангиз' (existing 1995 round trip: 'куцангиз')
+- c0366: 'айтсангизчи' -> 'aytsangizçi' -> 'айцангизчи' (existing 1995 round trip: 'айцангизчи')
+- c0368: 'кетсин' -> 'ketsin' -> 'кецин' (existing 1995 round trip: 'кэцин')
+- c0370: 'битсин' -> 'bitsin' -> 'бицин' (existing 1995 round trip: 'бицин')
+- c0372: 'ўқитсин' -> 'öqitsin' -> 'ўқицин' (existing 1995 round trip: 'ўқицин')
+- c0374: 'эшитсин' -> 'eşitsin' -> 'эшицин' (existing 1995 round trip: 'эшицин')
+- c0376: 'кетсинми' -> 'ketsinmi' -> 'кецинми' (existing 1995 round trip: 'кэцинми')
+- c0378: 'ҳаётсиз' -> 'hayotsiz' -> 'ҳаёциз' (existing 1995 round trip: 'ҳаёциз')
+- c0380: 'меҳнатсиз' -> 'mehnatsiz' -> 'меҳнациз' (existing 1995 round trip: 'мэҳнациз')
+- c0382: 'отсиз' -> 'otsiz' -> 'оциз' (existing 1995 round trip: 'оциз')
+- c0384: 'ҳаётсизлик' -> 'hayotsizlik' -> 'ҳаёцизлик' (existing 1995 round trip: 'ҳаёцизлик')
+- c0386: 'ҳаётсизман' -> 'hayotsizman' -> 'ҳаёцизман' (existing 1995 round trip: 'ҳаёцизман')
+- c0388: 'меҳнатсевар' -> 'mehnatsevar' -> 'меҳнацевар' (existing 1995 round trip: 'мэҳнацэвар')
+- c0430: 'КЕТСА' -> 'KETSA' -> 'КЕЦА' (existing 1995 round trip: 'КЭЦА')
+- c0431: 'Ҳаётсиз' -> 'Hayotsiz' -> 'Ҳаёциз' (existing 1995 round trip: 'Ҳаёциз')
+- c0433: 'ҲАЁТСИЗ' -> 'HAYOTSIZ' -> 'ҲАЁЦИЗ' (existing 1995 round trip: 'ҲАЁЦИЗ')
+- c0494: 'меҳнатсизлиги' -> 'mehnatsizligi' -> 'меҳнацизлиги' (existing 1995 round trip: 'мэҳнацизлиги')
+- c0496: 'ҳаётсизликни' -> 'hayotsizlikni' -> 'ҳаёцизликни' (existing 1995 round trip: 'ҳаёцизликни')
+- c0498: 'кетсангизлар' -> 'ketsangizlar' -> 'кецангизлар' (existing 1995 round trip: 'кэцангизлар')
+- c0500: 'меҳнатсизроқ' -> 'mehnatsizroq' -> 'меҳнацизроқ' (existing 1995 round trip: 'мэҳнацизроқ')
+- c0502: 'ҳаётсизсан' -> 'hayotsizsan' -> 'ҳаёцизсан' (existing 1995 round trip: 'ҳаёцизсан')
+- c0504: 'пациентсиз' -> 'patsiyentsiz' -> 'пациенциз' (existing 1995 round trip: 'пациенциз')
+- c0526: 'контактсиз' -> 'kontaktsiz' -> 'контакциз' (existing 1995 round trip: 'контакциз')
+- c0528: 'контактсизлик' -> 'kontaktsizlik' -> 'контакцизлик' (existing 1995 round trip: 'контакцизлик')
+- c0530: 'эффектсиз' -> 'effektsiz' -> 'эффекциз' (existing 1995 round trip: 'эффэкциз')
+- c0532: 'эффектсизлиги' -> 'effektsizligi' -> 'эффекцизлиги' (existing 1995 round trip: 'эффэкцизлиги')
+- c0534: 'фактсиз' -> 'faktsiz' -> 'факциз' (existing 1995 round trip: 'факциз')
+- c0536: 'проектсиз' -> 'proyektsiz' -> 'проекциз' (existing 1995 round trip: 'проекциз')
+- c0538: 'интеллектсиз' -> 'intellektsiz' -> 'интеллекциз' (existing 1995 round trip: 'интэллэкциз')
+- c0555: 'битса' -> 'bitsa' -> 'бица' (existing 1995 round trip: 'бица')
+- c0557: 'ўқитса' -> 'öqitsa' -> 'ўқица' (existing 1995 round trip: 'ўқица')
+- c0559: 'эшитса' -> 'eşitsa' -> 'эшица' (existing 1995 round trip: 'эшица')
+- c0561: 'қуритса' -> 'quritsa' -> 'қурица' (existing 1995 round trip: 'қурица')
+- c0563: 'илитса' -> 'ilitsa' -> 'илица' (existing 1995 round trip: 'илица')
+- c0565: 'танитса' -> 'tanitsa' -> 'таница' (existing 1995 round trip: 'таница')
+- c0567: 'кўрсатсин' -> 'körsatsin' -> 'кўрсацин' (existing 1995 round trip: 'кўрсацин')
+- c0569: 'яратсин' -> 'yaratsin' -> 'ярацин' (existing 1995 round trip: 'ярацин')
+- c0571: 'ўргатсин' -> 'örgatsin' -> 'ўргацин' (existing 1995 round trip: 'ўргацин')
+- c0573: 'узатсин' -> 'uzatsin' -> 'узацин' (existing 1995 round trip: 'узацин')
+- c0575: 'қайтса' -> 'qaytsa' -> 'қайца' (existing 1995 round trip: 'қайца')
+- c0577: 'тортса' -> 'tortsa' -> 'торца' (existing 1995 round trip: 'торца')
+- c0579: 'юртсиз' -> 'yurtsiz' -> 'юрциз' (existing 1995 round trip: 'юрциз')
+- c0597: 'пьеса' -> 'pyesa' -> 'песа' (existing 1995 round trip: 'песа')
+- c0605: 'компьютер' -> 'kompyuter' -> 'компютер' (existing 1995 round trip: 'компютэр')
+- c0607: 'июнь' -> 'iyun' -> 'июн' (existing 1995 round trip: 'июн')
+- c0679: 'абвгдеёжзийклмнопрстуфхцчшъэюяўқғҳ' -> 'abvgdeyojziyklmnoprstufxtsçşʼeyuyaöqğh' -> 'абвгдеёжзийклмнопрстуфхцчшъеюяўқғҳ' (existing 1995 round trip: 'абвгдэёжзийклмнопрстуфхцчшъэюяўқғҳ')
+- c0680: 'абвгдёжзийклмнопрстуфхчшъьыэюяўқғҳщ' -> 'abvgdyojziyklmnoprstufxçşʼыeyuyaöqğhщ' -> 'абвгдёжзийклмнопрстуфхчшъыеюяўқғҳщ' (existing 1995 round trip: 'абвгдёжзийклмнопрстуфхчшъыэюяўқғҳщ')
+- c0856: 'бульвар' -> 'bulvar' -> 'булвар' (existing 1995 round trip: 'булвар')
+- c0857: 'фильм' -> 'film' -> 'филм' (existing 1995 round trip: 'филм')
+- c0858: 'ФИЛЬМ' -> 'FILM' -> 'ФИЛМ' (existing 1995 round trip: 'ФИЛМ')
+- c0957: 'пульс' -> 'puls' -> 'пулс' (existing 1995 round trip: 'пулс')
+- c0958: 'пульси' -> 'pulsi' -> 'пулси' (existing 1995 round trip: 'пулси')
+- c0959: 'кальций' -> 'kaltsiy' -> 'калций' (existing 1995 round trip: 'калций')
+- c0960: 'ммоль' -> 'mmol' -> 'ммол' (existing 1995 round trip: 'ммол')
+- c0976: 'альбумин' -> 'albumin' -> 'албумин' (existing 1995 round trip: 'албумин')
+- c0983: 'премьер' -> 'premyer' -> 'премер' (existing 1995 round trip: 'прэмер')
+- c0988: 'ЭЭГ' -> 'EEG' -> 'ЭЕГ' (existing 1995 round trip: 'ЭЭГ')
+- c0999: 'айтсангизгина' -> 'aytsangizgina' -> 'айцангизгина' (existing 1995 round trip: 'айцангизгина')
+- c1000: 'айтсаккина' -> 'aytsakkina' -> 'айцаккина' (existing 1995 round trip: 'айцаккина')
+- c1001: 'кетсаю' -> 'ketsayu' -> 'кецаю' (existing 1995 round trip: 'кэцаю')
+- c1002: 'кетсаку' -> 'ketsaku' -> 'кецаку' (existing 1995 round trip: 'кэцаку')
+- c1003: 'кетсаёқ' -> 'ketsayoq' -> 'кецаёқ' (existing 1995 round trip: 'кэцаёқ')
+- c1004: 'тутсинмикан' -> 'tutsinmikan' -> 'туцинмикан' (existing 1995 round trip: 'туцинмикан')
+- c1005: 'кетсину' -> 'ketsinu' -> 'кецину' (existing 1995 round trip: 'кэцину')
+- c1024: 'раҳатсизлантиради' -> 'rahatsizlantiradi' -> 'раҳацизлантиради' (existing 1995 round trip: 'раҳацизлантиради')
+- c1118: 'Мы здесь' -> 'Mы zdes' -> 'Мы здес' (existing 1995 round trip: 'Мы здэс')
+2026 -> 1995 -> 2026: 536 of 545 come back unchanged; 9 more are the draft spellings ō ǒ, which come back as ö
+
+## 2026 -> Cyrillic
+- dc0105 [a lone mark outside a word]: 'ʼ' -> CLDR 'Ъ', library 'ъ'
+- dc0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Ўзбекистон', library 'Ӧзбекистон'
+- dc0353 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsa' -> CLDR 'кеца', library 'кетса'
+- dc0355 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsa' -> CLDR 'айца', library 'айтса'
+- dc0357 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsa' -> CLDR 'туца', library 'тутса'
+- dc0359 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yetsa' -> CLDR 'еца', library 'етса'
+- dc0361 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ötsa' -> CLDR 'ўца', library 'ўтса'
+- dc0363 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'kutsangiz' -> CLDR 'куцангиз', library 'кутсангиз'
+- dc0365 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsangizçi' -> CLDR 'айцангизчи', library 'айтсангизчи'
+- dc0367 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsin' -> CLDR 'кецин', library 'кетсин'
+- dc0369 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'bitsin' -> CLDR 'бицин', library 'битсин'
+- dc0371 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'öqitsin' -> CLDR 'ўқицин', library 'ўқитсин'
+- dc0373 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'eşitsin' -> CLDR 'эшицин', library 'эшитсин'
+- dc0375 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsinmi' -> CLDR 'кецинми', library 'кетсинми'
+- dc0377 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'hayotsiz' -> CLDR 'ҳаёциз', library 'ҳаётсиз'
+- dc0379 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'mehnatsiz' -> CLDR 'меҳнациз', library 'меҳнатсиз'
+- dc0381 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'otsiz' -> CLDR 'оциз', library 'отсиз'
+- dc0383 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'hayotsizlik' -> CLDR 'ҳаёцизлик', library 'ҳаётсизлик'
+- dc0385 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'hayotsizman' -> CLDR 'ҳаёцизман', library 'ҳаётсизман'
+- dc0387 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'mehnatsevar' -> CLDR 'меҳнацевар', library 'меҳнатсевар'
+- dc0430 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'KETSA' -> CLDR 'КЕЦА', library 'КЕТСА'
+- dc0431 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'Hayotsiz' -> CLDR 'Ҳаёциз', library 'Ҳаётсиз'
+- dc0433 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'HAYOTSIZ' -> CLDR 'ҲАЁЦИЗ', library 'ҲАЁТСИЗ'
+- dc0493 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'mehnatsizligi' -> CLDR 'меҳнацизлиги', library 'меҳнатсизлиги'
+- dc0495 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'hayotsizlikni' -> CLDR 'ҳаёцизликни', library 'ҳаётсизликни'
+- dc0497 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsangizlar' -> CLDR 'кецангизлар', library 'кетсангизлар'
+- dc0499 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'mehnatsizroq' -> CLDR 'меҳнацизроқ', library 'меҳнатсизроқ'
+- dc0501 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'hayotsizsan' -> CLDR 'ҳаёцизсан', library 'ҳаётсизсан'
+- dc0503 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'patsiyentsiz' -> CLDR 'пациенциз', library 'пациентсиз'
+- dc0525 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'kontaktsiz' -> CLDR 'контакциз', library 'контактсиз'
+- dc0527 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'kontaktsizlik' -> CLDR 'контакцизлик', library 'контактсизлик'
+- dc0529 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'effektsiz' -> CLDR 'эффекциз', library 'эффектсиз'
+- dc0531 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'effektsizligi' -> CLDR 'эффекцизлиги', library 'эффектсизлиги'
+- dc0533 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'faktsiz' -> CLDR 'факциз', library 'фактсиз'
+- dc0535 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'proyektsiz' -> CLDR 'проекциз', library 'проектсиз'
+- dc0537 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'intellektsiz' -> CLDR 'интеллекциз', library 'интеллектсиз'
+- dc0554 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'bitsa' -> CLDR 'бица', library 'битса'
+- dc0556 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'öqitsa' -> CLDR 'ўқица', library 'ўқитса'
+- dc0558 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'eşitsa' -> CLDR 'эшица', library 'эшитса'
+- dc0560 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'quritsa' -> CLDR 'қурица', library 'қуритса'
+- dc0562 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ilitsa' -> CLDR 'илица', library 'илитса'
+- dc0564 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tanitsa' -> CLDR 'таница', library 'танитса'
+- dc0566 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'körsatsin' -> CLDR 'кўрсацин', library 'кўрсатсин'
+- dc0568 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yaratsin' -> CLDR 'ярацин', library 'яратсин'
+- dc0570 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'örgatsin' -> CLDR 'ўргацин', library 'ўргатсин'
+- dc0572 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'uzatsin' -> CLDR 'узацин', library 'узатсин'
+- dc0574 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'qaytsa' -> CLDR 'қайца', library 'қайтса'
+- dc0576 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tortsa' -> CLDR 'торца', library 'тортса'
+- dc0578 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yurtsiz' -> CLDR 'юрциз', library 'юртсиз'
+- dc0944 [letters outside the Uzbek alphabet]: 'á' -> CLDR 'а́', library 'á'
+- dc0945 [letters outside the Uzbek alphabet]: 'ó' -> CLDR 'о́', library 'ó'
+- dc0946 [letters outside the Uzbek alphabet]: 'ú' -> CLDR 'у́', library 'ú'
+- dc0947 [letters outside the Uzbek alphabet]: 'ń' -> CLDR 'н́', library 'ń'
+- dc0949 [letters outside the Uzbek alphabet]: 'Nókis' -> CLDR 'Но́кис', library 'Нóкис'
+- dc0950 [letters outside the Uzbek alphabet]: 'áke' -> CLDR 'а́ке', library 'áке'
+- dc0951 [letters outside the Uzbek alphabet]: 'úy' -> CLDR 'у́й', library 'úй'
+- dc0952 [letters outside the Uzbek alphabet]: 'qońır' -> CLDR 'қон́ıр', library 'қоńıр'
+- dc0992 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsangizgina' -> CLDR 'айцангизгина', library 'айтсангизгина'
+- dc0993 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsakkina' -> CLDR 'айцаккина', library 'айтсаккина'
+- dc0994 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsayu' -> CLDR 'кецаю', library 'кетсаю'
+- dc0995 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsaku' -> CLDR 'кецаку', library 'кетсаку'
+- dc0996 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsayoq' -> CLDR 'кецаёқ', library 'кетсаёқ'
+- dc0997 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsinmikan' -> CLDR 'туцинмикан', library 'тутсинмикан'
+- dc0998 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsinu' -> CLDR 'кецину', library 'кетсину'
+- dc1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'ўзбек', library 'ӧзбек'
+- dc1099 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ötsin' -> CLDR 'ўцин', library 'ўтсин'
+- dc1100 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yetsin' -> CLDR 'ецин', library 'етсин'
+- dc1101 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsin' -> CLDR 'айцин', library 'айтсин'
+2026 -> Cyrillic: 545 inputs, 68 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, letters outside the Uzbek alphabet: 8, decomposed input: the transform normalizes it, the library does not: 2, a lone mark outside a word: 1
+
+## Collation against the library's sort_key
+- latin_2026 A: library 'ashob' < 'asr', ICU the other way
+- latin_2026 A: library 'ishoqov' < 'iş', ICU the other way
+- latin_2026 A: library 'sh' < 'sikl', ICU the other way
+- latin_2026 A: library 'çorshanbiyev' < 'çorşanbiyev', ICU the other way
+latin_2026 (option A): 442 words, 4 order differences
+  (option A: a real s + h in 2026 text, as in Ishoq or ashob, meets the 1995 contraction sh)
+latin_2026 (option B): 442 words, 0 order differences
+latin_1995 (option A): 442 words, 0 order differences
+cyrillic: 425 words, 0 order differences
+
+test files in tests/: 12 of 12 match
+
+RESULT: ok

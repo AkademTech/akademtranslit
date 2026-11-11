@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
+<!--
+Option B, for comparison with collation/uz.xml (option A). Not a file CLDR has
+a place for today: it is the tailoring a separate 2026 collation would use if
+CLDR prefers one to extending the standard uz collation.
+-->
+<ldml>
+	<identity>
+		<version number="$Revision$"/>
+		<language type="uz"/>
+		<script type="Latn"/>
+		<variant type="2026"/>
+	</identity>
+	<collations>
+		<collation type="standard"><cr><![CDATA[
+# The 2026 orthography only: A B D E F G Ğ H I J K L M N O Ö P Q R S Ş Ç T U
+# V X Y Z, with the tutuq belgisi ʼ not a letter. No 1995 contractions, so a
+# real s + h (Ishoq, ashob) sorts as s, h.
+&g<ğ<<<Ğ
+&o<ö<<<Ö
+&s<ş<<<Ş<ç<<<Ç
+&[last primary ignorable]<<ʼ
+		]]></cr></collation>
+	</collations>
+</ldml>

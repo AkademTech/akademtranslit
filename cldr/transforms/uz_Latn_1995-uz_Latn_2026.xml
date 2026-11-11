@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
+<!-- Copyright © 1991-2026 Unicode, Inc.
+CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
+For terms of use, see http://www.unicode.org/copyright.html
+-->
+<supplementalData>
+	<version number="$Revision$" />
+	<transforms>
+		<transform source="uz_Latn_1995" target="uz_Latn_2026" direction="both" alias="uz-Latn-2026-t-uz-latn-1995" backwardAlias="uz-Latn-1995-t-uz-latn-2026">
+			<tRule><![CDATA[
+# Uzbek in the Latin script: the 1995 orthography <-> the 2026 orthography.
+# Law of the Republic of Uzbekistan No. O'RQ-1184 (21 October 2026, in force
+# 22 April 2027) replaces four letters and keeps everything else:
+#   oʻ -> ö    gʻ -> ğ    sh -> ş    ch -> ç
+# The 1995 orthography writes a real s + h with the tutuq belgisi between them
+# (Isʼhoq), so that it is not read as the digraph sh. The 2026 orthography does
+# not need the separator: ş is the digraph, and plain sh is s + h.
+# Both directions are lossless for text in canonical form (see the tests).
+#
+# Rules are predicated on running NFD first, and NFC afterwards.
+:: NFD (NFC) ;
+
+$apos = [ʻʼ‘’'`´ʹ] ;
+$letter = [[:L:][:M:]] ;
+
+# Pass 1, 1995 -> 2026 only: canonicalise the marks. Text is often typed with
+# an ASCII apostrophe or a quotation mark instead of U+02BB and U+02BC (the
+# standard collation for uz accepts o' and o‘ for the same reason). After o or
+# g the mark belongs to the letter oʻ or gʻ; between other letters it is the
+# tutuq belgisi ʼ.
+[oOgG] { $apos → ʻ ;
+$letter { $apos } $letter → ʼ ;
+
+:: Null ;
+
+# Pass 2, both directions.
+oʻ ↔ o\u0308 ;
+Oʻ ↔ O\u0308 ;
+gʻ ↔ g\u0306 ;
+Gʻ ↔ G\u0306 ;
+
+# s + h: separated in 1995, plain in 2026.
+sʼh ↔ sh ;
+Sʼh ↔ Sh ;
+SʼH ↔ SH ;
+
+# The digraphs. Going back to 1995, the case of the second letter follows the
+# neighbours: SH in an upper-case word (ŞOŞIMOVA -> SHOSHIMOVA, IŞ -> ISH),
+# Sh otherwise (Şoşimova -> Shoshimova, Ş. -> Sh.).
+sh ↔ s\u0327 ;
+Sh → S\u0327 ;
+SH → S\u0327 ;
+SH ← [:Lu:] [:Mn:]* { S\u0327 ;
+SH ← S\u0327 } [:Lu:] ;
+Sh ← S\u0327 ;
+
+ch ↔ c\u0327 ;
+Ch → C\u0327 ;
+CH → C\u0327 ;
+CH ← [:Lu:] [:Mn:]* { C\u0327 ;
+CH ← C\u0327 } [:Lu:] ;
+Ch ← C\u0327 ;
+
+# Spellings of the reformed letters seen in drafts of the reform: ō (and ǒ)
+# for ö. Read as oʻ when going back to 1995.
+oʻ ← o\u0304 ;
+Oʻ ← O\u0304 ;
+oʻ ← o\u030C ;
+Oʻ ← O\u030C ;
+
+:: Null ;
+
+# Pass 3, 2026 -> 1995 only (runs first in that direction): canonicalise the
+# marks. The 2026 orthography has no turned comma, so a mark inside a word is
+# the tutuq belgisi, except after o or g, where it is read as the 1995 letter.
+ʻ ← [oOgG] { $apos ;
+ʼ ← $letter { $apos } $letter ;
+
+:: NFC (NFD) ;
+			]]></tRule>
+		</transform>
+	</transforms>
+</supplementalData>
