@@ -48,6 +48,7 @@ from .rules import (
     map_words_by,
     word_class,
 )
+from .scripts import fold_homoglyphs, homoglyph_spans, script_spans
 from .tables import (
     APOSTROPHE_VARIANTS,
     ASCII_CAPITALS,
@@ -86,11 +87,14 @@ __all__ = [
     "cyrillic_language",
     "detect_script",
     "fold_cyrillic",
+    "fold_homoglyphs",
+    "homoglyph_spans",
     "is_cyrillic",
     "normalize",
     "normalize_apostrophes",
     "script_class",
     "script_for_tag",
+    "script_spans",
     "segments",
     "sort_key",
     "tag_for_script",

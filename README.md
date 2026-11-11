@@ -346,11 +346,38 @@ space, so `text` above gives the key `tosh kent`.
 ```
 
 `detect_script` names an orthography. `script_class` answers a narrower
-question with a closed set — `latin`, `cyrillic` or `mixed` — and is the one to
-use for catching homoglyphs: the `о` in the third example is Cyrillic.
-`cyrillic_language` tells Uzbek Cyrillic from Russian by the letters only one
-of them has (`ў қ ғ ҳ` against `щ ы`); it is a routing heuristic, not a
-language identifier, and short text is often `unknown`.
+question with a closed set — `latin`, `cyrillic` or `mixed` — for the text as a
+whole: the `о` in the third example is Cyrillic. `cyrillic_language` tells
+Uzbek Cyrillic from Russian by the letters only one of them has (`ў қ ғ ҳ`
+against `щ ы`); it is a routing heuristic, not a language identifier, and
+short text is often `unknown`.
+
+`script_spans` goes word by word. Each word gets the orthography it shows —
+`cyrillic`, `latin_2026` (`ş ç ğ ö`), `latin_1995` (`oʻ`, `gʻ`), or `latin`
+for a word written alike in both — and a word with letters from both alphabets
+is `mixed`. Such a word is usually a slip: a Cyrillic `е` typed in a Latin
+word looks right, matches nothing in a search, and makes the word Cyrillic to
+`convert`. `fold_homoglyphs` writes each such word in the alphabet most of its
+letters are in, replacing the others by their look-alikes (`HOMOGLYPHS` in
+`tables.py`, chosen from the Unicode confusables); a word with a letter that
+has no look-alike, or with as many letters of each, is left alone. It also
+writes `ș`, s with comma below, as `ş` in a Latin word. `homoglyph_spans` says
+which words it changes. Run text that people type through `fold_homoglyphs`
+before `convert`:
+
+```python
+>>> from akademtranslit import fold_homoglyphs, homoglyph_spans, script_spans, to_cyrillic
+>>> text = "Toshk" + chr(0x0435) + "nt shahri"  # U+0435 is a Cyrillic е
+>>> [kind for piece, kind in script_spans(text)]
+['mixed', None, 'latin']
+>>> to_cyrillic(text) == text
+True
+>>> homoglyph_spans(text)
+[(0, 8, 'Toshkent')]
+>>> to_cyrillic(fold_homoglyphs(text))
+'Тошкент шаҳри'
+
+```
 
 ## Supported orthographies
 

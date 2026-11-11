@@ -290,6 +290,48 @@ ASCII_CAPITALS = (
     ("Ç", "CH", "Ch"),
 )
 
+# --- look-alike letters ----------------------------------------------------------
+
+#: Latin and Cyrillic letters that look alike, as (Latin, Cyrillic) pairs:
+#: the letters :func:`~akademtranslit.fold_homoglyphs` replaces in a word typed
+#: partly in the other alphabet. Chosen from the Unicode confusables (UTS #39).
+#: The Cyrillic letters are written by code point, since they look like the
+#: Latin ones. A change is a minor release, with a golden diff.
+HOMOGLYPHS = (
+    # Lowercase.
+    ("a", chr(0x0430)),  # CYRILLIC SMALL LETTER A
+    ("c", chr(0x0441)),  # CYRILLIC SMALL LETTER ES
+    ("e", chr(0x0435)),  # CYRILLIC SMALL LETTER IE
+    ("o", chr(0x043E)),  # CYRILLIC SMALL LETTER O
+    ("p", chr(0x0440)),  # CYRILLIC SMALL LETTER ER
+    ("x", chr(0x0445)),  # CYRILLIC SMALL LETTER HA
+    ("y", chr(0x0443)),  # CYRILLIC SMALL LETTER U
+    ("i", chr(0x0456)),  # CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
+    ("j", chr(0x0458)),  # CYRILLIC SMALL LETTER JE
+    ("s", chr(0x0455)),  # CYRILLIC SMALL LETTER DZE
+    ("h", chr(0x04BB)),  # CYRILLIC SMALL LETTER SHHA
+    ("q", chr(0x051B)),  # CYRILLIC SMALL LETTER QA
+    ("w", chr(0x051D)),  # CYRILLIC SMALL LETTER WE
+    ("ö", chr(0x04E7)),  # CYRILLIC SMALL LETTER O WITH DIAERESIS
+    # Capitals.
+    ("A", chr(0x0410)),  # CYRILLIC CAPITAL LETTER A
+    ("B", chr(0x0412)),  # CYRILLIC CAPITAL LETTER VE
+    ("C", chr(0x0421)),  # CYRILLIC CAPITAL LETTER ES
+    ("E", chr(0x0415)),  # CYRILLIC CAPITAL LETTER IE
+    ("H", chr(0x041D)),  # CYRILLIC CAPITAL LETTER EN
+    ("I", chr(0x0406)),  # CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
+    ("J", chr(0x0408)),  # CYRILLIC CAPITAL LETTER JE
+    ("K", chr(0x041A)),  # CYRILLIC CAPITAL LETTER KA
+    ("M", chr(0x041C)),  # CYRILLIC CAPITAL LETTER EM
+    ("O", chr(0x041E)),  # CYRILLIC CAPITAL LETTER O
+    ("P", chr(0x0420)),  # CYRILLIC CAPITAL LETTER ER
+    ("S", chr(0x0405)),  # CYRILLIC CAPITAL LETTER DZE
+    ("T", chr(0x0422)),  # CYRILLIC CAPITAL LETTER TE
+    ("X", chr(0x0425)),  # CYRILLIC CAPITAL LETTER HA
+    ("Y", chr(0x0423)),  # CYRILLIC CAPITAL LETTER U
+    ("Ö", chr(0x04E6)),  # CYRILLIC CAPITAL LETTER O WITH DIAERESIS
+)
+
 # --- alphabets -----------------------------------------------------------------
 #
 # The letters of each orthography in its alphabetical order. Exposed for callers
