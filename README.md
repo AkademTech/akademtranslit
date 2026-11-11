@@ -309,6 +309,13 @@ what this library emits. Earlier drafts of the reform used `ō` (o with macron)
 or `ǒ`; both are accepted on input as aliases of `ö`, so text written under a
 draft reads correctly, but they are never output.
 
+**The 2026 spelling rules.** Law ZRU-1184 fixes the 2026 alphabet. Detailed
+spelling rules for it have not been adopted yet (November 2026). Until they
+are, the library applies the 1995 rules with the four letters replaced, and
+writes a real s + h without the separator. When official rules are
+published, the outputs they change will change in a minor release, with a
+golden diff.
+
 ## Golden vectors
 
 `golden/` holds the library's output, sealed:
@@ -360,10 +367,12 @@ golden vectors. The examples in this README and in the docstrings run as tests.
 `tests/test_regressions.py` and `tests/test_changes_0_2_0.py` pin every
 behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
 
+How the package is put together: [docs/architecture.md](docs/architecture.md).
+
 ## Security
 
 See [SECURITY.md](SECURITY.md). The library does not use the network and
-stores nothing.
+stores nothing; see [PRIVACY.md](PRIVACY.md).
 
 ## Contributing
 
@@ -376,4 +385,6 @@ MIT — see [LICENSE](LICENSE).
 
 ## Who
 
-Built by [AkademTech](https://akademtech.org).
+AkademTranslit is owned and maintained by AKADEMTECH MChJ, a limited
+liability company registered in Uzbekistan
+([akademtech.org](https://akademtech.org)). Contact: contact@akademtech.org.
