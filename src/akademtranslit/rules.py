@@ -4,7 +4,7 @@ The tables in :mod:`akademtranslit.tables` cover characters whose reading never
 changes. This module covers the ones that do, plus the machinery that applies
 both: tokenisation, greedy longest-match rewriting, and case restoration.
 
-Six positional rules are implemented:
+Seven positional rules are implemented:
 
 ``е``
     Read ``ye`` at the start of a word and after a vowel or a soft/hard sign
@@ -42,6 +42,11 @@ Six positional rules are implemented:
     syomka) and after ``ў`` (мўъжиза -> moʻjiza); the tutuq belgisi ``ʼ``
     everywhere else (маъно -> maʼno, санъат -> sanʼat). Not reversible: the
     Latin side has nothing to restore it from.
+
+``ь``
+    Read ``y`` before ``о`` (бульон -> bulyon, павильон -> pavilyon) and
+    dropped everywhere else (альбом -> albom). Not reversible: bulyon comes
+    back as булён.
 """
 
 from __future__ import annotations
@@ -179,6 +184,9 @@ def cyrillic_word_to_latin_1995(word: str) -> str:
             # The 1995 spelling writes no mark here: объект -> obyekt,
             # мўъжиза -> moʻjiza. Elsewhere ъ is the tutuq belgisi.
             continue
+        elif ch == "ь" and nxt == "о":
+            # ь before о is y: бульон -> bulyon. Elsewhere it is dropped.
+            out.append("y")
         else:
             out.append(CYRILLIC_TO_LATIN_1995.get(ch, ch))
     return "".join(out)

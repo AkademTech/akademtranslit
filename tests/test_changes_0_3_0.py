@@ -25,6 +25,7 @@ from akademtranslit import (
     convert,
     detect_script,
     is_cyrillic,
+    normalize,
     script_class,
     script_for_tag,
     sort_key,
@@ -553,3 +554,31 @@ def test_e_after_a_vowel_round_trip():
     latin = convert("поэзия", source=CYRILLIC, target=LATIN_1995)
     assert latin == "poeziya"
     assert convert(latin, source=LATIN_1995, target=CYRILLIC) == "поэзия"
+
+
+# --- Cyrillic to Latin: ь before о is y -----------------------------------------
+#
+# ь was always dropped, so бульон came out as bulon. Before о it is y, as the
+# Latin spelling writes these loanwords: bulyon, pavilyon. Elsewhere it is
+# still dropped.
+
+SOFT_SIGN_BEFORE_O = [
+    # (cyrillic, latin_1995, latin_2026)
+    ("бульон", "bulyon", "bulyon"),
+    ("Бульон", "Bulyon", "Bulyon"),
+    ("БУЛЬОН", "BULYON", "BULYON"),
+    ("павильон", "pavilyon", "pavilyon"),
+    ("почтальонлар", "pochtalyonlar", "poçtalyonlar"),
+    ("медальон", "medalyon", "medalyon"),
+    ("альбом", "albom", "albom"),        # not before о: dropped, as before
+]
+
+
+@pytest.mark.parametrize("cyrillic,latin_1995,latin_2026", SOFT_SIGN_BEFORE_O)
+def test_soft_sign_before_o_is_y(cyrillic, latin_1995, latin_2026):
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin_1995
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_2026) == latin_2026
+
+
+def test_soft_sign_before_o_normalize():
+    assert normalize("бульон") == normalize("bulyon") == "bulyon"

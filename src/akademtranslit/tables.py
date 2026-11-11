@@ -79,8 +79,8 @@ CYRILLIC_VOWELS = frozenset("аеёиоуўэюяы")
 
 #: Context-free Cyrillic to ``latin_1995``. Lowercase keys; case is restored by
 #: the caller. Entries whose reading depends on position (``е``, ``ц``, ``с``
-#: before ``ҳ``, and ``ъ`` where it is dropped) are handled in
-#: :mod:`akademtranslit.rules` instead.
+#: before ``ҳ``, ``ъ`` where it is dropped, and ``ь`` before ``о``) are handled
+#: in :mod:`akademtranslit.rules` instead.
 CYRILLIC_TO_LATIN_1995 = {
     "а": "a",
     "б": "b",
@@ -119,7 +119,7 @@ CYRILLIC_TO_LATIN_1995 = {
     # see "Known lossy mappings" in the README.
     "щ": "sh",  # merges with ш
     "ы": "i",   # merges with и
-    "ь": "",    # not represented in the Latin orthographies
+    "ь": "",    # not represented in the Latin orthographies, except y before о
 }
 
 #: ``latin_1995`` to Cyrillic, longest match first. The engine tries these in
