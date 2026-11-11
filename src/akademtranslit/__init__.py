@@ -156,6 +156,18 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     >>> convert("Ilmiy jurnal, 2026-yil, 12-son", target="latin_2026")
     'Ilmiy jurnal, 2026-yil, 12-son'
 
+    URLs, e-mail addresses, DOIs, placeholders, markup, file paths and tokens
+    such as ``pH`` and ``SpO2`` come out byte for byte (see
+    :mod:`akademtranslit.protect`); with ``source="auto"`` only the rest of the
+    text decides the orthography. ``protect`` is ``True`` (the default),
+    ``False`` to convert everything, or a :class:`~akademtranslit.Protect`
+    that names the kinds to keep:
+
+    >>> convert("Manba: https://shahar.uz, doi:10.1234/shahar.2026", target="cyrillic")
+    'Манба: https://shahar.uz, doi:10.1234/shahar.2026'
+    >>> convert("https://shahar.uz", target="cyrillic", protect=False)
+    'ҳттпс://шаҳар.уз'
+
     Converting to the orthography the text is already in is not a no-op: it
     canonicalises the apostrophe marks, so ``o'zbek``, ``o’zbek`` and ``oʻzbek``
     all come out as ``oʻzbek``. That makes the function idempotent and makes its

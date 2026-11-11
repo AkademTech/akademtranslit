@@ -139,8 +139,9 @@ def map_words(text: str, transform) -> str:
 
     ``transform`` receives the lowercased, mark-canonicalised word and returns
     its converted form; casing is restored afterwards. Digits, punctuation and
-    whitespace pass through untouched, which is what keeps mixed-script and
-    mixed-content input (citations, DOIs, years) intact.
+    whitespace pass through untouched. It sees words only: URLs, DOIs and the
+    other protected spans are cut out by :func:`~akademtranslit.convert`
+    before it gets here (see :mod:`akademtranslit.protect`).
     """
 
     def _one(match: re.Match[str]) -> str:
