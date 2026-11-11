@@ -6,7 +6,9 @@ where a function had two answers for one question, that it now has one.
 
 from __future__ import annotations
 
+import importlib.util
 import json
+import re
 import unicodedata
 import warnings
 from pathlib import Path
@@ -17,6 +19,7 @@ from akademtranslit import (
     CYRILLIC,
     LATIN_1995,
     LATIN_2026,
+    RULES_VERSION,
     SCRIPTS,
     _REFORM_LETTERS,
     convert,
@@ -29,7 +32,8 @@ from akademtranslit import (
     to_latin,
 )
 
-GOLDEN_INPUTS = Path(__file__).resolve().parent.parent / "golden" / "inputs.json"
+REPO = Path(__file__).resolve().parent.parent
+GOLDEN_INPUTS = REPO / "golden" / "inputs.json"
 
 # The draft glyphs for oʻ, written as escapes because they look alike:
 O_MACRON = "\u014d"            # ō LATIN SMALL LETTER O WITH MACRON
@@ -403,3 +407,69 @@ def test_to_latin_gives_the_same_with_a_tag_or_a_name():
     for text in SAMPLES:
         assert to_latin(text, variant="uz-Latn-1995") == to_latin(text, variant=LATIN_1995)
         assert to_latin(text, variant="uz-2026") == to_latin(text, variant=LATIN_2026)
+
+
+# --- RULES_VERSION ----------------------------------------------------------------
+#
+# Which rules the conversion functions follow: the official basis, then this
+# project's rule set, named by the release that last changed the output of
+# convert, to_latin or to_cyrillic. tools/golden.py --check fails if two
+# consecutive golden files differ in that output but not in RULES_VERSION.
+
+
+def test_rules_version_has_the_documented_shape():
+    assert re.fullmatch(r"[a-z0-9-]+\+project-\d{4}\.\d{2}", RULES_VERSION)
+    assert RULES_VERSION.startswith("uz-2026-alphabet+")
+
+
+def _golden_tool():
+    """tools/golden.py, loaded from its path: it is not part of the package, and
+    the release workflow runs the tests against the installed wheel."""
+    spec = importlib.util.spec_from_file_location("golden_tool", REPO / "tools" / "golden.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _write_golden(directory, version, rules_version, row):
+    doc = {"library_version": version, "results": {"c0001": row}}
+    if rules_version is not None:
+        doc["rules_version"] = rules_version
+    path = directory / f"golden-{version}.json"
+    path.write_bytes(json.dumps(doc, ensure_ascii=False).encode("utf-8"))
+
+
+def test_a_changed_conversion_needs_a_new_rules_version(tmp_path):
+    _write_golden(tmp_path, "0.3.0", "uz+project-2026.11", {"to_latin_2026": "ōrdak"})
+    _write_golden(tmp_path, "0.3.1", "uz+project-2026.11", {"to_latin_2026": "ördak"})
+    assert _golden_tool().rules_version_problems(tmp_path) != []
+
+
+def test_a_changed_convert_field_needs_a_new_rules_version(tmp_path):
+    _write_golden(tmp_path, "0.3.0", "uz+project-2026.11", {"convert_from_cyrillic_to_cyrillic": "a"})
+    _write_golden(tmp_path, "0.3.1", "uz+project-2026.11", {"convert_from_cyrillic_to_cyrillic": "b"})
+    assert _golden_tool().rules_version_problems(tmp_path) != []
+
+
+def test_a_new_rules_version_allows_the_change(tmp_path):
+    _write_golden(tmp_path, "0.3.0", "uz+project-2026.11", {"to_latin_2026": "ōrdak"})
+    _write_golden(tmp_path, "0.3.1", "uz+project-2026.12", {"to_latin_2026": "ördak"})
+    assert _golden_tool().rules_version_problems(tmp_path) == []
+
+
+def test_a_changed_normalize_does_not_need_a_new_rules_version(tmp_path):
+    _write_golden(tmp_path, "0.3.0", "uz+project-2026.11", {"to_latin_2026": "a", "normalize": "a"})
+    _write_golden(tmp_path, "0.3.1", "uz+project-2026.11", {"to_latin_2026": "a", "normalize": "b"})
+    assert _golden_tool().rules_version_problems(tmp_path) == []
+
+
+def test_files_without_a_rules_version_and_the_version_order(tmp_path):
+    """0.2.0 has no rules_version and is skipped; 0.10.0 comes after 0.9.0."""
+    _write_golden(tmp_path, "0.2.0", None, {"to_latin_2026": "x"})
+    _write_golden(tmp_path, "0.9.0", "uz+project-2026.11", {"to_latin_2026": "a"})
+    _write_golden(tmp_path, "0.10.0", "uz+project-2027.01", {"to_latin_2026": "b"})
+    _write_golden(tmp_path, "0.10.1", "uz+project-2027.01", {"to_latin_2026": "b"})
+    assert _golden_tool().rules_version_problems(tmp_path) == []
+    _write_golden(tmp_path, "0.10.2", "uz+project-2027.01", {"to_latin_2026": "c"})
+    problems = _golden_tool().rules_version_problems(tmp_path)
+    assert len(problems) == 1 and "0.10.1" in problems[0] and "0.10.2" in problems[0]

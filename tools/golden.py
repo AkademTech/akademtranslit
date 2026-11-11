@@ -14,7 +14,13 @@ reused. ``golden/golden-<version>.json`` holds one result per input and field.
 ``golden/SHA256SUMS`` lists every ``.json`` in ``golden/`` and can be checked
 with ``shasum -a 256 -c SHA256SUMS``.
 
-Not part of the installed package. The library is imported from ``src/``.
+``--check`` also checks the rules version: two consecutive golden files that
+record one (0.3.0 on) and differ in the output of a conversion function must
+differ in ``rules_version`` too. :func:`rules_version_problems` does that and
+can be called on its own.
+
+Not part of the installed package. The library is imported from ``src/``, and
+only when a command needs it: loading this file imports nothing.
 """
 
 from __future__ import annotations
@@ -22,6 +28,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -30,12 +37,25 @@ GOLDEN_DIR = REPO / "golden"
 INPUTS = GOLDEN_DIR / "inputs.json"
 SUMS = GOLDEN_DIR / "SHA256SUMS"
 
-sys.path.insert(0, str(REPO / "src"))
+#: The library, once :func:`load_library` has imported it.
+lib = None
 
-import akademtranslit as lib  # noqa: E402
+# The fields that hold the output of convert, to_latin and to_cyrillic: the
+# ones RULES_VERSION answers for.
+CONVERSION_FIELDS = ("to_cyrillic", "to_latin_1995", "to_latin_2026")
+CONVERSION_FIELD_PREFIX = "convert_"
 
 SCHEMA = "akademtranslit-golden/1"
 INPUTS_SCHEMA = "akademtranslit-golden-inputs/1"
+
+
+def load_library(src: Path = REPO / "src") -> None:
+    """Import ``akademtranslit`` from ``src`` as :data:`lib`."""
+    global lib
+    sys.path.insert(0, str(src))
+    import akademtranslit
+
+    lib = akademtranslit
 
 
 def canonical(obj) -> bytes:
@@ -125,6 +145,46 @@ def write() -> int:
     return 0
 
 
+def _is_conversion_field(name: str) -> bool:
+    return name in CONVERSION_FIELDS or name.startswith(CONVERSION_FIELD_PREFIX)
+
+
+def _version_key(version: str) -> tuple:
+    return tuple(int(number) for number in re.findall(r"\d+", version))
+
+
+def rules_version_problems(directory: Path) -> list:
+    """The consecutive golden files in ``directory`` that break the rules version.
+
+    Only files with a ``rules_version`` take part, in the order of their
+    ``library_version``. For each pair of consecutive ones, if a conversion
+    field (``to_cyrillic``, ``to_latin_1995``, ``to_latin_2026``,
+    ``convert_*``) differs on an input both have, their ``rules_version`` must
+    differ too. Returns one message per pair that breaks this; none is ``[]``.
+    """
+    docs = []
+    for path in sorted(Path(directory).glob("golden-*.json")):
+        doc = json.loads(path.read_bytes().decode("utf-8"))
+        if "rules_version" in doc:
+            docs.append((path.name, doc))
+    docs.sort(key=lambda item: _version_key(item[1]["library_version"]))
+
+    problems = []
+    for (old_name, old), (new_name, new) in zip(docs, docs[1:]):
+        if old["rules_version"] != new["rules_version"]:
+            continue
+        changed = set()
+        for case_id in sorted(set(old["results"]) & set(new["results"])):
+            a, b = old["results"][case_id], new["results"][case_id]
+            changed.update(f for f in set(a) & set(b) if _is_conversion_field(f) and a[f] != b[f])
+        if changed:
+            problems.append(
+                f"{old_name} -> {new_name}: {', '.join(sorted(changed))} changed, "
+                f"but rules_version is {new['rules_version']!r} in both"
+            )
+    return problems
+
+
 def check() -> int:
     path = golden_path()
     ok = True
@@ -137,6 +197,9 @@ def check() -> int:
         ok = False
     if not SUMS.exists() or SUMS.read_bytes() != sums_text():
         print(f"differs: {SUMS.name} does not match the files in golden/")
+        ok = False
+    for problem in rules_version_problems(GOLDEN_DIR):
+        print(f"rules version: {problem}")
         ok = False
     if ok:
         print(f"ok: {path.name} and {SUMS.name} match")
@@ -202,6 +265,7 @@ def main(argv=None) -> int:
     group.add_argument("--check", action="store_true", help="exit 1 unless both match src/")
     group.add_argument("--diff", nargs=2, metavar=("OLD", "NEW"), help="Markdown diff of two golden files")
     args = parser.parse_args(argv)
+    load_library()
     if args.write:
         return write()
     if args.check:

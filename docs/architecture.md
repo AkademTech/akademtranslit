@@ -25,8 +25,8 @@ Everything is in `src/akademtranslit/`. The only imports from outside the
 package are `re`, `unicodedata` and `warnings`; `tests/test_privacy.py` pins
 that.
 
-- `tables.py` is data only: orthography names, the two marks and the eight
-  `APOSTROPHE_VARIANTS`, the Cyrillic range (`CYRILLIC_FIRST`,
+- `tables.py` is data only: orthography names, `RULES_VERSION`, the two
+  marks and the eight `APOSTROPHE_VARIANTS`, the Cyrillic range (`CYRILLIC_FIRST`,
   `CYRILLIC_LAST`), vowel sets, the context-free mapping tables, the reform
   steps, the three alphabets and `TS_LOANWORD_STEMS`. Apart from
   `__future__`, it imports nothing.
@@ -162,7 +162,7 @@ Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
 
 ## Stability and compatibility
 
-- The public API is the 24 names in `__all__` in `__init__.py`.
+- The public API is the 25 names in `__all__` in `__init__.py`.
 - `golden/` holds the output of eight public functions (12 fields, listed in
   `fields()` in `tools/golden.py`) on 1121 fixed inputs: `inputs.json`
   (append-only), `golden-0.1.1.json`, `golden-0.2.0.json` and `SHA256SUMS`.

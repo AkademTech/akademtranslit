@@ -29,6 +29,17 @@ LATIN_2026 = "latin_2026"
 
 SCRIPTS = (CYRILLIC, LATIN_1995, LATIN_2026)
 
+# --- the rules version -------------------------------------------------------
+
+#: Which rules :func:`~akademtranslit.convert`, :func:`~akademtranslit.to_latin`
+#: and :func:`~akademtranslit.to_cyrillic` follow. Before ``+``, the official
+#: basis: ``uz-2026-alphabet`` is the 2026 alphabet of Law No. O'RQ-1184,
+#: without official spelling rules. After it, this project's rule set, named by
+#: the year and month of the release that last changed the output of those
+#: three functions. A release that changes none of their output keeps the
+#: value; ``tools/golden.py --check`` fails if one does and the value stays.
+RULES_VERSION = "uz-2026-alphabet+project-2026.11"
+
 # --- the two modifier marks --------------------------------------------------
 #
 # These are distinct characters with distinct jobs, and conflating them is the
