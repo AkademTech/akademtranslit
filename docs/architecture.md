@@ -22,21 +22,28 @@ Sorting (`sort_key`) and detection (`detect_script`, `script_class`,
 ## Layout
 
 Everything is in `src/akademtranslit/`. The only imports from outside the
-package are `re` and `unicodedata`; `tests/test_privacy.py` pins that.
+package are `re`, `unicodedata` and `warnings`; `tests/test_privacy.py` pins
+that.
 
 - `tables.py` is data only: orthography names, the two marks and the eight
-  `APOSTROPHE_VARIANTS`, vowel sets, the context-free mapping tables, the
-  reform steps, the three alphabets and `TS_LOANWORD_STEMS`. Apart from
+  `APOSTROPHE_VARIANTS`, the Cyrillic range (`CYRILLIC_FIRST`,
+  `CYRILLIC_LAST`), vowel sets, the context-free mapping tables, the reform
+  steps, the three alphabets and `TS_LOANWORD_STEMS`. Apart from
   `__future__`, it imports nothing.
 - `rules.py` is the word engine: the word pattern `_WORD_RE`,
   `canonicalize_marks`, `apply_case`, `map_words`, and the four per-word
   conversion functions with the context rules. It uses `tables` and `re`.
 - `normalize.py` has `normalize`, `fold_cyrillic`, `fold_latin_2026` and
   `is_cyrillic`. It uses `rules`, `tables`, `re` and `unicodedata`.
-- `collation.py` has `sort_key` (uses `rules.map_words`, `tables`,
+- `collation.py` has `sort_key` (uses `rules.map_words`, `tables`, `tags`,
   `unicodedata`); `apostrophes.py` has `normalize_apostrophes` (uses
   `rules._WORD_RE` and `tables`); `detection.py` has `script_class` and
-  `cyrillic_language` (uses only `unicodedata`).
+  `cyrillic_language` (uses `tables` and `unicodedata`).
+- `tags.py` reads BCP 47 language tags: `script_for_tag`, `tag_for_script`,
+  and `_orthography`, which `convert`, `to_latin` and `sort_key` call for an
+  argument that is not a name from `SCRIPTS`. It raises the `FutureWarning`
+  for a tag without a variant (`uz-Latn`, `uz`), pointed at the line that
+  called the public function. It uses `tables`, `re` and `warnings`.
 - `__init__.py` is the public API: it re-exports the public names, defines
   `__version__` and `__all__`, and holds `detect_script`, `convert`,
   `to_latin`, `to_cyrillic` and the `_PIPELINES` table.
@@ -46,12 +53,17 @@ package are `re` and `unicodedata`; `tests/test_privacy.py` pins that.
 `latin_1995` is the pivot. Every conversion is a chain of word-level steps,
 listed in `_PIPELINES` in `__init__.py`: Cyrillic and `latin_2026` each have
 one step to and from `latin_1995`, so Cyrillic ↔ `latin_2026` is two steps
-through it. A pair not in the table (source and target the same) has no steps.
+through it. `latin_2026` → `latin_2026` has one step,
+`latin_2026_canonical_word`, which writes the draft glyphs `ō` and `ǒ` as
+`ö`; it also runs first in `latin_1995` → `latin_2026`. Cyrillic and
+`latin_1995` to themselves are not in the table and have no steps.
 
-`convert` raises `ValueError` for an unknown script name, returns empty
-text as it is, runs `detect_script` when `source` is `"auto"`, and calls
-`map_words` with a function that applies the steps in order. `to_latin` and
-`to_cyrillic` call `convert` with `source="auto"`.
+`convert` reads `source` or `target` as a language tag when it is not a name
+from `SCRIPTS` (or `"auto"` for `source`), raises `ValueError` for anything
+it cannot read, returns empty text as it is, runs `detect_script` when
+`source` is `"auto"`, and calls `map_words` with a function that applies the
+steps in order. `to_latin` and `to_cyrillic` call `convert` with
+`source="auto"`; `to_latin` reads a tag in `variant` first.
 
 `map_words` does the tokenising and the casing:
 
@@ -94,8 +106,9 @@ position and are code in `rules.py`; the module docstring describes each.
 
 `cyrillic_word_to_latin_1995` checks `е`, `ц`, `с` before `ҳ` and `ъ` in
 that order, then the table; `LATIN_1995_TO_CYRILLIC` is tried row by row,
-longer forms first. `latin_2026_word_to_1995` first rewrites the draft
-glyphs `ō` and `ǒ` to `ö` (`LATIN_2026_INPUT_ALIASES`).
+longer forms first. `latin_2026_word_to_1995` first calls
+`latin_2026_canonical_word`, which rewrites the draft glyphs `ō` and `ǒ` to
+`ö` (`LATIN_2026_INPUT_ALIASES`).
 
 ## Normalization
 
@@ -104,13 +117,13 @@ glyphs `ō` and `ǒ` to `ö` (`LATIN_2026_INPUT_ALIASES`).
 1. Empty or whitespace-only text gives `""`.
 2. U+00B4 becomes U+02BC (`ʼ`); NFKC would make it a space and an accent.
 3. NFKC, then lowercase.
-4. If any character is in U+0400–U+04FF, the words go through
+4. If any character is in U+0400–U+052F, the words go through
    `cyrillic_word_to_latin_1995` with `map_words`, so the positional rules
    reach the key (`Чоршанбиев` gives `chorshanbiyev`).
 5. Every apostrophe variant and both canonical marks are removed.
 6. `fold_latin_2026`: `ş` → `sh`, `ç` → `ch`, `ğ` → `g`, `ö` `ō` `ǒ` → `o`.
 7. `fold_cyrillic` maps leftover Cyrillic, such as letters of neighbouring
-   orthographies, and drops any other character in U+0400–U+04FF.
+   orthographies, and drops any other character in U+0400–U+052F.
 8. Every character other than `a`–`z` and `0`–`9` becomes a space; runs of
    whitespace become one space, and the ends are stripped.
 
@@ -120,7 +133,8 @@ output does not change in a patch release: search indexes are built on it.
 
 ## Sorting and detection
 
-`sort_key(text, orthography)` needs one of `SCRIPTS`; there is no default.
+`sort_key(text, orthography)` needs one of `SCRIPTS` or a language tag for
+one; there is no default.
 It puts the text in NFC, strips it, lowercases a working copy, reads `ō` and
 `ǒ` as `ö` for `latin_2026`, and canonicalises the marks with `map_words`.
 The weights are one `0` for a run of whitespace, `1`–`10` for the digits,
@@ -130,7 +144,7 @@ and `ch` are single units. Punctuation and the marks are not counted. The key
 is `(weights, NFC text)`, so ties are broken by the text.
 
 - `detect_script` (in `__init__.py`) returns `cyrillic` if any character is
-  in U+0400–U+04FF, `latin_2026` if any character is in `_REFORM_LETTERS`
+  in U+0400–U+052F, `latin_2026` if any character is in `_REFORM_LETTERS`
   (among them `ş ç ğ ö` in either case and the draft glyphs `ō` and `ǒ`),
   and `latin_1995` otherwise. A `latin_2026` text without them reads as
   `latin_1995`, which matters for a real s + h: pass `source` when known.
@@ -142,12 +156,13 @@ is `(weights, NFC text)`, so ties are broken by the text.
   in either case, so short text is often `unknown`; it is a routing
   heuristic, not a language identifier.
 
-`normalize.py` (and so `detect_script`) takes Cyrillic as U+0400–U+04FF;
-`detection.py` and `apostrophes.py` take U+0400–U+052F.
+Every function takes Cyrillic to be U+0400–U+052F, the Cyrillic and
+Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
+`tables.py`.
 
 ## Stability and compatibility
 
-- The public API is the 22 names in `__all__` in `__init__.py`.
+- The public API is the 24 names in `__all__` in `__init__.py`.
 - `golden/` holds the output of eight public functions (12 fields, listed in
   `fields()` in `tools/golden.py`) on 1121 fixed inputs: `inputs.json`
   (append-only), `golden-0.1.1.json`, `golden-0.2.0.json` and `SHA256SUMS`.
@@ -172,7 +187,8 @@ run and no install is needed.
   `detect_script`), `test_collation.py`, `test_apostrophes.py`,
   `test_detection.py`.
 - Behaviour changes: `test_regressions.py` (0.1.1 fixes),
-  `test_changes_0_2_0.py` (0.2.0 rule changes).
+  `test_changes_0_2_0.py` (0.2.0 rule changes), `test_changes_0_3_0.py`
+  (0.3.0: the draft glyphs, the Cyrillic range, language tags).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`
   (README examples, via doctest), `test_privacy.py` (no I/O).
 

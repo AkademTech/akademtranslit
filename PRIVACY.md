@@ -6,8 +6,11 @@ not a service.
 - It collects no data. Each function works only on the arguments it is given
   and returns a result; nothing is kept between calls.
 - It opens no network connections and reads or writes no files. The package
-  imports two standard-library modules, `re` and `unicodedata`, and
-  `tests/test_privacy.py` fails if that changes.
+  imports three standard-library modules, `re`, `unicodedata` and `warnings`,
+  and `tests/test_privacy.py` fails if that changes.
+- The only message it emits is a `FutureWarning` when a language tag names no
+  orthography (see the README). Python's `warnings` module handles it; it
+  contains the tag, never the text being converted.
 - It has no telemetry, analytics or update checks.
 
 Text passed to the library may contain personal data, such as names. The

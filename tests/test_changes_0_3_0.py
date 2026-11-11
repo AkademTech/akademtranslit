@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import unicodedata
+import warnings
 from pathlib import Path
 
 import pytest
@@ -16,11 +17,15 @@ from akademtranslit import (
     CYRILLIC,
     LATIN_1995,
     LATIN_2026,
+    SCRIPTS,
     _REFORM_LETTERS,
     convert,
     detect_script,
     is_cyrillic,
     script_class,
+    script_for_tag,
+    sort_key,
+    tag_for_script,
     to_latin,
 )
 
@@ -149,3 +154,252 @@ def test_is_cyrillic_detect_script_and_script_class_agree():
 def test_the_cyrillic_supplement_is_cyrillic():
     assert is_cyrillic("\u0501")         # CYRILLIC SMALL LETTER KOMI DE
     assert detect_script("\u051a") == CYRILLIC   # CYRILLIC CAPITAL LETTER QA
+
+
+# --- language tags --------------------------------------------------------------
+#
+# Every argument that names an orthography also takes a BCP 47 language tag.
+# The tag is read strictly: anything not in the table below as valid is a
+# ValueError. uz-Latn and uz name no orthography; 0.x reads them as 1995 and
+# says, with a FutureWarning, that 1.0.0 will read them as 2026.
+
+W = "FutureWarning"
+
+# golden/tag-inputs.json, with the result each tag must give:
+# (id, tag, orthography or the exception's name, warning or None).
+TAG_CASES = [
+    ("t001", "uz", LATIN_1995, W),
+    ("t002", "UZ", LATIN_1995, W),
+    ("t003", "uz-Latn", LATIN_1995, W),
+    ("t004", "uz-latn", LATIN_1995, W),
+    ("t005", "UZ-LATN", LATIN_1995, W),
+    ("t006", "uz-Latn-UZ", LATIN_1995, W),
+    ("t007", "uz-UZ", LATIN_1995, W),
+    ("t008", "uz_Latn", LATIN_1995, W),
+    ("t009", "uz-Cyrl", CYRILLIC, None),
+    ("t010", "uz-cyrl", CYRILLIC, None),
+    ("t011", "UZ-CYRL-UZ", CYRILLIC, None),
+    ("t012", "uz_Cyrl_UZ", CYRILLIC, None),
+    ("t013", "uz-1995", LATIN_1995, None),
+    ("t014", "uz-Latn-1995", LATIN_1995, None),
+    ("t015", "uz-latn-1995", LATIN_1995, None),
+    ("t016", "uz-Latn-UZ-1995", LATIN_1995, None),
+    ("t017", "uz-2026", LATIN_2026, None),
+    ("t018", "uz-Latn-2026", LATIN_2026, None),
+    ("t019", "UZ-LATN-2026", LATIN_2026, None),
+    ("t020", "uz-UZ-2026", LATIN_2026, None),
+    ("t021", "uz-Latn-UZ-2026", LATIN_2026, None),
+    ("t022", "uz_Latn_2026", LATIN_2026, None),
+    ("t023", "uz-Latn-2026-t-uz-cyrl", LATIN_2026, None),
+    ("t024", "uz-Latn-1995-x-akadem", LATIN_1995, None),
+    ("t025", "uz-Latn-u-co-standard", LATIN_1995, W),
+    ("t026", "uz-Cyrl-t-uz-latn-2026", CYRILLIC, None),
+    ("t027", "uz-860", LATIN_1995, W),
+    ("t028", "", "ValueError", None),
+    ("t029", "uz-", "ValueError", None),
+    ("t030", "-uz", "ValueError", None),
+    ("t031", "uz--Latn", "ValueError", None),
+    ("t032", " uz-Latn", "ValueError", None),
+    ("t033", "uz-Latn ", "ValueError", None),
+    ("t034", "uz-Cyrl-1995", "ValueError", None),
+    ("t035", "uz-Cyrl-2026", "ValueError", None),
+    ("t036", "uz-Latn-1995-2026", "ValueError", None),
+    ("t037", "uz-2026-2026", "ValueError", None),
+    ("t038", "uz-Latn-1940", "ValueError", None),
+    ("t039", "uz-Latn-1996", "ValueError", None),
+    ("t040", "uz-Arab", "ValueError", None),
+    ("t041", "uz-Arab-AF", "ValueError", None),
+    ("t042", "uz-Latn-Cyrl", "ValueError", None),
+    ("t043", "uz-Latn-UZ-AF", "ValueError", None),
+    ("t044", "uz-2026-Latn", "ValueError", None),
+    ("t045", "uzb", "ValueError", None),
+    ("t046", "uzn-Latn", "ValueError", None),
+    ("t047", "uz-uzn", "ValueError", None),
+    ("t048", "en", "ValueError", None),
+    ("t049", "ru-Cyrl", "ValueError", None),
+    ("t050", "x-uz", "ValueError", None),
+    ("t051", "uz-Latn-2026-t", "ValueError", None),
+    ("t052", "uz-Latn-2026-x", "ValueError", None),
+    ("t053", "uz_UZ@latin", "ValueError", None),
+    ("t054", "uz-Latn-2026-abcdefghi", "ValueError", None),
+    ("t055", "latin_2026", "ValueError", None),
+    ("t056", "uz-\uff2catn", "ValueError", None),   # U+FF2C FULLWIDTH LATIN CAPITAL LETTER L
+    ("t057", "uz-Latn-2026-t-uz-cyrl-t-ru", "ValueError", None),
+]
+
+# (id, orthography name, tag_for_script's result or the exception's name).
+SCRIPT_CASES = [
+    ("s01", "cyrillic", "uz-Cyrl"),
+    ("s02", "latin_1995", "uz-Latn-1995"),
+    ("s03", "latin_2026", "uz-Latn-2026"),
+    ("s04", "auto", "ValueError"),
+    ("s05", "uz-Latn-2026", "ValueError"),
+    ("s06", "Cyrillic", "ValueError"),
+]
+
+UNNAMED_MESSAGE = (
+    "{tag!r} names no orthography: akademtranslit 0.x reads it as 'uz-Latn-1995', "
+    "and from 1.0.0 it will read it as 'uz-Latn-2026'. "
+    "Pass 'uz-Latn-1995' or 'uz-Latn-2026' to choose."
+)
+
+
+def _call(func, *args, **kwargs):
+    """func's result, and the warnings it raised, every one of them recorded."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        result = func(*args, **kwargs)
+    return result, caught
+
+
+@pytest.mark.parametrize(
+    "tag,expected,warning",
+    [case[1:] for case in TAG_CASES if case[2] != "ValueError"],
+    ids=[case[0] for case in TAG_CASES if case[2] != "ValueError"],
+)
+def test_a_valid_tag_names_its_orthography(tag, expected, warning):
+    script, caught = _call(script_for_tag, tag)
+    assert script == expected
+    assert [w.category.__name__ for w in caught] == ([warning] if warning else [])
+    if warning:
+        assert str(caught[0].message) == UNNAMED_MESSAGE.format(tag=tag)
+
+
+@pytest.mark.parametrize(
+    "tag",
+    [case[1] for case in TAG_CASES if case[2] == "ValueError"],
+    ids=[case[0] for case in TAG_CASES if case[2] == "ValueError"],
+)
+def test_an_invalid_tag_is_a_value_error_that_names_it(tag):
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        with pytest.raises(ValueError) as excinfo:
+            script_for_tag(tag)
+    message = str(excinfo.value)
+    assert repr(tag) in message
+    assert "'uz-Latn-2026'" in message      # and the forms it takes
+    assert caught == []
+
+
+@pytest.mark.parametrize("hint", ["uzb", "uzn-Latn", "uzs-Arab"])
+def test_the_other_codes_for_uzbek_get_a_hint(hint):
+    with pytest.raises(ValueError, match="use 'uz'"):
+        script_for_tag(hint)
+
+
+@pytest.mark.parametrize("value", [None, b"uz-Latn-2026", 2026, ["uz"]])
+def test_a_tag_that_is_not_a_str_is_a_type_error(value):
+    with pytest.raises(TypeError):
+        script_for_tag(value)
+
+
+@pytest.mark.parametrize("case_id,script,expected", SCRIPT_CASES, ids=[c[0] for c in SCRIPT_CASES])
+def test_tag_for_script(case_id, script, expected):
+    if expected == "ValueError":
+        with pytest.raises(ValueError):
+            tag_for_script(script)
+    else:
+        assert tag_for_script(script) == expected
+
+
+@pytest.mark.parametrize("value", [None, 1995, ["cyrillic"], ("latin_2026",)])
+def test_tag_for_script_takes_only_the_three_names(value):
+    with pytest.raises(ValueError):
+        tag_for_script(value)
+
+
+@pytest.mark.parametrize("script", SCRIPTS)
+def test_tag_for_script_and_back(script):
+    assert script_for_tag(tag_for_script(script)) == script
+
+
+# The four ways in: each must point the warning at the line that called it.
+ENTRY_POINTS = [
+    ("script_for_tag", lambda tag: script_for_tag(tag)),
+    ("convert source", lambda tag: convert("Toshkent", source=tag, target=LATIN_2026)),
+    ("convert target", lambda tag: convert("Тошкент", source=CYRILLIC, target=tag)),
+    ("convert, empty text", lambda tag: convert("", source=tag)),
+    ("to_latin", lambda tag: to_latin("Тошкент", variant=tag)),
+    ("sort_key", lambda tag: sort_key("Toshkent", tag)),
+]
+
+
+@pytest.mark.parametrize("call", [e[1] for e in ENTRY_POINTS], ids=[e[0] for e in ENTRY_POINTS])
+@pytest.mark.parametrize("tag", ["uz", "uz-Latn"])
+def test_the_warning_points_at_the_caller(call, tag):
+    _, caught = _call(call, tag)
+    assert [w.category for w in caught] == [FutureWarning]
+    assert Path(caught[0].filename).resolve() == Path(__file__).resolve()
+
+
+@pytest.mark.parametrize("call", [e[1] for e in ENTRY_POINTS], ids=[e[0] for e in ENTRY_POINTS])
+@pytest.mark.parametrize("tag", ["uz-Latn-1995", "uz-2026"])
+def test_a_tag_with_a_variant_does_not_warn(call, tag):
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        call(tag)
+
+
+def test_orthography_names_do_not_warn():
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        for source in SCRIPTS + ("auto",):
+            for target in SCRIPTS:
+                convert("Toshkent", source=source, target=target)
+        to_latin("Toshkent", variant=LATIN_1995)
+        sort_key("Toshkent", LATIN_2026)
+
+
+def test_to_latin_refuses_a_cyrillic_tag():
+    with pytest.raises(ValueError, match="not a Latin orthography"):
+        to_latin("Toshkent", variant="uz-Cyrl")
+
+
+@pytest.mark.parametrize(
+    "value,match",
+    [
+        ("latin_1940", "unknown Latin variant"),
+        ("cyrillic", "unknown Latin variant"),
+        ("auto", "unknown Latin variant"),
+        ("uz-Latn-1940", "unknown Latin variant"),
+    ],
+)
+def test_to_latin_keeps_its_error_for_other_values(value, match):
+    with pytest.raises(ValueError, match=match):
+        to_latin("Toshkent", variant=value)
+
+
+def test_convert_and_sort_key_keep_their_errors():
+    with pytest.raises(ValueError, match="unknown source script"):
+        convert("Toshkent", source="uz-Arab")
+    with pytest.raises(ValueError, match="unknown target script"):
+        convert("Toshkent", target="auto")
+    with pytest.raises(ValueError, match="unknown target script"):
+        convert("Toshkent", target="uz-Cyrl-2026")
+    with pytest.raises(ValueError, match="unknown orthography"):
+        sort_key("Toshkent", "uz-Latn-1940")
+
+
+TAG_FOR = {CYRILLIC: "uz-Cyrl", LATIN_1995: "uz-Latn-1995", LATIN_2026: "uz-Latn-2026"}
+SAMPLES = ["Тошкент", "Oʻzbekiston", "Özbekiston", "Isʼhoq", "ŞOŞIMOVA", "ketsa"]
+
+
+@pytest.mark.parametrize("source", SCRIPTS)
+@pytest.mark.parametrize("target", SCRIPTS)
+def test_convert_gives_the_same_with_a_tag_or_a_name(source, target):
+    for text in SAMPLES:
+        assert convert(text, source=TAG_FOR[source], target=TAG_FOR[target]) == convert(
+            text, source=source, target=target
+        )
+
+
+@pytest.mark.parametrize("script", SCRIPTS)
+def test_sort_key_gives_the_same_with_a_tag_or_a_name(script):
+    for text in SAMPLES:
+        assert sort_key(text, TAG_FOR[script]) == sort_key(text, script)
+
+
+def test_to_latin_gives_the_same_with_a_tag_or_a_name():
+    for text in SAMPLES:
+        assert to_latin(text, variant="uz-Latn-1995") == to_latin(text, variant=LATIN_1995)
+        assert to_latin(text, variant="uz-2026") == to_latin(text, variant=LATIN_2026)

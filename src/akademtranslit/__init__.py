@@ -48,6 +48,7 @@ from .tables import (
     TURNED_COMMA,
     TUTUQ,
 )
+from .tags import _orthography, script_for_tag, tag_for_script
 
 __version__ = "0.3.0"
 
@@ -71,7 +72,9 @@ __all__ = [
     "normalize",
     "normalize_apostrophes",
     "script_class",
+    "script_for_tag",
     "sort_key",
+    "tag_for_script",
     "to_cyrillic",
     "to_latin",
 ]
@@ -134,7 +137,9 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026) -> str:
 
     ``source`` may be ``"auto"`` (the default) to run :func:`detect_script`
     first. Both ``source`` and ``target`` otherwise take one of the values in
-    :data:`~akademtranslit.tables.SCRIPTS`.
+    :data:`~akademtranslit.tables.SCRIPTS`, or a language tag for one of them
+    (``uz-Cyrl``, ``uz-Latn-1995``, ``uz-Latn-2026``; see
+    :mod:`akademtranslit.tags`).
 
     Non-letters -- digits, punctuation, whitespace, DOIs, years -- pass through
     untouched, so mixed content survives intact:
@@ -148,9 +153,15 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026) -> str:
     output safe to use as a stored form.
     """
     if source not in SCRIPTS and source != "auto":
-        raise ValueError(f"unknown source script: {source!r}; expected one of {SCRIPTS} or 'auto'")
+        source = _orthography(
+            source,
+            f"unknown source script: {source!r}; expected one of {SCRIPTS} or 'auto'",
+            stacklevel=2,
+        )
     if target not in SCRIPTS:
-        raise ValueError(f"unknown target script: {target!r}; expected one of {SCRIPTS}")
+        target = _orthography(
+            target, f"unknown target script: {target!r}; expected one of {SCRIPTS}", stacklevel=2
+        )
     if not text:
         return text
 
@@ -173,7 +184,8 @@ def to_latin(text: str, variant: str = LATIN_2026) -> str:
     """Convert ``text`` to Latin, in ``variant`` (default: the 2026 alphabet).
 
     Accepts Cyrillic or either Latin orthography as input, so it doubles as the
-    1995 -> 2026 migration function.
+    1995 -> 2026 migration function. ``variant`` may also be a language tag
+    for a Latin orthography (``uz-Latn-1995``, ``uz-Latn-2026``).
 
     >>> to_latin("Мирзо Улуғбек")
     'Mirzo Uluğbek'
@@ -183,9 +195,16 @@ def to_latin(text: str, variant: str = LATIN_2026) -> str:
     'Uluğbek'
     """
     if variant not in (LATIN_1995, LATIN_2026):
-        raise ValueError(
-            f"unknown Latin variant: {variant!r}; expected {LATIN_1995!r} or {LATIN_2026!r}"
-        )
+        unknown = f"unknown Latin variant: {variant!r}; expected {LATIN_1995!r} or {LATIN_2026!r}"
+        if variant in SCRIPTS:
+            raise ValueError(unknown)
+        script = _orthography(variant, unknown, stacklevel=2)
+        if script not in (LATIN_1995, LATIN_2026):
+            raise ValueError(
+                f"{variant!r} names {script!r}, not a Latin orthography; "
+                f"expected {LATIN_1995!r} or {LATIN_2026!r}, or a tag for one of them"
+            )
+        variant = script
     return convert(text, source="auto", target=variant)
 
 
