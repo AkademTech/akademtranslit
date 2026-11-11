@@ -681,8 +681,9 @@ def test_known_limitation_cyrillic_and_2026_abbreviations_come_out_all_caps():
 
 # The golden inputs for case units, numbers with a suffix and Uzbek
 # abbreviations: (text, second tag, to_cyrillic, to_latin_1995, to_latin_2026,
-# to_ascii); None is the input itself. In Тошкент ŞAHAR the 2026 word is not
-# converted: the text is read as Cyrillic as a whole.
+# to_ascii); None is the input itself. In Тошкент ŞAHAR the 2026 word is
+# converted since source="auto" reads each word on its own; before that, the
+# text was read as Cyrillic as a whole and ŞAHAR was kept.
 CASE_UNIT_INPUTS = {
     "c1168": ("10ta kitob, 2026yil, 100mg", "mixed", "10та китоб, 2026йил, 100мг", None, None, None),
     "c1169": ("ToshDU va SamDU", "latin_1995", "ТошДУ ва СамДУ", None, "ToşDU va SamDU", None),
@@ -690,7 +691,7 @@ CASE_UNIT_INPUTS = {
     "c1171": ("OʻzMU talabasi", "latin_1995", "ЎзМУ талабаси", None, "ÖzMU talabasi", "OzMU talabasi"),
     "c1172": ("ChatGPT, PhD, AkademID", "mixed", None, None, None, None),
     "c1173": ("MÇJ va AQŞ", "latin_2026", "МЧЖ ва АҚШ", "MCHJ va AQSH", None, "MCHJ va AQSH"),
-    "c1174": ("Тошкент ŞAHAR", "mixed", None, "Toshkent ŞAHAR", "Toşkent ŞAHAR", "Toshkent SHAHAR"),
+    "c1174": ("Тошкент ŞAHAR", "mixed", "Тошкент ШАҲАР", "Toshkent SHAHAR", "Toşkent ŞAHAR", "Toshkent SHAHAR"),
     "c1175": ("ShAHAR", "latin_1995", "ШАҲАР", None, "ŞAHAR", None),
 }
 
@@ -804,3 +805,81 @@ def test_s_with_comma_below_is_an_input_form_of_s_with_cedilla():
     text = "To" + S_COMMA + "kent"
     assert convert(text, source=LATIN_2026, target=LATIN_2026) == "Toşkent"
     assert sort_key(text, LATIN_2026) == (sort_key("Toşkent", LATIN_2026)[0], text)
+
+
+# --- source="auto" reads each word in its own orthography -------------------------
+#
+# auto read the text as a whole: one Cyrillic letter made all of it Cyrillic,
+# and one 2026 letter all of it 2026, so Тошкент ŞAHAR kept ŞAHAR in Cyrillic
+# and one foreign ö turned a 1995 text into 2026. Now each word is read from
+# what it shows: a Cyrillic letter, a 2026 letter, oʻ or gʻ. A word that shows
+# nothing, or only sh or ch, is read in the Latin orthography of the text,
+# decided by counting such words; o with macron and o with caron are read as
+# 2026 but not counted, since foreign names have them (Tokyo with o with
+# macron). In a mostly Cyrillic text converted to Cyrillic, such a word stays
+# as it is (Google, Telegram). detect_script is unchanged.
+
+WORD_LEVEL_AUTO = [
+    # (text, to_cyrillic, to_latin_1995, to_latin_2026); None is the text itself
+    (
+        "Gödel teoremasi Toshkentda shu yil oʻqitiladi",
+        "Гўдел теоремаси Тошкентда шу йил ўқитилади",
+        "Goʻdel teoremasi Toshkentda shu yil oʻqitiladi",
+        "Gödel teoremasi Toşkentda şu yil öqitiladi",
+    ),
+    (
+        "Toshkent va T" + O_MACRON + "ky" + O_MACRON,
+        "Тошкент ва Тўкйў",
+        "Toshkent va Toʻkyoʻ",
+        "Toşkent va Tökyö",
+    ),
+    (
+        "Ishoq Şoşimov Toşkentda yaşaydi",
+        "Исҳоқ Шошимов Тошкентда яшайди",
+        "Isʼhoq Shoshimov Toshkentda yashaydi",
+        None,
+    ),
+    ("Ishoq va Şahar", "Исҳоқ ва Шаҳар", "Isʼhoq va Shahar", None),
+    (
+        "Тошкентда Google ва Telegram хизматлари ишлайди",
+        None,
+        "Toshkentda Google va Telegram xizmatlari ishlaydi",
+        "Toşkentda Google va Telegram xizmatlari işlaydi",
+    ),
+    (
+        "Toshkent shahri va Самарқанд",
+        "Тошкент шаҳри ва Самарқанд",
+        "Toshkent shahri va Samarqand",
+        "Toşkent şahri va Samarqand",
+    ),
+    ("Тошкент ŞAHAR", "Тошкент ШАҲАР", "Toshkent SHAHAR", "Toşkent ŞAHAR"),
+    # The documented ambiguity: nothing shows that Ishoq is 2026 (Исҳоқ).
+    ("Ishoq", "Ишоқ", "Ishoq", "Işoq"),
+]
+
+
+@pytest.mark.parametrize("text,cyrillic,latin_1995,latin_2026", WORD_LEVEL_AUTO)
+def test_auto_reads_each_word_in_its_own_orthography(text, cyrillic, latin_1995, latin_2026):
+    expected = [text if value is None else value for value in (cyrillic, latin_1995, latin_2026)]
+    assert [to_cyrillic(text), to_latin(text, variant=LATIN_1995), to_latin(text)] == expected
+    assert [convert(text, target=target) for target in (CYRILLIC, LATIN_1995, LATIN_2026)] == expected
+
+
+def test_detect_script_still_reads_the_text_as_a_whole():
+    assert detect_script("Gödel teoremasi Toshkentda shu yil oʻqitiladi") == LATIN_2026
+    assert detect_script("Toshkent va T" + O_MACRON + "ky" + O_MACRON) == LATIN_2026
+    assert detect_script("Toshkent shahri va Самарқанд") == CYRILLIC
+    assert detect_script("Тошкент ŞAHAR") == CYRILLIC
+
+
+def test_known_limitation_a_short_text_has_too_little_to_go_on():
+    """Gödel is the one 2026 word against one sh word, so the text is read as
+    2026 and Toshkent as Tos + h + kent (see the README)."""
+    assert to_cyrillic("Toshkent Gödel") == "Тосҳкент Гўдел"
+
+
+def test_a_text_without_a_2026_letter_is_read_as_1995():
+    # No word with ş ç ğ ö: the Latin orthography of the text is latin_1995,
+    # so the separator in Isʼhoq is dropped on the way to 2026.
+    assert to_latin("Isʼhoq") == "Ishoq"
+    assert to_latin("Isʼhoq va asʼhob") == "Ishoq va ashob"

@@ -55,6 +55,8 @@ import re
 
 from .tables import (
     APOSTROPHE_VARIANTS,
+    CYRILLIC_FIRST,
+    CYRILLIC_LAST,
     CYRILLIC_TO_LATIN_1995,
     CYRILLIC_VOWELS,
     LATIN_1995_TO_2026_STEPS,
@@ -242,24 +244,93 @@ def map_words(text: str, transform) -> str:
     :mod:`akademtranslit.protect`).
     """
 
-    def _one(match: re.Match[str]) -> str:
-        source = match.group(0)
-        lower = source.lower()
-        if lower == source:
-            return transform(canonicalize_marks(lower))
-        mask = _case_mask(source)
-        starts = _unit_starts(mask)
-        if len(starts) == 1:
-            return _apply_case(source, transform(canonicalize_marks(lower)), mask)
-        # Each unit is cased by its own letters: the h of Ter|Sh has no other
-        # capital beside it in Sh.
-        ends = starts[1:] + [len(source)]
-        return "".join(
-            apply_case(source[a:b], transform(canonicalize_marks(source[a:b].lower())))
-            for a, b in zip(starts, ends)
-        )
+    return _WORD_RE.sub(lambda match: map_word(match.group(0), transform), text)
 
-    return _WORD_RE.sub(_one, text)
+
+def map_words_by(text: str, transform_for) -> str:
+    """:func:`map_words` with a transform chosen for each word.
+
+    ``transform_for`` receives each word of ``text`` as it stands and returns
+    the transform for it; :func:`~akademtranslit.convert` uses it to read each
+    word in its own orthography when the source is ``"auto"``.
+    """
+    return _WORD_RE.sub(
+        lambda match: map_word(match.group(0), transform_for(match.group(0))), text
+    )
+
+
+def map_word(source: str, transform) -> str:
+    """Apply ``transform`` to one word, as :func:`map_words` does to each."""
+    lower = source.lower()
+    if lower == source:
+        return transform(canonicalize_marks(lower))
+    mask = _case_mask(source)
+    starts = _unit_starts(mask)
+    if len(starts) == 1:
+        return _apply_case(source, transform(canonicalize_marks(lower)), mask)
+    # Each unit is cased by its own letters: the h of Ter|Sh has no other
+    # capital beside it in Sh.
+    ends = starts[1:] + [len(source)]
+    return "".join(
+        apply_case(source[a:b], transform(canonicalize_marks(source[a:b].lower())))
+        for a, b in zip(starts, ends)
+    )
+
+
+# --- the orthography a word shows ---------------------------------------------
+
+# The classes of word_class.
+CYRILLIC_WORD = "C"
+LATIN_2026_WORD = "N"
+LATIN_1995_WORD = "O"
+O_FORM_WORD = "D"
+SH_CH_WORD = "W"
+PLAIN_WORD = "-"
+
+# Letters that only latin_2026 has: ş ç ğ ö, and s with comma below (U+0219),
+# an input form of ş.
+_LATIN_2026_LETTERS = frozenset("şçğö" "\u0219")
+
+# The input forms of ö: o with macron (U+014D) and o with caron (U+01D2).
+_O_FORMS = frozenset("\u014d\u01d2")
+
+_OI = "o" + TURNED_COMMA
+_GI = "g" + TURNED_COMMA
+
+
+def word_class(word: str) -> str:
+    """Which orthography one word shows, as one of six classes.
+
+    The word is lowercased and its marks canonicalised; the first class that
+    applies is the answer:
+
+    ``"C"``
+        a Cyrillic letter (U+0400-U+052F);
+    ``"N"``
+        one of ``ş ç ğ ö``, or s with comma below: ``latin_2026``;
+    ``"O"``
+        ``oʻ`` or ``gʻ``: ``latin_1995``;
+    ``"D"``
+        o with macron or o with caron, input forms of ``ö``: ``latin_2026``,
+        but foreign names have them too, so they say little about a text;
+    ``"W"``
+        ``sh`` or ``ch``, which both Latin orthographies write, as one letter
+        in ``latin_1995`` and as two in ``latin_2026``;
+    ``"-"``
+        none of these: the word is written the same in both.
+    """
+    word = canonicalize_marks(word.lower())
+    if any(CYRILLIC_FIRST <= ord(ch) <= CYRILLIC_LAST for ch in word):
+        return CYRILLIC_WORD
+    if any(ch in _LATIN_2026_LETTERS for ch in word):
+        return LATIN_2026_WORD
+    if _OI in word or _GI in word:
+        return LATIN_1995_WORD
+    if any(ch in _O_FORMS for ch in word):
+        return O_FORM_WORD
+    if "sh" in word or "ch" in word:
+        return SH_CH_WORD
+    return PLAIN_WORD
 
 
 # --- Cyrillic -> latin_1995 --------------------------------------------------

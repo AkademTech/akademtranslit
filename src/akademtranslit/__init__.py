@@ -32,12 +32,21 @@ from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
 from .protect import Protect, _settings, _spans, segments
 from .rules import (
+    _WORD_RE,
+    CYRILLIC_WORD,
+    LATIN_1995_WORD,
+    LATIN_2026_WORD,
+    O_FORM_WORD,
+    PLAIN_WORD,
+    SH_CH_WORD,
     cyrillic_word_to_latin_1995,
     latin_1995_word_to_2026,
     latin_1995_word_to_cyrillic,
     latin_2026_canonical_word,
     latin_2026_word_to_1995,
     map_words,
+    map_words_by,
+    word_class,
 )
 from .tables import (
     APOSTROPHE_VARIANTS,
@@ -150,12 +159,71 @@ def detect_script(text: str) -> str:
     return LATIN_1995
 
 
+def _auto_sources(pieces: list, target: str) -> dict:
+    """How ``source="auto"`` reads the words of ``pieces``, the text outside
+    the protected spans: each word, as it stands, to its source orthography.
+
+    A word that shows its orthography is read in it (see
+    :func:`~akademtranslit.rules.word_class`): a Cyrillic letter, a 2026
+    letter, ``oʻ`` or ``gʻ``; o with macron and o with caron are read as 2026.
+    The others, with only ``sh`` or ``ch`` or with nothing, are read in the
+    Latin orthography of the text: ``latin_2026`` if the words with a 2026
+    letter outnumber those with ``oʻ``, ``gʻ``, ``sh`` or ``ch``, or match the
+    ones with ``sh`` or ``ch`` when there is no ``oʻ`` or ``gʻ``; otherwise
+    ``latin_1995``. Words with o with macron or o with caron are not counted.
+    When the target is Cyrillic and the text is mostly Cyrillic -- at least
+    one Cyrillic word, and no fewer than Latin ones -- they stay as they are.
+    """
+    classes = {}
+    counts = dict.fromkeys(
+        (CYRILLIC_WORD, LATIN_2026_WORD, LATIN_1995_WORD, O_FORM_WORD, SH_CH_WORD, PLAIN_WORD), 0
+    )
+    for piece in pieces:
+        for word in _WORD_RE.findall(piece):
+            kind = classes.get(word)
+            if kind is None:
+                kind = classes[word] = word_class(word)
+            counts[kind] += 1
+    cyrillic = counts.pop(CYRILLIC_WORD)
+    mostly_cyrillic = cyrillic >= 1 and cyrillic >= sum(counts.values())
+    new, old = counts[LATIN_2026_WORD], counts[LATIN_1995_WORD]
+    either = old + counts[SH_CH_WORD]
+    if new > 0 and (new > either or (new == either and old == 0)):
+        latin = LATIN_2026
+    else:
+        latin = LATIN_1995
+    other = CYRILLIC if target == CYRILLIC and mostly_cyrillic else latin
+    by_class = {
+        CYRILLIC_WORD: CYRILLIC,
+        LATIN_2026_WORD: LATIN_2026,
+        LATIN_1995_WORD: LATIN_1995,
+        O_FORM_WORD: LATIN_2026,
+        SH_CH_WORD: other,
+        PLAIN_WORD: other,
+    }
+    return {word: by_class[kind] for word, kind in classes.items()}
+
+
+def _steps(source: str, target: str):
+    """The function that converts one lowercase word from ``source`` to
+    ``target``: the steps of ``_PIPELINES``, in order."""
+    steps = _PIPELINES.get((source, target), ())
+
+    def _word(word: str) -> str:
+        for step in steps:
+            word = step(word)
+        return word
+
+    return _word
+
+
 def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protect=True) -> str:
     """Convert ``text`` from one orthography to another.
 
-    ``source`` may be ``"auto"`` (the default) to run :func:`detect_script`
-    first. Both ``source`` and ``target`` otherwise take one of the values in
-    :data:`~akademtranslit.tables.SCRIPTS`, or a language tag for one of them
+    ``source`` may be ``"auto"`` (the default) to read each word in the
+    orthography it shows (see below). Both ``source`` and ``target`` otherwise
+    take one of the values in :data:`~akademtranslit.tables.SCRIPTS`, or a
+    language tag for one of them
     (``uz-Cyrl``, ``uz-Latn-1995``, ``uz-Latn-2026``; see
     :mod:`akademtranslit.tags`).
 
@@ -176,6 +244,24 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     'Манба: https://shahar.uz, doi:10.1234/shahar.2026'
     >>> convert("https://shahar.uz", target="cyrillic", protect=False)
     'ҳттпс://шаҳар.уз'
+
+    With ``source="auto"``, a word with a Cyrillic letter is read as
+    Cyrillic, one with ``ş ç ğ ö`` as ``latin_2026`` and one with ``oʻ`` or
+    ``gʻ`` as ``latin_1995``. The other words are read as ``latin_2026`` when
+    the words with ``ş ç ğ ö`` outnumber those with ``oʻ``, ``gʻ``, ``sh`` or
+    ``ch``, or, with no ``oʻ`` or ``gʻ`` in the text, equal them; as
+    ``latin_1995`` otherwise. So a Latin word in Cyrillic text is converted
+    when it shows its orthography, and one foreign ``ö`` does not make a 1995
+    text 2026:
+
+    >>> to_cyrillic("Тошкент ŞAHAR")
+    'Тошкент ШАҲАР'
+    >>> to_latin("Gödel teoremasi Toshkentda oʻqitiladi", variant="latin_1995")
+    'Goʻdel teoremasi Toshkentda oʻqitiladi'
+
+    In mostly Cyrillic text converted to Cyrillic, a Latin word that does not
+    show its orthography (``Google``) stays as it is. :func:`detect_script`
+    still reads the text as a whole.
 
     Converting to the orthography the text is already in is not a no-op: it
     canonicalises the apostrophe marks, so ``o'zbek``, ``o’zbek`` and ``oʻzbek``
@@ -200,20 +286,21 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     # between them is converted, and only it decides the orthography.
     spans = _spans(text, settings)
     if source == "auto":
-        source = detect_script("".join(text[a:b] for a, b, kind in spans if kind is None))
+        sources = _auto_sources([text[a:b] for a, b, kind in spans if kind is None], target)
+        transforms = {script: _steps(script, target) for script in SCRIPTS}
 
-    steps = _PIPELINES.get((source, target), ())
+        def _convert(piece: str) -> str:
+            return map_words_by(piece, lambda word: transforms[sources[word]])
 
-    def _word(word: str) -> str:
-        for step in steps:
-            word = step(word)
-        return word
+    else:
+        transform = _steps(source, target)
 
-    # map_words canonicalises the marks even when `steps` is empty, which is
+        def _convert(piece: str) -> str:
+            return map_words(piece, transform)
+
+    # map_words canonicalises the marks even when there are no steps, which is
     # what makes a same-script conversion a normalising pass rather than a no-op.
-    return "".join(
-        text[a:b] if kind is not None else map_words(text[a:b], _word) for a, b, kind in spans
-    )
+    return "".join(text[a:b] if kind is not None else _convert(text[a:b]) for a, b, kind in spans)
 
 
 def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:

@@ -16565,7 +16565,7 @@
     2090
    ],
    "to_ascii": "Toshkent viloyati Toshkent",
-   "to_cyrillic": "Toshkent viloyati Тошкент",
+   "to_cyrillic": "Тошкент вилояти Тошкент",
    "to_latin_1995": "Toshkent viloyati Toshkent",
    "to_latin_2026": "Toşkent viloyati Toşkent"
   },
@@ -60791,8 +60791,8 @@
     21
    ],
    "to_ascii": "Toshkent ordak",
-   "to_cyrillic": "Тошкент ōrdak",
-   "to_latin_1995": "Toshkent ōrdak",
+   "to_cyrillic": "Тошкент ўрдак",
+   "to_latin_1995": "Toshkent oʻrdak",
    "to_latin_2026": "Toşkent ördak"
   },
   "c1140": {
@@ -64492,8 +64492,8 @@
     29
    ],
    "to_ascii": "Toshkent SHAHAR",
-   "to_cyrillic": "Тошкент ŞAHAR",
-   "to_latin_1995": "Toshkent ŞAHAR",
+   "to_cyrillic": "Тошкент ШАҲАР",
+   "to_latin_1995": "Toshkent SHAHAR",
    "to_latin_2026": "Toşkent ŞAHAR"
   },
   "c1175": {

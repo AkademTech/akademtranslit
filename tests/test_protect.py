@@ -740,14 +740,24 @@ CHANGED_BY_PROTECTION = [
 # pH and PaCO2. Only the case of their output changed (Mcdonald -> McDonald).
 CHANGED_BY_CASE_UNITS = ["c0870", "c0872", "c0873", "c0874", "c0984", "c0985", "c0991"]
 
+# The golden inputs among c0001-c1139 that protect=False now converts
+# differently because source="auto" reads each word on its own: Toshkent
+# viloyati Тошкент, Тошкент and a Latin word with o with macron, and Ёзинг:
+# info@example.org, whose e-mail address is converted when nothing is
+# protected.
+CHANGED_BY_WORD_LEVEL_AUTO = ["c0338", "c1037", "c1139"]
+
 # SHA-256 of the conversion output of 0.3.0 before protected spans: the 12
-# fields above on c0001-c1139 except CHANGED_BY_CASE_UNITS, from
-# golden-0.3.0.json at that commit, as {id: {field: output}} in the golden
-# files' canonical JSON.
-BEFORE_PROTECTION_SHA256 = "ce119a51677137c1174c8a1adf21f21f35166ee96d065fb18bf6f2ac81aa7b68"
+# fields above on c0001-c1139 except CHANGED_BY_CASE_UNITS and
+# CHANGED_BY_WORD_LEVEL_AUTO, from golden-0.3.0.json at that commit, as
+# {id: {field: output}} in the golden files' canonical JSON.
+BEFORE_PROTECTION_SHA256 = "b0a16ee467a97d1c0563a9216c8823097184455b0601025f882a175bcbb8bee2"
 
 # The same with protect=False on CHANGED_BY_CASE_UNITS, after case units.
 CASE_UNITS_SHA256 = "f8a91be6d8cb4556e2312a4794d3c2091fafb57f8218069b0589f127476970b3"
+
+# The same on CHANGED_BY_WORD_LEVEL_AUTO, after word-level auto.
+WORD_LEVEL_AUTO_SHA256 = "4fff68422384a9821c039e91ccb5c6c98aa32cdec7f6855545d2ba50f073ddce"
 
 
 def _golden_cases_before_protection():
@@ -765,7 +775,8 @@ def _protect_false_sha256(cases):
 
 
 def test_protect_false_gives_the_output_from_before_protection():
-    cases = [case for case in _golden_cases_before_protection() if case["id"] not in CHANGED_BY_CASE_UNITS]
+    changed = CHANGED_BY_CASE_UNITS + CHANGED_BY_WORD_LEVEL_AUTO
+    cases = [case for case in _golden_cases_before_protection() if case["id"] not in changed]
     assert _protect_false_sha256(cases) == BEFORE_PROTECTION_SHA256
 
 
@@ -773,6 +784,12 @@ def test_protect_false_on_the_inputs_whose_case_units_changed():
     cases = [case for case in _golden_cases_before_protection() if case["id"] in CHANGED_BY_CASE_UNITS]
     assert [case["id"] for case in cases] == CHANGED_BY_CASE_UNITS
     assert _protect_false_sha256(cases) == CASE_UNITS_SHA256
+
+
+def test_protect_false_on_the_inputs_that_word_level_auto_changed():
+    cases = [case for case in _golden_cases_before_protection() if case["id"] in CHANGED_BY_WORD_LEVEL_AUTO]
+    assert [case["id"] for case in cases] == CHANGED_BY_WORD_LEVEL_AUTO
+    assert _protect_false_sha256(cases) == WORD_LEVEL_AUTO_SHA256
 
 
 def test_protection_changes_only_the_inputs_with_a_protected_span():
@@ -799,16 +816,22 @@ def test_protected_pieces_come_out_byte_for_byte(source, target):
     assert wrong == []
 
 
+# Not a letter, a digit or a mark: no word runs across it.
+SEPARATOR = chr(0)
+
+
 def test_auto_reads_the_orthography_from_the_unprotected_text_only():
+    """With source="auto", the text between the protected spans is converted
+    as if the spans were not there: the pieces, joined with a separator and
+    converted with protect=False, come out the same."""
     wrong = []
     for text in all_inputs():
         pieces = segments(text)
-        source = detect_script("".join(piece for piece, kind in pieces if kind is None))
+        plain = [piece for piece, kind in pieces if kind is None]
+        assert not any(SEPARATOR in piece for piece in plain)
         for target in SCRIPTS:
-            expected = "".join(
-                piece if kind else convert(piece, source=source, target=target, protect=False)
-                for piece, kind in pieces
-            )
+            converted = iter(convert(SEPARATOR.join(plain), target=target, protect=False).split(SEPARATOR))
+            expected = "".join(piece if kind else next(converted) for piece, kind in pieces)
             if convert(text, target=target) != expected:
                 wrong.append((text, target))
     assert wrong == []
