@@ -231,7 +231,7 @@ conversion.
 
 ### Context-dependent rules
 
-Five readings depend on position rather than on the letter alone:
+Seven readings depend on position rather than on the letter alone:
 
 | Rule | Example |
 | --- | --- |
@@ -240,6 +240,12 @@ Five readings depend on position rather than on the letter alone:
 | `ts` is `т` + `с` before an Uzbek suffix, `т` + `ш` before `h`, `ц` otherwise — a heuristic, see below | ketsa → кетса, hayotsiz → ҳаётсиз, adabiyotshunos → адабиётшунос, operatsiya → операция |
 | `с` before `ҳ` takes a separator in `latin_1995` | Исҳоқ → Isʼhoq (not `Ishoq`) |
 | `ъ` is dropped after a consonant before `е ё ю я` and after `ў`, `ʼ` otherwise | объект → obyekt, мўъжиза → moʻjiza, маъно → maʼno |
+| `ь` is `y` before `о` and is dropped otherwise | бульон → bulyon, павильон → pavilyon, альбом → albom |
+| `e` is `э` word-initially and after a vowel, except before `v`; `е` otherwise | ekran → экран, poeziya → поэзия, aeroport → аэропорт, tezda → тезда, Aliev → Алиев |
+
+The `v` exception keeps surnames romanized the Russian way as they are written
+in Cyrillic: Aliev, Alievning and Kiev give Алиев, Алиевнинг and Киев. The
+standard spellings Aliyev and Kiyev give the same Cyrillic.
 
 The separator needs a note. In `latin_1995`, `sh` is a digraph, so a genuine
 s+h sequence has to be separated with the tutuq belgisi or it reads as `ш`. The
@@ -324,7 +330,7 @@ spelling drops it:
 | --- | --- | --- |
 | щ | merges with ш → `sh` | no distinct sound in Uzbek |
 | ы | merges with и → `i` | no distinct sound in Uzbek |
-| ь | dropped | not represented in either Latin alphabet |
+| ь | dropped, except `y` before `о` (`бульон` → `bulyon`); not reversible | not represented in either Latin alphabet |
 | ц | positional `ts`/`s`, not reversible | a heuristic; loanword spelling is genuinely inconsistent |
 | ъ | dropped after a consonant before `е ё ю я` and after `ў` (`объект` → `obyekt`, `мўъжиза` → `moʻjiza`), `ʼ` elsewhere; not reversible | the 1995 spelling writes no mark there, so the Latin side has nothing to restore it from |
 

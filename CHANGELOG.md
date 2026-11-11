@@ -21,6 +21,13 @@
 - `ō` and `ǒ` came out unchanged when the input was already in the 2026
   orthography: `to_latin("ōrdak")` gave `ōrdak`; it now gives `ördak`.
 - The `convert` docstring said DOIs pass through untouched; they do not.
+- Latin to Cyrillic: `e` after a vowel is `э`: `aeroport` → `аэропорт`,
+  `poeziya` → `поэзия` (were `аеропорт`, `поезия`). Before `v` it stays `е`:
+  `Aliev` → `Алиев`.
+- Cyrillic to Latin: `ь` before `о` is `y`: `бульон` → `bulyon` (was `bulon`).
+- `ō` and `ǒ` in a Latin word inside Cyrillic text are read as `ö` when the
+  text is converted to the 2026 orthography: `to_latin("Тошкент ōrdak")` gives
+  `Toşkent ördak`.
 
 ### Changed
 
@@ -29,11 +36,17 @@
   Cyrillic Supplement block now counts as Cyrillic there too.
 - The package imports `warnings`, for the `FutureWarning` above, besides `re`
   and `unicodedata`.
+- `normalize` gives a different key for words with `ьо` (`бульон`: `bulon` →
+  `bulyon`, now the same key as Latin `bulyon`) and for words with a letter
+  from U+0500–U+052F inside (`тош` + U+0501 + `кент`: `tosh kent` →
+  `toshkent`). Rebuild search keys made with 0.2.0 for such words.
 
 ### Output changes
 
-Golden diff 0.2.0 → 0.3.0: `detect_script` 2, `to_latin_2026` 9,
-`to_latin_1995` 2, `to_cyrillic` 2. `normalize` and `sort_key` are unchanged.
+Golden diff 0.2.0 → 0.3.0, on 1139 inputs (18 added in 0.3.0):
+`detect_script` 2, `normalize` 6, `to_cyrillic` 11, `to_latin_1995` 8,
+`to_latin_2026` 16. `sort_key`, `normalize_apostrophes`, `script_class` and
+`cyrillic_language` are unchanged.
 
 ### Documentation
 

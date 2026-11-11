@@ -55,7 +55,8 @@ listed in `_PIPELINES` in `__init__.py`: Cyrillic and `latin_2026` each have
 one step to and from `latin_1995`, so Cyrillic ↔ `latin_2026` is two steps
 through it. `latin_2026` → `latin_2026` has one step,
 `latin_2026_canonical_word`, which writes the draft glyphs `ō` and `ǒ` as
-`ö`; it also runs first in `latin_1995` → `latin_2026`. Cyrillic and
+`ö`; it also runs first in `latin_1995` → `latin_2026` and last in
+Cyrillic → `latin_2026` (a Latin word inside Cyrillic text). Cyrillic and
 `latin_1995` to themselves are not in the table and have no steps.
 
 `convert` reads `source` or `target` as a language tag when it is not a name
@@ -84,13 +85,14 @@ the marks rather than doing nothing.
 
 ## Context rules
 
-The context-free readings are tables in `tables.py`. Five readings depend on
+The context-free readings are tables in `tables.py`. Seven readings depend on
 position and are code in `rules.py`; the module docstring describes each.
 
 - `е`: `cyrillic_word_to_latin_1995` writes `ye` at the start of a word and
   after a vowel, `ъ` or `ь`, and `e` elsewhere. In the other direction,
   `latin_1995_word_to_cyrillic` checks `ye` (always `е`) and then a bare `e`
-  (`э` at the start of a word, `е` elsewhere) before it looks at the table.
+  (`э` at the start of a word and after `a e i o u` unless `v` follows, `е`
+  elsewhere) before it looks at the table.
 - `ц`: `cyrillic_word_to_latin_1995` writes `ts` after a vowel and `s`
   elsewhere.
 - `ts`: in `latin_1995_word_to_cyrillic`, after the `e` checks, `_ts_splits`
@@ -103,9 +105,11 @@ position and are code in `rules.py`; the module docstring describes each.
   separator back before it expands the four letters.
 - `ъ`: `cyrillic_word_to_latin_1995` drops it after `ў`, and after a
   consonant before `е ё ю я`; elsewhere the table gives `ʼ`.
+- `ь`: `cyrillic_word_to_latin_1995` writes `y` before `о`; elsewhere the
+  table drops it.
 
-`cyrillic_word_to_latin_1995` checks `е`, `ц`, `с` before `ҳ` and `ъ` in
-that order, then the table; `LATIN_1995_TO_CYRILLIC` is tried row by row,
+`cyrillic_word_to_latin_1995` checks `е`, `ц`, `с` before `ҳ`, `ъ` and `ь`
+in that order, then the table; `LATIN_1995_TO_CYRILLIC` is tried row by row,
 longer forms first. `latin_2026_word_to_1995` first calls
 `latin_2026_canonical_word`, which rewrites the draft glyphs `ō` and `ǒ` to
 `ö` (`LATIN_2026_INPUT_ALIASES`).
@@ -163,7 +167,7 @@ Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
 ## Stability and compatibility
 
 - The public API is the 25 names in `__all__` in `__init__.py`.
-- `golden/` holds the output of the public functions on 1121 fixed inputs,
+- `golden/` holds the output of the public functions on 1139 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
   (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`), and
@@ -193,7 +197,8 @@ run and no install is needed.
   `test_detection.py`.
 - Behaviour changes: `test_regressions.py` (0.1.1 fixes),
   `test_changes_0_2_0.py` (0.2.0 rule changes), `test_changes_0_3_0.py`
-  (0.3.0: the draft glyphs, the Cyrillic range, language tags).
+  (0.3.0: the draft glyphs, the Cyrillic range, language tags, the `e` and
+  `ьо` rules, `ValueError` for a non-string orthography).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`
   (README examples, via doctest), `test_privacy.py` (no I/O).
 
