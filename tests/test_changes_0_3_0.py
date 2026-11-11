@@ -706,3 +706,61 @@ def test_the_case_unit_inputs(case_id):
     text, _tag, *expected = CASE_UNIT_INPUTS[case_id]
     got = [to_cyrillic(text), to_latin(text, variant=LATIN_1995), to_latin(text), to_ascii(text)]
     assert got == [text if value is None else value for value in expected]
+
+
+# --- abbreviations with a suffix: AQShda, ToshDUga; TerSh -------------------------
+#
+# A word is also split where a capital is followed by a lowercase letter, when
+# the capitals before it are two letters or more: AQSh|da, MChJ|ning, АҚШ|да,
+# Tosh|DU|ga; not Shahar. Each unit is cased by its own letters, so the Sh of
+# Ter|Sh has no other capital beside it: an initial capital, not SH. An Uzbek
+# abbreviation with a suffix is not a token (ToshDUga, SamDUda); ChatGPTda and
+# AkademIDning do not have its shape and stay tokens.
+
+SUFFIXED_ABBREVIATIONS = [
+    # (latin_1995, latin_2026, cyrillic)
+    ("AQShda", "AQŞda", "АҚШда"),
+    ("MChJning", "MÇJning", "МЧЖнинг"),
+    ("ToshDUga", "ToşDUga", "ТошДУга"),
+    ("SamDUda", "SamDUda", "СамДУда"),
+    ("TerSh", "TerŞ", "ТерШ"),
+    ("Shahar", "Şahar", "Шаҳар"),      # a capital alone is not split off
+    ("SHAHAR", "ŞAHAR", "ШАҲАР"),
+]
+
+
+@pytest.mark.parametrize("latin_1995,latin_2026,cyrillic", SUFFIXED_ABBREVIATIONS)
+def test_an_abbreviation_with_a_suffix_keeps_its_case(latin_1995, latin_2026, cyrillic):
+    def from_1995(target, **kw):
+        return convert(latin_1995, source=LATIN_1995, target=target, **kw)
+
+    assert from_1995(LATIN_2026) == from_1995(LATIN_2026, protect=False) == latin_2026
+    assert from_1995(CYRILLIC) == from_1995(CYRILLIC, protect=False) == cyrillic
+    assert from_1995(LATIN_1995) == from_1995(LATIN_1995, protect=False) == latin_1995
+
+
+@pytest.mark.parametrize(
+    "cyrillic,latin_2026,latin_1995",
+    [
+        # AQSHda and MCHJning: the known limitation of МЧЖ and MÇJ, which have
+        # one letter for Ch; the official 1995 spelling is AQShda, MChJning.
+        ("АҚШда", "AQŞda", "AQSHda"),
+        ("МЧЖнинг", "MÇJning", "MCHJning"),
+    ],
+)
+def test_a_cyrillic_abbreviation_with_a_suffix(cyrillic, latin_2026, latin_1995):
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_2026) == latin_2026
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin_1995
+    assert convert(cyrillic, source=CYRILLIC, target=CYRILLIC) == cyrillic
+
+
+def test_each_unit_is_cased_by_its_own_letters():
+    # Ter|Sh: no capital in Sh besides the S, so its h is lowercase. Read as
+    # 2026, Sh is s + h and takes the separator.
+    assert convert("TerSh", source=LATIN_1995, target=LATIN_1995) == "TerSh"
+    assert convert("TerSh", source=LATIN_2026, target=LATIN_1995) == "TerSʼh"
+
+
+@pytest.mark.parametrize("word", ["ChatGPTda", "AkademIDning"])
+def test_a_token_with_a_suffix_stays_as_it_is(word):
+    assert to_latin(word) == to_latin(word, variant=LATIN_1995) == to_cyrillic(word) == word

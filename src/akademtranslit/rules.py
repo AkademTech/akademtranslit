@@ -141,16 +141,22 @@ def _case_mask(word: str) -> str:
 
 
 def _unit_starts(mask: str) -> list:
-    """Where the letter units of a word start: at 0, and at each capital that
-    follows a lowercase letter. Characters without case between the two do not
-    count, and stay with the letter before them (``Oʻz|MU``)."""
+    """Where the letter units of a word start: at 0, at each capital that
+    follows a lowercase letter (``Tosh|DU``), and at each lowercase letter that
+    follows two or more capitals in a row (``AQSh|da``, ``Tosh|DU|ga``; not
+    ``Shahar``). Characters without case between the two do not count, and
+    stay with the letter before them (``Oʻz|MU``)."""
     starts = [0]
     previous = _NO_CASE
+    capitals = 0  # capitals in a row up to here
     for i, case in enumerate(mask):
         if case == _NO_CASE:
             continue
         if case == _UPPER and previous == _LOWER:
             starts.append(i)
+        elif case == _LOWER and capitals >= 2:
+            starts.append(i)
+        capitals = capitals + 1 if case == _UPPER else 0
         previous = case
     return starts
 
@@ -200,9 +206,9 @@ def apply_case(source: str, result: str) -> str:
     Only letters that have case take part. ``ʻ`` and ``ʼ`` are letters to
     Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all caps and
     gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``. An ``h`` after a capital ``S``
-    or ``C`` is a capital when the word has another capital: ``Sh`` and ``Ch``
-    are one letter, so ``MChJ`` is all caps and gives ``MÇJ``, while
-    ``Shahar`` gives ``Şahar``.
+    or ``C`` is a capital when ``source`` has another capital: ``Sh`` and
+    ``Ch`` are one letter, so ``MChJ`` is all caps and gives ``MÇJ``, while
+    ``Shahar``, and the unit ``Sh`` of ``TerSh``, have an initial capital.
     """
     return _apply_case(source, result, _case_mask(source))
 
@@ -226,9 +232,11 @@ def map_words(text: str, transform) -> str:
     ``transform`` receives the lowercased, mark-canonicalised word and returns
     its converted form; casing is restored afterwards with :func:`apply_case`.
     Case is kept per letter unit: a word is split where a lowercase letter is
-    followed by a capital, and each unit is converted and cased on its own --
-    ``ToshDU`` is ``Tosh`` + ``DU``, ``OʻzMU`` is ``Oʻz`` + ``MU``, so they give
-    ``ToşDU`` and ``ÖzMU``. Digits, punctuation and whitespace pass through
+    followed by a capital, and where two or more capitals are followed by a
+    lowercase letter, and each unit is converted and cased on its own --
+    ``ToshDU`` is ``Tosh`` + ``DU``, ``OʻzMU`` is ``Oʻz`` + ``MU`` and
+    ``AQShda`` is ``AQSh`` + ``da``, so they give ``ToşDU``, ``ÖzMU`` and
+    ``AQŞda``. Digits, punctuation and whitespace pass through
     untouched. It sees words only: URLs, DOIs and the other protected spans
     are cut out by :func:`~akademtranslit.convert` before it gets here (see
     :mod:`akademtranslit.protect`).
@@ -243,11 +251,11 @@ def map_words(text: str, transform) -> str:
         starts = _unit_starts(mask)
         if len(starts) == 1:
             return _apply_case(source, transform(canonicalize_marks(lower)), mask)
+        # Each unit is cased by its own letters: the h of Ter|Sh has no other
+        # capital beside it in Sh.
         ends = starts[1:] + [len(source)]
         return "".join(
-            _apply_case(
-                source[a:b], transform(canonicalize_marks(source[a:b].lower())), mask[a:b]
-            )
+            apply_case(source[a:b], transform(canonicalize_marks(source[a:b].lower())))
             for a, b in zip(starts, ends)
         )
 

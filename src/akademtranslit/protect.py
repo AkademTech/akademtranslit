@@ -60,8 +60,9 @@ The kinds:
     so ``MChJ`` and ``AQSh`` are converted. Two shapes are not tokens and are
     converted: digits followed by lowercase letters only (``10ta``,
     ``2026yil``, ``100mg``), and an Uzbek abbreviation -- a capital, one to
-    four lowercase letters and two or more capitals (``ToshDU``, ``SamDU``,
-    ``ToshPTI``; but ``ChatGPT``, ``PhD`` and ``AkademID`` are tokens). A word
+    four lowercase letters and two or more capitals, then any lowercase
+    letters of a suffix (``ToshDU``, ``SamDU``, ``ToshPTI``, ``ToshDUga``; but
+    ``ChatGPT``, ``PhD``, ``AkademID`` and ``ChatGPTda`` are tokens). A word
     with a letter from another alphabet is never a token.
 
 The text is scanned as it is, without Unicode normalization. Where spans
@@ -553,7 +554,7 @@ _LETTER_RE = re.compile("[A-Za-z]")
 _LOWER_THEN_UPPER_RE = re.compile("[a-z][A-Z]")
 _H_OF_SH_CH_RE = re.compile("(?<=[SC])h")
 _NUMBER_WITH_SUFFIX_RE = re.compile("[0-9]+[a-z]+")
-_UZBEK_ABBREVIATION_RE = re.compile("[A-Z][a-z]{1,4}[A-Z]{2,}")
+_UZBEK_ABBREVIATION_RE = re.compile("[A-Z][a-z]{1,4}[A-Z]{2,}[a-z]*")
 
 _BRACE_RE = re.compile("[{}]")
 _MESSAGE_SYNTAX_RE = re.compile("[{}#]")
@@ -612,7 +613,7 @@ def _is_token(chunk: str) -> bool:
     # Sh and Ch after a capital are one capital letter: MChJ, AQSh.
     chunk = _H_OF_SH_CH_RE.sub("H", chunk)
     if _UZBEK_ABBREVIATION_RE.fullmatch(chunk):
-        return False  # an Uzbek abbreviation: ToshDU, SamDU, ToshPTI
+        return False  # an Uzbek abbreviation: ToshDU, SamDU, ToshPTI, ToshDUga
     return _LOWER_THEN_UPPER_RE.search(chunk) is not None
 
 

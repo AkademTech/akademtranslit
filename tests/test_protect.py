@@ -536,13 +536,15 @@ def test_known_limitation_mixed_case_uzbek_words_are_tokens():
 # Two shapes are taken out of the token rule: digits followed by lowercase
 # letters only (10ta, 2026yil, 100mg -- a number with a suffix or a unit), and
 # a capital, one to four lowercase letters and two or more capitals, Sh and Ch
-# counted as one capital (ToshDU, SamDU, ToshPTI -- an Uzbek abbreviation).
+# counted as one capital (ToshDU, SamDU, ToshPTI -- an Uzbek abbreviation),
+# with lowercase letters after it if it has a suffix (ToshDUga, SamDUda).
 
 
 @pytest.mark.parametrize(
     "word",
     ["10ta", "2026yil", "100mg", "5ga"]  # digits, then lowercase letters
-    + ["ToshDU", "SamDU", "TerDU", "ToshPTI"],  # an Uzbek abbreviation
+    + ["ToshDU", "SamDU", "TerDU", "ToshPTI"]  # an Uzbek abbreviation
+    + ["ToshDUga", "SamDUda"],  # an Uzbek abbreviation with a suffix
 )
 def test_a_number_with_a_suffix_or_an_uzbek_abbreviation_is_not_a_token(word):
     assert segments(word) == [(word, None)]
@@ -551,7 +553,8 @@ def test_a_number_with_a_suffix_or_an_uzbek_abbreviation_is_not_a_token(word):
 @pytest.mark.parametrize(
     "word",
     ["4G", "B12", "mp3", "SpO2"]  # letters and digits in another order
-    + ["ChatGPT", "PhD", "AkademID", "McDonald", "iPhone", "YouTube", "eGFR", "mmHg"],
+    + ["ChatGPT", "PhD", "AkademID", "McDonald", "iPhone", "YouTube", "eGFR", "mmHg"]
+    + ["ChatGPTda", "AkademIDning"],  # with a suffix
 )
 def test_other_mixed_words_are_still_tokens(word):
     assert segments(word) == [(word, "token")]
