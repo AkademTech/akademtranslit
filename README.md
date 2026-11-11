@@ -528,16 +528,21 @@ would merge names belonging to different people. Handle them upstream as scored
 candidates. Translation matching and fuzzy or edit-distance matching are
 likewise out of scope.
 
-**A note on `ö`.** Law No. O'RQ-1184 writes the letter as `ö`, and that is
-what this library emits. Earlier drafts of the reform used `ō` (o with macron)
-or `ǒ`. Both are read as `ö` whenever the text is read as, or converted to,
-the 2026 orthography, so text written under a draft reads correctly and they
-never appear in 2026 output:
+**Other forms of `ö` and `ş`.** Law No. O'RQ-1184 writes the letters as `ö`
+and `ş`, and that is what this library emits. Three other glyphs are accepted
+for them: o with macron (U+014D) and o with caron (U+01D2) for `ö`, and s
+with comma below (U+0219), the Romanian letter that keyboards and fonts show
+like `ş` (s with cedilla, U+015F), for `ş`. They are read as `ö` and `ş`
+whenever the text is read as, or converted to, the 2026 orthography, and
+never appear in 2026 output. `detect_script` counts them as 2026 letters, and
+`normalize` and `sort_key` read them as `ö` and `ş`:
 
 ```python
 >>> from akademtranslit import to_latin
 >>> to_latin("ōrdak")
 'ördak'
+>>> to_latin("To" + chr(0x0219) + "kent")
+'Toşkent'
 
 ```
 

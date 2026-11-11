@@ -62,8 +62,9 @@ that.
 listed in `_PIPELINES` in `__init__.py`: Cyrillic and `latin_2026` each have
 one step to and from `latin_1995`, so Cyrillic ↔ `latin_2026` is two steps
 through it. `latin_2026` → `latin_2026` has one step,
-`latin_2026_canonical_word`, which writes the draft glyphs `ō` and `ǒ` as
-`ö`; it also runs first in `latin_1995` → `latin_2026` and last in
+`latin_2026_canonical_word`, which writes the other input forms of `ö` and
+`ş` as those letters (`LATIN_2026_INPUT_ALIASES`: o with macron and o with
+caron, s with comma below); it also runs first in `latin_1995` → `latin_2026` and last in
 Cyrillic → `latin_2026` (a Latin word inside Cyrillic text). Cyrillic and
 `latin_1995` to themselves are not in the table and have no steps.
 
@@ -145,8 +146,8 @@ position and are code in `rules.py`; the module docstring describes each.
 `cyrillic_word_to_latin_1995` checks `е`, `ц`, `с` before `ҳ`, `ъ` and `ь`
 in that order, then the table; `LATIN_1995_TO_CYRILLIC` is tried row by row,
 longer forms first. `latin_2026_word_to_1995` first calls
-`latin_2026_canonical_word`, which rewrites the draft glyphs `ō` and `ǒ` to
-`ö` (`LATIN_2026_INPUT_ALIASES`).
+`latin_2026_canonical_word`, which rewrites the other input forms of `ö` and
+`ş` (`LATIN_2026_INPUT_ALIASES`).
 
 ## Normalization
 
@@ -159,7 +160,9 @@ longer forms first. `latin_2026_word_to_1995` first calls
    `cyrillic_word_to_latin_1995` with `map_words`, so the positional rules
    reach the key (`Чоршанбиев` gives `chorshanbiyev`).
 5. Every apostrophe variant and both canonical marks are removed.
-6. `fold_latin_2026`: `ş` → `sh`, `ç` → `ch`, `ğ` → `g`, `ö` `ō` `ǒ` → `o`.
+6. `fold_latin_2026`: `ş` → `sh`, `ç` → `ch`, `ğ` → `g`, `ö` → `o`, and the
+   other input forms the same way (o with macron and o with caron → `o`, s
+   with comma below → `sh`).
 7. `fold_cyrillic` maps leftover Cyrillic, such as letters of neighbouring
    orthographies, and drops any other character in U+0400–U+052F.
 8. Every character other than `a`–`z` and `0`–`9` becomes a space; runs of
@@ -173,8 +176,9 @@ output does not change in a patch release: search indexes are built on it.
 
 `sort_key(text, orthography)` needs one of `SCRIPTS` or a language tag for
 one; there is no default.
-It puts the text in NFC, strips it, lowercases a working copy, reads `ō` and
-`ǒ` as `ö` for `latin_2026`, and canonicalises the marks with `map_words`.
+It puts the text in NFC, strips it, lowercases a working copy, reads the
+other input forms of `ö` and `ş` as those letters for `latin_2026`, and
+canonicalises the marks with `map_words`.
 The weights are one `0` for a run of whitespace, `1`–`10` for the digits,
 `11 + k` for the `k`-th unit of the orthography's alphabet, and
 `1000 + code point` for any other letter. In `latin_1995`, `oʻ`, `gʻ`, `sh`
@@ -183,7 +187,8 @@ is `(weights, NFC text)`, so ties are broken by the text.
 
 - `detect_script` (in `__init__.py`) returns `cyrillic` if any character is
   in U+0400–U+052F, `latin_2026` if any character is in `_REFORM_LETTERS`
-  (among them `ş ç ğ ö` in either case and the draft glyphs `ō` and `ǒ`),
+  (among them `ş ç ğ ö` in either case and the other input forms of `ö` and
+  `ş`),
   and `latin_1995` otherwise. A `latin_2026` text without them reads as
   `latin_1995`, which matters for a real s + h: pass `source` when known.
 - `script_class` (in `detection.py`) counts a letter as Cyrillic if it is in
@@ -236,7 +241,7 @@ run and no install is needed.
   `test_ascii.py`.
 - Behaviour changes: `test_regressions.py` (0.1.1 fixes),
   `test_changes_0_2_0.py` (0.2.0 rule changes), `test_changes_0_3_0.py`
-  (0.3.0: the draft glyphs, the Cyrillic range, language tags, the `e` and
+  (0.3.0: the other input forms of `ö` and `ş`, the Cyrillic range, language tags, the `e` and
   `ьо` rules, `ValueError` for a non-string orthography, case per letter
   unit).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`

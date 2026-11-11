@@ -91,15 +91,18 @@ __all__ = [
 ]
 
 # Letters that exist only in latin_2026. One of them anywhere in the text is
-# conclusive: no other Uzbek orthography uses them. The escapes are the draft
-# glyphs for ö: ō U+014D, ǒ U+01D2, Ō U+014C and Ǒ U+01D1.
-_REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1")
+# conclusive: no other Uzbek orthography uses them. The escapes are the other
+# input forms of two of them (LATIN_2026_INPUT_ALIASES): of ö, o with macron
+# and o with caron, U+014D, U+01D2, U+014C and U+01D1; of ş, s with comma
+# below, U+0219 and U+0218.
+_REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1" "\u0219\u0218")
 
 # Every conversion is expressed as a chain of word-level steps. latin_1995 is
 # the pivot -- it is the only orthography that shares a boundary with both of
-# the others, so no pair needs a table of its own. The draft glyphs ō and ǒ
-# are read as ö whenever the source or the target is latin_2026; a pair not
-# listed (cyrillic or latin_1995 to itself) has no steps.
+# the others, so no pair needs a table of its own. The other input forms of ö
+# and ş (LATIN_2026_INPUT_ALIASES) are read as those letters whenever the
+# source or the target is latin_2026; a pair not listed (cyrillic or
+# latin_1995 to itself) has no steps.
 _PIPELINES: dict[tuple[str, str], tuple] = {
     (CYRILLIC, LATIN_1995): (cyrillic_word_to_latin_1995,),
     (CYRILLIC, LATIN_2026): (

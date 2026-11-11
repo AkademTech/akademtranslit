@@ -94,11 +94,11 @@ def test_combining_marks_are_composed_first():
     assert normalize(decomposed) == normalize(precomposed) == "ozbekiston"
 
 
-# --- the reform-draft alias --------------------------------------------------
+# --- an input form of ö -----------------------------------------------------
 
 
 def test_the_alternative_reform_glyph_folds_the_same_way():
-    """An earlier draft used o-macron for oʻ; text written that way must match."""
+    """o with macron is an input form of ö; text written with it must match."""
     assert normalize("Ōzbekiston") == normalize("Özbekiston") == normalize("Ўзбекистон")
 
 

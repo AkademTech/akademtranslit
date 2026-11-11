@@ -71,7 +71,8 @@ def sort_key(text: str, orthography: str) -> tuple:
 
     1. ``text`` is put in NFC and stripped; the weights are computed from its
        lowercase form.
-    2. For ``latin_2026``, the draft glyphs ``ō`` and ``ǒ`` read as ``ö``.
+    2. For ``latin_2026``, the other input forms of ``ö`` and ``ş``
+       (``LATIN_2026_INPUT_ALIASES``) read as those letters.
     3. Apostrophe variants inside a word are resolved as everywhere else in the
        library: after ``o`` or ``g`` a turned comma, elsewhere the tutuq
        belgisi.

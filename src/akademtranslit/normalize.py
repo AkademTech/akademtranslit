@@ -62,8 +62,10 @@ _LATIN_2026_FOLD = {
     "ç": "ch",
     "ğ": "g",
     "ö": "o",
-    "ō": "o",  # the alternative reform draft's glyph for oʻ
-    "ǒ": "o",
+    # The other input forms (LATIN_2026_INPUT_ALIASES).
+    "\u014d": "o",  # o with macron
+    "\u01d2": "o",  # o with caron
+    "\u0219": "sh",  # s with comma below
 }
 
 _MARKS = frozenset(APOSTROPHE_VARIANTS) | {TURNED_COMMA, TUTUQ}

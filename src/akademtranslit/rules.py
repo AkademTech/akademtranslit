@@ -434,11 +434,13 @@ def latin_1995_word_to_2026(word: str) -> str:
 
 
 def latin_2026_canonical_word(word: str) -> str:
-    """Write the draft glyphs in one lowercase word as ``ö``.
+    """Write the other input forms of ``ö`` and ``ş`` in one lowercase word as
+    those letters.
 
-    Applies :data:`~akademtranslit.tables.LATIN_2026_INPUT_ALIASES`: ``ō`` and
-    ``ǒ``, which drafts of the reform used for ``oʻ``. Run whenever the source
-    or the target is ``latin_2026``, so the glyphs never reach 2026 output.
+    Applies :data:`~akademtranslit.tables.LATIN_2026_INPUT_ALIASES`: o with
+    macron and o with caron are ``ö``, s with comma below is ``ş``. Run
+    whenever the source or the target is ``latin_2026``, so these glyphs
+    never reach 2026 output.
     """
     for source, target in LATIN_2026_INPUT_ALIASES:
         word = word.replace(source, target)

@@ -215,9 +215,9 @@ TS_LOANWORD_STEMS = (
 # 21 October 2026, in force from 22 April 2027). Keeping it as one small table
 # means a change to a glyph is one line here.
 #
-# The law writes ``ö`` for ``oʻ``. Earlier drafts used ``ō`` (o with macron) or
-# ``ǒ``; both are accepted on input as aliases (LATIN_2026_INPUT_ALIASES) so
-# that draft-era text reads correctly, and neither is ever output.
+# The law writes ``ö`` for ``oʻ`` and ``ş`` for ``sh``. A few other glyphs are
+# accepted for them on input as aliases (LATIN_2026_INPUT_ALIASES); none of
+# them is ever output.
 
 #: The four letters the reform changes, as a plain correspondence table. This is
 #: the reform, and it is exposed for callers that want to render it (keyboards,
@@ -248,10 +248,14 @@ LATIN_2026_TO_1995_STEPS = (("sh", "s" + TUTUQ + "h"),) + tuple(
 )
 
 #: Accepted input spellings of the reformed letters that are not the canonical
-#: output form. Applied before anything else when reading ``latin_2026`` text.
+#: output form. Applied before anything else when reading ``latin_2026`` text:
+#: o with macron (U+014D) and o with caron (U+01D2) are read as ``ö``, and s
+#: with comma below (U+0219), the Romanian letter, which keyboards and fonts
+#: show like ``ş`` (s with cedilla, U+015F), is read as ``ş``.
 LATIN_2026_INPUT_ALIASES = (
-    ("ō", "ö"),  # earlier reform draft used o-macron for oʻ
-    ("ǒ", "ö"),
+    ("\u014d", "ö"),  # o with macron
+    ("\u01d2", "ö"),  # o with caron
+    ("\u0219", "ş"),  # s with comma below
 )
 
 # --- ASCII for names and logins -------------------------------------------------

@@ -34,11 +34,13 @@ from akademtranslit import (
     to_cyrillic,
     to_latin,
 )
+from akademtranslit.normalize import _LATIN_2026_FOLD
+from akademtranslit.tables import LATIN_2026_INPUT_ALIASES
 
 REPO = Path(__file__).resolve().parent.parent
 GOLDEN_INPUTS = REPO / "golden" / "inputs.json"
 
-# The draft glyphs for oʻ, written as escapes because they look alike:
+# The other input forms of ö, written as escapes because they look alike:
 O_MACRON = "\u014d"            # ō LATIN SMALL LETTER O WITH MACRON
 O_CARON = "\u01d2"             # ǒ LATIN SMALL LETTER O WITH CARON
 CAPITAL_O_MACRON = "\u014c"    # Ō LATIN CAPITAL LETTER O WITH MACRON
@@ -72,7 +74,7 @@ def test_the_2026_letters_are_there_in_both_cases(letter):
 
 # --- ō and ǒ come out as ö in every 2026 output -------------------------------
 #
-# The draft glyphs were read as ö only on the way out of latin_2026. Converting
+# These glyphs were read as ö only on the way out of latin_2026. Converting
 # latin_2026 text to latin_2026 (which is what to_latin does with it) had no
 # step to run, so to_latin("ōrdak") gave "ōrdak". They are now read as ö
 # whenever the source or the target is latin_2026.
@@ -764,3 +766,41 @@ def test_each_unit_is_cased_by_its_own_letters():
 @pytest.mark.parametrize("word", ["ChatGPTda", "AkademIDning"])
 def test_a_token_with_a_suffix_stays_as_it_is(word):
     assert to_latin(word) == to_latin(word, variant=LATIN_1995) == to_cyrillic(word) == word
+
+
+# --- s with comma below is read as ş ---------------------------------------------
+#
+# The Romanian s with comma below (U+0219, capital U+0218) looks like ş (U+015F)
+# on keyboards and in fonts, and turns up in 2026 text in its place. It is an
+# input form of ş, as o with macron and o with caron are of ö: read as ş, never
+# written.
+
+S_COMMA = "\u0219"          # LATIN SMALL LETTER S WITH COMMA BELOW
+CAPITAL_S_COMMA = "\u0218"  # LATIN CAPITAL LETTER S WITH COMMA BELOW
+
+S_COMMA_CASES = [
+    # (text, detect_script, to_cyrillic, to_latin_1995, to_latin_2026, to_ascii, normalize)
+    ("To" + S_COMMA + "kent", LATIN_2026, "Тошкент", "Toshkent", "Toşkent", "Toshkent", "toshkent"),
+    ("TO" + CAPITAL_S_COMMA + "KENT", LATIN_2026, "ТОШКЕНТ", "TOSHKENT", "TOŞKENT", "TOSHKENT", "toshkent"),
+]
+
+
+@pytest.mark.parametrize("text,script,cyrillic,latin_1995,latin_2026,ascii,key", S_COMMA_CASES)
+def test_s_with_comma_below_is_read_as_s_with_cedilla(
+    text, script, cyrillic, latin_1995, latin_2026, ascii, key
+):
+    assert detect_script(text) == script
+    assert to_cyrillic(text) == cyrillic
+    assert to_latin(text, variant=LATIN_1995) == latin_1995
+    assert to_latin(text) == latin_2026
+    assert to_ascii(text) == ascii
+    assert normalize(text) == key
+
+
+def test_s_with_comma_below_is_an_input_form_of_s_with_cedilla():
+    assert (S_COMMA, "ş") in LATIN_2026_INPUT_ALIASES
+    assert {S_COMMA, CAPITAL_S_COMMA} <= _REFORM_LETTERS
+    assert _LATIN_2026_FOLD[S_COMMA] == "sh"
+    text = "To" + S_COMMA + "kent"
+    assert convert(text, source=LATIN_2026, target=LATIN_2026) == "Toşkent"
+    assert sort_key(text, LATIN_2026) == (sort_key("Toşkent", LATIN_2026)[0], text)
