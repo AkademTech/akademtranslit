@@ -508,3 +508,48 @@ def test_files_without_a_rules_version_and_the_version_order(tmp_path):
     _write_golden(tmp_path, "0.10.2", "uz+project-2027.01", {"to_latin_2026": "c"})
     problems = _golden_tool().rules_version_problems(tmp_path)
     assert len(problems) == 1 and "0.10.1" in problems[0] and "0.10.2" in problems[0]
+
+
+# --- Latin to Cyrillic: e after a vowel is э -----------------------------------
+#
+# A bare e (not part of ye) was э only at the start of a word, so poeziya came
+# out as поезия and aeroport as аеропорт. After a vowel it is now э as well,
+# except before v: surnames romanized the Russian way keep their Cyrillic
+# form (Aliev -> Алиев).
+
+E_AFTER_A_VOWEL = [
+    ("aeroport", "аэропорт"),
+    ("poeziya", "поэзия"),
+    ("POEZIYA", "ПОЭЗИЯ"),
+    ("duel", "дуэл"),
+    ("koeffitsiyent", "коэффициент"),
+    ("reemigratsiya", "реэмиграция"),
+    ("siluet", "силуэт"),
+    ("Rafael", "Рафаэл"),
+    ("EEG", "ЭЭГ"),
+    ("Aliev", "Алиев"),         # before v: е, as before
+    ("Alievning", "Алиевнинг"),
+    ("Alieva", "Алиева"),
+    ("Kiev", "Киев"),
+    ("tezda", "тезда"),         # after a consonant: е, as before
+    ("ekran", "экран"),         # at the start of a word: э, as before
+    ("poyezd", "поезд"),        # ye: е, as before
+    ("teatr", "театр"),
+]
+
+
+@pytest.mark.parametrize("latin,cyrillic", E_AFTER_A_VOWEL)
+def test_e_after_a_vowel_latin_1995_to_cyrillic(latin, cyrillic):
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == cyrillic
+    assert convert(latin.upper(), source=LATIN_1995, target=CYRILLIC) == cyrillic.upper()
+
+
+def test_e_after_a_vowel_latin_2026_to_cyrillic():
+    assert convert("poeziya", source=LATIN_2026, target=CYRILLIC) == "поэзия"
+    assert convert("Poeziya", source=LATIN_2026, target=CYRILLIC) == "Поэзия"
+
+
+def test_e_after_a_vowel_round_trip():
+    latin = convert("поэзия", source=CYRILLIC, target=LATIN_1995)
+    assert latin == "poeziya"
+    assert convert(latin, source=LATIN_1995, target=CYRILLIC) == "поэзия"

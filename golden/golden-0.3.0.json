@@ -44991,10 +44991,10 @@
    "convert_from_cyrillic_to_cyrillic": "EEG",
    "convert_from_cyrillic_to_latin_1995": "EEG",
    "convert_from_cyrillic_to_latin_2026": "EEG",
-   "convert_from_latin_1995_to_cyrillic": "ЭЕГ",
+   "convert_from_latin_1995_to_cyrillic": "ЭЭГ",
    "convert_from_latin_1995_to_latin_1995": "EEG",
    "convert_from_latin_1995_to_latin_2026": "EEG",
-   "convert_from_latin_2026_to_cyrillic": "ЭЕГ",
+   "convert_from_latin_2026_to_cyrillic": "ЭЭГ",
    "convert_from_latin_2026_to_latin_1995": "EEG",
    "convert_from_latin_2026_to_latin_2026": "EEG",
    "cyrillic_language": "unknown",
@@ -45020,7 +45020,7 @@
     14,
     16
    ],
-   "to_cyrillic": "ЭЕГ",
+   "to_cyrillic": "ЭЭГ",
    "to_latin_1995": "EEG",
    "to_latin_2026": "EEG"
   },

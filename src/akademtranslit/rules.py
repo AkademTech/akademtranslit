@@ -4,12 +4,18 @@ The tables in :mod:`akademtranslit.tables` cover characters whose reading never
 changes. This module covers the ones that do, plus the machinery that applies
 both: tokenisation, greedy longest-match rewriting, and case restoration.
 
-Five positional rules are implemented:
+Six positional rules are implemented:
 
 ``е``
     Read ``ye`` at the start of a word and after a vowel or a soft/hard sign
-    (Ер -> Yer, поезд -> poyezd), ``e`` otherwise (тезда -> tezda). The reverse
-    direction mirrors it: word-initial ``e`` is ``э``, elsewhere ``е``.
+    (Ер -> Yer, поезд -> poyezd), ``e`` otherwise (тезда -> tezda).
+
+``e``
+    The Latin -> Cyrillic side. ``ye`` is always ``е``. A bare ``e`` is ``э``
+    at the start of a word (ekran -> экран) and after a vowel (poeziya ->
+    поэзия, aeroport -> аэропорт), except before ``v`` (Aliev -> Алиев, so a
+    surname romanized the Russian way keeps its Cyrillic form); ``е``
+    everywhere else (tezda -> тезда).
 
 ``ц``
     Read ``ts`` after a vowel (милиция -> militsiya) and ``s`` otherwise --
@@ -205,6 +211,9 @@ _TS_SUFFIX_RE = re.compile(
 
 _VOWELS_AND_Y = LATIN_VOWELS | {"y"}
 
+# The vowels after which a bare e is э: poeziya -> поэзия.
+_VOWELS_BEFORE_E = frozenset("aeiou")
+
 
 def _ts_splits(word: str, i: int) -> bool:
     """True if the ``ts`` at ``word[i]`` is т + с rather than the letter ц.
@@ -262,14 +271,18 @@ def latin_1995_word_to_cyrillic(word: str) -> str:
     i = 0
     length = len(word)
     while i < length:
-        # The e/ye rule outranks the table: ``ye`` is always е, a bare ``e`` is
-        # э word-initially and е everywhere else.
+        # The e/ye rule outranks the table: ``ye`` is always е. A bare ``e`` is
+        # э word-initially and after a vowel, except before v (Aliev ->
+        # Алиев), and е everywhere else.
         if word.startswith("ye", i):
             out.append("е")
             i += 2
             continue
         if word[i] == "e":
-            out.append("э" if i == 0 else "е")
+            after_a_vowel = (
+                i > 0 and word[i - 1] in _VOWELS_BEFORE_E and not word.startswith("v", i + 1)
+            )
+            out.append("э" if i == 0 or after_a_vowel else "е")
             i += 1
             continue
         # ts is ц (the table's row) unless the word splits it. Then only the t
