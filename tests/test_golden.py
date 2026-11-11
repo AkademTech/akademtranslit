@@ -3,14 +3,27 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 import subprocess
 import sys
 from pathlib import Path
 
-from test_changes_0_3_0 import SCRIPT_CASES, TAG_CASES
-
 REPO = Path(__file__).resolve().parent.parent
+
+
+def _tag_tables() -> tuple:
+    """TAG_CASES and SCRIPT_CASES, the expected tag results, from the one place
+    they are written. Loaded by path: the tests also run against the installed
+    wheel, where tests/ is not a package and may not be on sys.path."""
+    path = REPO / "tests" / "test_changes_0_3_0.py"
+    spec = importlib.util.spec_from_file_location("_tag_tables", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.TAG_CASES, module.SCRIPT_CASES
+
+
+TAG_CASES, SCRIPT_CASES = _tag_tables()
 GOLDEN_DIR = REPO / "golden"
 INPUTS = GOLDEN_DIR / "inputs.json"
 TAG_INPUTS = GOLDEN_DIR / "tag-inputs.json"
