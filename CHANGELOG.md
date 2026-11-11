@@ -51,18 +51,27 @@
   `bulyon`, now the same key as Latin `bulyon`) and for words with a letter
   from U+0500–U+052F inside (`тош` + U+0501 + `кент`: `tosh kent` →
   `toshkent`). Rebuild search keys made with 0.2.0 for such words.
-- Mixed-case words are no longer re-cased: `pH`, `McDonald`, `SpO2` come out
-  as they went in (were `ph`, `Mcdonald`, `Spo2`). A misspelled Uzbek word
-  with mixed case, such as `ToshKent`, is now left unconverted.
+- Case is kept per letter unit, not re-applied to the whole word: `MChJ` →
+  `MÇJ`, `AQSh` → `АҚШ`, `ToshDU` → `ToşDU`, `pH` and `McDonald` stay as they
+  are (were `Mçj`, `Ақш`, `Toşdu`, `ph`, `Mcdonald`). A word with irregular
+  case keeps it: `OʻzBEKISTON` → `ÖzBEKISTON`.
 
 ### Output changes
 
-Golden diff 0.2.0 → 0.3.0, on 1167 inputs (46 added in 0.3.0):
-`detect_script` 2, `normalize` 6, `to_cyrillic` 43, `to_latin_1995` 19,
-`to_latin_2026` 35. Protected spans account for 32, 11 and 19 of the last
-three: 13, 6 and 6 on inputs that 0.2.0 already had (the tokens `McDonald`,
-`ToshKent`, `tOSHKENT`, `SpO2`, `pH`, `B12` and `PaCO2`, two DOIs, two URLs,
-three e-mail addresses) and 19, 5 and 13 on the 28 inputs added for them.
+Golden diff 0.2.0 → 0.3.0, on 1175 inputs (54 added in 0.3.0):
+`detect_script` 2, `normalize` 6, `to_cyrillic` 51, `to_latin_1995` 27,
+`to_latin_2026` 43. Of the last three:
+
+- the rule changes under Fixed: 11, 8 and 16;
+- protected spans: 32, 11 and 19 — 13, 6 and 6 on inputs that 0.2.0 already
+  had (the tokens `McDonald`, `ToshKent`, `tOSHKENT`, `SpO2`, `pH`, `B12` and
+  `PaCO2`, two DOIs, two URLs, three e-mail addresses) and 19, 5 and 13 on the
+  28 inputs added for them;
+- case per letter unit: 3 in each (`OʻzBEKISTON`, `«AKADEMTECH» MChJ`,
+  `AQSh va BMT`);
+- the 8 inputs added for case units, numbers with a suffix and Uzbek
+  abbreviations: 5 in each.
+
 `sort_key`, `normalize_apostrophes`, `script_class` and `cyrillic_language`
 are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
 
@@ -78,6 +87,8 @@ are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
 - `PRIVACY.md`: the `warnings` module.
 - README: protected spans and their limits, `to_ascii`, invisible characters
   and stress marks.
+- README: case per letter unit; numbers with a suffix and Uzbek abbreviations
+  are not tokens.
 
 ### Tests
 
@@ -87,7 +98,8 @@ are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
 - `tests/test_protect.py`: every kind of protected span, with the cases that
   must stay text; on every golden input, each protected piece comes out of
   all nine conversions unchanged; `protect=False` gives the output from
-  before protected spans. `tests/test_ascii.py`: `to_ascii`.
+  before protected spans, except the case of seven mixed-case inputs.
+  `tests/test_ascii.py`: `to_ascii`.
 
 ### Data
 

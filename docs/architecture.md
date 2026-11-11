@@ -30,12 +30,13 @@ that.
 - `tables.py` is data only: orthography names, `RULES_VERSION`, the two
   marks and the eight `APOSTROPHE_VARIANTS`, `DEFAULT_IGNORABLE` (Unicode
   15.1), the Cyrillic range (`CYRILLIC_FIRST`, `CYRILLIC_LAST`), vowel sets,
-  the context-free mapping tables, the reform steps, `ASCII_SCHEME`, the three
-  alphabets and `TS_LOANWORD_STEMS`. Apart from `__future__`, it imports
-  nothing.
+  the context-free mapping tables, the reform steps, `ASCII_SCHEME` and
+  `ASCII_CAPITALS`, the three alphabets and `TS_LOANWORD_STEMS`. Apart from
+  `__future__`, it imports nothing.
 - `rules.py` is the word engine: the word pattern `_WORD_RE`,
-  `canonicalize_marks`, `apply_case`, `map_words`, and the four per-word
-  conversion functions with the context rules. It uses `tables` and `re`.
+  `canonicalize_marks`, the case of each letter (`_case_mask`, `apply_case`),
+  `map_words`, and the four per-word conversion functions with the context
+  rules. It uses `tables` and `re`.
 - `normalize.py` has `normalize`, `fold_cyrillic`, `fold_latin_2026` and
   `is_cyrillic`. It uses `rules`, `tables`, `re` and `unicodedata`.
 - `collation.py` has `sort_key` (uses `rules.map_words`, `tables`, `tags`,
@@ -85,20 +86,31 @@ then the kind listed first in `protect.KINDS`. The message texts inside an ICU
 one kind are joined.
 
 `to_ascii` calls `to_latin` with `variant="latin_1995"`, applies
-`ASCII_SCHEME`, removes the apostrophe marks, decomposes with NFKD and keeps
-only ASCII characters.
+`ASCII_SCHEME`, writes capital `Ş` and `Ç` by `ASCII_CAPITALS` (`SH`, `CH`
+beside a capital, `Sh`, `Ch` otherwise, judged on the characters around them),
+removes the apostrophe marks, decomposes with NFKD and keeps only ASCII
+characters.
 
 `map_words` does the tokenising and the casing:
 
 1. `_WORD_RE` finds words: runs of letters, joined by apostrophe-like marks,
    with a trailing mark kept only after `o` or `g` (so the quote in `'salom'`
    is not taken, while `togʻ` keeps its letter).
-2. Each word is lowercased, and `canonicalize_marks` rewrites every variant
+2. `_case_mask` gives each character its case: capital, lowercase, or none
+   (`ʻ`, `ʼ`). An `h` after a capital `S` or `C` is a capital when the word
+   has another capital, since `Sh` and `Ch` are one letter: `MChJ` and `AQSh`
+   are all caps, `Shahar` is not. Where a lowercase letter is followed by a
+   capital, the word is split into letter units (`Tosh|DU`, `Oʻz|MU`); a
+   character without case stays with the letter before it. A word without a
+   capital is one unit and skips this step.
+3. Each unit is lowercased, and `canonicalize_marks` rewrites every variant
    to `ʻ` after `o` or `g` and to `ʼ` elsewhere.
-3. The steps convert the lowercase word.
-4. `apply_case` re-applies the source word's case (all caps, an initial
-   capital, or lowercase) rather than copying it letter by letter, because
-   the length changes: `ш` is one character, `sh` is two.
+4. The steps convert the lowercase unit.
+5. `apply_case` puts the unit's case back. Irregular case (`MChJ`, `ShAHAR`,
+   `McDonald`) is copied letter by letter when the output is as long as the
+   input. Otherwise it is re-applied as all caps (judged by the mask), an
+   initial capital or lowercase, because the length changes: `ш` is one
+   character, `sh` is two.
 
 Text between words is never passed to a step, so digits, punctuation and
 whitespace come through unchanged. Because the marks are canonicalised even
@@ -189,7 +201,7 @@ Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
 ## Stability and compatibility
 
 - The public API is the 28 names in `__all__` in `__init__.py`.
-- `golden/` holds the output of the public functions on 1167 fixed inputs,
+- `golden/` holds the output of the public functions on 1175 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
   (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`), and
@@ -219,12 +231,14 @@ run and no install is needed.
   `detect_script`), `test_collation.py`, `test_apostrophes.py` (with
   `strip_invisible` and `strip_stress`), `test_detection.py`.
 - Protected spans and ASCII: `test_protect.py` (each kind, what stays text,
-  each protected piece unchanged in all nine conversions, `protect=False`
-  against the output from before), `test_ascii.py`.
+  the shapes that are not tokens, each protected piece unchanged in all nine
+  conversions, `protect=False` against the output from before),
+  `test_ascii.py`.
 - Behaviour changes: `test_regressions.py` (0.1.1 fixes),
   `test_changes_0_2_0.py` (0.2.0 rule changes), `test_changes_0_3_0.py`
   (0.3.0: the draft glyphs, the Cyrillic range, language tags, the `e` and
-  `ьо` rules, `ValueError` for a non-string orthography).
+  `ьо` rules, `ValueError` for a non-string orthography, case per letter
+  unit).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`
   (README examples, via doctest), `test_privacy.py` (no I/O).
 

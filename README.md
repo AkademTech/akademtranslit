@@ -101,14 +101,26 @@ the text around them:
 | `placeholder` | ICU MessageFormat arguments (in `plural` and `select`, only the messages are converted), printf directives, `{{ … }}` | `{name}`, `{n, number}`, `%s`, `%(soni)d` |
 | `path` | `/`, `./`, `../`, `~/` or `C:\` up to the next space; a file name with a known extension | `/home/user/shahar.txt`, `hisobot.docx` |
 | `term` | a string you name, exactly and as a whole word | `Protect(terms=("AslMatn",))` |
-| `token` | an ASCII word with both a letter and a digit, or with a lowercase letter before a capital, and no `oʻ` or `gʻ` | `SpO2`, `B12`, `pH`, `iPhone`, `McDonald` |
+| `token` | an ASCII word with both a letter and a digit, or with a lowercase letter before a capital, and no `oʻ` or `gʻ`; not a number with a suffix, not an Uzbek abbreviation | `SpO2`, `B12`, `pH`, `iPhone`, `McDonald`, `ChatGPT` |
 
 Trailing punctuation is not part of a URL, DOI or path (`https://shahar.uz.`
-ends before the dot), except a `)` that closes a `(` inside it. `Sh` and `Ch`
-after a capital count as one capital, so the Uzbek abbreviations `MChJ` and
-`AQSh` are not tokens and are converted. `kirill/lotin` is not a path, `a < b`
-is not a tag, and a `{` without its `}` is an ordinary character. The module
-`akademtranslit.protect` gives the exact rules.
+ends before the dot), except a `)` that closes a `(` inside it. `kirill/lotin`
+is not a path, `a < b` is not a tag, and a `{` without its `}` is an ordinary
+character. The module `akademtranslit.protect` gives the exact rules.
+
+Three kinds of word look like tokens and are converted instead: an Uzbek
+abbreviation with `Sh` or `Ch` (`MChJ`, `AQSh`: `Sh` and `Ch` after a capital
+count as one capital); a number with a suffix or a unit, digits followed by
+lowercase letters only (`10ta`, `2026yil`, `100mg`); and an Uzbek abbreviation
+of a capital, one to four lowercase letters and two or more capitals
+(`ToshDU`, `SamDU`, `ToshPTI`). `ChatGPT`, `PhD` and `AkademID` do not have
+that shape and stay tokens:
+
+```python
+>>> to_cyrillic("10ta kitob, ToshDU va MChJ, ChatGPT")
+'10та китоб, ТошДУ ва МЧЖ, ChatGPT'
+
+```
 
 `segments` shows how a text is split; `None` marks the pieces that are
 converted:
@@ -135,7 +147,8 @@ of your own, matched exactly, case included:
 ```
 
 `protect=False` (or `Protect.NONE`) converts everything, as versions before
-0.3.0 did:
+0.3.0 did; only the case of a mixed-case word comes out differently, kept per
+letter unit (`McDonald`, where 0.2.0 gave `Mcdonald`; see Case below):
 
 ```python
 >>> to_cyrillic("https://shahar.uz", protect=False)
@@ -151,10 +164,10 @@ text alike.
 **Known limitations.** Whether a word is a token is decided by its shape, not
 by a dictionary:
 
+- An Uzbek abbreviation with five or more lowercase letters, such as
+  `TermizDU`, is a token and is not converted.
 - An Uzbek word typed with broken case, such as `ToshKent` or `tOSHKENT`, looks
   like a token and is left unconverted.
-- A mixed-case Uzbek abbreviation without `Sh` or `Ch` inside, such as `SamDU`,
-  is a token too and is not converted.
 
 ### Name the orthography with a language tag
 
@@ -223,10 +236,11 @@ that take nothing else:
 
 It converts the text to the 1995 orthography with `to_latin`, keeping protected
 spans, so `McDonald` keeps its case. Then it writes `oʻ` and `gʻ` as `o` and
-`g`, and any `ş ç ğ ö` still there as `sh ch g o`; removes the tutuq belgisi
-and the other apostrophe marks; takes the accents off other letters (`é` →
-`e`); and removes whatever is still not ASCII. Case, spaces, digits and ASCII
-punctuation stay.
+`g`, and any `ş ç ğ ö` still there as `sh ch g o`; a capital `Ş` or `Ç` is
+`SH` or `CH` when the character before or after it is a capital, `Sh` or `Ch`
+otherwise. It removes the tutuq belgisi and the other apostrophe marks, takes
+the accents off other letters (`é` → `e`), and removes whatever is still not
+ASCII. Case, spaces, digits and ASCII punctuation stay.
 
 | Input | Output |
 | --- | --- |
@@ -240,9 +254,10 @@ punctuation stay.
 | ŞOŞIMOVA | SHOSHIMOVA |
 | Ўзбекистон | Ozbekiston |
 | McDonald | McDonald |
+| Тошкент ŞAHAR | Toshkent SHAHAR |
 
-This is a project scheme, not a passport standard. Its table, `ASCII_SCHEME`
-in `tables.py`, changes only in a major release.
+This is a project scheme, not a passport standard. Its tables, `ASCII_SCHEME`
+and `ASCII_CAPITALS` in `tables.py`, change only in a major release.
 
 ### Build a cross-script search key
 
@@ -451,15 +466,36 @@ mark a word was typed with never changes its key (since 0.2.0 this includes
 ## Guarantees, and their limits
 
 **Lossless.** `latin_1995` ↔ `latin_2026` round-trips exactly for text in
-canonical form: marks written as `ʻ` and `ʼ`, and each word in lower case,
-with an initial capital, or in all caps (`OʻZBEKISTON` included); protected
-spans, such as `McDonald`, come back as they were. Other input comes back
-canonicalised — `o'zbek` as `oʻzbek`, `OʻzBEKISTON` as `Oʻzbekiston`.
+canonical form: marks written as `ʻ` and `ʼ`, and each word, or each letter
+unit of it (`ToshDU`, `OʻzBEKISTON`; see Case below), in lower case, with an
+initial capital, or in all caps (`OʻZBEKISTON` included); protected spans,
+such as `McDonald`, come back as they were. Other input comes back
+canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`.
 Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter
 inventory, with two gaps: `т` followed by `с` comes back as `ц` unless the `s`
 starts a suffix the `ts` rule knows (`ўтсўндиргич`, `соатсоз`; see
 Context-dependent rules), and `ъ` after `ў` does not come back (`мўъжиза` →
 `moʻjiza` → `мўжиза`). Both are enforced by the test suite.
+
+**Case.** Case is kept per letter unit, not re-applied to the whole word. A
+word is split where a lowercase letter is followed by a capital, and each part
+keeps its own case. `Sh` and `Ch` are one letter in `latin_1995`, so the `h`
+after a capital `S` or `C` counts as a capital when the word has another
+capital. A word with irregular case keeps it letter by letter when the output
+is as long as the input:
+
+```python
+>>> to_latin("«AKADEMTECH» MChJ, AQSh va ToshDU")
+'«AKADEMTEÇ» MÇJ, AQŞ va ToşDU'
+>>> to_cyrillic("OʻzMU va AQSh"), to_latin("OʻzBEKISTON", variant="latin_1995")
+('ЎзМУ ва АҚШ', 'OʻzBEKISTON')
+
+```
+
+A word typed with broken case keeps it too: `OʻzBEKISTON` gives `ÖzBEKISTON`,
+as the CLDR transform does. One known limitation: `МЧЖ` and `MÇJ` have a
+single letter for `Ch`, so they give `MCHJ` in `latin_1995`, where the
+official spelling is `MChJ`. Telling the two apart takes a dictionary.
 
 **Protected spans.** Every span that `segments` finds — a URL, an e-mail
 address, a DOI, markup, a placeholder, a path, a term, a token — comes out of
@@ -584,8 +620,9 @@ pytest`.
 The suite covers the alphabet letter by letter in both directions, the context
 rules, the round-trip tiers above, casing (including ALL-CAPS, where `ШОШИМОВА`
 must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
-`ЎЗБЕКИСТОН`), the cross-script normalization contract, sorting, and the
-golden vectors. The examples in this README and in the docstrings run as tests.
+`ЎЗБЕКИСТОН`; and case per letter unit, where `MChJ` must give `MÇJ`), the
+cross-script normalization contract, sorting, and the golden vectors. The
+examples in this README and in the docstrings run as tests.
 `tests/test_regressions.py`, `tests/test_changes_0_2_0.py`,
 `tests/test_changes_0_3_0.py` and, for protected spans, `tests/test_protect.py`
 pin every behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
