@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE supplementalData SYSTEM "../../common/dtd/ldmlSupplemental.dtd">
+<!-- Copyright © 1991-2026 Unicode, Inc.
+CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
+For terms of use, see http://www.unicode.org/copyright.html
+-->
+<supplementalData>
+	<version number="$Revision$" />
+	<transforms>
+		<transform source="uz_Cyrl" target="uz_Latn_2026" direction="both" alias="uz-Latn-2026-t-uz-cyrl" backwardAlias="uz-Cyrl-t-uz-latn-2026">
+			<tRule><![CDATA[
+# Uzbek: Cyrillic <-> the Latin script in the 2026 orthography
+# (Law of the Republic of Uzbekistan No. O'RQ-1184, 21 October 2026).
+# Based on uz_Cyrl-uz_Latn (the 1995 orthography). Changes from it:
+#   ў -> ö, ғ -> ğ, ш -> ş, ч -> ç: single letters, so the case rules for
+#     Sh/SH and Ch/CH are no longer needed;
+#   с + ҳ -> sh, which is now unambiguous (ш is ş), so Исҳоқ round-trips;
+#   Ё Ю Я Ц and word-initial Е: both letters capital (YO, YU, YA, TS, YE)
+#     only next to another capital, so initials come out as Yo. Yu. Ya. Ye.;
+#   Latin -> Cyrillic: e is э only at the start of a word, е elsewhere
+#     (tezda -> тезда, not тэзда); yö is йў, not ё + U+0308 (yöl -> йўл);
+#     t before ş is т (adabiyotşunos -> адабиётшунос); an apostrophe-like
+#     mark inside a word is read as the tutuq belgisi ʼ; ō and ǒ, used for ö
+#     in drafts of the reform, are read as ö.
+# A word boundary is "not a letter and not a combining mark": the text is in
+# NFD, where ş is s + U+0327, and that mark must not count as a boundary.
+# Everything else follows uz_Cyrl-uz_Latn.
+#
+# Rules are predicated on running NFD first, and NFC afterwards.
+:: NFD (NFC) ;
+
+$letters = [[:sc=Latn:][:sc=Cyrl:] & [:L:]] ;
+$latinVowel = [AEIOUaeiouĬĭʼËë{o\u0308}{O\u0308}] ;
+$upperVowel = [AEIOUĬË{O\u0308}] ;
+$nonletter = [^[:L:][:M:]] ;
+$upper = [:Lu:] [:Mn:]* ;
+$lower = [$letters & [:Ll:]] ;
+$apos = [ʻʼ‘’'`´ʹ] ;
+$letter = [[:L:][:M:]] ;
+
+у \u0306 ↔ o\u0308 ;
+У \u0306 ↔ O\u0308 ;
+ғ ↔ g\u0306 ;
+Ғ ↔ G\u0306 ;
+ш ↔ s\u0327 ;
+Ш ↔ S\u0327 ;
+ч ↔ c\u0327 ;
+Ч ↔ C\u0327 ;
+
+# If we have a lowercase letter on either side, use the lowercase hard sign
+ъ ↔ { ʼ } $lower ;
+ъ ← $lower { ʼ } ;
+Ъ ↔ ʼ ;
+
+# ō and ǒ (drafts of the reform) are read as ö
+у\u0306 ← o [\u0304\u030C] ;
+У\u0306 ← O [\u0304\u030C] ;
+
+# y before ö is й, not the y of yo (yöl -> йўл)
+и\u0306 ← y } o [\u0308\u0304\u030C] ;
+И\u0306 ← Y } [Oo] [\u0308\u0304\u030C] ;
+
+# Capitals written with two Latin letters: both capital next to another
+# capital (ЁШЛАР -> YOŞLAR), otherwise only the first (Ёшлар -> Yoşlar,
+# Ё. -> Yo.).
+е\u0308 ↔ yo ;
+$upper { Е\u0308 → YO ;
+Е\u0308 } [:Lu:] → YO ;
+Е\u0308 ↔ Yo ;
+Е\u0308 ← YO ;
+
+# е → 'ye' at the beginning of a syllable, after a vowel, ъ or ь, otherwise 'e'
+$nonletter { е ↔ ye ;
+$nonletter { Е } [:Lu:] → YE ;
+$nonletter { Е ↔ Ye ;
+Е ← YE ;
+
+$latinVowel { е → ye ;
+$upperVowel { Е → YE ;
+$latinVowel { Е } [:Lu:] → YE ;
+$latinVowel { Е → Ye ;
+
+# handle these specially, since ьЬ otherwise disappear.
+ье → ye ;
+{ ьЕ } $lower → Ye ;
+ьЕ → YE ;
+
+Ье → ye ;
+{ ЬЕ } $lower → Ye ;
+ЬЕ → YE ;
+
+е → e ;
+Е → E ;
+
+ю ↔ yu ;
+$upper { Ю → YU ;
+Ю } [:Lu:] → YU ;
+Ю ↔ Yu ;
+Ю ← YU ;
+я ↔ ya ;
+$upper { Я → YA ;
+Я } [:Lu:] → YA ;
+Я ↔ Ya ;
+Я ← YA ;
+# t before ş is т + ш, not ц (adabiyotşunos -> адабиётшунос)
+т ← t } s\u0327 ;
+Т ← T } [Ss]\u0327 ;
+ц ↔ ts ;
+$upper { Ц → TS ;
+Ц } [:Lu:] → TS ;
+Ц ↔ Ts ;
+Ц ← TS ;
+а ↔ a ;
+А ↔ A ;
+б ↔ b ;
+Б ↔ B ;
+д ↔ d ;
+Д ↔ D ;
+# Latin e is э at the start of a word and е elsewhere.
+э → e ;
+Э → E ;
+э ← $nonletter { e ;
+Э ← $nonletter { E ;
+е ← e ;
+Е ← E ;
+ф ↔ f ;
+Ф ↔ F ;
+г ↔ g ;
+Г ↔ G ;
+ҳ ↔ h ;
+Ҳ ↔ H ;
+и\u0306 ↔ y ;
+И\u0306 ↔ Y ;
+и ↔ i ;
+И ↔ I ;
+ж ↔ j ;
+Ж ↔ J ;
+к ↔ k ;
+К ↔ K ;
+л ↔ l ;
+Л ↔ L ;
+м ↔ m ;
+М ↔ M ;
+н ↔ n ;
+Н ↔ N ;
+о ↔ o ;
+О ↔ O ;
+п ↔ p ;
+П ↔ P ;
+қ ↔ q ;
+Қ ↔ Q ;
+р ↔ r ;
+Р ↔ R ;
+с ↔ s ;
+С ↔ S ;
+т ↔ t ;
+Т ↔ T ;
+у ↔ u ;
+У ↔ U ;
+в ↔ v ;
+В ↔ V ;
+х ↔ x ;
+Х ↔ X ;
+з ↔ z ;
+З ↔ Z ;
+ь → ;
+Ь → ;
+
+:: Null ;
+
+# Latin -> Cyrillic only (runs first in that direction): the 2026 orthography
+# has no turned comma, so any apostrophe-like mark inside a word is the tutuq.
+ʼ ← $letter { $apos } $letter ;
+
+::NFC (NFD) ;
+			]]></tRule>
+		</transform>
+	</transforms>
+</supplementalData>

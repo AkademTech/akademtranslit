@@ -17,6 +17,11 @@
   `re` and `unicodedata`, or calls `open`, `exec`, `eval`, `compile`,
   `__import__`, `input` or `breakpoint`.
 
+### Data
+
+- `cldr/`: data for a Unicode CLDR proposal for the 2026 orthography
+  (transforms, collation, exemplar characters, tests).
+
 No change to the library's code or output.
 
 ## 0.2.0 — 2026-11-08

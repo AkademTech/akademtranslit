@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ldml SYSTEM "../../common/dtd/ldml.dtd">
+<!--
+Copyright © 1991-2026 Unicode, Inc.
+CLDR data files are interpreted according to the LDML specification (http://unicode.org/reports/tr35/)
+For terms of use, see http://www.unicode.org/copyright.html
+-->
+<ldml>
+	<identity>
+		<version number="$Revision$"/>
+		<language type="uz"/>
+		<script type="Cyrl"/>
+	</identity>
+	<collations>
+		<collation type="standard"><cr><![CDATA[
+# The Uzbek Cyrillic alphabet: А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х
+# Ц Ч Ш Ъ Ь Э Ю Я Ў Қ Ғ Ҳ. Ё is a letter of its own after Е, and Ў Қ Ғ Ҳ
+# come after Я, not after У К Г Х.
+&е<ё<<<Ё
+&я<ў<<<Ў<қ<<<Қ<ғ<<<Ғ<ҳ<<<Ҳ
+		]]></cr></collation>
+	</collations>
+</ldml>

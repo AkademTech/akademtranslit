@@ -341,6 +341,11 @@ reproduces `golden-<version>.json` byte for byte. `python tools/golden.py
 `python tools/golden.py --diff OLD NEW` lists every output that changed between
 two releases.
 
+`cldr/` holds the data for a Unicode CLDR proposal for the 2026 orthography:
+transform rules, collation tailorings and exemplar characters, with tests
+checked against ICU and against these golden vectors. See
+[cldr/README.md](cldr/README.md).
+
 ## Versioning
 
 [Semantic versioning](https://semver.org). The output of `normalize()` never
