@@ -30,6 +30,7 @@ from akademtranslit import (
     script_for_tag,
     sort_key,
     tag_for_script,
+    to_ascii,
     to_cyrillic,
     to_latin,
 )
@@ -674,3 +675,34 @@ def test_known_limitation_cyrillic_and_2026_abbreviations_come_out_all_caps():
     letters says so (see the README)."""
     assert convert("МЧЖ", source=CYRILLIC, target=LATIN_1995) == "MCHJ"
     assert convert("MÇJ", source=LATIN_2026, target=LATIN_1995) == "MCHJ"
+
+
+# The golden inputs for case units, numbers with a suffix and Uzbek
+# abbreviations: (text, second tag, to_cyrillic, to_latin_1995, to_latin_2026,
+# to_ascii); None is the input itself. In Тошкент ŞAHAR the 2026 word is not
+# converted: the text is read as Cyrillic as a whole.
+CASE_UNIT_INPUTS = {
+    "c1168": ("10ta kitob, 2026yil, 100mg", "mixed", "10та китоб, 2026йил, 100мг", None, None, None),
+    "c1169": ("ToshDU va SamDU", "latin_1995", "ТошДУ ва СамДУ", None, "ToşDU va SamDU", None),
+    "c1170": ("ТошДУ ва ЎзМУ", "cyrillic", None, "ToshDU va OʻzMU", "ToşDU va ÖzMU", "ToshDU va OzMU"),
+    "c1171": ("OʻzMU talabasi", "latin_1995", "ЎзМУ талабаси", None, "ÖzMU talabasi", "OzMU talabasi"),
+    "c1172": ("ChatGPT, PhD, AkademID", "mixed", None, None, None, None),
+    "c1173": ("MÇJ va AQŞ", "latin_2026", "МЧЖ ва АҚШ", "MCHJ va AQSH", None, "MCHJ va AQSH"),
+    "c1174": ("Тошкент ŞAHAR", "mixed", None, "Toshkent ŞAHAR", "Toşkent ŞAHAR", "Toshkent SHAHAR"),
+    "c1175": ("ShAHAR", "latin_1995", "ШАҲАР", None, "ŞAHAR", None),
+}
+
+
+def test_the_case_unit_inputs_are_golden_inputs():
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    cases = {case["id"]: case for case in doc["cases"]}
+    assert {i: (cases[i]["text"], cases[i]["tags"]) for i in CASE_UNIT_INPUTS} == {
+        i: (row[0], ["protect-0.3.0", row[1]]) for i, row in CASE_UNIT_INPUTS.items()
+    }
+
+
+@pytest.mark.parametrize("case_id", sorted(CASE_UNIT_INPUTS))
+def test_the_case_unit_inputs(case_id):
+    text, _tag, *expected = CASE_UNIT_INPUTS[case_id]
+    got = [to_cyrillic(text), to_latin(text, variant=LATIN_1995), to_latin(text), to_ascii(text)]
+    assert got == [text if value is None else value for value in expected]

@@ -8773,6 +8773,70 @@
     "placeholder"
    ],
    "text": "{shahar_soni"
+  },
+  {
+   "id": "c1168",
+   "tags": [
+    "protect-0.3.0",
+    "mixed"
+   ],
+   "text": "10ta kitob, 2026yil, 100mg"
+  },
+  {
+   "id": "c1169",
+   "tags": [
+    "protect-0.3.0",
+    "latin_1995"
+   ],
+   "text": "ToshDU va SamDU"
+  },
+  {
+   "id": "c1170",
+   "tags": [
+    "protect-0.3.0",
+    "cyrillic"
+   ],
+   "text": "ТошДУ ва ЎзМУ"
+  },
+  {
+   "id": "c1171",
+   "tags": [
+    "protect-0.3.0",
+    "latin_1995"
+   ],
+   "text": "OʻzMU talabasi"
+  },
+  {
+   "id": "c1172",
+   "tags": [
+    "protect-0.3.0",
+    "mixed"
+   ],
+   "text": "ChatGPT, PhD, AkademID"
+  },
+  {
+   "id": "c1173",
+   "tags": [
+    "protect-0.3.0",
+    "latin_2026"
+   ],
+   "text": "MÇJ va AQŞ"
+  },
+  {
+   "id": "c1174",
+   "tags": [
+    "protect-0.3.0",
+    "mixed"
+   ],
+   "text": "Тошкент ŞAHAR"
+  },
+  {
+   "id": "c1175",
+   "tags": [
+    "protect-0.3.0",
+    "latin_1995"
+   ],
+   "text": "ShAHAR"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "678d52d64f0264a1b613b3bc4de8bab0c3adcb04bcbb9ba934d7e4f76eb5745a",
+ "inputs_sha256": "74bbe4ae6efe93ca269eaee9d2f5e3ee9e9a79358b1e040d982d3a596c4a5c53",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -8170,6 +8170,62 @@
    "to_cyrillic": "{шаҳар_сони",
    "to_latin_1995": "{shahar_soni",
    "to_latin_2026": "{şahar_soni"
+  },
+  "c1168": {
+   "detect_script": "latin_1995",
+   "normalize": "10ta kitob 2026yil 100mg",
+   "to_cyrillic": "10та китоб, 2026йил, 100мг",
+   "to_latin_1995": "10ta kitob, 2026yil, 100mg",
+   "to_latin_2026": "10ta kitob, 2026yil, 100mg"
+  },
+  "c1169": {
+   "detect_script": "latin_1995",
+   "normalize": "toshdu va samdu",
+   "to_cyrillic": "Тошду ва Самду",
+   "to_latin_1995": "Toshdu va Samdu",
+   "to_latin_2026": "Toşdu va Samdu"
+  },
+  "c1170": {
+   "detect_script": "cyrillic",
+   "normalize": "toshdu va ozmu",
+   "to_cyrillic": "Тошду ва Ўзму",
+   "to_latin_1995": "Toshdu va Oʻzmu",
+   "to_latin_2026": "Toşdu va Özmu"
+  },
+  "c1171": {
+   "detect_script": "latin_1995",
+   "normalize": "ozmu talabasi",
+   "to_cyrillic": "Ўзму талабаси",
+   "to_latin_1995": "Oʻzmu talabasi",
+   "to_latin_2026": "Özmu talabasi"
+  },
+  "c1172": {
+   "detect_script": "latin_1995",
+   "normalize": "chatgpt phd akademid",
+   "to_cyrillic": "Чатгпт, Пҳд, Академид",
+   "to_latin_1995": "Chatgpt, Phd, Akademid",
+   "to_latin_2026": "Çatgpt, Phd, Akademid"
+  },
+  "c1173": {
+   "detect_script": "latin_2026",
+   "normalize": "mchj va aqsh",
+   "to_cyrillic": "МЧЖ ва АҚШ",
+   "to_latin_1995": "MCHJ va AQSH",
+   "to_latin_2026": "MÇJ va AQŞ"
+  },
+  "c1174": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent shahar",
+   "to_cyrillic": "Тошкент ŞAHAR",
+   "to_latin_1995": "Toshkent ŞAHAR",
+   "to_latin_2026": "Toşkent ŞAHAR"
+  },
+  "c1175": {
+   "detect_script": "latin_1995",
+   "normalize": "shahar",
+   "to_cyrillic": "Шаҳар",
+   "to_latin_1995": "Shahar",
+   "to_latin_2026": "Şahar"
   }
  },
  "schema": "akademtranslit-golden/1"
