@@ -76,8 +76,9 @@ __all__ = [
 ]
 
 # Letters that exist only in latin_2026. One of them anywhere in the text is
-# conclusive: no other Uzbek orthography uses them.
-_REFORM_LETTERS = frozenset("şçğöŞÇĞÖōǒŌǓ")
+# conclusive: no other Uzbek orthography uses them. The escapes are the draft
+# glyphs for ö: ō U+014D, ǒ U+01D2, Ō U+014C and Ǒ U+01D1.
+_REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1")
 
 # Every conversion is expressed as a chain of word-level steps. latin_1995 is
 # the pivot -- it is the only orthography that shares a boundary with both of

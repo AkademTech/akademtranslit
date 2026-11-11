@@ -38051,7 +38051,7 @@
   },
   "c1080": {
    "cyrillic_language": "unknown",
-   "detect_script": "latin_1995",
+   "detect_script": "latin_2026",
    "normalize": "o",
    "normalize_apostrophes_ascii": "Ǒ",
    "normalize_apostrophes_unicode": "Ǒ",
@@ -38065,8 +38065,8 @@
    "sort_key_latin_2026": [
     26
    ],
-   "to_cyrillic": "Ǒ",
-   "to_latin_1995": "Ǒ",
+   "to_cyrillic": "Ў",
+   "to_latin_1995": "Oʻ",
    "to_latin_2026": "Ǒ"
   },
   "c1081": {
@@ -38167,7 +38167,7 @@
   },
   "c1084": {
    "cyrillic_language": "unknown",
-   "detect_script": "latin_1995",
+   "detect_script": "latin_2026",
    "normalize": "ozbekiston",
    "normalize_apostrophes_ascii": "Ǒzbekiston",
    "normalize_apostrophes_unicode": "Ǒzbekiston",
@@ -38208,8 +38208,8 @@
     25,
     24
    ],
-   "to_cyrillic": "Ǒзбекистон",
-   "to_latin_1995": "Ǒzbekiston",
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
    "to_latin_2026": "Ǒzbekiston"
   },
   "c1085": {
