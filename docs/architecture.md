@@ -26,10 +26,10 @@ package are `re`, `unicodedata` and `warnings`; `tests/test_privacy.py` pins
 that.
 
 - `tables.py` is data only: orthography names, `RULES_VERSION`, the two
-  marks and the eight `APOSTROPHE_VARIANTS`, the Cyrillic range (`CYRILLIC_FIRST`,
-  `CYRILLIC_LAST`), vowel sets, the context-free mapping tables, the reform
-  steps, the three alphabets and `TS_LOANWORD_STEMS`. Apart from
-  `__future__`, it imports nothing.
+  marks and the eight `APOSTROPHE_VARIANTS`, the Cyrillic range
+  (`CYRILLIC_FIRST`, `CYRILLIC_LAST`), vowel sets, the context-free mapping
+  tables, the reform steps, the three alphabets and `TS_LOANWORD_STEMS`.
+  Apart from `__future__`, it imports nothing.
 - `rules.py` is the word engine: the word pattern `_WORD_RE`,
   `canonicalize_marks`, `apply_case`, `map_words`, and the four per-word
   conversion functions with the context rules. It uses `tables` and `re`.

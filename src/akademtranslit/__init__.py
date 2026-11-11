@@ -143,8 +143,8 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026) -> str:
     (``uz-Cyrl``, ``uz-Latn-1995``, ``uz-Latn-2026``; see
     :mod:`akademtranslit.tags`).
 
-    Non-letters -- digits, punctuation, whitespace, DOIs, years -- pass through
-    untouched, so mixed content survives intact:
+    Digits, punctuation and whitespace pass through untouched, so mixed content
+    survives intact:
 
     >>> convert("Ilmiy jurnal, 2026-yil, 12-son", target="latin_2026")
     'Ilmiy jurnal, 2026-yil, 12-son'

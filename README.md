@@ -72,6 +72,44 @@ Requires Python 3.9 or newer. No dependencies.
 `source` defaults to `"auto"`, which runs script detection first, and `target`
 defaults to `"latin_2026"`.
 
+### Name the orthography with a language tag
+
+Wherever a function takes an orthography, it also takes a BCP 47 language
+tag:
+
+```python
+>>> from akademtranslit import convert, script_for_tag, tag_for_script
+>>> convert("Тошкент", source="uz-Cyrl", target="uz-Latn-2026")
+'Toşkent'
+>>> script_for_tag("uz-Latn-1995")
+'latin_1995'
+>>> tag_for_script("latin_2026")
+'uz-Latn-2026'
+
+```
+
+| Tag | Orthography |
+| --- | --- |
+| `uz-Cyrl` | `cyrillic` |
+| `uz-Latn-1995`, `uz-1995` | `latin_1995` |
+| `uz-Latn-2026`, `uz-2026` | `latin_2026` |
+| `uz-Latn`, `uz` | `latin_1995` in 0.x, `latin_2026` from 1.0.0 |
+
+Tags are matched without regard to case, and `_` is accepted in place of `-`.
+A region (`uz-Latn-UZ`), extensions (`-t-…`, `-u-…`) and a private-use part
+(`-x-…`) do not change the orthography and are ignored. Anything else raises
+`ValueError`: another language or script, an unknown variant, a variant on
+`uz-Cyrl`, a malformed tag. Nothing is guessed.
+
+`uz-Latn` and `uz` name no orthography. In 0.x the library reads them as the
+1995 orthography and raises a `FutureWarning`: version 1.0.0, due after Law
+No. O'RQ-1184 takes effect on 22 April 2027, will read them as the 2026 one.
+Name the variant to avoid both the warning and the change. The library never
+decides by the date: a call gives the same output on any day.
+
+The variant subtags `1995` and `2026` were requested from IANA in October
+2026; registration is pending.
+
 ### Migrate an existing corpus to the 2026 alphabet
 
 The 1995 ↔ 2026 conversion is lossless in both directions, so a migration can
@@ -306,8 +344,16 @@ likewise out of scope.
 
 **A note on `ö`.** Law No. O'RQ-1184 writes the letter as `ö`, and that is
 what this library emits. Earlier drafts of the reform used `ō` (o with macron)
-or `ǒ`; both are accepted on input as aliases of `ö`, so text written under a
-draft reads correctly, but they are never output.
+or `ǒ`. Both are read as `ö` whenever the text is read as, or converted to,
+the 2026 orthography, so text written under a draft reads correctly and they
+never appear in 2026 output:
+
+```python
+>>> from akademtranslit import to_latin
+>>> to_latin("ōrdak")
+'ördak'
+
+```
 
 **The 2026 spelling rules.** Law No. O'RQ-1184 fixes the 2026 alphabet.
 Detailed spelling rules for it have not been adopted yet (November 2026). Until
@@ -316,6 +362,23 @@ and writes a real s + h without the separator. When official rules are
 published, the outputs they change will change in a minor release, with a
 golden diff.
 
+**Rules version.** `RULES_VERSION` names the rules the conversion functions
+follow:
+
+```python
+>>> from akademtranslit import RULES_VERSION
+>>> RULES_VERSION
+'uz-2026-alphabet+project-2026.11'
+
+```
+
+The part before `+` is the official basis: `uz-2026-alphabet` is the 2026
+alphabet of Law No. O'RQ-1184, without official spelling rules. The part after
+it is this project's rule set, named by the year and month of the release that
+last changed the output of `convert`, `to_latin` or `to_cyrillic`; a release
+that changes none of their output keeps the value. Store it next to converted
+text to know which rules produced it.
+
 ## Golden vectors
 
 `golden/` holds the library's output, sealed:
@@ -323,8 +386,12 @@ golden diff.
 - `inputs.json` — the inputs: every letter of the three alphabets, the context
   rules, every apostrophe form, mixed content, ecosystem traps. Append-only: an
   `id` never changes and is never reused.
-- `golden-<version>.json` — the output of every public function on every input,
-  for that release.
+- `tag-inputs.json` — language tags: every accepted form and the ways a tag
+  can be wrong. Append-only, like `inputs.json`.
+- `golden-<version>.json` — for that release: the output of each public text
+  function on every input (`convert` for all nine source and target pairs),
+  of `script_for_tag` and `tag_for_script` on every tag, and, from 0.3.0,
+  `RULES_VERSION`.
 - `SHA256SUMS` — the hashes of those files.
 
 Check them with:
@@ -369,8 +436,9 @@ rules, the round-trip tiers above, casing (including ALL-CAPS, where `ШОШИМ
 must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
 `ЎЗБЕКИСТОН`), the cross-script normalization contract, sorting, and the
 golden vectors. The examples in this README and in the docstrings run as tests.
-`tests/test_regressions.py` and `tests/test_changes_0_2_0.py` pin every
-behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
+`tests/test_regressions.py`, `tests/test_changes_0_2_0.py` and
+`tests/test_changes_0_3_0.py` pin every behaviour change since 0.1.0; see
+[CHANGELOG.md](CHANGELOG.md).
 
 How the package is put together: [docs/architecture.md](docs/architecture.md).
 

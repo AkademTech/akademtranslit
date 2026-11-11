@@ -2,6 +2,39 @@
 
 ## 0.3.0 — unreleased
 
+### Added
+
+- Language tags: every `source`, `target`, `variant` and `orthography`
+  argument also takes a BCP 47 tag (`uz-Cyrl`, `uz-Latn-1995`,
+  `uz-Latn-2026`, `uz-1995`, `uz-2026`). `script_for_tag()` and
+  `tag_for_script()` convert between tags and orthography names. `uz-Latn` and
+  `uz` without a variant are read as the 1995 orthography with a
+  `FutureWarning`: from 1.0.0 they will mean the 2026 one.
+- `RULES_VERSION`: which rules the conversion functions follow.
+- Golden vectors, schema 2: `convert` for all nine source and target pairs,
+  `fold_cyrillic`, `is_cyrillic`, the tag functions on
+  `golden/tag-inputs.json`, and the rules version.
+
+### Fixed
+
+- `detect_script` did not recognise capital `Ǒ` (U+01D1) as a 2026 letter.
+- `ō` and `ǒ` came out unchanged when the input was already in the 2026
+  orthography: `to_latin("ōrdak")` gave `ōrdak`; it now gives `ördak`.
+- The `convert` docstring said DOIs pass through untouched; they do not.
+
+### Changed
+
+- Cyrillic is U+0400–U+052F in every function. `is_cyrillic`, and through it
+  `detect_script` and `normalize`, used U+0400–U+04FF, so a letter from the
+  Cyrillic Supplement block now counts as Cyrillic there too.
+- The package imports `warnings`, for the `FutureWarning` above, besides `re`
+  and `unicodedata`.
+
+### Output changes
+
+Golden diff 0.2.0 → 0.3.0: `detect_script` 2, `to_latin_2026` 9,
+`to_latin_1995` 2, `to_cyrillic` 2. `normalize` and `sort_key` are unchanged.
+
 ### Documentation
 
 - `PRIVACY.md`: what the library does and does not do with data, with
@@ -10,12 +43,14 @@
 - README: who owns and maintains the library; the 2026 spelling rules are
   not adopted yet, and what the library does until they are.
 - `LICENSE`: the copyright line names the legal owner, AKADEMTECH MChJ.
+- README: language tags, the rules version.
+- `PRIVACY.md`: the `warnings` module.
 
 ### Tests
 
 - `tests/test_privacy.py` fails if the package imports a module other than
-  `re` and `unicodedata`, or calls `open`, `exec`, `eval`, `compile`,
-  `__import__`, `input` or `breakpoint`.
+  `re`, `unicodedata` and `warnings`, or calls `open`, `exec`, `eval`,
+  `compile`, `__import__`, `input` or `breakpoint`.
 
 ### Data
 
