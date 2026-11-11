@@ -1,8 +1,8 @@
 """The package does no I/O of its own: no network, no files, no subprocesses.
 
 PRIVACY.md promises this. The tests below read the package source with
-``ast`` and fail if a module imports anything but ``re`` and
-``unicodedata``, or calls one of the built-ins that open files or run code.
+``ast`` and fail if a module imports anything but ``re``, ``unicodedata``
+and ``warnings``, or calls one of the built-ins that open files or run code.
 """
 
 from __future__ import annotations
@@ -12,7 +12,7 @@ from pathlib import Path
 
 PACKAGE = Path(__file__).resolve().parent.parent / "src" / "akademtranslit"
 
-ALLOWED_IMPORTS = frozenset({"re", "unicodedata"})
+ALLOWED_IMPORTS = frozenset({"re", "unicodedata", "warnings"})
 
 FORBIDDEN_CALLS = frozenset(
     {"open", "exec", "eval", "compile", "__import__", "input", "breakpoint"}
@@ -40,7 +40,7 @@ def _imported_modules(tree: ast.Module) -> list[str]:
     return names
 
 
-def test_package_imports_only_re_and_unicodedata():
+def test_package_imports_only_re_unicodedata_and_warnings():
     offenders = [
         (path.name, module)
         for path in _package_files()
