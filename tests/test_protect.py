@@ -524,10 +524,52 @@ def test_sh_and_ch_after_a_capital_are_one_capital():
 
 
 def test_known_limitation_mixed_case_uzbek_words_are_tokens():
-    """A misspelled Uzbek word with mixed case is protected (see the README)."""
+    """A misspelled Uzbek word with mixed case, and an Uzbek abbreviation with
+    five or more lowercase letters, are protected (see the README)."""
     assert segments("ToshKent") == [("ToshKent", "token")]
     assert segments("tOSHKENT") == [("tOSHKENT", "token")]
-    assert segments("SamDU") == [("SamDU", "token")]
+    assert segments("TermizDU") == [("TermizDU", "token")]
+
+
+# --- numbers with a suffix and Uzbek abbreviations are not tokens -----------------
+#
+# Two shapes are taken out of the token rule: digits followed by lowercase
+# letters only (10ta, 2026yil, 100mg -- a number with a suffix or a unit), and
+# a capital, one to four lowercase letters and two or more capitals, Sh and Ch
+# counted as one capital (ToshDU, SamDU, ToshPTI -- an Uzbek abbreviation).
+
+
+@pytest.mark.parametrize(
+    "word",
+    ["10ta", "2026yil", "100mg", "5ga"]  # digits, then lowercase letters
+    + ["ToshDU", "SamDU", "TerDU", "ToshPTI"],  # an Uzbek abbreviation
+)
+def test_a_number_with_a_suffix_or_an_uzbek_abbreviation_is_not_a_token(word):
+    assert segments(word) == [(word, None)]
+
+
+@pytest.mark.parametrize(
+    "word",
+    ["4G", "B12", "mp3", "SpO2"]  # letters and digits in another order
+    + ["ChatGPT", "PhD", "AkademID", "McDonald", "iPhone", "YouTube", "eGFR", "mmHg"],
+)
+def test_other_mixed_words_are_still_tokens(word):
+    assert segments(word) == [(word, "token")]
+
+
+@pytest.mark.parametrize(
+    "text,cyrillic,latin_2026",
+    [
+        ("10ta kitob, 2026yil, 100mg", "10та китоб, 2026йил, 100мг", "10ta kitob, 2026yil, 100mg"),
+        ("ToshDU va SamDU", "ТошДУ ва СамДУ", "ToşDU va SamDU"),
+        ("TerDU, ToshPTI", "ТерДУ, ТошПТИ", "TerDU, ToşPTI"),
+        ("ChatGPT, PhD, AkademID", "ChatGPT, PhD, AkademID", "ChatGPT, PhD, AkademID"),
+    ],
+)
+def test_numbers_with_a_suffix_and_uzbek_abbreviations_are_converted(text, cyrillic, latin_2026):
+    assert to_cyrillic(text) == cyrillic
+    assert to_latin(text) == latin_2026
+    assert to_latin(text, variant=LATIN_1995) == text
 
 
 # --- which span wins -------------------------------------------------------------

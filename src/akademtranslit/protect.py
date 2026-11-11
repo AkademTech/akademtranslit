@@ -57,8 +57,12 @@ The kinds:
     either has both a letter and a digit (``SpO2``, ``B12``, ``3D``) or has a
     lowercase letter followed by a capital (``pH``, ``iPhone``,
     ``McDonald``). A capital ``S`` or ``C`` with ``h`` counts as one capital,
-    so ``MChJ`` and ``AQSh`` are converted. A word with a letter from another
-    alphabet is never a token.
+    so ``MChJ`` and ``AQSh`` are converted. Two shapes are not tokens and are
+    converted: digits followed by lowercase letters only (``10ta``,
+    ``2026yil``, ``100mg``), and an Uzbek abbreviation -- a capital, one to
+    four lowercase letters and two or more capitals (``ToshDU``, ``SamDU``,
+    ``ToshPTI``; but ``ChatGPT``, ``PhD`` and ``AkademID`` are tokens). A word
+    with a letter from another alphabet is never a token.
 
 The text is scanned as it is, without Unicode normalization. Where spans
 overlap, the one that starts first wins; of two that start together, the
@@ -548,6 +552,8 @@ _DIGIT_RE = re.compile("[0-9]")
 _LETTER_RE = re.compile("[A-Za-z]")
 _LOWER_THEN_UPPER_RE = re.compile("[a-z][A-Z]")
 _H_OF_SH_CH_RE = re.compile("(?<=[SC])h")
+_NUMBER_WITH_SUFFIX_RE = re.compile("[0-9]+[a-z]+")
+_UZBEK_ABBREVIATION_RE = re.compile("[A-Z][a-z]{1,4}[A-Z]{2,}")
 
 _BRACE_RE = re.compile("[{}]")
 _MESSAGE_SYNTAX_RE = re.compile("[{}#]")
@@ -599,10 +605,15 @@ def _find_comment(scanner, pos, end):
 def _is_token(chunk: str) -> bool:
     if _ASCII_CHUNK_RE.fullmatch(chunk) is None or _UZBEK_RE.search(chunk):
         return False
+    if _NUMBER_WITH_SUFFIX_RE.fullmatch(chunk):
+        return False  # a number with a suffix or a unit: 10ta, 2026yil, 100mg
     if _DIGIT_RE.search(chunk) and _LETTER_RE.search(chunk):
         return True
     # Sh and Ch after a capital are one capital letter: MChJ, AQSh.
-    return _LOWER_THEN_UPPER_RE.search(_H_OF_SH_CH_RE.sub("H", chunk)) is not None
+    chunk = _H_OF_SH_CH_RE.sub("H", chunk)
+    if _UZBEK_ABBREVIATION_RE.fullmatch(chunk):
+        return False  # an Uzbek abbreviation: ToshDU, SamDU, ToshPTI
+    return _LOWER_THEN_UPPER_RE.search(chunk) is not None
 
 
 def _find_token(scanner, pos, end):
