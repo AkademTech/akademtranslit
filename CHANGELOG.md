@@ -120,7 +120,8 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
 - README: text in more than one orthography and `source="auto"`;
   abbreviations with a suffix; `ș`; homoglyphs. The README and the comments
   no longer say that drafts of the reform used o with macron and o with
-  caron: no source for that was found.
+  caron (no source was found for o with caron); both are described as
+  input forms only.
 
 ### Tests
 

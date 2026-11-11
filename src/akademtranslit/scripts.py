@@ -2,8 +2,8 @@
 
 :func:`script_spans` splits a text into its words and the text between them
 and names the orthography each word shows. A word with letters from both
-alphabets is ``"mixed"``: usually a slip, such as a Cyrillic ``о`` typed in a
-Latin word, which looks right and matches nothing. :func:`fold_homoglyphs`
+alphabets is ``"mixed"``: usually a slip, such as a Cyrillic o (U+043E) typed
+in a Latin word, which looks right and matches nothing. :func:`fold_homoglyphs`
 repairs such words with :data:`~akademtranslit.tables.HOMOGLYPHS`, and
 :func:`homoglyph_spans` says which words it changes.
 

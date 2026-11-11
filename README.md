@@ -411,15 +411,15 @@ short text is often `unknown`.
 `script_spans` goes word by word. Each word gets the orthography it shows —
 `cyrillic`, `latin_2026` (`ş ç ğ ö`), `latin_1995` (`oʻ`, `gʻ`), or `latin`
 for a word written alike in both — and a word with letters from both alphabets
-is `mixed`. Such a word is usually a slip: a Cyrillic `е` typed in a Latin
-word looks right, matches nothing in a search, and makes the word Cyrillic to
-`convert`. `fold_homoglyphs` writes each such word in the alphabet most of its
-letters are in, replacing the others by their look-alikes (`HOMOGLYPHS` in
-`tables.py`, chosen from the Unicode confusables); a word with a letter that
-has no look-alike, or with as many letters of each, is left alone. It also
-writes `ș`, s with comma below, as `ş` in a Latin word. `homoglyph_spans` says
-which words it changes. Run text that people type through `fold_homoglyphs`
-before `convert`:
+is `mixed`. Such a word is usually a slip: a Cyrillic `е` (U+0435) typed in a
+Latin word looks right, matches nothing in a search, and makes the word
+Cyrillic to `convert`. `fold_homoglyphs` writes each such word in the alphabet
+most of its letters are in, replacing the others by their look-alikes
+(`HOMOGLYPHS` in `tables.py`, chosen from the Unicode confusables); a word
+with a letter that has no look-alike, or with as many letters of each, is left
+alone. It also writes `ș`, s with comma below, as `ş` in a Latin word.
+`homoglyph_spans` says which words it changes. Run text that people type
+through `fold_homoglyphs` before `convert`:
 
 ```python
 >>> from akademtranslit import fold_homoglyphs, homoglyph_spans, script_spans, to_cyrillic
