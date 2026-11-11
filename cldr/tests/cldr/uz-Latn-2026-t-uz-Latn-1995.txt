@@ -535,8 +535,6 @@ XXI asr	XXI asr
 12-son, 3-jild	12-son, 3-jild
 ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 Ali, Vali va Gʻani	Ali, Vali va Ğani
-Ǒ	Ǒ
-Ǒzbekiston	Ǒzbekiston
 ISHOQ	IŞOQ
 özbek	özbek
 oksitotsin	oksitotsin
@@ -558,3 +556,14 @@ Ali Valiyev	Ali Valiyev
 Alijon	Alijon
 2-son	2-son
 123	123
+aeroport	aeroport
+poeziya	poeziya
+duel	duel
+koeffitsiyent	koeffitsiyent
+reemigratsiya	reemigratsiya
+siluet	siluet
+Rafael	Rafael
+Alievning	Alievning
+Alieva	Alieva
+Kiev	Kiev
+POEZIYA	POEZIYA

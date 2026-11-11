@@ -18,8 +18,8 @@ What it checks:
    golden input written in that orthography.
 3. ``uz_Cyrl -> uz_Latn_2026``: equal to the existing ``uz_Cyrl-uz_Latn`` (``reference/``)
    followed by ``uz_Latn_1995 -> uz_Latn_2026``, except where the existing
-   transform is ambiguous (с + ҳ). Differences from the library are counted by
-   cause.
+   transform is ambiguous (с + ҳ) or drops ь before о. Differences from the
+   library are counted by cause.
 4. Round trips: Cyrillic -> 2026 -> Cyrillic, and 2026 -> 1995 -> 2026.
 5. The proposed collations order the alphabet words the same way as the
    library's ``sort_key``.
@@ -210,9 +210,10 @@ def main() -> int:
     for cid, text, got, lib, cause in lib_diff:
         report.append(f"- {cid} [{cause}]: {text!r} -> CLDR {got!r}, library {lib!r}")
     unexplained = [d for d in chain_diff
-                   if "сҳ" not in d[1].lower() and d[2].lower() != d[3].lower()]
+                   if "сҳ" not in d[1].lower() and "ьо" not in d[1].lower()
+                   and d[2].lower() != d[3].lower()]
     report.append("  (expected: с + ҳ, which the existing transform writes as the digraph sh; "
-                  "and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)")
+                  "ь before о, now y; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)")
     failures += len(unexplained) + causes["other"]
     report.append("")
 

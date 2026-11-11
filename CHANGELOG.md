@@ -69,6 +69,8 @@ Golden diff 0.2.0 → 0.3.0, on 1139 inputs (18 added in 0.3.0):
 
 - `cldr/`: data for a Unicode CLDR proposal for the 2026 orthography
   (transforms, collation, exemplar characters, tests).
+- `cldr/`: the e and ьо rules follow the library; checked against 0.3.0 and
+  its 1139 golden inputs.
 
 ## 0.2.0 — 2026-11-08
 

@@ -10,6 +10,7 @@ adabiyoti
 adabiyotshunos
 adabiyotshunoslik
 adyutant
+aeroport
 ajoyib
 akademiyasi
 aksiya
@@ -23,6 +24,8 @@ albom
 albumin
 ali
 aliev
+alieva
+alievning
 alijon
 aliyev
 alisher
@@ -67,6 +70,7 @@ boshqa
 bugun
 bulut
 bulvar
+bulyon
 buxoro
 boʻg
 boʻyoq
@@ -80,6 +84,7 @@ detsibel
 doi
 doksorubitsin
 doksorubitsinning
+duel
 dunyo
 e
 ea
@@ -165,7 +170,9 @@ ketsinmi
 ketsinu
 kecha
 khomidov
+kiev
 kitob
+koeffitsiyent
 kompyuter
 konsert
 kontaktsiz
@@ -192,6 +199,7 @@ maʼno
 maydon
 mayer
 maʼyus
+medalyon
 meditsina
 mehnatsevar
 mehnatsiz
@@ -237,12 +245,15 @@ p
 pa
 patsiyent
 patsiyentsiz
+pavilyon
 paxta
 ph
 platsenta
 podyezd
 poema
+poeziya
 poyezd
+pochtalyonlar
 premyer
 protsent
 proyektsiz
@@ -262,12 +273,14 @@ qoʻyosh
 qoʻshiq
 r
 ra
+rafael
 rahatsizlantiradi
 raqam
 ratsion
 rayhon
 reaksiya
 reanimatsiya
+reemigratsiya
 respublikasi
 revolyutsiya
 rifampitsin
@@ -287,6 +300,7 @@ sening
 sex
 sʼh
 sikl
+siluet
 sinf
 singa
 siprofloksatsin

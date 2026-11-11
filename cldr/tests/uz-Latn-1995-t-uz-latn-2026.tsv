@@ -57,9 +57,11 @@ c1076	ÖRDAK	OʻRDAK
 c1077	ō	oʻ
 c1078	ǒ	oʻ
 c1079	Ō	Oʻ
+c1080	Ǒ	Oʻ
 c1081	ōrdak	oʻrdak
 c1082	ǒrdak	oʻrdak
 c1083	ŌRDAK	OʻRDAK
+c1084	Ǒzbekiston	Oʻzbekiston
 c1086	çöl	choʻl
 c1087	Çirçiq	Chirchiq
 c1088	Ğijduvon	Gʻijduvon
@@ -516,8 +518,6 @@ dc1063	XXI asr	XXI asr
 dc1065	12-son, 3-jild	12-son, 3-jild
 dc1066	ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 dc1067	Ali, Vali va Ğani	Ali, Vali va Gʻani
-dc1080	Ǒ	Oʻ
-dc1084	Ǒzbekiston	Oʻzbekiston
 dc1085	IŞOQ	ISHOQ
 dc1090	özbek	oʻzbek
 dc1093	oksitotsin	oksitotsin
@@ -544,3 +544,20 @@ dc1117	2-son	2-son
 dc1118	Mi zdes	Mi zdes
 dc1119	bir	bir
 dc1120	Qöşiq va şi	Qoʻshiq va shi
+dc1122	aeroport	aeroport
+dc1123	poeziya	poeziya
+dc1124	duel	duel
+dc1125	koeffitsiyent	koeffitsiyent
+dc1126	reemigratsiya	reemigratsiya
+dc1127	siluet	siluet
+dc1128	Rafael	Rafael
+dc1129	Alievning	Alievning
+dc1130	Alieva	Alieva
+dc1131	Kiev	Kiev
+dc1132	POEZIYA	POEZIYA
+dc1133	bulyon	bulyon
+dc1134	Bulyon	Bulyon
+dc1135	BULYON	BULYON
+dc1136	pavilyon	pavilyon
+dc1137	poçtalyonlar	pochtalyonlar
+dc1138	medalyon	medalyon

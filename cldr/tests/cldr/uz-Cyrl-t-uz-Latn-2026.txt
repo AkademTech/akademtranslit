@@ -56,9 +56,11 @@ Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti	Мирзо Улуғбе�
 ō	ў
 ǒ	ў
 Ō	Ў
+Ǒ	Ў
 ōrdak	ўрдак
 ǒrdak	ўрдак
 ŌRDAK	ЎРДАК
+Ǒzbekiston	Ўзбекистон
 çöl	чўл
 Çirçiq	Чирчиқ
 Ğijduvon	Ғиждувон
@@ -169,8 +171,8 @@ albom	албом
 ALBOM	АЛБОМ
 e	э
 E	Э
-poema	поема
-POEMA	ПОЕМА
+poema	поэма
+POEMA	ПОЭМА
 yu	ю
 Yu	Ю
 syujet	сюжет
@@ -375,7 +377,7 @@ teatr	театр
 muallif	муаллиф
 işoq	ишоқ
 abvgdeyojziyklmnoprstufxsçşʼeyuyaöqğh	абвгдеёжзийклмнопрстуфхсчшъеюяўқғҳ
-abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиеюяўқғҳш
+abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиэюяўқғҳш
 asr	аср
 vaqt	вақт
 gul	гул
@@ -474,7 +476,7 @@ podyezd	подезд
 premyer	премер
 Spo2	Спо2
 ph	пҳ
-EEG	ЭЕГ
+EEG	ЭЭГ
 UTT	УТТ
 B12	Б12
 Paco2	Паcо2
@@ -511,8 +513,6 @@ XXI asr	ХХИ аср
 12-son, 3-jild	12-сон, 3-жилд
 ISBN 978-0-00-000000-0	ИСБН 978-0-00-000000-0
 Ali, Vali va Ğani	Али, Вали ва Ғани
-Ǒ	Ў
-Ǒzbekiston	Ўзбекистон
 IŞOQ	ИШОҚ
 özbek	ўзбек
 oksitotsin	окситоцин
@@ -539,3 +539,20 @@ Alijon	Алижон
 Mi zdes	Ми здес
 bir	бир
 Qöşiq va şi	Қўшиқ ва ши
+aeroport	аэропорт
+poeziya	поэзия
+duel	дуэл
+koeffitsiyent	коэффициент
+reemigratsiya	реэмиграция
+siluet	силуэт
+Rafael	Рафаэл
+Alievning	Алиевнинг
+Alieva	Алиева
+Kiev	Киев
+POEZIYA	ПОЭЗИЯ
+bulyon	булён
+Bulyon	Булён
+BULYON	БУЛЁН
+pavilyon	павилён
+poçtalyonlar	почталёнлар
+medalyon	медалён

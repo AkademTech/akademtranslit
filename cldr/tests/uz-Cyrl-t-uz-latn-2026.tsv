@@ -57,9 +57,11 @@ c1076	ÖRDAK	ЎРДАК
 c1077	ō	ў
 c1078	ǒ	ў
 c1079	Ō	Ў
+c1080	Ǒ	Ў
 c1081	ōrdak	ўрдак
 c1082	ǒrdak	ўрдак
 c1083	ŌRDAK	ЎРДАК
+c1084	Ǒzbekiston	Ўзбекистон
 c1086	çöl	чўл
 c1087	Çirçiq	Чирчиқ
 c1088	Ğijduvon	Ғиждувон
@@ -170,8 +172,8 @@ dc0111	albom	албом
 dc0112	ALBOM	АЛБОМ
 dc0113	e	э
 dc0114	E	Э
-dc0115	poema	поема
-dc0116	POEMA	ПОЕМА
+dc0115	poema	поэма
+dc0116	POEMA	ПОЭМА
 dc0117	yu	ю
 dc0118	Yu	Ю
 dc0119	syujet	сюжет
@@ -376,7 +378,7 @@ dc0667	teatr	театр
 dc0671	muallif	муаллиф
 dc0674	işoq	ишоқ
 dc0679	abvgdeyojziyklmnoprstufxsçşʼeyuyaöqğh	абвгдеёжзийклмнопрстуфхсчшъеюяўқғҳ
-dc0680	abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиеюяўқғҳш
+dc0680	abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиэюяўқғҳш
 dc0681	asr	аср
 dc0683	vaqt	вақт
 dc0685	gul	гул
@@ -475,7 +477,7 @@ dc0979	podyezd	подезд
 dc0980	premyer	премер
 dc0984	Spo2	Спо2
 dc0985	ph	пҳ
-dc0986	EEG	ЭЕГ
+dc0986	EEG	ЭЭГ
 dc0987	UTT	УТТ
 dc0990	B12	Б12
 dc0991	Paco2	Паcо2
@@ -516,8 +518,6 @@ dc1063	XXI asr	ХХИ аср
 dc1065	12-son, 3-jild	12-сон, 3-жилд
 dc1066	ISBN 978-0-00-000000-0	ИСБН 978-0-00-000000-0
 dc1067	Ali, Vali va Ğani	Али, Вали ва Ғани
-dc1080	Ǒ	Ў
-dc1084	Ǒzbekiston	Ўзбекистон
 dc1085	IŞOQ	ИШОҚ
 dc1090	özbek	ўзбек
 dc1093	oksitotsin	окситоцин
@@ -544,3 +544,20 @@ dc1117	2-son	2-сон
 dc1118	Mi zdes	Ми здес
 dc1119	bir	бир
 dc1120	Qöşiq va şi	Қўшиқ ва ши
+dc1122	aeroport	аэропорт
+dc1123	poeziya	поэзия
+dc1124	duel	дуэл
+dc1125	koeffitsiyent	коэффициент
+dc1126	reemigratsiya	реэмиграция
+dc1127	siluet	силуэт
+dc1128	Rafael	Рафаэл
+dc1129	Alievning	Алиевнинг
+dc1130	Alieva	Алиева
+dc1131	Kiev	Киев
+dc1132	POEZIYA	ПОЭЗИЯ
+dc1133	bulyon	булён
+dc1134	Bulyon	Булён
+dc1135	BULYON	БУЛЁН
+dc1136	pavilyon	павилён
+dc1137	poçtalyonlar	почталёнлар
+dc1138	medalyon	медалён

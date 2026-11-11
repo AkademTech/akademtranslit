@@ -56,9 +56,11 @@ Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti	Mirzo Ulugʻbek nomidagi
 ō	oʻ
 ǒ	oʻ
 Ō	Oʻ
+Ǒ	Oʻ
 ōrdak	oʻrdak
 ǒrdak	oʻrdak
 ŌRDAK	OʻRDAK
+Ǒzbekiston	Oʻzbekiston
 çöl	choʻl
 Çirçiq	Chirchiq
 Ğijduvon	Gʻijduvon
@@ -511,8 +513,6 @@ XXI asr	XXI asr
 12-son, 3-jild	12-son, 3-jild
 ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 Ali, Vali va Ğani	Ali, Vali va Gʻani
-Ǒ	Oʻ
-Ǒzbekiston	Oʻzbekiston
 IŞOQ	ISHOQ
 özbek	oʻzbek
 oksitotsin	oksitotsin
@@ -539,3 +539,20 @@ Alijon	Alijon
 Mi zdes	Mi zdes
 bir	bir
 Qöşiq va şi	Qoʻshiq va shi
+aeroport	aeroport
+poeziya	poeziya
+duel	duel
+koeffitsiyent	koeffitsiyent
+reemigratsiya	reemigratsiya
+siluet	siluet
+Rafael	Rafael
+Alievning	Alievning
+Alieva	Alieva
+Kiev	Kiev
+POEZIYA	POEZIYA
+bulyon	bulyon
+Bulyon	Bulyon
+BULYON	BULYON
+pavilyon	pavilyon
+poçtalyonlar	pochtalyonlar
+medalyon	medalyon
