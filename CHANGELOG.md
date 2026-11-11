@@ -43,7 +43,7 @@ Golden diff 0.2.0 → 0.3.0: `detect_script` 2, `to_latin_2026` 9,
 - README: who owns and maintains the library; the 2026 spelling rules are
   not adopted yet, and what the library does until they are.
 - `LICENSE`: the copyright line names the legal owner, AKADEMTECH MChJ.
-- README: language tags, the rules version.
+- README: language tags, the rules version, the CLDR licence.
 - `PRIVACY.md`: the `warnings` module.
 
 ### Tests

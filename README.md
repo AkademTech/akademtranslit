@@ -456,6 +456,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). This project follows a
 
 MIT — see [LICENSE](LICENSE).
 
+The files in `cldr/transforms/`, `cldr/collation/` and `cldr/reference/` are
+Unicode CLDR data or derived from it, under the Unicode License v3 (see
+[cldr/LICENSE](cldr/LICENSE)). They are not part of the Python package.
+
 ## Who
 
 AkademTranslit is owned and maintained by AKADEMTECH MChJ, a limited

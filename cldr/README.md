@@ -194,7 +194,8 @@ files match.
 ## Licence
 
 The files in `transforms/`, `collation/` and `reference/` are CLDR data or
-derived from it, under the Unicode License v3, and keep its notice. The check
-and the test cases are AkademTranslit's (MIT). A pull request to
-`unicode-org/cldr` needs a Unicode Contributor License Agreement (individual or
-corporate) on file first.
+derived from it, under the Unicode License v3, and keep its notice. The Unicode
+License v3 is in [LICENSE](LICENSE), copied from the `unicode-org/cldr`
+repository (`LICENSE`, branch `main`, 11 November 2026). The check and the test
+cases are AkademTranslit's (MIT). A pull request to `unicode-org/cldr` needs a
+Unicode Contributor License Agreement (individual or corporate) on file first.
