@@ -24,6 +24,8 @@ key that makes one word searchable across all three.
 
 from __future__ import annotations
 
+import unicodedata
+
 from .apostrophes import normalize_apostrophes
 from .collation import sort_key
 from .detection import cyrillic_language, script_class
@@ -38,6 +40,8 @@ from .rules import (
     map_words,
 )
 from .tables import (
+    APOSTROPHE_VARIANTS,
+    ASCII_SCHEME,
     CYRILLIC,
     CYRILLIC_ALPHABET,
     LATIN_1995,
@@ -80,6 +84,7 @@ __all__ = [
     "segments",
     "sort_key",
     "tag_for_script",
+    "to_ascii",
     "to_cyrillic",
     "to_latin",
 ]
@@ -244,3 +249,40 @@ def to_cyrillic(text: str, *, protect=True) -> str:
     'Қашқадарё'
     """
     return convert(text, source="auto", target=CYRILLIC, protect=protect)
+
+
+_NO_MARKS = str.maketrans("", "", "".join(APOSTROPHE_VARIANTS))
+
+
+def to_ascii(text: str) -> str:
+    """Write ``text`` in ASCII, for names and logins.
+
+    A project scheme, not a passport standard, and deterministic:
+
+    1. :func:`to_latin` converts the text to ``latin_1995``, keeping protected
+       spans as they are, so ``McDonald`` keeps its case.
+    2. :data:`~akademtranslit.tables.ASCII_SCHEME` writes ``oʻ`` and ``gʻ`` as
+       ``o`` and ``g``, and any ``ş ç ğ ö`` left in the text as ``sh ch g o``
+       (``Sh Ch G O`` for the capitals). The tutuq belgisi and the other
+       apostrophe marks are removed.
+    3. Other letters lose their accents (``é`` -> ``e``, by NFKD), and
+       whatever is still not ASCII is removed.
+
+    Case is kept; spaces, digits and ASCII punctuation stay.
+
+    >>> to_ascii("Чўлпон")
+    'Cholpon'
+    >>> to_ascii("Gʻafur Gʻulom")
+    'Gafur Gulom'
+    >>> to_ascii("Isʼhoq José")
+    'Ishoq Jose'
+
+    The table changes only in a major release.
+    """
+    text = to_latin(text, variant=LATIN_1995)
+    if not text:
+        return text
+    for letter, ascii_form in ASCII_SCHEME:
+        text = text.replace(letter, ascii_form)
+    text = unicodedata.normalize("NFKD", text.translate(_NO_MARKS))
+    return "".join(ch for ch in text if ch.isascii())

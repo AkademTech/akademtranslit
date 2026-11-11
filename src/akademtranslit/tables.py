@@ -228,6 +228,28 @@ LATIN_2026_INPUT_ALIASES = (
     ("ǒ", "ö"),
 )
 
+# --- ASCII for names and logins -------------------------------------------------
+
+#: How :func:`~akademtranslit.to_ascii` writes in ASCII the letters that
+#: conversion to ``latin_1995`` leaves: the 1995 letters with the turned comma,
+#: and a 2026 letter in a protected span or in a Latin word of Cyrillic text.
+#: The apostrophe marks are removed after it. A project scheme for names and
+#: logins, not a passport standard. Frozen: it changes only in a major release.
+ASCII_SCHEME = (
+    ("o" + TURNED_COMMA, "o"),
+    ("O" + TURNED_COMMA, "O"),
+    ("g" + TURNED_COMMA, "g"),
+    ("G" + TURNED_COMMA, "G"),
+    ("ş", "sh"),
+    ("Ş", "Sh"),
+    ("ç", "ch"),
+    ("Ç", "Ch"),
+    ("ğ", "g"),
+    ("Ğ", "G"),
+    ("ö", "o"),
+    ("Ö", "O"),
+)
+
 # --- alphabets -----------------------------------------------------------------
 #
 # The letters of each orthography in its alphabetical order. Exposed for callers

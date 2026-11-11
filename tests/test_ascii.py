@@ -1,0 +1,85 @@
+"""to_ascii: ASCII for names and logins, by a frozen project scheme."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import pytest
+
+from akademtranslit import to_ascii
+from akademtranslit.tables import APOSTROPHE_VARIANTS, ASCII_SCHEME
+
+REPO = Path(__file__).resolve().parent.parent
+GOLDEN_INPUTS = REPO / "golden" / "inputs.json"
+
+SOFT_HYPHEN = chr(0x00AD)
+
+
+def golden_texts():
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    return [case["text"] for case in doc["cases"]]
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("Шавкат", "Shavkat"),
+        ("Şavkat", "Shavkat"),
+        ("Oʻktam", "Oktam"),
+        ("Gʻafur Gʻulom", "Gafur Gulom"),
+        ("Isʼhoq", "Ishoq"),
+        ("Исҳоқ", "Ishoq"),
+        ("Ёқуб", "Yoqub"),
+        ("Çölpon", "Cholpon"),
+        ("José", "Jose"),
+        ("ŞOŞIMOVA", "SHOSHIMOVA"),
+        ("Ўзбекистон", "Ozbekiston"),
+        ("McDonald", "McDonald"),
+    ],
+)
+def test_to_ascii(text, expected):
+    assert to_ascii(text) == expected
+
+
+@pytest.mark.parametrize("mark", APOSTROPHE_VARIANTS)
+def test_every_apostrophe_mark_is_removed(mark):
+    assert to_ascii(f"O{mark}zbek ma{mark}no") == "Ozbek mano"
+
+
+def test_2026_letters_the_conversion_leaves_are_written_by_the_table():
+    """A Latin word in Cyrillic text, and a protected span, keep their letters
+    through to_latin; the table turns them into ASCII."""
+    assert to_ascii("Тошкент Çölpon") == "Toshkent Cholpon"
+    assert to_ascii("Тошкент şahar, ğoz") == "Toshkent shahar, goz"
+    assert to_ascii("https://çölpon.uz") == "https://cholpon.uz"
+
+
+def test_case_spaces_digits_and_ascii_punctuation_stay():
+    assert to_ascii("OʻZBEKISTON Respublikasi, 2026-yil (rasmiy)!") == "OZBEKISTON Respublikasi, 2026-yil (rasmiy)!"
+    assert to_ascii("pH va SpO2") == "pH va SpO2"
+
+
+def test_accents_go_and_anything_else_not_ascii_is_removed():
+    assert to_ascii("Ñandú, Zoë, Ångström") == "Nandu, Zoe, Angstrom"
+    assert to_ascii("«Oʻzbekiston» — 2026") == "Ozbekiston  2026"
+    assert to_ascii("Tosh" + SOFT_HYPHEN + "kent") == "Toshkent"
+
+
+def test_empty():
+    assert to_ascii("") == ""
+
+
+def test_the_result_is_ascii_on_every_golden_input():
+    assert [text for text in golden_texts() if not to_ascii(text).isascii()] == []
+
+
+def test_idempotent_on_the_golden_inputs():
+    assert [text for text in golden_texts() if to_ascii(to_ascii(text)) != to_ascii(text)] == []
+
+
+def test_the_scheme_is_pairs_of_a_letter_and_its_ascii():
+    assert all(len(pair) == 2 and pair[1].isascii() and not pair[0].isascii() for pair in ASCII_SCHEME)
+    assert {source for source, _ in ASCII_SCHEME} == {
+        "oʻ", "Oʻ", "gʻ", "Gʻ", "ş", "Ş", "ç", "Ç", "ğ", "Ğ", "ö", "Ö",
+    }
