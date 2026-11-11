@@ -105,31 +105,117 @@ def canonicalize_marks(word_lower: str) -> str:
     return "".join(out)
 
 
+# --- case --------------------------------------------------------------------
+
+# The case of one character, as _case_mask writes it.
+_UPPER = "U"
+_LOWER = "L"
+_NO_CASE = "-"
+
+
+def _case_mask(word: str) -> str:
+    """The case of each character of ``word``: ``U``, ``L`` or ``-`` (none).
+
+    ``ʻ``, ``ʼ`` and digits have no case. One exception to a letter's own
+    case: an ``h`` after a capital ``S`` or ``C`` is a capital if the word has
+    another capital besides that ``S`` or ``C``. ``Sh`` and ``Ch`` are one
+    letter in ``latin_1995``, so ``MChJ`` and ``AQSh`` are all caps, while
+    ``Shahar`` -- and ``Sh``, which is s + h in ``latin_2026`` -- has an
+    initial capital.
+    """
+    mask = []
+    capitals = 0
+    for ch in word:
+        if ch.lower() == ch.upper():
+            mask.append(_NO_CASE)
+        elif ch.isupper():
+            mask.append(_UPPER)
+            capitals += 1
+        else:
+            mask.append(_LOWER)
+    if capitals > 1:
+        for i in range(1, len(word)):
+            if word[i] == "h" and word[i - 1] in "SC":
+                mask[i] = _UPPER
+    return "".join(mask)
+
+
+def _unit_starts(mask: str) -> list:
+    """Where the letter units of a word start: at 0, and at each capital that
+    follows a lowercase letter. Characters without case between the two do not
+    count, and stay with the letter before them (``Oʻz|MU``)."""
+    starts = [0]
+    previous = _NO_CASE
+    for i, case in enumerate(mask):
+        if case == _NO_CASE:
+            continue
+        if case == _UPPER and previous == _LOWER:
+            starts.append(i)
+        previous = case
+    return starts
+
+
+def _irregular(source: str) -> bool:
+    """True if ``source``'s own case is not all lowercase, all caps or an
+    initial capital: ``MChJ``, ``ShAHAR``, ``McDonald``."""
+    cased = [ch.isupper() for ch in source if ch.lower() != ch.upper()]
+    return any(cased[1:]) and not all(cased)
+
+
+def _copy_case(source: str, result: str) -> str:
+    """``result`` with the case of ``source``, position by position. A
+    character without case takes the case of the letter before it, and is
+    lowercase at the start."""
+    out = []
+    upper = False
+    for ch, new in zip(source, result):
+        if ch.lower() != ch.upper():
+            upper = ch.isupper()
+        out.append(new.upper() if upper else new.lower())
+    return "".join(out)
+
+
 def apply_case(source: str, result: str) -> str:
     """Restore ``source``'s casing onto ``result``.
 
-    Per token, so a name in a sentence and the same name in a heading both come
-    out right:
+    ``source`` is a word, or one letter unit of a word (see :func:`map_words`).
+    So that a name in a sentence and the same name in a heading both come out
+    right:
 
-    * all-caps in, all-caps out -- ``ШОШИМОВА`` -> ``ŞOŞIMOVA``, never
-      ``Şoşimova``;
+    * irregular case -- not all lowercase, not all caps and not an initial
+      capital -- is copied letter by letter when ``result`` is as long as
+      ``source``: ``MChJ`` and ``McDonald`` stay as they are in
+      ``latin_1995``. A character without case takes the case of the letter
+      before it;
+    * otherwise, all caps in, all caps out -- ``ШОШИМОВА`` -> ``ŞOŞIMOVA``,
+      never ``Şoşimova``;
     * initial capital in, initial capital out;
     * anything else lowercase.
 
     Length changes freely between input and output (``ш`` is one character,
-    ``sh`` is two), so casing is decided from the source and re-applied, never
-    copied position by position.
+    ``sh`` is two), so only output as long as the input takes the case
+    position by position; any other output has it decided from the source and
+    re-applied.
 
     Only letters that have case take part. ``ʻ`` and ``ʼ`` are letters to
-    Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all-caps and
-    gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``.
+    Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all caps and
+    gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``. An ``h`` after a capital ``S``
+    or ``C`` is a capital when the word has another capital: ``Sh`` and ``Ch``
+    are one letter, so ``MChJ`` is all caps and gives ``MÇJ``, while
+    ``Shahar`` gives ``Şahar``.
     """
-    letters = [ch for ch in source if ch.lower() != ch.upper()]
-    if not letters or not result:
+    return _apply_case(source, result, _case_mask(source))
+
+
+def _apply_case(source: str, result: str, mask: str) -> str:
+    cased = mask.replace(_NO_CASE, "")
+    if not cased or not result:
         return result
-    if len(letters) > 1 and all(ch.isupper() for ch in letters):
+    if len(result) == len(source) and _irregular(source):
+        return _copy_case(source, result)
+    if len(cased) > 1 and _LOWER not in cased:
         return result.upper()
-    if letters[0].isupper():
+    if cased[0] == _UPPER:
         return result[0].upper() + result[1:]
     return result
 
@@ -138,16 +224,32 @@ def map_words(text: str, transform) -> str:
     """Apply ``transform`` to each word of ``text``, preserving everything else.
 
     ``transform`` receives the lowercased, mark-canonicalised word and returns
-    its converted form; casing is restored afterwards. Digits, punctuation and
-    whitespace pass through untouched. It sees words only: URLs, DOIs and the
-    other protected spans are cut out by :func:`~akademtranslit.convert`
-    before it gets here (see :mod:`akademtranslit.protect`).
+    its converted form; casing is restored afterwards with :func:`apply_case`.
+    Case is kept per letter unit: a word is split where a lowercase letter is
+    followed by a capital, and each unit is converted and cased on its own --
+    ``ToshDU`` is ``Tosh`` + ``DU``, ``OʻzMU`` is ``Oʻz`` + ``MU``, so they give
+    ``ToşDU`` and ``ÖzMU``. Digits, punctuation and whitespace pass through
+    untouched. It sees words only: URLs, DOIs and the other protected spans
+    are cut out by :func:`~akademtranslit.convert` before it gets here (see
+    :mod:`akademtranslit.protect`).
     """
 
     def _one(match: re.Match[str]) -> str:
         source = match.group(0)
-        converted = transform(canonicalize_marks(source.lower()))
-        return apply_case(source, converted)
+        lower = source.lower()
+        if lower == source:
+            return transform(canonicalize_marks(lower))
+        mask = _case_mask(source)
+        starts = _unit_starts(mask)
+        if len(starts) == 1:
+            return _apply_case(source, transform(canonicalize_marks(lower)), mask)
+        ends = starts[1:] + [len(source)]
+        return "".join(
+            _apply_case(
+                source[a:b], transform(canonicalize_marks(source[a:b].lower())), mask[a:b]
+            )
+            for a, b in zip(starts, ends)
+        )
 
     return _WORD_RE.sub(_one, text)
 

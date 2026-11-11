@@ -690,10 +690,19 @@ CHANGED_BY_PROTECTION = [
     "c1031", "c1032", "c1033", "c1034", "c1035", "c1036", "c1037",
 ]
 
+# The golden inputs among c0001-c1139 whose case protect=False now keeps per
+# letter unit: OʻzBEKISTON and the tokens McDonald, ToshKent, tOSHKENT, SpO2,
+# pH and PaCO2. Only the case of their output changed (Mcdonald -> McDonald).
+CHANGED_BY_CASE_UNITS = ["c0870", "c0872", "c0873", "c0874", "c0984", "c0985", "c0991"]
+
 # SHA-256 of the conversion output of 0.3.0 before protected spans: the 12
-# fields above on c0001-c1139, from golden-0.3.0.json at that commit, as
-# {id: {field: output}} in the golden files' canonical JSON.
-BEFORE_PROTECTION_SHA256 = "5a73909a484fe0ae5f5a00a7c051516fb584ee00e49b6a7573ee791ac4143f70"
+# fields above on c0001-c1139 except CHANGED_BY_CASE_UNITS, from
+# golden-0.3.0.json at that commit, as {id: {field: output}} in the golden
+# files' canonical JSON.
+BEFORE_PROTECTION_SHA256 = "ce119a51677137c1174c8a1adf21f21f35166ee96d065fb18bf6f2ac81aa7b68"
+
+# The same with protect=False on CHANGED_BY_CASE_UNITS, after case units.
+CASE_UNITS_SHA256 = "f8a91be6d8cb4556e2312a4794d3c2091fafb57f8218069b0589f127476970b3"
 
 
 def _golden_cases_before_protection():
@@ -701,13 +710,24 @@ def _golden_cases_before_protection():
     return [case for case in doc["cases"] if int(case["id"][1:]) <= 1139]
 
 
-def test_protect_false_gives_the_output_from_before_protection():
+def _protect_false_sha256(cases):
     results = {
         case["id"]: {name: func(case["text"], protect=False) for name, func in CONVERSION_FIELDS.items()}
-        for case in _golden_cases_before_protection()
+        for case in cases
     }
     data = (json.dumps(results, ensure_ascii=False, sort_keys=True, indent=1) + "\n").encode("utf-8")
-    assert hashlib.sha256(data).hexdigest() == BEFORE_PROTECTION_SHA256
+    return hashlib.sha256(data).hexdigest()
+
+
+def test_protect_false_gives_the_output_from_before_protection():
+    cases = [case for case in _golden_cases_before_protection() if case["id"] not in CHANGED_BY_CASE_UNITS]
+    assert _protect_false_sha256(cases) == BEFORE_PROTECTION_SHA256
+
+
+def test_protect_false_on_the_inputs_whose_case_units_changed():
+    cases = [case for case in _golden_cases_before_protection() if case["id"] in CHANGED_BY_CASE_UNITS]
+    assert [case["id"] for case in cases] == CHANGED_BY_CASE_UNITS
+    assert _protect_false_sha256(cases) == CASE_UNITS_SHA256
 
 
 def test_protection_changes_only_the_inputs_with_a_protected_span():
@@ -801,9 +821,11 @@ def test_uzbek_abbreviations_with_sh_and_ch_are_converted():
 
 
 def test_protect_false_converts_everything():
-    assert to_latin("McDonald", protect=False) == "Mcdonald"
+    assert to_latin("https://shahar.uz", protect=False) == "https://şahar.uz"
     assert to_cyrillic("https://shahar.uz", protect=False) == "ҳттпс://шаҳар.уз"
-    assert convert("pH", source=LATIN_1995, target=CYRILLIC, protect=Protect.NONE) == "пҳ"
+    assert convert("pH", source=LATIN_1995, target=CYRILLIC, protect=Protect.NONE) == "пҲ"
+    # Converted, and cased per letter unit: Mc + Donald.
+    assert to_latin("McDonald", protect=False) == "McDonald"
 
 
 @pytest.mark.parametrize("value", [1, 0, None, "yes", Protect])

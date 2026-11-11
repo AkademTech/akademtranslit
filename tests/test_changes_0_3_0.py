@@ -30,6 +30,7 @@ from akademtranslit import (
     script_for_tag,
     sort_key,
     tag_for_script,
+    to_cyrillic,
     to_latin,
 )
 
@@ -582,3 +583,94 @@ def test_soft_sign_before_o_is_y(cyrillic, latin_1995, latin_2026):
 
 def test_soft_sign_before_o_normalize():
     assert normalize("бульон") == normalize("bulyon") == "bulyon"
+
+
+# --- case per letter unit: MChJ, AQSh, ToshDU -------------------------------------
+#
+# Case was decided for the whole word: all caps, an initial capital, or
+# lowercase. MChJ is not all caps -- its h is lowercase -- so it came out as
+# Mçj, AQSh as Aqş and ToshDU as Toşdu. Now the h after a capital S or C is a
+# capital when the word has another capital (MChJ, AQSh; not Shahar), a word is
+# split where a lowercase letter is followed by a capital (Tosh|DU, Oʻz|MU),
+# and a word with irregular case keeps it letter by letter when the output is
+# as long as the input.
+
+CASE_UNITS = [
+    # (latin_1995, latin_2026, cyrillic)
+    ("MChJ", "MÇJ", "МЧЖ"),
+    ("AQSh", "AQŞ", "АҚШ"),
+    ("ToshDU", "ToşDU", "ТошДУ"),
+    ("OʻzMU", "ÖzMU", "ЎзМУ"),
+    ("Shahar", "Şahar", "Шаҳар"),      # an initial capital, as before
+    ("SHAHAR", "ŞAHAR", "ШАҲАР"),      # all caps, as before
+    ("shahar", "şahar", "шаҳар"),      # lowercase, as before
+    ("ShAHAR", "ŞAHAR", "ШАҲАР"),
+    ("OʻzBEKISTON", "ÖzBEKISTON", "ЎзБЕКИСТОН"),
+]
+
+
+@pytest.mark.parametrize("latin_1995,latin_2026,cyrillic", CASE_UNITS)
+def test_case_is_kept_per_letter_unit(latin_1995, latin_2026, cyrillic):
+    # protect=False: this is the conversion itself. ToshDU is also a token
+    # until Uzbek abbreviations are taken out of the token rule.
+    def from_1995(target):
+        return convert(latin_1995, source=LATIN_1995, target=target, protect=False)
+
+    assert from_1995(LATIN_2026) == latin_2026
+    assert from_1995(CYRILLIC) == cyrillic
+    assert from_1995(LATIN_1995) == latin_1995
+
+
+@pytest.mark.parametrize(
+    "text,latin_2026,cyrillic",
+    [
+        ("MChJ", "MÇJ", "МЧЖ"),
+        ("AQSh va BMT", "AQŞ va BMT", "АҚШ ва БМТ"),
+        ("«AKADEMTECH» MChJ", "«AKADEMTEÇ» MÇJ", "«АКАДЕМТЕЧ» МЧЖ"),
+        ("OʻzMU talabasi", "ÖzMU talabasi", "ЎзМУ талабаси"),
+        ("QoʻqonDPI", "QöqonDPI", "ҚўқонДПИ"),  # the turned comma stays with its o
+    ],
+)
+def test_to_latin_and_to_cyrillic_keep_the_case_units(text, latin_2026, cyrillic):
+    assert to_latin(text) == latin_2026
+    assert to_cyrillic(text) == cyrillic
+    assert to_latin(text, variant=LATIN_1995) == text
+
+
+@pytest.mark.parametrize(
+    "cyrillic,latin_1995,latin_2026",
+    [
+        ("ТошДУ ва ЎзМУ", "ToshDU va OʻzMU", "ToşDU va ÖzMU"),
+        ("ЎзБЕКИСТОН", "OʻzBEKISTON", "ÖzBEKISTON"),
+        ("Тошкент", "Toshkent", "Toşkent"),
+    ],
+)
+def test_cyrillic_case_units(cyrillic, latin_1995, latin_2026):
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_1995) == latin_1995
+    assert convert(cyrillic, source=CYRILLIC, target=LATIN_2026) == latin_2026
+    assert convert(cyrillic, source=CYRILLIC, target=CYRILLIC) == cyrillic
+
+
+def test_the_h_of_sh_is_a_capital_only_beside_another_capital():
+    # In latin_2026, Sh is s + h. With no other capital the word has an
+    # initial capital, so the separator and the h stay lowercase.
+    assert convert("Sh", source=LATIN_2026, target=LATIN_1995) == "Sʼh"
+    assert convert("AQSh", source=LATIN_1995, target=LATIN_2026) == "AQŞ"
+
+
+def test_a_caseless_mark_does_not_break_all_caps():
+    assert convert("MAʼNO", source=LATIN_1995, target=CYRILLIC) == "МАЪНО"
+    assert convert("SHEʼR", source=LATIN_2026, target=CYRILLIC) == "СҲЕЪР"
+
+
+def test_irregular_case_is_copied_letter_by_letter_when_the_length_is_kept():
+    assert convert("McDonald", source=LATIN_1995, target=LATIN_1995, protect=False) == "McDonald"
+    # A mark without case takes the case of the letter before it: ʼ -> Ъ.
+    assert convert("MAʼNo", source=LATIN_1995, target=CYRILLIC, protect=False) == "МАЪНо"
+
+
+def test_known_limitation_cyrillic_and_2026_abbreviations_come_out_all_caps():
+    """МЧЖ and MÇJ have one letter for Ch; 1995 writes MChJ, but nothing in the
+    letters says so (see the README)."""
+    assert convert("МЧЖ", source=CYRILLIC, target=LATIN_1995) == "MCHJ"
+    assert convert("MÇJ", source=LATIN_2026, target=LATIN_1995) == "MCHJ"
