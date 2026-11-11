@@ -3,8 +3,9 @@
 
     python tools/bench.py
 
-- ``to_latin`` and ``to_cyrillic`` on one text of 10,000 words, built from the
-  words in ``golden/inputs.json``;
+- ``to_latin`` (with protected spans, the default, and with ``protect=False``)
+  and ``to_cyrillic`` on one text of 10,000 words, built from the words in
+  ``golden/inputs.json``;
 - ``normalize`` and ``sort_key`` on 100,000 short name-shaped strings.
 
 Each is run three times; the median is reported, with the Python version. The
@@ -59,6 +60,7 @@ def main() -> int:
     names = short_strings(SHORT_STRINGS)
     cases = [
         (f"to_latin, {TEXT_WORDS:,} words", lambda: lib.to_latin(text)),
+        (f"to_latin, {TEXT_WORDS:,} words, protect=False", lambda: lib.to_latin(text, protect=False)),
         (f"to_cyrillic, {TEXT_WORDS:,} words", lambda: lib.to_cyrillic(text)),
         (f"normalize, {SHORT_STRINGS:,} strings", lambda: [lib.normalize(s) for s in names]),
         (

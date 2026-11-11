@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import pickle
 from pathlib import Path
@@ -644,3 +645,182 @@ def test_protect_copy_and_pickle():
 def test_protect_checks_the_terms(terms, error):
     with pytest.raises(error):
         Protect(terms=terms)
+
+
+# --- convert, to_latin and to_cyrillic ---------------------------------------------
+
+from akademtranslit import (  # noqa: E402
+    CYRILLIC,
+    LATIN_1995,
+    LATIN_2026,
+    SCRIPTS,
+    convert,
+    detect_script,
+    normalize,
+    sort_key,
+    to_cyrillic,
+    to_latin,
+)
+
+PAIRS = [(source, target) for source in SCRIPTS for target in SCRIPTS]
+
+# The golden fields that hold conversion output, as functions of the input.
+CONVERSION_FIELDS = {
+    "to_cyrillic": lambda text, **kw: to_cyrillic(text, **kw),
+    "to_latin_1995": lambda text, **kw: to_latin(text, variant=LATIN_1995, **kw),
+    "to_latin_2026": lambda text, **kw: to_latin(text, variant=LATIN_2026, **kw),
+}
+for _source, _target in PAIRS:
+    CONVERSION_FIELDS[f"convert_from_{_source}_to_{_target}"] = (
+        lambda text, s=_source, t=_target, **kw: convert(text, source=s, target=t, **kw)
+    )
+
+# The golden inputs that have a protected span and whose output protection
+# changes: the tokens McDonald, ToshKent, tOSHKENT, SpO2, pH, B12 and PaCO2,
+# two DOIs, two URLs and three e-mail addresses.
+CHANGED_BY_PROTECTION = [
+    "c0872", "c0873", "c0874", "c0984", "c0985", "c0990", "c0991",
+    "c1031", "c1032", "c1033", "c1034", "c1035", "c1036", "c1037",
+]
+
+# SHA-256 of the conversion output of 0.3.0 before protected spans: the 12
+# fields above on c0001-c1139, from golden-0.3.0.json at that commit, as
+# {id: {field: output}} in the golden files' canonical JSON.
+BEFORE_PROTECTION_SHA256 = "5a73909a484fe0ae5f5a00a7c051516fb584ee00e49b6a7573ee791ac4143f70"
+
+
+def _golden_cases_before_protection():
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    return [case for case in doc["cases"] if int(case["id"][1:]) <= 1139]
+
+
+def test_protect_false_gives_the_output_from_before_protection():
+    results = {
+        case["id"]: {name: func(case["text"], protect=False) for name, func in CONVERSION_FIELDS.items()}
+        for case in _golden_cases_before_protection()
+    }
+    data = (json.dumps(results, ensure_ascii=False, sort_keys=True, indent=1) + "\n").encode("utf-8")
+    assert hashlib.sha256(data).hexdigest() == BEFORE_PROTECTION_SHA256
+
+
+def test_protection_changes_only_the_inputs_with_a_protected_span():
+    changed = []
+    for case in _golden_cases_before_protection():
+        text = case["text"]
+        if any(func(text) != func(text, protect=False) for func in CONVERSION_FIELDS.values()):
+            changed.append(case["id"])
+            assert protected(text), case["id"]
+    assert changed == CHANGED_BY_PROTECTION
+
+
+@pytest.mark.parametrize("source,target", PAIRS)
+def test_protected_pieces_come_out_byte_for_byte(source, target):
+    """Each protected piece is kept; each other piece is converted as on its own."""
+    wrong = []
+    for text in all_inputs():
+        expected = "".join(
+            piece if kind else convert(piece, source=source, target=target, protect=False)
+            for piece, kind in segments(text)
+        )
+        if convert(text, source=source, target=target) != expected:
+            wrong.append(text)
+    assert wrong == []
+
+
+def test_auto_reads_the_orthography_from_the_unprotected_text_only():
+    wrong = []
+    for text in all_inputs():
+        pieces = segments(text)
+        source = detect_script("".join(piece for piece, kind in pieces if kind is None))
+        for target in SCRIPTS:
+            expected = "".join(
+                piece if kind else convert(piece, source=source, target=target, protect=False)
+                for piece, kind in pieces
+            )
+            if convert(text, target=target) != expected:
+                wrong.append((text, target))
+    assert wrong == []
+
+
+def test_auto_ignores_a_2026_letter_inside_a_url():
+    text = "shahar https://" + "ş" + "ahar.uz"
+    assert detect_script(text) == LATIN_2026  # unchanged: it reads the whole text
+    assert to_cyrillic(text) == "шаҳар https://şahar.uz"
+    assert to_cyrillic(text, protect=False) == "сҳаҳар ҳттпс://шаҳар.уз"
+
+
+def test_terms():
+    assert (
+        convert("AslMatn va shahar", source="latin_1995", target="latin_2026", protect=Protect(terms=("AslMatn",)))
+        == "AslMatn va şahar"
+    )
+    protect = Protect(tokens=False, terms=("Toshkent",))
+    assert to_latin("Toshkent shahri", protect=protect) == "Toshkent şahri"
+    assert to_cyrillic("Toshkent shahri", protect=protect) == "Toshkent шаҳри"
+
+
+@pytest.mark.parametrize(
+    "text,latin_2026,cyrillic",
+    [
+        ("McDonald", "McDonald", "McDonald"),
+        ("pH 7,4 va SpO2 92%", "pH 7,4 va SpO2 92%", "pH 7,4 ва SpO2 92%"),
+        (NEW_INPUTS["c1155"], "AkademTech va AslMatn", "AkademTech ва AslMatn"),
+        (NEW_INPUTS["c1159"], "/home/user/shahar.txt fayli", "/home/user/shahar.txt файли"),
+        (NEW_INPUTS["c1143"], "info@shahar.uz ga yozing", "info@shahar.uz га ёзинг"),
+        (
+            NEW_INPUTS["c1148"],
+            "{count, plural, one {# ta şahar} other {# ta şahar}}",
+            "{count, plural, one {# та шаҳар} other {# та шаҳар}}",
+        ),
+        (
+            NEW_INPUTS["c1151"],
+            '<b>Şahar</b> <a href="https://shahar.uz">havola</a>',
+            '<b>Шаҳар</b> <a href="https://shahar.uz">ҳавола</a>',
+        ),
+        (NEW_INPUTS["c1150"], "%s ta fayl, %(soni)d ta şahar", "%s та файл, %(soni)d та шаҳар"),
+        ("%sga yuborildi", "%sga yuborildi", "%sга юборилди"),  # %s, then Cyrillic га
+        ("50%dan ortiq", "50%dan ortiq", "50%дан ортиқ"),
+        (NEW_INPUTS["c1162"], "Toşkent https://toshkent.uz/шаҳар", "Тошкент https://toshkent.uz/шаҳар"),
+    ],
+)
+def test_conversion_keeps_the_protected_spans(text, latin_2026, cyrillic):
+    assert to_latin(text) == latin_2026
+    assert to_cyrillic(text) == cyrillic
+
+
+def test_uzbek_abbreviations_with_sh_and_ch_are_converted():
+    for text in (NEW_INPUTS["c1156"], NEW_INPUTS["c1157"]):
+        assert to_latin(text) == to_latin(text, protect=False) != text
+
+
+def test_protect_false_converts_everything():
+    assert to_latin("McDonald", protect=False) == "Mcdonald"
+    assert to_cyrillic("https://shahar.uz", protect=False) == "ҳттпс://шаҳар.уз"
+    assert convert("pH", source=LATIN_1995, target=CYRILLIC, protect=Protect.NONE) == "пҳ"
+
+
+@pytest.mark.parametrize("value", [1, 0, None, "yes", Protect])
+def test_the_conversion_functions_take_only_true_false_or_a_protect(value):
+    for call in (
+        lambda: convert("shahar", protect=value),
+        lambda: convert("", protect=value),
+        lambda: to_latin("shahar", protect=value),
+        lambda: to_cyrillic("shahar", protect=value),
+    ):
+        with pytest.raises(ValueError, match="protect"):
+            call()
+
+
+def test_protect_is_a_keyword_argument_only():
+    with pytest.raises(TypeError):
+        convert("shahar", "auto", LATIN_2026, False)
+    with pytest.raises(TypeError):
+        to_latin("shahar", LATIN_2026, False)
+    with pytest.raises(TypeError):
+        to_cyrillic("shahar", False)
+
+
+def test_normalize_and_sort_key_do_not_use_protection():
+    assert normalize("McDonald") == "mcdonald"
+    assert normalize("https://shahar.uz") == "https shahar uz"
+    assert sort_key("pH", LATIN_1995) == sort_key("ph", LATIN_1995)[:1] + ("pH",)

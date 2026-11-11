@@ -28,7 +28,7 @@ from .apostrophes import normalize_apostrophes
 from .collation import sort_key
 from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
-from .protect import Protect, segments
+from .protect import Protect, _settings, _spans, segments
 from .rules import (
     cyrillic_word_to_latin_1995,
     latin_1995_word_to_2026,
@@ -141,7 +141,7 @@ def detect_script(text: str) -> str:
     return LATIN_1995
 
 
-def convert(text: str, source: str = "auto", target: str = LATIN_2026) -> str:
+def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protect=True) -> str:
     """Convert ``text`` from one orthography to another.
 
     ``source`` may be ``"auto"`` (the default) to run :func:`detect_script`
@@ -171,11 +171,15 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026) -> str:
         target = _orthography(
             target, f"unknown target script: {target!r}; expected one of {SCRIPTS}", stacklevel=2
         )
+    settings = _settings(protect)
     if not text:
         return text
 
+    # Protected spans are cut out first and put back unchanged; only the text
+    # between them is converted, and only it decides the orthography.
+    spans = _spans(text, settings)
     if source == "auto":
-        source = detect_script(text)
+        source = detect_script("".join(text[a:b] for a, b, kind in spans if kind is None))
 
     steps = _PIPELINES.get((source, target), ())
 
@@ -186,10 +190,12 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026) -> str:
 
     # map_words canonicalises the marks even when `steps` is empty, which is
     # what makes a same-script conversion a normalising pass rather than a no-op.
-    return map_words(text, _word)
+    return "".join(
+        text[a:b] if kind is not None else map_words(text[a:b], _word) for a, b, kind in spans
+    )
 
 
-def to_latin(text: str, variant: str = LATIN_2026) -> str:
+def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:
     """Convert ``text`` to Latin, in ``variant`` (default: the 2026 alphabet).
 
     Accepts Cyrillic or either Latin orthography as input, so it doubles as the
@@ -214,10 +220,10 @@ def to_latin(text: str, variant: str = LATIN_2026) -> str:
                 f"expected {LATIN_1995!r} or {LATIN_2026!r}, or a tag for one of them"
             )
         variant = script
-    return convert(text, source="auto", target=variant)
+    return convert(text, source="auto", target=variant, protect=protect)
 
 
-def to_cyrillic(text: str) -> str:
+def to_cyrillic(text: str, *, protect=True) -> str:
     """Convert ``text`` to Cyrillic from either Latin orthography.
 
     >>> to_cyrillic("Abu Rayhon Beruniy")
@@ -225,4 +231,4 @@ def to_cyrillic(text: str) -> str:
     >>> to_cyrillic("Qaşqadaryo")
     'Қашқадарё'
     """
-    return convert(text, source="auto", target=CYRILLIC)
+    return convert(text, source="auto", target=CYRILLIC, protect=protect)

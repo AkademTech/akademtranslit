@@ -472,6 +472,17 @@ def _plain(pattern):
     return find
 
 
+def _needs(literal: str, finder):
+    """``finder``, skipped when ``literal``, which every match contains, is absent."""
+
+    def find(scanner, pos, end):
+        if scanner.text.find(literal, pos, end) == -1:
+            return None
+        return finder(scanner, pos, end)
+
+    return find
+
+
 _DOMAIN_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?"
 
 _SCHEME_URL = _Pattern(r"(?<!\w)(?:(?:https?|ftp)://|www\.)(?P<tail>\S+)", URL, re.IGNORECASE)
@@ -523,9 +534,13 @@ _FILE_NAME = _Pattern(
 )
 
 # A run of letters and digits, joined by apostrophes, with a final apostrophe
-# after o or g -- the same shape as a word in rules._WORD_RE.
+# after o or g -- the same shape as a word in rules._WORD_RE. The lookahead
+# skips, inside the regular expression engine, every run without a digit or a
+# lowercase letter before a capital: most words, and none of them a token.
 _CHUNK_RE = re.compile(
-    "(?<!" + _L + ")" + _L + "+(?:" + _MARK + _L + "+)*(?:(?<=[oOgG])" + _MARK + ")?(?!" + _L + ")"
+    "(?<!" + _L + ")"
+    + "(?=(?:" + _L + "|" + _MARK + ")*?(?:[0-9]|[a-z][A-Z]))"
+    + _L + "+(?:" + _MARK + _L + "+)*(?:(?<=[oOgG])" + _MARK + ")?(?!" + _L + ")"
 )
 _ASCII_CHUNK_RE = re.compile("[A-Za-z0-9" + re.escape("".join(APOSTROPHE_VARIANTS)) + "]+")
 _UZBEK_RE = re.compile("[oOgG]" + _MARK)
@@ -610,10 +625,10 @@ def _terms_pattern(terms: tuple):
 
 
 _URL_FINDERS = (_trimmed(_SCHEME_URL), _trimmed(_BARE_DOMAIN))
-_EMAIL_FINDERS = (_plain(_EMAIL),)
-_DOI_FINDERS = (_trimmed(_DOI),)
+_EMAIL_FINDERS = (_needs("@", _plain(_EMAIL)),)
+_DOI_FINDERS = (_needs("10.", _trimmed(_DOI)),)
 _MARKUP_FINDERS = (_plain(_TAG), _find_comment)
-_PLACEHOLDER_FINDERS = (_find_icu, _find_double_braces, _plain(_PRINTF))
+_PLACEHOLDER_FINDERS = (_find_icu, _find_double_braces, _needs("%", _plain(_PRINTF)))
 _PATH_FINDERS = (_trimmed(_PATH), _plain(_FILE_NAME))
 _TOKEN_FINDERS = (_find_token,)
 
