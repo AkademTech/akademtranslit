@@ -66,6 +66,32 @@ APOSTROPHE_VARIANTS = (
     "`",       # ` grave accent
 )
 
+# --- invisible characters --------------------------------------------------------
+
+#: The Default_Ignorable_Code_Point characters of Unicode 15.1, as in ICU 74.2:
+#: 4174 code points, as (first, last) ranges, that render as nothing.
+#: :func:`~akademtranslit.normalize_apostrophes` removes them with
+#: ``strip_invisible=True``. Changes only with the Unicode version it names.
+DEFAULT_IGNORABLE = (
+    (0x00AD, 0x00AD),  # soft hyphen
+    (0x034F, 0x034F),  # combining grapheme joiner
+    (0x061C, 0x061C),  # Arabic letter mark
+    (0x115F, 0x1160),  # Hangul choseong and jungseong fillers
+    (0x17B4, 0x17B5),  # Khmer inherent vowels
+    (0x180B, 0x180F),  # Mongolian free variation selectors and vowel separator
+    (0x200B, 0x200F),  # zero-width space, non-joiner and joiner; LRM, RLM
+    (0x202A, 0x202E),  # bidirectional embeddings and overrides
+    (0x2060, 0x206F),  # word joiner, invisible operators, bidirectional isolates
+    (0x3164, 0x3164),  # Hangul filler
+    (0xFE00, 0xFE0F),  # variation selectors
+    (0xFEFF, 0xFEFF),  # byte order mark (zero-width no-break space)
+    (0xFFA0, 0xFFA0),  # halfwidth Hangul filler
+    (0xFFF0, 0xFFF8),  # unassigned specials
+    (0x1BCA0, 0x1BCA3),  # shorthand format controls
+    (0x1D173, 0x1D17A),  # musical symbol format controls
+    (0xE0000, 0xE0FFF),  # tags, variation selectors supplement, unassigned
+)
+
 # --- Cyrillic ----------------------------------------------------------------
 
 #: The code points every function counts as Cyrillic: the Cyrillic block

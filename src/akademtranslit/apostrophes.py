@@ -3,13 +3,24 @@
 Input arrives with any of eight characters for ``ʻ`` and ``ʼ`` (see
 :data:`~akademtranslit.tables.APOSTROPHE_VARIANTS`). Conversion already emits
 the canonical two; :func:`normalize_apostrophes` does the same to Latin text
-without converting it, in either of the two forms in use for display.
+without converting it, in either of the two forms in use for display. On
+request it also removes invisible characters and stress marks, which split
+words and hide in copied text.
 """
 
 from __future__ import annotations
 
+import re
+
 from .rules import _WORD_RE
-from .tables import APOSTROPHE_VARIANTS, CYRILLIC_FIRST, CYRILLIC_LAST, TURNED_COMMA, TUTUQ
+from .tables import (
+    APOSTROPHE_VARIANTS,
+    CYRILLIC_FIRST,
+    CYRILLIC_LAST,
+    DEFAULT_IGNORABLE,
+    TURNED_COMMA,
+    TUTUQ,
+)
 
 STYLES = ("unicode", "ascii")
 
@@ -19,6 +30,18 @@ _TURNED_COMMA_AFTER = frozenset("oOgG")
 
 _CYRILLIC_LO = CYRILLIC_FIRST
 _CYRILLIC_HI = CYRILLIC_LAST
+
+_INVISIBLE_RE = re.compile(
+    "["
+    + "".join(
+        re.escape(chr(first)) + ("-" + re.escape(chr(last)) if last != first else "")
+        for first, last in DEFAULT_IGNORABLE
+    )
+    + "]"
+)
+
+# U+0301 COMBINING ACUTE ACCENT, the stress mark, after a letter.
+_STRESS_RE = re.compile("(?<=[^\\W\\d_])" + chr(0x0301))
 
 
 def _is_letter(ch: str) -> bool:
@@ -30,7 +53,9 @@ def _has_cyrillic(word: str) -> bool:
     return any(_CYRILLIC_LO <= ord(ch) <= _CYRILLIC_HI for ch in word)
 
 
-def normalize_apostrophes(text: str, style: str = "unicode") -> str:
+def normalize_apostrophes(
+    text: str, style: str = "unicode", *, strip_invisible: bool = False, strip_stress: bool = False
+) -> str:
     """Rewrite the apostrophe marks in Latin words to one form.
 
     ``style="unicode"`` writes U+02BB (``ʻ``, turned comma) after ``o`` or
@@ -55,9 +80,30 @@ def normalize_apostrophes(text: str, style: str = "unicode") -> str:
     Idempotent in both styles. Unlike :func:`~akademtranslit.convert`, it does
     not touch anything but the marks, so it is safe on text whose orthography
     is unknown.
+
+    Two options, off by default, clean up text copied from elsewhere. They
+    work on the whole text, Cyrillic words included, before the marks are
+    rewritten:
+
+    - ``strip_invisible=True`` removes the Default_Ignorable_Code_Point
+      characters of Unicode 15.1 (:data:`~akademtranslit.tables.DEFAULT_IGNORABLE`):
+      the soft hyphen, the zero-width space and joiners, the byte order mark,
+      variation selectors and the like.
+    - ``strip_stress=True`` removes U+0301 COMBINING ACUTE ACCENT after a
+      letter, the stress mark of dictionaries and textbooks. It is not
+      default-ignorable, so ``strip_invisible`` keeps it.
+
+    >>> normalize_apostrophes("Tosh" + chr(0x00AD) + "kent", strip_invisible=True)
+    'Toshkent'
+    >>> normalize_apostrophes("То" + chr(0x0301) + "шкент", strip_stress=True)
+    'Тошкент'
     """
     if style not in STYLES:
         raise ValueError(f"unknown style: {style!r}; expected one of {STYLES}")
+    if strip_invisible:
+        text = _INVISIBLE_RE.sub("", text)
+    if strip_stress:
+        text = _STRESS_RE.sub("", text)
 
     def _one(match) -> str:
         word = match.group(0)
