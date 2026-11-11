@@ -36,7 +36,9 @@ A tag is read strictly, and nothing is guessed:
 7. Subtags come in that order; anything else is an error.
 
 A ``str`` that breaks a rule raises :class:`ValueError`, which names the tag
-and the forms that are read; anything but a ``str`` raises :class:`TypeError`.
+and the forms that are read. :func:`script_for_tag` raises :class:`TypeError`
+for anything but a ``str``; the functions that take an orthography raise
+:class:`ValueError` for it, as they did before they took tags.
 
 ``uz-Latn`` and ``uz`` name no orthography. In 0.x they are read as
 ``latin_1995`` with a :class:`FutureWarning`; from 1.0.0 they will be read as
@@ -216,11 +218,15 @@ def _orthography(value: str, unknown: str, stacklevel: int) -> str:
     """The orthography an argument names, for the functions that take one.
 
     Called only when ``value`` is not in ``SCRIPTS``. ``unknown`` is the
-    caller's error message for a value it does not take; it is raised as it
-    is for ``"auto"``, and with the reason added for a tag that is not read.
-    ``stacklevel`` is what the caller would pass to :func:`warnings.warn`
-    itself: 2 points the warning at the line that called the caller.
+    caller's error message for a value it does not take. It is raised as a
+    :class:`ValueError` for ``"auto"`` and for anything but a ``str`` (as
+    before the functions took tags), and with the reason added for a tag that
+    is not read. ``stacklevel`` is what the caller would pass to
+    :func:`warnings.warn` itself: 2 points the warning at the line that called
+    the caller.
     """
+    if not isinstance(value, str):
+        raise ValueError(f"{unknown}, or a language tag for one of them")
     if value == "auto":
         raise ValueError(unknown)
     try:

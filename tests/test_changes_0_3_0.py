@@ -308,6 +308,30 @@ def test_a_tag_that_is_not_a_str_is_a_type_error(value):
         script_for_tag(value)
 
 
+# The functions that take an orthography raise ValueError for a value that is
+# not a str, as they did before tags; only script_for_tag raises TypeError.
+ORTHOGRAPHY_ARGUMENTS = [
+    ("convert source", lambda value: convert("Toshkent", source=value)),
+    ("convert target", lambda value: convert("Toshkent", target=value)),
+    ("to_latin variant", lambda value: to_latin("Toshkent", variant=value)),
+    ("sort_key orthography", lambda value: sort_key("Toshkent", value)),
+]
+
+
+@pytest.mark.parametrize(
+    "call", [a[1] for a in ORTHOGRAPHY_ARGUMENTS], ids=[a[0] for a in ORTHOGRAPHY_ARGUMENTS]
+)
+@pytest.mark.parametrize("value", [None, 123, b"uz-Latn-2026"], ids=["None", "int", "bytes"])
+def test_an_orthography_argument_that_is_not_a_str_is_a_value_error(call, value):
+    with pytest.raises(ValueError):
+        call(value)
+
+
+def test_script_for_tag_still_raises_type_error_for_a_non_str():
+    with pytest.raises(TypeError):
+        script_for_tag(None)
+
+
 @pytest.mark.parametrize("case_id,script,expected", SCRIPT_CASES, ids=[c[0] for c in SCRIPT_CASES])
 def test_tag_for_script(case_id, script, expected):
     if expected == "ValueError":
