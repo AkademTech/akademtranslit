@@ -14,13 +14,24 @@
 - Golden vectors, schema 2: `convert` for all nine source and target pairs,
   `fold_cyrillic`, `is_cyrillic`, the tag functions on
   `golden/tag-inputs.json`, and the rules version.
+- Protected spans: `convert`, `to_latin` and `to_cyrillic` leave URLs,
+  e-mail addresses, DOIs, ICU and printf placeholders, HTML and XML markup,
+  file paths, mixed-case and alphanumeric tokens (`pH`, `SpO2`, `iPhone`) and
+  caller-given terms unchanged, byte for byte. `Protect` sets which;
+  `protect=False` turns it off. `segments()` shows how a text is split.
+- `to_ascii()`: ASCII for names and logins (`Çölpon`, `Чўлпон` → `Cholpon`), a
+  project scheme with a frozen table.
+- `normalize_apostrophes(..., strip_invisible=True)` removes default-ignorable
+  characters (zero-width space, soft hyphen, BOM, …);
+  `strip_stress=True` removes the combining acute accent used as a stress mark.
 
 ### Fixed
 
 - `detect_script` did not recognise capital `Ǒ` (U+01D1) as a 2026 letter.
 - `ō` and `ǒ` came out unchanged when the input was already in the 2026
   orthography: `to_latin("ōrdak")` gave `ōrdak`; it now gives `ördak`.
-- The `convert` docstring said DOIs pass through untouched; they do not.
+- The `convert` docstring said DOIs pass through untouched; in 0.2.0 they
+  did not. Now they do, as protected spans (see Added).
 - Latin to Cyrillic: `e` after a vowel is `э`: `aeroport` → `аэропорт`,
   `poeziya` → `поэзия` (were `аеропорт`, `поезия`). Before `v` it stays `е`:
   `Aliev` → `Алиев`.
@@ -40,13 +51,20 @@
   `bulyon`, now the same key as Latin `bulyon`) and for words with a letter
   from U+0500–U+052F inside (`тош` + U+0501 + `кент`: `tosh kent` →
   `toshkent`). Rebuild search keys made with 0.2.0 for such words.
+- Mixed-case words are no longer re-cased: `pH`, `McDonald`, `SpO2` come out
+  as they went in (were `ph`, `Mcdonald`, `Spo2`). A misspelled Uzbek word
+  with mixed case, such as `ToshKent`, is now left unconverted.
 
 ### Output changes
 
-Golden diff 0.2.0 → 0.3.0, on 1139 inputs (18 added in 0.3.0):
-`detect_script` 2, `normalize` 6, `to_cyrillic` 11, `to_latin_1995` 8,
-`to_latin_2026` 16. `sort_key`, `normalize_apostrophes`, `script_class` and
-`cyrillic_language` are unchanged.
+Golden diff 0.2.0 → 0.3.0, on 1167 inputs (46 added in 0.3.0):
+`detect_script` 2, `normalize` 6, `to_cyrillic` 43, `to_latin_1995` 19,
+`to_latin_2026` 35. Protected spans account for 32, 11 and 19 of the last
+three: 13, 6 and 6 on inputs that 0.2.0 already had (the tokens `McDonald`,
+`ToshKent`, `tOSHKENT`, `SpO2`, `pH`, `B12` and `PaCO2`, two DOIs, two URLs,
+three e-mail addresses) and 19, 5 and 13 on the 28 inputs added for them.
+`sort_key`, `normalize_apostrophes`, `script_class` and `cyrillic_language`
+are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
 
 ### Documentation
 
@@ -58,12 +76,18 @@ Golden diff 0.2.0 → 0.3.0, on 1139 inputs (18 added in 0.3.0):
 - `LICENSE`: the copyright line names the legal owner, AKADEMTECH MChJ.
 - README: language tags, the rules version, the CLDR licence.
 - `PRIVACY.md`: the `warnings` module.
+- README: protected spans and their limits, `to_ascii`, invisible characters
+  and stress marks.
 
 ### Tests
 
 - `tests/test_privacy.py` fails if the package imports a module other than
   `re`, `unicodedata` and `warnings`, or calls `open`, `exec`, `eval`,
   `compile`, `__import__`, `input` or `breakpoint`.
+- `tests/test_protect.py`: every kind of protected span, with the cases that
+  must stay text; on every golden input, each protected piece comes out of
+  all nine conversions unchanged; `protect=False` gives the output from
+  before protected spans. `tests/test_ascii.py`: `to_ascii`.
 
 ### Data
 

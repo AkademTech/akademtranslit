@@ -9,7 +9,9 @@ The library does two jobs, and keeps them apart:
 
 - **Transliteration** (`convert`, `to_latin`, `to_cyrillic`) writes text in
   another orthography, for people to read. It restores each word's case and
-  leaves everything that is not a word unchanged. `latin_1995` ↔ `latin_2026`
+  leaves unchanged everything that is not a word, as well as protected spans:
+  URLs, e-mail addresses, DOIs, markup, placeholders, file paths, terms the
+  caller names and tokens such as `pH`. `latin_1995` ↔ `latin_2026`
   round-trips exactly for canonical text; the Cyrillic round trip has the
   gaps listed in the README under "Guarantees, and their limits".
 - **Normalization** (`normalize`) is deliberately lossy. It gives one key for
@@ -26,10 +28,11 @@ package are `re`, `unicodedata` and `warnings`; `tests/test_privacy.py` pins
 that.
 
 - `tables.py` is data only: orthography names, `RULES_VERSION`, the two
-  marks and the eight `APOSTROPHE_VARIANTS`, the Cyrillic range
-  (`CYRILLIC_FIRST`, `CYRILLIC_LAST`), vowel sets, the context-free mapping
-  tables, the reform steps, the three alphabets and `TS_LOANWORD_STEMS`.
-  Apart from `__future__`, it imports nothing.
+  marks and the eight `APOSTROPHE_VARIANTS`, `DEFAULT_IGNORABLE` (Unicode
+  15.1), the Cyrillic range (`CYRILLIC_FIRST`, `CYRILLIC_LAST`), vowel sets,
+  the context-free mapping tables, the reform steps, `ASCII_SCHEME`, the three
+  alphabets and `TS_LOANWORD_STEMS`. Apart from `__future__`, it imports
+  nothing.
 - `rules.py` is the word engine: the word pattern `_WORD_RE`,
   `canonicalize_marks`, `apply_case`, `map_words`, and the four per-word
   conversion functions with the context rules. It uses `tables` and `re`.
@@ -37,8 +40,11 @@ that.
   `is_cyrillic`. It uses `rules`, `tables`, `re` and `unicodedata`.
 - `collation.py` has `sort_key` (uses `rules.map_words`, `tables`, `tags`,
   `unicodedata`); `apostrophes.py` has `normalize_apostrophes` (uses
-  `rules._WORD_RE` and `tables`); `detection.py` has `script_class` and
+  `rules._WORD_RE`, `tables` and `re`); `detection.py` has `script_class` and
   `cyrillic_language` (uses `tables` and `unicodedata`).
+- `protect.py` finds protected spans: `Protect` (which kinds; immutable),
+  `segments`, and `_spans` and `_settings`, which `convert` calls. Its module
+  docstring gives the rule for each kind. It uses `tables` and `re`.
 - `tags.py` reads BCP 47 language tags: `script_for_tag`, `tag_for_script`,
   and `_orthography`, which `convert`, `to_latin` and `sort_key` call for an
   argument that is not a name from `SCRIPTS`. It raises the `FutureWarning`
@@ -46,7 +52,8 @@ that.
   called the public function. It uses `tables`, `re` and `warnings`.
 - `__init__.py` is the public API: it re-exports the public names, defines
   `__version__` and `__all__`, and holds `detect_script`, `convert`,
-  `to_latin`, `to_cyrillic` and the `_PIPELINES` table.
+  `to_latin`, `to_cyrillic`, `to_ascii` and the `_PIPELINES` table. It uses
+  `unicodedata` for `to_ascii`.
 
 ## Conversion pipeline
 
@@ -60,11 +67,26 @@ Cyrillic → `latin_2026` (a Latin word inside Cyrillic text). Cyrillic and
 `latin_1995` to themselves are not in the table and have no steps.
 
 `convert` reads `source` or `target` as a language tag when it is not a name
-from `SCRIPTS` (or `"auto"` for `source`), raises `ValueError` for anything
-it cannot read, returns empty text as it is, runs `detect_script` when
-`source` is `"auto"`, and calls `map_words` with a function that applies the
-steps in order. `to_latin` and `to_cyrillic` call `convert` with
+from `SCRIPTS` (or `"auto"` for `source`) and `protect` as `True`, `False` or
+a `Protect`, raising `ValueError` for anything it cannot read. It returns
+empty text as it is. Otherwise it splits the text into protected spans and
+the text between them (`protect._spans`), runs `detect_script` on the text
+between them when `source` is `"auto"`, calls `map_words` on each piece of
+that text with a function that applies the steps in order, and copies each
+protected span as it is. `to_latin` and `to_cyrillic` call `convert` with
 `source="auto"`; `to_latin` reads a tag in `variant` first.
+
+`segments` scans once per call. Each kind has one or more finders: regular
+expressions, a brace matcher for ICU MessageFormat, and plain string search
+for `{{`, `<!--` and the like. A finder reports the first span it sees from a
+position, and the scanner takes the one that starts first, then the longest,
+then the kind listed first in `protect.KINDS`. The message texts inside an ICU
+`plural` or `select` are scanned again, for every kind, and adjacent pieces of
+one kind are joined.
+
+`to_ascii` calls `to_latin` with `variant="latin_1995"`, applies
+`ASCII_SCHEME`, removes the apostrophe marks, decomposes with NFKD and keeps
+only ASCII characters.
 
 `map_words` does the tokenising and the casing:
 
@@ -166,13 +188,14 @@ Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
 
 ## Stability and compatibility
 
-- The public API is the 25 names in `__all__` in `__init__.py`.
-- `golden/` holds the output of the public functions on 1139 fixed inputs,
+- The public API is the 28 names in `__all__` in `__init__.py`.
+- `golden/` holds the output of the public functions on 1167 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
   (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`), and
-  `SHA256SUMS`. From 0.3.0 the files have schema 2: 23 fields (listed in
-  `fields()` in `tools/golden.py`, `convert` for all nine pairs among them),
+  `SHA256SUMS`. From 0.3.0 the files have schema 2: 25 fields (listed in
+  `fields()` in `tools/golden.py`; `convert` for all nine pairs, `segments`
+  and `to_ascii` among them),
   the tag results and `RULES_VERSION`. `tools/golden.py` writes them
   (`--write`, from another `src/` with `--src`), checks them against `src/`
   and checks that a change to conversion output comes with a new rules
@@ -193,8 +216,11 @@ run and no install is needed.
   rules, apostrophe variants), `test_roundtrip.py` (round-trip tiers, lossy
   letters), `test_alphabets.py` (the alphabets and their order).
 - Normalization and helpers: `test_normalize.py` (the key contract and
-  `detect_script`), `test_collation.py`, `test_apostrophes.py`,
-  `test_detection.py`.
+  `detect_script`), `test_collation.py`, `test_apostrophes.py` (with
+  `strip_invisible` and `strip_stress`), `test_detection.py`.
+- Protected spans and ASCII: `test_protect.py` (each kind, what stays text,
+  each protected piece unchanged in all nine conversions, `protect=False`
+  against the output from before), `test_ascii.py`.
 - Behaviour changes: `test_regressions.py` (0.1.1 fixes),
   `test_changes_0_2_0.py` (0.2.0 rule changes), `test_changes_0_3_0.py`
   (0.3.0: the draft glyphs, the Cyrillic range, language tags, the `e` and

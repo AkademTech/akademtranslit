@@ -39,8 +39,9 @@ the matches. `Шошимова`, `Shoshimova` and `Şoşimova` are one person.
 This library does separate jobs, and keeping them separate is the point:
 
 - **Transliteration** (`to_latin`, `to_cyrillic`, `convert`) — display-grade,
-  preserves case and punctuation. Use it to show text to people and to migrate
-  a corpus from one alphabet to another.
+  preserves case and punctuation, and leaves URLs, markup, placeholders and
+  the like alone. Use it to show text to people and to migrate a corpus from
+  one alphabet to another.
 - **Normalization** (`normalize`) — deliberately lossy, produces a match key
   nobody should ever display. Use it for search, deduplication and equality.
 - **Sorting** (`sort_key`) — the alphabetical order of each orthography, which
@@ -71,6 +72,89 @@ Requires Python 3.9 or newer. No dependencies.
 
 `source` defaults to `"auto"`, which runs script detection first, and `target`
 defaults to `"latin_2026"`.
+
+### Protect URLs, code and names
+
+Text to be converted often carries things that are not Uzbek words: a URL, an
+e-mail address, a DOI, a placeholder in a message template, HTML, a file path,
+a brand name, a lab value. Converting them breaks them, so `convert`,
+`to_latin` and `to_cyrillic` leave them as they are, byte for byte, and convert
+the text around them:
+
+```python
+>>> from akademtranslit import to_cyrillic
+>>> to_cyrillic("Batafsil: https://shahar.uz, info@shahar.uz")
+'Батафсил: https://shahar.uz, info@shahar.uz'
+>>> to_cyrillic("{count, plural, one {# ta shahar} other {# ta shahar}}")
+'{count, plural, one {# та шаҳар} other {# та шаҳар}}'
+>>> to_cyrillic("SpO2 92%, pH 7,35")
+'SpO2 92%, pH 7,35'
+
+```
+
+| Kind | What is protected | Example |
+| --- | --- | --- |
+| `url` | `http://`, `https://`, `ftp://` or `www.` up to the next space; a bare domain only with `.uz .com .org .net .ru .info .edu .gov .io` | `https://gazeta.uz/oz/`, `kun.uz` |
+| `email` | `local@domain.tld`, with `mailto:` if it is there | `info@shahar.uz` |
+| `doi` | `10.`, 4–9 digits, `/` and the rest up to a space, with `doi:` if it is there | `doi:10.1234/chashma.2026.01` |
+| `markup` | tags, comments and entities; the text between tags is converted | `<b>`, `<a href="…">`, `&nbsp;` |
+| `placeholder` | ICU MessageFormat arguments (in `plural` and `select`, only the messages are converted), printf directives, `{{ … }}` | `{name}`, `{n, number}`, `%s`, `%(soni)d` |
+| `path` | `/`, `./`, `../`, `~/` or `C:\` up to the next space; a file name with a known extension | `/home/user/shahar.txt`, `hisobot.docx` |
+| `term` | a string you name, exactly and as a whole word | `Protect(terms=("AslMatn",))` |
+| `token` | an ASCII word with both a letter and a digit, or with a lowercase letter before a capital, and no `oʻ` or `gʻ` | `SpO2`, `B12`, `pH`, `iPhone`, `McDonald` |
+
+Trailing punctuation is not part of a URL, DOI or path (`https://shahar.uz.`
+ends before the dot), except a `)` that closes a `(` inside it. `Sh` and `Ch`
+after a capital count as one capital, so the Uzbek abbreviations `MChJ` and
+`AQSh` are not tokens and are converted. `kirill/lotin` is not a path, `a < b`
+is not a tag, and a `{` without its `}` is an ordinary character. The module
+`akademtranslit.protect` gives the exact rules.
+
+`segments` shows how a text is split; `None` marks the pieces that are
+converted:
+
+```python
+>>> from akademtranslit import segments
+>>> segments("Salom, {name}! pH 7,4")
+[('Salom, ', None), ('{name}', 'placeholder'), ('! ', None), ('pH', 'token'), (' 7,4', None)]
+
+```
+
+`Protect` chooses the kinds, all of them on by default. `terms` adds strings
+of your own, matched exactly, case included:
+
+```python
+>>> from akademtranslit import Protect, convert
+>>> convert("Toshkent shahri", source="latin_1995", target="latin_2026",
+...         protect=Protect(terms=("Toshkent",)))
+'Toshkent şahri'
+>>> convert("pH va https://shahar.uz", source="latin_1995", target="cyrillic",
+...         protect=Protect(urls=False))
+'pH ва ҳттпс://шаҳар.уз'
+
+```
+
+`protect=False` (or `Protect.NONE`) converts everything, as versions before
+0.3.0 did:
+
+```python
+>>> to_cyrillic("https://shahar.uz", protect=False)
+'ҳттпс://шаҳар.уз'
+
+```
+
+With `source="auto"`, only the text outside the protected spans decides the
+orthography, so a `ş` inside a URL does not make the text 2026. `normalize` and
+`sort_key` do not use protection: a search key and a sort order treat the whole
+text alike.
+
+**Known limitations.** Whether a word is a token is decided by its shape, not
+by a dictionary:
+
+- An Uzbek word typed with broken case, such as `ToshKent` or `tOSHKENT`, looks
+  like a token and is left unconverted.
+- A mixed-case Uzbek abbreviation without `Sh` or `Ch` inside, such as `SamDU`,
+  is a token too and is not converted.
 
 ### Name the orthography with a language tag
 
@@ -125,6 +209,41 @@ True
 
 ```
 
+### ASCII for names and logins
+
+`to_ascii` writes a name in plain ASCII, for logins, file names and systems
+that take nothing else:
+
+```python
+>>> from akademtranslit import to_ascii
+>>> to_ascii("Чўлпон"), to_ascii("Çölpon"), to_ascii("Gʻafur Gʻulom")
+('Cholpon', 'Cholpon', 'Gafur Gulom')
+
+```
+
+It converts the text to the 1995 orthography with `to_latin`, keeping protected
+spans, so `McDonald` keeps its case. Then it writes `oʻ` and `gʻ` as `o` and
+`g`, and any `ş ç ğ ö` still there as `sh ch g o`; removes the tutuq belgisi
+and the other apostrophe marks; takes the accents off other letters (`é` →
+`e`); and removes whatever is still not ASCII. Case, spaces, digits and ASCII
+punctuation stay.
+
+| Input | Output |
+| --- | --- |
+| Шавкат, Şavkat | Shavkat |
+| Oʻktam | Oktam |
+| Gʻafur Gʻulom | Gafur Gulom |
+| Isʼhoq, Исҳоқ | Ishoq |
+| Ёқуб | Yoqub |
+| Çölpon | Cholpon |
+| José | Jose |
+| ŞOŞIMOVA | SHOSHIMOVA |
+| Ўзбекистон | Ozbekiston |
+| McDonald | McDonald |
+
+This is a project scheme, not a passport standard. Its table, `ASCII_SCHEME`
+in `tables.py`, changes only in a major release.
+
 ### Build a cross-script search key
 
 ```python
@@ -178,6 +297,25 @@ letters, the text itself decides, so the order is total.
 Only marks inside Latin words change; quotes around a word, digits,
 punctuation and words with a Cyrillic letter are left as they are. It does not
 convert anything, so it is safe on text whose orthography is unknown.
+
+Text copied from web pages and documents also carries characters nobody can
+see: a soft hyphen or a zero-width space splits a word in two, a byte order
+mark sits before the first letter. `strip_invisible=True` removes them, all
+4174 default-ignorable code points of Unicode 15.1, from the whole text.
+`strip_stress=True` removes the combining acute accent (U+0301) after a letter,
+the stress mark of dictionaries. Both are off by default:
+
+```python
+>>> text = "Tosh" + chr(0x00AD) + "kent"
+>>> normalize_apostrophes(text, strip_invisible=True)
+'Toshkent'
+>>> normalize_apostrophes("То" + chr(0x0301) + "шкент", strip_stress=True)
+'Тошкент'
+
+```
+
+Run it before `normalize` on such text: `normalize` reads a soft hyphen as a
+space, so `text` above gives the key `tosh kent`.
 
 ### Detect what you were handed
 
@@ -314,13 +452,19 @@ mark a word was typed with never changes its key (since 0.2.0 this includes
 
 **Lossless.** `latin_1995` ↔ `latin_2026` round-trips exactly for text in
 canonical form: marks written as `ʻ` and `ʼ`, and each word in lower case,
-with an initial capital, or in all caps (`OʻZBEKISTON` included). Other input
-comes back canonicalised — `o'zbek` as `oʻzbek`, `McDonald` as `Mcdonald`.
+with an initial capital, or in all caps (`OʻZBEKISTON` included); protected
+spans, such as `McDonald`, come back as they were. Other input comes back
+canonicalised — `o'zbek` as `oʻzbek`, `OʻzBEKISTON` as `Oʻzbekiston`.
 Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter
 inventory, with two gaps: `т` followed by `с` comes back as `ц` unless the `s`
 starts a suffix the `ts` rule knows (`ўтсўндиргич`, `соатсоз`; see
 Context-dependent rules), and `ъ` after `ў` does not come back (`мўъжиза` →
 `moʻjiza` → `мўжиза`). Both are enforced by the test suite.
+
+**Protected spans.** Every span that `segments` finds — a URL, an e-mail
+address, a DOI, markup, a placeholder, a path, a term, a token — comes out of
+`convert`, `to_latin` and `to_cyrillic` byte for byte, for every source and
+target; the test suite checks this on every golden input.
 
 **Known lossy mappings.** Four Cyrillic letters occur only in Russian
 loanwords, and folding them is deliberate; `ъ` is dropped where the 1995
@@ -442,9 +586,9 @@ rules, the round-trip tiers above, casing (including ALL-CAPS, where `ШОШИМ
 must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
 `ЎЗБЕКИСТОН`), the cross-script normalization contract, sorting, and the
 golden vectors. The examples in this README and in the docstrings run as tests.
-`tests/test_regressions.py`, `tests/test_changes_0_2_0.py` and
-`tests/test_changes_0_3_0.py` pin every behaviour change since 0.1.0; see
-[CHANGELOG.md](CHANGELOG.md).
+`tests/test_regressions.py`, `tests/test_changes_0_2_0.py`,
+`tests/test_changes_0_3_0.py` and, for protected spans, `tests/test_protect.py`
+pin every behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
 
 How the package is put together: [docs/architecture.md](docs/architecture.md).
 
