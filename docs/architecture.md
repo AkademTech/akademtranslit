@@ -163,12 +163,17 @@ Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
 ## Stability and compatibility
 
 - The public API is the 25 names in `__all__` in `__init__.py`.
-- `golden/` holds the output of eight public functions (12 fields, listed in
-  `fields()` in `tools/golden.py`) on 1121 fixed inputs: `inputs.json`
-  (append-only), `golden-0.1.1.json`, `golden-0.2.0.json` and `SHA256SUMS`.
-  `tools/golden.py` writes them (`--write`), checks them against `src/`
-  (`--check`) and lists what changed between two releases (`--diff`).
-  `tests/test_golden.py` and CI run the check.
+- `golden/` holds the output of the public functions on 1121 fixed inputs,
+  `inputs.json`, and of the tag functions on 57 tags and 6 names,
+  `tag-inputs.json` (both append-only), one file per release
+  (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`), and
+  `SHA256SUMS`. From 0.3.0 the files have schema 2: 23 fields (listed in
+  `fields()` in `tools/golden.py`, `convert` for all nine pairs among them),
+  the tag results and `RULES_VERSION`. `tools/golden.py` writes them
+  (`--write`, from another `src/` with `--src`), checks them against `src/`
+  and checks that a change to conversion output comes with a new rules
+  version (`--check`), and lists what changed between two releases
+  (`--diff`). `tests/test_golden.py` and CI run the check.
 - Some code outside this repository imports module-level names, including
   private ones such as `normalize._MARKS`. `tests/test_public_api_compat.py`
   copies those import statements verbatim and checks that they still work;

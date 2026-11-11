@@ -8,11 +8,21 @@ checked, and how every change to the output is made visible.
     python tools/golden.py --write             # regenerate for the current version
     python tools/golden.py --check             # exit 1 if anything differs
     python tools/golden.py --diff OLD NEW      # Markdown report of the differences
+    python tools/golden.py --src DIR --write   # the same, for the library in DIR
 
-``golden/inputs.json`` is append-only: an ``id`` never changes and is never
-reused. ``golden/golden-<version>.json`` holds one result per input and field.
+``golden/inputs.json`` and ``golden/tag-inputs.json`` (language tags) are
+append-only: an ``id`` never changes and is never reused.
+``golden/golden-<version>.json`` holds one result per input and field.
 ``golden/SHA256SUMS`` lists every ``.json`` in ``golden/`` and can be checked
 with ``shasum -a 256 -c SHA256SUMS``.
+
+A library with ``RULES_VERSION`` (0.3.0 on) gets schema 2: the header also
+records ``rules_version`` and ``tag_inputs_sha256``, the fields add
+``convert`` for all nine source and target pairs, ``fold_cyrillic`` and
+``is_cyrillic``, and ``tags`` and ``scripts`` hold ``script_for_tag`` and
+``tag_for_script`` on the tag inputs. Any other library gets schema 1 with
+the fields it always had, so ``--src`` with an older release's ``src/``
+rewrites that release's file byte for byte when an input is added.
 
 ``--check`` also checks the rules version: two consecutive golden files that
 record one (0.3.0 on) and differ in the output of a conversion function must
@@ -30,12 +40,16 @@ import hashlib
 import json
 import re
 import sys
+import warnings
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 GOLDEN_DIR = REPO / "golden"
 INPUTS = GOLDEN_DIR / "inputs.json"
 SUMS = GOLDEN_DIR / "SHA256SUMS"
+TAG_INPUTS = GOLDEN_DIR / "tag-inputs.json"
+
+ORTHOGRAPHIES = ("cyrillic", "latin_1995", "latin_2026")
 
 #: The library, once :func:`load_library` has imported it.
 lib = None
@@ -45,8 +59,10 @@ lib = None
 CONVERSION_FIELDS = ("to_cyrillic", "to_latin_1995", "to_latin_2026")
 CONVERSION_FIELD_PREFIX = "convert_"
 
-SCHEMA = "akademtranslit-golden/1"
+SCHEMA_1 = "akademtranslit-golden/1"
+SCHEMA_2 = "akademtranslit-golden/2"
 INPUTS_SCHEMA = "akademtranslit-golden-inputs/1"
+TAG_INPUTS_SCHEMA = "akademtranslit-golden-tag-inputs/1"
 
 
 def load_library(src: Path = REPO / "src") -> None:
@@ -56,6 +72,11 @@ def load_library(src: Path = REPO / "src") -> None:
     import akademtranslit
 
     lib = akademtranslit
+
+
+def schema_2() -> bool:
+    """True if the library gets schema 2: it has ``RULES_VERSION``."""
+    return hasattr(lib, "RULES_VERSION")
 
 
 def canonical(obj) -> bytes:
@@ -71,7 +92,9 @@ def fields() -> dict:
     """Field name -> function of the input text.
 
     A field is written only if the library has the function, so the generator
-    runs unchanged against older versions.
+    runs unchanged against older versions. The schema 2 fields are written
+    only for schema 2, though ``convert``, ``fold_cyrillic`` and
+    ``is_cyrillic`` are older: a schema 1 file keeps its fields.
     """
     out = {
         "detect_script": lib.detect_script,
@@ -94,6 +117,14 @@ def fields() -> dict:
         out["script_class"] = lib.script_class
     if hasattr(lib, "cyrillic_language"):
         out["cyrillic_language"] = lib.cyrillic_language
+    if schema_2():
+        for source in ORTHOGRAPHIES:
+            for target in ORTHOGRAPHIES:
+                out[f"convert_from_{source}_to_{target}"] = (
+                    lambda text, s=source, t=target: lib.convert(text, source=s, target=t)
+                )
+        out["fold_cyrillic"] = lib.fold_cyrillic
+        out["is_cyrillic"] = lib.is_cyrillic
     return out
 
 
@@ -103,6 +134,33 @@ def load_inputs() -> tuple:
     if doc.get("schema") != INPUTS_SCHEMA:
         raise SystemExit(f"{INPUTS.name}: unexpected schema {doc.get('schema')!r}")
     return data, doc["cases"]
+
+
+def load_tag_inputs() -> tuple:
+    data = TAG_INPUTS.read_bytes()
+    doc = json.loads(data.decode("utf-8"))
+    if doc.get("schema") != TAG_INPUTS_SCHEMA:
+        raise SystemExit(f"{TAG_INPUTS.name}: unexpected schema {doc.get('schema')!r}")
+    return data, doc["tags"], doc["scripts"]
+
+
+def _tag_result(tag: str) -> dict:
+    """script_for_tag on ``tag``: the orthography and any warning, or the error."""
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        try:
+            script = lib.script_for_tag(tag)
+        except Exception as exc:  # recorded, not raised: an error is an output too
+            return {"error": type(exc).__name__}
+    names = [warning.category.__name__ for warning in caught]
+    return {"script": script, "warning": ", ".join(names) or None}
+
+
+def _script_result(script: str):
+    try:
+        return lib.tag_for_script(script)
+    except Exception as exc:  # recorded, not raised
+        return {"error": type(exc).__name__}
 
 
 def compute() -> bytes:
@@ -117,12 +175,20 @@ def compute() -> bytes:
             except Exception as exc:  # recorded, not raised: an error is an output too
                 row[name] = {"error": type(exc).__name__}
         results[case["id"]] = row
-    return canonical({
-        "schema": SCHEMA,
+    doc = {
+        "schema": SCHEMA_1,
         "library_version": lib.__version__,
         "inputs_sha256": sha256(data),
         "results": results,
-    })
+    }
+    if schema_2():
+        tag_data, tags, scripts = load_tag_inputs()
+        doc["schema"] = SCHEMA_2
+        doc["rules_version"] = lib.RULES_VERSION
+        doc["tag_inputs_sha256"] = sha256(tag_data)
+        doc["tags"] = {case["id"]: _tag_result(case["tag"]) for case in tags}
+        doc["scripts"] = {case["id"]: _script_result(case["script"]) for case in scripts}
+    return canonical(doc)
 
 
 def golden_path() -> Path:
@@ -243,6 +309,8 @@ def diff(old_path: str, new_path: str) -> int:
         "| field | changed |",
         "| --- | ---: |",
     ]
+    if "rules_version" in old and "rules_version" in new:
+        out[7:7] = [f"- rules_version: `{old['rules_version']}` -> `{new['rules_version']}`"]
     out += [f"| {f} | {len(changes[f])} |" for f in shared]
     for f in shared:
         if not changes[f]:
@@ -253,9 +321,37 @@ def diff(old_path: str, new_path: str) -> int:
             f"| {case_id} | {_cell(texts.get(case_id, '?'))} | {_cell(a)} | {_cell(b)} |"
             for case_id, a, b in changes[f]
         ]
+    out += _diff_tags(old, new)
     sys.stdout.buffer.write(("\n".join(out) + "\n").encode("utf-8"))
     sys.stdout.flush()
     return 0
+
+
+def _diff_tags(old: dict, new: dict) -> list:
+    """The ``tags`` and ``scripts`` sections of the diff, if both files have them."""
+    if not all(section in doc for doc in (old, new) for section in ("tags", "scripts")):
+        return []
+    try:
+        _, tags, scripts = load_tag_inputs()
+    except (OSError, KeyError):
+        tags, scripts = [], []
+    texts = {
+        "tags": {case["id"]: case["tag"] for case in tags},
+        "scripts": {case["id"]: case["script"] for case in scripts},
+    }
+    out = []
+    for section in ("tags", "scripts"):
+        ids = sorted(set(old[section]) & set(new[section]))
+        changed = [(i, old[section][i], new[section][i]) for i in ids
+                   if old[section][i] != new[section][i]]
+        out += ["", f"## {section} ({len(changed)} of {len(ids)} changed)"]
+        if changed:
+            out += ["", "| id | input | old | new |", "| --- | --- | --- | --- |"]
+            out += [
+                f"| {i} | {_cell(texts[section].get(i, '?'))} | {_cell(a)} | {_cell(b)} |"
+                for i, a, b in changed
+            ]
+    return out
 
 
 def main(argv=None) -> int:
@@ -264,8 +360,10 @@ def main(argv=None) -> int:
     group.add_argument("--write", action="store_true", help="write golden-<version>.json and SHA256SUMS")
     group.add_argument("--check", action="store_true", help="exit 1 unless both match src/")
     group.add_argument("--diff", nargs=2, metavar=("OLD", "NEW"), help="Markdown diff of two golden files")
+    parser.add_argument("--src", metavar="DIR", default=str(REPO / "src"),
+                        help="import the library from DIR (default: src/ of this repository)")
     args = parser.parse_args(argv)
-    load_library()
+    load_library(Path(args.src))
     if args.write:
         return write()
     if args.check:
