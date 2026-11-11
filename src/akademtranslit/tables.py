@@ -259,21 +259,31 @@ LATIN_2026_INPUT_ALIASES = (
 #: How :func:`~akademtranslit.to_ascii` writes in ASCII the letters that
 #: conversion to ``latin_1995`` leaves: the 1995 letters with the turned comma,
 #: and a 2026 letter in a protected span or in a Latin word of Cyrillic text.
-#: The apostrophe marks are removed after it. A project scheme for names and
-#: logins, not a passport standard. Frozen: it changes only in a major release.
+#: Capital ``Ş`` and ``Ç`` are in :data:`ASCII_CAPITALS`. The apostrophe marks
+#: are removed after it. A project scheme for names and logins, not a passport
+#: standard. Frozen: it changes only in a major release.
 ASCII_SCHEME = (
     ("o" + TURNED_COMMA, "o"),
     ("O" + TURNED_COMMA, "O"),
     ("g" + TURNED_COMMA, "g"),
     ("G" + TURNED_COMMA, "G"),
     ("ş", "sh"),
-    ("Ş", "Sh"),
     ("ç", "ch"),
-    ("Ç", "Ch"),
     ("ğ", "g"),
     ("Ğ", "G"),
     ("ö", "o"),
     ("Ö", "O"),
+)
+
+#: Capital ``Ş`` and ``Ç`` for :func:`~akademtranslit.to_ascii`, as (letter,
+#: beside a capital, otherwise). Contextual: ``SH`` and ``CH`` when the
+#: character before or after is a capital letter (``ŞAHAR`` -> ``SHAHAR``),
+#: ``Sh`` and ``Ch`` otherwise (``Şavkat`` -> ``Shavkat``), the way
+#: ``latin_2026`` -> ``latin_1995`` writes them. Applied after
+#: :data:`ASCII_SCHEME`. Frozen like it: it changes only in a major release.
+ASCII_CAPITALS = (
+    ("Ş", "SH", "Sh"),
+    ("Ç", "CH", "Ch"),
 )
 
 # --- alphabets -----------------------------------------------------------------

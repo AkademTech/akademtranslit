@@ -41,6 +41,7 @@ from .rules import (
 )
 from .tables import (
     APOSTROPHE_VARIANTS,
+    ASCII_CAPITALS,
     ASCII_SCHEME,
     CYRILLIC,
     CYRILLIC_ALPHABET,
@@ -252,6 +253,23 @@ def to_cyrillic(text: str, *, protect=True) -> str:
 
 
 _NO_MARKS = str.maketrans("", "", "".join(APOSTROPHE_VARIANTS))
+_ASCII_CAPITALS = {letter: forms for letter, *forms in ASCII_CAPITALS}
+
+
+def _ascii_capitals(text: str) -> str:
+    """Write capital ``Ş`` and ``Ç`` by the characters around them in ``text``
+    (see :data:`~akademtranslit.tables.ASCII_CAPITALS`)."""
+    if not any(letter in text for letter in _ASCII_CAPITALS):
+        return text
+    out = []
+    for i, ch in enumerate(text):
+        forms = _ASCII_CAPITALS.get(ch)
+        if forms is None:
+            out.append(ch)
+            continue
+        beside_a_capital = text[i - 1:i].isupper() or text[i + 1:i + 2].isupper()
+        out.append(forms[0] if beside_a_capital else forms[1])
+    return "".join(out)
 
 
 def to_ascii(text: str) -> str:
@@ -263,8 +281,10 @@ def to_ascii(text: str) -> str:
        spans as they are, so ``McDonald`` keeps its case.
     2. :data:`~akademtranslit.tables.ASCII_SCHEME` writes ``oʻ`` and ``gʻ`` as
        ``o`` and ``g``, and any ``ş ç ğ ö`` left in the text as ``sh ch g o``
-       (``Sh Ch G O`` for the capitals). The tutuq belgisi and the other
-       apostrophe marks are removed.
+       (``G O`` for ``Ğ Ö``). Capital ``Ş`` and ``Ç`` are ``SH`` and ``CH``
+       when the character before or after is a capital, ``Sh`` and ``Ch``
+       otherwise (:data:`~akademtranslit.tables.ASCII_CAPITALS`). The tutuq
+       belgisi and the other apostrophe marks are removed.
     3. Other letters lose their accents (``é`` -> ``e``, by NFKD), and
        whatever is still not ASCII is removed.
 
@@ -276,6 +296,8 @@ def to_ascii(text: str) -> str:
     'Gafur Gulom'
     >>> to_ascii("Isʼhoq José")
     'Ishoq Jose'
+    >>> to_ascii("Тошкент ŞAHAR")
+    'Toshkent SHAHAR'
 
     The table changes only in a major release.
     """
@@ -284,5 +306,6 @@ def to_ascii(text: str) -> str:
         return text
     for letter, ascii_form in ASCII_SCHEME:
         text = text.replace(letter, ascii_form)
+    text = _ascii_capitals(text)
     text = unicodedata.normalize("NFKD", text.translate(_NO_MARKS))
     return "".join(ch for ch in text if ch.isascii())

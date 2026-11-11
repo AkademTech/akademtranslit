@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from akademtranslit import to_ascii
-from akademtranslit.tables import APOSTROPHE_VARIANTS, ASCII_SCHEME
+from akademtranslit.tables import APOSTROPHE_VARIANTS, ASCII_CAPITALS, ASCII_SCHEME
 
 REPO = Path(__file__).resolve().parent.parent
 GOLDEN_INPUTS = REPO / "golden" / "inputs.json"
@@ -81,5 +81,56 @@ def test_idempotent_on_the_golden_inputs():
 def test_the_scheme_is_pairs_of_a_letter_and_its_ascii():
     assert all(len(pair) == 2 and pair[1].isascii() and not pair[0].isascii() for pair in ASCII_SCHEME)
     assert {source for source, _ in ASCII_SCHEME} == {
-        "oʻ", "Oʻ", "gʻ", "Gʻ", "ş", "Ş", "ç", "Ç", "ğ", "Ğ", "ö", "Ö",
+        "oʻ", "Oʻ", "gʻ", "Gʻ", "ş", "ç", "ğ", "Ğ", "ö", "Ö",
     }
+
+
+def test_capital_s_and_c_cedilla_have_two_forms():
+    assert ASCII_CAPITALS == (("Ş", "SH", "Sh"), ("Ç", "CH", "Ch"))
+
+
+# --- capital Ş and Ç: by their neighbours -----------------------------------------
+#
+# Capital Ş and Ç are SH and CH when the character before or after is a
+# capital, Sh and Ch otherwise -- the way latin_2026 -> latin_1995 writes them.
+# They reach the scheme only from a Latin word in Cyrillic text or a protected
+# span; an all-caps word came out as ShAHAR and was not idempotent.
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("Тошкент ŞAHAR", "Toshkent SHAHAR"),
+        ("MÇJ va AQŞ", "MCHJ va AQSH"),  # to_latin writes these itself
+        ("Şavkat", "Shavkat"),
+        ("Тошкент Şahar", "Toshkent Shahar"),
+        ("Тошкент ÇÖLPON, Çölpon", "Toshkent CHOLPON, Cholpon"),
+        ("Тошкент AŞ", "Toshkent ASH"),  # the character before is a capital
+        ("Тошкент Ş", "Toshkent Sh"),
+        ("https://ŞAHAR.uz", "https://SHAHAR.uz"),
+    ],
+)
+def test_capital_s_and_c_cedilla_by_their_neighbours(text, expected):
+    assert to_ascii(text) == expected
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        # the inputs added for case units, number suffixes and abbreviations
+        "10ta kitob, 2026yil, 100mg",
+        "ToshDU va SamDU",
+        "ТошДУ ва ЎзМУ",
+        "OʻzMU talabasi",
+        "ChatGPT, PhD, AkademID",
+        "MÇJ va AQŞ",
+        "Тошкент ŞAHAR",
+        "ShAHAR",
+        # were not idempotent: ShAHAR -> Shahar, OZBEKISTONga -> Ozbekistonga
+        "ТОШКЕНТ ŞAHAR",
+        "«ЎЗБЕКИСТОН»га",
+    ],
+)
+def test_idempotent_on_case_units(text):
+    once = to_ascii(text)
+    assert to_ascii(once) == once

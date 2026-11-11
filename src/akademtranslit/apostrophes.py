@@ -93,6 +93,9 @@ def normalize_apostrophes(
       letter, the stress mark of dictionaries and textbooks. It is not
       default-ignorable, so ``strip_invisible`` keeps it.
 
+    ``strip_stress`` does not remove invisible characters; pass both to do
+    both.
+
     >>> normalize_apostrophes("Tosh" + chr(0x00AD) + "kent", strip_invisible=True)
     'Toshkent'
     >>> normalize_apostrophes("То" + chr(0x0301) + "шкент", strip_stress=True)
