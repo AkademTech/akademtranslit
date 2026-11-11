@@ -8837,6 +8837,110 @@
     "latin_1995"
    ],
    "text": "ShAHAR"
+  },
+  {
+   "id": "c1176",
+   "tags": [
+    "case-0.3.0",
+    "latin_1995"
+   ],
+   "text": "AQShda va MChJning"
+  },
+  {
+   "id": "c1177",
+   "tags": [
+    "case-0.3.0",
+    "cyrillic"
+   ],
+   "text": "АҚШда ва МЧЖнинг"
+  },
+  {
+   "id": "c1178",
+   "tags": [
+    "case-0.3.0",
+    "latin_1995"
+   ],
+   "text": "ToshDUga, SamDUda"
+  },
+  {
+   "id": "c1179",
+   "tags": [
+    "case-0.3.0",
+    "latin_1995"
+   ],
+   "text": "TerSh"
+  },
+  {
+   "id": "c1180",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Gödel teoremasi Toshkentda shu yil oʻqitiladi"
+  },
+  {
+   "id": "c1181",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Toshkent va Tōkyō"
+  },
+  {
+   "id": "c1182",
+   "tags": [
+    "auto-0.3.0",
+    "latin_2026"
+   ],
+   "text": "Ishoq Şoşimov Toşkentda yaşaydi"
+  },
+  {
+   "id": "c1183",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Тошкентда Google ва Telegram хизматлари ишлайди"
+  },
+  {
+   "id": "c1184",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Toshkent shahri va Самарқанд"
+  },
+  {
+   "id": "c1185",
+   "tags": [
+    "homoglyph-0.3.0",
+    "mixed"
+   ],
+   "text": "Тoшкент"
+  },
+  {
+   "id": "c1186",
+   "tags": [
+    "homoglyph-0.3.0",
+    "mixed"
+   ],
+   "text": "Toshkеnt"
+  },
+  {
+   "id": "c1187",
+   "tags": [
+    "homoglyph-0.3.0",
+    "latin_2026"
+   ],
+   "text": "Toșkent"
+  },
+  {
+   "id": "c1188",
+   "tags": [
+    "homoglyph-0.3.0",
+    "mixed"
+   ],
+   "text": "Ӧzbekiston"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

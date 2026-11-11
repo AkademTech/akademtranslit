@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "74bbe4ae6efe93ca269eaee9d2f5e3ee9e9a79358b1e040d982d3a596c4a5c53",
+ "inputs_sha256": "11860acfa8a27a51f7c7d6735fe92fcb517c4cd8e5fd7897746754c5b515f143",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -8226,6 +8226,97 @@
    "to_cyrillic": "Шаҳар",
    "to_latin_1995": "Shahar",
    "to_latin_2026": "Şahar"
+  },
+  "c1176": {
+   "detect_script": "latin_1995",
+   "normalize": "aqshda va mchjning",
+   "to_cyrillic": "Ақшда ва Мчжнинг",
+   "to_latin_1995": "Aqshda va Mchjning",
+   "to_latin_2026": "Aqşda va Mçjning"
+  },
+  "c1177": {
+   "detect_script": "cyrillic",
+   "normalize": "aqshda va mchjning",
+   "to_cyrillic": "Ақшда ва Мчжнинг",
+   "to_latin_1995": "Aqshda va Mchjning",
+   "to_latin_2026": "Aqşda va Mçjning"
+  },
+  "c1178": {
+   "detect_script": "latin_1995",
+   "normalize": "toshduga samduda",
+   "to_cyrillic": "Тошдуга, Самдуда",
+   "to_latin_1995": "Toshduga, Samduda",
+   "to_latin_2026": "Toşduga, Samduda"
+  },
+  "c1179": {
+   "detect_script": "latin_1995",
+   "normalize": "tersh",
+   "to_cyrillic": "Терш",
+   "to_latin_1995": "Tersh",
+   "to_latin_2026": "Terş"
+  },
+  "c1180": {
+   "detect_script": "latin_2026",
+   "normalize": "godel teoremasi toshkentda shu yil oqitiladi",
+   "to_cyrillic": "Гўдел теоремаси Тосҳкентда сҳу йил ўқитилади",
+   "to_latin_1995": "Goʻdel teoremasi Tosʼhkentda sʼhu yil oʻqitiladi",
+   "to_latin_2026": "Gödel teoremasi Toshkentda shu yil oʻqitiladi"
+  },
+  "c1181": {
+   "detect_script": "latin_2026",
+   "normalize": "toshkent va tokyo",
+   "to_cyrillic": "Тосҳкент ва Тўкйў",
+   "to_latin_1995": "Tosʼhkent va Toʻkyoʻ",
+   "to_latin_2026": "Toshkent va Tōkyō"
+  },
+  "c1182": {
+   "detect_script": "latin_2026",
+   "normalize": "ishoq shoshimov toshkentda yashaydi",
+   "to_cyrillic": "Исҳоқ Шошимов Тошкентда яшайди",
+   "to_latin_1995": "Isʼhoq Shoshimov Toshkentda yashaydi",
+   "to_latin_2026": "Ishoq Şoşimov Toşkentda yaşaydi"
+  },
+  "c1183": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkentda google va telegram xizmatlari ishlaydi",
+   "to_cyrillic": "Тошкентда Google ва Telegram хизматлари ишлайди",
+   "to_latin_1995": "Toshkentda Google va Telegram xizmatlari ishlaydi",
+   "to_latin_2026": "Toşkentda Google va Telegram xizmatlari işlaydi"
+  },
+  "c1184": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent shahri va samarqand",
+   "to_cyrillic": "Toshkent shahri va Самарқанд",
+   "to_latin_1995": "Toshkent shahri va Samarqand",
+   "to_latin_2026": "Toşkent şahri va Samarqand"
+  },
+  "c1185": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent",
+   "to_cyrillic": "Тoшкент",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c1186": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent",
+   "to_cyrillic": "Toshkеnt",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c1187": {
+   "detect_script": "latin_1995",
+   "normalize": "to kent",
+   "to_cyrillic": "Тоșкент",
+   "to_latin_1995": "Toșkent",
+   "to_latin_2026": "Toșkent"
+  },
+  "c1188": {
+   "detect_script": "cyrillic",
+   "normalize": "zbekiston",
+   "to_cyrillic": "Ӧzbekiston",
+   "to_latin_1995": "Ӧzbekiston",
+   "to_latin_2026": "Ӧzbekiston"
   }
  },
  "schema": "akademtranslit-golden/1"

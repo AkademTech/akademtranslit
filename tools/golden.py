@@ -19,8 +19,9 @@ with ``shasum -a 256 -c SHA256SUMS``.
 A library with ``RULES_VERSION`` (0.3.0 on) gets schema 2: the header also
 records ``rules_version`` and ``tag_inputs_sha256``, the fields add
 ``convert`` for all nine source and target pairs, ``fold_cyrillic``,
-``is_cyrillic`` and, where the library has them, ``segments`` (as
-``[[piece, kind or null], ...]``) and ``to_ascii``, and ``tags`` and
+``is_cyrillic`` and, where the library has them, ``segments`` and
+``script_spans`` (as ``[[piece, kind or null], ...]``), ``to_ascii`` and
+``fold_homoglyphs``, and ``tags`` and
 ``scripts`` hold ``script_for_tag`` and ``tag_for_script`` on the tag
 inputs. Any other library gets schema 1 with
 the fields it always had, so ``--src`` with an older release's ``src/``
@@ -97,8 +98,8 @@ def fields() -> dict:
     runs unchanged against older versions. The schema 2 fields are written
     only for schema 2, though ``convert``, ``fold_cyrillic`` and
     ``is_cyrillic`` are older: a schema 1 file keeps its fields.
-    ``segments`` and ``to_ascii`` (0.3.0 on) also need the library to have
-    them.
+    ``segments``, ``to_ascii``, ``script_spans`` and ``fold_homoglyphs``
+    (0.3.0 on) also need the library to have them.
     """
     out = {
         "detect_script": lib.detect_script,
@@ -133,6 +134,10 @@ def fields() -> dict:
             out["segments"] = lambda text: [[piece, kind] for piece, kind in lib.segments(text)]
         if hasattr(lib, "to_ascii"):
             out["to_ascii"] = lib.to_ascii
+        if hasattr(lib, "script_spans"):
+            out["script_spans"] = lambda text: [[piece, kind] for piece, kind in lib.script_spans(text)]
+        if hasattr(lib, "fold_homoglyphs"):
+            out["fold_homoglyphs"] = lib.fold_homoglyphs
     return out
 
 
