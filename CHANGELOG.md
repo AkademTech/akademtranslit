@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 — unreleased
 
 ### Documentation
 
@@ -21,8 +21,6 @@
 
 - `cldr/`: data for a Unicode CLDR proposal for the 2026 orthography
   (transforms, collation, exemplar characters, tests).
-
-No change to the library's code or output.
 
 ## 0.2.0 — 2026-11-08
 
