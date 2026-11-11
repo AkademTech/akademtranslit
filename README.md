@@ -309,10 +309,10 @@ what this library emits. Earlier drafts of the reform used `ō` (o with macron)
 or `ǒ`; both are accepted on input as aliases of `ö`, so text written under a
 draft reads correctly, but they are never output.
 
-**The 2026 spelling rules.** Law ZRU-1184 fixes the 2026 alphabet. Detailed
-spelling rules for it have not been adopted yet (November 2026). Until they
-are, the library applies the 1995 rules with the four letters replaced, and
-writes a real s + h without the separator. When official rules are
+**The 2026 spelling rules.** Law No. O'RQ-1184 fixes the 2026 alphabet.
+Detailed spelling rules for it have not been adopted yet (November 2026). Until
+they are, the library applies the 1995 rules with the four letters replaced,
+and writes a real s + h without the separator. When official rules are
 published, the outputs they change will change in a minor release, with a
 golden diff.
 
