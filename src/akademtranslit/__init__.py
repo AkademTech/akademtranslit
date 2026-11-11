@@ -32,6 +32,7 @@ from .rules import (
     cyrillic_word_to_latin_1995,
     latin_1995_word_to_2026,
     latin_1995_word_to_cyrillic,
+    latin_2026_canonical_word,
     latin_2026_word_to_1995,
     map_words,
 )
@@ -82,13 +83,16 @@ _REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1")
 
 # Every conversion is expressed as a chain of word-level steps. latin_1995 is
 # the pivot -- it is the only orthography that shares a boundary with both of
-# the others, so no pair needs a table of its own.
+# the others, so no pair needs a table of its own. The draft glyphs ō and ǒ
+# are read as ö whenever the source or the target is latin_2026; a pair not
+# listed (cyrillic or latin_1995 to itself) has no steps.
 _PIPELINES: dict[tuple[str, str], tuple] = {
     (CYRILLIC, LATIN_1995): (cyrillic_word_to_latin_1995,),
     (CYRILLIC, LATIN_2026): (cyrillic_word_to_latin_1995, latin_1995_word_to_2026),
     (LATIN_1995, CYRILLIC): (latin_1995_word_to_cyrillic,),
-    (LATIN_1995, LATIN_2026): (latin_1995_word_to_2026,),
+    (LATIN_1995, LATIN_2026): (latin_2026_canonical_word, latin_1995_word_to_2026),
     (LATIN_2026, LATIN_1995): (latin_2026_word_to_1995,),
+    (LATIN_2026, LATIN_2026): (latin_2026_canonical_word,),
     (LATIN_2026, CYRILLIC): (latin_2026_word_to_1995, latin_1995_word_to_cyrillic),
 }
 
