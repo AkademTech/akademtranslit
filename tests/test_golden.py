@@ -105,6 +105,14 @@ def test_schema_2_files_name_the_tag_inputs_they_were_made_from():
         assert doc["tag_inputs_sha256"] == digest, name
 
 
+def test_segments_in_schema_2_files_join_to_their_input():
+    texts = {case["id"]: case["text"] for case in _inputs()["cases"]}
+    for name, doc in _schema_2_files():
+        for case_id, row in doc["results"].items():
+            if "segments" in row:
+                assert "".join(piece for piece, _ in row["segments"]) == texts[case_id], (name, case_id)
+
+
 def test_schema_2_files_give_the_expected_tag_results():
     tags = {}
     for case_id, _, expected, warning in TAG_CASES:

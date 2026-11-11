@@ -53,6 +53,13 @@ NEW_INPUTS = {
 }
 
 
+def test_the_new_inputs_are_golden_inputs():
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    cases = {case["id"]: case for case in doc["cases"]}
+    assert {i: cases[i]["text"] for i in NEW_INPUTS} == NEW_INPUTS
+    assert all("protect-0.3.0" in cases[i]["tags"] for i in NEW_INPUTS)
+
+
 def protected(text, protect=True):
     """The protected pieces of ``text``, in order, with their kinds."""
     return [(piece, kind) for piece, kind in segments(text, protect) if kind is not None]

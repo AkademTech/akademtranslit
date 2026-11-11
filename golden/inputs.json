@@ -8549,6 +8549,230 @@
     "reform-2026"
    ],
    "text": "Тошкент ōrdak"
+  },
+  {
+   "id": "c1140",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "Batafsil: https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/ manzilida."
+  },
+  {
+   "id": "c1141",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "www.shahar.uz saytida"
+  },
+  {
+   "id": "c1142",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "gazeta.uz va kun.uz"
+  },
+  {
+   "id": "c1143",
+   "tags": [
+    "protect-0.3.0",
+    "email"
+   ],
+   "text": "info@shahar.uz ga yozing"
+  },
+  {
+   "id": "c1144",
+   "tags": [
+    "protect-0.3.0",
+    "doi"
+   ],
+   "text": "doi:10.1234/chashma.2026.01 maqolasi"
+  },
+  {
+   "id": "c1145",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "https://doi.org/10.5555/shox-2026"
+  },
+  {
+   "id": "c1146",
+   "tags": [
+    "protect-0.3.0",
+    "doi"
+   ],
+   "text": "10.1007/s00415-026-12345-6 raqamli maqola"
+  },
+  {
+   "id": "c1147",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "{count} ta kitob"
+  },
+  {
+   "id": "c1148",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "{count, plural, one {# ta shahar} other {# ta shahar}}"
+  },
+  {
+   "id": "c1149",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "Salom, {name}! Sizda {n, number} ta xabar bor"
+  },
+  {
+   "id": "c1150",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "%s ta fayl, %(soni)d ta shahar"
+  },
+  {
+   "id": "c1151",
+   "tags": [
+    "protect-0.3.0",
+    "markup"
+   ],
+   "text": "<b>Shahar</b> <a href=\"https://shahar.uz\">havola</a>"
+  },
+  {
+   "id": "c1152",
+   "tags": [
+    "protect-0.3.0",
+    "markup"
+   ],
+   "text": "&nbsp;choy &amp; shakar"
+  },
+  {
+   "id": "c1153",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "SpO2 92%, pH 7,35, PaCO2 45 mmHg"
+  },
+  {
+   "id": "c1154",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "McDonald's va iPhone, YouTube"
+  },
+  {
+   "id": "c1155",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "AkademTech va AslMatn"
+  },
+  {
+   "id": "c1156",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "«AKADEMTECH» MChJ"
+  },
+  {
+   "id": "c1157",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "AQSh va BMT"
+  },
+  {
+   "id": "c1158",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "B12 vitamini va eGFR"
+  },
+  {
+   "id": "c1159",
+   "tags": [
+    "protect-0.3.0",
+    "path"
+   ],
+   "text": "/home/user/shahar.txt fayli"
+  },
+  {
+   "id": "c1160",
+   "tags": [
+    "protect-0.3.0",
+    "path"
+   ],
+   "text": "hisobot_shahar.docx faylini oching"
+  },
+  {
+   "id": "c1161",
+   "tags": [
+    "protect-0.3.0",
+    "path"
+   ],
+   "text": "kirill/lotin yozuvi"
+  },
+  {
+   "id": "c1162",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "Тошкент https://toshkent.uz/шаҳар"
+  },
+  {
+   "id": "c1163",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "To'raqo'rg'on tumani"
+  },
+  {
+   "id": "c1164",
+   "tags": [
+    "protect-0.3.0",
+    "invisible"
+   ],
+   "text": "Tosh­kent"
+  },
+  {
+   "id": "c1165",
+   "tags": [
+    "protect-0.3.0",
+    "invisible"
+   ],
+   "text": "shahar​ choy"
+  },
+  {
+   "id": "c1166",
+   "tags": [
+    "protect-0.3.0",
+    "markup"
+   ],
+   "text": "a < b va c > d"
+  },
+  {
+   "id": "c1167",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "{shahar_soni"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"
