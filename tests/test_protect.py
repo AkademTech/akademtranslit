@@ -1,0 +1,646 @@
+"""Protected spans: what segments() finds and what Protect turns on and off."""
+
+from __future__ import annotations
+
+import copy
+import json
+import pickle
+from pathlib import Path
+
+import pytest
+
+from akademtranslit import Protect, segments
+
+REPO = Path(__file__).resolve().parent.parent
+GOLDEN_INPUTS = REPO / "golden" / "inputs.json"
+
+# Invisible characters, built from their code points so the source shows them.
+SOFT_HYPHEN = chr(0x00AD)
+ZERO_WIDTH_SPACE = chr(0x200B)
+CYRILLIC_O = chr(0x041E)  # looks like the Latin O
+
+# The inputs added to the golden vectors for protected spans.
+NEW_INPUTS = {
+    "c1140": "Batafsil: https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/ manzilida.",
+    "c1141": "www.shahar.uz saytida",
+    "c1142": "gazeta.uz va kun.uz",
+    "c1143": "info@shahar.uz ga yozing",
+    "c1144": "doi:10.1234/chashma.2026.01 maqolasi",
+    "c1145": "https://doi.org/10.5555/shox-2026",
+    "c1146": "10.1007/s00415-026-12345-6 raqamli maqola",
+    "c1147": "{count} ta kitob",
+    "c1148": "{count, plural, one {# ta shahar} other {# ta shahar}}",
+    "c1149": "Salom, {name}! Sizda {n, number} ta xabar bor",
+    "c1150": "%s ta fayl, %(soni)d ta shahar",
+    "c1151": '<b>Shahar</b> <a href="https://shahar.uz">havola</a>',
+    "c1152": "&nbsp;choy &amp; shakar",
+    "c1153": "SpO2 92%, pH 7,35, PaCO2 45 mmHg",
+    "c1154": "McDonald's va iPhone, YouTube",
+    "c1155": "AkademTech va AslMatn",
+    "c1156": "«AKADEMTECH» MChJ",
+    "c1157": "AQSh va BMT",
+    "c1158": "B12 vitamini va eGFR",
+    "c1159": "/home/user/shahar.txt fayli",
+    "c1160": "hisobot_shahar.docx faylini oching",
+    "c1161": "kirill/lotin yozuvi",
+    "c1162": "Тошкент https://toshkent.uz/шаҳар",
+    "c1163": "To'raqo'rg'on tumani",
+    "c1164": "Tosh" + SOFT_HYPHEN + "kent",
+    "c1165": "shahar" + ZERO_WIDTH_SPACE + " choy",
+    "c1166": "a < b va c > d",
+    "c1167": "{shahar_soni",
+}
+
+
+def protected(text, protect=True):
+    """The protected pieces of ``text``, in order, with their kinds."""
+    return [(piece, kind) for piece, kind in segments(text, protect) if kind is not None]
+
+
+def all_inputs():
+    """Every golden input, then the new ones, without repeats."""
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    texts = [case["text"] for case in doc["cases"]]
+    seen = set(texts)
+    return texts + [text for text in NEW_INPUTS.values() if text not in seen]
+
+
+# --- segments: the pieces put back together are the text ---------------------------
+
+
+def test_the_pieces_join_to_the_text_on_every_input():
+    broken = [text for text in all_inputs() if "".join(p for p, _ in segments(text)) != text]
+    assert broken == []
+
+
+def test_no_piece_is_empty_and_neighbours_differ_in_kind():
+    bad = []
+    for text in all_inputs():
+        pieces = segments(text)
+        if any(piece == "" for piece, _ in pieces):
+            bad.append((text, "empty piece"))
+        if any(a[1] == b[1] for a, b in zip(pieces, pieces[1:])):
+            bad.append((text, "neighbours of one kind"))
+    assert bad == []
+
+
+def test_every_kind_is_a_known_one():
+    kinds = {kind for text in all_inputs() for _, kind in segments(text)}
+    assert kinds <= {None, "url", "email", "doi", "markup", "placeholder", "path", "term", "token"}
+
+
+def test_empty_text():
+    assert segments("") == []
+
+
+def test_text_with_nothing_to_protect_is_one_piece():
+    assert segments("Toshkent shahri, 2026-yil") == [("Toshkent shahri, 2026-yil", None)]
+
+
+# --- url -------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,url",
+    [
+        (NEW_INPUTS["c1140"], "https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/"),
+        ("http://shahar.uz/a?b=1&c=2#d", "http://shahar.uz/a?b=1&c=2#d"),
+        ("ftp://fayl.shahar.uz/hisobot.zip", "ftp://fayl.shahar.uz/hisobot.zip"),
+        (NEW_INPUTS["c1141"], "www.shahar.uz"),
+        ("kun.uz/oz/news/2026", "kun.uz/oz/news/2026"),
+        ("HTTPS://SHAHAR.UZ/YANGILIK", "HTTPS://SHAHAR.UZ/YANGILIK"),
+        ("Rasmiy sayt: gov.uz.", "gov.uz"),
+        ("Тошкент https://toshkent.uz/шаҳар", "https://toshkent.uz/шаҳар"),
+    ],
+)
+def test_url(text, url):
+    assert protected(text) == [(url, "url")]
+
+
+def test_bare_domains_from_the_list():
+    assert protected(NEW_INPUTS["c1142"]) == [("gazeta.uz", "url"), ("kun.uz", "url")]
+    for tld in ("uz", "com", "org", "net", "ru", "info", "edu", "gov", "io"):
+        assert protected(f"sayt.{tld} manzili") == [(f"sayt.{tld}", "url")], tld
+
+
+@pytest.mark.parametrize(
+    "text,url",
+    [
+        ("Manba: https://shahar.uz.", "https://shahar.uz"),
+        ("Manba: https://shahar.uz, keyin", "https://shahar.uz"),
+        ("(https://shahar.uz/yangilik)", "https://shahar.uz/yangilik"),
+        ("https://uz.wikipedia.org/wiki/Shahar_(film)", "https://uz.wikipedia.org/wiki/Shahar_(film)"),
+        ("(https://uz.wikipedia.org/wiki/Shahar_(film))", "https://uz.wikipedia.org/wiki/Shahar_(film)"),
+        ("«https://shahar.uz»", "https://shahar.uz"),
+        ('"https://shahar.uz",', "https://shahar.uz"),
+        ("Ochdingizmi https://shahar.uz?!", "https://shahar.uz"),
+        ("https://shahar.uz/a;", "https://shahar.uz/a"),
+        ("'gazeta.uz/oz/'", "gazeta.uz/oz/"),
+    ],
+)
+def test_url_leaves_trailing_punctuation_out(text, url):
+    assert protected(text) == [(url, "url")]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Toshkent.",
+        "shahar.uzbek",
+        "shahar.tj sayti",
+        "5.5 foiz",
+        "www. va https:// yolgʻiz",
+        "Toshkent.Uzoq",
+    ],
+)
+def test_not_a_url(text):
+    assert [kind for _, kind in protected(text)] == []
+
+
+def test_a_domain_starts_where_its_word_starts_and_never_after_an_at_sign():
+    assert protected("2gazeta.uz") == [("2gazeta.uz", "url")]
+    assert protected("xgazeta.uz") == [("xgazeta.uz", "url")]
+    assert protected("info@shahar.uz") == [("info@shahar.uz", "email")]
+    assert protected("info@shahar.uz", Protect(emails=False)) == []
+
+
+# --- email -----------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,email",
+    [
+        (NEW_INPUTS["c1143"], "info@shahar.uz"),
+        ("Yozing: ism.familiya+uz@pochta.example.org.", "ism.familiya+uz@pochta.example.org"),
+        ("mailto:info@shahar.uz", "mailto:info@shahar.uz"),
+        ("MAILTO:Info@Shahar.UZ", "MAILTO:Info@Shahar.UZ"),
+        ("Ёзинг: info@example.org", "info@example.org"),
+        ("a_b%c-d@x-y.travel", "a_b%c-d@x-y.travel"),
+    ],
+)
+def test_email(text, email):
+    assert protected(text) == [(email, "email")]
+
+
+@pytest.mark.parametrize("text", ["@shahar", "info@shahar", "info@shahar.u", "info @shahar.uz"])
+def test_not_an_email(text):
+    assert [kind for _, kind in protected(text) if kind == "email"] == []
+
+
+# --- doi -------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,doi",
+    [
+        (NEW_INPUTS["c1144"], "doi:10.1234/chashma.2026.01"),
+        (NEW_INPUTS["c1146"], "10.1007/s00415-026-12345-6"),
+        ("DOI:10.1234/abcd.5678", "DOI:10.1234/abcd.5678"),
+        ("(10.1234/abcd.5678).", "10.1234/abcd.5678"),
+        ("10.123456789/x", "10.123456789/x"),
+    ],
+)
+def test_doi(text, doi):
+    assert protected(text) == [(doi, "doi")]
+
+
+def test_doi_prefix_with_a_space_is_not_part_of_it():
+    assert segments("DOI: 10.1234/abcd.5678") == [
+        ("DOI: ", None),
+        ("10.1234/abcd.5678", "doi"),
+    ]
+
+
+def test_a_doi_in_a_url_is_the_url():
+    assert protected(NEW_INPUTS["c1145"]) == [("https://doi.org/10.5555/shox-2026", "url")]
+
+
+@pytest.mark.parametrize("text", ["10.123/abc", "10.1234567890/abc", "110.1234/abc", "10.1234/", "10.1234 /abc"])
+def test_not_a_doi(text):
+    assert [kind for _, kind in protected(text) if kind == "doi"] == []
+
+
+# --- markup ----------------------------------------------------------------------
+
+
+def test_tags_are_protected_and_the_text_between_them_is_not():
+    assert segments(NEW_INPUTS["c1151"]) == [
+        ("<b>", "markup"),
+        ("Shahar", None),
+        ("</b>", "markup"),
+        (" ", None),
+        ('<a href="https://shahar.uz">', "markup"),
+        ("havola", None),
+        ("</a>", "markup"),
+    ]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "<br>",
+        "<br/>",
+        "<br />",
+        '<img src="shahar.png" alt="a > b">',
+        "<p class='shahar'>",
+        "<!-- izoh: a > b -->",
+        "<!DOCTYPE html>",
+        "&nbsp;",
+        "&amp;",
+        "&#123;",
+        "&#x1F;",
+    ],
+)
+def test_markup(text):
+    assert segments(text) == [(text, "markup")]
+
+
+def test_entities():
+    assert segments(NEW_INPUTS["c1152"]) == [
+        ("&nbsp;", "markup"),
+        ("choy ", None),
+        ("&amp;", "markup"),
+        (" shakar", None),
+    ]
+
+
+@pytest.mark.parametrize("text", [NEW_INPUTS["c1166"], "x <3 y", "choy & shakar", "AT&T", "&;", "&#;"])
+def test_not_markup(text):
+    assert protected(text) == []
+
+
+# --- placeholder -----------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        (NEW_INPUTS["c1147"], [("{count}", "placeholder")]),
+        ("{0} ta", [("{0}", "placeholder")]),
+        ("{ name }", [("{ name }", "placeholder")]),
+        (NEW_INPUTS["c1149"], [("{name}", "placeholder"), ("{n, number}", "placeholder")]),
+        ("{d, date, short}", [("{d, date, short}", "placeholder")]),
+        ("{n, number, ::currency/UZS}", [("{n, number, ::currency/UZS}", "placeholder")]),
+        (NEW_INPUTS["c1150"], [("%s", "placeholder"), ("%(soni)d", "placeholder")]),
+        ("%1$s va %2$d", [("%1$s", "placeholder"), ("%2$d", "placeholder")]),
+        ("%-5.2f soʻm", [("%-5.2f", "placeholder")]),
+        ("%sga yuborildi", [("%s", "placeholder")]),
+        ("{{ shahar }} va {{shahar.nomi}}", [("{{ shahar }}", "placeholder"), ("{{shahar.nomi}}", "placeholder")]),
+    ],
+)
+def test_placeholder(text, expected):
+    assert protected(text) == expected
+
+
+def test_plural_message_text_is_not_protected():
+    assert segments(NEW_INPUTS["c1148"]) == [
+        ("{count, plural, one {#", "placeholder"),
+        (" ta shahar", None),
+        ("} other {#", "placeholder"),
+        (" ta shahar", None),
+        ("}}", "placeholder"),
+    ]
+
+
+def test_select_selectordinal_offset_and_explicit_values():
+    assert segments("{jins, select, ayol {U shaharda} other {Ular shaharda}}") == [
+        ("{jins, select, ayol {", "placeholder"),
+        ("U shaharda", None),
+        ("} other {", "placeholder"),
+        ("Ular shaharda", None),
+        ("}}", "placeholder"),
+    ]
+    assert segments("{n, selectordinal, one {#-shahar} other {#-shahar}}") == [
+        ("{n, selectordinal, one {#", "placeholder"),
+        ("-shahar", None),
+        ("} other {#", "placeholder"),
+        ("-shahar", None),
+        ("}}", "placeholder"),
+    ]
+    assert segments("{n, plural, offset:1 =0 {hech kim} other {# kishi}}") == [
+        ("{n, plural, offset:1 =0 {", "placeholder"),
+        ("hech kim", None),
+        ("} other {#", "placeholder"),
+        (" kishi", None),
+        ("}}", "placeholder"),
+    ]
+
+
+def test_hash_is_text_in_a_select_outside_a_plural():
+    assert segments("{x, select, other {#1 shahar}}") == [
+        ("{x, select, other {", "placeholder"),
+        ("#1 shahar", None),
+        ("}}", "placeholder"),
+    ]
+
+
+def test_nested_arguments():
+    assert segments("{n, plural, one {{name} shaharda} other {{name}, {d, date} # kishi}}") == [
+        ("{n, plural, one {{name}", "placeholder"),
+        (" shaharda", None),
+        ("} other {{name}", "placeholder"),
+        (", ", None),
+        ("{d, date}", "placeholder"),
+        (" ", None),
+        ("#", "placeholder"),
+        (" kishi", None),
+        ("}}", "placeholder"),
+    ]
+    assert segments("{a, select, x {{n, plural, one {# shahar} other {# shahar}}} other {yoʻq}}") == [
+        ("{a, select, x {{n, plural, one {#", "placeholder"),
+        (" shahar", None),
+        ("} other {#", "placeholder"),
+        (" shahar", None),
+        ("}}} other {", "placeholder"),
+        ("yoʻq", None),
+        ("}}", "placeholder"),
+    ]
+
+
+def test_message_text_is_scanned_for_the_other_kinds():
+    assert segments("{n, plural, one {# iPhone, https://shahar.uz} other {# ta}}") == [
+        ("{n, plural, one {#", "placeholder"),
+        (" ", None),
+        ("iPhone", "token"),
+        (", ", None),
+        ("https://shahar.uz", "url"),
+        ("} other {#", "placeholder"),
+        (" ta", None),
+        ("}}", "placeholder"),
+    ]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        NEW_INPUTS["c1167"],
+        "}shahar{",
+        "{}",
+        "{ }",
+        "{shahar soni}",
+        "{Toshkent, Samarqand}",
+        "{n, plural, one {# ta}",
+        "{n, plural, one {# ta} other}",
+        "{n, plural}",
+        "{n, number",
+        "5,5%",
+        "50%dan ortiq, 5%ga, 100%li",
+        "{{ yopilmagan",
+    ],
+)
+def test_not_a_placeholder(text):
+    assert [kind for _, kind in protected(text) if kind == "placeholder"] == []
+
+
+def test_an_unbalanced_brace_is_an_ordinary_character():
+    assert segments("{shahar {name}") == [("{shahar ", None), ("{name}", "placeholder")]
+
+
+def test_unbalanced_braces_stay_fast():
+    text = "{n, plural, one {" * 2000 + "shahar"
+    assert segments(text) == [(text, None)]
+
+
+# --- path ------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,path",
+    [
+        (NEW_INPUTS["c1159"], "/home/user/shahar.txt"),
+        ("./skript.sh ni yurgizing", "./skript.sh"),
+        ("../shahar/ papkasi", "../shahar/"),
+        ("~/hujjatlar/shahar.md", "~/hujjatlar/shahar.md"),
+        ("C:\\Users\\shahar\\hisobot.docx", "C:\\Users\\shahar\\hisobot.docx"),
+        ("(/etc/hosts)", "/etc/hosts"),
+        ("«/tmp/shahar»", "/tmp/shahar"),
+        (NEW_INPUTS["c1160"], "hisobot_shahar.docx"),
+        ("Shahar.PDF faylini", "Shahar.PDF"),
+        ("jadval-2026.v2.xlsx.", "jadval-2026.v2.xlsx"),
+    ],
+)
+def test_path(text, path):
+    assert protected(text) == [(path, "path")]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [NEW_INPUTS["c1161"], "24/7", "va/yoki", "km/soat", "a / b", "hisobot.docs", "hisobot.pdfda", "/"],
+)
+def test_not_a_path(text):
+    assert protected(text) == []
+
+
+# --- term ------------------------------------------------------------------------
+
+
+def test_term():
+    protect = Protect(tokens=False, terms=("Toshkent",))
+    assert segments("Toshkent va toshkent, Toshkentda", protect) == [
+        ("Toshkent", "term"),
+        (" va toshkent, Toshkentda", None),
+    ]
+
+
+def test_term_wins_over_token_on_the_same_span():
+    assert segments("AslMatn va shahar", Protect(terms=("AslMatn",))) == [
+        ("AslMatn", "term"),
+        (" va shahar", None),
+    ]
+
+
+def test_the_longest_term_wins():
+    protect = Protect(tokens=False, terms=("Akadem", "Akadem Tech"))
+    assert protected("Akadem Tech va Akadem", protect) == [("Akadem Tech", "term"), ("Akadem", "term")]
+
+
+def test_a_term_ends_at_an_apostrophe():
+    assert protected("Toshkent'ning", Protect(terms=("Toshkent",))) == [("Toshkent", "term")]
+
+
+# --- token -----------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "word",
+    ["SpO2", "B12", "PaCO2", "H2O", "3D", "b12", "COVID19"]  # a letter and a digit
+    + ["pH", "mmHg", "eGFR", "iPhone", "McDonald", "McDonald's", "AkademTech", "AslMatn", "YouTube"],
+)
+def test_token(word):
+    assert segments(word) == [(word, "token")]
+
+
+@pytest.mark.parametrize(
+    "word",
+    ["MChJ", "AQSh", "2026", "COVID", "Toshkent", "TOSHKENT", "toshkent", "ТошКент", "Sp" + CYRILLIC_O + "2"],
+)
+def test_not_a_token(word):
+    assert segments(word) == [(word, None)]
+
+
+@pytest.mark.parametrize("mark", ["ʻ", "ʼ", "’", "‘", "´", "ʹ", "'", "`"])
+def test_a_word_with_o_or_g_and_an_apostrophe_is_uzbek(mark):
+    for word in ("O{}zBEKISTON", "tO{}g{}", "To{}raQo{}rg{}on", "gO{}ZAL", "AG{}A"):
+        word = word.replace("{}", mark)
+        assert segments(word) == [(word, None)], word
+
+
+def test_a_run_with_a_non_ascii_letter_is_not_a_token():
+    assert segments("ÖzBEKISTON") == [("ÖzBEKISTON", None)]
+    assert segments("iPhoneда") == [("iPhoneда", None)]  # да: Cyrillic U+0434 U+0430
+    assert segments("SpO2ni") == [("SpO2ni", "token")]
+
+
+def test_tokens_in_text():
+    assert protected(NEW_INPUTS["c1153"]) == [
+        ("SpO2", "token"),
+        ("pH", "token"),
+        ("PaCO2", "token"),
+        ("mmHg", "token"),
+    ]
+    assert protected(NEW_INPUTS["c1154"]) == [
+        ("McDonald's", "token"),
+        ("iPhone", "token"),
+        ("YouTube", "token"),
+    ]
+    assert protected(NEW_INPUTS["c1158"]) == [("B12", "token"), ("eGFR", "token")]
+    assert protected("pH-metr va SpO2-ni") == [("pH", "token"), ("SpO2", "token")]
+
+
+def test_sh_and_ch_after_a_capital_are_one_capital():
+    """MChJ and AQSh are Uzbek abbreviations: the h is part of Ch and Sh."""
+    assert protected(NEW_INPUTS["c1156"]) == []
+    assert protected(NEW_INPUTS["c1157"]) == []
+    assert segments("iCh") == [("iCh", "token")]
+    assert segments("ShahAr") == [("ShahAr", "token")]
+
+
+def test_known_limitation_mixed_case_uzbek_words_are_tokens():
+    """A misspelled Uzbek word with mixed case is protected (see the README)."""
+    assert segments("ToshKent") == [("ToshKent", "token")]
+    assert segments("tOSHKENT") == [("tOSHKENT", "token")]
+    assert segments("SamDU") == [("SamDU", "token")]
+
+
+# --- which span wins -------------------------------------------------------------
+
+
+def test_at_one_start_the_longest_wins():
+    assert segments("iPhone.uz") == [("iPhone.uz", "url")]
+    assert segments("McDonald@shahar.uz") == [("McDonald@shahar.uz", "email")]
+    assert segments("iPhone.pdf") == [("iPhone.pdf", "path")]
+
+
+def test_the_leftmost_wins():
+    assert segments("<a href='/x'>") == [("<a href='/x'>", "markup")]
+    assert segments("https://shahar.uz/{id}") == [("https://shahar.uz/{id}", "url")]
+    assert segments("https://shahar.uz/hisobot.pdf") == [("https://shahar.uz/hisobot.pdf", "url")]
+
+
+def test_the_input_is_not_normalised():
+    decomposed = "https://o" + chr(0x0308) + "rdak.uz"
+    assert segments(decomposed) == [(decomposed, "url")]
+
+
+# --- turning kinds off -----------------------------------------------------------
+
+EVERY_KIND = "https://shahar.uz info@shahar.uz 10.1234/abcd <b> {n} /tmp/x AslMatn pH"
+
+
+def test_protect_false_and_protect_none_protect_nothing():
+    assert segments(EVERY_KIND, False) == [(EVERY_KIND, None)]
+    assert segments(EVERY_KIND, Protect.NONE) == [(EVERY_KIND, None)]
+
+
+@pytest.mark.parametrize(
+    "flag,kind",
+    [
+        ("urls", "url"),
+        ("emails", "email"),
+        ("dois", "doi"),
+        ("markup", "markup"),
+        ("placeholders", "placeholder"),
+        ("paths", "path"),
+        ("tokens", "token"),
+    ],
+)
+def test_one_kind_off(flag, kind):
+    every = [k for _, k in protected(EVERY_KIND)]
+    assert [k for _, k in protected(EVERY_KIND, Protect(**{flag: False}))] == [
+        k for k in every if k != kind
+    ]
+
+
+def test_every_kind_on_by_default():
+    assert [k for _, k in protected(EVERY_KIND)] == [
+        "url", "email", "doi", "markup", "placeholder", "path", "token", "token",
+    ]
+    assert [k for _, k in protected(EVERY_KIND, Protect(terms=("AslMatn",)))][-2] == "term"
+
+
+@pytest.mark.parametrize("value", [1, 0, None, "yes", "True", Protect])
+def test_protect_takes_only_true_false_or_a_protect(value):
+    with pytest.raises(ValueError, match="protect"):
+        segments("shahar", value)
+
+
+# --- Protect ---------------------------------------------------------------------
+
+
+def test_protect_defaults():
+    p = Protect()
+    assert (p.urls, p.emails, p.dois, p.placeholders, p.markup, p.paths, p.tokens) == (True,) * 7
+    assert p.terms == ()
+
+
+def test_protect_none():
+    assert Protect.NONE == Protect(
+        urls=False, emails=False, dois=False, placeholders=False, markup=False, paths=False, tokens=False
+    )
+    assert Protect.NONE.terms == ()
+
+
+def test_protect_takes_keywords_only():
+    with pytest.raises(TypeError):
+        Protect(False)
+
+
+def test_protect_is_immutable():
+    p = Protect()
+    with pytest.raises(AttributeError):
+        p.urls = False
+    with pytest.raises(AttributeError):
+        p.colour = "red"
+    with pytest.raises(AttributeError):
+        del p.terms
+
+
+def test_protect_equality_and_hash():
+    assert Protect() == Protect()
+    assert Protect(terms=["AslMatn"]) == Protect(terms=("AslMatn",))
+    assert Protect(tokens=False) != Protect()
+    assert Protect() != "Protect()"
+    assert len({Protect(), Protect(), Protect(tokens=False)}) == 2
+
+
+def test_protect_repr():
+    assert repr(Protect()) == "Protect()"
+    assert repr(Protect(tokens=False, terms=("AslMatn",))) == "Protect(tokens=False, terms=('AslMatn',))"
+    for p in (Protect(), Protect.NONE, Protect(urls=False, terms=("a", "b"))):
+        assert eval(repr(p), {"Protect": Protect}) == p
+
+
+def test_protect_copy_and_pickle():
+    p = Protect(dois=False, terms=("AslMatn",))
+    assert copy.copy(p) == p
+    assert copy.deepcopy(p) == p
+    assert pickle.loads(pickle.dumps(p)) == p
+
+
+@pytest.mark.parametrize(
+    "terms,error",
+    [("AslMatn", TypeError), (("",), ValueError), ((1,), TypeError), ((None,), TypeError)],
+)
+def test_protect_checks_the_terms(terms, error):
+    with pytest.raises(error):
+        Protect(terms=terms)

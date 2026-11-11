@@ -28,6 +28,7 @@ from .apostrophes import normalize_apostrophes
 from .collation import sort_key
 from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
+from .protect import Protect, segments
 from .rules import (
     cyrillic_word_to_latin_1995,
     latin_1995_word_to_2026,
@@ -60,6 +61,7 @@ __all__ = [
     "LATIN_1995_ALPHABET",
     "LATIN_2026",
     "LATIN_2026_ALPHABET",
+    "Protect",
     "REFORM_PAIRS",
     "RULES_VERSION",
     "SCRIPTS",
@@ -75,6 +77,7 @@ __all__ = [
     "normalize_apostrophes",
     "script_class",
     "script_for_tag",
+    "segments",
     "sort_key",
     "tag_for_script",
     "to_cyrillic",
