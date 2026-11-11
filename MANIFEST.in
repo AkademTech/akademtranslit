@@ -1,5 +1,7 @@
 include CHANGELOG.md
+include PRIVACY.md
 graft tests
 graft golden
 graft tools
+graft docs
 global-exclude __pycache__ *.py[cod]

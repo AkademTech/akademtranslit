@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased
+
+### Documentation
+
+- `PRIVACY.md`: what the library does and does not do with data, with
+  answers to the six privacy questions of the Digital Public Goods Standard.
+- `docs/architecture.md`: how the package is put together.
+- README: who owns and maintains the library; the 2026 spelling rules are
+  not adopted yet, and what the library does until they are.
+- `LICENSE`: the copyright line names the legal owner, AKADEMTECH MChJ.
+
+### Tests
+
+- `tests/test_privacy.py` fails if the package imports a module other than
+  `re` and `unicodedata`, or calls `open`, `exec`, `eval`, `compile`,
+  `__import__`, `input` or `breakpoint`.
+
+No change to the library's code or output.
+
 ## 0.2.0 — 2026-11-08
 
 ### Added
