@@ -10,8 +10,10 @@ from __future__ import annotations
 
 import unicodedata
 
-_CYRILLIC_LO = 0x0400
-_CYRILLIC_HI = 0x052F
+from .tables import CYRILLIC_FIRST, CYRILLIC_LAST
+
+_CYRILLIC_LO = CYRILLIC_FIRST
+_CYRILLIC_HI = CYRILLIC_LAST
 
 _UZBEK_LETTERS = frozenset("ўқғҳЎҚҒҲ")
 _RUSSIAN_LETTERS = frozenset("щыЩЫ")

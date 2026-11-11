@@ -9,7 +9,7 @@ without converting it, in either of the two forms in use for display.
 from __future__ import annotations
 
 from .rules import _WORD_RE
-from .tables import APOSTROPHE_VARIANTS, TURNED_COMMA, TUTUQ
+from .tables import APOSTROPHE_VARIANTS, CYRILLIC_FIRST, CYRILLIC_LAST, TURNED_COMMA, TUTUQ
 
 STYLES = ("unicode", "ascii")
 
@@ -17,8 +17,8 @@ _ASCII_APOSTROPHE = "'"
 _MARKS = frozenset(APOSTROPHE_VARIANTS)
 _TURNED_COMMA_AFTER = frozenset("oOgG")
 
-_CYRILLIC_LO = 0x0400
-_CYRILLIC_HI = 0x052F
+_CYRILLIC_LO = CYRILLIC_FIRST
+_CYRILLIC_HI = CYRILLIC_LAST
 
 
 def _is_letter(ch: str) -> bool:

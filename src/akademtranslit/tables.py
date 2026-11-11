@@ -57,6 +57,11 @@ APOSTROPHE_VARIANTS = (
 
 # --- Cyrillic ----------------------------------------------------------------
 
+#: The code points every function counts as Cyrillic: the Cyrillic block
+#: (U+0400-U+04FF) and Cyrillic Supplement (U+0500-U+052F).
+CYRILLIC_FIRST = 0x0400
+CYRILLIC_LAST = 0x052F
+
 #: Cyrillic vowels. Needed by the ``е`` rule: ``е`` is read ``ye`` at the start
 #: of a word and after another vowel, ``e`` elsewhere.
 CYRILLIC_VOWELS = frozenset("аеёиоуўэюяы")

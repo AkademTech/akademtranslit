@@ -7,6 +7,7 @@ where a function had two answers for one question, that it now has one.
 from __future__ import annotations
 
 import json
+import unicodedata
 from pathlib import Path
 
 import pytest
@@ -18,6 +19,8 @@ from akademtranslit import (
     _REFORM_LETTERS,
     convert,
     detect_script,
+    is_cyrillic,
+    script_class,
     to_latin,
 )
 
@@ -115,3 +118,34 @@ def test_a_given_latin_1995_source_is_kept_when_the_target_is_not_2026():
     """
     assert convert(O_MACRON + "zbek", source=LATIN_1995, target=LATIN_1995) == O_MACRON + "zbek"
     assert convert(O_MACRON + "zbek", source=LATIN_1995, target=CYRILLIC) == O_MACRON + "збек"
+
+
+# --- one Cyrillic range: U+0400-U+052F everywhere ------------------------------
+#
+# is_cyrillic, and through it detect_script and normalize, took Cyrillic to be
+# U+0400-U+04FF; script_class and normalize_apostrophes took U+0400-U+052F. A
+# letter from the Cyrillic Supplement block was Cyrillic to one function and
+# not to another. All of them now use U+0400-U+052F.
+
+# Every letter from the end of Greek to the start of Armenian.
+LETTERS_AROUND_CYRILLIC = [
+    chr(cp) for cp in range(0x0370, 0x0561) if unicodedata.category(chr(cp)).startswith("L")
+]
+
+
+def test_is_cyrillic_detect_script_and_script_class_agree():
+    disagree = []
+    for letter in LETTERS_AROUND_CYRILLIC:
+        answers = (
+            is_cyrillic(letter),
+            detect_script(letter) == CYRILLIC,
+            script_class(letter) == "cyrillic",
+        )
+        if answers not in ((True, True, True), (False, False, False)):
+            disagree.append((f"U+{ord(letter):04X}", answers))
+    assert disagree == []
+
+
+def test_the_cyrillic_supplement_is_cyrillic():
+    assert is_cyrillic("\u0501")         # CYRILLIC SMALL LETTER KOMI DE
+    assert detect_script("\u051a") == CYRILLIC   # CYRILLIC CAPITAL LETTER QA

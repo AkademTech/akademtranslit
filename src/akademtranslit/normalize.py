@@ -28,13 +28,13 @@ import re
 import unicodedata
 
 from .rules import cyrillic_word_to_latin_1995, map_words
-from .tables import APOSTROPHE_VARIANTS, TURNED_COMMA, TUTUQ
+from .tables import APOSTROPHE_VARIANTS, CYRILLIC_FIRST, CYRILLIC_LAST, TURNED_COMMA, TUTUQ
 
-# Cyrillic block bounds. Anything in this range that the table below does not
-# cover is dropped rather than passed through, so a stray Old Church Slavonic
-# letter cannot leak into a key.
-_CYRILLIC_LO = 0x0400
-_CYRILLIC_HI = 0x04FF
+# Cyrillic bounds, U+0400-U+052F, as everywhere in the package. Anything in
+# this range that the table below does not cover is dropped rather than passed
+# through, so a stray Old Church Slavonic letter cannot leak into a key.
+_CYRILLIC_LO = CYRILLIC_FIRST
+_CYRILLIC_HI = CYRILLIC_LAST
 
 # Residual Cyrillic fold, applied AFTER the real transliteration has run. Its
 # job is the leftovers: a homoglyph sitting inside an otherwise Latin word, or a
@@ -80,8 +80,8 @@ def fold_cyrillic(text: str) -> str:
     """Fold Cyrillic characters to Latin; pass everything else through.
 
     Lowercase-oriented and lossy -- the building block for :func:`normalize`,
-    which lowercases first. Cyrillic-block characters absent from the fold table
-    are dropped.
+    which lowercases first. Characters in U+0400-U+052F absent from the fold
+    table are dropped.
     """
     out: list[str] = []
     for ch in text:
@@ -140,7 +140,10 @@ def normalize(text: str) -> str:
 
 
 def is_cyrillic(text: str) -> bool:
-    """True if ``text`` contains any Cyrillic-block letter.
+    """True if ``text`` contains any character in U+0400-U+052F.
+
+    That is the Cyrillic block and Cyrillic Supplement, the range every function
+    in the package counts as Cyrillic.
 
     First-hit detection is sufficient in practice: Uzbek Cyrillic strings are
     wholly Cyrillic, and a Latin string carrying one stray Cyrillic letter is a
