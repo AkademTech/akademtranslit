@@ -9,7 +9,8 @@ release assets).
 
 Needs PyICU (``pip install PyICU``; it needs the ICU library) and the
 ``akademtranslit`` package of the same version as the golden file. Neither is
-a dependency of the library itself.
+a dependency of the library itself. From 0.3.0 the library's output is taken
+with ``protect=False``: the transforms protect nothing.
 
 What it checks:
 
@@ -31,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import inspect
 import json
 import re
 import sys
@@ -105,7 +107,21 @@ def main() -> int:
     if golden["library_version"] != at.__version__:
         raise SystemExit(f"golden {golden['library_version']} != installed {at.__version__}")
     results = golden["results"]
-    cases = [(c["id"], c["text"], results[c["id"]]) for c in inputs["cases"]]
+    # The transforms protect nothing (URLs, tokens such as pH), so they are
+    # compared with the library's output without protected spans:
+    # protect=False, from akademtranslit 0.3.0.
+    unprotected = {"protect": False} if "protect" in inspect.signature(at.convert).parameters else {}
+
+    def lib_row(text: str, r: dict) -> dict:
+        if not unprotected:
+            return r
+        r = dict(r)
+        r["to_latin_2026"] = at.to_latin(text, variant="latin_2026", **unprotected)
+        r["to_latin_1995"] = at.to_latin(text, variant="latin_1995", **unprotected)
+        r["to_cyrillic"] = at.to_cyrillic(text, **unprotected)
+        return r
+
+    cases = [(c["id"], c["text"], lib_row(c["text"], results[c["id"]])) for c in inputs["cases"]]
 
     t = HERE / "transforms"
     l95_26 = transliterator(t / "uz_Latn_1995-uz_Latn_2026.xml", FWD)
@@ -133,8 +149,8 @@ def main() -> int:
             if y in seen26 or at.script_class(y) != "latin" or not any(ch.isalpha() for ch in y):
                 continue
             seen26.add(y)
-            cases26.append(("d" + cid, y, at.convert(y, source="latin_2026", target="latin_1995"),
-                            at.convert(y, source="latin_2026", target="cyrillic")))
+            cases26.append(("d" + cid, y, at.convert(y, source="latin_2026", target="latin_1995", **unprotected),
+                            at.convert(y, source="latin_2026", target="cyrillic", **unprotected)))
 
     report: list[str] = [f"ICU {icu.ICU_VERSION}, Unicode {icu.UNICODE_VERSION}, "
                          f"akademtranslit {at.__version__}, {len(cases)} golden inputs, "

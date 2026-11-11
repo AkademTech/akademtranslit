@@ -68,6 +68,7 @@ Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti	Mirzo Ulugʻbek nomidagi
 işçi	ishchi
 öçmas	oʻchmas
 Ördak	Oʻrdak
+MÇJ va AQŞ	MCHJ va AQSH
 a	a
 A	A
 baxt	baxt
@@ -435,7 +436,10 @@ YULDUZ	YULDUZ
 Yaşil	Yashil
 daryo	daryo
 ğoya	gʻoya
-Mcdonald	Mcdonald
+ÖzBEKISTON	OʻzBEKISTON
+McDonald	McDonald
+ToşKent	ToshKent
+tOŞKENT	tOSHKENT
 AB	AB
 Ab	Ab
 jurʼat	jurʼat
@@ -474,12 +478,12 @@ bilan	bilan
 subyektiv	subyektiv
 podyezd	podyezd
 premyer	premyer
-Spo2	Spo2
-ph	ph
+SpO2	SpO2
+pH	pH
 EEG	EEG
 UTT	UTT
 B12	B12
-Paco2	Paco2
+PaCO2	PaCO2
 aytsangizgina	aytsangizgina
 aytsakkina	aytsakkina
 ketsayu	ketsayu
@@ -556,3 +560,35 @@ BULYON	BULYON
 pavilyon	pavilyon
 poçtalyonlar	pochtalyonlar
 medalyon	medalyon
+Batafsil: https://gazeta.uz/oz/2026/11/05/şahar-çiroqlari/ manzilida.	Batafsil: https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/ manzilida.
+www.şahar.uz saytida	www.shahar.uz saytida
+gazeta.uz va kun.uz	gazeta.uz va kun.uz
+info@şahar.uz ga yozing	info@shahar.uz ga yozing
+doi:10.1234/çaşma.2026.01 maqolasi	doi:10.1234/chashma.2026.01 maqolasi
+https://doi.org/10.5555/şox-2026	https://doi.org/10.5555/shox-2026
+10.1007/s00415-026-12345-6 raqamli maqola	10.1007/s00415-026-12345-6 raqamli maqola
+{count} ta kitob	{count} ta kitob
+{count, plural, one {# ta şahar} other {# ta şahar}}	{count, plural, one {# ta shahar} other {# ta shahar}}
+Salom, {name}! Sizda {n, number} ta xabar bor	Salom, {name}! Sizda {n, number} ta xabar bor
+%s ta fayl, %(soni)d ta şahar	%s ta fayl, %(soni)d ta shahar
+<b>Şahar</b> <a href="https://şahar.uz">havola</a>	<b>Shahar</b> <a href="https://shahar.uz">havola</a>
+&nbsp;çoy &amp; şakar	&nbsp;choy &amp; shakar
+SpO2 92%, pH 7,35, PaCO2 45 mmHg	SpO2 92%, pH 7,35, PaCO2 45 mmHg
+McDonaldʼs va iPhone, YouTube	McDonaldʼs va iPhone, YouTube
+AkademTeç va AslMatn	AkademTech va AslMatn
+«AKADEMTEÇ» MÇJ	«AKADEMTECH» MCHJ
+AQŞ va BMT	AQSH va BMT
+B12 vitamini va eGFR	B12 vitamini va eGFR
+/home/user/şahar.txt fayli	/home/user/shahar.txt fayli
+hisobot_şahar.docx faylini oçing	hisobot_shahar.docx faylini oching
+kirill/lotin yozuvi	kirill/lotin yozuvi
+Töraqörğon tumani	Toʻraqoʻrgʻon tumani
+Toş­kent	Tosh­kent
+şahar​ çoy	shahar​ choy
+a < b va c > d	a < b va c > d
+{şahar_soni	{shahar_soni
+10ta kitob, 2026yil, 100mg	10ta kitob, 2026yil, 100mg
+ToşDU va SamDU	ToshDU va SamDU
+ToşDU va ÖzMU	ToshDU va OʻzMU
+ÖzMU talabasi	OʻzMU talabasi
+ÇatGPT, PhD, AkademID	ChatGPT, PhD, AkademID

@@ -438,3 +438,4 @@
 павильон	pavilyon
 почтальонлар	poçtalyonlar
 медальон	medalyon
+ТошДУ ва ЎзМУ	ToşDU va ÖzMU
