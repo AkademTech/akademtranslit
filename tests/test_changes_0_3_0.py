@@ -890,7 +890,7 @@ def test_a_text_without_a_2026_letter_is_read_as_1995():
 #
 # id -> (text, the two tags). The look-alike letters are written by code point.
 
-B2A_INPUTS = {
+SUFFIX_AUTO_HOMOGLYPH_INPUTS = {
     "c1176": ("AQShda va MChJning", "case-0.3.0", "latin_1995"),
     "c1177": ("АҚШда ва МЧЖнинг", "case-0.3.0", "cyrillic"),
     "c1178": ("ToshDUga, SamDUda", "case-0.3.0", "latin_1995"),
@@ -907,38 +907,39 @@ B2A_INPUTS = {
 }
 
 # (to_cyrillic, to_latin_1995, to_latin_2026); None is the text itself.
-B2A_CONVERSIONS = {
+SUFFIX_AUTO_HOMOGLYPH_CONVERSIONS = {
     "c1176": ("АҚШда ва МЧЖнинг", None, "AQŞda va MÇJning"),
     "c1177": (None, "AQSHda va MCHJning", "AQŞda va MÇJning"),
     "c1178": ("ТошДУга, СамДУда", None, "ToşDUga, SamDUda"),
     "c1179": ("ТерШ", None, "TerŞ"),
 }
-B2A_CONVERSIONS.update(
+SUFFIX_AUTO_HOMOGLYPH_CONVERSIONS.update(
     {case_id: tuple(WORD_LEVEL_AUTO[row][1:]) for case_id, row in
      (("c1180", 0), ("c1181", 1), ("c1182", 2), ("c1183", 4), ("c1184", 5))}
 )
-B2A_CONVERSIONS["c1187"] = ("Тошкент", "Toshkent", "Toşkent")
+SUFFIX_AUTO_HOMOGLYPH_CONVERSIONS["c1187"] = ("Тошкент", "Toshkent", "Toşkent")
 
 # fold_homoglyphs on the homoglyph inputs.
-B2A_FOLDED = {"c1185": "Тошкент", "c1186": "Toshkent", "c1187": "Toşkent", "c1188": "Özbekiston"}
+HOMOGLYPH_INPUTS_FOLDED = {"c1185": "Тошкент", "c1186": "Toshkent", "c1187": "Toşkent", "c1188": "Özbekiston"}
 
 
-def test_the_b2a_inputs_are_golden_inputs():
+def test_the_suffix_auto_and_homoglyph_inputs_are_golden_inputs():
     doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
     cases = {case["id"]: case for case in doc["cases"]}
-    assert {i: (cases[i]["text"], cases[i]["tags"]) for i in B2A_INPUTS} == {
-        i: (text, [first, second]) for i, (text, first, second) in B2A_INPUTS.items()
+    assert {i: (cases[i]["text"], cases[i]["tags"]) for i in SUFFIX_AUTO_HOMOGLYPH_INPUTS} == {
+        i: (text, [first, second]) for i, (text, first, second) in SUFFIX_AUTO_HOMOGLYPH_INPUTS.items()
     }
-    assert WORD_LEVEL_AUTO[0][0] == B2A_INPUTS["c1180"][0] and WORD_LEVEL_AUTO[5][0] == B2A_INPUTS["c1184"][0]
+    assert WORD_LEVEL_AUTO[0][0] == SUFFIX_AUTO_HOMOGLYPH_INPUTS["c1180"][0]
+    assert WORD_LEVEL_AUTO[5][0] == SUFFIX_AUTO_HOMOGLYPH_INPUTS["c1184"][0]
 
 
-@pytest.mark.parametrize("case_id", sorted(B2A_CONVERSIONS))
-def test_the_b2a_inputs_convert(case_id):
-    text = B2A_INPUTS[case_id][0]
+@pytest.mark.parametrize("case_id", sorted(SUFFIX_AUTO_HOMOGLYPH_CONVERSIONS))
+def test_the_suffix_auto_and_homoglyph_inputs_convert(case_id):
+    text = SUFFIX_AUTO_HOMOGLYPH_INPUTS[case_id][0]
     got = [to_cyrillic(text), to_latin(text, variant=LATIN_1995), to_latin(text)]
-    assert got == [text if value is None else value for value in B2A_CONVERSIONS[case_id]]
+    assert got == [text if value is None else value for value in SUFFIX_AUTO_HOMOGLYPH_CONVERSIONS[case_id]]
 
 
-@pytest.mark.parametrize("case_id", sorted(B2A_FOLDED))
-def test_the_b2a_homoglyph_inputs_fold(case_id):
-    assert fold_homoglyphs(B2A_INPUTS[case_id][0]) == B2A_FOLDED[case_id]
+@pytest.mark.parametrize("case_id", sorted(HOMOGLYPH_INPUTS_FOLDED))
+def test_the_homoglyph_inputs_fold(case_id):
+    assert fold_homoglyphs(SUFFIX_AUTO_HOMOGLYPH_INPUTS[case_id][0]) == HOMOGLYPH_INPUTS_FOLDED[case_id]
