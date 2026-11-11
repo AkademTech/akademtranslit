@@ -93,7 +93,11 @@ _REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1")
 # listed (cyrillic or latin_1995 to itself) has no steps.
 _PIPELINES: dict[tuple[str, str], tuple] = {
     (CYRILLIC, LATIN_1995): (cyrillic_word_to_latin_1995,),
-    (CYRILLIC, LATIN_2026): (cyrillic_word_to_latin_1995, latin_1995_word_to_2026),
+    (CYRILLIC, LATIN_2026): (
+        cyrillic_word_to_latin_1995,
+        latin_1995_word_to_2026,
+        latin_2026_canonical_word,  # ō U+014D, ǒ U+01D2 in a Latin word of Cyrillic text
+    ),
     (LATIN_1995, CYRILLIC): (latin_1995_word_to_cyrillic,),
     (LATIN_1995, LATIN_2026): (latin_2026_canonical_word, latin_1995_word_to_2026),
     (LATIN_2026, LATIN_1995): (latin_2026_word_to_1995,),

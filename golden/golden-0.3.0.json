@@ -13602,7 +13602,7 @@
   "c0328": {
    "convert_from_cyrillic_to_cyrillic": "Ōzbekiston",
    "convert_from_cyrillic_to_latin_1995": "Ōzbekiston",
-   "convert_from_cyrillic_to_latin_2026": "Ōzbekiston",
+   "convert_from_cyrillic_to_latin_2026": "Özbekiston",
    "convert_from_latin_1995_to_cyrillic": "Ōзбекистон",
    "convert_from_latin_1995_to_latin_1995": "Ōzbekiston",
    "convert_from_latin_1995_to_latin_2026": "Özbekiston",
@@ -49828,7 +49828,7 @@
   "c1077": {
    "convert_from_cyrillic_to_cyrillic": "ō",
    "convert_from_cyrillic_to_latin_1995": "ō",
-   "convert_from_cyrillic_to_latin_2026": "ō",
+   "convert_from_cyrillic_to_latin_2026": "ö",
    "convert_from_latin_1995_to_cyrillic": "ō",
    "convert_from_latin_1995_to_latin_1995": "ō",
    "convert_from_latin_1995_to_latin_2026": "ö",
@@ -49859,7 +49859,7 @@
   "c1078": {
    "convert_from_cyrillic_to_cyrillic": "ǒ",
    "convert_from_cyrillic_to_latin_1995": "ǒ",
-   "convert_from_cyrillic_to_latin_2026": "ǒ",
+   "convert_from_cyrillic_to_latin_2026": "ö",
    "convert_from_latin_1995_to_cyrillic": "ǒ",
    "convert_from_latin_1995_to_latin_1995": "ǒ",
    "convert_from_latin_1995_to_latin_2026": "ö",
@@ -49890,7 +49890,7 @@
   "c1079": {
    "convert_from_cyrillic_to_cyrillic": "Ō",
    "convert_from_cyrillic_to_latin_1995": "Ō",
-   "convert_from_cyrillic_to_latin_2026": "Ō",
+   "convert_from_cyrillic_to_latin_2026": "Ö",
    "convert_from_latin_1995_to_cyrillic": "Ō",
    "convert_from_latin_1995_to_latin_1995": "Ō",
    "convert_from_latin_1995_to_latin_2026": "Ö",
@@ -49921,7 +49921,7 @@
   "c1080": {
    "convert_from_cyrillic_to_cyrillic": "Ǒ",
    "convert_from_cyrillic_to_latin_1995": "Ǒ",
-   "convert_from_cyrillic_to_latin_2026": "Ǒ",
+   "convert_from_cyrillic_to_latin_2026": "Ö",
    "convert_from_latin_1995_to_cyrillic": "Ǒ",
    "convert_from_latin_1995_to_latin_1995": "Ǒ",
    "convert_from_latin_1995_to_latin_2026": "Ö",
@@ -49952,7 +49952,7 @@
   "c1081": {
    "convert_from_cyrillic_to_cyrillic": "ōrdak",
    "convert_from_cyrillic_to_latin_1995": "ōrdak",
-   "convert_from_cyrillic_to_latin_2026": "ōrdak",
+   "convert_from_cyrillic_to_latin_2026": "ördak",
    "convert_from_latin_1995_to_cyrillic": "ōрдак",
    "convert_from_latin_1995_to_latin_1995": "ōrdak",
    "convert_from_latin_1995_to_latin_2026": "ördak",
@@ -49995,7 +49995,7 @@
   "c1082": {
    "convert_from_cyrillic_to_cyrillic": "ǒrdak",
    "convert_from_cyrillic_to_latin_1995": "ǒrdak",
-   "convert_from_cyrillic_to_latin_2026": "ǒrdak",
+   "convert_from_cyrillic_to_latin_2026": "ördak",
    "convert_from_latin_1995_to_cyrillic": "ǒрдак",
    "convert_from_latin_1995_to_latin_1995": "ǒrdak",
    "convert_from_latin_1995_to_latin_2026": "ördak",
@@ -50038,7 +50038,7 @@
   "c1083": {
    "convert_from_cyrillic_to_cyrillic": "ŌRDAK",
    "convert_from_cyrillic_to_latin_1995": "ŌRDAK",
-   "convert_from_cyrillic_to_latin_2026": "ŌRDAK",
+   "convert_from_cyrillic_to_latin_2026": "ÖRDAK",
    "convert_from_latin_1995_to_cyrillic": "ŌРДАК",
    "convert_from_latin_1995_to_latin_1995": "ŌRDAK",
    "convert_from_latin_1995_to_latin_2026": "ÖRDAK",
@@ -50081,7 +50081,7 @@
   "c1084": {
    "convert_from_cyrillic_to_cyrillic": "Ǒzbekiston",
    "convert_from_cyrillic_to_latin_1995": "Ǒzbekiston",
-   "convert_from_cyrillic_to_latin_2026": "Ǒzbekiston",
+   "convert_from_cyrillic_to_latin_2026": "Özbekiston",
    "convert_from_latin_1995_to_cyrillic": "Ǒзбекистон",
    "convert_from_latin_1995_to_latin_1995": "Ǒzbekiston",
    "convert_from_latin_1995_to_latin_2026": "Özbekiston",

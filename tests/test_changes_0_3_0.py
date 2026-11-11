@@ -114,6 +114,17 @@ def test_latin_1995_to_latin_2026_writes_the_draft_glyphs_as_o_umlaut():
 
 
 @pytest.mark.parametrize("text,expected", DRAFT_GLYPH_CASES)
+def test_cyrillic_to_latin_2026_writes_the_draft_glyphs_as_o_umlaut(text, expected):
+    """A Latin word inside Cyrillic text: the target is latin_2026."""
+    assert convert(text, source=CYRILLIC, target=LATIN_2026) == expected
+
+
+def test_a_draft_glyph_in_cyrillic_text_comes_out_as_o_umlaut():
+    assert to_latin("Тошкент " + O_MACRON + "rdak") == "Toşkent ördak"
+    assert to_latin("ТОШКЕНТ " + CAPITAL_O_CARON + "RDAK") == "TOŞKENT ÖRDAK"
+
+
+@pytest.mark.parametrize("text,expected", DRAFT_GLYPH_CASES)
 def test_the_2026_output_is_idempotent(text, expected):
     once = convert(text)
     assert convert(once) == once
