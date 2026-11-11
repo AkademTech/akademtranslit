@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "48d3b85f8d54f106f5824dbcfbe918e640ee2cfe30f8303673500543687f11d8",
+ "inputs_sha256": "39f111f7e17b3991a10aee0872e47d76a2fb129db71429891c2602d7dfbb5f66",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -7848,6 +7848,132 @@
    "to_cyrillic": "123",
    "to_latin_1995": "123",
    "to_latin_2026": "123"
+  },
+  "c1122": {
+   "detect_script": "latin_1995",
+   "normalize": "aeroport",
+   "to_cyrillic": "аеропорт",
+   "to_latin_1995": "aeroport",
+   "to_latin_2026": "aeroport"
+  },
+  "c1123": {
+   "detect_script": "latin_1995",
+   "normalize": "poeziya",
+   "to_cyrillic": "поезия",
+   "to_latin_1995": "poeziya",
+   "to_latin_2026": "poeziya"
+  },
+  "c1124": {
+   "detect_script": "latin_1995",
+   "normalize": "duel",
+   "to_cyrillic": "дуел",
+   "to_latin_1995": "duel",
+   "to_latin_2026": "duel"
+  },
+  "c1125": {
+   "detect_script": "latin_1995",
+   "normalize": "koeffitsiyent",
+   "to_cyrillic": "коеффициент",
+   "to_latin_1995": "koeffitsiyent",
+   "to_latin_2026": "koeffitsiyent"
+  },
+  "c1126": {
+   "detect_script": "latin_1995",
+   "normalize": "reemigratsiya",
+   "to_cyrillic": "реемиграция",
+   "to_latin_1995": "reemigratsiya",
+   "to_latin_2026": "reemigratsiya"
+  },
+  "c1127": {
+   "detect_script": "latin_1995",
+   "normalize": "siluet",
+   "to_cyrillic": "силует",
+   "to_latin_1995": "siluet",
+   "to_latin_2026": "siluet"
+  },
+  "c1128": {
+   "detect_script": "latin_1995",
+   "normalize": "rafael",
+   "to_cyrillic": "Рафаел",
+   "to_latin_1995": "Rafael",
+   "to_latin_2026": "Rafael"
+  },
+  "c1129": {
+   "detect_script": "latin_1995",
+   "normalize": "alievning",
+   "to_cyrillic": "Алиевнинг",
+   "to_latin_1995": "Alievning",
+   "to_latin_2026": "Alievning"
+  },
+  "c1130": {
+   "detect_script": "latin_1995",
+   "normalize": "alieva",
+   "to_cyrillic": "Алиева",
+   "to_latin_1995": "Alieva",
+   "to_latin_2026": "Alieva"
+  },
+  "c1131": {
+   "detect_script": "latin_1995",
+   "normalize": "kiev",
+   "to_cyrillic": "Киев",
+   "to_latin_1995": "Kiev",
+   "to_latin_2026": "Kiev"
+  },
+  "c1132": {
+   "detect_script": "latin_1995",
+   "normalize": "poeziya",
+   "to_cyrillic": "ПОЕЗИЯ",
+   "to_latin_1995": "POEZIYA",
+   "to_latin_2026": "POEZIYA"
+  },
+  "c1133": {
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "to_cyrillic": "бульон",
+   "to_latin_1995": "bulon",
+   "to_latin_2026": "bulon"
+  },
+  "c1134": {
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "to_cyrillic": "Бульон",
+   "to_latin_1995": "Bulon",
+   "to_latin_2026": "Bulon"
+  },
+  "c1135": {
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "to_cyrillic": "БУЛЬОН",
+   "to_latin_1995": "BULON",
+   "to_latin_2026": "BULON"
+  },
+  "c1136": {
+   "detect_script": "cyrillic",
+   "normalize": "pavilon",
+   "to_cyrillic": "павильон",
+   "to_latin_1995": "pavilon",
+   "to_latin_2026": "pavilon"
+  },
+  "c1137": {
+   "detect_script": "cyrillic",
+   "normalize": "pochtalonlar",
+   "to_cyrillic": "почтальонлар",
+   "to_latin_1995": "pochtalonlar",
+   "to_latin_2026": "poçtalonlar"
+  },
+  "c1138": {
+   "detect_script": "cyrillic",
+   "normalize": "medalon",
+   "to_cyrillic": "медальон",
+   "to_latin_1995": "medalon",
+   "to_latin_2026": "medalon"
+  },
+  "c1139": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent ordak",
+   "to_cyrillic": "Тошкент ōrdak",
+   "to_latin_1995": "Toshkent ōrdak",
+   "to_latin_2026": "Toşkent ōrdak"
   }
  },
  "schema": "akademtranslit-golden/1"

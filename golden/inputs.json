@@ -8387,6 +8387,168 @@
     "api-examples"
    ],
    "text": "123"
+  },
+  {
+   "id": "c1122",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "aeroport"
+  },
+  {
+   "id": "c1123",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "poeziya"
+  },
+  {
+   "id": "c1124",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "duel"
+  },
+  {
+   "id": "c1125",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "koeffitsiyent"
+  },
+  {
+   "id": "c1126",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "reemigratsiya"
+  },
+  {
+   "id": "c1127",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "siluet"
+  },
+  {
+   "id": "c1128",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "Rafael"
+  },
+  {
+   "id": "c1129",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "ecosystem"
+   ],
+   "text": "Alievning"
+  },
+  {
+   "id": "c1130",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "ecosystem"
+   ],
+   "text": "Alieva"
+  },
+  {
+   "id": "c1131",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "Kiev"
+  },
+  {
+   "id": "c1132",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "POEZIYA"
+  },
+  {
+   "id": "c1133",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "бульон"
+  },
+  {
+   "id": "c1134",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "Бульон"
+  },
+  {
+   "id": "c1135",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "БУЛЬОН"
+  },
+  {
+   "id": "c1136",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "павильон"
+  },
+  {
+   "id": "c1137",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "почтальонлар"
+  },
+  {
+   "id": "c1138",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "медальон"
+  },
+  {
+   "id": "c1139",
+   "tags": [
+    "rules-0.3.0",
+    "mixed",
+    "reform-2026"
+   ],
+   "text": "Тошкент ōrdak"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

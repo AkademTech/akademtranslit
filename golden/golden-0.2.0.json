@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "48d3b85f8d54f106f5824dbcfbe918e640ee2cfe30f8303673500543687f11d8",
+ "inputs_sha256": "39f111f7e17b3991a10aee0872e47d76a2fb129db71429891c2602d7dfbb5f66",
  "library_version": "0.2.0",
  "results": {
   "c0001": {
@@ -39553,6 +39553,738 @@
    "to_cyrillic": "123",
    "to_latin_1995": "123",
    "to_latin_2026": "123"
+  },
+  "c1122": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "aeroport",
+   "normalize_apostrophes_ascii": "aeroport",
+   "normalize_apostrophes_unicode": "aeroport",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1097,
+    1101,
+    1114,
+    1111,
+    1112,
+    1111,
+    1114,
+    1116
+   ],
+   "sort_key_latin_1995": [
+    11,
+    14,
+    27,
+    24,
+    25,
+    24,
+    27,
+    29
+   ],
+   "sort_key_latin_2026": [
+    11,
+    14,
+    29,
+    25,
+    27,
+    25,
+    29,
+    33
+   ],
+   "to_cyrillic": "аеропорт",
+   "to_latin_1995": "aeroport",
+   "to_latin_2026": "aeroport"
+  },
+  "c1123": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "poeziya",
+   "normalize_apostrophes_ascii": "poeziya",
+   "normalize_apostrophes_unicode": "poeziya",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1112,
+    1111,
+    1101,
+    1122,
+    1105,
+    1121,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    25,
+    24,
+    14,
+    34,
+    18,
+    33,
+    11
+   ],
+   "sort_key_latin_2026": [
+    27,
+    25,
+    14,
+    38,
+    19,
+    37,
+    11
+   ],
+   "to_cyrillic": "поезия",
+   "to_latin_1995": "poeziya",
+   "to_latin_2026": "poeziya"
+  },
+  "c1124": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "duel",
+   "normalize_apostrophes_ascii": "duel",
+   "normalize_apostrophes_unicode": "duel",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1100,
+    1117,
+    1101,
+    1108
+   ],
+   "sort_key_latin_1995": [
+    13,
+    30,
+    14,
+    21
+   ],
+   "sort_key_latin_2026": [
+    13,
+    34,
+    14,
+    22
+   ],
+   "to_cyrillic": "дуел",
+   "to_latin_1995": "duel",
+   "to_latin_2026": "duel"
+  },
+  "c1125": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "koeffitsiyent",
+   "normalize_apostrophes_ascii": "koeffitsiyent",
+   "normalize_apostrophes_unicode": "koeffitsiyent",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1107,
+    1111,
+    1101,
+    1102,
+    1102,
+    1105,
+    1116,
+    1115,
+    1105,
+    1121,
+    1101,
+    1110,
+    1116
+   ],
+   "sort_key_latin_1995": [
+    20,
+    24,
+    14,
+    15,
+    15,
+    18,
+    29,
+    28,
+    18,
+    33,
+    14,
+    23,
+    29
+   ],
+   "sort_key_latin_2026": [
+    21,
+    25,
+    14,
+    15,
+    15,
+    19,
+    33,
+    30,
+    19,
+    37,
+    14,
+    24,
+    33
+   ],
+   "to_cyrillic": "коеффициент",
+   "to_latin_1995": "koeffitsiyent",
+   "to_latin_2026": "koeffitsiyent"
+  },
+  "c1126": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "reemigratsiya",
+   "normalize_apostrophes_ascii": "reemigratsiya",
+   "normalize_apostrophes_unicode": "reemigratsiya",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1114,
+    1101,
+    1101,
+    1109,
+    1105,
+    1103,
+    1114,
+    1097,
+    1116,
+    1115,
+    1105,
+    1121,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    27,
+    14,
+    14,
+    22,
+    18,
+    16,
+    27,
+    11,
+    29,
+    28,
+    18,
+    33,
+    11
+   ],
+   "sort_key_latin_2026": [
+    29,
+    14,
+    14,
+    23,
+    19,
+    16,
+    29,
+    11,
+    33,
+    30,
+    19,
+    37,
+    11
+   ],
+   "to_cyrillic": "реемиграция",
+   "to_latin_1995": "reemigratsiya",
+   "to_latin_2026": "reemigratsiya"
+  },
+  "c1127": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "siluet",
+   "normalize_apostrophes_ascii": "siluet",
+   "normalize_apostrophes_unicode": "siluet",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1115,
+    1105,
+    1108,
+    1117,
+    1101,
+    1116
+   ],
+   "sort_key_latin_1995": [
+    28,
+    18,
+    21,
+    30,
+    14,
+    29
+   ],
+   "sort_key_latin_2026": [
+    30,
+    19,
+    22,
+    34,
+    14,
+    33
+   ],
+   "to_cyrillic": "силует",
+   "to_latin_1995": "siluet",
+   "to_latin_2026": "siluet"
+  },
+  "c1128": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "rafael",
+   "normalize_apostrophes_ascii": "Rafael",
+   "normalize_apostrophes_unicode": "Rafael",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1114,
+    1097,
+    1102,
+    1097,
+    1101,
+    1108
+   ],
+   "sort_key_latin_1995": [
+    27,
+    11,
+    15,
+    11,
+    14,
+    21
+   ],
+   "sort_key_latin_2026": [
+    29,
+    11,
+    15,
+    11,
+    14,
+    22
+   ],
+   "to_cyrillic": "Рафаел",
+   "to_latin_1995": "Rafael",
+   "to_latin_2026": "Rafael"
+  },
+  "c1129": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "alievning",
+   "normalize_apostrophes_ascii": "Alievning",
+   "normalize_apostrophes_unicode": "Alievning",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1097,
+    1108,
+    1105,
+    1101,
+    1118,
+    1110,
+    1105,
+    1110,
+    1103
+   ],
+   "sort_key_latin_1995": [
+    11,
+    21,
+    18,
+    14,
+    31,
+    23,
+    18,
+    23,
+    16
+   ],
+   "sort_key_latin_2026": [
+    11,
+    22,
+    19,
+    14,
+    35,
+    24,
+    19,
+    24,
+    16
+   ],
+   "to_cyrillic": "Алиевнинг",
+   "to_latin_1995": "Alievning",
+   "to_latin_2026": "Alievning"
+  },
+  "c1130": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "alieva",
+   "normalize_apostrophes_ascii": "Alieva",
+   "normalize_apostrophes_unicode": "Alieva",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1097,
+    1108,
+    1105,
+    1101,
+    1118,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    11,
+    21,
+    18,
+    14,
+    31,
+    11
+   ],
+   "sort_key_latin_2026": [
+    11,
+    22,
+    19,
+    14,
+    35,
+    11
+   ],
+   "to_cyrillic": "Алиева",
+   "to_latin_1995": "Alieva",
+   "to_latin_2026": "Alieva"
+  },
+  "c1131": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "kiev",
+   "normalize_apostrophes_ascii": "Kiev",
+   "normalize_apostrophes_unicode": "Kiev",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1107,
+    1105,
+    1101,
+    1118
+   ],
+   "sort_key_latin_1995": [
+    20,
+    18,
+    14,
+    31
+   ],
+   "sort_key_latin_2026": [
+    21,
+    19,
+    14,
+    35
+   ],
+   "to_cyrillic": "Киев",
+   "to_latin_1995": "Kiev",
+   "to_latin_2026": "Kiev"
+  },
+  "c1132": {
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "normalize": "poeziya",
+   "normalize_apostrophes_ascii": "POEZIYA",
+   "normalize_apostrophes_unicode": "POEZIYA",
+   "script_class": "latin",
+   "sort_key_cyrillic": [
+    1112,
+    1111,
+    1101,
+    1122,
+    1105,
+    1121,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    25,
+    24,
+    14,
+    34,
+    18,
+    33,
+    11
+   ],
+   "sort_key_latin_2026": [
+    27,
+    25,
+    14,
+    38,
+    19,
+    37,
+    11
+   ],
+   "to_cyrillic": "ПОЕЗИЯ",
+   "to_latin_1995": "POEZIYA",
+   "to_latin_2026": "POEZIYA"
+  },
+  "c1133": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "normalize_apostrophes_ascii": "бульон",
+   "normalize_apostrophes_unicode": "бульон",
+   "script_class": "cyrillic",
+   "sort_key_cyrillic": [
+    12,
+    31,
+    23,
+    38,
+    26,
+    25
+   ],
+   "sort_key_latin_1995": [
+    2073,
+    2091,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "sort_key_latin_2026": [
+    2073,
+    2091,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "to_cyrillic": "бульон",
+   "to_latin_1995": "bulon",
+   "to_latin_2026": "bulon"
+  },
+  "c1134": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "normalize_apostrophes_ascii": "Бульон",
+   "normalize_apostrophes_unicode": "Бульон",
+   "script_class": "cyrillic",
+   "sort_key_cyrillic": [
+    12,
+    31,
+    23,
+    38,
+    26,
+    25
+   ],
+   "sort_key_latin_1995": [
+    2073,
+    2091,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "sort_key_latin_2026": [
+    2073,
+    2091,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "to_cyrillic": "Бульон",
+   "to_latin_1995": "Bulon",
+   "to_latin_2026": "Bulon"
+  },
+  "c1135": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "normalize_apostrophes_ascii": "БУЛЬОН",
+   "normalize_apostrophes_unicode": "БУЛЬОН",
+   "script_class": "cyrillic",
+   "sort_key_cyrillic": [
+    12,
+    31,
+    23,
+    38,
+    26,
+    25
+   ],
+   "sort_key_latin_1995": [
+    2073,
+    2091,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "sort_key_latin_2026": [
+    2073,
+    2091,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "to_cyrillic": "БУЛЬОН",
+   "to_latin_1995": "BULON",
+   "to_latin_2026": "BULON"
+  },
+  "c1136": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "pavilon",
+   "normalize_apostrophes_ascii": "павильон",
+   "normalize_apostrophes_unicode": "павильон",
+   "script_class": "cyrillic",
+   "sort_key_cyrillic": [
+    27,
+    11,
+    13,
+    20,
+    23,
+    38,
+    26,
+    25
+   ],
+   "sort_key_latin_1995": [
+    2087,
+    2072,
+    2074,
+    2080,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "sort_key_latin_2026": [
+    2087,
+    2072,
+    2074,
+    2080,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "to_cyrillic": "павильон",
+   "to_latin_1995": "pavilon",
+   "to_latin_2026": "pavilon"
+  },
+  "c1137": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "pochtalonlar",
+   "normalize_apostrophes_ascii": "почтальонлар",
+   "normalize_apostrophes_unicode": "почтальонлар",
+   "script_class": "cyrillic",
+   "sort_key_cyrillic": [
+    27,
+    26,
+    35,
+    30,
+    11,
+    23,
+    38,
+    26,
+    25,
+    23,
+    11,
+    28
+   ],
+   "sort_key_latin_1995": [
+    2087,
+    2086,
+    2095,
+    2090,
+    2072,
+    2083,
+    2100,
+    2086,
+    2085,
+    2083,
+    2072,
+    2088
+   ],
+   "sort_key_latin_2026": [
+    2087,
+    2086,
+    2095,
+    2090,
+    2072,
+    2083,
+    2100,
+    2086,
+    2085,
+    2083,
+    2072,
+    2088
+   ],
+   "to_cyrillic": "почтальонлар",
+   "to_latin_1995": "pochtalonlar",
+   "to_latin_2026": "poçtalonlar"
+  },
+  "c1138": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "medalon",
+   "normalize_apostrophes_ascii": "медальон",
+   "normalize_apostrophes_unicode": "медальон",
+   "script_class": "cyrillic",
+   "sort_key_cyrillic": [
+    24,
+    16,
+    15,
+    11,
+    23,
+    38,
+    26,
+    25
+   ],
+   "sort_key_latin_1995": [
+    2084,
+    2077,
+    2076,
+    2072,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "sort_key_latin_2026": [
+    2084,
+    2077,
+    2076,
+    2072,
+    2083,
+    2100,
+    2086,
+    2085
+   ],
+   "to_cyrillic": "медальон",
+   "to_latin_1995": "medalon",
+   "to_latin_2026": "medalon"
+  },
+  "c1139": {
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "normalize": "toshkent ordak",
+   "normalize_apostrophes_ascii": "Тошкент ōrdak",
+   "normalize_apostrophes_unicode": "Тошкент ōrdak",
+   "script_class": "mixed",
+   "sort_key_cyrillic": [
+    30,
+    26,
+    36,
+    22,
+    16,
+    25,
+    30,
+    0,
+    1333,
+    1114,
+    1100,
+    1097,
+    1107
+   ],
+   "sort_key_latin_1995": [
+    2090,
+    2086,
+    2096,
+    2082,
+    2077,
+    2085,
+    2090,
+    0,
+    1333,
+    27,
+    13,
+    11,
+    20
+   ],
+   "sort_key_latin_2026": [
+    2090,
+    2086,
+    2096,
+    2082,
+    2077,
+    2085,
+    2090,
+    0,
+    26,
+    29,
+    13,
+    11,
+    21
+   ],
+   "to_cyrillic": "Тошкент ōrdak",
+   "to_latin_1995": "Toshkent ōrdak",
+   "to_latin_2026": "Toşkent ōrdak"
   }
  },
  "schema": "akademtranslit-golden/1"
