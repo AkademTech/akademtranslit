@@ -18,8 +18,9 @@ The library does two jobs, and keeps them apart:
   the same word in all three orthographies, for search and deduplication, and
   the key is never meant to be shown.
 
-Sorting (`sort_key`) and detection (`detect_script`, `script_class`,
-`cyrillic_language`) are described further down.
+Sorting (`sort_key`), detection (`detect_script`, `script_class`,
+`cyrillic_language`) and the script of each word (`script_spans`,
+`fold_homoglyphs`, `homoglyph_spans`) are described further down.
 
 ## Layout
 
@@ -31,11 +32,12 @@ that.
   marks and the eight `APOSTROPHE_VARIANTS`, `DEFAULT_IGNORABLE` (Unicode
   15.1), the Cyrillic range (`CYRILLIC_FIRST`, `CYRILLIC_LAST`), vowel sets,
   the context-free mapping tables, the reform steps, `ASCII_SCHEME` and
-  `ASCII_CAPITALS`, the three alphabets and `TS_LOANWORD_STEMS`. Apart from
-  `__future__`, it imports nothing.
+  `ASCII_CAPITALS`, `HOMOGLYPHS`, the three alphabets and
+  `TS_LOANWORD_STEMS`. Apart from `__future__`, it imports nothing.
 - `rules.py` is the word engine: the word pattern `_WORD_RE`,
   `canonicalize_marks`, the case of each letter (`_case_mask`, `apply_case`),
-  `map_words`, and the four per-word conversion functions with the context
+  `map_words`, `map_words_by` and `map_word`, `word_class` (the orthography
+  one word shows) and the four per-word conversion functions with the context
   rules. It uses `tables` and `re`.
 - `normalize.py` has `normalize`, `fold_cyrillic`, `fold_latin_2026` and
   `is_cyrillic`. It uses `rules`, `tables`, `re` and `unicodedata`.
@@ -43,6 +45,9 @@ that.
   `unicodedata`); `apostrophes.py` has `normalize_apostrophes` (uses
   `rules._WORD_RE`, `tables` and `re`); `detection.py` has `script_class` and
   `cyrillic_language` (uses `tables` and `unicodedata`).
+- `scripts.py` has `script_spans`, `homoglyph_spans` and `fold_homoglyphs`.
+  It uses `rules` (`_WORD_RE`, `word_class`), `detection` (which letters are
+  Latin and which Cyrillic) and `tables` (`HOMOGLYPHS`).
 - `protect.py` finds protected spans: `Protect` (which kinds; immutable),
   `segments`, and `_spans` and `_settings`, which `convert` calls. Its module
   docstring gives the rule for each kind. It uses `tables` and `re`.
@@ -53,8 +58,9 @@ that.
   called the public function. It uses `tables`, `re` and `warnings`.
 - `__init__.py` is the public API: it re-exports the public names, defines
   `__version__` and `__all__`, and holds `detect_script`, `convert`,
-  `to_latin`, `to_cyrillic`, `to_ascii` and the `_PIPELINES` table. It uses
-  `unicodedata` for `to_ascii`.
+  `to_latin`, `to_cyrillic`, `to_ascii`, the `_PIPELINES` table and
+  `_auto_sources`, which decides how `source="auto"` reads each word. It
+  uses `unicodedata` for `to_ascii`.
 
 ## Conversion pipeline
 
@@ -72,11 +78,31 @@ Cyrillic → `latin_2026` (a Latin word inside Cyrillic text). Cyrillic and
 from `SCRIPTS` (or `"auto"` for `source`) and `protect` as `True`, `False` or
 a `Protect`, raising `ValueError` for anything it cannot read. It returns
 empty text as it is. Otherwise it splits the text into protected spans and
-the text between them (`protect._spans`), runs `detect_script` on the text
-between them when `source` is `"auto"`, calls `map_words` on each piece of
-that text with a function that applies the steps in order, and copies each
-protected span as it is. `to_latin` and `to_cyrillic` call `convert` with
+the text between them (`protect._spans`). With a named `source`, it calls
+`map_words` on each piece of that text with a function that applies the steps
+for `source` and `target` in order. With `source="auto"`, `_auto_sources`
+first decides a source for each word of that text (below), and `map_words_by`
+converts each word with the steps for its own source. Each protected span is
+copied as it is. `to_latin` and `to_cyrillic` call `convert` with
 `source="auto"`; `to_latin` reads a tag in `variant` first.
+
+`source="auto"` is decided in two passes over the words of the text outside
+the protected spans. `word_class` puts each word, lowercased and with its
+marks canonicalised, in the first class that fits: `C` (a letter in
+U+0400–U+052F), `N` (`ş ç ğ ö` or s with comma below), `O` (`oʻ` or `gʻ`),
+`D` (o with macron or o with caron), `W` (`sh` or `ch`) or `-` (none). The
+counts decide two things:
+
+- the Latin orthography of the text: `latin_2026` if `N > 0` and either
+  `N > O + W`, or `N = O + W` and `O = 0`; otherwise `latin_1995`. `D` is not
+  counted: foreign names have those letters;
+- whether the text is mostly Cyrillic: `C ≥ 1` and `C ≥ N + O + D + W + -`.
+
+Then `C` words are read as Cyrillic, `N` and `D` words as `latin_2026`, `O`
+words as `latin_1995`, and `W` and `-` words in the Latin orthography of the
+text, except that they keep no steps (stay as they are) when the target is
+Cyrillic and the text is mostly Cyrillic. `detect_script` is not used and
+does not change: it still answers for the whole text.
 
 `segments` scans once per call. Each kind has one or more finders: regular
 expressions, a brace matcher for ICU MessageFormat, and plain string search
@@ -101,17 +127,19 @@ characters.
    (`ʻ`, `ʼ`). An `h` after a capital `S` or `C` is a capital when the word
    has another capital, since `Sh` and `Ch` are one letter: `MChJ` and `AQSh`
    are all caps, `Shahar` is not. Where a lowercase letter is followed by a
-   capital, the word is split into letter units (`Tosh|DU`, `Oʻz|MU`); a
-   character without case stays with the letter before it. A word without a
-   capital is one unit and skips this step.
+   capital, and where two or more capitals are followed by a lowercase
+   letter, the word is split into letter units (`Tosh|DU|ga`, `Oʻz|MU`,
+   `AQSh|da`); a character without case stays with the letter before it. A
+   word without a capital is one unit and skips this step.
 3. Each unit is lowercased, and `canonicalize_marks` rewrites every variant
    to `ʻ` after `o` or `g` and to `ʼ` elsewhere.
 4. The steps convert the lowercase unit.
-5. `apply_case` puts the unit's case back. Irregular case (`MChJ`, `ShAHAR`,
-   `McDonald`) is copied letter by letter when the output is as long as the
-   input. Otherwise it is re-applied as all caps (judged by the mask), an
-   initial capital or lowercase, because the length changes: `ш` is one
-   character, `sh` is two.
+5. `apply_case` puts the unit's case back, judged by the unit's own letters
+   (the `Sh` of `Ter|Sh` has no other capital, so its `h` is lowercase).
+   Irregular case (`MChJ`, `ShAHAR`, `McDonald`) is copied letter by letter
+   when the output is as long as the input. Otherwise it is re-applied as all
+   caps (judged by the mask), an initial capital or lowercase, because the
+   length changes: `ш` is one character, `sh` is two.
 
 Text between words is never passed to a step, so digits, punctuation and
 whitespace come through unchanged. Because the marks are canonicalised even
@@ -198,6 +226,17 @@ is `(weights, NFC text)`, so ties are broken by the text.
 - `cyrillic_language` looks only for `ў қ ғ ҳ` (Uzbek) and `щ ы` (Russian),
   in either case, so short text is often `unknown`; it is a routing
   heuristic, not a language identifier.
+- `script_spans` (in `scripts.py`) splits the text with `_WORD_RE` and names
+  each word by `word_class`: `cyrillic` for `C`, or `mixed` if the word also
+  has a Latin letter; `latin_2026` for `N` and `D`; `latin_1995` for `O`;
+  `latin` for `W` and `-`. The text between words is `None`.
+- `fold_homoglyphs` takes each word with both Latin and Cyrillic letters (by
+  the two tests of `script_class`), keeps the alphabet with more letters in
+  it, and replaces each letter of the other by its pair in `HOMOGLYPHS`. A tie,
+  or a letter without a pair, leaves the word as it is. In a Latin word it
+  also writes s with comma below as `ş`. `homoglyph_spans` gives
+  `(start, stop, word)` for each word it changes, and `fold_homoglyphs`
+  splices them in.
 
 Every function takes Cyrillic to be U+0400–U+052F, the Cyrillic and
 Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
@@ -205,14 +244,14 @@ Cyrillic Supplement blocks: `CYRILLIC_FIRST` and `CYRILLIC_LAST` in
 
 ## Stability and compatibility
 
-- The public API is the 28 names in `__all__` in `__init__.py`.
-- `golden/` holds the output of the public functions on 1175 fixed inputs,
+- The public API is the 31 names in `__all__` in `__init__.py`.
+- `golden/` holds the output of the public functions on 1188 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
   (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`), and
-  `SHA256SUMS`. From 0.3.0 the files have schema 2: 25 fields (listed in
-  `fields()` in `tools/golden.py`; `convert` for all nine pairs, `segments`
-  and `to_ascii` among them),
+  `SHA256SUMS`. From 0.3.0 the files have schema 2: 27 fields (listed in
+  `fields()` in `tools/golden.py`; `convert` for all nine pairs, `segments`,
+  `to_ascii`, `script_spans` and `fold_homoglyphs` among them),
   the tag results and `RULES_VERSION`. `tools/golden.py` writes them
   (`--write`, from another `src/` with `--src`), checks them against `src/`
   and checks that a change to conversion output comes with a new rules
@@ -239,11 +278,13 @@ run and no install is needed.
   the shapes that are not tokens, each protected piece unchanged in all nine
   conversions, `protect=False` against the output from before),
   `test_ascii.py`.
+- Words and homoglyphs: `test_scripts.py` (`script_spans`, `homoglyph_spans`,
+  `fold_homoglyphs`, the `HOMOGLYPHS` table).
 - Behaviour changes: `test_regressions.py` (0.1.1 fixes),
   `test_changes_0_2_0.py` (0.2.0 rule changes), `test_changes_0_3_0.py`
   (0.3.0: the other input forms of `ö` and `ş`, the Cyrillic range, language tags, the `e` and
   `ьо` rules, `ValueError` for a non-string orthography, case per letter
-  unit).
+  unit, abbreviations with a suffix, s with comma below, word-level `auto`).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`
   (README examples, via doctest), `test_privacy.py` (no I/O).
 

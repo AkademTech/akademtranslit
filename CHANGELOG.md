@@ -24,6 +24,16 @@
 - `normalize_apostrophes(..., strip_invisible=True)` removes default-ignorable
   characters (zero-width space, soft hyphen, BOM, …);
   `strip_stress=True` removes the combining acute accent used as a stress mark.
+- `script_spans()`: the words of a text and the orthography each one shows
+  (`cyrillic`, `latin_2026`, `latin_1995`, `latin`, or `mixed` for a word
+  with letters from both alphabets). `fold_homoglyphs()` writes such a word in
+  the alphabet most of its letters are in, by the look-alike pairs of
+  `HOMOGLYPHS` (from the Unicode confusables), and leaves a word alone when a
+  letter has no look-alike; `homoglyph_spans()` says which words it changes.
+- `ș` (s with comma below, U+0219, the Romanian letter that looks like `ş`) is
+  an input form of `ş`, as o with macron and o with caron are of `ö`:
+  `detect_script` counts it as a 2026 letter, conversion reads it as `ş`, and
+  `normalize` and `sort_key` read it as `ş`.
 
 ### Fixed
 
@@ -55,12 +65,24 @@
   `MÇJ`, `AQSh` → `АҚШ`, `ToshDU` → `ToşDU`, `pH` and `McDonald` stay as they
   are (were `Mçj`, `Ақш`, `Toşdu`, `ph`, `Mcdonald`). A word with irregular
   case keeps it: `OʻzBEKISTON` → `ÖzBEKISTON`.
+- An abbreviation keeps its case before a suffix: a word is also split where
+  two or more capitals are followed by a lowercase letter, and each unit is
+  cased by its own letters. `AQShda` → `AQŞda`, `MChJning` → `МЧЖнинг`,
+  `ToshDUga` → `ToşDUga`, `TerSh` → `TerŞ` (were `Aqşda`, `Мчжнинг`,
+  `Toşduga`, `Terş`). An Uzbek abbreviation with a suffix is not a token
+  (`ToshDUga`, `SamDUda`); `ChatGPTda` is.
+- With `source="auto"` each word is read in its own orthography: a Latin word
+  in Cyrillic text is converted when it shows its orthography (`ŞAHAR`,
+  `oʻrdak`), and a 1995 text with a foreign `ö` or `ō` stays 1995.
+  `detect_script` is unchanged.
 
 ### Output changes
 
-Golden diff 0.2.0 → 0.3.0, on 1175 inputs (54 added in 0.3.0):
-`detect_script` 2, `normalize` 6, `to_cyrillic` 51, `to_latin_1995` 27,
-`to_latin_2026` 43. Of the last three:
+Golden diff 0.2.0 → 0.3.0, on 1188 inputs (67 added in 0.3.0):
+`detect_script` 3, `normalize` 7, `sort_key_latin_2026` 1, `to_cyrillic` 62,
+`to_latin_1995` 36, `to_latin_2026` 50. `detect_script` changes on capital o
+with caron (2) and on `ș` (1), `normalize` on `ьо` (6) and on `ș` (1), and
+`sort_key_latin_2026` on `ș` (1). Of the last three:
 
 - the rule changes under Fixed: 11, 8 and 16;
 - protected spans: 32, 11 and 19 — 13, 6 and 6 on inputs that 0.2.0 already
@@ -70,10 +92,16 @@ Golden diff 0.2.0 → 0.3.0, on 1175 inputs (54 added in 0.3.0):
 - case per letter unit: 3 in each (`OʻzBEKISTON`, `«AKADEMTECH» MChJ`,
   `AQSh va BMT`);
 - the 8 inputs added for case units, numbers with a suffix and Uzbek
-  abbreviations: 5 in each.
+  abbreviations: 5 in each;
+- word-level `auto`: 3, 2 and 0 on inputs added before it
+  (`Toshkent viloyati Тошкент`, `Тошкент ŞAHAR`, and a Latin word with o with
+  macron in Cyrillic text);
+- the 13 inputs added for abbreviations with a suffix, word-level `auto`,
+  `ș` and homoglyphs: 8, 7 and 7.
 
-`sort_key`, `normalize_apostrophes`, `script_class` and `cyrillic_language`
-are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
+The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
+`cyrillic_language` are unchanged. Schema 2 has four new fields, `segments`,
+`to_ascii`, `script_spans` and `fold_homoglyphs`.
 
 ### Documentation
 
@@ -89,6 +117,10 @@ are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
   and stress marks.
 - README: case per letter unit; numbers with a suffix and Uzbek abbreviations
   are not tokens.
+- README: text in more than one orthography and `source="auto"`;
+  abbreviations with a suffix; `ș`; homoglyphs. The README and the comments
+  no longer say that drafts of the reform used o with macron and o with
+  caron: no source for that was found.
 
 ### Tests
 
@@ -98,8 +130,12 @@ are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
 - `tests/test_protect.py`: every kind of protected span, with the cases that
   must stay text; on every golden input, each protected piece comes out of
   all nine conversions unchanged; `protect=False` gives the output from
-  before protected spans, except the case of seven mixed-case inputs.
+  before protected spans, except the case of seven mixed-case inputs and
+  three inputs that word-level `auto` reads differently.
   `tests/test_ascii.py`: `to_ascii`.
+- `tests/test_scripts.py`: `script_spans`, `homoglyph_spans`,
+  `fold_homoglyphs` and the `HOMOGLYPHS` table; `fold_homoglyphs` is
+  idempotent on every golden input.
 
 ### Data
 
@@ -107,6 +143,8 @@ are unchanged. Schema 2 has two new fields, `segments` and `to_ascii`.
   (transforms, collation, exemplar characters, tests).
 - `cldr/`: the e and ьо rules follow the library; checked against 0.3.0 and
   its 1139 golden inputs.
+- `cldr/`: checked against 1175 golden inputs, with the library's output taken
+  with `protect=False`, since the transforms protect nothing.
 
 ## 0.2.0 — 2026-11-08
 

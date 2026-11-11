@@ -70,8 +70,62 @@ Requires Python 3.9 or newer. No dependencies.
 
 ```
 
-`source` defaults to `"auto"`, which runs script detection first, and `target`
-defaults to `"latin_2026"`.
+`source` defaults to `"auto"`, which reads each word in the orthography it
+shows (see the next section), and `target` defaults to `"latin_2026"`.
+
+### Text in more than one orthography
+
+With `source="auto"`, each word is read in the orthography it shows:
+
+| A word with | is read as |
+| --- | --- |
+| a Cyrillic letter | `cyrillic` |
+| `ş`, `ç`, `ğ` or `ö` (or `ș`, see "Other forms of `ö` and `ş`") | `latin_2026` |
+| `oʻ` or `gʻ`, with any apostrophe mark | `latin_1995` |
+| o with macron or o with caron | `latin_2026`, without counting below |
+| `sh` or `ch` only, or none of these | the Latin orthography of the text |
+
+The Latin orthography of the text is `latin_2026` when the words with
+`ş ç ğ ö` outnumber those with `oʻ`, `gʻ`, `sh` or `ch`, or equal them with no
+`oʻ` or `gʻ` in the text; otherwise it is `latin_1995`. Words with o with
+macron or o with caron are not counted, since foreign names carry them too.
+So one foreign word does not turn a 1995 text into 2026, and the words of a
+2026 text that show nothing are read as 2026:
+
+```python
+>>> from akademtranslit import to_cyrillic, to_latin
+>>> to_cyrillic("Gödel teoremasi Toshkentda shu yil oʻqitiladi")
+'Гўдел теоремаси Тошкентда шу йил ўқитилади'
+>>> to_latin("Ishoq Şoşimov Toşkentda yaşaydi", variant="latin_1995")
+'Isʼhoq Shoshimov Toshkentda yashaydi'
+
+```
+
+A Latin word in Cyrillic text is converted when it shows its orthography. A
+text is mostly Cyrillic when it has a Cyrillic word and no more Latin words
+than Cyrillic ones; converted to Cyrillic, it keeps the Latin words that show
+nothing as they are, so names such as Google stay:
+
+```python
+>>> to_cyrillic("Тошкент ŞAHAR")
+'Тошкент ШАҲАР'
+>>> to_cyrillic("Тошкентда Google ва Telegram хизматлари ишлайди")
+'Тошкентда Google ва Telegram хизматлари ишлайди'
+>>> to_latin("Тошкентда Google ва Telegram хизматлари ишлайди")
+'Toşkentda Google va Telegram xizmatlari işlaydi'
+
+```
+
+Only the text outside protected spans is counted (see the next section).
+`detect_script` still names one orthography for the whole text (see "Detect
+what you were handed").
+
+**Known limitations.** A short text has little to go on. In `Toshkent Gödel`
+the one 2026 word outweighs the one word with `sh`, so `Toshkent` is read as
+2026 and `to_cyrillic` gives `Тосҳкент Гўдел`. And a word that shows nothing
+is read as the text around it: `Ishoq` alone is 1995 and gives `Ишоқ`, while
+in a 2026 text it is the name Исҳоқ. Pass `source` when the orthography is
+known.
 
 ### Protect URLs, code and names
 
@@ -113,8 +167,9 @@ abbreviation with `Sh` or `Ch` (`MChJ`, `AQSh`: `Sh` and `Ch` after a capital
 count as one capital); a number with a suffix or a unit, digits followed by
 lowercase letters only (`10ta`, `2026yil`, `100mg`); and an Uzbek abbreviation
 of a capital, one to four lowercase letters and two or more capitals
-(`ToshDU`, `SamDU`, `ToshPTI`). `ChatGPT`, `PhD` and `AkademID` do not have
-that shape and stay tokens:
+(`ToshDU`, `SamDU`, `ToshPTI`), also with a suffix (`ToshDUga`, `SamDUda`).
+`ChatGPT`, `PhD` and `AkademID` do not have that shape and stay tokens, with a
+suffix too (`ChatGPTda`):
 
 ```python
 >>> to_cyrillic("10ta kitob, ToshDU va MChJ, ChatGPT")
@@ -345,7 +400,8 @@ space, so `text` above gives the key `tosh kent`.
 
 ```
 
-`detect_script` names an orthography. `script_class` answers a narrower
+`detect_script` names one orthography for the whole text; conversion with
+`source="auto"` reads each word instead. `script_class` answers a narrower
 question with a closed set — `latin`, `cyrillic` or `mixed` — for the text as a
 whole: the `о` in the third example is Cyrillic. `cyrillic_language` tells
 Uzbek Cyrillic from Russian by the letters only one of them has (`ў қ ғ ҳ`
@@ -508,21 +564,28 @@ Context-dependent rules), and `ъ` after `ў` does not come back (`мўъжиз�
 word is split where a lowercase letter is followed by a capital, and each part
 keeps its own case. `Sh` and `Ch` are one letter in `latin_1995`, so the `h`
 after a capital `S` or `C` counts as a capital when the word has another
-capital. A word with irregular case keeps it letter by letter when the output
-is as long as the input:
+capital. A word is also split where two or more capitals are followed by a
+lowercase letter, so an abbreviation keeps its case before a suffix:
+`AQSh|da`, `Tosh|DU|ga`. Each unit is cased by its own letters: the `Sh` of
+`TerSh` has no other capital, so it is an initial capital, `TerŞ` in 2026. A
+word with irregular case keeps it letter by letter when the output is as long
+as the input:
 
 ```python
 >>> to_latin("«AKADEMTECH» MChJ, AQSh va ToshDU")
 '«AKADEMTEÇ» MÇJ, AQŞ va ToşDU'
 >>> to_cyrillic("OʻzMU va AQSh"), to_latin("OʻzBEKISTON", variant="latin_1995")
 ('ЎзМУ ва АҚШ', 'OʻzBEKISTON')
+>>> to_latin("AQShda va ToshDUga"), to_cyrillic("MChJning")
+('AQŞda va ToşDUga', 'МЧЖнинг')
 
 ```
 
 A word typed with broken case keeps it too: `OʻzBEKISTON` gives `ÖzBEKISTON`,
 as the CLDR transform does. One known limitation: `МЧЖ` and `MÇJ` have a
-single letter for `Ch`, so they give `MCHJ` in `latin_1995`, where the
-official spelling is `MChJ`. Telling the two apart takes a dictionary.
+single letter for `Ch`, so they give `MCHJ` in `latin_1995`, and `АҚШда` and
+`МЧЖнинг` give `AQSHda` and `MCHJning`, where the official spelling is `MChJ`,
+`AQShda`, `MChJning`. Telling the two apart takes a dictionary.
 
 **Protected spans.** Every span that `segments` finds — a URL, an e-mail
 address, a DOI, markup, a placeholder, a path, a term, a token — comes out of
@@ -541,12 +604,13 @@ spelling drops it:
 | ц | positional `ts`/`s`, not reversible | a heuristic; loanword spelling is genuinely inconsistent |
 | ъ | dropped after a consonant before `е ё ю я` and after `ў` (`объект` → `obyekt`, `мўъжиза` → `moʻjiza`), `ʼ` elsewhere; not reversible | the 1995 spelling writes no mark there, so the Latin side has nothing to restore it from |
 
-**Script detection is a heuristic.** A `latin_2026` string containing none of
+**Script detection is a heuristic.** A `latin_2026` word containing none of
 the four reformed letters is indistinguishable from a `latin_1995` one. That is
 harmless for nearly every word — the two orthographies write them identically —
 but not for a separated s+h: `Ishoq` is Исҳоқ in `latin_2026` and Ишоқ in
-`latin_1995`. Pass `source` explicitly when the orthography is known from
-context.
+`latin_1995`. With `source="auto"` such a word is read as the words around it
+show (see "Text in more than one orthography"), and a short text may show too
+little. Pass `source` explicitly when the orthography is known from context.
 
 **Out of scope.** `normalize` folds orthography, not romanization choice. It
 does not treat `Xomidov` and `Khomidov`, or `Jasur` and `Zhasur`, as the same
@@ -656,8 +720,9 @@ must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
 cross-script normalization contract, sorting, and the golden vectors. The
 examples in this README and in the docstrings run as tests.
 `tests/test_regressions.py`, `tests/test_changes_0_2_0.py`,
-`tests/test_changes_0_3_0.py` and, for protected spans, `tests/test_protect.py`
-pin every behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
+`tests/test_changes_0_3_0.py` and, for protected spans and for words and
+homoglyphs, `tests/test_protect.py` and `tests/test_scripts.py` pin every
+behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
 
 How the package is put together: [docs/architecture.md](docs/architecture.md).
 
