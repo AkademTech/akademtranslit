@@ -27,6 +27,7 @@ from __future__ import annotations
 import unicodedata
 
 from .apostrophes import normalize_apostrophes
+from .checks import validate
 from .collation import sort_key
 from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
@@ -101,6 +102,7 @@ __all__ = [
     "to_ascii",
     "to_cyrillic",
     "to_latin",
+    "validate",
 ]
 
 # Letters that exist only in latin_2026. One of them anywhere in the text is
