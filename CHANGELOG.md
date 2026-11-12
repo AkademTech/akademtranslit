@@ -34,6 +34,21 @@
   an input form of `ş`, as o with macron and o with caron are of `ö`:
   `detect_script` counts it as a 2026 letter, conversion reads it as `ş`, and
   `normalize` and `sort_key` read it as `ş`.
+- `validate(text, orthography)`: what in a text does not belong to the
+  orthography it is meant to be in, as `(start, end, code, suggestion)`:
+  invisible characters, decomposed letters, words with letters from both
+  alphabets, words that show another orthography, look-alike letters, other
+  forms of `ö` and `ş`, `sh` and `ch` in 2026 text, and other forms of the
+  two marks. Eleven codes; protected spans are not checked.
+- `migration_report(text)`: what converting a 1995 text to the 2026
+  orthography does to it: the words, how many change, the protected spans,
+  whether the result comes back, the rules version, the result, and the
+  words to check (`validate` in 1995, `round-trip` and `separator`).
+- A command-line tool, `akademtranslit` (and `python -m akademtranslit`):
+  `convert`, `validate`, `report` and `normalize`. It reads one file or
+  standard input as UTF-8, writes to standard output, keeps line ends, writes
+  no file, and exits with 1 when `validate` or `report` finds something and 2
+  on an error. The library does not import it.
 
 ### Fixed
 
@@ -49,6 +64,13 @@
 - `ō` and `ǒ` in a Latin word inside Cyrillic text are read as `ö` when the
   text is converted to the 2026 orthography: `to_latin("Тошкент ōrdak")` gives
   `Toşkent ördak`.
+- A letter typed as a base letter and a combining mark was not converted:
+  `O` + U+0308 + `zbekiston` gave Cyrillic O (U+041E) + U+0308 + `збекистон`
+  in Cyrillic, not `Ўзбекистон`, and `detect_script` did not read it as 2026.
+  `convert`, `to_latin` and `to_cyrillic` now compose the text outside
+  protected spans (NFC) before converting it, so their output is in NFC
+  there; `detect_script` reads the text in NFC. Protected spans still come out
+  byte for byte.
 
 ### Changed
 
@@ -79,10 +101,10 @@
 ### Output changes
 
 Golden diff 0.2.0 → 0.3.0, on 1188 inputs (67 added in 0.3.0):
-`detect_script` 3, `normalize` 7, `sort_key_latin_2026` 1, `to_cyrillic` 62,
-`to_latin_1995` 36, `to_latin_2026` 50. `detect_script` changes on capital o
-with caron (2) and on `ș` (1), `normalize` on `ьо` (6) and on `ș` (1), and
-`sort_key_latin_2026` on `ș` (1). Of the last three:
+`detect_script` 5, `normalize` 7, `sort_key_latin_2026` 1, `to_cyrillic` 64,
+`to_latin_1995` 38, `to_latin_2026` 52. `detect_script` changes on capital o
+with caron (2), on `ș` (1) and on decomposed letters (2), `normalize` on `ьо`
+(6) and on `ș` (1), and `sort_key_latin_2026` on `ș` (1). Of the last three:
 
 - the rule changes under Fixed: 11, 8 and 16;
 - protected spans: 32, 11 and 19 — 13, 6 and 6 on inputs that 0.2.0 already
@@ -97,11 +119,14 @@ with caron (2) and on `ș` (1), `normalize` on `ьо` (6) and on `ș` (1), and
   (`Toshkent viloyati Тошкент`, `Тошкент ŞAHAR`, and a Latin word with o with
   macron in Cyrillic text);
 - the 13 inputs added for abbreviations with a suffix, word-level `auto`,
-  `ș` and homoglyphs: 8, 7 and 7.
+  `ș` and homoglyphs: 8, 7 and 7;
+- decomposed letters, composed before converting: 2 in each (`O` + U+0308 +
+  `zbekiston` and `o` + U+0308 + `zbek`, inputs that 0.2.0 already had).
 
 The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
-`cyrillic_language` are unchanged. Schema 2 has four new fields, `segments`,
-`to_ascii`, `script_spans` and `fold_homoglyphs`.
+`cyrillic_language` are unchanged. Schema 2 has seven new fields, `segments`,
+`to_ascii`, `script_spans`, `fold_homoglyphs`, `validate_cyrillic`,
+`validate_latin_1995` and `validate_latin_2026`.
 
 ### Documentation
 
@@ -122,6 +147,9 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
   no longer say that drafts of the reform used o with macron and o with
   caron (no source was found for o with caron); both are described as
   input forms only.
+- README: checking a text (`validate` and its codes), `migration_report`,
+  the command line, and that conversion composes the text (NFC).
+  `PRIVACY.md`: the command-line tool.
 
 ### Tests
 
@@ -131,12 +159,20 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
 - `tests/test_protect.py`: every kind of protected span, with the cases that
   must stay text; on every golden input, each protected piece comes out of
   all nine conversions unchanged; `protect=False` gives the output from
-  before protected spans, except the case of seven mixed-case inputs and
-  three inputs that word-level `auto` reads differently.
+  before protected spans, except the case of seven mixed-case inputs, three
+  inputs that word-level `auto` reads differently and two inputs with a
+  decomposed letter.
   `tests/test_ascii.py`: `to_ascii`.
 - `tests/test_scripts.py`: `script_spans`, `homoglyph_spans`,
   `fold_homoglyphs` and the `HOMOGLYPHS` table; `fold_homoglyphs` is
   idempotent on every golden input.
+- `tests/test_checks.py`: `validate` and `migration_report`; on every golden
+  input, a text without findings is its own conversion (but for a lone mark).
+  `tests/test_cli.py`: the command-line tool, in this process and through
+  `python -m akademtranslit`.
+- `tests/test_privacy.py` checks the library and the command-line tool
+  apart: the tool may also import `argparse`, `json` and `sys`, and may open
+  a file only to read it; no library module imports it.
 
 ### Data
 
@@ -146,6 +182,9 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
   its 1139 golden inputs.
 - `cldr/`: checked against 1175 golden inputs, with the library's output taken
   with `protect=False`, since the transforms protect nothing.
+- `cldr/`: checked against 1188 golden inputs, with the library composing its
+  input (NFC) and reading each word in its own orthography; `ș` is read as
+  `ş` in both 2026 transforms.
 
 ## 0.2.0 — 2026-11-08
 

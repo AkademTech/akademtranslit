@@ -277,6 +277,34 @@ True
 
 ```
 
+`migration_report` does that check for one text and says what to look at
+before the result is stored:
+
+```python
+>>> from akademtranslit import migration_report
+>>> report = migration_report("Oʻzbekiston Respublikasi va AQSh")
+>>> report["words"], report["changed"], report["protected"], report["round_trip"]
+(4, 2, 0, False)
+>>> report["check"]
+[(28, 32, 'round-trip', 'AQSH')]
+>>> report["result"]
+'Özbekiston Respublikasi va AQŞ'
+
+```
+
+The report is a dict: `words` outside protected spans, how many of them
+`changed`, how many spans are `protected`, whether the result converted back
+gives the text (`round_trip`, with its marks in canonical form), the
+`rules_version`, what to `check`, and the `result`. `check` holds the findings
+of `validate(text, "latin_1995")` (see "Check a text") and two more codes for
+the words without one: `round-trip`, a word that does not come back as it was
+(the suggestion is what comes back), and `separator`, a word with `sʼh`
+(`Isʼhoq`), which the 2026 alphabet writes as `sh` (`Ishoq`). A `separator`
+word is converted correctly; it is listed because `validate` on the 2026 text
+reports its `sh` as a `digraph`. `AQSh` and `MChJ` come back as `AQSH` and
+`MCHJ` (see Case, under "Guarantees, and their limits"), so the report lists
+them as `round-trip`.
+
 ### ASCII for names and logins
 
 `to_ascii` writes a name in plain ASCII, for logins, file names and systems
@@ -400,8 +428,9 @@ space, so `text` above gives the key `tosh kent`.
 
 ```
 
-`detect_script` names one orthography for the whole text; conversion with
-`source="auto"` reads each word instead. `script_class` answers a narrower
+`detect_script` names one orthography for the whole text, read in NFC as
+`convert` reads it (`O` followed by U+0308 COMBINING DIAERESIS is `Ö`);
+conversion with `source="auto"` reads each word instead. `script_class` answers a narrower
 question with a closed set — `latin`, `cyrillic` or `mixed` — for the text as a
 whole: the `о` in the third example is Cyrillic. `cyrillic_language` tells
 Uzbek Cyrillic from Russian by the letters only one of them has (`ў қ ғ ҳ`
@@ -433,6 +462,112 @@ True
 >>> to_cyrillic(fold_homoglyphs(text))
 'Тошкент шаҳри'
 
+```
+
+### Check a text
+
+`validate(text, orthography)` lists what in a text does not belong to the
+orthography it is meant to be in, and what to write instead:
+
+```python
+>>> from akademtranslit import validate
+>>> validate("Oʻzbekiston va Toshkent shahri", "latin_2026")  # doctest: +NORMALIZE_WHITESPACE
+[(0, 11, 'latin-1995-word', 'Özbekiston'), (15, 23, 'digraph', 'Toşkent'),
+ (24, 30, 'digraph', 'şahri')]
+>>> validate("o'zbek va oʼzbek", "latin_1995")
+[(0, 6, 'mark-form', 'oʻzbek'), (10, 16, 'wrong-mark', 'oʻzbek')]
+>>> validate("Тошкент oʻrdak, Google", "cyrillic")
+[(8, 14, 'latin-1995-word', 'ўрдак')]
+
+```
+
+Each finding is `(start, end, code, suggestion)`, in order: `text[start:end]`
+is what was found, `code` says what it is, and `suggestion` is the form to
+use, or `None`. `orthography` is a name or a language tag, not `"auto"`.
+Protected spans are not checked; `protect` works as for `convert`. The first
+two codes are about characters, in any orthography. The others are about
+words, at most one per word: the first row of the table that applies.
+
+| Code | In | Finds | Suggestion |
+| --- | --- | --- | --- |
+| `invisible` | all | a run of the characters `strip_invisible` removes (soft hyphen, zero-width space, …) | `""` |
+| `decomposed` | all | a letter and the combining marks after it, which NFC writes as one character: `O` and U+0308 | the NFC form, `Ö` |
+| `mixed-script` | all | a word with Cyrillic and Latin letters | the word after `fold_homoglyphs`, or `None` when that leaves it as it is |
+| `cyrillic-word` | Latin | a Cyrillic word | the word converted |
+| `latin-1995-word` | Cyrillic, 2026 | `oʻ` or `gʻ`; in 2026 text also `sʼh` | the word converted |
+| `latin-2026-word` | Cyrillic, 1995 | `ş ç ğ ö`; in Cyrillic text also their other forms | the word converted |
+| `look-alike` | Latin | o with breve, acute or tilde, g with macron or acute, in place of `ö`/`oʻ` and `ğ`/`gʻ` | the word with `ö ğ` (2026) or `oʻ gʻ` (1995) |
+| `letter-form` | Latin | o with macron or caron, s with comma below: the other forms of `ö` and `ş` | the word with `ö ş` (2026) or `oʻ sh` (1995) |
+| `digraph` | 2026 | `sh` or `ch` | the word with `ş ç` |
+| `wrong-mark` | Latin | `ʻ` where the tutuq belgisi `ʼ` belongs, or `ʼ` in `oʻ` or `gʻ` | the word with the right mark |
+| `mark-form` | Latin | another character for one of the two marks, such as `'` | the word with `ʻ` and `ʼ` |
+
+"Latin" is `latin_1995` and `latin_2026`. Other Latin words in Cyrillic text,
+such as `Google`, are not findings. Two codes ask for a reader rather than a
+fix:
+
+- A `digraph` in 2026 text may be left from 1995, but it may also be a real s
+  and h (`Ishoq`, `ashob`) or part of a foreign name (`Chrome`).
+- A `look-alike` letter may have been typed for `oʻ`/`gʻ` or `ö`/`ğ`, but it
+  may also be the real letter of a foreign word (`Nókis`).
+
+## Command line
+
+The package installs a command, `akademtranslit`; `python -m akademtranslit`
+runs the same tool.
+
+```text
+akademtranslit [--version] COMMAND ...
+akademtranslit convert   [FILE] [--from SCRIPT] [--to SCRIPT] [--no-protect]
+akademtranslit validate  [FILE] --orthography SCRIPT [--ignore CODES] [--no-protect] [--json]
+akademtranslit report    [FILE] [--no-protect] [--json]
+akademtranslit normalize [FILE]
+```
+
+Each command reads `FILE`, or standard input when it is `-` or not given, as
+UTF-8, and writes UTF-8 to standard output. Line ends come out as they went
+in, and no file is written. `SCRIPT` is `cyrillic`, `latin_1995`,
+`latin_2026` or a language tag for one of them.
+
+- `convert` writes `convert` of the text and nothing else. `--from` defaults
+  to `auto` and `--to` to `latin_2026`.
+- `validate` writes one line per finding of `validate`:
+  `FILE:LINE:COLUMN: CODE: FOUND -> SUGGESTION`, without the arrow when there
+  is no suggestion. Lines and columns count from 1, columns in characters.
+  `invisible` and `decomposed` are shown as code points. `--ignore` leaves out
+  the codes it lists, separated by commas.
+- `report` writes `migration_report` of a `latin_1995` text: the counts, then
+  what to check, in the form `validate` uses.
+- `normalize` writes the search key (`normalize`) of each line.
+
+`--json` writes the findings, or the report, as JSON instead. `--no-protect`
+converts and checks URLs, e-mail addresses and the other protected spans too.
+The library's warnings, such as the one for the tag `uz`, go to standard
+error as `akademtranslit: warning: ...`.
+
+| Exit code | Meaning |
+| --- | --- |
+| 0 | done; nothing found |
+| 1 | `validate` found something; or `report` found that the text does not come back, or something to check besides `separator` |
+| 2 | an error: a file that cannot be read, input that is not UTF-8, an unknown orthography, tag or code |
+
+```console
+$ printf "Oʻzbekiston Respublikasi\nma'no https://shahar.uz\n" > matn.txt
+$ akademtranslit convert --from latin_1995 matn.txt
+Özbekiston Respublikasi
+maʼno https://shahar.uz
+$ akademtranslit validate --orthography latin_1995 matn.txt
+matn.txt:2:1: mark-form: ma'no -> maʼno
+$ akademtranslit report matn.txt
+words: 3
+changed: 1
+protected: 1
+round trip: yes
+rules: uz-2026-alphabet+project-2026.11
+to check: 1
+matn.txt:2:1: mark-form: ma'no -> maʼno
+$ echo $?
+1
 ```
 
 ## Supported orthographies
@@ -553,7 +688,9 @@ canonical form: marks written as `ʻ` and `ʼ`, and each word, or each letter
 unit of it (`ToshDU`, `OʻzBEKISTON`; see Case below), in lower case, with an
 initial capital, or in all caps (`OʻZBEKISTON` included); protected spans,
 such as `McDonald`, come back as they were. Other input comes back
-canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`.
+canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`. `migration_report`
+checks one text and lists the words that do not come back (see "Migrate an
+existing corpus to the 2026 alphabet").
 Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter
 inventory, with two gaps: `т` followed by `с` comes back as `ц` unless the `s`
 starts a suffix the `ts` rule knows (`ўтсўндиргич`, `соатсоз`; see
@@ -591,6 +728,16 @@ single letter for `Ch`, so they give `MCHJ` in `latin_1995`, and `АҚШда` an
 address, a DOI, markup, a placeholder, a path, a term, a token — comes out of
 `convert`, `to_latin` and `to_cyrillic` byte for byte, for every source and
 target; the test suite checks this on every golden input.
+
+**Composed text.** `convert`, `to_latin` and `to_cyrillic` compose the text
+outside protected spans (Unicode NFC) before they convert it. A letter typed
+as a base letter and a combining mark — `O` followed by U+0308 COMBINING
+DIAERESIS — is converted as the one letter, `Ö`, and the converted text comes
+out in NFC; protected spans still come out byte for byte. `detect_script`
+reads the text in NFC too. `script_spans`, `homoglyph_spans`,
+`fold_homoglyphs`, `segments` and `normalize_apostrophes` do not compose:
+their pieces join to the input exactly as it was. `validate` reports such a
+letter as `decomposed`.
 
 **Known lossy mappings.** Four Cyrillic letters occur only in Russian
 loanwords, and folding them is deliberate; `ъ` is dropped where the 1995
@@ -720,9 +867,11 @@ must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
 cross-script normalization contract, sorting, and the golden vectors. The
 examples in this README and in the docstrings run as tests.
 `tests/test_regressions.py`, `tests/test_changes_0_2_0.py`,
-`tests/test_changes_0_3_0.py` and, for protected spans and for words and
-homoglyphs, `tests/test_protect.py` and `tests/test_scripts.py` pin every
-behaviour change since 0.1.0; see [CHANGELOG.md](CHANGELOG.md).
+`tests/test_changes_0_3_0.py` and, for protected spans, for words and
+homoglyphs, for `validate` and `migration_report` and for the command line,
+`tests/test_protect.py`, `tests/test_scripts.py`, `tests/test_checks.py` and
+`tests/test_cli.py` pin every behaviour change since 0.1.0; see
+[CHANGELOG.md](CHANGELOG.md).
 
 How the package is put together: [docs/architecture.md](docs/architecture.md).
 
