@@ -13793,17 +13793,17 @@
    "to_latin_2026": "Taşkent"
   },
   "c0273": {
-   "convert_from_cyrillic_to_cyrillic": "Özbekiston",
-   "convert_from_cyrillic_to_latin_1995": "Özbekiston",
-   "convert_from_cyrillic_to_latin_2026": "Özbekiston",
-   "convert_from_latin_1995_to_cyrillic": "Ӧзбекистон",
-   "convert_from_latin_1995_to_latin_1995": "Özbekiston",
-   "convert_from_latin_1995_to_latin_2026": "Özbekiston",
-   "convert_from_latin_2026_to_cyrillic": "Ӧзбекистон",
-   "convert_from_latin_2026_to_latin_1995": "Özbekiston",
-   "convert_from_latin_2026_to_latin_2026": "Özbekiston",
+   "convert_from_cyrillic_to_cyrillic": "Özbekiston",
+   "convert_from_cyrillic_to_latin_1995": "Özbekiston",
+   "convert_from_cyrillic_to_latin_2026": "Özbekiston",
+   "convert_from_latin_1995_to_cyrillic": "Öзбекистон",
+   "convert_from_latin_1995_to_latin_1995": "Özbekiston",
+   "convert_from_latin_1995_to_latin_2026": "Özbekiston",
+   "convert_from_latin_2026_to_cyrillic": "Ўзбекистон",
+   "convert_from_latin_2026_to_latin_1995": "Oʻzbekiston",
+   "convert_from_latin_2026_to_latin_2026": "Özbekiston",
    "cyrillic_language": "unknown",
-   "detect_script": "latin_1995",
+   "detect_script": "latin_2026",
    "fold_cyrillic": "Özbekiston",
    "fold_homoglyphs": "Özbekiston",
    "is_cyrillic": false,
@@ -13868,9 +13868,9 @@
     24
    ],
    "to_ascii": "Ozbekiston",
-   "to_cyrillic": "Ӧзбекистон",
-   "to_latin_1995": "Özbekiston",
-   "to_latin_2026": "Özbekiston"
+   "to_cyrillic": "Ўзбекистон",
+   "to_latin_1995": "Oʻzbekiston",
+   "to_latin_2026": "Özbekiston"
   },
   "c0274": {
    "convert_from_cyrillic_to_cyrillic": "Özbekiston",
@@ -66665,17 +66665,17 @@
    "to_latin_2026": "Şahrisabz"
   },
   "c1090": {
-   "convert_from_cyrillic_to_cyrillic": "özbek",
-   "convert_from_cyrillic_to_latin_1995": "özbek",
-   "convert_from_cyrillic_to_latin_2026": "özbek",
-   "convert_from_latin_1995_to_cyrillic": "ӧзбек",
-   "convert_from_latin_1995_to_latin_1995": "özbek",
-   "convert_from_latin_1995_to_latin_2026": "özbek",
-   "convert_from_latin_2026_to_cyrillic": "ӧзбек",
-   "convert_from_latin_2026_to_latin_1995": "özbek",
-   "convert_from_latin_2026_to_latin_2026": "özbek",
+   "convert_from_cyrillic_to_cyrillic": "özbek",
+   "convert_from_cyrillic_to_latin_1995": "özbek",
+   "convert_from_cyrillic_to_latin_2026": "özbek",
+   "convert_from_latin_1995_to_cyrillic": "öзбек",
+   "convert_from_latin_1995_to_latin_1995": "özbek",
+   "convert_from_latin_1995_to_latin_2026": "özbek",
+   "convert_from_latin_2026_to_cyrillic": "ўзбек",
+   "convert_from_latin_2026_to_latin_1995": "oʻzbek",
+   "convert_from_latin_2026_to_latin_2026": "özbek",
    "cyrillic_language": "unknown",
-   "detect_script": "latin_1995",
+   "detect_script": "latin_2026",
    "fold_cyrillic": "özbek",
    "fold_homoglyphs": "özbek",
    "is_cyrillic": false,
@@ -66725,9 +66725,9 @@
     21
    ],
    "to_ascii": "ozbek",
-   "to_cyrillic": "ӧзбек",
-   "to_latin_1995": "özbek",
-   "to_latin_2026": "özbek"
+   "to_cyrillic": "ўзбек",
+   "to_latin_1995": "oʻzbek",
+   "to_latin_2026": "özbek"
   },
   "c1091": {
    "convert_from_cyrillic_to_cyrillic": "işçi",

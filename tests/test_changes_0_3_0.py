@@ -25,10 +25,14 @@ from akademtranslit import (
     convert,
     detect_script,
     fold_homoglyphs,
+    homoglyph_spans,
     is_cyrillic,
     normalize,
+    normalize_apostrophes,
     script_class,
     script_for_tag,
+    script_spans,
+    segments,
     sort_key,
     tag_for_script,
     to_ascii,
@@ -943,3 +947,89 @@ def test_the_suffix_auto_and_homoglyph_inputs_convert(case_id):
 @pytest.mark.parametrize("case_id", sorted(HOMOGLYPH_INPUTS_FOLDED))
 def test_the_homoglyph_inputs_fold(case_id):
     assert fold_homoglyphs(SUFFIX_AUTO_HOMOGLYPH_INPUTS[case_id][0]) == HOMOGLYPH_INPUTS_FOLDED[case_id]
+
+
+# --- decomposed letters are composed (NFC) before they are converted -------------
+#
+# A letter typed as a base letter and a combining mark was not converted:
+# O + U+0308 + zbekiston came out as the Cyrillic O with diaeresis and zbekiston
+# (U+04E6), not as Ўзбекистон, and detect_script read it as latin_1995. The
+# text outside the protected spans is now composed first. The combining marks
+# are written by code point.
+
+COMBINING_DIAERESIS = chr(0x0308)  # COMBINING DIAERESIS
+COMBINING_CEDILLA = chr(0x0327)    # COMBINING CEDILLA
+COMBINING_BREVE = chr(0x0306)      # COMBINING BREVE
+
+DECOMPOSED_URL = "https://o" + COMBINING_DIAERESIS + "rdak.uz"
+
+DECOMPOSED = [
+    # (text, detect_script, to_cyrillic, to_latin_1995, to_latin_2026)
+    ("O" + COMBINING_DIAERESIS + "zbekiston", LATIN_2026, "Ўзбекистон", "Oʻzbekiston", "Özbekiston"),
+    ("Tos" + COMBINING_CEDILLA + "kent", LATIN_2026, "Тошкент", "Toshkent", "Toşkent"),
+    ("И" + COMBINING_BREVE + "ўл", CYRILLIC, "Йўл", "Yoʻl", "Yöl"),
+    (
+        DECOMPOSED_URL + " va o" + COMBINING_DIAERESIS + "rdak",
+        LATIN_2026,
+        DECOMPOSED_URL + " ва ўрдак",
+        DECOMPOSED_URL + " va oʻrdak",
+        DECOMPOSED_URL + " va ördak",
+    ),
+]
+
+
+@pytest.mark.parametrize("text,script,cyrillic,latin_1995,latin_2026", DECOMPOSED)
+def test_a_decomposed_letter_is_converted_as_the_letter(text, script, cyrillic, latin_1995, latin_2026):
+    assert not unicodedata.is_normalized("NFC", text)
+    assert detect_script(text) == script
+    assert to_cyrillic(text) == cyrillic
+    assert to_latin(text, variant=LATIN_1995) == latin_1995
+    assert to_latin(text) == latin_2026
+
+
+def test_the_expected_letters_are_composed():
+    # Ö U+00D6, ş U+015F, Й U+0419: the tests above compare against these.
+    assert [DECOMPOSED[0][4][0], DECOMPOSED[1][4][2], DECOMPOSED[2][2][0]] == [chr(0x00D6), chr(0x015F), chr(0x0419)]
+    for row in DECOMPOSED[:3]:
+        assert all(unicodedata.is_normalized("NFC", value) for value in row[2:])
+
+
+def test_the_output_of_convert_is_composed_even_to_the_same_orthography():
+    text = "O" + COMBINING_DIAERESIS + "zbekiston"
+    assert convert(text, LATIN_2026, LATIN_2026) == chr(0x00D6) + "zbekiston"
+    assert convert(text, CYRILLIC, CYRILLIC) == chr(0x00D6) + "zbekiston"
+
+
+def test_a_protected_span_keeps_its_decomposed_letter():
+    text = DECOMPOSED[3][0]
+    for target in SCRIPTS:
+        assert convert(text, target=target).startswith(DECOMPOSED_URL)
+    # Without protection the URL is converted too, as composed text.
+    assert to_latin(text, protect=False) == "https://ördak.uz va ördak"
+
+
+@pytest.mark.parametrize("text", [row[0] for row in DECOMPOSED])
+def test_the_functions_that_split_a_text_do_not_compose_it(text):
+    # Their pieces join to the input as it is; validate reports the
+    # decomposed letter instead.
+    assert "".join(piece for piece, _ in script_spans(text)) == text
+    assert "".join(piece for piece, _ in segments(text)) == text
+    assert fold_homoglyphs(text) == text and homoglyph_spans(text) == []
+    assert normalize_apostrophes(text) == text
+
+
+# The golden inputs with a decomposed letter (see test_protect.py, CHANGED_BY_NFC).
+DECOMPOSED_INPUTS = {
+    "c0273": ("O" + COMBINING_DIAERESIS + "zbekiston", LATIN_2026, "Ўзбекистон", "Oʻzbekiston", "Özbekiston"),
+    "c1090": ("o" + COMBINING_DIAERESIS + "zbek", LATIN_2026, "ўзбек", "oʻzbek", "özbek"),
+}
+
+
+@pytest.mark.parametrize("case_id", sorted(DECOMPOSED_INPUTS))
+def test_the_decomposed_golden_inputs(case_id):
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    text, script, cyrillic, latin_1995, latin_2026 = DECOMPOSED_INPUTS[case_id]
+    assert {case["id"]: case["text"] for case in doc["cases"]}[case_id] == text
+    assert [detect_script(text), to_cyrillic(text), to_latin(text, variant=LATIN_1995), to_latin(text)] == [
+        script, cyrillic, latin_1995, latin_2026
+    ]

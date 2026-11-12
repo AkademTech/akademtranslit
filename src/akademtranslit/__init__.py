@@ -155,7 +155,11 @@ def detect_script(text: str) -> str:
     ``latin_1995``. Pass ``source`` explicitly to :func:`convert` when the
     orthography is known from context (a document's encoding, a database
     column) rather than relying on detection.
+
+    The text is read in NFC, as :func:`convert` reads it: ``O`` followed by
+    U+0308 COMBINING DIAERESIS is ``Ö``.
     """
+    text = unicodedata.normalize("NFC", text)
     if is_cyrillic(text):
         return CYRILLIC
     if any(ch in _REFORM_LETTERS for ch in text):
@@ -271,6 +275,14 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     canonicalises the apostrophe marks, so ``o'zbek``, ``o’zbek`` and ``oʻzbek``
     all come out as ``oʻzbek``. That makes the function idempotent and makes its
     output safe to use as a stored form.
+
+    The text outside the protected spans is composed (Unicode NFC) before it
+    is converted, so what is converted comes out in NFC, while the protected
+    spans still come out byte for byte. A letter typed as a base letter and a
+    combining mark is converted as that letter:
+
+    >>> to_cyrillic("O" + chr(0x0308) + "zbekiston")  # O, U+0308 COMBINING DIAERESIS
+    'Ўзбекистон'
     """
     if source not in SCRIPTS and source != "auto":
         source = _orthography(
@@ -287,10 +299,15 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
         return text
 
     # Protected spans are cut out first and put back unchanged; only the text
-    # between them is converted, and only it decides the orthography.
-    spans = _spans(text, settings)
+    # between them is converted, and only it decides the orthography. It is
+    # composed (NFC) first, so a letter typed as a base and a combining mark
+    # (O and U+0308) is read as the one letter (Ö).
+    pieces = [
+        (text[a:b], kind) if kind is not None else (unicodedata.normalize("NFC", text[a:b]), None)
+        for a, b, kind in _spans(text, settings)
+    ]
     if source == "auto":
-        sources = _auto_sources([text[a:b] for a, b, kind in spans if kind is None], target)
+        sources = _auto_sources([piece for piece, kind in pieces if kind is None], target)
         transforms = {script: _steps(script, target) for script in SCRIPTS}
 
         def _convert(piece: str) -> str:
@@ -304,7 +321,7 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
 
     # map_words canonicalises the marks even when there are no steps, which is
     # what makes a same-script conversion a normalising pass rather than a no-op.
-    return "".join(text[a:b] if kind is not None else _convert(text[a:b]) for a, b, kind in spans)
+    return "".join(piece if kind is not None else _convert(piece) for piece, kind in pieces)
 
 
 def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:
