@@ -77,7 +77,7 @@
 - Cyrillic is U+0400–U+052F in every function. `is_cyrillic`, and through it
   `detect_script` and `normalize`, used U+0400–U+04FF, so a letter from the
   Cyrillic Supplement block now counts as Cyrillic there too.
-- The package imports `warnings`, for the `FutureWarning` above, besides `re`
+- The library imports `warnings`, for the `FutureWarning` above, besides `re`
   and `unicodedata`.
 - `normalize` gives a different key for words with `ьо` (`бульон`: `bulon` →
   `bulyon`, now the same key as Latin `bulyon`) and for words with a letter
@@ -153,7 +153,7 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
 
 ### Tests
 
-- `tests/test_privacy.py` fails if the package imports a module other than
+- `tests/test_privacy.py` fails if the library imports a module other than
   `re`, `unicodedata` and `warnings`, or calls `open`, `exec`, `eval`,
   `compile`, `__import__`, `input` or `breakpoint`.
 - `tests/test_protect.py`: every kind of protected span, with the cases that

@@ -230,4 +230,4 @@ def test_python_m_akademtranslit():
         [sys.executable, "-m", "akademtranslit", "--version"], capture_output=True, env=env, timeout=60
     )
     assert done.returncode == 0, done.stderr
-    assert done.stdout.decode("utf-8").strip() == "akademtranslit 0.3.0 (rules uz-2026-alphabet+project-2026.11)"
+    assert done.stdout.decode("utf-8").strip() == f"akademtranslit {__version__} (rules {RULES_VERSION})"

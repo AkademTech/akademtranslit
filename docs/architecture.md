@@ -303,8 +303,7 @@ line and column are counted from the `\n` characters before each finding.
 
 ## Stability and compatibility
 
-- The public API is the 33 names in `__all__` in `__init__.py`, and the
-  command line as the README describes it.
+- The public API is the 33 names in `__all__` in `__init__.py`.
 - `golden/` holds the output of the public functions on 1188 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
