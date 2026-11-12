@@ -36,6 +36,7 @@ amikatsin
 amp
 aql
 aqş
+aqşda
 ariq
 asal
 asfiksiya
@@ -123,7 +124,9 @@ gazeta
 gentamitsin
 glitsin
 glitsinning
+google
 gostinitsa
+gödel
 granitsa
 gul
 ğ
@@ -169,6 +172,7 @@ isbn
 ishoq
 ishoqov
 iş
+işlaydi
 işonç
 işoq
 işçi
@@ -253,6 +257,7 @@ möjiza
 mötabar
 mötadil
 mçj
+mçjning
 muallif
 muhammad
 n
@@ -288,6 +293,7 @@ ozbekiston
 ozod
 ö
 öa
+öqitiladi
 öqitsa
 öqitsin
 ördak
@@ -353,6 +359,7 @@ safar
 salom
 samarqand
 samdu
+samduda
 sanʼat
 sanʼatşunos
 sano
@@ -390,13 +397,16 @@ syujet
 ş
 şa
 şahar
+şahri
 şahrisabz
 şakar
 şamol
 şeʼr
 şi
+şoşimov
 şoşimova
 şox
+şu
 ç
 ça
 çaqmoq
@@ -421,8 +431,11 @@ tanitsa
 taʼsir
 taşkent
 teatr
+telegram
+teoremasi
 teplitsa
 teplitsalar
+terş
 tezda
 tibbiyot
 til
@@ -432,7 +445,10 @@ tojiyev
 tortsa
 toş
 toşdu
+toşduga
 toşkent
+toşkentda
+tökyö
 töqqiz
 töraqörğon
 trombotsit
@@ -468,6 +484,7 @@ vitamini
 x
 xa
 xabar
+xizmatlari
 xomidov
 xona
 xxi
@@ -476,6 +493,7 @@ ya
 yaa
 yalpiz
 yaratsin
+yaşaydi
 yaşil
 ye
 yea
@@ -509,7 +527,5 @@ za
 zahiriddin
 zamin
 zarar
-zbek
-zbekiston
 zdes
 zhasur

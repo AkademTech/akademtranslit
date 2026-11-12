@@ -15,6 +15,7 @@ c0267	ç	ch
 c0268	Ç	Ch
 c0269	oçiq	ochiq
 c0270	OÇIQ	OCHIQ
+c0273	Özbekiston	Oʻzbekiston
 c0274	Özbekiston	Oʻzbekiston
 c0275	Şoşimova	Shoshimova
 c0279	şoşimova	shoshimova
@@ -66,10 +67,14 @@ c1086	çöl	choʻl
 c1087	Çirçiq	Chirchiq
 c1088	Ğijduvon	Gʻijduvon
 c1089	Şahrisabz	Shahrisabz
+c1090	özbek	oʻzbek
 c1091	işçi	ishchi
 c1092	öçmas	oʻchmas
 c1103	Ördak	Oʻrdak
 c1173	MÇJ va AQŞ	MCHJ va AQSH
+c1181	Toshkent va Tōkyō	Tosʼhkent va Toʻkyoʻ
+c1182	Ishoq Şoşimov Toşkentda yaşaydi	Isʼhoq Shoshimov Toshkentda yashaydi
+c1187	Toșkent	Toshkent
 dc0001	a	a
 dc0002	A	A
 dc0003	baxt	baxt
@@ -191,7 +196,6 @@ dc0137	h	h
 dc0138	H	H
 dc0167	bahor	bahor
 dc0168	BAHOR	BAHOR
-dc0273	Özbekiston	Oʻzbekiston
 dc0281	Çorşanbiyev	Chorshanbiyev
 dc0287	Gafurov	Gafurov
 dc0295	ilmiy tadqiqot	ilmiy tadqiqot
@@ -523,7 +527,6 @@ dc1065	12-son, 3-jild	12-son, 3-jild
 dc1066	ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 dc1067	Ali, Vali va Ğani	Ali, Vali va Gʻani
 dc1085	IŞOQ	ISHOQ
-dc1090	özbek	oʻzbek
 dc1093	oksitotsin	oksitotsin
 dc1094	doksorubitsin	doksorubitsin
 dc1095	rifampitsin	rifampitsin
@@ -597,3 +600,6 @@ dc1169	ToşDU va SamDU	ToshDU va SamDU
 dc1170	ToşDU va ÖzMU	ToshDU va OʻzMU
 dc1171	ÖzMU talabasi	OʻzMU talabasi
 dc1172	ÇatGPT, PhD, AkademID	ChatGPT, PhD, AkademID
+dc1176	AQŞda va MÇJning	AQSHda va MCHJning
+dc1178	ToşDUga, SamDUda	ToshDUga, SamDUda
+dc1179	TerŞ	TerSh

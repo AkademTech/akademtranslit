@@ -15,6 +15,7 @@ c0267	ç	ч
 c0268	Ç	Ч
 c0269	oçiq	очиқ
 c0270	OÇIQ	ОЧИҚ
+c0273	Özbekiston	Ўзбекистон
 c0274	Özbekiston	Ўзбекистон
 c0275	Şoşimova	Шошимова
 c0279	şoşimova	шошимова
@@ -66,10 +67,14 @@ c1086	çöl	чўл
 c1087	Çirçiq	Чирчиқ
 c1088	Ğijduvon	Ғиждувон
 c1089	Şahrisabz	Шаҳрисабз
+c1090	özbek	ўзбек
 c1091	işçi	ишчи
 c1092	öçmas	ўчмас
 c1103	Ördak	Ўрдак
 c1173	MÇJ va AQŞ	МЧЖ ва АҚШ
+c1181	Toshkent va Tōkyō	Тосҳкент ва Тўкйў
+c1182	Ishoq Şoşimov Toşkentda yaşaydi	Исҳоқ Шошимов Тошкентда яшайди
+c1187	Toșkent	Тошкент
 dc0001	a	а
 dc0002	A	А
 dc0003	baxt	бахт
@@ -191,7 +196,6 @@ dc0137	h	ҳ
 dc0138	H	Ҳ
 dc0167	bahor	баҳор
 dc0168	BAHOR	БАҲОР
-dc0273	Özbekiston	Ўзбекистон
 dc0281	Çorşanbiyev	Чоршанбиев
 dc0287	Gafurov	Гафуров
 dc0295	ilmiy tadqiqot	илмий тадқиқот
@@ -523,7 +527,6 @@ dc1065	12-son, 3-jild	12-сон, 3-жилд
 dc1066	ISBN 978-0-00-000000-0	ИСБН 978-0-00-000000-0
 dc1067	Ali, Vali va Ğani	Али, Вали ва Ғани
 dc1085	IŞOQ	ИШОҚ
-dc1090	özbek	ўзбек
 dc1093	oksitotsin	окситоцин
 dc1094	doksorubitsin	доксорубицин
 dc1095	rifampitsin	рифампицин
@@ -597,3 +600,6 @@ dc1169	ToşDU va SamDU	ТошДУ ва СамДУ
 dc1170	ToşDU va ÖzMU	ТошДУ ва ЎзМУ
 dc1171	ÖzMU talabasi	ЎзМУ талабаси
 dc1172	ÇatGPT, PhD, AkademID	ЧатГПТ, ПҳД, АкадемИД
+dc1176	AQŞda va MÇJning	АҚШда ва МЧЖнинг
+dc1178	ToşDUga, SamDUda	ТошДУга, СамДУда
+dc1179	TerŞ	ТерШ

@@ -113,7 +113,6 @@ CH	Ç
 ochiq	oçiq
 OCHIQ	OÇIQ
 ʼ	ʼ
-Özbekiston	Özbekiston
 Shoshimova	Şoşimova
 SHOSHIMOVA	ŞOŞIMOVA
 Chorshanbiyev	Çorşanbiyev
@@ -536,7 +535,6 @@ XXI asr	XXI asr
 ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 Ali, Vali va Gʻani	Ali, Vali va Ğani
 ISHOQ	IŞOQ
-özbek	özbek
 oksitotsin	oksitotsin
 doksorubitsin	doksorubitsin
 rifampitsin	rifampitsin
@@ -599,3 +597,6 @@ ToshDU va SamDU	ToşDU va SamDU
 OʻzMU talabasi	ÖzMU talabasi
 ChatGPT, PhD, AkademID	ÇatGPT, PhD, AkademID
 ShAHAR	ŞAHAR
+AQShda va MChJning	AQŞda va MÇJning
+ToshDUga, SamDUda	ToşDUga, SamDUda
+TerSh	TerŞ

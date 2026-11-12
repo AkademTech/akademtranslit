@@ -14,6 +14,7 @@ BAŞQA	BASHQA
 Ç	Ch
 oçiq	ochiq
 OÇIQ	OCHIQ
+Özbekiston	Oʻzbekiston
 Özbekiston	Oʻzbekiston
 Şoşimova	Shoshimova
 şoşimova	shoshimova
@@ -65,10 +66,14 @@ Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti	Mirzo Ulugʻbek nomidagi
 Çirçiq	Chirchiq
 Ğijduvon	Gʻijduvon
 Şahrisabz	Shahrisabz
+özbek	oʻzbek
 işçi	ishchi
 öçmas	oʻchmas
 Ördak	Oʻrdak
 MÇJ va AQŞ	MCHJ va AQSH
+Toshkent va Tōkyō	Tosʼhkent va Toʻkyoʻ
+Ishoq Şoşimov Toşkentda yaşaydi	Isʼhoq Shoshimov Toshkentda yashaydi
+Toșkent	Toshkent
 a	a
 A	A
 baxt	baxt
@@ -190,7 +195,6 @@ h	h
 H	H
 bahor	bahor
 BAHOR	BAHOR
-Özbekiston	Oʻzbekiston
 Çorşanbiyev	Chorshanbiyev
 Gafurov	Gafurov
 ilmiy tadqiqot	ilmiy tadqiqot
@@ -518,7 +522,6 @@ XXI asr	XXI asr
 ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 Ali, Vali va Ğani	Ali, Vali va Gʻani
 IŞOQ	ISHOQ
-özbek	oʻzbek
 oksitotsin	oksitotsin
 doksorubitsin	doksorubitsin
 rifampitsin	rifampitsin
@@ -592,3 +595,6 @@ ToşDU va SamDU	ToshDU va SamDU
 ToşDU va ÖzMU	ToshDU va OʻzMU
 ÖzMU talabasi	OʻzMU talabasi
 ÇatGPT, PhD, AkademID	ChatGPT, PhD, AkademID
+AQŞda va MÇJning	AQSHda va MCHJning
+ToşDUga, SamDUda	ToshDUga, SamDUda
+TerŞ	TerSh

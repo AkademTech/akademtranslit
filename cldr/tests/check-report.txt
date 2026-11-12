@@ -1,16 +1,13 @@
-ICU 74.2, Unicode 15.1, akademtranslit 0.3.0, 1175 golden inputs, 598 inputs in the 2026 orthography (golden and derived)
+ICU 74.2, Unicode 15.1, akademtranslit 0.3.0, 1188 golden inputs, 604 inputs in the 2026 orthography (golden and derived)
 
 ## 1995 -> 2026 and 2026 -> 1995 against the library
-- 1995->2026 c0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Özbekiston', library 'Özbekiston'
 - 1995->2026 c0339 [a lone mark outside a word]: 'ʻ' -> CLDR 'ʻ', library 'ʼ'
-- 1995->2026 c1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'özbek', library 'özbek'
-1995->2026: 613 inputs, 3 differ — decomposed input: the transform normalizes it, the library does not: 2, a lone mark outside a word: 1
-- 2026->1995 dc0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Oʻzbekiston', library 'Özbekiston'
-- 2026->1995 dc1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'oʻzbek', library 'özbek'
-2026->1995: 598 inputs, 2 differ — decomposed input: the transform normalizes it, the library does not: 2
+1995->2026: 614 inputs, 1 differ — a lone mark outside a word: 1
+- 2026->1995 c1181 [ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995]: 'Toshkent va Tōkyō' -> CLDR 'Tosʼhkent va Toʻkyoʻ', library 'Toshkent va Toʻkyoʻ'
+2026->1995: 604 inputs, 1 differ — ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1
 
 ## Cyrillic -> 2026
-inputs: 442
+inputs: 443
 differs from existing uz_Cyrl-uz_Latn + 1995->2026: 15
 - c0022: 'Е' -> new 'Ye', via existing 'YE'
 - c0026: 'Ё' -> new 'Yo', via existing 'YO'
@@ -75,7 +72,7 @@ differs from the library: 44 — ц: library ts/s by position, CLDR ts: 29, ъ: 
   (expected: с + ҳ, which the existing transform writes as the digraph sh; ь before о, now y; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)
 
 ## Round trips
-Cyrillic -> 2026 -> Cyrillic: 361 of 442 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 291)
+Cyrillic -> 2026 -> Cyrillic: 362 of 443 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 292)
 - c0105: 'ъ' -> 'ʼ' -> 'Ъ' (existing 1995 round trip: 'Ъ')
 - c0109: 'ь' -> '' -> '' (existing 1995 round trip: '')
 - c0110: 'Ь' -> '' -> '' (existing 1995 round trip: '')
@@ -157,11 +154,11 @@ Cyrillic -> 2026 -> Cyrillic: 361 of 442 come back unchanged (the existing Cyril
 - c1136: 'павильон' -> 'pavilyon' -> 'павилён' (existing 1995 round trip: 'павилон')
 - c1137: 'почтальонлар' -> 'poçtalyonlar' -> 'почталёнлар' (existing 1995 round trip: 'почталонлар')
 - c1138: 'медальон' -> 'medalyon' -> 'медалён' (existing 1995 round trip: 'мэдалон')
-2026 -> 1995 -> 2026: 589 of 598 come back unchanged; 9 more are the draft spellings ō ǒ, which come back as ö
+2026 -> 1995 -> 2026: 593 of 604 come back unchanged; 11 more are the spellings ō ǒ ș, which come back as ö ş
 
 ## 2026 -> Cyrillic
+- c1181 [ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995]: 'Toshkent va Tōkyō' -> CLDR 'Тосҳкент ва Тўкйў', library 'Тошкент ва Тўкйў'
 - dc0105 [a lone mark outside a word]: 'ʼ' -> CLDR 'Ъ', library 'ъ'
-- dc0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Ўзбекистон', library 'Ӧзбекистон'
 - dc0353 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsa' -> CLDR 'кеца', library 'кетса'
 - dc0355 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsa' -> CLDR 'айца', library 'айтса'
 - dc0357 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsa' -> CLDR 'туца', library 'тутса'
@@ -224,22 +221,21 @@ Cyrillic -> 2026 -> Cyrillic: 361 of 442 come back unchanged (the existing Cyril
 - dc0996 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsayoq' -> CLDR 'кецаёқ', library 'кетсаёқ'
 - dc0997 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsinmikan' -> CLDR 'туцинмикан', library 'тутсинмикан'
 - dc0998 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsinu' -> CLDR 'кецину', library 'кетсину'
-- dc1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'ўзбек', library 'ӧзбек'
 - dc1099 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ötsin' -> CLDR 'ўцин', library 'ўтсин'
 - dc1100 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yetsin' -> CLDR 'ецин', library 'етсин'
 - dc1101 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsin' -> CLDR 'айцин', library 'айтсин'
-2026 -> Cyrillic: 598 inputs, 68 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, letters outside the Uzbek alphabet: 8, decomposed input: the transform normalizes it, the library does not: 2, a lone mark outside a word: 1
+2026 -> Cyrillic: 604 inputs, 67 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, letters outside the Uzbek alphabet: 8, ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1, a lone mark outside a word: 1
 
 ## Collation against the library's sort_key
 - latin_2026 A: library 'ashob' < 'aslmatn', ICU the other way
 - latin_2026 A: library 'ishoqov' < 'iş', ICU the other way
 - latin_2026 A: library 'sh' < 'sikl', ICU the other way
 - latin_2026 A: library 'çorshanbiyev' < 'çorşanbiyev', ICU the other way
-latin_2026 (option A): 515 words, 4 order differences
+latin_2026 (option A): 531 words, 4 order differences
   (option A: a real s + h in 2026 text, as in Ishoq or ashob, meets the 1995 contraction sh)
-latin_2026 (option B): 515 words, 0 order differences
-latin_1995 (option A): 515 words, 0 order differences
-cyrillic: 499 words, 0 order differences
+latin_2026 (option B): 531 words, 0 order differences
+latin_1995 (option A): 531 words, 0 order differences
+cyrillic: 514 words, 0 order differences
 
 test files in tests/: 12 of 12 match
 

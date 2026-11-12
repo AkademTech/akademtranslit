@@ -14,6 +14,7 @@ BAŞQA	БАШҚА
 Ç	Ч
 oçiq	очиқ
 OÇIQ	ОЧИҚ
+Özbekiston	Ўзбекистон
 Özbekiston	Ўзбекистон
 Şoşimova	Шошимова
 şoşimova	шошимова
@@ -65,10 +66,14 @@ Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti	Мирзо Улуғбе�
 Çirçiq	Чирчиқ
 Ğijduvon	Ғиждувон
 Şahrisabz	Шаҳрисабз
+özbek	ўзбек
 işçi	ишчи
 öçmas	ўчмас
 Ördak	Ўрдак
 MÇJ va AQŞ	МЧЖ ва АҚШ
+Toshkent va Tōkyō	Тосҳкент ва Тўкйў
+Ishoq Şoşimov Toşkentda yaşaydi	Исҳоқ Шошимов Тошкентда яшайди
+Toșkent	Тошкент
 a	а
 A	А
 baxt	бахт
@@ -190,7 +195,6 @@ h	ҳ
 H	Ҳ
 bahor	баҳор
 BAHOR	БАҲОР
-Özbekiston	Ўзбекистон
 Çorşanbiyev	Чоршанбиев
 Gafurov	Гафуров
 ilmiy tadqiqot	илмий тадқиқот
@@ -518,7 +522,6 @@ XXI asr	ХХИ аср
 ISBN 978-0-00-000000-0	ИСБН 978-0-00-000000-0
 Ali, Vali va Ğani	Али, Вали ва Ғани
 IŞOQ	ИШОҚ
-özbek	ўзбек
 oksitotsin	окситоцин
 doksorubitsin	доксорубицин
 rifampitsin	рифампицин
@@ -592,3 +595,6 @@ ToşDU va SamDU	ТошДУ ва СамДУ
 ToşDU va ÖzMU	ТошДУ ва ЎзМУ
 ÖzMU talabasi	ЎзМУ талабаси
 ÇatGPT, PhD, AkademID	ЧатГПТ, ПҳД, АкадемИД
+AQŞda va MÇJning	АҚШда ва МЧЖнинг
+ToşDUga, SamDUda	ТошДУга, СамДУда
+TerŞ	ТерШ

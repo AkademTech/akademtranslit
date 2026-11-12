@@ -75,8 +75,10 @@ def explain_common(text: str, got: str, lib: str) -> str | None:
     """Reasons shared by every direction, or None."""
     if text.strip() in {"ʻ", "ʼ", "'", "‘", "’"}:
         return "a lone mark outside a word"
-    if nfc(text) != text:
-        return "decomposed input: the transform normalizes it, the library does not"
+    nfd = unicodedata.normalize("NFD", text)
+    if ("\u0304" in nfd or "\u030c" in nfd) and re.search("[sScC][hH]", text):
+        return ("ō ǒ: the library reads each word in its own orthography and does not count "
+                "them as 2026 letters, so a word with sh or ch is read as 1995")
     if any(ch.isalpha() and ch not in UZBEK_LATIN and not ("а" <= ch <= "я" or ch in "ёўқғҳ")
            for ch in nfc(text).lower()):
         return "letters outside the Uzbek alphabet"
@@ -138,8 +140,16 @@ def main() -> int:
     # come from the library.
     cases26: list[tuple[str, str, str, str]] = []
     seen26: set[str] = set()
+    def one_latin_orthography(text: str) -> bool:
+        # A text with a 2026 letter and a 1995 word (Gödel ... oʻqitiladi) is
+        # not a 2026 input; the library reads each word in its own orthography.
+        if not hasattr(at, "script_spans"):
+            return True
+        return all(kind != "latin_1995" for _piece, kind in at.script_spans(text))
+
     for cid, text, r in cases:
-        if r["detect_script"] == "latin_2026" and r["script_class"] != "mixed":
+        if r["detect_script"] == "latin_2026" and r["script_class"] != "mixed" \
+                and one_latin_orthography(text):
             cases26.append((cid, text, r["to_latin_1995"], r["to_cyrillic"]))
             seen26.add(text)
     for cid, text, r in cases:
@@ -250,13 +260,13 @@ def main() -> int:
     rt26 = alias = 0
     for cid, text, got in tests_26_95:
         if l95_26.transliterate(got) != nfc(text):
-            if set(unicodedata.normalize("NFD", text)) & {"\u0304", "\u030c"}:
+            if set(unicodedata.normalize("NFD", text)) & {"\u0304", "\u030c", "\u0326"}:
                 alias += 1
                 continue
             rt26 += 1
             report.append(f"- 2026 round trip {cid}: {text!r} -> {got!r} -> {l95_26.transliterate(got)!r}")
     report.append(f"2026 -> 1995 -> 2026: {len(tests_26_95) - rt26 - alias} of {len(tests_26_95)} come back unchanged; "
-                  f"{alias} more are the draft spellings ō ǒ, which come back as ö")
+                  f"{alias} more are the spellings ō ǒ ș, which come back as ö ş")
     failures += rt26
     report.append("")
 

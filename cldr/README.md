@@ -76,7 +76,8 @@ orthography is in common use.
   o' and o‘ as oʻ for the same reason: people type them.
 - Input marks, 2026 → 1995: the 2026 orthography has no turned comma, so a mark
   inside a word is the tutuq belgisi (except after o or g).
-- ō and ǒ, used for ö in drafts of the reform, are read as ö.
+- ō and ǒ are read as ö, as in the AkademTranslit library.
+- ș (s with a comma below, U+0219), which many fonts draw like ş, is read as ş.
 
 Both directions are lossless for text in canonical form.
 
@@ -128,21 +129,21 @@ root order applies: ё sorts as a variant of е, and ў қ ғ ҳ right after у 
 ## Results
 
 ICU 74.2 (Unicode 15.1), `akademtranslit` 0.3.0 and its golden vectors
-(1175 inputs; plus 598 inputs in the 2026 orthography: the golden ones and the
+(1188 inputs; plus 604 inputs in the 2026 orthography: the golden ones and the
 library's 2026 output for every Cyrillic and 1995 input). The library's output
 is taken with `protect=False`, since the transforms protect nothing (URLs,
 tokens such as pH). Full output: `tests/check-report.txt`.
 
 | Check | Result |
 | --- | --- |
-| 1995 → 2026, against the library | 613 inputs; 3 differ, all explained: decomposed input, which the transform normalizes and the library does not (2); a lone mark (1) |
-| 2026 → 1995, against the library | 598 inputs; 2 differ: decomposed input, which the transform normalizes and the library does not |
-| Cyrillic → 2026 = existing `uz_Cyrl-uz_Latn` then 1995 → 2026 | 442 inputs; 15 differ, all intended: с + ҳ (4), ь before о (6), a single capital Е Ё Ю Я Ц (5) |
-| Cyrillic → 2026 → Cyrillic | 361 of 442 come back unchanged; the existing Cyrillic → 1995 → Cyrillic: 291 |
-| 2026 → 1995 → 2026 | 589 of 598 unchanged; the other 9 are ō ǒ, which come back as ö |
-| Collation, option A | 1995 words: 515, same order as the library; 2026 words: 515, 4 pairs differ (the s + h words above) |
-| Collation, option B | 2026 words: 515, same order as the library |
-| Collation, `uz_Cyrl` | 499 words, same order as the library |
+| 1995 → 2026, against the library | 614 inputs; 1 differs, explained: a lone mark |
+| 2026 → 1995, against the library | 604 inputs; 1 differs, explained: a text with ō and a word with sh, which the library reads word by word |
+| Cyrillic → 2026 = existing `uz_Cyrl-uz_Latn` then 1995 → 2026 | 443 inputs; 15 differ, all intended: с + ҳ (4), ь before о (6), a single capital Е Ё Ю Я Ц (5) |
+| Cyrillic → 2026 → Cyrillic | 362 of 443 come back unchanged; the existing Cyrillic → 1995 → Cyrillic: 292 |
+| 2026 → 1995 → 2026 | 593 of 604 unchanged; the other 11 are ō ǒ ș, which come back as ö ş |
+| Collation, option A | 1995 words: 531, same order as the library; 2026 words: 531, 4 pairs differ (the s + h words above) |
+| Collation, option B | 2026 words: 531, same order as the library |
+| Collation, `uz_Cyrl` | 514 words, same order as the library |
 
 The test files in `tests/` are the output of the proposed rules under ICU. The
 check regenerates them and fails if they change.
@@ -159,9 +160,9 @@ the resolution.
 
 | | Existing transform and this proposal | AkademTranslit library | Differences |
 | --- | --- | --- | --- |
-| ц | always ts: tsirk, funktsiya | s at the start of a word and after a consonant: sirk, funksiya; ts after a vowel | 29 of 442 Cyrillic inputs |
-| ъ | always ʼ: obʼyekt, möʼjiza | dropped before е ё ю я after a consonant, and after ў: obyekt, möjiza | 9 of 442 |
-| Latin ts | always ц: ketsa → кеца | т + с before an Uzbek suffix: ketsa → кетса | 57 of 598 2026 inputs |
+| ц | always ts: tsirk, funktsiya | s at the start of a word and after a consonant: sirk, funksiya; ts after a vowel | 29 of 443 Cyrillic inputs |
+| ъ | always ʼ: obʼyekt, möʼjiza | dropped before е ё ю я after a consonant, and after ў: obyekt, möjiza | 9 of 443 |
+| Latin ts | always ц: ketsa → кеца | т + с before an Uzbek suffix: ketsa → кетса | 57 of 604 2026 inputs |
 
 Following the library would make Cyrillic → Latin closer to published
 spelling, but those words would no longer come back to the same Cyrillic. The
@@ -171,11 +172,11 @@ choice is CLDR's; the library's behaviour is documented in its README.
 
 Outside the 2026 proposal, but found by the same check. All are in the current
 `uz_Cyrl-uz_Latn` (CLDR `main`, 8 November 2026; identical to the one in ICU
-74.2 on all 1175 inputs, both directions):
+74.2 on all 1188 inputs, both directions):
 
 1. Latin → Cyrillic writes e as э after a consonant too: tezda → тэзда,
-   Oʻzbekiston → Ўзбэкистон, kelajak → кэлажак. Of 582 golden 1995 inputs
-   that contain letters, 91 have э where the library writes е.
+   Oʻzbekiston → Ўзбэкистон, kelajak → кэлажак. Of 583 golden 1995 inputs
+   that contain letters, 92 have э where the library writes е.
 2. yoʻl → ёʻл (should be йўл): yo is taken before oʻ.
 3. Исҳоқ → Ishoq, which reads back as Ишоқ. The 1995 orthography writes
    Isʼhoq; Isʼhoq → Исъҳоқ.

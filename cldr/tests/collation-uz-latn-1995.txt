@@ -36,6 +36,7 @@ amikatsin
 amp
 aql
 aqsh
+aqshda
 ariq
 asal
 asfiksiya
@@ -123,9 +124,11 @@ gazeta
 gentamitsin
 glitsin
 glitsinning
+google
 gostinitsa
 granitsa
 gul
+goʻdel
 h
 ha
 havo
@@ -162,6 +165,7 @@ iyun
 izoleysin
 izoleytsin
 ish
+ishlaydi
 ishonch
 ishoq
 ishchi
@@ -245,6 +249,7 @@ moʻjiza
 moʻtabar
 moʻtadil
 mchj
+mchjning
 n
 na
 name
@@ -330,6 +335,7 @@ safar
 salom
 samarqand
 samdu
+samduda
 sanʼat
 sanʼatshunos
 sano
@@ -375,8 +381,11 @@ tanitsa
 taʼsir
 tashkent
 teatr
+telegram
+teoremasi
 teplitsa
 teplitsalar
+tersh
 tezda
 tibbiyot
 til
@@ -386,7 +395,9 @@ tortsa
 togʻ
 tosh
 toshdu
+toshduga
 toshkent
+toshkentda
 trombotsit
 tsar
 tsement
@@ -397,6 +408,7 @@ tumani
 tutsa
 tutsinmikan
 txt
+toʻkyoʻ
 toʻqqiz
 toʻraqoʻrgʻon
 u
@@ -422,6 +434,7 @@ vitamini
 x
 xa
 xabar
+xizmatlari
 xomidov
 xona
 xxi
@@ -430,6 +443,7 @@ ya
 yaa
 yalpiz
 yaratsin
+yashaydi
 yashil
 ye
 yea
@@ -463,12 +477,11 @@ za
 zahiriddin
 zamin
 zarar
-zbek
-zbekiston
 zdes
 zhasur
 oʻ
 oʻa
+oʻqitiladi
 oʻqitsa
 oʻqitsin
 oʻrdak
@@ -493,13 +506,16 @@ gʻoz
 sh
 sha
 shahar
+shahri
 shahrisabz
 shakar
 shamol
 sheʼr
 shi
 shox
+shoshimov
 shoshimova
+shu
 ch
 cha
 chaqmoq

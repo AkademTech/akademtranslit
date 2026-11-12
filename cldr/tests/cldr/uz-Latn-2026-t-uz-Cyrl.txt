@@ -439,3 +439,4 @@
 почтальонлар	poçtalyonlar
 медальон	medalyon
 ТошДУ ва ЎзМУ	ToşDU va ÖzMU
+АҚШда ва МЧЖнинг	AQŞda va MÇJning
