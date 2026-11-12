@@ -124,6 +124,32 @@ def test_script_spans_in_schema_2_files_join_to_their_input():
     assert seen >= len(texts)
 
 
+# The codes validate gives (akademtranslit.checks.CODES), as the golden files
+# record them.
+VALIDATE_CODES = frozenset((
+    "invisible", "decomposed", "mixed-script", "cyrillic-word", "latin-1995-word",
+    "latin-2026-word", "look-alike", "letter-form", "digraph", "wrong-mark", "mark-form",
+))
+
+
+def test_validate_in_schema_2_files_points_into_their_input():
+    texts = {case["id"]: case["text"] for case in _inputs()["cases"]}
+    seen = 0
+    for name, doc in _schema_2_files():
+        for case_id, row in doc["results"].items():
+            for field in ("validate_cyrillic", "validate_latin_1995", "validate_latin_2026"):
+                if field not in row:
+                    continue
+                seen += 1
+                text = texts[case_id]
+                assert row[field] == sorted(row[field], key=lambda finding: finding[:3]), (name, case_id, field)
+                for start, end, code, suggestion in row[field]:
+                    assert 0 <= start < end <= len(text), (name, case_id, field)
+                    assert code in VALIDATE_CODES, (name, case_id, field)
+                    assert suggestion is None or isinstance(suggestion, str), (name, case_id, field)
+    assert seen >= 3 * len(texts)
+
+
 def test_schema_2_files_give_the_expected_tag_results():
     tags = {}
     for case_id, _, expected, warning in TAG_CASES:
