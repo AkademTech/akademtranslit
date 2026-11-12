@@ -200,6 +200,83 @@ def validate(text: str, orthography: str, *, protect=True) -> list:
     return found
 
 
+def migration_report(text: str, *, protect=True) -> dict:
+    """What converting a ``latin_1995`` text to ``latin_2026`` does to it.
+
+    ``protect`` is as for :func:`~akademtranslit.convert`. Returns a dict
+    with these keys, in this order:
+
+    ``words``
+        the words outside the protected spans (a lone mark is not one);
+    ``changed``
+        those of them that ``latin_2026`` writes differently;
+    ``protected``
+        the protected spans;
+    ``round_trip``
+        whether the result, converted back to ``latin_1995``, is ``text``
+        converted to ``latin_1995`` (its marks in their canonical form);
+    ``rules_version``
+        :data:`~akademtranslit.tables.RULES_VERSION`;
+    ``check``
+        what to look at, as :func:`validate` lists it: the findings of
+        ``validate(text, "latin_1995")``, and for each word without one,
+        ``"round-trip"`` if the word does not come back from ``latin_2026``
+        as it was (the suggestion is what comes back), or else
+        ``"separator"`` if it has ``sʼh``, which ``latin_2026`` writes as
+        ``sh`` (the suggestion is the word in ``latin_2026``);
+    ``result``
+        the text in ``latin_2026``.
+
+    >>> report = migration_report("Isʼhoq va asʼhob")
+    >>> report["result"], report["round_trip"]
+    ('Ishoq va ashob', True)
+    >>> report["check"]
+    [(0, 6, 'separator', 'Ishoq'), (10, 16, 'separator', 'ashob')]
+
+    A ``"separator"`` word converts correctly; it is listed because
+    :func:`validate` on the result reports its ``sh`` as a ``"digraph"``.
+    """
+    settings = _settings(protect)
+    from . import convert
+
+    result = convert(text, LATIN_1995, LATIN_2026, protect=settings)
+    back = convert(result, LATIN_2026, LATIN_1995, protect=settings)
+    check = validate(text, LATIN_1995, protect=settings)
+    found = {(start, end) for start, end, _, _ in check}
+    words = changed = protected = 0
+    for a, b, kind in _spans(text, settings) if text else ():
+        if kind is not None:
+            protected += 1
+            continue
+        for match in _WORD_RE.finditer(text[a:b]):
+            word = match.group()
+            if _only_marks(word):
+                continue
+            words += 1
+            new = _convert(word, LATIN_1995, LATIN_2026)
+            old = _convert(word, LATIN_1995, LATIN_1995)
+            if new != old:
+                changed += 1
+            start, end = a + match.start(), a + match.end()
+            if (start, end) in found:
+                continue
+            again = _convert(new, LATIN_2026, LATIN_1995)
+            if again != old:
+                check.append((start, end, ROUND_TRIP, again))
+            elif _S_TUTUQ_H in canonicalize_marks(word.lower()):
+                check.append((start, end, SEPARATOR, new))
+    check.sort(key=lambda finding: finding[:3])
+    return {
+        "words": words,
+        "changed": changed,
+        "protected": protected,
+        "round_trip": back == convert(text, LATIN_1995, LATIN_1995, protect=settings),
+        "rules_version": RULES_VERSION,
+        "check": check,
+        "result": result,
+    }
+
+
 def _decomposed(piece: str):
     """``(start, end, NFC form)`` of each character with combining marks
     after it that NFC writes differently."""

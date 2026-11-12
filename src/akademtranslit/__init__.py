@@ -27,7 +27,7 @@ from __future__ import annotations
 import unicodedata
 
 from .apostrophes import normalize_apostrophes
-from .checks import validate
+from .checks import migration_report, validate
 from .collation import sort_key
 from .detection import cyrillic_language, script_class
 from .normalize import fold_cyrillic, is_cyrillic, normalize
@@ -91,6 +91,7 @@ __all__ = [
     "fold_homoglyphs",
     "homoglyph_spans",
     "is_cyrillic",
+    "migration_report",
     "normalize",
     "normalize_apostrophes",
     "script_class",

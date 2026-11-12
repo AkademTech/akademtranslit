@@ -1,4 +1,5 @@
-"""validate: what in a text does not belong to the orthography it is meant to be in."""
+"""validate: what in a text does not belong to the orthography it is meant to be in;
+migration_report: what converting a latin_1995 text to latin_2026 does to it."""
 
 from __future__ import annotations
 
@@ -8,7 +9,7 @@ from pathlib import Path
 
 import pytest
 
-from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, validate
+from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, RULES_VERSION, convert, migration_report, validate
 from akademtranslit.checks import CODES
 from akademtranslit.tables import APOSTROPHE_VARIANTS
 
@@ -193,3 +194,78 @@ def test_on_the_golden_inputs_a_mark_finding_changes_only_marks(orthography):
                 if len(word) != len(suggestion) or not changed or any(a not in marks for a, _ in changed):
                     wrong.append((case["id"], word, suggestion))
     assert wrong == []
+
+
+# --- migration_report -------------------------------------------------------------
+
+REPORTS = [
+    # (text, words, changed, protected, round_trip, check, result)
+    (
+        "Mirzo Ulugʻbek nomidagi Oʻzbekiston Milliy universiteti", 6, 2, 0, True, [],
+        "Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti",
+    ),
+    (
+        "Isʼhoq va asʼhob", 3, 2, 0, True,
+        [(0, 6, "separator", "Ishoq"), (10, 16, "separator", "ashob")],
+        "Ishoq va ashob",
+    ),
+    ("Toşkent va Toshkent", 3, 1, 0, False, [(0, 7, "latin-2026-word", "Toshkent")], "Toşkent va Toşkent"),
+    # A known limitation (README): MChJ and AQSh come back all capitals.
+    (
+        "MChJning va AQSh", 3, 2, 0, False,
+        [(0, 8, "round-trip", "MCHJning"), (12, 16, "round-trip", "AQSH")],
+        "MÇJning va AQŞ",
+    ),
+    ("ma'no https://shahar.uz", 1, 0, 1, True, [(0, 5, "mark-form", "maʼno")], "maʼno https://shahar.uz"),
+    ("", 0, 0, 0, True, [], ""),
+]
+
+
+@pytest.mark.parametrize("text,words,changed,protected,round_trip,check,result", REPORTS)
+def test_migration_report(text, words, changed, protected, round_trip, check, result):
+    assert migration_report(text) == {
+        "words": words,
+        "changed": changed,
+        "protected": protected,
+        "round_trip": round_trip,
+        "rules_version": RULES_VERSION,
+        "check": check,
+        "result": result,
+    }
+
+
+def test_the_keys_of_the_report_are_in_order():
+    assert list(migration_report("Toshkent")) == [
+        "words", "changed", "protected", "round_trip", "rules_version", "check", "result"
+    ]
+
+
+def test_the_result_is_the_conversion():
+    text = "Oʻzbekiston Respublikasi, https://shahar.uz"
+    assert migration_report(text)["result"] == convert(text, LATIN_1995, LATIN_2026)
+    assert migration_report(text, protect=False)["result"] == convert(text, LATIN_1995, LATIN_2026, protect=False)
+
+
+def test_protect_false_counts_and_checks_the_words_of_a_url():
+    report = migration_report("ma'no https://shahar.uz", protect=False)
+    assert (report["words"], report["changed"], report["protected"]) == (4, 1, 0)
+    assert report["check"] == [(0, 5, "mark-form", "maʼno")]
+
+
+def test_a_lone_mark_is_not_a_word():
+    assert migration_report("ʻ")["words"] == 0
+
+
+def test_a_word_with_a_finding_gets_no_other():
+    # Toşkent is a latin-2026-word; it does not also come back as Toshkent.
+    report = migration_report("Toşkent")
+    assert report["check"] == [(0, 7, "latin-2026-word", "Toshkent")]
+
+
+def test_the_check_of_the_golden_inputs_is_validate_and_two_codes():
+    for case in _golden_cases():
+        report = migration_report(case["text"])
+        found = validate(case["text"], LATIN_1995)
+        assert [f for f in report["check"] if f[2] in CODES] == found, case["id"]
+        assert report["check"] == sorted(report["check"], key=lambda finding: finding[:3]), case["id"]
+        assert {f[2] for f in report["check"]} - set(CODES) <= {"round-trip", "separator"}, case["id"]
