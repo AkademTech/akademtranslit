@@ -850,7 +850,9 @@ checked against ICU and against these golden vectors. See
 [Semantic versioning](https://semver.org). The output of `normalize()` never
 changes in a patch release (0.y.Z): search indexes are built on it. Every
 change to any output is listed in [CHANGELOG.md](CHANGELOG.md) with its golden
-diff.
+diff. The commands, options, exit codes and output formats of the command
+line fall under semantic versioning too, and every change to them is listed
+in the changelog.
 
 ## Development
 
