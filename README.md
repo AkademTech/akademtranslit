@@ -486,12 +486,15 @@ is what was found, `code` says what it is, and `suggestion` is the form to
 use, or `None`. `orthography` is a name or a language tag, not `"auto"`.
 Protected spans are not checked; `protect` works as for `convert`. The first
 two codes are about characters, in any orthography. The others are about
-words, at most one per word: the first row of the table that applies.
+words, at most one per word: the first row of the table that applies. After
+the last row comes `decomposed` again, for a Latin word that only NFC writes
+differently; so every word that a Latin orthography writes differently gets
+a code.
 
 | Code | In | Finds | Suggestion |
 | --- | --- | --- | --- |
 | `invisible` | all | a run of the characters `strip_invisible` removes (soft hyphen, zero-width space, …) | `""` |
-| `decomposed` | all | a letter and the combining marks after it, which NFC writes as one character: `O` and U+0308 | the NFC form, `Ö` |
+| `decomposed` | all | text that NFC writes differently: mostly a letter and the combining marks after it (`O` and U+0308); rarely, in Latin text, a word with a compatibility character, such as U+212A KELVIN SIGN for `K` | the NFC form: `Ö`, or the word |
 | `mixed-script` | all | a word with Cyrillic and Latin letters | the word after `fold_homoglyphs`, or `None` when that leaves it as it is |
 | `cyrillic-word` | Latin | a Cyrillic word | the word converted |
 | `latin-1995-word` | Cyrillic, 2026 | `oʻ` or `gʻ`; in 2026 text also `sʼh` | the word converted |

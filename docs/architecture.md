@@ -278,7 +278,13 @@ the pieces of text between the protected spans:
    and `ğ`, the other forms of `ö` and `ş`, `sh`, `ch`, `sʼh`); the
    suggestion is `convert` of the word with `protect=False`. In 1995 text a
    word with a 2026 letter goes to `latin_2026` and back, so that an `sh`
-   beside it stays `sh` (`Qashqadaryö` → `Qashqadaryoʻ`).
+   beside it stays `sh` (`Qashqadaryö` → `Qashqadaryoʻ`). For a Latin word
+   that no earlier row takes but that its suggestion changes, `_check_word`
+   compares the word in NFC (which may change its length) with the
+   suggestion: it is `wrong-mark` if a changed character is `ʻ` or `ʼ`,
+   `mark-form` if it is another form of a mark, and otherwise `decomposed`,
+   for the whole word, because only NFC changes it (U+212A KELVIN SIGN). So
+   the codes cover every Latin word that its suggestion changes.
 
 The findings are sorted by `(start, end, code)`.
 

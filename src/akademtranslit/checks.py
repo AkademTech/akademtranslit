@@ -138,9 +138,11 @@ def validate(text: str, orthography: str, *, protect=True) -> list:
     * ``"invisible"``: a run of the characters that
       :func:`~akademtranslit.normalize_apostrophes` removes with
       ``strip_invisible=True``; the suggestion is ``""``.
-    * ``"decomposed"``: a character and the combining marks after it, which
-      NFC writes as one character (``O`` and U+0308 COMBINING DIAERESIS are
-      ``Ö``); the suggestion is the NFC form.
+    * ``"decomposed"``: text that NFC writes differently. Mostly it is a
+      character and the combining marks after it, which NFC writes as one
+      character (``O`` and U+0308 COMBINING DIAERESIS are ``Ö``); the
+      suggestion is the NFC form. Rarely it is a word in ``latin_1995`` or
+      ``latin_2026`` text, the last of the word codes below.
 
     Each word gets at most one more finding, the first that applies. In
     ``cyrillic`` text:
@@ -165,17 +167,23 @@ def validate(text: str, orthography: str, *, protect=True) -> list:
     * ``"digraph"`` (2026 text): ``sh`` or ``ch``;
     * ``"wrong-mark"``: ``ʻ`` where ``ʼ`` belongs, or the other way round;
     * ``"mark-form"``: another character for one of the two marks
-      (``o'zbek``).
+      (``o'zbek``);
+    * ``"decomposed"``: a word that only NFC writes differently, with a
+      compatibility character such as U+212A KELVIN SIGN for ``K``.
 
-    Their suggestion is the word in ``orthography``. Two of them call for a
-    reader, not a fix: a ``"digraph"`` may be left from 1995, a real s and h
-    (``Ishoq``, ``ashob``) or a foreign name (``Chrome``); and a
-    ``"look-alike"`` letter may be a real one, in a foreign word.
+    Their suggestion is the word in ``orthography``. The list is complete: a
+    word that ``orthography`` writes differently gets one of these codes.
+    Two of them call for a reader, not a fix: a ``"digraph"`` may be left
+    from 1995, a real s and h (``Ishoq``, ``ashob``) or a foreign name
+    (``Chrome``); and a ``"look-alike"`` letter may be a real one, in a
+    foreign word.
 
     >>> validate("Toshkent shahri", "latin_2026")
     [(0, 8, 'digraph', 'Toşkent'), (9, 15, 'digraph', 'şahri')]
     >>> validate("Тошкент oʻrdak", "cyrillic")
     [(8, 14, 'latin-1995-word', 'ўрдак')]
+    >>> validate(chr(0x212A) + "elvin", "latin_2026")  # KELVIN SIGN
+    [(0, 6, 'decomposed', 'Kelvin')]
     """
     if orthography not in SCRIPTS:
         orthography = _orthography(
@@ -333,6 +341,14 @@ def _check_word(word: str, orthography: str):
     if orthography == LATIN_2026 and ("sh" in low or "ch" in low):
         return DIGRAPH, suggestion
     if suggestion != word:
-        changed = {ch for ch, new in zip(word, suggestion) if ch != new}
-        return (WRONG_MARK if changed & _CANONICAL_MARKS else MARK_FORM), suggestion
+        # Compared in NFC, which may change the length of the word.
+        composed = unicodedata.normalize("NFC", word)
+        changed = {ch for ch, new in zip(composed, suggestion) if ch != new}
+        if changed & _CANONICAL_MARKS:
+            return WRONG_MARK, suggestion
+        if changed & _MARKS:
+            return MARK_FORM, suggestion
+        # Only NFC changes the word: a compatibility character such as
+        # U+212A KELVIN SIGN.
+        return DECOMPOSED, suggestion
     return None

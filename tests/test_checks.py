@@ -4,6 +4,7 @@ migration_report: what converting a latin_1995 text to latin_2026 does to it."""
 from __future__ import annotations
 
 import json
+import unicodedata
 import warnings
 from pathlib import Path
 
@@ -24,6 +25,15 @@ SOFT_HYPHEN = chr(0x00AD)    # SOFT HYPHEN
 COMBINING_DIAERESIS = chr(0x0308)
 O_ACUTE = chr(0x00D3)        # LATIN CAPITAL LETTER O WITH ACUTE
 G_ACUTE = chr(0x01F5)        # LATIN SMALL LETTER G WITH ACUTE
+
+# Characters that only NFC changes, by code point.
+KELVIN = chr(0x212A)         # KELVIN SIGN; NFC: U+004B LATIN CAPITAL LETTER K
+ANGSTROM = chr(0x212B)       # ANGSTROM SIGN; NFC: U+00C5
+A_RING = chr(0x00C5)         # LATIN CAPITAL LETTER A WITH RING ABOVE
+JAMO_KIYEOK = chr(0x1100)    # HANGUL CHOSEONG KIYEOK
+JAMO_A = chr(0x1161)         # HANGUL JUNGSEONG A; NFC joins the two into U+AC00
+SYLLABLE_GA = chr(0xAC00)    # HANGUL SYLLABLE GA
+GREEK_NUMERAL = chr(0x0374)  # GREEK NUMERAL SIGN; NFC: U+02B9 MODIFIER LETTER PRIME
 
 
 def _golden_cases():
@@ -76,6 +86,21 @@ CASES = [
     # s with comma below is a letter form, not a 2026 letter, in 1995 text.
     ("To" + S_COMMA + "kent", LATIN_1995, [(0, 7, "letter-form", "Toshkent")]),
     ("", LATIN_1995, []),
+    # A word that only NFC writes differently is decomposed, as a whole word.
+    (KELVIN + "elvin", LATIN_2026, [(0, 6, "decomposed", "Kelvin")]),
+    (KELVIN + "elvin", LATIN_1995, [(0, 6, "decomposed", "Kelvin")]),
+    (ANGSTROM + "ngström", LATIN_2026, [(0, 8, "decomposed", A_RING + "ngström")]),
+    (ANGSTROM + "ngström", LATIN_1995, [(0, 8, "latin-2026-word", A_RING + "ngstroʻm")]),
+    # A changed mark still decides.
+    ("ma'no", LATIN_2026, [(0, 5, "mark-form", "maʼno")]),
+    ("ma'no", LATIN_1995, [(0, 5, "mark-form", "maʼno")]),
+    ("maʻno", LATIN_2026, [(0, 5, "wrong-mark", "maʼno")]),
+    ("maʻno", LATIN_1995, [(0, 5, "wrong-mark", "maʼno")]),
+    # The marks are compared with the word in NFC: NFC makes this word one
+    # character shorter, and its tutuq belgisi is right.
+    (JAMO_KIYEOK + JAMO_A + "ʼa", LATIN_2026, [(0, 4, "decomposed", SYLLABLE_GA + "ʼa")]),
+    # NFC writes this character as a form of a mark: it is a mark-form.
+    ("o" + GREEK_NUMERAL + "zbek", LATIN_1995, [(0, 6, "mark-form", "oʻzbek")]),
 ]
 
 
@@ -182,8 +207,8 @@ def test_a_golden_input_without_findings_is_its_own_conversion(orthography):
 
 @pytest.mark.parametrize("orthography", [LATIN_1995, LATIN_2026])
 def test_on_the_golden_inputs_a_mark_finding_changes_only_marks(orthography):
-    # The table of codes is complete: a word that its suggestion changes in
-    # anything but a mark has an earlier code.
+    # A word that its suggestion changes in anything but a mark has an
+    # earlier code, or is decomposed when only NFC changes it.
     marks = frozenset(APOSTROPHE_VARIANTS)
     wrong = []
     for case in _golden_cases():
@@ -194,6 +219,25 @@ def test_on_the_golden_inputs_a_mark_finding_changes_only_marks(orthography):
                 if len(word) != len(suggestion) or not changed or any(a not in marks for a, _ in changed):
                     wrong.append((case["id"], word, suggestion))
     assert wrong == []
+
+
+@pytest.mark.parametrize("orthography", [CYRILLIC, LATIN_1995, LATIN_2026])
+def test_on_the_golden_inputs_no_word_is_decomposed(orthography):
+    # The codes cover every Latin word that its suggestion changes, and a
+    # word comes to decomposed only when nothing but NFC changes it. On the
+    # golden inputs no word does: each decomposed finding there is a
+    # character and the combining marks after it.
+    letters, words = [], []
+    for case in _golden_cases():
+        for start, end, code, _ in validate(case["text"], orthography):
+            if code == "decomposed":
+                run = case["text"][start:end]
+                if len(run) > 1 and all(unicodedata.category(ch).startswith("M") for ch in run[1:]):
+                    letters.append(case["id"])
+                else:
+                    words.append((case["id"], run))
+    assert letters
+    assert words == []
 
 
 # --- migration_report -------------------------------------------------------------
