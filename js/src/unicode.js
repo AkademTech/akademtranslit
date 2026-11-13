@@ -179,7 +179,13 @@ export function escapeRegExp(text) {
 // What Python's re.IGNORECASE adds to an ASCII letter, measured over every
 // code point: re.fullmatch(letter, ch, re.I) for ch other than the letter in
 // either case.
-const IGNORECASE_EXTRA = { i: "İı", k: "K", s: "ſ" };
+// By code point, since they look like ASCII letters.
+const IGNORECASE_EXTRA = {
+  i: String.fromCodePoint(0x0130, 0x0131), // LATIN CAPITAL LETTER I WITH DOT ABOVE, SMALL LETTER DOTLESS I
+  k: String.fromCodePoint(0x212a), // KELVIN SIGN
+  s: String.fromCodePoint(0x017f), // LATIN SMALL LETTER LONG S
+};
+// The same, as text: { i: "İı", k: "K", s: "ſ" };
 
 /** A pattern that matches ``literal`` as Python does with re.IGNORECASE. */
 export function ci(literal) {

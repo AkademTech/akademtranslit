@@ -35,7 +35,7 @@ import { escapeRegExp, isUpper, readOptions, repr, requireString } from "./unico
 
 // Letters that exist only in latin_2026, with the other input forms of ö (o
 // with macron and caron) and ş (s with comma below).
-const REFORM_LETTERS_RE = /[şçğöŞÇĞÖōǒŌǑșȘ]/u;
+const REFORM_LETTERS_RE = new RegExp("[şçğöŞÇĞÖ\\u014D\\u01D2\\u014C\\u01D1\\u0219\\u0218]", "u");
 const CYRILLIC_RE = new RegExp(CYRILLIC_CLASS, "u");
 
 // Every conversion is a chain of word-level steps; latin_1995 is the pivot.

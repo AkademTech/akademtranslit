@@ -189,9 +189,9 @@ export const LATIN_2026_TO_1995_STEPS = pairs([
 
 /** Other input forms of the reformed letters, read as them; never output. */
 export const LATIN_2026_INPUT_ALIASES = pairs([
-  ["ō", "ö"], // o with macron
-  ["ǒ", "ö"], // o with caron
-  ["ș", "ş"], // s with comma below
+  [String.fromCodePoint(0x014d), "ö"], // o with macron
+  [String.fromCodePoint(0x01d2), "ö"], // o with caron
+  [String.fromCodePoint(0x0219), "ş"], // s with comma below (not s with cedilla)
 ]);
 
 // --- ASCII for names and logins -------------------------------------------------

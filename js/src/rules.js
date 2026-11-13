@@ -188,7 +188,7 @@ export const CYRILLIC_CLASS =
   `[\\u{${CYRILLIC_FIRST.toString(16)}}-\\u{${CYRILLIC_LAST.toString(16)}}]`;
 
 const CYRILLIC_RE = new RegExp(CYRILLIC_CLASS, "u");
-const LATIN_2026_LETTERS_RE = /[şçğöș]/u;
+const LATIN_2026_LETTERS_RE = new RegExp("[şçğö\\u0219]", "u"); // and s with comma below
 const O_FORMS_RE = /[ōǒ]/u;
 const OI = "o" + TURNED_COMMA;
 const GI = "g" + TURNED_COMMA;

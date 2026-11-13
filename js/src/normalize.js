@@ -26,9 +26,9 @@ export const LATIN_2026_FOLD = new Map([
   ["ğ", "g"],
   ["ö", "o"],
   // The other input forms (LATIN_2026_INPUT_ALIASES).
-  ["ō", "o"], // o with macron
-  ["ǒ", "o"], // o with caron
-  ["ș", "sh"], // s with comma below
+  [String.fromCodePoint(0x014d), "o"], // o with macron
+  [String.fromCodePoint(0x01d2), "o"], // o with caron
+  [String.fromCodePoint(0x0219), "sh"], // s with comma below
 ]);
 
 const MARKS_RE = new RegExp(

@@ -233,6 +233,15 @@ TRAPS = [
     ("j040", "", "empty text"),
     ("j041", "https://" + chr(0x015E) + chr(0x1D400) + ".uz https://" + chr(0x1D400) + chr(0xC7)
      + "x.uz https://" + chr(0x015E) + "x.uz", "to_ascii: Ş and Ç left in a URL, beside an astral capital"),
+    ("j042", "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+     "spans that start together: the longer wins (a file name over a token, a comment over a tag)"),
+    ("j043", chr(0xFEFF) + "Toshkent" + chr(0xFEFF), "U+FEFF at both ends: not whitespace to strip()"),
+    ("j044", chr(0x0438) + chr(0x0306) + " va " + chr(0x0435) + chr(0x0308) + " Toshkent",
+     "a Cyrillic letter and a combining mark: the word (without the mark) and the decomposed pair"),
+    ("j045", chr(0x015E) + chr(0x00F3) + "h " + chr(0x011F) + chr(0x00F3) + " o" + chr(0x02BB),
+     "a 1995 word with a 2026 letter and a look-alike: latin-2026-word comes first"),
+    ("j046", "şahar ğalaba oʻrik Ishoq",
+     "source auto: as many 2026 words as 1995 and sh/ch words, with an oʻ: read as 1995"),
 ]
 
 

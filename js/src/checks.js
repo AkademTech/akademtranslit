@@ -94,7 +94,7 @@ const LOOK_ALIKE_FIXES = new Map([
 const LOOK_ALIKE_RE = new RegExp("[" + [...LOOK_ALIKES.keys()].join("") + "]", "gu");
 
 // The other input forms of ö and ş, in both cases.
-const LETTER_FORMS_RE = /[ōǒșŌǑȘ]/u;
+const LETTER_FORMS_RE = new RegExp("[\\u014D\\u01D2\\u0219\\u014C\\u01D1\\u0218]", "u");
 
 // The letters of latin_2026 that latin_1995 writes with two characters.
 const NEW_LETTERS_RE = /[şçğöŞÇĞÖ]/u;

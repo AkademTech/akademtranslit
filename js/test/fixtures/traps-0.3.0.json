@@ -2,7 +2,7 @@
  "schema": "akademtranslit-js-fixture-traps/1",
  "library_version": "0.3.0",
  "rules_version": "uz-2026-alphabet+project-2026.11",
- "inputs_sha256": "0c5ea6fd12b101af88772b8db348542725c68f25c03b89f1c428bb124e00bf77",
+ "inputs_sha256": "3d0ba3050259cd6f372f2e6e3d40fbda6e12346f2724a82eee1cc3288117a72c",
  "made_by": "js/tools/make-fixtures.py",
  "terms": [
   "AslMatn",
@@ -14840,6 +14840,1803 @@
     },
     "str_lower": "https://ş𝐀.uz https://𝐀çx.uz https://şx.uz",
     "str_upper": "HTTPS://Ş𝐀.UZ HTTPS://𝐀ÇX.UZ HTTPS://ŞX.UZ"
+   }
+  },
+  {
+   "id": "j042",
+   "about": "spans that start together: the longer wins (a file name over a token, a comment over a tag)",
+   "text": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+   "results": {
+    "detect_script": "latin_1995",
+    "normalize": "hisobot2 docx v2 pdf www kun uz a a b 2026yil pdf",
+    "to_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "to_latin_1995": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "to_latin_2026": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "sort_key_cyrillic": [
+     1104,
+     1105,
+     1115,
+     1111,
+     1098,
+     1111,
+     1116,
+     3,
+     1100,
+     1111,
+     1099,
+     1120,
+     0,
+     1118,
+     3,
+     1112,
+     1100,
+     1102,
+     0,
+     1119,
+     1119,
+     1119,
+     1107,
+     1117,
+     1110,
+     1117,
+     1122,
+     1097,
+     0,
+     1097,
+     0,
+     1098,
+     0,
+     3,
+     1,
+     3,
+     7,
+     1121,
+     1105,
+     1108,
+     1112,
+     1100,
+     1102
+    ],
+    "sort_key_latin_1995": [
+     17,
+     18,
+     28,
+     24,
+     12,
+     24,
+     29,
+     3,
+     13,
+     24,
+     1099,
+     32,
+     0,
+     31,
+     3,
+     25,
+     13,
+     15,
+     0,
+     1119,
+     1119,
+     1119,
+     20,
+     30,
+     23,
+     30,
+     34,
+     11,
+     0,
+     11,
+     0,
+     12,
+     0,
+     3,
+     1,
+     3,
+     7,
+     33,
+     18,
+     21,
+     25,
+     13,
+     15
+    ],
+    "sort_key_latin_2026": [
+     18,
+     19,
+     30,
+     25,
+     12,
+     25,
+     33,
+     3,
+     13,
+     25,
+     1099,
+     36,
+     0,
+     35,
+     3,
+     27,
+     13,
+     15,
+     0,
+     1119,
+     1119,
+     1119,
+     21,
+     34,
+     24,
+     34,
+     38,
+     11,
+     0,
+     11,
+     0,
+     12,
+     0,
+     3,
+     1,
+     3,
+     7,
+     37,
+     19,
+     22,
+     27,
+     13,
+     15
+    ],
+    "normalize_apostrophes_unicode": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "normalize_apostrophes_ascii": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "script_class": "latin",
+    "cyrillic_language": "unknown",
+    "convert_from_cyrillic_to_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_cyrillic_to_latin_1995": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_cyrillic_to_latin_2026": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_latin_1995_to_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_latin_1995_to_latin_1995": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_latin_1995_to_latin_2026": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_latin_2026_to_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_latin_2026_to_latin_1995": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_from_latin_2026_to_latin_2026": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "fold_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "is_cyrillic": false,
+    "segments": [
+     [
+      "hisobot2.docx",
+      "path"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "v2.pdf",
+      "path"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "www.kun.uz/a",
+      "url"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "<!-- a > b -->",
+      "markup"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "2026yil.pdf",
+      "path"
+     ]
+    ],
+    "to_ascii": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "script_spans": [
+     [
+      "hisobot",
+      "latin"
+     ],
+     [
+      "2.",
+      null
+     ],
+     [
+      "docx",
+      "latin"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "v",
+      "latin"
+     ],
+     [
+      "2.",
+      null
+     ],
+     [
+      "pdf",
+      "latin"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "www",
+      "latin"
+     ],
+     [
+      ".",
+      null
+     ],
+     [
+      "kun",
+      "latin"
+     ],
+     [
+      ".",
+      null
+     ],
+     [
+      "uz",
+      "latin"
+     ],
+     [
+      "/",
+      null
+     ],
+     [
+      "a",
+      "latin"
+     ],
+     [
+      " <!-- ",
+      null
+     ],
+     [
+      "a",
+      "latin"
+     ],
+     [
+      " > ",
+      null
+     ],
+     [
+      "b",
+      "latin"
+     ],
+     [
+      " --> 2026",
+      null
+     ],
+     [
+      "yil",
+      "latin"
+     ],
+     [
+      ".",
+      null
+     ],
+     [
+      "pdf",
+      "latin"
+     ]
+    ],
+    "fold_homoglyphs": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "validate_cyrillic": [],
+    "validate_latin_1995": [],
+    "validate_latin_2026": [],
+    "convert_auto_to_cyrillic_protect_false": "ҳисобот2.доcх в2.пдф www.кун.уз/а <!-- а > б --> 2026йил.пдф",
+    "convert_auto_to_latin_1995_protect_false": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_auto_to_latin_2026_protect_false": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_terms_to_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "convert_tags_latin_1995_to_cyrillic": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "to_latin_tag_latin_1995": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "to_cyrillic_protect_false": "ҳисобот2.доcх в2.пдф www.кун.уз/а <!-- а > б --> 2026йил.пдф",
+    "segments_protect_false": [
+     [
+      "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+      null
+     ]
+    ],
+    "segments_terms": [
+     [
+      "hisobot2.docx",
+      "path"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "v2.pdf",
+      "path"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "www.kun.uz/a",
+      "url"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "<!-- a > b -->",
+      "markup"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "2026yil.pdf",
+      "path"
+     ]
+    ],
+    "segments_no_tokens_no_paths": [
+     [
+      "hisobot2.docx v2.pdf ",
+      null
+     ],
+     [
+      "www.kun.uz/a",
+      "url"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "<!-- a > b -->",
+      "markup"
+     ],
+     [
+      " 2026yil.pdf",
+      null
+     ]
+    ],
+    "segments_placeholders_only": [
+     [
+      "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+      null
+     ]
+    ],
+    "validate_cyrillic_protect_false": [],
+    "validate_latin_1995_protect_false": [],
+    "validate_latin_2026_protect_false": [],
+    "validate_tag_cyrillic": [],
+    "sort_key_tag_latin_2026": [
+     18,
+     19,
+     30,
+     25,
+     12,
+     25,
+     33,
+     3,
+     13,
+     25,
+     1099,
+     36,
+     0,
+     35,
+     3,
+     27,
+     13,
+     15,
+     0,
+     1119,
+     1119,
+     1119,
+     21,
+     34,
+     24,
+     34,
+     38,
+     11,
+     0,
+     11,
+     0,
+     12,
+     0,
+     3,
+     1,
+     3,
+     7,
+     37,
+     19,
+     22,
+     27,
+     13,
+     15
+    ],
+    "sort_key_text_latin_1995": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "normalize_apostrophes_unicode_strip_both": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "normalize_apostrophes_ascii_strip_invisible": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "normalize_apostrophes_unicode_strip_stress": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "homoglyph_spans": [],
+    "migration_report": {
+     "words": 0,
+     "changed": 0,
+     "protected": 5,
+     "round_trip": true,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [],
+     "result": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf"
+    },
+    "migration_report_protect_false": {
+     "words": 12,
+     "changed": 0,
+     "protected": 0,
+     "round_trip": true,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [],
+     "result": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf"
+    },
+    "str_lower": "hisobot2.docx v2.pdf www.kun.uz/a <!-- a > b --> 2026yil.pdf",
+    "str_upper": "HISOBOT2.DOCX V2.PDF WWW.KUN.UZ/A <!-- A > B --> 2026YIL.PDF"
+   }
+  },
+  {
+   "id": "j043",
+   "about": "U+FEFF at both ends: not whitespace to strip()",
+   "text": "﻿Toshkent﻿",
+   "results": {
+    "detect_script": "latin_1995",
+    "normalize": "toshkent",
+    "to_cyrillic": "﻿Тошкент﻿",
+    "to_latin_1995": "﻿Toshkent﻿",
+    "to_latin_2026": "﻿Toşkent﻿",
+    "sort_key_cyrillic": [
+     1116,
+     1111,
+     1115,
+     1104,
+     1107,
+     1101,
+     1110,
+     1116
+    ],
+    "sort_key_latin_1995": [
+     29,
+     24,
+     37,
+     20,
+     14,
+     23,
+     29
+    ],
+    "sort_key_latin_2026": [
+     33,
+     25,
+     30,
+     18,
+     21,
+     14,
+     24,
+     33
+    ],
+    "normalize_apostrophes_unicode": "﻿Toshkent﻿",
+    "normalize_apostrophes_ascii": "﻿Toshkent﻿",
+    "script_class": "latin",
+    "cyrillic_language": "unknown",
+    "convert_from_cyrillic_to_cyrillic": "﻿Toshkent﻿",
+    "convert_from_cyrillic_to_latin_1995": "﻿Toshkent﻿",
+    "convert_from_cyrillic_to_latin_2026": "﻿Toşkent﻿",
+    "convert_from_latin_1995_to_cyrillic": "﻿Тошкент﻿",
+    "convert_from_latin_1995_to_latin_1995": "﻿Toshkent﻿",
+    "convert_from_latin_1995_to_latin_2026": "﻿Toşkent﻿",
+    "convert_from_latin_2026_to_cyrillic": "﻿Тосҳкент﻿",
+    "convert_from_latin_2026_to_latin_1995": "﻿Tosʼhkent﻿",
+    "convert_from_latin_2026_to_latin_2026": "﻿Toshkent﻿",
+    "fold_cyrillic": "﻿Toshkent﻿",
+    "is_cyrillic": false,
+    "segments": [
+     [
+      "﻿Toshkent﻿",
+      null
+     ]
+    ],
+    "to_ascii": "Toshkent",
+    "script_spans": [
+     [
+      "﻿",
+      null
+     ],
+     [
+      "Toshkent",
+      "latin"
+     ],
+     [
+      "﻿",
+      null
+     ]
+    ],
+    "fold_homoglyphs": "﻿Toshkent﻿",
+    "validate_cyrillic": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "validate_latin_1995": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "validate_latin_2026": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      1,
+      9,
+      "digraph",
+      "Toşkent"
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "convert_auto_to_cyrillic_protect_false": "﻿Тошкент﻿",
+    "convert_auto_to_latin_1995_protect_false": "﻿Toshkent﻿",
+    "convert_auto_to_latin_2026_protect_false": "﻿Toşkent﻿",
+    "convert_terms_to_cyrillic": "﻿Тошкент﻿",
+    "convert_tags_latin_1995_to_cyrillic": "﻿Тошкент﻿",
+    "to_latin_tag_latin_1995": "﻿Toshkent﻿",
+    "to_cyrillic_protect_false": "﻿Тошкент﻿",
+    "segments_protect_false": [
+     [
+      "﻿Toshkent﻿",
+      null
+     ]
+    ],
+    "segments_terms": [
+     [
+      "﻿Toshkent﻿",
+      null
+     ]
+    ],
+    "segments_no_tokens_no_paths": [
+     [
+      "﻿Toshkent﻿",
+      null
+     ]
+    ],
+    "segments_placeholders_only": [
+     [
+      "﻿Toshkent﻿",
+      null
+     ]
+    ],
+    "validate_cyrillic_protect_false": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "validate_latin_1995_protect_false": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "validate_latin_2026_protect_false": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      1,
+      9,
+      "digraph",
+      "Toşkent"
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "validate_tag_cyrillic": [
+     [
+      0,
+      1,
+      "invisible",
+      ""
+     ],
+     [
+      9,
+      10,
+      "invisible",
+      ""
+     ]
+    ],
+    "sort_key_tag_latin_2026": [
+     33,
+     25,
+     30,
+     18,
+     21,
+     14,
+     24,
+     33
+    ],
+    "sort_key_text_latin_1995": "﻿Toshkent﻿",
+    "normalize_apostrophes_unicode_strip_both": "Toshkent",
+    "normalize_apostrophes_ascii_strip_invisible": "Toshkent",
+    "normalize_apostrophes_unicode_strip_stress": "﻿Toshkent﻿",
+    "homoglyph_spans": [],
+    "migration_report": {
+     "words": 1,
+     "changed": 1,
+     "protected": 0,
+     "round_trip": true,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       1,
+       "invisible",
+       ""
+      ],
+      [
+       9,
+       10,
+       "invisible",
+       ""
+      ]
+     ],
+     "result": "﻿Toşkent﻿"
+    },
+    "migration_report_protect_false": {
+     "words": 1,
+     "changed": 1,
+     "protected": 0,
+     "round_trip": true,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       1,
+       "invisible",
+       ""
+      ],
+      [
+       9,
+       10,
+       "invisible",
+       ""
+      ]
+     ],
+     "result": "﻿Toşkent﻿"
+    },
+    "str_lower": "﻿toshkent﻿",
+    "str_upper": "﻿TOSHKENT﻿"
+   }
+  },
+  {
+   "id": "j044",
+   "about": "a Cyrillic letter and a combining mark: the word (without the mark) and the decomposed pair",
+   "text": "й va ё Toshkent",
+   "results": {
+    "detect_script": "cyrillic",
+    "normalize": "y va yo toshkent",
+    "to_cyrillic": "й va ё Toshkent",
+    "to_latin_1995": "y va yo Toshkent",
+    "to_latin_2026": "y va yo Toşkent",
+    "sort_key_cyrillic": [
+     21,
+     0,
+     1118,
+     1097,
+     0,
+     17,
+     0,
+     1116,
+     1111,
+     1115,
+     1104,
+     1107,
+     1101,
+     1110,
+     1116
+    ],
+    "sort_key_latin_1995": [
+     2081,
+     0,
+     31,
+     11,
+     0,
+     2105,
+     0,
+     29,
+     24,
+     37,
+     20,
+     14,
+     23,
+     29
+    ],
+    "sort_key_latin_2026": [
+     2081,
+     0,
+     35,
+     11,
+     0,
+     2105,
+     0,
+     33,
+     25,
+     30,
+     18,
+     21,
+     14,
+     24,
+     33
+    ],
+    "normalize_apostrophes_unicode": "й va ё Toshkent",
+    "normalize_apostrophes_ascii": "й va ё Toshkent",
+    "script_class": "mixed",
+    "cyrillic_language": "unknown",
+    "convert_from_cyrillic_to_cyrillic": "й va ё Toshkent",
+    "convert_from_cyrillic_to_latin_1995": "y va yo Toshkent",
+    "convert_from_cyrillic_to_latin_2026": "y va yo Toşkent",
+    "convert_from_latin_1995_to_cyrillic": "й ва ё Тошкент",
+    "convert_from_latin_1995_to_latin_1995": "й va ё Toshkent",
+    "convert_from_latin_1995_to_latin_2026": "й va ё Toşkent",
+    "convert_from_latin_2026_to_cyrillic": "й ва ё Тосҳкент",
+    "convert_from_latin_2026_to_latin_1995": "й va ё Tosʼhkent",
+    "convert_from_latin_2026_to_latin_2026": "й va ё Toshkent",
+    "fold_cyrillic": "ĭ va ë Toshkent",
+    "is_cyrillic": true,
+    "segments": [
+     [
+      "й va ё Toshkent",
+      null
+     ]
+    ],
+    "to_ascii": "y va yo Toshkent",
+    "script_spans": [
+     [
+      "и",
+      "cyrillic"
+     ],
+     [
+      "̆ ",
+      null
+     ],
+     [
+      "va",
+      "latin"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "е",
+      "cyrillic"
+     ],
+     [
+      "̈ ",
+      null
+     ],
+     [
+      "Toshkent",
+      "latin"
+     ]
+    ],
+    "fold_homoglyphs": "й va ё Toshkent",
+    "validate_cyrillic": [
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ]
+    ],
+    "validate_latin_1995": [
+     [
+      0,
+      1,
+      "cyrillic-word",
+      "i"
+     ],
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      7,
+      "cyrillic-word",
+      "ye"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ]
+    ],
+    "validate_latin_2026": [
+     [
+      0,
+      1,
+      "cyrillic-word",
+      "i"
+     ],
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      7,
+      "cyrillic-word",
+      "ye"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ],
+     [
+      9,
+      17,
+      "digraph",
+      "Toşkent"
+     ]
+    ],
+    "convert_auto_to_cyrillic_protect_false": "й va ё Toshkent",
+    "convert_auto_to_latin_1995_protect_false": "y va yo Toshkent",
+    "convert_auto_to_latin_2026_protect_false": "y va yo Toşkent",
+    "convert_terms_to_cyrillic": "й va ё Toshkent",
+    "convert_tags_latin_1995_to_cyrillic": "й ва ё Тошкент",
+    "to_latin_tag_latin_1995": "y va yo Toshkent",
+    "to_cyrillic_protect_false": "й va ё Toshkent",
+    "segments_protect_false": [
+     [
+      "й va ё Toshkent",
+      null
+     ]
+    ],
+    "segments_terms": [
+     [
+      "й va ё Toshkent",
+      null
+     ]
+    ],
+    "segments_no_tokens_no_paths": [
+     [
+      "й va ё Toshkent",
+      null
+     ]
+    ],
+    "segments_placeholders_only": [
+     [
+      "й va ё Toshkent",
+      null
+     ]
+    ],
+    "validate_cyrillic_protect_false": [
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ]
+    ],
+    "validate_latin_1995_protect_false": [
+     [
+      0,
+      1,
+      "cyrillic-word",
+      "i"
+     ],
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      7,
+      "cyrillic-word",
+      "ye"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ]
+    ],
+    "validate_latin_2026_protect_false": [
+     [
+      0,
+      1,
+      "cyrillic-word",
+      "i"
+     ],
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      7,
+      "cyrillic-word",
+      "ye"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ],
+     [
+      9,
+      17,
+      "digraph",
+      "Toşkent"
+     ]
+    ],
+    "validate_tag_cyrillic": [
+     [
+      0,
+      2,
+      "decomposed",
+      "й"
+     ],
+     [
+      6,
+      8,
+      "decomposed",
+      "ё"
+     ]
+    ],
+    "sort_key_tag_latin_2026": [
+     2081,
+     0,
+     35,
+     11,
+     0,
+     2105,
+     0,
+     33,
+     25,
+     30,
+     18,
+     21,
+     14,
+     24,
+     33
+    ],
+    "sort_key_text_latin_1995": "й va ё Toshkent",
+    "normalize_apostrophes_unicode_strip_both": "й va ё Toshkent",
+    "normalize_apostrophes_ascii_strip_invisible": "й va ё Toshkent",
+    "normalize_apostrophes_unicode_strip_stress": "й va ё Toshkent",
+    "homoglyph_spans": [],
+    "migration_report": {
+     "words": 4,
+     "changed": 1,
+     "protected": 0,
+     "round_trip": true,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       1,
+       "cyrillic-word",
+       "i"
+      ],
+      [
+       0,
+       2,
+       "decomposed",
+       "й"
+      ],
+      [
+       6,
+       7,
+       "cyrillic-word",
+       "ye"
+      ],
+      [
+       6,
+       8,
+       "decomposed",
+       "ё"
+      ]
+     ],
+     "result": "й va ё Toşkent"
+    },
+    "migration_report_protect_false": {
+     "words": 4,
+     "changed": 1,
+     "protected": 0,
+     "round_trip": true,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       1,
+       "cyrillic-word",
+       "i"
+      ],
+      [
+       0,
+       2,
+       "decomposed",
+       "й"
+      ],
+      [
+       6,
+       7,
+       "cyrillic-word",
+       "ye"
+      ],
+      [
+       6,
+       8,
+       "decomposed",
+       "ё"
+      ]
+     ],
+     "result": "й va ё Toşkent"
+    },
+    "str_lower": "й va ё toshkent",
+    "str_upper": "Й VA Ё TOSHKENT"
+   }
+  },
+  {
+   "id": "j045",
+   "about": "a 1995 word with a 2026 letter and a look-alike: latin-2026-word comes first",
+   "text": "Şóh ğó oʻ",
+   "results": {
+    "detect_script": "latin_2026",
+    "normalize": "sh h g o",
+    "to_cyrillic": "Шóҳ ғó ў",
+    "to_latin_1995": "Shóh gʻó oʻ",
+    "to_latin_2026": "Şóh ğó ö",
+    "sort_key_cyrillic": [
+     1351,
+     1243,
+     1104,
+     0,
+     1287,
+     1243,
+     0,
+     1111
+    ],
+    "sort_key_latin_1995": [
+     1351,
+     1243,
+     17,
+     0,
+     1287,
+     1243,
+     0,
+     35
+    ],
+    "sort_key_latin_2026": [
+     31,
+     1243,
+     18,
+     0,
+     17,
+     1243,
+     0,
+     25
+    ],
+    "normalize_apostrophes_unicode": "Şóh ğó oʻ",
+    "normalize_apostrophes_ascii": "Şóh ğó o'",
+    "script_class": "latin",
+    "cyrillic_language": "unknown",
+    "convert_from_cyrillic_to_cyrillic": "Şóh ğó oʻ",
+    "convert_from_cyrillic_to_latin_1995": "Şóh ğó oʻ",
+    "convert_from_cyrillic_to_latin_2026": "Şóh ğó ö",
+    "convert_from_latin_1995_to_cyrillic": "Şóҳ ğó ў",
+    "convert_from_latin_1995_to_latin_1995": "Şóh ğó oʻ",
+    "convert_from_latin_1995_to_latin_2026": "Şóh ğó ö",
+    "convert_from_latin_2026_to_cyrillic": "Шóҳ ғó ў",
+    "convert_from_latin_2026_to_latin_1995": "Shóh gʻó oʻ",
+    "convert_from_latin_2026_to_latin_2026": "Şóh ğó oʻ",
+    "fold_cyrillic": "Şóh ğó oʻ",
+    "is_cyrillic": false,
+    "segments": [
+     [
+      "Şóh ğó oʻ",
+      null
+     ]
+    ],
+    "to_ascii": "Shoh go o",
+    "script_spans": [
+     [
+      "Şóh",
+      "latin_2026"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "ğó",
+      "latin_2026"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "oʻ",
+      "latin_1995"
+     ]
+    ],
+    "fold_homoglyphs": "Şóh ğó oʻ",
+    "validate_cyrillic": [
+     [
+      0,
+      3,
+      "latin-2026-word",
+      "Шóҳ"
+     ],
+     [
+      4,
+      6,
+      "latin-2026-word",
+      "ғó"
+     ],
+     [
+      7,
+      9,
+      "latin-1995-word",
+      "ў"
+     ]
+    ],
+    "validate_latin_1995": [
+     [
+      0,
+      3,
+      "latin-2026-word",
+      "Shoʻh"
+     ],
+     [
+      4,
+      6,
+      "latin-2026-word",
+      "gʻoʻ"
+     ]
+    ],
+    "validate_latin_2026": [
+     [
+      0,
+      3,
+      "look-alike",
+      "Şöh"
+     ],
+     [
+      4,
+      6,
+      "look-alike",
+      "ğö"
+     ],
+     [
+      7,
+      9,
+      "latin-1995-word",
+      "ö"
+     ]
+    ],
+    "convert_auto_to_cyrillic_protect_false": "Шóҳ ғó ў",
+    "convert_auto_to_latin_1995_protect_false": "Shóh gʻó oʻ",
+    "convert_auto_to_latin_2026_protect_false": "Şóh ğó ö",
+    "convert_terms_to_cyrillic": "Шóҳ ғó ў",
+    "convert_tags_latin_1995_to_cyrillic": "Şóҳ ğó ў",
+    "to_latin_tag_latin_1995": "Shóh gʻó oʻ",
+    "to_cyrillic_protect_false": "Шóҳ ғó ў",
+    "segments_protect_false": [
+     [
+      "Şóh ğó oʻ",
+      null
+     ]
+    ],
+    "segments_terms": [
+     [
+      "Şóh ğó oʻ",
+      null
+     ]
+    ],
+    "segments_no_tokens_no_paths": [
+     [
+      "Şóh ğó oʻ",
+      null
+     ]
+    ],
+    "segments_placeholders_only": [
+     [
+      "Şóh ğó oʻ",
+      null
+     ]
+    ],
+    "validate_cyrillic_protect_false": [
+     [
+      0,
+      3,
+      "latin-2026-word",
+      "Шóҳ"
+     ],
+     [
+      4,
+      6,
+      "latin-2026-word",
+      "ғó"
+     ],
+     [
+      7,
+      9,
+      "latin-1995-word",
+      "ў"
+     ]
+    ],
+    "validate_latin_1995_protect_false": [
+     [
+      0,
+      3,
+      "latin-2026-word",
+      "Shoʻh"
+     ],
+     [
+      4,
+      6,
+      "latin-2026-word",
+      "gʻoʻ"
+     ]
+    ],
+    "validate_latin_2026_protect_false": [
+     [
+      0,
+      3,
+      "look-alike",
+      "Şöh"
+     ],
+     [
+      4,
+      6,
+      "look-alike",
+      "ğö"
+     ],
+     [
+      7,
+      9,
+      "latin-1995-word",
+      "ö"
+     ]
+    ],
+    "validate_tag_cyrillic": [
+     [
+      0,
+      3,
+      "latin-2026-word",
+      "Шóҳ"
+     ],
+     [
+      4,
+      6,
+      "latin-2026-word",
+      "ғó"
+     ],
+     [
+      7,
+      9,
+      "latin-1995-word",
+      "ў"
+     ]
+    ],
+    "sort_key_tag_latin_2026": [
+     31,
+     1243,
+     18,
+     0,
+     17,
+     1243,
+     0,
+     25
+    ],
+    "sort_key_text_latin_1995": "Şóh ğó oʻ",
+    "normalize_apostrophes_unicode_strip_both": "Şóh ğó oʻ",
+    "normalize_apostrophes_ascii_strip_invisible": "Şóh ğó o'",
+    "normalize_apostrophes_unicode_strip_stress": "Şóh ğó oʻ",
+    "homoglyph_spans": [],
+    "migration_report": {
+     "words": 3,
+     "changed": 1,
+     "protected": 0,
+     "round_trip": false,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       3,
+       "latin-2026-word",
+       "Shoʻh"
+      ],
+      [
+       4,
+       6,
+       "latin-2026-word",
+       "gʻoʻ"
+      ]
+     ],
+     "result": "Şóh ğó ö"
+    },
+    "migration_report_protect_false": {
+     "words": 3,
+     "changed": 1,
+     "protected": 0,
+     "round_trip": false,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       3,
+       "latin-2026-word",
+       "Shoʻh"
+      ],
+      [
+       4,
+       6,
+       "latin-2026-word",
+       "gʻoʻ"
+      ]
+     ],
+     "result": "Şóh ğó ö"
+    },
+    "str_lower": "şóh ğó oʻ",
+    "str_upper": "ŞÓH ĞÓ Oʻ"
+   }
+  },
+  {
+   "id": "j046",
+   "about": "source auto: as many 2026 words as 1995 and sh/ch words, with an oʻ: read as 1995",
+   "text": "şahar ğalaba oʻrik Ishoq",
+   "results": {
+    "detect_script": "latin_2026",
+    "normalize": "shahar galaba orik ishoq",
+    "to_cyrillic": "шаҳар ғалаба ўрик Ишоқ",
+    "to_latin_1995": "shahar gʻalaba oʻrik Ishoq",
+    "to_latin_2026": "şahar ğalaba örik Işoq",
+    "sort_key_cyrillic": [
+     1351,
+     1097,
+     1104,
+     1097,
+     1114,
+     0,
+     1287,
+     1097,
+     1108,
+     1097,
+     1098,
+     1097,
+     0,
+     1111,
+     1114,
+     1105,
+     1107,
+     0,
+     1105,
+     1115,
+     1104,
+     1111,
+     1113
+    ],
+    "sort_key_latin_1995": [
+     1351,
+     11,
+     17,
+     11,
+     27,
+     0,
+     1287,
+     11,
+     21,
+     11,
+     12,
+     11,
+     0,
+     35,
+     27,
+     18,
+     20,
+     0,
+     18,
+     37,
+     24,
+     26
+    ],
+    "sort_key_latin_2026": [
+     31,
+     11,
+     18,
+     11,
+     29,
+     0,
+     17,
+     11,
+     22,
+     11,
+     12,
+     11,
+     0,
+     25,
+     29,
+     19,
+     21,
+     0,
+     19,
+     30,
+     18,
+     25,
+     28
+    ],
+    "normalize_apostrophes_unicode": "şahar ğalaba oʻrik Ishoq",
+    "normalize_apostrophes_ascii": "şahar ğalaba o'rik Ishoq",
+    "script_class": "latin",
+    "cyrillic_language": "unknown",
+    "convert_from_cyrillic_to_cyrillic": "şahar ğalaba oʻrik Ishoq",
+    "convert_from_cyrillic_to_latin_1995": "şahar ğalaba oʻrik Ishoq",
+    "convert_from_cyrillic_to_latin_2026": "şahar ğalaba örik Işoq",
+    "convert_from_latin_1995_to_cyrillic": "şаҳар ğалаба ўрик Ишоқ",
+    "convert_from_latin_1995_to_latin_1995": "şahar ğalaba oʻrik Ishoq",
+    "convert_from_latin_1995_to_latin_2026": "şahar ğalaba örik Işoq",
+    "convert_from_latin_2026_to_cyrillic": "шаҳар ғалаба ўрик Исҳоқ",
+    "convert_from_latin_2026_to_latin_1995": "shahar gʻalaba oʻrik Isʼhoq",
+    "convert_from_latin_2026_to_latin_2026": "şahar ğalaba oʻrik Ishoq",
+    "fold_cyrillic": "şahar ğalaba oʻrik Ishoq",
+    "is_cyrillic": false,
+    "segments": [
+     [
+      "şahar ğalaba oʻrik Ishoq",
+      null
+     ]
+    ],
+    "to_ascii": "shahar galaba orik Ishoq",
+    "script_spans": [
+     [
+      "şahar",
+      "latin_2026"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "ğalaba",
+      "latin_2026"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "oʻrik",
+      "latin_1995"
+     ],
+     [
+      " ",
+      null
+     ],
+     [
+      "Ishoq",
+      "latin"
+     ]
+    ],
+    "fold_homoglyphs": "şahar ğalaba oʻrik Ishoq",
+    "validate_cyrillic": [
+     [
+      0,
+      5,
+      "latin-2026-word",
+      "шаҳар"
+     ],
+     [
+      6,
+      12,
+      "latin-2026-word",
+      "ғалаба"
+     ],
+     [
+      13,
+      18,
+      "latin-1995-word",
+      "ўрик"
+     ]
+    ],
+    "validate_latin_1995": [
+     [
+      0,
+      5,
+      "latin-2026-word",
+      "shahar"
+     ],
+     [
+      6,
+      12,
+      "latin-2026-word",
+      "gʻalaba"
+     ]
+    ],
+    "validate_latin_2026": [
+     [
+      13,
+      18,
+      "latin-1995-word",
+      "örik"
+     ],
+     [
+      19,
+      24,
+      "digraph",
+      "Işoq"
+     ]
+    ],
+    "convert_auto_to_cyrillic_protect_false": "шаҳар ғалаба ўрик Ишоқ",
+    "convert_auto_to_latin_1995_protect_false": "shahar gʻalaba oʻrik Ishoq",
+    "convert_auto_to_latin_2026_protect_false": "şahar ğalaba örik Işoq",
+    "convert_terms_to_cyrillic": "шаҳар ғалаба ўрик Ишоқ",
+    "convert_tags_latin_1995_to_cyrillic": "şаҳар ğалаба ўрик Ишоқ",
+    "to_latin_tag_latin_1995": "shahar gʻalaba oʻrik Ishoq",
+    "to_cyrillic_protect_false": "шаҳар ғалаба ўрик Ишоқ",
+    "segments_protect_false": [
+     [
+      "şahar ğalaba oʻrik Ishoq",
+      null
+     ]
+    ],
+    "segments_terms": [
+     [
+      "şahar ğalaba oʻrik Ishoq",
+      null
+     ]
+    ],
+    "segments_no_tokens_no_paths": [
+     [
+      "şahar ğalaba oʻrik Ishoq",
+      null
+     ]
+    ],
+    "segments_placeholders_only": [
+     [
+      "şahar ğalaba oʻrik Ishoq",
+      null
+     ]
+    ],
+    "validate_cyrillic_protect_false": [
+     [
+      0,
+      5,
+      "latin-2026-word",
+      "шаҳар"
+     ],
+     [
+      6,
+      12,
+      "latin-2026-word",
+      "ғалаба"
+     ],
+     [
+      13,
+      18,
+      "latin-1995-word",
+      "ўрик"
+     ]
+    ],
+    "validate_latin_1995_protect_false": [
+     [
+      0,
+      5,
+      "latin-2026-word",
+      "shahar"
+     ],
+     [
+      6,
+      12,
+      "latin-2026-word",
+      "gʻalaba"
+     ]
+    ],
+    "validate_latin_2026_protect_false": [
+     [
+      13,
+      18,
+      "latin-1995-word",
+      "örik"
+     ],
+     [
+      19,
+      24,
+      "digraph",
+      "Işoq"
+     ]
+    ],
+    "validate_tag_cyrillic": [
+     [
+      0,
+      5,
+      "latin-2026-word",
+      "шаҳар"
+     ],
+     [
+      6,
+      12,
+      "latin-2026-word",
+      "ғалаба"
+     ],
+     [
+      13,
+      18,
+      "latin-1995-word",
+      "ўрик"
+     ]
+    ],
+    "sort_key_tag_latin_2026": [
+     31,
+     11,
+     18,
+     11,
+     29,
+     0,
+     17,
+     11,
+     22,
+     11,
+     12,
+     11,
+     0,
+     25,
+     29,
+     19,
+     21,
+     0,
+     19,
+     30,
+     18,
+     25,
+     28
+    ],
+    "sort_key_text_latin_1995": "şahar ğalaba oʻrik Ishoq",
+    "normalize_apostrophes_unicode_strip_both": "şahar ğalaba oʻrik Ishoq",
+    "normalize_apostrophes_ascii_strip_invisible": "şahar ğalaba o'rik Ishoq",
+    "normalize_apostrophes_unicode_strip_stress": "şahar ğalaba oʻrik Ishoq",
+    "homoglyph_spans": [],
+    "migration_report": {
+     "words": 4,
+     "changed": 2,
+     "protected": 0,
+     "round_trip": false,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       5,
+       "latin-2026-word",
+       "shahar"
+      ],
+      [
+       6,
+       12,
+       "latin-2026-word",
+       "gʻalaba"
+      ]
+     ],
+     "result": "şahar ğalaba örik Işoq"
+    },
+    "migration_report_protect_false": {
+     "words": 4,
+     "changed": 2,
+     "protected": 0,
+     "round_trip": false,
+     "rules_version": "uz-2026-alphabet+project-2026.11",
+     "check": [
+      [
+       0,
+       5,
+       "latin-2026-word",
+       "shahar"
+      ],
+      [
+       6,
+       12,
+       "latin-2026-word",
+       "gʻalaba"
+      ]
+     ],
+     "result": "şahar ğalaba örik Işoq"
+    },
+    "str_lower": "şahar ğalaba oʻrik ishoq",
+    "str_upper": "ŞAHAR ĞALABA OʻRIK ISHOQ"
    }
   }
  ],

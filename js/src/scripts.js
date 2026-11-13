@@ -19,8 +19,8 @@ const TO_LATIN = new Map(HOMOGLYPHS.map(([latin, cyrillic]) => [cyrillic, latin]
 
 // s with comma below, U+0219 and U+0218, an input form of s with cedilla.
 const S_WITH_CEDILLA = new Map([
-  ["ș", "ş"],
-  ["Ș", "Ş"],
+  [String.fromCodePoint(0x0219), "ş"],
+  [String.fromCodePoint(0x0218), "Ş"],
 ]);
 
 const HAS_LATIN_LETTER_RE = new RegExp(LATIN_LETTER_CLASS, "u");
