@@ -389,8 +389,10 @@ run and no install is needed.
   `dist/` with PyPI Trusted Publishing, with no API token in the workflow; the
   workflow's header comment says that environment needs approval. A last job
   checks the packages against `SHA256SUMS-dist` and creates the GitHub
-  release with notes from `CHANGELOG.md`, the packages, `SHA256SUMS-dist` and
-  the golden files. Run by hand, the workflow only builds.
+  release with notes from `CHANGELOG.md`, the packages, `SHA256SUMS-dist`,
+  `inputs.json`, `golden-<version>.json` and `golden/SHA256SUMS`, which lists
+  every golden file, not only those two (the README checks it with
+  `--ignore-missing`). Run by hand, the workflow only builds.
 - Actions are pinned to commit hashes, and both workflows default to
   read-only repository permissions.
 

@@ -864,6 +864,16 @@ A GitHub release has, besides the wheel and the sdist:
   release, and `SHA256SUMS`, the hashes of the golden files;
 - from 0.3.1, `SHA256SUMS-dist`, the hashes of the wheel and the sdist.
 
+To check them, in the folder with the downloaded files:
+
+```bash
+shasum -a 256 -c SHA256SUMS-dist
+shasum -a 256 -c --ignore-missing SHA256SUMS
+```
+
+`SHA256SUMS` lists every golden file in the repository, and a release has only
+two of them, so `--ignore-missing` skips the others.
+
 From 0.3.1 the wheel is built with `SOURCE_DATE_EPOCH` set to the time of the
 tagged commit. To build it again, in a clone of the repository:
 
