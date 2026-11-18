@@ -1,6 +1,6 @@
 {
  "schema": "akademtranslit-js-fixture-traps/1",
- "library_version": "0.3.0",
+ "library_version": "0.3.1",
  "rules_version": "uz-2026-alphabet+project-2026.11",
  "inputs_sha256": "3d0ba3050259cd6f372f2e6e3d40fbda6e12346f2724a82eee1cc3288117a72c",
  "made_by": "js/tools/make-fixtures.py",

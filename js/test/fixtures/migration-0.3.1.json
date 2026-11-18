@@ -1,6 +1,6 @@
 {
  "schema": "akademtranslit-js-fixture-migration/1",
- "library_version": "0.3.0",
+ "library_version": "0.3.1",
  "rules_version": "uz-2026-alphabet+project-2026.11",
  "inputs_sha256": "11860acfa8a27a51f7c7d6735fe92fcb517c4cd8e5fd7897746754c5b515f143",
  "made_by": "js/tools/make-fixtures.py",

@@ -5,7 +5,7 @@ Uzbek in its three orthographies: Cyrillic, the 1995 Latin alphabet and the
 2026 Latin alphabet (Law No. O'RQ-1184). ES modules, no dependencies, the same
 files in Node and in a browser.
 
-Version 0.3.0, the same as the Python library. Not on npm: `"private": true`
+Version 0.3.1, the same as the Python library. Not on npm: `"private": true`
 until a decision to publish.
 
 ## What is measured
@@ -15,7 +15,7 @@ Every number below is the output of a test in this directory, run on Node
 
 | Check | Result |
 | --- | --- |
-| `golden/golden-0.3.0.json`, every input and field (`test/golden.test.js`) | 35,640 / 35,640 values (30 fields x 1,188 inputs) |
+| `golden/golden-0.3.1.json`, every input and field (`test/golden.test.js`) | 35,640 / 35,640 values (30 fields x 1,188 inputs) |
 | the same file, `tags` and `scripts` sections | 57 / 57 and 6 / 6 |
 | `migrationReport`, with and without `protect`, on every golden input (`test/migration.test.js`) | 2,376 / 2,376 |
 | calls the golden file does not make (`protect: false`, terms, the strip options, `homoglyphSpans`) on every golden input | 14,256 / 14,256 |

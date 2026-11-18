@@ -2,7 +2,7 @@
 // src/akademtranslit/tables.py; the comments there are the documentation.
 //
 // Everything context-free lives here as data; anything that needs to look at
-// the surrounding characters lives in rules.js. test/fixtures/tables-0.3.0.json
+// the surrounding characters lives in rules.js. test/fixtures/tables-<version>.json
 // is a dump of the Python tables, and test/api.test.js compares the two.
 
 const freeze = (value) => Object.freeze(value);

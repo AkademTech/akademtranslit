@@ -68,7 +68,7 @@ from .tables import (
 )
 from .tags import _orthography, script_for_tag, tag_for_script
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 __all__ = [
     "CYRILLIC",

@@ -314,7 +314,8 @@ line and column are counted from the `\n` characters before each finding.
 - `golden/` holds the output of the public functions on 1188 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
-  (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`), and
+  (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`,
+  `golden-0.3.1.json`), and
   `SHA256SUMS`. From 0.3.0 the files have schema 2: 30 fields (listed in
   `fields()` in `tools/golden.py`; `convert` for all nine pairs, `segments`,
   `to_ascii`, `script_spans`, `fold_homoglyphs` and `validate` in the three

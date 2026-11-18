@@ -1,6 +1,6 @@
 {
   "name": "akademtranslit",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Uzbek transliteration across Cyrillic, 1995 Latin and 2026 Latin: the JavaScript port of the Python library, byte for byte on its golden vectors",
   "private": true,
   "license": "MIT",
