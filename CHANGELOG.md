@@ -194,9 +194,9 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
 
 ### Known issues
 
-- Protected spans: a URL followed by a very long run of closing brackets
-  (tens of thousands) takes time quadratic in the run. Output is unaffected.
-  Fixed in the next release.
+- Protected spans: a URL, DOI or file path followed by a very long run of
+  closing brackets (tens of thousands) takes time quadratic in the run.
+  Output is unaffected. Fixed in the next release.
 
 ## 0.2.0 — 2026-11-08
 
