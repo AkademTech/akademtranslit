@@ -132,3 +132,97 @@ def test_unicode_ascii_unicode_round_trip():
 def test_normalize_gives_the_same_key_either_way(style):
     for text in _golden_texts():
         assert normalize(normalize_apostrophes(text, style)) == normalize(text), text
+
+
+# --- strip_invisible and strip_stress ---------------------------------------------
+#
+# Invisible characters and the stress mark, built from their code points so the
+# source shows them.
+
+SOFT_HYPHEN = chr(0x00AD)
+ZERO_WIDTH_SPACE = chr(0x200B)
+ZERO_WIDTH_JOINER = chr(0x200D)
+BYTE_ORDER_MARK = chr(0xFEFF)
+COMBINING_ACUTE = chr(0x0301)
+
+# Default_Ignorable_Code_Point in Unicode 15.1, written out once more here.
+DEFAULT_IGNORABLE_15_1 = [
+    (0x00AD, 0x00AD), (0x034F, 0x034F), (0x061C, 0x061C), (0x115F, 0x1160),
+    (0x17B4, 0x17B5), (0x180B, 0x180F), (0x200B, 0x200F), (0x202A, 0x202E),
+    (0x2060, 0x206F), (0x3164, 0x3164), (0xFE00, 0xFE0F), (0xFEFF, 0xFEFF),
+    (0xFFA0, 0xFFA0), (0xFFF0, 0xFFF8), (0x1BCA0, 0x1BCA3), (0x1D173, 0x1D17A),
+    (0xE0000, 0xE0FFF),
+]
+
+
+def _ignorable() -> list:
+    return [chr(c) for first, last in DEFAULT_IGNORABLE_15_1 for c in range(first, last + 1)]
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("shahar" + ZERO_WIDTH_SPACE + " choy", "shahar choy"),
+        ("Tosh" + SOFT_HYPHEN + "kent", "Toshkent"),
+        (BYTE_ORDER_MARK + "Oʻzbekiston", "Oʻzbekiston"),
+        ("O" + ZERO_WIDTH_JOINER + "'zbekiston", "Oʻzbekiston"),
+        ("Тош" + SOFT_HYPHEN + "кент" + ZERO_WIDTH_SPACE, "Тошкент"),
+    ],
+)
+def test_strip_invisible(text, expected):
+    assert normalize_apostrophes(text, strip_invisible=True) == expected
+
+
+def test_strip_invisible_removes_the_4174_default_ignorable_code_points():
+    ignorable = _ignorable()
+    assert len(ignorable) == 4174
+    assert normalize_apostrophes("a" + "".join(ignorable) + "b", strip_invisible=True) == "ab"
+
+
+def test_strip_invisible_keeps_their_neighbours():
+    neighbours = [0x00AC, 0x00AE, 0x034E, 0x0350, 0x200A, 0x2010, 0x2029, 0x205F, 0xFDFF, 0xFE10,
+                  0xFFF9, 0x1D172, 0x1D17B, 0xDFFFF, 0xE1000]
+    text = "".join(chr(c) for c in neighbours)
+    assert normalize_apostrophes(text, strip_invisible=True) == text
+
+
+def test_strip_stress():
+    assert normalize_apostrophes("То" + COMBINING_ACUTE + "шкент", strip_stress=True) == "Тошкент"
+    assert normalize_apostrophes("ша" + COMBINING_ACUTE + "ҳар", strip_stress=True) == "шаҳар"
+    assert normalize_apostrophes("ka" + COMBINING_ACUTE + "lit", strip_stress=True) == "kalit"
+
+
+def test_strip_stress_takes_only_a_mark_after_a_letter():
+    for text in (COMBINING_ACUTE + "a", "5" + COMBINING_ACUTE, " " + COMBINING_ACUTE):
+        assert normalize_apostrophes(text, strip_stress=True) == text
+    assert normalize_apostrophes("ó", strip_stress=True) == "ó"  # precomposed U+00F3
+
+
+def test_the_two_are_separate():
+    stressed = "То" + COMBINING_ACUTE + "ш" + SOFT_HYPHEN + "кент"
+    assert normalize_apostrophes(stressed, strip_stress=True) == "Тош" + SOFT_HYPHEN + "кент"
+    assert normalize_apostrophes(stressed, strip_invisible=True) == "То" + COMBINING_ACUTE + "шкент"
+
+
+def test_both_together():
+    text = BYTE_ORDER_MARK + "То" + ZERO_WIDTH_SPACE + COMBINING_ACUTE + "шкент, o" + SOFT_HYPHEN + "'zbek"
+    assert normalize_apostrophes(text, strip_invisible=True, strip_stress=True) == "Тошкент, oʻzbek"
+    assert normalize_apostrophes(text, "ascii", strip_invisible=True, strip_stress=True) == "Тошкент, o'zbek"
+
+
+def test_off_by_default():
+    text = "То" + COMBINING_ACUTE + "ш" + SOFT_HYPHEN + "кент" + ZERO_WIDTH_SPACE
+    assert normalize_apostrophes(text) == text
+
+
+def test_the_new_arguments_are_keywords_only():
+    with pytest.raises(TypeError):
+        normalize_apostrophes("shahar", "unicode", True)
+
+
+@pytest.mark.parametrize("style", ["unicode", "ascii"])
+def test_idempotent_with_both(style):
+    texts = _golden_texts() + ["То" + COMBINING_ACUTE + SOFT_HYPHEN + "шкент"]
+    once = [normalize_apostrophes(t, style, strip_invisible=True, strip_stress=True) for t in texts]
+    twice = [normalize_apostrophes(t, style, strip_invisible=True, strip_stress=True) for t in once]
+    assert once == twice

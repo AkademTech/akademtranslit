@@ -8387,6 +8387,560 @@
     "api-examples"
    ],
    "text": "123"
+  },
+  {
+   "id": "c1122",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "aeroport"
+  },
+  {
+   "id": "c1123",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "poeziya"
+  },
+  {
+   "id": "c1124",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "duel"
+  },
+  {
+   "id": "c1125",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "koeffitsiyent"
+  },
+  {
+   "id": "c1126",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "reemigratsiya"
+  },
+  {
+   "id": "c1127",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "siluet"
+  },
+  {
+   "id": "c1128",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "Rafael"
+  },
+  {
+   "id": "c1129",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "ecosystem"
+   ],
+   "text": "Alievning"
+  },
+  {
+   "id": "c1130",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "ecosystem"
+   ],
+   "text": "Alieva"
+  },
+  {
+   "id": "c1131",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "Kiev"
+  },
+  {
+   "id": "c1132",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "latin_1995"
+   ],
+   "text": "POEZIYA"
+  },
+  {
+   "id": "c1133",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "бульон"
+  },
+  {
+   "id": "c1134",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "Бульон"
+  },
+  {
+   "id": "c1135",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "БУЛЬОН"
+  },
+  {
+   "id": "c1136",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "павильон"
+  },
+  {
+   "id": "c1137",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "почтальонлар"
+  },
+  {
+   "id": "c1138",
+   "tags": [
+    "rules-0.3.0",
+    "context",
+    "cyrillic"
+   ],
+   "text": "медальон"
+  },
+  {
+   "id": "c1139",
+   "tags": [
+    "rules-0.3.0",
+    "mixed",
+    "reform-2026"
+   ],
+   "text": "Тошкент ōrdak"
+  },
+  {
+   "id": "c1140",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "Batafsil: https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/ manzilida."
+  },
+  {
+   "id": "c1141",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "www.shahar.uz saytida"
+  },
+  {
+   "id": "c1142",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "gazeta.uz va kun.uz"
+  },
+  {
+   "id": "c1143",
+   "tags": [
+    "protect-0.3.0",
+    "email"
+   ],
+   "text": "info@shahar.uz ga yozing"
+  },
+  {
+   "id": "c1144",
+   "tags": [
+    "protect-0.3.0",
+    "doi"
+   ],
+   "text": "doi:10.1234/chashma.2026.01 maqolasi"
+  },
+  {
+   "id": "c1145",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "https://doi.org/10.5555/shox-2026"
+  },
+  {
+   "id": "c1146",
+   "tags": [
+    "protect-0.3.0",
+    "doi"
+   ],
+   "text": "10.1007/s00415-026-12345-6 raqamli maqola"
+  },
+  {
+   "id": "c1147",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "{count} ta kitob"
+  },
+  {
+   "id": "c1148",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "{count, plural, one {# ta shahar} other {# ta shahar}}"
+  },
+  {
+   "id": "c1149",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "Salom, {name}! Sizda {n, number} ta xabar bor"
+  },
+  {
+   "id": "c1150",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "%s ta fayl, %(soni)d ta shahar"
+  },
+  {
+   "id": "c1151",
+   "tags": [
+    "protect-0.3.0",
+    "markup"
+   ],
+   "text": "<b>Shahar</b> <a href=\"https://shahar.uz\">havola</a>"
+  },
+  {
+   "id": "c1152",
+   "tags": [
+    "protect-0.3.0",
+    "markup"
+   ],
+   "text": "&nbsp;choy &amp; shakar"
+  },
+  {
+   "id": "c1153",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "SpO2 92%, pH 7,35, PaCO2 45 mmHg"
+  },
+  {
+   "id": "c1154",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "McDonald's va iPhone, YouTube"
+  },
+  {
+   "id": "c1155",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "AkademTech va AslMatn"
+  },
+  {
+   "id": "c1156",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "«AKADEMTECH» MChJ"
+  },
+  {
+   "id": "c1157",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "AQSh va BMT"
+  },
+  {
+   "id": "c1158",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "B12 vitamini va eGFR"
+  },
+  {
+   "id": "c1159",
+   "tags": [
+    "protect-0.3.0",
+    "path"
+   ],
+   "text": "/home/user/shahar.txt fayli"
+  },
+  {
+   "id": "c1160",
+   "tags": [
+    "protect-0.3.0",
+    "path"
+   ],
+   "text": "hisobot_shahar.docx faylini oching"
+  },
+  {
+   "id": "c1161",
+   "tags": [
+    "protect-0.3.0",
+    "path"
+   ],
+   "text": "kirill/lotin yozuvi"
+  },
+  {
+   "id": "c1162",
+   "tags": [
+    "protect-0.3.0",
+    "url"
+   ],
+   "text": "Тошкент https://toshkent.uz/шаҳар"
+  },
+  {
+   "id": "c1163",
+   "tags": [
+    "protect-0.3.0",
+    "token"
+   ],
+   "text": "To'raqo'rg'on tumani"
+  },
+  {
+   "id": "c1164",
+   "tags": [
+    "protect-0.3.0",
+    "invisible"
+   ],
+   "text": "Tosh­kent"
+  },
+  {
+   "id": "c1165",
+   "tags": [
+    "protect-0.3.0",
+    "invisible"
+   ],
+   "text": "shahar​ choy"
+  },
+  {
+   "id": "c1166",
+   "tags": [
+    "protect-0.3.0",
+    "markup"
+   ],
+   "text": "a < b va c > d"
+  },
+  {
+   "id": "c1167",
+   "tags": [
+    "protect-0.3.0",
+    "placeholder"
+   ],
+   "text": "{shahar_soni"
+  },
+  {
+   "id": "c1168",
+   "tags": [
+    "protect-0.3.0",
+    "mixed"
+   ],
+   "text": "10ta kitob, 2026yil, 100mg"
+  },
+  {
+   "id": "c1169",
+   "tags": [
+    "protect-0.3.0",
+    "latin_1995"
+   ],
+   "text": "ToshDU va SamDU"
+  },
+  {
+   "id": "c1170",
+   "tags": [
+    "protect-0.3.0",
+    "cyrillic"
+   ],
+   "text": "ТошДУ ва ЎзМУ"
+  },
+  {
+   "id": "c1171",
+   "tags": [
+    "protect-0.3.0",
+    "latin_1995"
+   ],
+   "text": "OʻzMU talabasi"
+  },
+  {
+   "id": "c1172",
+   "tags": [
+    "protect-0.3.0",
+    "mixed"
+   ],
+   "text": "ChatGPT, PhD, AkademID"
+  },
+  {
+   "id": "c1173",
+   "tags": [
+    "protect-0.3.0",
+    "latin_2026"
+   ],
+   "text": "MÇJ va AQŞ"
+  },
+  {
+   "id": "c1174",
+   "tags": [
+    "protect-0.3.0",
+    "mixed"
+   ],
+   "text": "Тошкент ŞAHAR"
+  },
+  {
+   "id": "c1175",
+   "tags": [
+    "protect-0.3.0",
+    "latin_1995"
+   ],
+   "text": "ShAHAR"
+  },
+  {
+   "id": "c1176",
+   "tags": [
+    "case-0.3.0",
+    "latin_1995"
+   ],
+   "text": "AQShda va MChJning"
+  },
+  {
+   "id": "c1177",
+   "tags": [
+    "case-0.3.0",
+    "cyrillic"
+   ],
+   "text": "АҚШда ва МЧЖнинг"
+  },
+  {
+   "id": "c1178",
+   "tags": [
+    "case-0.3.0",
+    "latin_1995"
+   ],
+   "text": "ToshDUga, SamDUda"
+  },
+  {
+   "id": "c1179",
+   "tags": [
+    "case-0.3.0",
+    "latin_1995"
+   ],
+   "text": "TerSh"
+  },
+  {
+   "id": "c1180",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Gödel teoremasi Toshkentda shu yil oʻqitiladi"
+  },
+  {
+   "id": "c1181",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Toshkent va Tōkyō"
+  },
+  {
+   "id": "c1182",
+   "tags": [
+    "auto-0.3.0",
+    "latin_2026"
+   ],
+   "text": "Ishoq Şoşimov Toşkentda yaşaydi"
+  },
+  {
+   "id": "c1183",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Тошкентда Google ва Telegram хизматлари ишлайди"
+  },
+  {
+   "id": "c1184",
+   "tags": [
+    "auto-0.3.0",
+    "mixed"
+   ],
+   "text": "Toshkent shahri va Самарқанд"
+  },
+  {
+   "id": "c1185",
+   "tags": [
+    "homoglyph-0.3.0",
+    "mixed"
+   ],
+   "text": "Тoшкент"
+  },
+  {
+   "id": "c1186",
+   "tags": [
+    "homoglyph-0.3.0",
+    "mixed"
+   ],
+   "text": "Toshkеnt"
+  },
+  {
+   "id": "c1187",
+   "tags": [
+    "homoglyph-0.3.0",
+    "latin_2026"
+   ],
+   "text": "Toșkent"
+  },
+  {
+   "id": "c1188",
+   "tags": [
+    "homoglyph-0.3.0",
+    "mixed"
+   ],
+   "text": "Ӧzbekiston"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

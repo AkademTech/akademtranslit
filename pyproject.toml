@@ -47,6 +47,9 @@ Source = "https://github.com/AkademTech/akademtranslit"
 Changelog = "https://github.com/AkademTech/akademtranslit/blob/main/CHANGELOG.md"
 Issues = "https://github.com/AkademTech/akademtranslit/issues"
 
+[project.scripts]
+akademtranslit = "akademtranslit.cli:main"
+
 [tool.setuptools.dynamic]
 version = { attr = "akademtranslit.__version__" }
 

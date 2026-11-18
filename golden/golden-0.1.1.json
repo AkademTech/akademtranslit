@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "48d3b85f8d54f106f5824dbcfbe918e640ee2cfe30f8303673500543687f11d8",
+ "inputs_sha256": "11860acfa8a27a51f7c7d6735fe92fcb517c4cd8e5fd7897746754c5b515f143",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -7848,6 +7848,475 @@
    "to_cyrillic": "123",
    "to_latin_1995": "123",
    "to_latin_2026": "123"
+  },
+  "c1122": {
+   "detect_script": "latin_1995",
+   "normalize": "aeroport",
+   "to_cyrillic": "аеропорт",
+   "to_latin_1995": "aeroport",
+   "to_latin_2026": "aeroport"
+  },
+  "c1123": {
+   "detect_script": "latin_1995",
+   "normalize": "poeziya",
+   "to_cyrillic": "поезия",
+   "to_latin_1995": "poeziya",
+   "to_latin_2026": "poeziya"
+  },
+  "c1124": {
+   "detect_script": "latin_1995",
+   "normalize": "duel",
+   "to_cyrillic": "дуел",
+   "to_latin_1995": "duel",
+   "to_latin_2026": "duel"
+  },
+  "c1125": {
+   "detect_script": "latin_1995",
+   "normalize": "koeffitsiyent",
+   "to_cyrillic": "коеффициент",
+   "to_latin_1995": "koeffitsiyent",
+   "to_latin_2026": "koeffitsiyent"
+  },
+  "c1126": {
+   "detect_script": "latin_1995",
+   "normalize": "reemigratsiya",
+   "to_cyrillic": "реемиграция",
+   "to_latin_1995": "reemigratsiya",
+   "to_latin_2026": "reemigratsiya"
+  },
+  "c1127": {
+   "detect_script": "latin_1995",
+   "normalize": "siluet",
+   "to_cyrillic": "силует",
+   "to_latin_1995": "siluet",
+   "to_latin_2026": "siluet"
+  },
+  "c1128": {
+   "detect_script": "latin_1995",
+   "normalize": "rafael",
+   "to_cyrillic": "Рафаел",
+   "to_latin_1995": "Rafael",
+   "to_latin_2026": "Rafael"
+  },
+  "c1129": {
+   "detect_script": "latin_1995",
+   "normalize": "alievning",
+   "to_cyrillic": "Алиевнинг",
+   "to_latin_1995": "Alievning",
+   "to_latin_2026": "Alievning"
+  },
+  "c1130": {
+   "detect_script": "latin_1995",
+   "normalize": "alieva",
+   "to_cyrillic": "Алиева",
+   "to_latin_1995": "Alieva",
+   "to_latin_2026": "Alieva"
+  },
+  "c1131": {
+   "detect_script": "latin_1995",
+   "normalize": "kiev",
+   "to_cyrillic": "Киев",
+   "to_latin_1995": "Kiev",
+   "to_latin_2026": "Kiev"
+  },
+  "c1132": {
+   "detect_script": "latin_1995",
+   "normalize": "poeziya",
+   "to_cyrillic": "ПОЕЗИЯ",
+   "to_latin_1995": "POEZIYA",
+   "to_latin_2026": "POEZIYA"
+  },
+  "c1133": {
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "to_cyrillic": "бульон",
+   "to_latin_1995": "bulon",
+   "to_latin_2026": "bulon"
+  },
+  "c1134": {
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "to_cyrillic": "Бульон",
+   "to_latin_1995": "Bulon",
+   "to_latin_2026": "Bulon"
+  },
+  "c1135": {
+   "detect_script": "cyrillic",
+   "normalize": "bulon",
+   "to_cyrillic": "БУЛЬОН",
+   "to_latin_1995": "BULON",
+   "to_latin_2026": "BULON"
+  },
+  "c1136": {
+   "detect_script": "cyrillic",
+   "normalize": "pavilon",
+   "to_cyrillic": "павильон",
+   "to_latin_1995": "pavilon",
+   "to_latin_2026": "pavilon"
+  },
+  "c1137": {
+   "detect_script": "cyrillic",
+   "normalize": "pochtalonlar",
+   "to_cyrillic": "почтальонлар",
+   "to_latin_1995": "pochtalonlar",
+   "to_latin_2026": "poçtalonlar"
+  },
+  "c1138": {
+   "detect_script": "cyrillic",
+   "normalize": "medalon",
+   "to_cyrillic": "медальон",
+   "to_latin_1995": "medalon",
+   "to_latin_2026": "medalon"
+  },
+  "c1139": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent ordak",
+   "to_cyrillic": "Тошкент ōrdak",
+   "to_latin_1995": "Toshkent ōrdak",
+   "to_latin_2026": "Toşkent ōrdak"
+  },
+  "c1140": {
+   "detect_script": "latin_1995",
+   "normalize": "batafsil https gazeta uz oz 2026 11 05 shahar chiroqlari manzilida",
+   "to_cyrillic": "Батафсил: ҳттпс://газета.уз/оз/2026/11/05/шаҳар-чироқлари/ манзилида.",
+   "to_latin_1995": "Batafsil: https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/ manzilida.",
+   "to_latin_2026": "Batafsil: https://gazeta.uz/oz/2026/11/05/şahar-çiroqlari/ manzilida."
+  },
+  "c1141": {
+   "detect_script": "latin_1995",
+   "normalize": "www shahar uz saytida",
+   "to_cyrillic": "www.шаҳар.уз сайтида",
+   "to_latin_1995": "www.shahar.uz saytida",
+   "to_latin_2026": "www.şahar.uz saytida"
+  },
+  "c1142": {
+   "detect_script": "latin_1995",
+   "normalize": "gazeta uz va kun uz",
+   "to_cyrillic": "газета.уз ва кун.уз",
+   "to_latin_1995": "gazeta.uz va kun.uz",
+   "to_latin_2026": "gazeta.uz va kun.uz"
+  },
+  "c1143": {
+   "detect_script": "latin_1995",
+   "normalize": "info shahar uz ga yozing",
+   "to_cyrillic": "инфо@шаҳар.уз га ёзинг",
+   "to_latin_1995": "info@shahar.uz ga yozing",
+   "to_latin_2026": "info@şahar.uz ga yozing"
+  },
+  "c1144": {
+   "detect_script": "latin_1995",
+   "normalize": "doi 10 1234 chashma 2026 01 maqolasi",
+   "to_cyrillic": "дои:10.1234/чашма.2026.01 мақоласи",
+   "to_latin_1995": "doi:10.1234/chashma.2026.01 maqolasi",
+   "to_latin_2026": "doi:10.1234/çaşma.2026.01 maqolasi"
+  },
+  "c1145": {
+   "detect_script": "latin_1995",
+   "normalize": "https doi org 10 5555 shox 2026",
+   "to_cyrillic": "ҳттпс://дои.орг/10.5555/шох-2026",
+   "to_latin_1995": "https://doi.org/10.5555/shox-2026",
+   "to_latin_2026": "https://doi.org/10.5555/şox-2026"
+  },
+  "c1146": {
+   "detect_script": "latin_1995",
+   "normalize": "10 1007 s00415 026 12345 6 raqamli maqola",
+   "to_cyrillic": "10.1007/с00415-026-12345-6 рақамли мақола",
+   "to_latin_1995": "10.1007/s00415-026-12345-6 raqamli maqola",
+   "to_latin_2026": "10.1007/s00415-026-12345-6 raqamli maqola"
+  },
+  "c1147": {
+   "detect_script": "latin_1995",
+   "normalize": "count ta kitob",
+   "to_cyrillic": "{cоунт} та китоб",
+   "to_latin_1995": "{count} ta kitob",
+   "to_latin_2026": "{count} ta kitob"
+  },
+  "c1148": {
+   "detect_script": "latin_1995",
+   "normalize": "count plural one ta shahar other ta shahar",
+   "to_cyrillic": "{cоунт, плурал, оне {# та шаҳар} отҳер {# та шаҳар}}",
+   "to_latin_1995": "{count, plural, one {# ta shahar} other {# ta shahar}}",
+   "to_latin_2026": "{count, plural, one {# ta şahar} other {# ta şahar}}"
+  },
+  "c1149": {
+   "detect_script": "latin_1995",
+   "normalize": "salom name sizda n number ta xabar bor",
+   "to_cyrillic": "Салом, {наме}! Сизда {н, нумбер} та хабар бор",
+   "to_latin_1995": "Salom, {name}! Sizda {n, number} ta xabar bor",
+   "to_latin_2026": "Salom, {name}! Sizda {n, number} ta xabar bor"
+  },
+  "c1150": {
+   "detect_script": "latin_1995",
+   "normalize": "s ta fayl soni d ta shahar",
+   "to_cyrillic": "%с та файл, %(сони)д та шаҳар",
+   "to_latin_1995": "%s ta fayl, %(soni)d ta shahar",
+   "to_latin_2026": "%s ta fayl, %(soni)d ta şahar"
+  },
+  "c1151": {
+   "detect_script": "latin_1995",
+   "normalize": "b shahar b a href https shahar uz havola a",
+   "to_cyrillic": "<б>Шаҳар</б> <а ҳреф=\"ҳттпс://шаҳар.уз\">ҳавола</а>",
+   "to_latin_1995": "<b>Shahar</b> <a href=\"https://shahar.uz\">havola</a>",
+   "to_latin_2026": "<b>Şahar</b> <a href=\"https://şahar.uz\">havola</a>"
+  },
+  "c1152": {
+   "detect_script": "latin_1995",
+   "normalize": "nbsp choy amp shakar",
+   "to_cyrillic": "&нбсп;чой &амп; шакар",
+   "to_latin_1995": "&nbsp;choy &amp; shakar",
+   "to_latin_2026": "&nbsp;çoy &amp; şakar"
+  },
+  "c1153": {
+   "detect_script": "latin_1995",
+   "normalize": "spo2 92 ph 7 35 paco2 45 mmhg",
+   "to_cyrillic": "Спо2 92%, пҳ 7,35, Паcо2 45 ммҳг",
+   "to_latin_1995": "Spo2 92%, ph 7,35, Paco2 45 mmhg",
+   "to_latin_2026": "Spo2 92%, ph 7,35, Paco2 45 mmhg"
+  },
+  "c1154": {
+   "detect_script": "latin_1995",
+   "normalize": "mcdonalds va iphone youtube",
+   "to_cyrillic": "Мcдоналдъс ва ипҳоне, Ёутубе",
+   "to_latin_1995": "Mcdonaldʼs va iphone, Youtube",
+   "to_latin_2026": "Mcdonaldʼs va iphone, Youtube"
+  },
+  "c1155": {
+   "detect_script": "latin_1995",
+   "normalize": "akademtech va aslmatn",
+   "to_cyrillic": "Академтеч ва Аслматн",
+   "to_latin_1995": "Akademtech va Aslmatn",
+   "to_latin_2026": "Akademteç va Aslmatn"
+  },
+  "c1156": {
+   "detect_script": "latin_1995",
+   "normalize": "akademtech mchj",
+   "to_cyrillic": "«АКАДЕМТЕЧ» Мчж",
+   "to_latin_1995": "«AKADEMTECH» Mchj",
+   "to_latin_2026": "«AKADEMTEÇ» Mçj"
+  },
+  "c1157": {
+   "detect_script": "latin_1995",
+   "normalize": "aqsh va bmt",
+   "to_cyrillic": "Ақш ва БМТ",
+   "to_latin_1995": "Aqsh va BMT",
+   "to_latin_2026": "Aqş va BMT"
+  },
+  "c1158": {
+   "detect_script": "latin_1995",
+   "normalize": "b12 vitamini va egfr",
+   "to_cyrillic": "Б12 витамини ва эгфр",
+   "to_latin_1995": "B12 vitamini va egfr",
+   "to_latin_2026": "B12 vitamini va egfr"
+  },
+  "c1159": {
+   "detect_script": "latin_1995",
+   "normalize": "home user shahar txt fayli",
+   "to_cyrillic": "/ҳоме/усер/шаҳар.тхт файли",
+   "to_latin_1995": "/home/user/shahar.txt fayli",
+   "to_latin_2026": "/home/user/şahar.txt fayli"
+  },
+  "c1160": {
+   "detect_script": "latin_1995",
+   "normalize": "hisobot shahar docx faylini oching",
+   "to_cyrillic": "ҳисобот_шаҳар.доcх файлини очинг",
+   "to_latin_1995": "hisobot_shahar.docx faylini oching",
+   "to_latin_2026": "hisobot_şahar.docx faylini oçing"
+  },
+  "c1161": {
+   "detect_script": "latin_1995",
+   "normalize": "kirill lotin yozuvi",
+   "to_cyrillic": "кирилл/лотин ёзуви",
+   "to_latin_1995": "kirill/lotin yozuvi",
+   "to_latin_2026": "kirill/lotin yozuvi"
+  },
+  "c1162": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent https toshkent uz shahar",
+   "to_cyrillic": "Тошкент https://toshkent.uz/шаҳар",
+   "to_latin_1995": "Toshkent https://toshkent.uz/shahar",
+   "to_latin_2026": "Toşkent https://toşkent.uz/şahar"
+  },
+  "c1163": {
+   "detect_script": "latin_1995",
+   "normalize": "toraqorgon tumani",
+   "to_cyrillic": "Тўрақўрғон тумани",
+   "to_latin_1995": "Toʻraqoʻrgʻon tumani",
+   "to_latin_2026": "Töraqörğon tumani"
+  },
+  "c1164": {
+   "detect_script": "latin_1995",
+   "normalize": "tosh kent",
+   "to_cyrillic": "Тош­кент",
+   "to_latin_1995": "Tosh­kent",
+   "to_latin_2026": "Toş­kent"
+  },
+  "c1165": {
+   "detect_script": "latin_1995",
+   "normalize": "shahar choy",
+   "to_cyrillic": "шаҳар​ чой",
+   "to_latin_1995": "shahar​ choy",
+   "to_latin_2026": "şahar​ çoy"
+  },
+  "c1166": {
+   "detect_script": "latin_1995",
+   "normalize": "a b va c d",
+   "to_cyrillic": "а < б ва c > д",
+   "to_latin_1995": "a < b va c > d",
+   "to_latin_2026": "a < b va c > d"
+  },
+  "c1167": {
+   "detect_script": "latin_1995",
+   "normalize": "shahar soni",
+   "to_cyrillic": "{шаҳар_сони",
+   "to_latin_1995": "{shahar_soni",
+   "to_latin_2026": "{şahar_soni"
+  },
+  "c1168": {
+   "detect_script": "latin_1995",
+   "normalize": "10ta kitob 2026yil 100mg",
+   "to_cyrillic": "10та китоб, 2026йил, 100мг",
+   "to_latin_1995": "10ta kitob, 2026yil, 100mg",
+   "to_latin_2026": "10ta kitob, 2026yil, 100mg"
+  },
+  "c1169": {
+   "detect_script": "latin_1995",
+   "normalize": "toshdu va samdu",
+   "to_cyrillic": "Тошду ва Самду",
+   "to_latin_1995": "Toshdu va Samdu",
+   "to_latin_2026": "Toşdu va Samdu"
+  },
+  "c1170": {
+   "detect_script": "cyrillic",
+   "normalize": "toshdu va ozmu",
+   "to_cyrillic": "Тошду ва Ўзму",
+   "to_latin_1995": "Toshdu va Oʻzmu",
+   "to_latin_2026": "Toşdu va Özmu"
+  },
+  "c1171": {
+   "detect_script": "latin_1995",
+   "normalize": "ozmu talabasi",
+   "to_cyrillic": "Ўзму талабаси",
+   "to_latin_1995": "Oʻzmu talabasi",
+   "to_latin_2026": "Özmu talabasi"
+  },
+  "c1172": {
+   "detect_script": "latin_1995",
+   "normalize": "chatgpt phd akademid",
+   "to_cyrillic": "Чатгпт, Пҳд, Академид",
+   "to_latin_1995": "Chatgpt, Phd, Akademid",
+   "to_latin_2026": "Çatgpt, Phd, Akademid"
+  },
+  "c1173": {
+   "detect_script": "latin_2026",
+   "normalize": "mchj va aqsh",
+   "to_cyrillic": "МЧЖ ва АҚШ",
+   "to_latin_1995": "MCHJ va AQSH",
+   "to_latin_2026": "MÇJ va AQŞ"
+  },
+  "c1174": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent shahar",
+   "to_cyrillic": "Тошкент ŞAHAR",
+   "to_latin_1995": "Toshkent ŞAHAR",
+   "to_latin_2026": "Toşkent ŞAHAR"
+  },
+  "c1175": {
+   "detect_script": "latin_1995",
+   "normalize": "shahar",
+   "to_cyrillic": "Шаҳар",
+   "to_latin_1995": "Shahar",
+   "to_latin_2026": "Şahar"
+  },
+  "c1176": {
+   "detect_script": "latin_1995",
+   "normalize": "aqshda va mchjning",
+   "to_cyrillic": "Ақшда ва Мчжнинг",
+   "to_latin_1995": "Aqshda va Mchjning",
+   "to_latin_2026": "Aqşda va Mçjning"
+  },
+  "c1177": {
+   "detect_script": "cyrillic",
+   "normalize": "aqshda va mchjning",
+   "to_cyrillic": "Ақшда ва Мчжнинг",
+   "to_latin_1995": "Aqshda va Mchjning",
+   "to_latin_2026": "Aqşda va Mçjning"
+  },
+  "c1178": {
+   "detect_script": "latin_1995",
+   "normalize": "toshduga samduda",
+   "to_cyrillic": "Тошдуга, Самдуда",
+   "to_latin_1995": "Toshduga, Samduda",
+   "to_latin_2026": "Toşduga, Samduda"
+  },
+  "c1179": {
+   "detect_script": "latin_1995",
+   "normalize": "tersh",
+   "to_cyrillic": "Терш",
+   "to_latin_1995": "Tersh",
+   "to_latin_2026": "Terş"
+  },
+  "c1180": {
+   "detect_script": "latin_2026",
+   "normalize": "godel teoremasi toshkentda shu yil oqitiladi",
+   "to_cyrillic": "Гўдел теоремаси Тосҳкентда сҳу йил ўқитилади",
+   "to_latin_1995": "Goʻdel teoremasi Tosʼhkentda sʼhu yil oʻqitiladi",
+   "to_latin_2026": "Gödel teoremasi Toshkentda shu yil oʻqitiladi"
+  },
+  "c1181": {
+   "detect_script": "latin_2026",
+   "normalize": "toshkent va tokyo",
+   "to_cyrillic": "Тосҳкент ва Тўкйў",
+   "to_latin_1995": "Tosʼhkent va Toʻkyoʻ",
+   "to_latin_2026": "Toshkent va Tōkyō"
+  },
+  "c1182": {
+   "detect_script": "latin_2026",
+   "normalize": "ishoq shoshimov toshkentda yashaydi",
+   "to_cyrillic": "Исҳоқ Шошимов Тошкентда яшайди",
+   "to_latin_1995": "Isʼhoq Shoshimov Toshkentda yashaydi",
+   "to_latin_2026": "Ishoq Şoşimov Toşkentda yaşaydi"
+  },
+  "c1183": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkentda google va telegram xizmatlari ishlaydi",
+   "to_cyrillic": "Тошкентда Google ва Telegram хизматлари ишлайди",
+   "to_latin_1995": "Toshkentda Google va Telegram xizmatlari ishlaydi",
+   "to_latin_2026": "Toşkentda Google va Telegram xizmatlari işlaydi"
+  },
+  "c1184": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent shahri va samarqand",
+   "to_cyrillic": "Toshkent shahri va Самарқанд",
+   "to_latin_1995": "Toshkent shahri va Samarqand",
+   "to_latin_2026": "Toşkent şahri va Samarqand"
+  },
+  "c1185": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent",
+   "to_cyrillic": "Тoшкент",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c1186": {
+   "detect_script": "cyrillic",
+   "normalize": "toshkent",
+   "to_cyrillic": "Toshkеnt",
+   "to_latin_1995": "Toshkent",
+   "to_latin_2026": "Toşkent"
+  },
+  "c1187": {
+   "detect_script": "latin_1995",
+   "normalize": "to kent",
+   "to_cyrillic": "Тоșкент",
+   "to_latin_1995": "Toșkent",
+   "to_latin_2026": "Toșkent"
+  },
+  "c1188": {
+   "detect_script": "cyrillic",
+   "normalize": "zbekiston",
+   "to_cyrillic": "Ӧzbekiston",
+   "to_latin_1995": "Ӧzbekiston",
+   "to_latin_2026": "Ӧzbekiston"
   }
  },
  "schema": "akademtranslit-golden/1"

@@ -49,8 +49,11 @@ The aliases need the variant subtags `1995` and `2026` for `uz` in the IANA
 Language Subtag Registry. They were requested on the ietf-languages list on
 22 October 2026 (revised on 25 October). On 9 November 2026 the Language
 Subtag Reviewer posted the proposed records, unchanged from the request, and
-extended the review period to 15 November 2026, Anywhere on Earth. Until IANA
-adds them, the aliases are not valid BCP 47 tags.
+extended the review period to 15 November 2026, Anywhere on Earth. On
+18 November 2026 the Reviewer approved them, unchanged
+(https://mailarchive.ietf.org/arch/msg/ietf-languages/ADDgtJg5pZ1GMiGsc3pa59aB-V4/).
+IANA has yet to add them to the Language Subtag Registry. Until IANA adds
+them, the aliases are not valid BCP 47 tags.
 
 | Subtag | Description | Prefix | Comments |
 | --- | --- | --- | --- |
@@ -76,7 +79,8 @@ orthography is in common use.
   o' and o‘ as oʻ for the same reason: people type them.
 - Input marks, 2026 → 1995: the 2026 orthography has no turned comma, so a mark
   inside a word is the tutuq belgisi (except after o or g).
-- ō and ǒ, used for ö in drafts of the reform, are read as ö.
+- ō and ǒ are read as ö, as in the AkademTranslit library.
+- ș (s with a comma below, U+0219), which many fonts draw like ş, is read as ş.
 
 Both directions are lossless for text in canonical form.
 
@@ -91,9 +95,14 @@ The existing `uz_Cyrl-uz_Latn` with these changes:
 - Ё Ю Я Ц and the word-initial Е: both Latin letters capital only next to
   another capital, so initials are Yo. Yu. Ya. Ts. Ye. (the existing transform
   gives YO. YU. …).
-- Latin → Cyrillic: e is э only at the start of a word and е elsewhere
-  (tezda → тезда); yö is йў (yöl → йўл); t before ş is т (adabiyotşunos →
-  адабиётшунос); an apostrophe-like mark inside a word is the tutuq belgisi.
+- ь before о → y (бульон → bulyon, павильон → pavilyon); elsewhere ь is
+  dropped, as before. The existing transform drops it before о too (bulon).
+- Latin → Cyrillic: e is э at the start of a word and after a vowel, and е
+  elsewhere (tezda → тезда, poeziya → поэзия). After a vowel and before v it
+  is е, so surnames romanized the Russian way keep their Cyrillic form
+  (Aliev → Алиев; the standard Aliyev gives the same). yö is йў
+  (yöl → йўл); t before ş is т (adabiyotşunos → адабиётшунос); an
+  apostrophe-like mark inside a word is the tutuq belgisi.
 - A word boundary is "not a letter and not a combining mark". The rules run on
   NFD text, where ş is s + U+0327; with the existing `[:^L:]` boundary, Алишер
   would come out as Alişyer.
@@ -122,21 +131,22 @@ root order applies: ё sorts as a variant of е, and ў қ ғ ҳ right after у 
 
 ## Results
 
-ICU 74.2 (Unicode 15.1), `akademtranslit` 0.2.0 and its golden vectors
-(1121 inputs; plus 545 inputs in the 2026 orthography: the golden ones and the
-library's 2026 output for every Cyrillic and 1995 input). Full output:
-`tests/check-report.txt`.
+ICU 74.2 (Unicode 15.1), `akademtranslit` 0.3.0 and its golden vectors
+(1188 inputs; plus 604 inputs in the 2026 orthography: the golden ones and the
+library's 2026 output for every Cyrillic and 1995 input). The library's output
+is taken with `protect=False`, since the transforms protect nothing (URLs,
+tokens such as pH). Full output: `tests/check-report.txt`.
 
 | Check | Result |
 | --- | --- |
-| 1995 → 2026, against the library | 572 inputs; 10 differ, all explained: the library re-cases mixed-case words (pH → ph), the transform keeps each letter's case (7); decomposed input (2); a lone mark (1) |
-| 2026 → 1995, against the library | 545 inputs; 2 differ: decomposed input, which the transform normalizes and the library does not |
-| Cyrillic → 2026 = existing `uz_Cyrl-uz_Latn` then 1995 → 2026 | 435 inputs; 9 differ, all intended: с + ҳ (4), a single capital Е Ё Ю Я Ц (5) |
-| Cyrillic → 2026 → Cyrillic | 357 of 435 come back unchanged; the existing Cyrillic → 1995 → Cyrillic: 290 |
-| 2026 → 1995 → 2026 | 536 of 545 unchanged; the other 9 are ō ǒ, which come back as ö |
-| Collation, option A | 1995 words: 442, same order as the library; 2026 words: 442, 4 pairs differ (the s + h words above) |
-| Collation, option B | 2026 words: 442, same order as the library |
-| Collation, `uz_Cyrl` | 425 words, same order as the library |
+| 1995 → 2026, against the library | 614 inputs; 1 differs, explained: a lone mark |
+| 2026 → 1995, against the library | 604 inputs; 1 differs, explained: a text with ō and a word with sh, which the library reads word by word |
+| Cyrillic → 2026 = existing `uz_Cyrl-uz_Latn` then 1995 → 2026 | 443 inputs; 15 differ, all intended: с + ҳ (4), ь before о (6), a single capital Е Ё Ю Я Ц (5) |
+| Cyrillic → 2026 → Cyrillic | 362 of 443 come back unchanged; the existing Cyrillic → 1995 → Cyrillic: 292 |
+| 2026 → 1995 → 2026 | 593 of 604 unchanged; the other 11 are ō ǒ ș, which come back as ö ş |
+| Collation, option A | 1995 words: 531, same order as the library; 2026 words: 531, 4 pairs differ (the s + h words above) |
+| Collation, option B | 2026 words: 531, same order as the library |
+| Collation, `uz_Cyrl` | 514 words, same order as the library |
 
 The test files in `tests/` are the output of the proposed rules under ICU. The
 check regenerates them and fails if they change.
@@ -153,9 +163,9 @@ the resolution.
 
 | | Existing transform and this proposal | AkademTranslit library | Differences |
 | --- | --- | --- | --- |
-| ц | always ts: tsirk, funktsiya | s at the start of a word and after a consonant: sirk, funksiya; ts after a vowel | 29 of 435 Cyrillic inputs |
-| ъ | always ʼ: obʼyekt, möʼjiza | dropped before е ё ю я after a consonant, and after ў: obyekt, möjiza | 9 of 435 |
-| Latin ts | always ц: ketsa → кеца | т + с before an Uzbek suffix: ketsa → кетса | 57 of 545 2026 inputs |
+| ц | always ts: tsirk, funktsiya | s at the start of a word and after a consonant: sirk, funksiya; ts after a vowel | 29 of 443 Cyrillic inputs |
+| ъ | always ʼ: obʼyekt, möʼjiza | dropped before е ё ю я after a consonant, and after ў: obyekt, möjiza | 9 of 443 |
+| Latin ts | always ц: ketsa → кеца | т + с before an Uzbek suffix: ketsa → кетса | 57 of 604 2026 inputs |
 
 Following the library would make Cyrillic → Latin closer to published
 spelling, but those words would no longer come back to the same Cyrillic. The
@@ -165,25 +175,26 @@ choice is CLDR's; the library's behaviour is documented in its README.
 
 Outside the 2026 proposal, but found by the same check. All are in the current
 `uz_Cyrl-uz_Latn` (CLDR `main`, 8 November 2026; identical to the one in ICU
-74.2 on all 1121 inputs, both directions):
+74.2 on all 1188 inputs, both directions):
 
-1. Latin → Cyrillic writes every e that is not after a vowel as э:
-   tezda → тэзда, Oʻzbekiston → Ўзбэкистон, kelajak → кэлажак. Of 548 golden
-   1995 inputs that contain letters, 110 come out with a wrong э.
+1. Latin → Cyrillic writes e as э after a consonant too: tezda → тэзда,
+   Oʻzbekiston → Ўзбэкистон, kelajak → кэлажак. Of 583 golden 1995 inputs
+   that contain letters, 92 have э where the library writes е.
 2. yoʻl → ёʻл (should be йўл): yo is taken before oʻ.
 3. Исҳоқ → Ishoq, which reads back as Ишоқ. The 1995 orthography writes
    Isʼhoq; Isʼhoq → Исъҳоқ.
 4. Initials: Ш. Рашидов → SH. Rashidov (should be Sh.).
 5. An ASCII apostrophe is not read as part of oʻ or gʻ: o'zbek → о'збэк.
+6. ь before о is dropped: бульон → bulon (should be bulyon).
 
-The new transforms do not have 1–4, and the 1995 → 2026 transform reads o'
+The new transforms do not have 1–4 and 6, and the 1995 → 2026 transform reads o'
 and g' as oʻ and gʻ. The same fixes could be proposed for `uz_Cyrl-uz_Latn` in
 a separate ticket.
 
 ## Running the check
 
 ```bash
-pip install PyICU akademtranslit==0.2.0     # PyICU needs the ICU library
+pip install PyICU akademtranslit==0.3.0     # PyICU needs the ICU library
 python tools/check_cldr.py PATH/TO/golden    # golden/ of the akademtranslit repository
 python tools/check_cldr.py PATH/TO/golden --write-tests
 ```
@@ -194,7 +205,8 @@ files match.
 ## Licence
 
 The files in `transforms/`, `collation/` and `reference/` are CLDR data or
-derived from it, under the Unicode License v3, and keep its notice. The check
-and the test cases are AkademTranslit's (MIT). A pull request to
-`unicode-org/cldr` needs a Unicode Contributor License Agreement (individual or
-corporate) on file first.
+derived from it, under the Unicode License v3, and keep its notice. The Unicode
+License v3 is in [LICENSE](LICENSE), copied from the `unicode-org/cldr`
+repository (`LICENSE`, branch `main`, 11 November 2026). The check and the test
+cases are AkademTranslit's (MIT). A pull request to `unicode-org/cldr` needs a
+Unicode Contributor License Agreement (individual or corporate) on file first.

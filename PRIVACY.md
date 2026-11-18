@@ -5,10 +5,20 @@ not a service.
 
 - It collects no data. Each function works only on the arguments it is given
   and returns a result; nothing is kept between calls.
-- It opens no network connections and reads or writes no files. The package
-  imports two standard-library modules, `re` and `unicodedata`, and
-  `tests/test_privacy.py` fails if that changes.
+- It opens no network connections and reads or writes no files. The library
+  imports three standard-library modules, `re`, `unicodedata` and `warnings`,
+  and `tests/test_privacy.py` fails if that changes.
+- The only message it emits is a `FutureWarning` when a language tag names no
+  orthography (see the README). Python's `warnings` module handles it; it
+  contains the tag, never the text being converted.
 - It has no telemetry, analytics or update checks.
+
+The command-line tool (`akademtranslit`, `python -m akademtranslit`) reads the
+one file named on its command line, or standard input, and writes only to
+standard output and standard error. It opens no network connections and
+imports, besides the package, only `argparse`, `json`, `sys` and `warnings`.
+`tests/test_privacy.py` checks both parts. The library does not import the
+tool.
 
 Text passed to the library may contain personal data, such as names. The
 application that passes it decides how that data is collected, stored and
@@ -27,7 +37,8 @@ library:
   memory, for the duration of one function call. No component of the library
   stores or sends it.
 - **Deletion.** Nothing is kept, so there is nothing to delete.
-- **Retention.** None. The library keeps no copy of any text.
+- **Retention.** None. The library keeps no copy of any text, and neither
+  does the command-line tool: it saves nothing.
 - **Access.** The maintainers have no access to any user's data.
 
 AkademTranslit is owned and maintained by AKADEMTECH MChJ. Questions:

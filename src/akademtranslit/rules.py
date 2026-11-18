@@ -4,12 +4,18 @@ The tables in :mod:`akademtranslit.tables` cover characters whose reading never
 changes. This module covers the ones that do, plus the machinery that applies
 both: tokenisation, greedy longest-match rewriting, and case restoration.
 
-Five positional rules are implemented:
+Seven positional rules are implemented:
 
 ``е``
     Read ``ye`` at the start of a word and after a vowel or a soft/hard sign
-    (Ер -> Yer, поезд -> poyezd), ``e`` otherwise (тезда -> tezda). The reverse
-    direction mirrors it: word-initial ``e`` is ``э``, elsewhere ``е``.
+    (Ер -> Yer, поезд -> poyezd), ``e`` otherwise (тезда -> tezda).
+
+``e``
+    The Latin -> Cyrillic side. ``ye`` is always ``е``. A bare ``e`` is ``э``
+    at the start of a word (ekran -> экран) and after a vowel (poeziya ->
+    поэзия, aeroport -> аэропорт), except before ``v`` (Aliev -> Алиев, so a
+    surname romanized the Russian way keeps its Cyrillic form); ``е``
+    everywhere else (tezda -> тезда).
 
 ``ц``
     Read ``ts`` after a vowel (милиция -> militsiya) and ``s`` otherwise --
@@ -36,6 +42,11 @@ Five positional rules are implemented:
     syomka) and after ``ў`` (мўъжиза -> moʻjiza); the tutuq belgisi ``ʼ``
     everywhere else (маъно -> maʼno, санъат -> sanʼat). Not reversible: the
     Latin side has nothing to restore it from.
+
+``ь``
+    Read ``y`` before ``о`` (бульон -> bulyon, павильон -> pavilyon) and
+    dropped everywhere else (альбом -> albom). Not reversible: bulyon comes
+    back as булён.
 """
 
 from __future__ import annotations
@@ -44,6 +55,8 @@ import re
 
 from .tables import (
     APOSTROPHE_VARIANTS,
+    CYRILLIC_FIRST,
+    CYRILLIC_LAST,
     CYRILLIC_TO_LATIN_1995,
     CYRILLIC_VOWELS,
     LATIN_1995_TO_2026_STEPS,
@@ -94,31 +107,123 @@ def canonicalize_marks(word_lower: str) -> str:
     return "".join(out)
 
 
+# --- case --------------------------------------------------------------------
+
+# The case of one character, as _case_mask writes it.
+_UPPER = "U"
+_LOWER = "L"
+_NO_CASE = "-"
+
+
+def _case_mask(word: str) -> str:
+    """The case of each character of ``word``: ``U``, ``L`` or ``-`` (none).
+
+    ``ʻ``, ``ʼ`` and digits have no case. One exception to a letter's own
+    case: an ``h`` after a capital ``S`` or ``C`` is a capital if the word has
+    another capital besides that ``S`` or ``C``. ``Sh`` and ``Ch`` are one
+    letter in ``latin_1995``, so ``MChJ`` and ``AQSh`` are all caps, while
+    ``Shahar`` -- and ``Sh``, which is s + h in ``latin_2026`` -- has an
+    initial capital.
+    """
+    mask = []
+    capitals = 0
+    for ch in word:
+        if ch.lower() == ch.upper():
+            mask.append(_NO_CASE)
+        elif ch.isupper():
+            mask.append(_UPPER)
+            capitals += 1
+        else:
+            mask.append(_LOWER)
+    if capitals > 1:
+        for i in range(1, len(word)):
+            if word[i] == "h" and word[i - 1] in "SC":
+                mask[i] = _UPPER
+    return "".join(mask)
+
+
+def _unit_starts(mask: str) -> list:
+    """Where the letter units of a word start: at 0, at each capital that
+    follows a lowercase letter (``Tosh|DU``), and at each lowercase letter that
+    follows two or more capitals in a row (``AQSh|da``, ``Tosh|DU|ga``; not
+    ``Shahar``). Characters without case between the two do not count, and
+    stay with the letter before them (``Oʻz|MU``)."""
+    starts = [0]
+    previous = _NO_CASE
+    capitals = 0  # capitals in a row up to here
+    for i, case in enumerate(mask):
+        if case == _NO_CASE:
+            continue
+        if case == _UPPER and previous == _LOWER:
+            starts.append(i)
+        elif case == _LOWER and capitals >= 2:
+            starts.append(i)
+        capitals = capitals + 1 if case == _UPPER else 0
+        previous = case
+    return starts
+
+
+def _irregular(source: str) -> bool:
+    """True if ``source``'s own case is not all lowercase, all caps or an
+    initial capital: ``MChJ``, ``ShAHAR``, ``McDonald``."""
+    cased = [ch.isupper() for ch in source if ch.lower() != ch.upper()]
+    return any(cased[1:]) and not all(cased)
+
+
+def _copy_case(source: str, result: str) -> str:
+    """``result`` with the case of ``source``, position by position. A
+    character without case takes the case of the letter before it, and is
+    lowercase at the start."""
+    out = []
+    upper = False
+    for ch, new in zip(source, result):
+        if ch.lower() != ch.upper():
+            upper = ch.isupper()
+        out.append(new.upper() if upper else new.lower())
+    return "".join(out)
+
+
 def apply_case(source: str, result: str) -> str:
     """Restore ``source``'s casing onto ``result``.
 
-    Per token, so a name in a sentence and the same name in a heading both come
-    out right:
+    ``source`` is a word, or one letter unit of a word (see :func:`map_words`).
+    So that a name in a sentence and the same name in a heading both come out
+    right:
 
-    * all-caps in, all-caps out -- ``ШОШИМОВА`` -> ``ŞOŞIMOVA``, never
-      ``Şoşimova``;
+    * irregular case -- not all lowercase, not all caps and not an initial
+      capital -- is copied letter by letter when ``result`` is as long as
+      ``source``: ``MChJ`` and ``McDonald`` stay as they are in
+      ``latin_1995``. A character without case takes the case of the letter
+      before it;
+    * otherwise, all caps in, all caps out -- ``ШОШИМОВА`` -> ``ŞOŞIMOVA``,
+      never ``Şoşimova``;
     * initial capital in, initial capital out;
     * anything else lowercase.
 
     Length changes freely between input and output (``ш`` is one character,
-    ``sh`` is two), so casing is decided from the source and re-applied, never
-    copied position by position.
+    ``sh`` is two), so only output as long as the input takes the case
+    position by position; any other output has it decided from the source and
+    re-applied.
 
     Only letters that have case take part. ``ʻ`` and ``ʼ`` are letters to
-    Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all-caps and
-    gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``.
+    Unicode (category Lm) but have no case, so ``OʻZBEKISTON`` is all caps and
+    gives ``ЎЗБЕКИСТОН``, not ``Ўзбекистон``. An ``h`` after a capital ``S``
+    or ``C`` is a capital when ``source`` has another capital: ``Sh`` and
+    ``Ch`` are one letter, so ``MChJ`` is all caps and gives ``MÇJ``, while
+    ``Shahar``, and the unit ``Sh`` of ``TerSh``, have an initial capital.
     """
-    letters = [ch for ch in source if ch.lower() != ch.upper()]
-    if not letters or not result:
+    return _apply_case(source, result, _case_mask(source))
+
+
+def _apply_case(source: str, result: str, mask: str) -> str:
+    cased = mask.replace(_NO_CASE, "")
+    if not cased or not result:
         return result
-    if len(letters) > 1 and all(ch.isupper() for ch in letters):
+    if len(result) == len(source) and _irregular(source):
+        return _copy_case(source, result)
+    if len(cased) > 1 and _LOWER not in cased:
         return result.upper()
-    if letters[0].isupper():
+    if cased[0] == _UPPER:
         return result[0].upper() + result[1:]
     return result
 
@@ -127,17 +232,105 @@ def map_words(text: str, transform) -> str:
     """Apply ``transform`` to each word of ``text``, preserving everything else.
 
     ``transform`` receives the lowercased, mark-canonicalised word and returns
-    its converted form; casing is restored afterwards. Digits, punctuation and
-    whitespace pass through untouched, which is what keeps mixed-script and
-    mixed-content input (citations, DOIs, years) intact.
+    its converted form; casing is restored afterwards with :func:`apply_case`.
+    Case is kept per letter unit: a word is split where a lowercase letter is
+    followed by a capital, and where two or more capitals are followed by a
+    lowercase letter, and each unit is converted and cased on its own --
+    ``ToshDU`` is ``Tosh`` + ``DU``, ``OʻzMU`` is ``Oʻz`` + ``MU`` and
+    ``AQShda`` is ``AQSh`` + ``da``, so they give ``ToşDU``, ``ÖzMU`` and
+    ``AQŞda``. Digits, punctuation and whitespace pass through
+    untouched. It sees words only: URLs, DOIs and the other protected spans
+    are cut out by :func:`~akademtranslit.convert` before it gets here (see
+    :mod:`akademtranslit.protect`).
     """
 
-    def _one(match: re.Match[str]) -> str:
-        source = match.group(0)
-        converted = transform(canonicalize_marks(source.lower()))
-        return apply_case(source, converted)
+    return _WORD_RE.sub(lambda match: map_word(match.group(0), transform), text)
 
-    return _WORD_RE.sub(_one, text)
+
+def map_words_by(text: str, transform_for) -> str:
+    """:func:`map_words` with a transform chosen for each word.
+
+    ``transform_for`` receives each word of ``text`` as it stands and returns
+    the transform for it; :func:`~akademtranslit.convert` uses it to read each
+    word in its own orthography when the source is ``"auto"``.
+    """
+    return _WORD_RE.sub(
+        lambda match: map_word(match.group(0), transform_for(match.group(0))), text
+    )
+
+
+def map_word(source: str, transform) -> str:
+    """Apply ``transform`` to one word, as :func:`map_words` does to each."""
+    lower = source.lower()
+    if lower == source:
+        return transform(canonicalize_marks(lower))
+    mask = _case_mask(source)
+    starts = _unit_starts(mask)
+    if len(starts) == 1:
+        return _apply_case(source, transform(canonicalize_marks(lower)), mask)
+    # Each unit is cased by its own letters: the h of Ter|Sh has no other
+    # capital beside it in Sh.
+    ends = starts[1:] + [len(source)]
+    return "".join(
+        apply_case(source[a:b], transform(canonicalize_marks(source[a:b].lower())))
+        for a, b in zip(starts, ends)
+    )
+
+
+# --- the orthography a word shows ---------------------------------------------
+
+# The classes of word_class.
+CYRILLIC_WORD = "C"
+LATIN_2026_WORD = "N"
+LATIN_1995_WORD = "O"
+O_FORM_WORD = "D"
+SH_CH_WORD = "W"
+PLAIN_WORD = "-"
+
+# Letters that only latin_2026 has: ş ç ğ ö, and s with comma below (U+0219),
+# an input form of ş.
+_LATIN_2026_LETTERS = frozenset("şçğö" "\u0219")
+
+# The input forms of ö: o with macron (U+014D) and o with caron (U+01D2).
+_O_FORMS = frozenset("\u014d\u01d2")
+
+_OI = "o" + TURNED_COMMA
+_GI = "g" + TURNED_COMMA
+
+
+def word_class(word: str) -> str:
+    """Which orthography one word shows, as one of six classes.
+
+    The word is lowercased and its marks canonicalised; the first class that
+    applies is the answer:
+
+    ``"C"``
+        a Cyrillic letter (U+0400-U+052F);
+    ``"N"``
+        one of ``ş ç ğ ö``, or s with comma below: ``latin_2026``;
+    ``"O"``
+        ``oʻ`` or ``gʻ``: ``latin_1995``;
+    ``"D"``
+        o with macron or o with caron, input forms of ``ö``: ``latin_2026``,
+        but foreign names have them too, so they say little about a text;
+    ``"W"``
+        ``sh`` or ``ch``, which both Latin orthographies write, as one letter
+        in ``latin_1995`` and as two in ``latin_2026``;
+    ``"-"``
+        none of these: the word is written the same in both.
+    """
+    word = canonicalize_marks(word.lower())
+    if any(CYRILLIC_FIRST <= ord(ch) <= CYRILLIC_LAST for ch in word):
+        return CYRILLIC_WORD
+    if any(ch in _LATIN_2026_LETTERS for ch in word):
+        return LATIN_2026_WORD
+    if _OI in word or _GI in word:
+        return LATIN_1995_WORD
+    if any(ch in _O_FORMS for ch in word):
+        return O_FORM_WORD
+    if "sh" in word or "ch" in word:
+        return SH_CH_WORD
+    return PLAIN_WORD
 
 
 # --- Cyrillic -> latin_1995 --------------------------------------------------
@@ -173,6 +366,9 @@ def cyrillic_word_to_latin_1995(word: str) -> str:
             # The 1995 spelling writes no mark here: объект -> obyekt,
             # мўъжиза -> moʻjiza. Elsewhere ъ is the tutuq belgisi.
             continue
+        elif ch == "ь" and nxt == "о":
+            # ь before о is y: бульон -> bulyon. Elsewhere it is dropped.
+            out.append("y")
         else:
             out.append(CYRILLIC_TO_LATIN_1995.get(ch, ch))
     return "".join(out)
@@ -204,6 +400,9 @@ _TS_SUFFIX_RE = re.compile(
 )
 
 _VOWELS_AND_Y = LATIN_VOWELS | {"y"}
+
+# The vowels after which a bare e is э: poeziya -> поэзия.
+_VOWELS_BEFORE_E = frozenset("aeiou")
 
 
 def _ts_splits(word: str, i: int) -> bool:
@@ -262,14 +461,18 @@ def latin_1995_word_to_cyrillic(word: str) -> str:
     i = 0
     length = len(word)
     while i < length:
-        # The e/ye rule outranks the table: ``ye`` is always е, a bare ``e`` is
-        # э word-initially and е everywhere else.
+        # The e/ye rule outranks the table: ``ye`` is always е. A bare ``e`` is
+        # э word-initially and after a vowel, except before v (Aliev ->
+        # Алиев), and е everywhere else.
         if word.startswith("ye", i):
             out.append("е")
             i += 2
             continue
         if word[i] == "e":
-            out.append("э" if i == 0 else "е")
+            after_a_vowel = (
+                i > 0 and word[i - 1] in _VOWELS_BEFORE_E and not word.startswith("v", i + 1)
+            )
+            out.append("э" if i == 0 or after_a_vowel else "е")
             i += 1
             continue
         # ts is ц (the table's row) unless the word splits it. Then only the t
@@ -301,10 +504,23 @@ def latin_1995_word_to_2026(word: str) -> str:
     return word
 
 
-def latin_2026_word_to_1995(word: str) -> str:
-    """Convert one lowercase ``latin_2026`` word to ``latin_1995``."""
+def latin_2026_canonical_word(word: str) -> str:
+    """Write the other input forms of ``ö`` and ``ş`` in one lowercase word as
+    those letters.
+
+    Applies :data:`~akademtranslit.tables.LATIN_2026_INPUT_ALIASES`: o with
+    macron and o with caron are ``ö``, s with comma below is ``ş``. Run
+    whenever the source or the target is ``latin_2026``, so these glyphs
+    never reach 2026 output.
+    """
     for source, target in LATIN_2026_INPUT_ALIASES:
         word = word.replace(source, target)
+    return word
+
+
+def latin_2026_word_to_1995(word: str) -> str:
+    """Convert one lowercase ``latin_2026`` word to ``latin_1995``."""
+    word = latin_2026_canonical_word(word)
     for source, target in LATIN_2026_TO_1995_STEPS:
         word = word.replace(source, target)
     return word

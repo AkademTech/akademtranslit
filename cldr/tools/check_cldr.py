@@ -9,7 +9,8 @@ release assets).
 
 Needs PyICU (``pip install PyICU``; it needs the ICU library) and the
 ``akademtranslit`` package of the same version as the golden file. Neither is
-a dependency of the library itself.
+a dependency of the library itself. From 0.3.0 the library's output is taken
+with ``protect=False``: the transforms protect nothing.
 
 What it checks:
 
@@ -18,8 +19,8 @@ What it checks:
    golden input written in that orthography.
 3. ``uz_Cyrl -> uz_Latn_2026``: equal to the existing ``uz_Cyrl-uz_Latn`` (``reference/``)
    followed by ``uz_Latn_1995 -> uz_Latn_2026``, except where the existing
-   transform is ambiguous (с + ҳ). Differences from the library are counted by
-   cause.
+   transform is ambiguous (с + ҳ) or drops ь before о. Differences from the
+   library are counted by cause.
 4. Round trips: Cyrillic -> 2026 -> Cyrillic, and 2026 -> 1995 -> 2026.
 5. The proposed collations order the alphabet words the same way as the
    library's ``sort_key``.
@@ -31,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import inspect
 import json
 import re
 import sys
@@ -73,8 +75,10 @@ def explain_common(text: str, got: str, lib: str) -> str | None:
     """Reasons shared by every direction, or None."""
     if text.strip() in {"ʻ", "ʼ", "'", "‘", "’"}:
         return "a lone mark outside a word"
-    if nfc(text) != text:
-        return "decomposed input: the transform normalizes it, the library does not"
+    nfd = unicodedata.normalize("NFD", text)
+    if ("\u0304" in nfd or "\u030c" in nfd) and re.search("[sScC][hH]", text):
+        return ("ō ǒ: the library reads each word in its own orthography and does not count "
+                "them as 2026 letters, so a word with sh or ch is read as 1995")
     if any(ch.isalpha() and ch not in UZBEK_LATIN and not ("а" <= ch <= "я" or ch in "ёўқғҳ")
            for ch in nfc(text).lower()):
         return "letters outside the Uzbek alphabet"
@@ -105,7 +109,21 @@ def main() -> int:
     if golden["library_version"] != at.__version__:
         raise SystemExit(f"golden {golden['library_version']} != installed {at.__version__}")
     results = golden["results"]
-    cases = [(c["id"], c["text"], results[c["id"]]) for c in inputs["cases"]]
+    # The transforms protect nothing (URLs, tokens such as pH), so they are
+    # compared with the library's output without protected spans:
+    # protect=False, from akademtranslit 0.3.0.
+    unprotected = {"protect": False} if "protect" in inspect.signature(at.convert).parameters else {}
+
+    def lib_row(text: str, r: dict) -> dict:
+        if not unprotected:
+            return r
+        r = dict(r)
+        r["to_latin_2026"] = at.to_latin(text, variant="latin_2026", **unprotected)
+        r["to_latin_1995"] = at.to_latin(text, variant="latin_1995", **unprotected)
+        r["to_cyrillic"] = at.to_cyrillic(text, **unprotected)
+        return r
+
+    cases = [(c["id"], c["text"], lib_row(c["text"], results[c["id"]])) for c in inputs["cases"]]
 
     t = HERE / "transforms"
     l95_26 = transliterator(t / "uz_Latn_1995-uz_Latn_2026.xml", FWD)
@@ -122,8 +140,16 @@ def main() -> int:
     # come from the library.
     cases26: list[tuple[str, str, str, str]] = []
     seen26: set[str] = set()
+    def one_latin_orthography(text: str) -> bool:
+        # A text with a 2026 letter and a 1995 word (Gödel ... oʻqitiladi) is
+        # not a 2026 input; the library reads each word in its own orthography.
+        if not hasattr(at, "script_spans"):
+            return True
+        return all(kind != "latin_1995" for _piece, kind in at.script_spans(text))
+
     for cid, text, r in cases:
-        if r["detect_script"] == "latin_2026" and r["script_class"] != "mixed":
+        if r["detect_script"] == "latin_2026" and r["script_class"] != "mixed" \
+                and one_latin_orthography(text):
             cases26.append((cid, text, r["to_latin_1995"], r["to_cyrillic"]))
             seen26.add(text)
     for cid, text, r in cases:
@@ -133,8 +159,8 @@ def main() -> int:
             if y in seen26 or at.script_class(y) != "latin" or not any(ch.isalpha() for ch in y):
                 continue
             seen26.add(y)
-            cases26.append(("d" + cid, y, at.convert(y, source="latin_2026", target="latin_1995"),
-                            at.convert(y, source="latin_2026", target="cyrillic")))
+            cases26.append(("d" + cid, y, at.convert(y, source="latin_2026", target="latin_1995", **unprotected),
+                            at.convert(y, source="latin_2026", target="cyrillic", **unprotected)))
 
     report: list[str] = [f"ICU {icu.ICU_VERSION}, Unicode {icu.UNICODE_VERSION}, "
                          f"akademtranslit {at.__version__}, {len(cases)} golden inputs, "
@@ -210,9 +236,10 @@ def main() -> int:
     for cid, text, got, lib, cause in lib_diff:
         report.append(f"- {cid} [{cause}]: {text!r} -> CLDR {got!r}, library {lib!r}")
     unexplained = [d for d in chain_diff
-                   if "сҳ" not in d[1].lower() and d[2].lower() != d[3].lower()]
+                   if "сҳ" not in d[1].lower() and "ьо" not in d[1].lower()
+                   and d[2].lower() != d[3].lower()]
     report.append("  (expected: с + ҳ, which the existing transform writes as the digraph sh; "
-                  "and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)")
+                  "ь before о, now y; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)")
     failures += len(unexplained) + causes["other"]
     report.append("")
 
@@ -233,13 +260,13 @@ def main() -> int:
     rt26 = alias = 0
     for cid, text, got in tests_26_95:
         if l95_26.transliterate(got) != nfc(text):
-            if set(unicodedata.normalize("NFD", text)) & {"\u0304", "\u030c"}:
+            if set(unicodedata.normalize("NFD", text)) & {"\u0304", "\u030c", "\u0326"}:
                 alias += 1
                 continue
             rt26 += 1
             report.append(f"- 2026 round trip {cid}: {text!r} -> {got!r} -> {l95_26.transliterate(got)!r}")
     report.append(f"2026 -> 1995 -> 2026: {len(tests_26_95) - rt26 - alias} of {len(tests_26_95)} come back unchanged; "
-                  f"{alias} more are the draft spellings ō ǒ, which come back as ö")
+                  f"{alias} more are the spellings ō ǒ ș, which come back as ö ş")
     failures += rt26
     report.append("")
 

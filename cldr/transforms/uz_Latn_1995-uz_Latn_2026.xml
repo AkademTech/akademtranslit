@@ -62,8 +62,8 @@ CH ← [:Lu:] [:Mn:]* { C\u0327 ;
 CH ← C\u0327 } [:Lu:] ;
 Ch ← C\u0327 ;
 
-# Spellings of the reformed letters seen in drafts of the reform: ō (and ǒ)
-# for ö. Read as oʻ when going back to 1995.
+# ō and ǒ, other spellings of ö in some text, are read as oʻ when going back
+# to 1995.
 oʻ ← o\u0304 ;
 Oʻ ← O\u0304 ;
 oʻ ← o\u030C ;
@@ -76,6 +76,9 @@ Oʻ ← O\u030C ;
 # the tutuq belgisi, except after o or g, where it is read as the 1995 letter.
 ʻ ← [oOgG] { $apos ;
 ʼ ← $letter { $apos } $letter ;
+# ș (s with a comma below, U+0219) is read as ş.
+s\u0327 ← s\u0326 ;
+S\u0327 ← S\u0326 ;
 
 :: NFC (NFD) ;
 			]]></tRule>

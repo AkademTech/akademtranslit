@@ -15,6 +15,7 @@ c0267	ç	ч
 c0268	Ç	Ч
 c0269	oçiq	очиқ
 c0270	OÇIQ	ОЧИҚ
+c0273	Özbekiston	Ўзбекистон
 c0274	Özbekiston	Ўзбекистон
 c0275	Şoşimova	Шошимова
 c0279	şoşimova	шошимова
@@ -57,16 +58,23 @@ c1076	ÖRDAK	ЎРДАК
 c1077	ō	ў
 c1078	ǒ	ў
 c1079	Ō	Ў
+c1080	Ǒ	Ў
 c1081	ōrdak	ўрдак
 c1082	ǒrdak	ўрдак
 c1083	ŌRDAK	ЎРДАК
+c1084	Ǒzbekiston	Ўзбекистон
 c1086	çöl	чўл
 c1087	Çirçiq	Чирчиқ
 c1088	Ğijduvon	Ғиждувон
 c1089	Şahrisabz	Шаҳрисабз
+c1090	özbek	ўзбек
 c1091	işçi	ишчи
 c1092	öçmas	ўчмас
 c1103	Ördak	Ўрдак
+c1173	MÇJ va AQŞ	МЧЖ ва АҚШ
+c1181	Toshkent va Tōkyō	Тосҳкент ва Тўкйў
+c1182	Ishoq Şoşimov Toşkentda yaşaydi	Исҳоқ Шошимов Тошкентда яшайди
+c1187	Toșkent	Тошкент
 dc0001	a	а
 dc0002	A	А
 dc0003	baxt	бахт
@@ -170,8 +178,8 @@ dc0111	albom	албом
 dc0112	ALBOM	АЛБОМ
 dc0113	e	э
 dc0114	E	Э
-dc0115	poema	поема
-dc0116	POEMA	ПОЕМА
+dc0115	poema	поэма
+dc0116	POEMA	ПОЭМА
 dc0117	yu	ю
 dc0118	Yu	Ю
 dc0119	syujet	сюжет
@@ -188,7 +196,6 @@ dc0137	h	ҳ
 dc0138	H	Ҳ
 dc0167	bahor	баҳор
 dc0168	BAHOR	БАҲОР
-dc0273	Özbekiston	Ўзбекистон
 dc0281	Çorşanbiyev	Чоршанбиев
 dc0287	Gafurov	Гафуров
 dc0295	ilmiy tadqiqot	илмий тадқиқот
@@ -376,7 +383,7 @@ dc0667	teatr	театр
 dc0671	muallif	муаллиф
 dc0674	işoq	ишоқ
 dc0679	abvgdeyojziyklmnoprstufxsçşʼeyuyaöqğh	абвгдеёжзийклмнопрстуфхсчшъеюяўқғҳ
-dc0680	abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиеюяўқғҳш
+dc0680	abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиэюяўқғҳш
 dc0681	asr	аср
 dc0683	vaqt	вақт
 dc0685	gul	гул
@@ -434,7 +441,10 @@ dc0862	YULDUZ	ЮЛДУЗ
 dc0863	Yaşil	Яшил
 dc0864	daryo	дарё
 dc0865	ğoya	ғоя
-dc0872	Mcdonald	Мcдоналд
+dc0870	ÖzBEKISTON	ЎзБЕКИСТОН
+dc0872	McDonald	МcДоналд
+dc0873	ToşKent	ТошКент
+dc0874	tOŞKENT	тОШКЕНТ
 dc0875	AB	АБ
 dc0876	Ab	Аб
 dc0895	jurʼat	журъат
@@ -473,12 +483,12 @@ dc0974	bilan	билан
 dc0978	subyektiv	субектив
 dc0979	podyezd	подезд
 dc0980	premyer	премер
-dc0984	Spo2	Спо2
-dc0985	ph	пҳ
-dc0986	EEG	ЭЕГ
+dc0984	SpO2	СпО2
+dc0985	pH	пҲ
+dc0986	EEG	ЭЭГ
 dc0987	UTT	УТТ
 dc0990	B12	Б12
-dc0991	Paco2	Паcо2
+dc0991	PaCO2	ПаCО2
 dc0992	aytsangizgina	айцангизгина
 dc0993	aytsakkina	айцаккина
 dc0994	ketsayu	кецаю
@@ -516,10 +526,7 @@ dc1063	XXI asr	ХХИ аср
 dc1065	12-son, 3-jild	12-сон, 3-жилд
 dc1066	ISBN 978-0-00-000000-0	ИСБН 978-0-00-000000-0
 dc1067	Ali, Vali va Ğani	Али, Вали ва Ғани
-dc1080	Ǒ	Ў
-dc1084	Ǒzbekiston	Ўзбекистон
 dc1085	IŞOQ	ИШОҚ
-dc1090	özbek	ўзбек
 dc1093	oksitotsin	окситоцин
 dc1094	doksorubitsin	доксорубицин
 dc1095	rifampitsin	рифампицин
@@ -544,3 +551,55 @@ dc1117	2-son	2-сон
 dc1118	Mi zdes	Ми здес
 dc1119	bir	бир
 dc1120	Qöşiq va şi	Қўшиқ ва ши
+dc1122	aeroport	аэропорт
+dc1123	poeziya	поэзия
+dc1124	duel	дуэл
+dc1125	koeffitsiyent	коэффициент
+dc1126	reemigratsiya	реэмиграция
+dc1127	siluet	силуэт
+dc1128	Rafael	Рафаэл
+dc1129	Alievning	Алиевнинг
+dc1130	Alieva	Алиева
+dc1131	Kiev	Киев
+dc1132	POEZIYA	ПОЭЗИЯ
+dc1133	bulyon	булён
+dc1134	Bulyon	Булён
+dc1135	BULYON	БУЛЁН
+dc1136	pavilyon	павилён
+dc1137	poçtalyonlar	почталёнлар
+dc1138	medalyon	медалён
+dc1140	Batafsil: https://gazeta.uz/oz/2026/11/05/şahar-çiroqlari/ manzilida.	Батафсил: ҳттпс://газета.уз/оз/2026/11/05/шаҳар-чироқлари/ манзилида.
+dc1141	www.şahar.uz saytida	www.шаҳар.уз сайтида
+dc1142	gazeta.uz va kun.uz	газета.уз ва кун.уз
+dc1143	info@şahar.uz ga yozing	инфо@шаҳар.уз га ёзинг
+dc1144	doi:10.1234/çaşma.2026.01 maqolasi	дои:10.1234/чашма.2026.01 мақоласи
+dc1145	https://doi.org/10.5555/şox-2026	ҳттпс://дои.орг/10.5555/шох-2026
+dc1146	10.1007/s00415-026-12345-6 raqamli maqola	10.1007/с00415-026-12345-6 рақамли мақола
+dc1147	{count} ta kitob	{cоунт} та китоб
+dc1148	{count, plural, one {# ta şahar} other {# ta şahar}}	{cоунт, плурал, оне {# та шаҳар} отҳер {# та шаҳар}}
+dc1149	Salom, {name}! Sizda {n, number} ta xabar bor	Салом, {наме}! Сизда {н, нумбер} та хабар бор
+dc1150	%s ta fayl, %(soni)d ta şahar	%с та файл, %(сони)д та шаҳар
+dc1151	<b>Şahar</b> <a href="https://şahar.uz">havola</a>	<б>Шаҳар</б> <а ҳреф="ҳттпс://шаҳар.уз">ҳавола</а>
+dc1152	&nbsp;çoy &amp; şakar	&нбсп;чой &амп; шакар
+dc1153	SpO2 92%, pH 7,35, PaCO2 45 mmHg	СпО2 92%, пҲ 7,35, ПаCО2 45 ммҲг
+dc1154	McDonaldʼs va iPhone, YouTube	МcДоналдъс ва иПҳоне, ЁуТубе
+dc1155	AkademTeç va AslMatn	АкадемТеч ва АслМатн
+dc1156	«AKADEMTEÇ» MÇJ	«АКАДЕМТЕЧ» МЧЖ
+dc1157	AQŞ va BMT	АҚШ ва БМТ
+dc1158	B12 vitamini va eGFR	Б12 витамини ва эГФР
+dc1159	/home/user/şahar.txt fayli	/ҳоме/усер/шаҳар.тхт файли
+dc1160	hisobot_şahar.docx faylini oçing	ҳисобот_шаҳар.доcх файлини очинг
+dc1161	kirill/lotin yozuvi	кирилл/лотин ёзуви
+dc1163	Töraqörğon tumani	Тўрақўрғон тумани
+dc1164	Toş­kent	Тош­кент
+dc1165	şahar​ çoy	шаҳар​ чой
+dc1166	a < b va c > d	а < б ва c > д
+dc1167	{şahar_soni	{шаҳар_сони
+dc1168	10ta kitob, 2026yil, 100mg	10та китоб, 2026йил, 100мг
+dc1169	ToşDU va SamDU	ТошДУ ва СамДУ
+dc1170	ToşDU va ÖzMU	ТошДУ ва ЎзМУ
+dc1171	ÖzMU talabasi	ЎзМУ талабаси
+dc1172	ÇatGPT, PhD, AkademID	ЧатГПТ, ПҳД, АкадемИД
+dc1176	AQŞda va MÇJning	АҚШда ва МЧЖнинг
+dc1178	ToşDUga, SamDUda	ТошДУга, СамДУда
+dc1179	TerŞ	ТерШ

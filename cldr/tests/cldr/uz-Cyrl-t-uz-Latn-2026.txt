@@ -14,6 +14,7 @@ BAŞQA	БАШҚА
 Ç	Ч
 oçiq	очиқ
 OÇIQ	ОЧИҚ
+Özbekiston	Ўзбекистон
 Özbekiston	Ўзбекистон
 Şoşimova	Шошимова
 şoşimova	шошимова
@@ -56,16 +57,23 @@ Mirzo Uluğbek nomidagi Özbekiston Milliy universiteti	Мирзо Улуғбе�
 ō	ў
 ǒ	ў
 Ō	Ў
+Ǒ	Ў
 ōrdak	ўрдак
 ǒrdak	ўрдак
 ŌRDAK	ЎРДАК
+Ǒzbekiston	Ўзбекистон
 çöl	чўл
 Çirçiq	Чирчиқ
 Ğijduvon	Ғиждувон
 Şahrisabz	Шаҳрисабз
+özbek	ўзбек
 işçi	ишчи
 öçmas	ўчмас
 Ördak	Ўрдак
+MÇJ va AQŞ	МЧЖ ва АҚШ
+Toshkent va Tōkyō	Тосҳкент ва Тўкйў
+Ishoq Şoşimov Toşkentda yaşaydi	Исҳоқ Шошимов Тошкентда яшайди
+Toșkent	Тошкент
 a	а
 A	А
 baxt	бахт
@@ -169,8 +177,8 @@ albom	албом
 ALBOM	АЛБОМ
 e	э
 E	Э
-poema	поема
-POEMA	ПОЕМА
+poema	поэма
+POEMA	ПОЭМА
 yu	ю
 Yu	Ю
 syujet	сюжет
@@ -187,7 +195,6 @@ h	ҳ
 H	Ҳ
 bahor	баҳор
 BAHOR	БАҲОР
-Özbekiston	Ўзбекистон
 Çorşanbiyev	Чоршанбиев
 Gafurov	Гафуров
 ilmiy tadqiqot	илмий тадқиқот
@@ -375,7 +382,7 @@ teatr	театр
 muallif	муаллиф
 işoq	ишоқ
 abvgdeyojziyklmnoprstufxsçşʼeyuyaöqğh	абвгдеёжзийклмнопрстуфхсчшъеюяўқғҳ
-abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиеюяўқғҳш
+abvgdyojziyklmnoprstufxçşʼieyuyaöqğhş	абвгдёжзийклмнопрстуфхчшъиэюяўқғҳш
 asr	аср
 vaqt	вақт
 gul	гул
@@ -433,7 +440,10 @@ YULDUZ	ЮЛДУЗ
 Yaşil	Яшил
 daryo	дарё
 ğoya	ғоя
-Mcdonald	Мcдоналд
+ÖzBEKISTON	ЎзБЕКИСТОН
+McDonald	МcДоналд
+ToşKent	ТошКент
+tOŞKENT	тОШКЕНТ
 AB	АБ
 Ab	Аб
 jurʼat	журъат
@@ -472,12 +482,12 @@ bilan	билан
 subyektiv	субектив
 podyezd	подезд
 premyer	премер
-Spo2	Спо2
-ph	пҳ
-EEG	ЭЕГ
+SpO2	СпО2
+pH	пҲ
+EEG	ЭЭГ
 UTT	УТТ
 B12	Б12
-Paco2	Паcо2
+PaCO2	ПаCО2
 aytsangizgina	айцангизгина
 aytsakkina	айцаккина
 ketsayu	кецаю
@@ -511,10 +521,7 @@ XXI asr	ХХИ аср
 12-son, 3-jild	12-сон, 3-жилд
 ISBN 978-0-00-000000-0	ИСБН 978-0-00-000000-0
 Ali, Vali va Ğani	Али, Вали ва Ғани
-Ǒ	Ў
-Ǒzbekiston	Ўзбекистон
 IŞOQ	ИШОҚ
-özbek	ўзбек
 oksitotsin	окситоцин
 doksorubitsin	доксорубицин
 rifampitsin	рифампицин
@@ -539,3 +546,55 @@ Alijon	Алижон
 Mi zdes	Ми здес
 bir	бир
 Qöşiq va şi	Қўшиқ ва ши
+aeroport	аэропорт
+poeziya	поэзия
+duel	дуэл
+koeffitsiyent	коэффициент
+reemigratsiya	реэмиграция
+siluet	силуэт
+Rafael	Рафаэл
+Alievning	Алиевнинг
+Alieva	Алиева
+Kiev	Киев
+POEZIYA	ПОЭЗИЯ
+bulyon	булён
+Bulyon	Булён
+BULYON	БУЛЁН
+pavilyon	павилён
+poçtalyonlar	почталёнлар
+medalyon	медалён
+Batafsil: https://gazeta.uz/oz/2026/11/05/şahar-çiroqlari/ manzilida.	Батафсил: ҳттпс://газета.уз/оз/2026/11/05/шаҳар-чироқлари/ манзилида.
+www.şahar.uz saytida	www.шаҳар.уз сайтида
+gazeta.uz va kun.uz	газета.уз ва кун.уз
+info@şahar.uz ga yozing	инфо@шаҳар.уз га ёзинг
+doi:10.1234/çaşma.2026.01 maqolasi	дои:10.1234/чашма.2026.01 мақоласи
+https://doi.org/10.5555/şox-2026	ҳттпс://дои.орг/10.5555/шох-2026
+10.1007/s00415-026-12345-6 raqamli maqola	10.1007/с00415-026-12345-6 рақамли мақола
+{count} ta kitob	{cоунт} та китоб
+{count, plural, one {# ta şahar} other {# ta şahar}}	{cоунт, плурал, оне {# та шаҳар} отҳер {# та шаҳар}}
+Salom, {name}! Sizda {n, number} ta xabar bor	Салом, {наме}! Сизда {н, нумбер} та хабар бор
+%s ta fayl, %(soni)d ta şahar	%с та файл, %(сони)д та шаҳар
+<b>Şahar</b> <a href="https://şahar.uz">havola</a>	<б>Шаҳар</б> <а ҳреф="ҳттпс://шаҳар.уз">ҳавола</а>
+&nbsp;çoy &amp; şakar	&нбсп;чой &амп; шакар
+SpO2 92%, pH 7,35, PaCO2 45 mmHg	СпО2 92%, пҲ 7,35, ПаCО2 45 ммҲг
+McDonaldʼs va iPhone, YouTube	МcДоналдъс ва иПҳоне, ЁуТубе
+AkademTeç va AslMatn	АкадемТеч ва АслМатн
+«AKADEMTEÇ» MÇJ	«АКАДЕМТЕЧ» МЧЖ
+AQŞ va BMT	АҚШ ва БМТ
+B12 vitamini va eGFR	Б12 витамини ва эГФР
+/home/user/şahar.txt fayli	/ҳоме/усер/шаҳар.тхт файли
+hisobot_şahar.docx faylini oçing	ҳисобот_шаҳар.доcх файлини очинг
+kirill/lotin yozuvi	кирилл/лотин ёзуви
+Töraqörğon tumani	Тўрақўрғон тумани
+Toş­kent	Тош­кент
+şahar​ çoy	шаҳар​ чой
+a < b va c > d	а < б ва c > д
+{şahar_soni	{шаҳар_сони
+10ta kitob, 2026yil, 100mg	10та китоб, 2026йил, 100мг
+ToşDU va SamDU	ТошДУ ва СамДУ
+ToşDU va ÖzMU	ТошДУ ва ЎзМУ
+ÖzMU talabasi	ЎзМУ талабаси
+ÇatGPT, PhD, AkademID	ЧатГПТ, ПҳД, АкадемИД
+AQŞda va MÇJning	АҚШда ва МЧЖнинг
+ToşDUga, SamDUda	ТошДУга, СамДУда
+TerŞ	ТерШ

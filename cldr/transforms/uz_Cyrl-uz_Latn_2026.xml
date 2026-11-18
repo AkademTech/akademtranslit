@@ -17,11 +17,13 @@ For terms of use, see http://www.unicode.org/copyright.html
 #   с + ҳ -> sh, which is now unambiguous (ш is ş), so Исҳоқ round-trips;
 #   Ё Ю Я Ц and word-initial Е: both letters capital (YO, YU, YA, TS, YE)
 #     only next to another capital, so initials come out as Yo. Yu. Ya. Ye.;
-#   Latin -> Cyrillic: e is э only at the start of a word, е elsewhere
-#     (tezda -> тезда, not тэзда); yö is йў, not ё + U+0308 (yöl -> йўл);
+#   ь before о is y (бульон -> bulyon); elsewhere ь is dropped, as before;
+#   Latin -> Cyrillic: e is э at the start of a word and after a vowel, but е
+#     after a vowel before v, and е elsewhere (tezda -> тезда, not тэзда;
+#     poeziya -> поэзия; Aliev -> Алиев); yö is йў, not ё + U+0308 (yöl -> йўл);
 #     t before ş is т (adabiyotşunos -> адабиётшунос); an apostrophe-like
-#     mark inside a word is read as the tutuq belgisi ʼ; ō and ǒ, used for ö
-#     in drafts of the reform, are read as ö.
+#     mark inside a word is read as the tutuq belgisi ʼ; ō and ǒ are read
+#     as ö.
 # A word boundary is "not a letter and not a combining mark": the text is in
 # NFD, where ş is s + U+0327, and that mark must not count as a boundary.
 # Everything else follows uz_Cyrl-uz_Latn.
@@ -37,6 +39,7 @@ $upper = [:Lu:] [:Mn:]* ;
 $lower = [$letters & [:Ll:]] ;
 $apos = [ʻʼ‘’'`´ʹ] ;
 $letter = [[:L:][:M:]] ;
+$cyrVowel = [аэиоуеюяАЭИОУЕЮЯ] ;
 
 у \u0306 ↔ o\u0308 ;
 У \u0306 ↔ O\u0308 ;
@@ -52,7 +55,7 @@ $letter = [[:L:][:M:]] ;
 ъ ← $lower { ʼ } ;
 Ъ ↔ ʼ ;
 
-# ō and ǒ (drafts of the reform) are read as ö
+# ō and ǒ are read as ö
 у\u0306 ← o [\u0304\u030C] ;
 У\u0306 ← O [\u0304\u030C] ;
 
@@ -116,11 +119,18 @@ $upper { Ц → TS ;
 Б ↔ B ;
 д ↔ d ;
 Д ↔ D ;
-# Latin e is э at the start of a word and е elsewhere.
+# Latin e is э at the start of a word and after a vowel, е elsewhere. After a
+# vowel and before v it stays е, so surnames romanized the Russian way keep
+# their Cyrillic form (Aliev -> Алиев). The context before the cursor is
+# already Cyrillic.
 э → e ;
 Э → E ;
 э ← $nonletter { e ;
 Э ← $nonletter { E ;
+е ← $cyrVowel { e } [vV] ;
+Е ← $cyrVowel { E } [vV] ;
+э ← $cyrVowel { e ;
+Э ← $cyrVowel { E ;
 е ← e ;
 Е ← E ;
 ф ↔ f ;
@@ -163,6 +173,10 @@ $upper { Ц → TS ;
 Х ↔ X ;
 з ↔ z ;
 З ↔ Z ;
+# ь before о is y (бульон -> bulyon, павильон -> pavilyon); elsewhere it is
+# dropped.
+ь } [оО] → y ;
+Ь } [оО] → Y ;
 ь → ;
 Ь → ;
 
@@ -171,6 +185,9 @@ $upper { Ц → TS ;
 # Latin -> Cyrillic only (runs first in that direction): the 2026 orthography
 # has no turned comma, so any apostrophe-like mark inside a word is the tutuq.
 ʼ ← $letter { $apos } $letter ;
+# ș (s with a comma below, U+0219) is read as ş.
+s\u0327 ← s\u0326 ;
+S\u0327 ← S\u0326 ;
 
 ::NFC (NFD) ;
 			]]></tRule>

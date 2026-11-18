@@ -432,3 +432,11 @@
 Мы здесь	Mы zdes
 бир	bir
 Қўшиқ ва щи	Qöşiq va щi
+бульон	bulyon
+Бульон	Bulyon
+БУЛЬОН	BULYON
+павильон	pavilyon
+почтальонлар	poçtalyonlar
+медальон	medalyon
+ТошДУ ва ЎзМУ	ToşDU va ÖzMU
+АҚШда ва МЧЖнинг	AQŞda va MÇJning

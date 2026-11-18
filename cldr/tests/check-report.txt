@@ -1,24 +1,14 @@
-ICU 74.2, Unicode 15.1, akademtranslit 0.2.0, 1121 golden inputs, 545 inputs in the 2026 orthography (golden and derived)
+ICU 74.2, Unicode 15.1, akademtranslit 0.3.0, 1188 golden inputs, 604 inputs in the 2026 orthography (golden and derived)
 
 ## 1995 -> 2026 and 2026 -> 1995 against the library
-- 1995->2026 c0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Özbekiston', library 'Özbekiston'
 - 1995->2026 c0339 [a lone mark outside a word]: 'ʻ' -> CLDR 'ʻ', library 'ʼ'
-- 1995->2026 c0870 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'OʻzBEKISTON' -> CLDR 'ÖzBEKISTON', library 'Özbekiston'
-- 1995->2026 c0872 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'McDonald' -> CLDR 'McDonald', library 'Mcdonald'
-- 1995->2026 c0873 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'ToshKent' -> CLDR 'ToşKent', library 'Toşkent'
-- 1995->2026 c0874 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'tOSHKENT' -> CLDR 'tOŞKENT', library 'toşkent'
-- 1995->2026 c0984 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'SpO2' -> CLDR 'SpO2', library 'Spo2'
-- 1995->2026 c0985 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'pH' -> CLDR 'pH', library 'ph'
-- 1995->2026 c0991 [case: the library re-cases mixed-case words, the transform keeps each letter's case]: 'PaCO2' -> CLDR 'PaCO2', library 'Paco2'
-- 1995->2026 c1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'özbek', library 'özbek'
-1995->2026: 572 inputs, 10 differ — case: the library re-cases mixed-case words, the transform keeps each letter's case: 7, decomposed input: the transform normalizes it, the library does not: 2, a lone mark outside a word: 1
-- 2026->1995 dc0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Oʻzbekiston', library 'Özbekiston'
-- 2026->1995 dc1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'oʻzbek', library 'özbek'
-2026->1995: 545 inputs, 2 differ — decomposed input: the transform normalizes it, the library does not: 2
+1995->2026: 614 inputs, 1 differ — a lone mark outside a word: 1
+- 2026->1995 c1181 [ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995]: 'Toshkent va Tōkyō' -> CLDR 'Tosʼhkent va Toʻkyoʻ', library 'Toshkent va Toʻkyoʻ'
+2026->1995: 604 inputs, 1 differ — ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1
 
 ## Cyrillic -> 2026
-inputs: 435
-differs from existing uz_Cyrl-uz_Latn + 1995->2026: 9
+inputs: 443
+differs from existing uz_Cyrl-uz_Latn + 1995->2026: 15
 - c0022: 'Е' -> new 'Ye', via existing 'YE'
 - c0026: 'Ё' -> new 'Yo', via existing 'YO'
 - c0094: 'Ц' -> new 'Ts', via existing 'TS'
@@ -28,6 +18,12 @@ differs from existing uz_Cyrl-uz_Latn + 1995->2026: 9
 - c0657: 'исҳоқ' -> new 'ishoq', via existing 'işoq'
 - c0845: 'ИСҲОҚ' -> new 'ISHOQ', via existing 'IŞOQ'
 - c0846: 'асҳоб' -> new 'ashob', via existing 'aşob'
+- c1133: 'бульон' -> new 'bulyon', via existing 'bulon'
+- c1134: 'Бульон' -> new 'Bulyon', via existing 'Bulon'
+- c1135: 'БУЛЬОН' -> new 'BULYON', via existing 'BULON'
+- c1136: 'павильон' -> new 'pavilyon', via existing 'pavilon'
+- c1137: 'почтальонлар' -> new 'poçtalyonlar', via existing 'poçtalonlar'
+- c1138: 'медальон' -> new 'medalyon', via existing 'medalon'
 differs from the library: 44 — ц: library ts/s by position, CLDR ts: 29, ъ: library drops it before е ё ю я after a consonant and after ў: 9, letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them: 6
 - c0093 [ц: library ts/s by position, CLDR ts]: 'ц' -> CLDR 'ts', library 's'
 - c0094 [ц: library ts/s by position, CLDR ts]: 'Ц' -> CLDR 'Ts', library 'S'
@@ -73,17 +69,15 @@ differs from the library: 44 — ц: library ts/s by position, CLDR ts: 29, ъ: 
 - c1114 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'щи' -> CLDR 'щi', library 'şi'
 - c1118 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'Мы здесь' -> CLDR 'Mы zdes', library 'Mi zdes'
 - c1120 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'Қўшиқ ва щи' -> CLDR 'Qöşiq va щi', library 'Qöşiq va şi'
-  (expected: с + ҳ, which the existing transform writes as the digraph sh; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)
+  (expected: с + ҳ, which the existing transform writes as the digraph sh; ь before о, now y; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)
 
 ## Round trips
-Cyrillic -> 2026 -> Cyrillic: 357 of 435 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 290)
+Cyrillic -> 2026 -> Cyrillic: 362 of 443 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 292)
 - c0105: 'ъ' -> 'ʼ' -> 'Ъ' (existing 1995 round trip: 'Ъ')
 - c0109: 'ь' -> '' -> '' (existing 1995 round trip: '')
 - c0110: 'Ь' -> '' -> '' (existing 1995 round trip: '')
 - c0111: 'альбом' -> 'albom' -> 'албом' (existing 1995 round trip: 'албом')
 - c0112: 'АЛЬБОМ' -> 'ALBOM' -> 'АЛБОМ' (existing 1995 round trip: 'АЛБОМ')
-- c0115: 'поэма' -> 'poema' -> 'поема' (existing 1995 round trip: 'поэма')
-- c0116: 'ПОЭМА' -> 'POEMA' -> 'ПОЕМА' (existing 1995 round trip: 'ПОЭМА')
 - c0354: 'кетса' -> 'ketsa' -> 'кеца' (existing 1995 round trip: 'кэца')
 - c0356: 'айтса' -> 'aytsa' -> 'айца' (existing 1995 round trip: 'айца')
 - c0358: 'тутса' -> 'tutsa' -> 'туца' (existing 1995 round trip: 'туца')
@@ -145,7 +139,6 @@ Cyrillic -> 2026 -> Cyrillic: 357 of 435 come back unchanged (the existing Cyril
 - c0960: 'ммоль' -> 'mmol' -> 'ммол' (existing 1995 round trip: 'ммол')
 - c0976: 'альбумин' -> 'albumin' -> 'албумин' (existing 1995 round trip: 'албумин')
 - c0983: 'премьер' -> 'premyer' -> 'премер' (existing 1995 round trip: 'прэмер')
-- c0988: 'ЭЭГ' -> 'EEG' -> 'ЭЕГ' (existing 1995 round trip: 'ЭЭГ')
 - c0999: 'айтсангизгина' -> 'aytsangizgina' -> 'айцангизгина' (existing 1995 round trip: 'айцангизгина')
 - c1000: 'айтсаккина' -> 'aytsakkina' -> 'айцаккина' (existing 1995 round trip: 'айцаккина')
 - c1001: 'кетсаю' -> 'ketsayu' -> 'кецаю' (existing 1995 round trip: 'кэцаю')
@@ -155,11 +148,17 @@ Cyrillic -> 2026 -> Cyrillic: 357 of 435 come back unchanged (the existing Cyril
 - c1005: 'кетсину' -> 'ketsinu' -> 'кецину' (existing 1995 round trip: 'кэцину')
 - c1024: 'раҳатсизлантиради' -> 'rahatsizlantiradi' -> 'раҳацизлантиради' (existing 1995 round trip: 'раҳацизлантиради')
 - c1118: 'Мы здесь' -> 'Mы zdes' -> 'Мы здес' (existing 1995 round trip: 'Мы здэс')
-2026 -> 1995 -> 2026: 536 of 545 come back unchanged; 9 more are the draft spellings ō ǒ, which come back as ö
+- c1133: 'бульон' -> 'bulyon' -> 'булён' (existing 1995 round trip: 'булон')
+- c1134: 'Бульон' -> 'Bulyon' -> 'Булён' (existing 1995 round trip: 'Булон')
+- c1135: 'БУЛЬОН' -> 'BULYON' -> 'БУЛЁН' (existing 1995 round trip: 'БУЛОН')
+- c1136: 'павильон' -> 'pavilyon' -> 'павилён' (existing 1995 round trip: 'павилон')
+- c1137: 'почтальонлар' -> 'poçtalyonlar' -> 'почталёнлар' (existing 1995 round trip: 'почталонлар')
+- c1138: 'медальон' -> 'medalyon' -> 'медалён' (existing 1995 round trip: 'мэдалон')
+2026 -> 1995 -> 2026: 593 of 604 come back unchanged; 11 more are the spellings ō ǒ ș, which come back as ö ş
 
 ## 2026 -> Cyrillic
+- c1181 [ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995]: 'Toshkent va Tōkyō' -> CLDR 'Тосҳкент ва Тўкйў', library 'Тошкент ва Тўкйў'
 - dc0105 [a lone mark outside a word]: 'ʼ' -> CLDR 'Ъ', library 'ъ'
-- dc0273 [decomposed input: the transform normalizes it, the library does not]: 'Özbekiston' -> CLDR 'Ўзбекистон', library 'Ӧзбекистон'
 - dc0353 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsa' -> CLDR 'кеца', library 'кетса'
 - dc0355 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsa' -> CLDR 'айца', library 'айтса'
 - dc0357 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsa' -> CLDR 'туца', library 'тутса'
@@ -222,22 +221,21 @@ Cyrillic -> 2026 -> Cyrillic: 357 of 435 come back unchanged (the existing Cyril
 - dc0996 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsayoq' -> CLDR 'кецаёқ', library 'кетсаёқ'
 - dc0997 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsinmikan' -> CLDR 'туцинмикан', library 'тутсинмикан'
 - dc0998 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsinu' -> CLDR 'кецину', library 'кетсину'
-- dc1090 [decomposed input: the transform normalizes it, the library does not]: 'özbek' -> CLDR 'ўзбек', library 'ӧзбек'
 - dc1099 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ötsin' -> CLDR 'ўцин', library 'ўтсин'
 - dc1100 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yetsin' -> CLDR 'ецин', library 'етсин'
 - dc1101 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsin' -> CLDR 'айцин', library 'айтсин'
-2026 -> Cyrillic: 545 inputs, 68 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, letters outside the Uzbek alphabet: 8, decomposed input: the transform normalizes it, the library does not: 2, a lone mark outside a word: 1
+2026 -> Cyrillic: 604 inputs, 67 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, letters outside the Uzbek alphabet: 8, ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1, a lone mark outside a word: 1
 
 ## Collation against the library's sort_key
-- latin_2026 A: library 'ashob' < 'asr', ICU the other way
+- latin_2026 A: library 'ashob' < 'aslmatn', ICU the other way
 - latin_2026 A: library 'ishoqov' < 'iş', ICU the other way
 - latin_2026 A: library 'sh' < 'sikl', ICU the other way
 - latin_2026 A: library 'çorshanbiyev' < 'çorşanbiyev', ICU the other way
-latin_2026 (option A): 442 words, 4 order differences
+latin_2026 (option A): 531 words, 4 order differences
   (option A: a real s + h in 2026 text, as in Ishoq or ashob, meets the 1995 contraction sh)
-latin_2026 (option B): 442 words, 0 order differences
-latin_1995 (option A): 442 words, 0 order differences
-cyrillic: 425 words, 0 order differences
+latin_2026 (option B): 531 words, 0 order differences
+latin_1995 (option A): 531 words, 0 order differences
+cyrillic: 514 words, 0 order differences
 
 test files in tests/: 12 of 12 match
 

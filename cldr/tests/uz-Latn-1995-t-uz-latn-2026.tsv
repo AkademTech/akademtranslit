@@ -15,6 +15,7 @@ c0267	ç	ch
 c0268	Ç	Ch
 c0269	oçiq	ochiq
 c0270	OÇIQ	OCHIQ
+c0273	Özbekiston	Oʻzbekiston
 c0274	Özbekiston	Oʻzbekiston
 c0275	Şoşimova	Shoshimova
 c0279	şoşimova	shoshimova
@@ -57,16 +58,23 @@ c1076	ÖRDAK	OʻRDAK
 c1077	ō	oʻ
 c1078	ǒ	oʻ
 c1079	Ō	Oʻ
+c1080	Ǒ	Oʻ
 c1081	ōrdak	oʻrdak
 c1082	ǒrdak	oʻrdak
 c1083	ŌRDAK	OʻRDAK
+c1084	Ǒzbekiston	Oʻzbekiston
 c1086	çöl	choʻl
 c1087	Çirçiq	Chirchiq
 c1088	Ğijduvon	Gʻijduvon
 c1089	Şahrisabz	Shahrisabz
+c1090	özbek	oʻzbek
 c1091	işçi	ishchi
 c1092	öçmas	oʻchmas
 c1103	Ördak	Oʻrdak
+c1173	MÇJ va AQŞ	MCHJ va AQSH
+c1181	Toshkent va Tōkyō	Tosʼhkent va Toʻkyoʻ
+c1182	Ishoq Şoşimov Toşkentda yaşaydi	Isʼhoq Shoshimov Toshkentda yashaydi
+c1187	Toșkent	Toshkent
 dc0001	a	a
 dc0002	A	A
 dc0003	baxt	baxt
@@ -188,7 +196,6 @@ dc0137	h	h
 dc0138	H	H
 dc0167	bahor	bahor
 dc0168	BAHOR	BAHOR
-dc0273	Özbekiston	Oʻzbekiston
 dc0281	Çorşanbiyev	Chorshanbiyev
 dc0287	Gafurov	Gafurov
 dc0295	ilmiy tadqiqot	ilmiy tadqiqot
@@ -434,7 +441,10 @@ dc0862	YULDUZ	YULDUZ
 dc0863	Yaşil	Yashil
 dc0864	daryo	daryo
 dc0865	ğoya	gʻoya
-dc0872	Mcdonald	Mcdonald
+dc0870	ÖzBEKISTON	OʻzBEKISTON
+dc0872	McDonald	McDonald
+dc0873	ToşKent	ToshKent
+dc0874	tOŞKENT	tOSHKENT
 dc0875	AB	AB
 dc0876	Ab	Ab
 dc0895	jurʼat	jurʼat
@@ -473,12 +483,12 @@ dc0974	bilan	bilan
 dc0978	subyektiv	subyektiv
 dc0979	podyezd	podyezd
 dc0980	premyer	premyer
-dc0984	Spo2	Spo2
-dc0985	ph	ph
+dc0984	SpO2	SpO2
+dc0985	pH	pH
 dc0986	EEG	EEG
 dc0987	UTT	UTT
 dc0990	B12	B12
-dc0991	Paco2	Paco2
+dc0991	PaCO2	PaCO2
 dc0992	aytsangizgina	aytsangizgina
 dc0993	aytsakkina	aytsakkina
 dc0994	ketsayu	ketsayu
@@ -516,10 +526,7 @@ dc1063	XXI asr	XXI asr
 dc1065	12-son, 3-jild	12-son, 3-jild
 dc1066	ISBN 978-0-00-000000-0	ISBN 978-0-00-000000-0
 dc1067	Ali, Vali va Ğani	Ali, Vali va Gʻani
-dc1080	Ǒ	Oʻ
-dc1084	Ǒzbekiston	Oʻzbekiston
 dc1085	IŞOQ	ISHOQ
-dc1090	özbek	oʻzbek
 dc1093	oksitotsin	oksitotsin
 dc1094	doksorubitsin	doksorubitsin
 dc1095	rifampitsin	rifampitsin
@@ -544,3 +551,55 @@ dc1117	2-son	2-son
 dc1118	Mi zdes	Mi zdes
 dc1119	bir	bir
 dc1120	Qöşiq va şi	Qoʻshiq va shi
+dc1122	aeroport	aeroport
+dc1123	poeziya	poeziya
+dc1124	duel	duel
+dc1125	koeffitsiyent	koeffitsiyent
+dc1126	reemigratsiya	reemigratsiya
+dc1127	siluet	siluet
+dc1128	Rafael	Rafael
+dc1129	Alievning	Alievning
+dc1130	Alieva	Alieva
+dc1131	Kiev	Kiev
+dc1132	POEZIYA	POEZIYA
+dc1133	bulyon	bulyon
+dc1134	Bulyon	Bulyon
+dc1135	BULYON	BULYON
+dc1136	pavilyon	pavilyon
+dc1137	poçtalyonlar	pochtalyonlar
+dc1138	medalyon	medalyon
+dc1140	Batafsil: https://gazeta.uz/oz/2026/11/05/şahar-çiroqlari/ manzilida.	Batafsil: https://gazeta.uz/oz/2026/11/05/shahar-chiroqlari/ manzilida.
+dc1141	www.şahar.uz saytida	www.shahar.uz saytida
+dc1142	gazeta.uz va kun.uz	gazeta.uz va kun.uz
+dc1143	info@şahar.uz ga yozing	info@shahar.uz ga yozing
+dc1144	doi:10.1234/çaşma.2026.01 maqolasi	doi:10.1234/chashma.2026.01 maqolasi
+dc1145	https://doi.org/10.5555/şox-2026	https://doi.org/10.5555/shox-2026
+dc1146	10.1007/s00415-026-12345-6 raqamli maqola	10.1007/s00415-026-12345-6 raqamli maqola
+dc1147	{count} ta kitob	{count} ta kitob
+dc1148	{count, plural, one {# ta şahar} other {# ta şahar}}	{count, plural, one {# ta shahar} other {# ta shahar}}
+dc1149	Salom, {name}! Sizda {n, number} ta xabar bor	Salom, {name}! Sizda {n, number} ta xabar bor
+dc1150	%s ta fayl, %(soni)d ta şahar	%s ta fayl, %(soni)d ta shahar
+dc1151	<b>Şahar</b> <a href="https://şahar.uz">havola</a>	<b>Shahar</b> <a href="https://shahar.uz">havola</a>
+dc1152	&nbsp;çoy &amp; şakar	&nbsp;choy &amp; shakar
+dc1153	SpO2 92%, pH 7,35, PaCO2 45 mmHg	SpO2 92%, pH 7,35, PaCO2 45 mmHg
+dc1154	McDonaldʼs va iPhone, YouTube	McDonaldʼs va iPhone, YouTube
+dc1155	AkademTeç va AslMatn	AkademTech va AslMatn
+dc1156	«AKADEMTEÇ» MÇJ	«AKADEMTECH» MCHJ
+dc1157	AQŞ va BMT	AQSH va BMT
+dc1158	B12 vitamini va eGFR	B12 vitamini va eGFR
+dc1159	/home/user/şahar.txt fayli	/home/user/shahar.txt fayli
+dc1160	hisobot_şahar.docx faylini oçing	hisobot_shahar.docx faylini oching
+dc1161	kirill/lotin yozuvi	kirill/lotin yozuvi
+dc1163	Töraqörğon tumani	Toʻraqoʻrgʻon tumani
+dc1164	Toş­kent	Tosh­kent
+dc1165	şahar​ çoy	shahar​ choy
+dc1166	a < b va c > d	a < b va c > d
+dc1167	{şahar_soni	{shahar_soni
+dc1168	10ta kitob, 2026yil, 100mg	10ta kitob, 2026yil, 100mg
+dc1169	ToşDU va SamDU	ToshDU va SamDU
+dc1170	ToşDU va ÖzMU	ToshDU va OʻzMU
+dc1171	ÖzMU talabasi	OʻzMU talabasi
+dc1172	ÇatGPT, PhD, AkademID	ChatGPT, PhD, AkademID
+dc1176	AQŞda va MÇJning	AQSHda va MCHJning
+dc1178	ToşDUga, SamDUda	ToshDUga, SamDUda
+dc1179	TerŞ	TerSh

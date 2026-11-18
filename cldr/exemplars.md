@@ -27,7 +27,7 @@ index:       [A B D E F G Ğ H I J K L M N O Ö P Q R S Ş Ç T U V X Y Z]
 
 - `main`: 28 letters and ʼ (29 elements).
 - `auxiliary`: ç and ö leave it, because they are now letters of the alphabet.
-  ō stays: drafts of the reform used it for ö.
+  ō stays: it is not a letter of the alphabet.
 - `index`: 28 letters, in the law's order. `index` is displayed in collation
   order, so it agrees with either collation option in `collation/`.
 

@@ -1,0 +1,259 @@
+{
+ "schema": "akademtranslit-golden-tag-inputs/1",
+ "scripts": [
+  {
+   "id": "s01",
+   "script": "cyrillic"
+  },
+  {
+   "id": "s02",
+   "script": "latin_1995"
+  },
+  {
+   "id": "s03",
+   "script": "latin_2026"
+  },
+  {
+   "id": "s04",
+   "script": "auto"
+  },
+  {
+   "id": "s05",
+   "script": "uz-Latn-2026"
+  },
+  {
+   "id": "s06",
+   "script": "Cyrillic"
+  }
+ ],
+ "tags": [
+  {
+   "id": "t001",
+   "tag": "uz"
+  },
+  {
+   "id": "t002",
+   "tag": "UZ"
+  },
+  {
+   "id": "t003",
+   "tag": "uz-Latn"
+  },
+  {
+   "id": "t004",
+   "tag": "uz-latn"
+  },
+  {
+   "id": "t005",
+   "tag": "UZ-LATN"
+  },
+  {
+   "id": "t006",
+   "tag": "uz-Latn-UZ"
+  },
+  {
+   "id": "t007",
+   "tag": "uz-UZ"
+  },
+  {
+   "id": "t008",
+   "tag": "uz_Latn"
+  },
+  {
+   "id": "t009",
+   "tag": "uz-Cyrl"
+  },
+  {
+   "id": "t010",
+   "tag": "uz-cyrl"
+  },
+  {
+   "id": "t011",
+   "tag": "UZ-CYRL-UZ"
+  },
+  {
+   "id": "t012",
+   "tag": "uz_Cyrl_UZ"
+  },
+  {
+   "id": "t013",
+   "tag": "uz-1995"
+  },
+  {
+   "id": "t014",
+   "tag": "uz-Latn-1995"
+  },
+  {
+   "id": "t015",
+   "tag": "uz-latn-1995"
+  },
+  {
+   "id": "t016",
+   "tag": "uz-Latn-UZ-1995"
+  },
+  {
+   "id": "t017",
+   "tag": "uz-2026"
+  },
+  {
+   "id": "t018",
+   "tag": "uz-Latn-2026"
+  },
+  {
+   "id": "t019",
+   "tag": "UZ-LATN-2026"
+  },
+  {
+   "id": "t020",
+   "tag": "uz-UZ-2026"
+  },
+  {
+   "id": "t021",
+   "tag": "uz-Latn-UZ-2026"
+  },
+  {
+   "id": "t022",
+   "tag": "uz_Latn_2026"
+  },
+  {
+   "id": "t023",
+   "tag": "uz-Latn-2026-t-uz-cyrl"
+  },
+  {
+   "id": "t024",
+   "tag": "uz-Latn-1995-x-akadem"
+  },
+  {
+   "id": "t025",
+   "tag": "uz-Latn-u-co-standard"
+  },
+  {
+   "id": "t026",
+   "tag": "uz-Cyrl-t-uz-latn-2026"
+  },
+  {
+   "id": "t027",
+   "tag": "uz-860"
+  },
+  {
+   "id": "t028",
+   "tag": ""
+  },
+  {
+   "id": "t029",
+   "tag": "uz-"
+  },
+  {
+   "id": "t030",
+   "tag": "-uz"
+  },
+  {
+   "id": "t031",
+   "tag": "uz--Latn"
+  },
+  {
+   "id": "t032",
+   "tag": " uz-Latn"
+  },
+  {
+   "id": "t033",
+   "tag": "uz-Latn "
+  },
+  {
+   "id": "t034",
+   "tag": "uz-Cyrl-1995"
+  },
+  {
+   "id": "t035",
+   "tag": "uz-Cyrl-2026"
+  },
+  {
+   "id": "t036",
+   "tag": "uz-Latn-1995-2026"
+  },
+  {
+   "id": "t037",
+   "tag": "uz-2026-2026"
+  },
+  {
+   "id": "t038",
+   "tag": "uz-Latn-1940"
+  },
+  {
+   "id": "t039",
+   "tag": "uz-Latn-1996"
+  },
+  {
+   "id": "t040",
+   "tag": "uz-Arab"
+  },
+  {
+   "id": "t041",
+   "tag": "uz-Arab-AF"
+  },
+  {
+   "id": "t042",
+   "tag": "uz-Latn-Cyrl"
+  },
+  {
+   "id": "t043",
+   "tag": "uz-Latn-UZ-AF"
+  },
+  {
+   "id": "t044",
+   "tag": "uz-2026-Latn"
+  },
+  {
+   "id": "t045",
+   "tag": "uzb"
+  },
+  {
+   "id": "t046",
+   "tag": "uzn-Latn"
+  },
+  {
+   "id": "t047",
+   "tag": "uz-uzn"
+  },
+  {
+   "id": "t048",
+   "tag": "en"
+  },
+  {
+   "id": "t049",
+   "tag": "ru-Cyrl"
+  },
+  {
+   "id": "t050",
+   "tag": "x-uz"
+  },
+  {
+   "id": "t051",
+   "tag": "uz-Latn-2026-t"
+  },
+  {
+   "id": "t052",
+   "tag": "uz-Latn-2026-x"
+  },
+  {
+   "id": "t053",
+   "tag": "uz_UZ@latin"
+  },
+  {
+   "id": "t054",
+   "tag": "uz-Latn-2026-abcdefghi"
+  },
+  {
+   "id": "t055",
+   "tag": "latin_2026"
+  },
+  {
+   "id": "t056",
+   "tag": "uz-Ｌatn"
+  },
+  {
+   "id": "t057",
+   "tag": "uz-Latn-2026-t-uz-cyrl-t-ru"
+  }
+ ]
+}

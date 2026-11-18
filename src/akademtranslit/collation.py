@@ -24,6 +24,7 @@ from .tables import (
     TURNED_COMMA,
     TUTUQ,
 )
+from .tags import _orthography
 
 # Weights: 0 for whitespace, 1-10 for the digits, 11 + k for the k-th unit of
 # the alphabet, 1000 + code point for any other letter.
@@ -60,17 +61,18 @@ def _same(word: str) -> str:
 def sort_key(text: str, orthography: str) -> tuple:
     """Key that sorts Uzbek text in the alphabetical order of ``orthography``.
 
-    ``orthography`` is one of :data:`~akademtranslit.tables.SCRIPTS` and is
-    required: there is no default and no detection, because the same string
-    sorts differently in different orthographies (``sh`` is one letter in
-    ``latin_1995`` and two in ``latin_2026``). Anything else raises
-    :class:`ValueError`.
+    ``orthography`` is one of :data:`~akademtranslit.tables.SCRIPTS`, or a
+    language tag for one of them (``uz-Latn-2026``), and is required: there is
+    no default and no detection, because the same string sorts differently in
+    different orthographies (``sh`` is one letter in ``latin_1995`` and two in
+    ``latin_2026``). Anything else raises :class:`ValueError`.
 
     The key is ``(weights, text)``:
 
     1. ``text`` is put in NFC and stripped; the weights are computed from its
        lowercase form.
-    2. For ``latin_2026``, the draft glyphs ``ō`` and ``ǒ`` read as ``ö``.
+    2. For ``latin_2026``, the other input forms of ``ö`` and ``ş``
+       (``LATIN_2026_INPUT_ALIASES``) read as those letters.
     3. Apostrophe variants inside a word are resolved as everywhere else in the
        library: after ``o`` or ``g`` a turned comma, elsewhere the tutuq
        belgisi.
@@ -98,7 +100,11 @@ def sort_key(text: str, orthography: str) -> tuple:
     True
     """
     if orthography not in SCRIPTS:
-        raise ValueError(f"unknown orthography: {orthography!r}; expected one of {SCRIPTS}")
+        orthography = _orthography(
+            orthography,
+            f"unknown orthography: {orthography!r}; expected one of {SCRIPTS}",
+            stacklevel=2,
+        )
 
     s = unicodedata.normalize("NFC", text).strip()
     work = s.lower()

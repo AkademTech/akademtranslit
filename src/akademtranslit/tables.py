@@ -29,6 +29,17 @@ LATIN_2026 = "latin_2026"
 
 SCRIPTS = (CYRILLIC, LATIN_1995, LATIN_2026)
 
+# --- the rules version -------------------------------------------------------
+
+#: Which rules :func:`~akademtranslit.convert`, :func:`~akademtranslit.to_latin`
+#: and :func:`~akademtranslit.to_cyrillic` follow. Before ``+``, the official
+#: basis: ``uz-2026-alphabet`` is the 2026 alphabet of Law No. O'RQ-1184,
+#: without official spelling rules. After it, this project's rule set, named by
+#: the year and month of the release that last changed the output of those
+#: three functions. A release that changes none of their output keeps the
+#: value; ``tools/golden.py --check`` fails if one does and the value stays.
+RULES_VERSION = "uz-2026-alphabet+project-2026.11"
+
 # --- the two modifier marks --------------------------------------------------
 #
 # These are distinct characters with distinct jobs, and conflating them is the
@@ -55,7 +66,38 @@ APOSTROPHE_VARIANTS = (
     "`",       # ` grave accent
 )
 
+# --- invisible characters --------------------------------------------------------
+
+#: The Default_Ignorable_Code_Point characters of Unicode 15.1, as in ICU 74.2:
+#: 4174 code points, as (first, last) ranges, that render as nothing.
+#: :func:`~akademtranslit.normalize_apostrophes` removes them with
+#: ``strip_invisible=True``. Changes only with the Unicode version it names.
+DEFAULT_IGNORABLE = (
+    (0x00AD, 0x00AD),  # soft hyphen
+    (0x034F, 0x034F),  # combining grapheme joiner
+    (0x061C, 0x061C),  # Arabic letter mark
+    (0x115F, 0x1160),  # Hangul choseong and jungseong fillers
+    (0x17B4, 0x17B5),  # Khmer inherent vowels
+    (0x180B, 0x180F),  # Mongolian free variation selectors and vowel separator
+    (0x200B, 0x200F),  # zero-width space, non-joiner and joiner; LRM, RLM
+    (0x202A, 0x202E),  # bidirectional embeddings and overrides
+    (0x2060, 0x206F),  # word joiner, invisible operators, bidirectional isolates
+    (0x3164, 0x3164),  # Hangul filler
+    (0xFE00, 0xFE0F),  # variation selectors
+    (0xFEFF, 0xFEFF),  # byte order mark (zero-width no-break space)
+    (0xFFA0, 0xFFA0),  # halfwidth Hangul filler
+    (0xFFF0, 0xFFF8),  # unassigned specials
+    (0x1BCA0, 0x1BCA3),  # shorthand format controls
+    (0x1D173, 0x1D17A),  # musical symbol format controls
+    (0xE0000, 0xE0FFF),  # tags, variation selectors supplement, unassigned
+)
+
 # --- Cyrillic ----------------------------------------------------------------
+
+#: The code points every function counts as Cyrillic: the Cyrillic block
+#: (U+0400-U+04FF) and Cyrillic Supplement (U+0500-U+052F).
+CYRILLIC_FIRST = 0x0400
+CYRILLIC_LAST = 0x052F
 
 #: Cyrillic vowels. Needed by the ``е`` rule: ``е`` is read ``ye`` at the start
 #: of a word and after another vowel, ``e`` elsewhere.
@@ -63,8 +105,8 @@ CYRILLIC_VOWELS = frozenset("аеёиоуўэюяы")
 
 #: Context-free Cyrillic to ``latin_1995``. Lowercase keys; case is restored by
 #: the caller. Entries whose reading depends on position (``е``, ``ц``, ``с``
-#: before ``ҳ``, and ``ъ`` where it is dropped) are handled in
-#: :mod:`akademtranslit.rules` instead.
+#: before ``ҳ``, ``ъ`` where it is dropped, and ``ь`` before ``о``) are handled
+#: in :mod:`akademtranslit.rules` instead.
 CYRILLIC_TO_LATIN_1995 = {
     "а": "a",
     "б": "b",
@@ -103,7 +145,7 @@ CYRILLIC_TO_LATIN_1995 = {
     # see "Known lossy mappings" in the README.
     "щ": "sh",  # merges with ш
     "ы": "i",   # merges with и
-    "ь": "",    # not represented in the Latin orthographies
+    "ь": "",    # not represented in the Latin orthographies, except y before о
 }
 
 #: ``latin_1995`` to Cyrillic, longest match first. The engine tries these in
@@ -173,9 +215,9 @@ TS_LOANWORD_STEMS = (
 # 21 October 2026, in force from 22 April 2027). Keeping it as one small table
 # means a change to a glyph is one line here.
 #
-# The law writes ``ö`` for ``oʻ``. Earlier drafts used ``ō`` (o with macron) or
-# ``ǒ``; both are accepted on input as aliases (LATIN_2026_INPUT_ALIASES) so
-# that draft-era text reads correctly, and neither is ever output.
+# The law writes ``ö`` for ``oʻ`` and ``ş`` for ``sh``. A few other glyphs are
+# accepted for them on input as aliases (LATIN_2026_INPUT_ALIASES); none of
+# them is ever output.
 
 #: The four letters the reform changes, as a plain correspondence table. This is
 #: the reform, and it is exposed for callers that want to render it (keyboards,
@@ -206,10 +248,88 @@ LATIN_2026_TO_1995_STEPS = (("sh", "s" + TUTUQ + "h"),) + tuple(
 )
 
 #: Accepted input spellings of the reformed letters that are not the canonical
-#: output form. Applied before anything else when reading ``latin_2026`` text.
+#: output form. Applied before anything else when reading ``latin_2026`` text:
+#: o with macron (U+014D) and o with caron (U+01D2) are read as ``ö``, and s
+#: with comma below (U+0219), the Romanian letter, which keyboards and fonts
+#: show like ``ş`` (s with cedilla, U+015F), is read as ``ş``.
 LATIN_2026_INPUT_ALIASES = (
-    ("ō", "ö"),  # earlier reform draft used o-macron for oʻ
-    ("ǒ", "ö"),
+    ("\u014d", "ö"),  # o with macron
+    ("\u01d2", "ö"),  # o with caron
+    ("\u0219", "ş"),  # s with comma below
+)
+
+# --- ASCII for names and logins -------------------------------------------------
+
+#: How :func:`~akademtranslit.to_ascii` writes in ASCII the letters that
+#: conversion to ``latin_1995`` leaves: the 1995 letters with the turned comma,
+#: and a 2026 letter in a protected span or in a Latin word of Cyrillic text.
+#: Capital ``Ş`` and ``Ç`` are in :data:`ASCII_CAPITALS`. The apostrophe marks
+#: are removed after it. A project scheme for names and logins, not a passport
+#: standard. Frozen: it changes only in a major release.
+ASCII_SCHEME = (
+    ("o" + TURNED_COMMA, "o"),
+    ("O" + TURNED_COMMA, "O"),
+    ("g" + TURNED_COMMA, "g"),
+    ("G" + TURNED_COMMA, "G"),
+    ("ş", "sh"),
+    ("ç", "ch"),
+    ("ğ", "g"),
+    ("Ğ", "G"),
+    ("ö", "o"),
+    ("Ö", "O"),
+)
+
+#: Capital ``Ş`` and ``Ç`` for :func:`~akademtranslit.to_ascii`, as (letter,
+#: beside a capital, otherwise). Contextual: ``SH`` and ``CH`` when the
+#: character before or after is a capital letter (``ŞAHAR`` -> ``SHAHAR``),
+#: ``Sh`` and ``Ch`` otherwise (``Şavkat`` -> ``Shavkat``), the way
+#: ``latin_2026`` -> ``latin_1995`` writes them. Applied after
+#: :data:`ASCII_SCHEME`. Frozen like it: it changes only in a major release.
+ASCII_CAPITALS = (
+    ("Ş", "SH", "Sh"),
+    ("Ç", "CH", "Ch"),
+)
+
+# --- look-alike letters ----------------------------------------------------------
+
+#: Latin and Cyrillic letters that look alike, as (Latin, Cyrillic) pairs:
+#: the letters :func:`~akademtranslit.fold_homoglyphs` replaces in a word typed
+#: partly in the other alphabet. Chosen from the Unicode confusables (UTS #39).
+#: The Cyrillic letters are written by code point, since they look like the
+#: Latin ones. A change is a minor release, with a golden diff.
+HOMOGLYPHS = (
+    # Lowercase.
+    ("a", chr(0x0430)),  # CYRILLIC SMALL LETTER A
+    ("c", chr(0x0441)),  # CYRILLIC SMALL LETTER ES
+    ("e", chr(0x0435)),  # CYRILLIC SMALL LETTER IE
+    ("o", chr(0x043E)),  # CYRILLIC SMALL LETTER O
+    ("p", chr(0x0440)),  # CYRILLIC SMALL LETTER ER
+    ("x", chr(0x0445)),  # CYRILLIC SMALL LETTER HA
+    ("y", chr(0x0443)),  # CYRILLIC SMALL LETTER U
+    ("i", chr(0x0456)),  # CYRILLIC SMALL LETTER BYELORUSSIAN-UKRAINIAN I
+    ("j", chr(0x0458)),  # CYRILLIC SMALL LETTER JE
+    ("s", chr(0x0455)),  # CYRILLIC SMALL LETTER DZE
+    ("h", chr(0x04BB)),  # CYRILLIC SMALL LETTER SHHA
+    ("q", chr(0x051B)),  # CYRILLIC SMALL LETTER QA
+    ("w", chr(0x051D)),  # CYRILLIC SMALL LETTER WE
+    ("ö", chr(0x04E7)),  # CYRILLIC SMALL LETTER O WITH DIAERESIS
+    # Capitals.
+    ("A", chr(0x0410)),  # CYRILLIC CAPITAL LETTER A
+    ("B", chr(0x0412)),  # CYRILLIC CAPITAL LETTER VE
+    ("C", chr(0x0421)),  # CYRILLIC CAPITAL LETTER ES
+    ("E", chr(0x0415)),  # CYRILLIC CAPITAL LETTER IE
+    ("H", chr(0x041D)),  # CYRILLIC CAPITAL LETTER EN
+    ("I", chr(0x0406)),  # CYRILLIC CAPITAL LETTER BYELORUSSIAN-UKRAINIAN I
+    ("J", chr(0x0408)),  # CYRILLIC CAPITAL LETTER JE
+    ("K", chr(0x041A)),  # CYRILLIC CAPITAL LETTER KA
+    ("M", chr(0x041C)),  # CYRILLIC CAPITAL LETTER EM
+    ("O", chr(0x041E)),  # CYRILLIC CAPITAL LETTER O
+    ("P", chr(0x0420)),  # CYRILLIC CAPITAL LETTER ER
+    ("S", chr(0x0405)),  # CYRILLIC CAPITAL LETTER DZE
+    ("T", chr(0x0422)),  # CYRILLIC CAPITAL LETTER TE
+    ("X", chr(0x0425)),  # CYRILLIC CAPITAL LETTER HA
+    ("Y", chr(0x0423)),  # CYRILLIC CAPITAL LETTER U
+    ("Ö", chr(0x04E6)),  # CYRILLIC CAPITAL LETTER O WITH DIAERESIS
 )
 
 # --- alphabets -----------------------------------------------------------------
