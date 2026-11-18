@@ -429,9 +429,18 @@ def _trim(text: str, start: int, stop: int) -> int:
 
     A ``)`` stays if the span has at least as many ``(`` as ``)``.
     """
+    # The brackets are counted once, at the first trailing ")"; after that only
+    # a ")" that is cut changes the count ("(" is never cut). Counting at every
+    # step took time quadratic in a run of ")".
+    closed = None
     while stop > start and text[stop - 1] in _TRAILING:
-        if text[stop - 1] == ")" and text.count("(", start, stop) >= text.count(")", start, stop):
-            break
+        if text[stop - 1] == ")":
+            if closed is None:
+                opened = text.count("(", start, stop)
+                closed = text.count(")", start, stop)
+            if opened >= closed:
+                break
+            closed -= 1
         stop -= 1
     return stop
 
@@ -492,12 +501,70 @@ _DOMAIN_LABEL = r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?"
 
 _SCHEME_URL = _Pattern(r"(?<!\w)(?:(?:https?|ftp)://|www\.)(?P<tail>\S+)", URL, re.IGNORECASE)
 
-_BARE_DOMAIN = _Pattern(
+_TLDS = r"(?:uz|com|org|net|ru|info|edu|gov|io)"
+
+# The end of a bare domain, a dot and an ending, and the characters a bare
+# domain is made of up to there.
+_DOMAIN_ENDING_RE = re.compile(r"\." + _TLDS + r"(?![\w-])", re.IGNORECASE)
+_DOMAIN_CHAR_RE = re.compile(r"[A-Za-z0-9.-]", re.IGNORECASE)
+# Where a bare domain may start, and the labels from there, the last one
+# captured.
+_LABEL_START_RE = re.compile(r"(?<![\w@])[A-Za-z0-9]", re.IGNORECASE)
+_LABELS_RE = re.compile(
+    _DOMAIN_LABEL + r"(?:\.(?P<last>" + _DOMAIN_LABEL + r"))*", re.IGNORECASE
+)
+
+
+class _BareDomain(_Pattern):
+    """The bare domain, found in linear time.
+
+    Searched with its regular expression alone, a long run of labels with no
+    ending (``a.a.a...``) is read again from every label in it: quadratic.
+    This search finds the same match, trying fewer starts:
+
+    - A match is labels and dots up to a dot and an ending, so it starts in
+      the run of those characters that holds the first ending at or after
+      ``pos``; nothing before that run is tried.
+    - If the match fails at a label, it fails at every later start before the
+      last label that the labels from there reach: each sees the same endings
+      or fewer. Those starts are skipped.
+    """
+
+    __slots__ = ()
+
+    def search(self, text, pos, end):
+        while True:
+            ending = _DOMAIN_ENDING_RE.search(text, pos, end)
+            if ending is None:
+                return None
+            dot = ending.start()
+            first = dot
+            while first > pos and _DOMAIN_CHAR_RE.match(text, first - 1):
+                first -= 1
+            pos = first
+            while True:
+                label = _LABEL_START_RE.search(text, pos, end)
+                if label is None:
+                    return None
+                start = label.start()
+                if start > dot:
+                    pos = start
+                    break
+                m = self.regex.match(text, start, end)
+                if m is not None:
+                    return m
+                last = _LABELS_RE.match(text, start, end).start("last")
+                pos = last if last > start else start + 1
+
+
+_BARE_DOMAIN = _BareDomain(
     r"(?<![\w@])(?P<tail>"
     + _DOMAIN_LABEL
     + r"(?:\."
     + _DOMAIN_LABEL
-    + r")*\.(?:uz|com|org|net|ru|info|edu|gov|io)(?![\w-])(?:/\S*)?)",
+    + r")*\."
+    + _TLDS
+    + r"(?![\w-])(?:/\S*)?)",
     URL,
     re.IGNORECASE,
 )
@@ -520,8 +587,12 @@ _TAG = _Pattern(
     MARKUP,
 )
 
+# The width starts with 1-9: a 0 before it is a flag. ([0-9]+ matched the same
+# directives, but after a run of zeros that is not one, such as %000...0!, the
+# engine tried every split of the run between the flags and the width:
+# quadratic.)
 _PRINTF = _Pattern(
-    r"(?<![\w%])%(?:[0-9]+\$)?(?:\([^()\s]+\))?[-+#0]*(?:[0-9]+|\*)?(?:\.(?:[0-9]+|\*))?"
+    r"(?<![\w%])%(?:[0-9]+\$)?(?:\([^()\s]+\))?[-+#0]*(?:[1-9][0-9]*|\*)?(?:\.(?:[0-9]+|\*))?"
     r"(?:hh|h|ll|l|L|q|j|z|t)?[diouxXeEfFgGcrsaAp]",
     PLACEHOLDER,
 )
@@ -539,14 +610,15 @@ _FILE_NAME = _Pattern(
 )
 
 # A run of letters and digits, joined by apostrophes, with a final apostrophe
-# after o or g -- the same shape as a word in rules._WORD_RE. The lookahead
-# skips, inside the regular expression engine, every run without a digit or a
-# lowercase letter before a capital: most words, and none of them a token.
+# after o or g -- the same shape as a word in rules._WORD_RE.
 _CHUNK_RE = re.compile(
     "(?<!" + _L + ")"
-    + "(?=(?:" + _L + "|" + _MARK + ")*?(?:[0-9]|[a-z][A-Z]))"
     + _L + "+(?:" + _MARK + _L + "+)*(?:(?<=[oOgG])" + _MARK + ")?(?!" + _L + ")"
 )
+# What every token has: a digit, or a lowercase letter before a capital. And
+# the characters of a word, through which _find_token looks for one.
+_TOKEN_SIGN_RE = re.compile("[0-9]|[a-z][A-Z]")
+_WORD_CHAR_RE = re.compile(_L + "|" + _MARK)
 _ASCII_CHUNK_RE = re.compile("[A-Za-z0-9" + re.escape("".join(APOSTROPHE_VARIANTS)) + "]+")
 _UZBEK_RE = re.compile("[oOgG]" + _MARK)
 _DIGIT_RE = re.compile("[0-9]")
@@ -618,14 +690,36 @@ def _is_token(chunk: str) -> bool:
 
 
 def _find_token(scanner, pos, end):
+    """The first token in ``text[pos:end]``.
+
+    A chunk is tried only if the word it is in -- the run of letters, digits
+    and apostrophes -- has a sign of a token (_TOKEN_SIGN_RE) at or after the
+    chunk's start: most words have none and are skipped by the regular
+    expression engine. For the first sign at or after ``pos`` that holds for
+    every chunk from the start of its word up to the sign. (Before 0.3.1 a
+    lookahead in _CHUNK_RE checked it, reading the rest of the word again
+    from every start in it: quadratic in a word such as ``a'a'a'...``.)
+    """
     text = scanner.text
     while True:
-        m = _CHUNK_RE.search(text, pos, end)
-        if m is None:
+        sign = _TOKEN_SIGN_RE.search(text, pos, end)
+        if sign is None:
             return None
-        if _is_token(m.group()):
-            return (m.start(), m.end(), TOKEN, None)
-        pos = m.end()
+        at = sign.start()
+        first = at
+        while first > pos and _WORD_CHAR_RE.match(text, first - 1):
+            first -= 1
+        pos = first
+        while True:
+            m = _CHUNK_RE.search(text, pos, end)
+            if m is None:
+                return None
+            if m.start() > at:
+                pos = m.start()
+                break
+            if _is_token(m.group()):
+                return (m.start(), m.end(), TOKEN, None)
+            pos = m.end()
 
 
 def _terms_pattern(terms: tuple):

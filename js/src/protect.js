@@ -343,19 +343,34 @@ const L_OR_MARK = "[\\p{L}\\p{N}" + escapeRegExp(APOSTROPHE_VARIANTS.join("")) +
 const TRAILING = new Set(".,;:!?)»\"'");
 
 /** ``stop`` moved back past trailing punctuation, but not before ``start``. */
-function trim(text, start, stop) {
+export function trim(text, start, stop) {
+  // The brackets are counted once, at the first trailing ")"; after that only
+  // a ")" that is cut changes the count ("(" is never cut). Counting at every
+  // step took time quadratic in a run of ")".
+  let opened = 0;
+  let closed = null;
   while (stop > start && TRAILING.has(text[stop - 1])) {
-    if (text[stop - 1] === ")" && pyCount(text, "(", start, stop) >= pyCount(text, ")", start, stop)) break;
+    if (text[stop - 1] === ")") {
+      if (closed === null) {
+        opened = pyCount(text, "(", start, stop);
+        closed = pyCount(text, ")", start, stop);
+      }
+      if (opened >= closed) break;
+      closed -= 1;
+    }
     stop -= 1;
   }
   return stop;
 }
 
-/** A finder for a pattern with a group ``tail`` that ends it; each match is trimmed. */
-function trimmed(regex, kind) {
+/**
+ * A finder for a pattern with a group ``tail`` that ends it; each match is
+ * trimmed. ``searchFor`` finds the next match, search() unless given.
+ */
+function trimmed(regex, kind, searchFor = search) {
   return (scanner, pos, end) => {
     for (;;) {
-      const m = search(regex, scanner, pos, end);
+      const m = searchFor(regex, scanner, pos, end);
       if (m === null) return null;
       const matchEnd = m.index + m[0].length;
       const tailStart = matchEnd - m.groups.tail.length;
@@ -392,11 +407,61 @@ const SCHEME_URL_RE = new RegExp(
 );
 
 const TLDS = ["uz", "com", "org", "net", "ru", "info", "edu", "gov", "io"];
-const BARE_DOMAIN_RE = new RegExp(
+export const BARE_DOMAIN_RE = new RegExp(
   `(?<![${W_BODY}@])(?<tail>${DOMAIN_LABEL_CI}(?:\\.${DOMAIN_LABEL_CI})*\\.(?:${TLDS.map(ci).join("|")})` +
     `(?![${W_BODY}\\-])(?:\\/${NOT_S}*)?)`,
   "gu",
 );
+
+// For searchBareDomain: the same pattern anchored, the end of a bare domain (a
+// dot and an ending), the characters a bare domain is made of up to there,
+// where one may start, and the labels from there, the last one captured.
+const BARE_DOMAIN_AT_RE = new RegExp(BARE_DOMAIN_RE.source, "uy");
+const DOMAIN_ENDING_RE = new RegExp(`\\.(?:${TLDS.map(ci).join("|")})(?![${W_BODY}\\-])`, "gu");
+const DOMAIN_CHAR_RE = new RegExp(`[${ASCII_ALNUM_CI_BODY}.\\-]`, "uy");
+const LABEL_START_RE = new RegExp(`(?<![${W_BODY}@])[${ASCII_ALNUM_CI_BODY}]`, "gu");
+const LABELS_RE = new RegExp(`${DOMAIN_LABEL_CI}(?:\\.(?<last>${DOMAIN_LABEL_CI}))*`, "uy");
+
+/**
+ * search(BARE_DOMAIN_RE, ...) in linear time: protect.py's _BareDomain.search,
+ * which says why it finds the same match. ``regex`` is BARE_DOMAIN_RE.
+ */
+export function searchBareDomain(regex, scanner, pos, end) {
+  const text = scanner.text;
+  const view = scanner.view(end);
+  for (;;) {
+    DOMAIN_ENDING_RE.lastIndex = pos;
+    const ending = DOMAIN_ENDING_RE.exec(view);
+    if (ending === null) return null;
+    const dot = ending.index;
+    let first = dot;
+    for (;;) {
+      if (first <= pos) break;
+      DOMAIN_CHAR_RE.lastIndex = first - 1;
+      if (!DOMAIN_CHAR_RE.test(text)) break;
+      first -= 1;
+    }
+    pos = first;
+    for (;;) {
+      LABEL_START_RE.lastIndex = pos;
+      const label = LABEL_START_RE.exec(view);
+      if (label === null) return null;
+      const start = label.index;
+      if (start > dot) {
+        pos = start;
+        break;
+      }
+      BARE_DOMAIN_AT_RE.lastIndex = start;
+      const m = BARE_DOMAIN_AT_RE.exec(view);
+      if (m !== null) return m;
+      LABELS_RE.lastIndex = start;
+      const labels = LABELS_RE.exec(view);
+      const last = labels.groups.last === undefined ? -1 : labels.index + labels[0].length - labels.groups.last.length;
+      // Every label character is in the BMP: +1 is the next code point.
+      pos = last > start ? last : start + 1;
+    }
+  }
+}
 
 const EMAIL_RE = new RegExp(
   `(?:${ci("mailto")}:)?(?<![A-Za-z0-9._%+\\-])[A-Za-z0-9._%+\\-]+@` +
@@ -413,8 +478,10 @@ const TAG_RE = new RegExp(
   "gu",
 );
 
-const PRINTF_RE = new RegExp(
-  `(?<![${W_BODY}%])%(?:[0-9]+\\$)?(?:\\([^()${SPACE_BODY}]+\\))?[\\-+#0]*(?:[0-9]+|\\*)?(?:\\.(?:[0-9]+|\\*))?` +
+// The width starts with 1-9: a 0 before it is a flag (protect.py's _PRINTF
+// says why).
+export const PRINTF_RE = new RegExp(
+  `(?<![${W_BODY}%])%(?:[0-9]+\\$)?(?:\\([^()${SPACE_BODY}]+\\))?[\\-+#0]*(?:[1-9][0-9]*|\\*)?(?:\\.(?:[0-9]+|\\*))?` +
     "(?:hh|h|ll|l|L|q|j|z|t)?[diouxXeEfFgGcrsaAp]",
   "gu",
 );
@@ -434,15 +501,12 @@ const FILE_NAME_RE = new RegExp(
 );
 
 // A run of letters and digits, joined by apostrophes, with a final apostrophe
-// after o or g -- the shape of a word in rules.js. The lookahead skips every
-// run without a digit or a lowercase letter before a capital.
-const CHUNK_RE = new RegExp(
-  NOT_AFTER_L +
-    `(?=${L_OR_MARK}*?(?:[0-9]|[a-z][A-Z]))` +
-    `${L}+(?:${MARK}${L}+)*(?:(?<=[oOgG])${MARK})?` +
-    NOT_BEFORE_L,
-  "gu",
-);
+// after o or g -- the shape of a word in rules.js.
+const CHUNK_RE = new RegExp(NOT_AFTER_L + `${L}+(?:${MARK}${L}+)*(?:(?<=[oOgG])${MARK})?` + NOT_BEFORE_L, "gu");
+// What every token has: a digit, or a lowercase letter before a capital. And
+// the characters of a word, through which findToken looks for one.
+const TOKEN_SIGN_RE = /[0-9]|[a-z][A-Z]/gu;
+const WORD_CHAR_RE = new RegExp(L_OR_MARK, "uy");
 const ASCII_CHUNK_RE = new RegExp("^[A-Za-z0-9" + escapeRegExp(APOSTROPHE_VARIANTS.join("")) + "]+$", "u");
 const UZBEK_RE = new RegExp("[oOgG]" + MARK, "u");
 const DIGIT_RE = /[0-9]/u;
@@ -494,7 +558,7 @@ function findComment(scanner, pos, end) {
   return [i, close + 3, MARKUP, null];
 }
 
-function isToken(chunk) {
+export function isToken(chunk) {
   if (!ASCII_CHUNK_RE.test(chunk) || UZBEK_RE.test(chunk)) return false;
   if (NUMBER_WITH_SUFFIX_RE.test(chunk)) return false; // 10ta, 2026yil, 100mg
   if (DIGIT_RE.test(chunk) && LETTER_RE.test(chunk)) return true;
@@ -504,14 +568,43 @@ function isToken(chunk) {
   return LOWER_THEN_UPPER_RE.test(chunk);
 }
 
-function findToken(scanner, pos, end) {
+/**
+ * The first token in text[pos:end]. A chunk is tried only if its word has a
+ * sign of a token at or after the chunk's start: protect.py's _find_token
+ * says how, and why it finds the same token.
+ */
+export function findToken(scanner, pos, end) {
+  const text = scanner.text;
   for (;;) {
-    const m = search(CHUNK_RE, scanner, pos, end);
-    if (m === null) return null;
-    if (isToken(m[0])) return [m.index, m.index + m[0].length, TOKEN, null];
-    pos = m.index + m[0].length;
+    const sign = search(TOKEN_SIGN_RE, scanner, pos, end);
+    if (sign === null) return null;
+    const at = sign.index;
+    let first = at;
+    for (;;) {
+      if (first <= pos) break;
+      // One code point back: a surrogate pair is one character.
+      let i = first - 1;
+      if (i > pos && isLowSurrogate(text.charCodeAt(i)) && isHighSurrogate(text.charCodeAt(i - 1))) i -= 1;
+      WORD_CHAR_RE.lastIndex = i;
+      if (!WORD_CHAR_RE.test(text)) break;
+      first = i;
+    }
+    pos = first;
+    for (;;) {
+      const m = search(CHUNK_RE, scanner, pos, end);
+      if (m === null) return null;
+      if (m.index > at) {
+        pos = m.index;
+        break;
+      }
+      if (isToken(m[0])) return [m.index, m.index + m[0].length, TOKEN, null];
+      pos = m.index + m[0].length;
+    }
   }
 }
+
+const isHighSurrogate = (c) => c >= 0xd800 && c <= 0xdbff;
+const isLowSurrogate = (c) => c >= 0xdc00 && c <= 0xdfff;
 
 function termsPattern(terms) {
   if (!terms.length) return null;
@@ -524,7 +617,7 @@ function termsPattern(terms) {
   return new RegExp(`${NOT_AFTER_L}(?:${alternatives})${NOT_BEFORE_L}`, "gu");
 }
 
-const URL_FINDERS = [trimmed(SCHEME_URL_RE, URL), trimmed(BARE_DOMAIN_RE, URL)];
+const URL_FINDERS = [trimmed(SCHEME_URL_RE, URL), trimmed(BARE_DOMAIN_RE, URL, searchBareDomain)];
 const EMAIL_FINDERS = [needs("@", plain(EMAIL_RE, EMAIL))];
 const DOI_FINDERS = [needs("10.", trimmed(DOI_RE, DOI))];
 const MARKUP_FINDERS = [plain(TAG_RE, MARKUP), findComment];
