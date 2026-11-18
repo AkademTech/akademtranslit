@@ -36,8 +36,19 @@ jobs:
         run: uv run --no-project --python 3.12 -- python tools/golden.py --check
       - name: Validate classifiers
         run: uv run --no-project --python 3.12 --with trove-classifiers -- python tools/check_classifiers.py
+      # The time of the commit goes into the wheel as the time of every file,
+      # so that the wheel can be built again from the tag (see the README).
       - name: Build sdist and wheel
-        run: uv build --out-dir dist
+        run: |
+          SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          export SOURCE_DATE_EPOCH
+          echo "SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH"
+          uv build --out-dir dist
+      # Outside dist/: the publish job uploads every file in it to PyPI.
+      - name: Package checksums
+        run: |
+          (cd dist && sha256sum -- *.whl *.tar.gz) > SHA256SUMS-dist
+          cat SHA256SUMS-dist
       - name: Check metadata
         run: uvx twine check --strict dist/*
       - name: Test the installed wheel in a clean Python 3.9
@@ -50,6 +61,7 @@ jobs:
           name: release
           path: |
             dist/*
+            SHA256SUMS-dist
             golden/inputs.json
             golden/golden-${{ steps.version.outputs.version }}.json
             golden/SHA256SUMS
@@ -102,12 +114,16 @@ jobs:
           with open("notes.md", "w", encoding="utf-8", newline="\n") as f:
               f.write(match.group(1).strip() + "\n")
           PY
+      - name: Check the packages against SHA256SUMS-dist
+        working-directory: artifact/dist
+        run: sha256sum -c ../SHA256SUMS-dist
       - name: Create the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
             artifact/dist/* \
+            artifact/SHA256SUMS-dist \
             artifact/golden/inputs.json \
             "artifact/golden/golden-$VERSION.json" \
             artifact/golden/SHA256SUMS \

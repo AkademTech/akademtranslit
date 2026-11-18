@@ -1,4 +1,4 @@
-ICU 74.2, Unicode 15.1, akademtranslit 0.3.0, 1188 golden inputs, 604 inputs in the 2026 orthography (golden and derived)
+ICU 74.2, Unicode 15.1, akademtranslit 0.3.1, 1188 golden inputs, 604 inputs in the 2026 orthography (golden and derived)
 
 ## 1995 -> 2026 and 2026 -> 1995 against the library
 - 1995->2026 c0339 [a lone mark outside a word]: 'ʻ' -> CLDR 'ʻ', library 'ʼ'

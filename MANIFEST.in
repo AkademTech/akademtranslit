@@ -4,4 +4,5 @@ graft tests
 graft golden
 graft tools
 graft docs
+prune js
 global-exclude __pycache__ *.py[cod]

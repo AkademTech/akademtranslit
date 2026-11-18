@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.3.1 — 2026-11-18
+
+### Fixed
+
+- Protected spans: a URL, a DOI or a file path followed by a very long run of
+  closing brackets took time quadratic in the run (the known issue of 0.3.0).
+  It now takes linear time. The output is unchanged.
+- Protected spans: `%` followed by a very long run of zeros (`%000…0!`) took
+  time quadratic in the run. It now takes linear time. The output is
+  unchanged.
+- Protected spans: a very long run of dot-separated labels with no ending of
+  a bare domain (`a.a.a…`) took time quadratic in the run. It now takes
+  linear time. The output is unchanged.
+- Protected spans: a very long word of letters joined by apostrophes
+  (`a'a'a'…`) took time quadratic in its length. It now takes linear time.
+  The output is unchanged.
+
+### Added
+
+- `js/`: the JavaScript port (ES modules, no dependencies, Node and
+  browsers). It reproduces the golden vectors byte for byte. It is not on
+  npm.
+
+### Release
+
+- The GitHub release also has `SHA256SUMS-dist`, the SHA-256 of the wheel and
+  the sdist; `SHA256SUMS` keeps the hashes of the golden files.
+- The wheel is built with `SOURCE_DATE_EPOCH` set to the time of the tagged
+  commit, so that it can be built again from the tag; the README says how.
+
 ## 0.3.0 — 2026-11-18
 
 ### Added

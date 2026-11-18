@@ -1,0 +1,44 @@
+{
+  "name": "akademtranslit",
+  "version": "0.3.1",
+  "description": "Uzbek transliteration across Cyrillic, 1995 Latin and 2026 Latin: the JavaScript port of the Python library, byte for byte on its golden vectors",
+  "private": true,
+  "license": "MIT",
+  "author": "AkademTech",
+  "homepage": "https://github.com/AkademTech/akademtranslit/tree/main/js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkademTech/akademtranslit.git",
+    "directory": "js"
+  },
+  "bugs": "https://github.com/AkademTech/akademtranslit/issues",
+  "keywords": [
+    "uzbek",
+    "transliteration",
+    "cyrillic",
+    "latin",
+    "o'zbek",
+    "uz-Latn-2026"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./src/index.d.ts",
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
