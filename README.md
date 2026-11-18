@@ -858,14 +858,14 @@ checked against ICU and against these golden vectors. See
 
 ## Release files
 
-Each GitHub release has, besides the wheel and the sdist:
+A GitHub release has, besides the wheel and the sdist:
 
 - `inputs.json` and `golden-<version>.json`, the golden vectors of the
   release, and `SHA256SUMS`, the hashes of the golden files;
-- `SHA256SUMS-dist`, the hashes of the wheel and the sdist.
+- from 0.3.1, `SHA256SUMS-dist`, the hashes of the wheel and the sdist.
 
-The wheel is built with `SOURCE_DATE_EPOCH` set to the time of the tagged
-commit. To build it again, in a clone of the repository:
+From 0.3.1 the wheel is built with `SOURCE_DATE_EPOCH` set to the time of the
+tagged commit. To build it again, in a clone of the repository:
 
 ```bash
 git checkout v0.3.1
