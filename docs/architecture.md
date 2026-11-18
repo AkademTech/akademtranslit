@@ -127,7 +127,8 @@ for `{{`, `<!--` and the like. A finder reports the first span it sees from a
 position, and the scanner takes the one that starts first, then the longest,
 then the kind listed first in `protect.KINDS`. The message texts inside an ICU
 `plural` or `select` are scanned again, for every kind, and adjacent pieces of
-one kind are joined.
+one kind are joined. Each finder takes time linear in the text; from 0.3.1
+`tests/test_changes_0_3_1.py` times the inputs that took 0.3.0 quadratic time.
 
 `to_ascii` calls `to_latin` with `variant="latin_1995"`, applies
 `ASCII_SCHEME`, writes capital `Ş` and `Ç` by `ASCII_CAPITALS` (`SH`, `CH`
@@ -358,7 +359,9 @@ run and no install is needed.
   (0.3.0: the other input forms of `ö` and `ş`, the Cyrillic range, language tags, the `e` and
   `ьо` rules, `ValueError` for a non-string orthography, case per letter
   unit, abbreviations with a suffix, s with comma below, word-level `auto`,
-  decomposed letters).
+  decomposed letters), `test_changes_0_3_1.py` (0.3.1: the inputs on which
+  protected spans took quadratic time, timed, and the new code against the
+  0.3.0 code on random inputs).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`
   (README examples, via doctest), `test_privacy.py` (no I/O in the library;
   the command-line tool imports only what it may and opens files only to
@@ -372,17 +375,29 @@ run and no install is needed.
   installs the console script `akademtranslit`, which runs
   `akademtranslit.cli:main`. `MANIFEST.in` adds
   the changelog, `PRIVACY.md`, `docs/`, `tests/`, `golden/` and `tools/` to
-  the sdist.
+  the sdist, and leaves `js/` out.
 - `ci.yml` runs on pushes to `main` and on pull requests: the tests and the
   golden check on Ubuntu with Python 3.9 to 3.14 and on macOS and Windows
-  with 3.14, and a build job that validates the classifiers, builds the sdist
+  with 3.14, the JavaScript port's tests on Node 24, and a build job that
+  validates the classifiers, builds the sdist
   and wheel, runs `twine check --strict` and tests the wheel in Python 3.9.
 - `release.yml` runs on `v*` tags. Its build job checks that the tag matches
   `__version__` and repeats the golden, classifier, build, `twine check` and
-  wheel steps. The publish job runs in the `pypi` environment and uploads
-  with PyPI Trusted Publishing, with no API token in the workflow; the
+  wheel steps; it builds with `SOURCE_DATE_EPOCH` set to the time of the
+  commit and writes the packages' SHA-256 to `SHA256SUMS-dist`, outside
+  `dist/`. The publish job runs in the `pypi` environment and uploads
+  `dist/` with PyPI Trusted Publishing, with no API token in the workflow; the
   workflow's header comment says that environment needs approval. A last job
-  creates the GitHub release with notes from `CHANGELOG.md`. Run by hand,
-  the workflow only builds.
+  checks the packages against `SHA256SUMS-dist` and creates the GitHub
+  release with notes from `CHANGELOG.md`, the packages, `SHA256SUMS-dist` and
+  the golden files. Run by hand, the workflow only builds.
 - Actions are pinned to commit hashes, and both workflows default to
   read-only repository permissions.
+
+## The JavaScript port
+
+`js/` is a port of `src/akademtranslit/` to JavaScript, module by module, with
+no dependencies. Like the library, it uses no network and stores nothing. Its
+tests check it byte for byte against the same golden vectors, and against
+fixtures that `js/tools/make-fixtures.py` makes from the library; see
+[js/README.md](../js/README.md).

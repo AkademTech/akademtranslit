@@ -576,6 +576,14 @@ $ echo $?
 1
 ```
 
+## JavaScript
+
+[`js/`](js/README.md) holds a port of the library to JavaScript: ES modules
+with no dependencies, the same files in Node and in a browser. It reproduces
+the golden vectors of the same release byte for byte
+(`js/test/golden.test.js`, run in CI). It is not on npm; its README says how
+to use it from a clone of this repository.
+
 ## Supported orthographies
 
 The three alphabets, in their alphabetical order, are exposed as
@@ -847,6 +855,24 @@ two releases.
 transform rules, collation tailorings and exemplar characters, with tests
 checked against ICU and against these golden vectors. See
 [cldr/README.md](cldr/README.md).
+
+## Release files
+
+Each GitHub release has, besides the wheel and the sdist:
+
+- `inputs.json` and `golden-<version>.json`, the golden vectors of the
+  release, and `SHA256SUMS`, the hashes of the golden files;
+- `SHA256SUMS-dist`, the hashes of the wheel and the sdist.
+
+The wheel is built with `SOURCE_DATE_EPOCH` set to the time of the tagged
+commit. To build it again, in a clone of the repository:
+
+```bash
+git checkout v0.3.1
+SOURCE_DATE_EPOCH=$(git log -1 --format=%ct v0.3.1) uv build --wheel
+```
+
+Then compare the SHA-256 of the wheel in `dist/` with `SHA256SUMS-dist`.
 
 ## Versioning
 

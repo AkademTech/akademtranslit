@@ -21,6 +21,7 @@ Every number below is the output of a test in this directory, run on Node
 | calls the golden file does not make (`protect: false`, terms, the strip options, `homoglyphSpans`) on every golden input | 14,256 / 14,256 |
 | 46 inputs made for the places where JavaScript differs from Python, through all of the above, and 42 calls that raise | all equal |
 | `str.isalpha`, `isupper`, `isspace`, `re`'s `\w`, `\d`, `\s`, case mappings, NFC, NFKC, NFKD, on all 1,114,112 code points (`test/traps.test.js`) | equal wherever Python 3.12's Unicode 15.0 has a character, except the case of four letters (see below) |
+| the four kinds of input on which 0.3.0 took quadratic time: the new code against the 0.3.0 code on 20,000 random inputs each, and six long inputs timed (`test/linear.test.js`) | the same results; each long input under 1 s |
 
 The golden test compares values as JSON: a Python tuple is an array, `None`
 is `null`, and order counts. The golden files are checked against
@@ -28,8 +29,16 @@ is `null`, and order counts. The golden files are checked against
 
 ## Use
 
+The port is not published to npm, so it is used from a clone of the
+repository. The module is `js/src/index.js`, and it needs nothing else:
+
+```sh
+git clone https://github.com/AkademTech/akademtranslit.git
+```
+
 ```js
-import { convert, normalize, toCyrillic, toLatin, validate } from "akademtranslit";
+// from a script next to the clone; any path to js/src/index.js will do
+import { convert, normalize, toCyrillic, toLatin, validate } from "./akademtranslit/js/src/index.js";
 
 toLatin("Тошкент давлат университети");               // "Toşkent davlat universiteti"
 toLatin("Тошкент давлат университети", "latin_1995"); // "Toshkent davlat universiteti"
@@ -43,6 +52,9 @@ convert("https://shahar.uz", "auto", "cyrillic", { protect: false }); // "ҳтт
 validate("Toshkent shahri", "latin_2026");
 // [[0, 8, "digraph", "Toşkent"], [9, 15, "digraph", "şahri"]]
 ```
+
+In a browser, serve `js/src/` with the page and import the same file from a
+module script or a module Worker (see "Browsers" below).
 
 What each function does is documented once, in the Python library's
 docstrings and its [README](../README.md); the port does the same.
@@ -140,7 +152,7 @@ Silicon Mac, Node 24.16 and Python 3.12.13, on the same text:
 ## Tests
 
 ```sh
-npm test                      # node --test test/
+node --test test/             # in js/; npm test runs the same
 ```
 
 The fixtures in `test/fixtures/` are made from the Python library, never by
