@@ -131,11 +131,12 @@ root order applies: ё sorts as a variant of е, and ў қ ғ ҳ right after у 
 
 ## Results
 
-ICU 74.2 (Unicode 15.1), `akademtranslit` 0.3.0 and its golden vectors
+ICU 74.2 (Unicode 15.1), `akademtranslit` 0.3.1 and its golden vectors
 (1188 inputs; plus 604 inputs in the 2026 orthography: the golden ones and the
 library's 2026 output for every Cyrillic and 1995 input). The library's output
 is taken with `protect=False`, since the transforms protect nothing (URLs,
-tokens such as pH). Full output: `tests/check-report.txt`.
+tokens such as pH). Full output: `tests/check-report.txt`. With 0.3.0 the
+results were the same.
 
 | Check | Result |
 | --- | --- |
@@ -194,11 +195,13 @@ a separate ticket.
 ## Running the check
 
 ```bash
-pip install PyICU akademtranslit==0.3.0     # PyICU needs the ICU library
+pip install PyICU akademtranslit==0.3.1     # PyICU needs the ICU library
 python tools/check_cldr.py PATH/TO/golden    # golden/ of the akademtranslit repository
 python tools/check_cldr.py PATH/TO/golden --write-tests
 ```
 
+The installed `akademtranslit` must be the version of the newest
+`golden-<version>.json` in that folder; otherwise the check stops at once.
 Exit code 0 means every difference is one of the explained kinds and the test
 files match.
 
