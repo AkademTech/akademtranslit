@@ -1,0 +1,31 @@
+# gitleaks (8.30.1): the default rules, and one false positive allowed.
+#
+# The rule generic-api-key reads two lines of the JavaScript port's trap
+# fixture,
+#
+#     "sort_key_cyrillic",
+#     "sort_key_latin_1995",
+#
+# as a key and its value. They are names of golden fields. Each allowance
+# below needs all of: that rule, that value and that file; nothing else in the
+# file, and nothing in any other file, is allowed.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "the trap fixture: golden field names"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^js/test/fixtures/traps-0\.3\.1\.json$''']
+regexes = ['''^sort_key_latin_1995$''']
+
+# The same finding where the fixture was added under its 0.3.0 name. It stays
+# in the history; the allowance holds for that commit only.
+[[allowlists]]
+description = "the trap fixture as added in 8c4e6dd: golden field names"
+targetRules = ["generic-api-key"]
+condition = "AND"
+commits = ["8c4e6dd1760319ac3d8278894802437db4efedfe"]
+paths = ['''^js/test/fixtures/traps-0\.3\.0\.json$''']
+regexes = ['''^sort_key_latin_1995$''']
