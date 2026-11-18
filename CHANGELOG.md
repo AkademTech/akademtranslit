@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 — unreleased
+## 0.3.0 — 2026-11-18
 
 ### Added
 
@@ -150,6 +150,12 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
 - README: checking a text (`validate` and its codes), `migration_report`,
   the command line, and that conversion composes the text (NFC).
   `PRIVACY.md`: the command-line tool.
+- README and `docs/architecture.md`: the command line (its commands,
+  options, exit codes and output formats) is public interface and falls
+  under semantic versioning.
+- README and `cldr/README.md`: the variant subtags `1995` and `2026` were
+  approved by the Language Subtag Reviewer on 18 November 2026; IANA has yet
+  to add them to the Language Subtag Registry.
 
 ### Tests
 
@@ -185,6 +191,12 @@ The other `sort_key` fields, `normalize_apostrophes`, `script_class` and
 - `cldr/`: checked against 1188 golden inputs, with the library composing its
   input (NFC) and reading each word in its own orthography; `ș` is read as
   `ş` in both 2026 transforms.
+
+### Known issues
+
+- Protected spans: a URL followed by a very long run of closing brackets
+  (tens of thousands) takes time quadratic in the run. Output is unaffected.
+  Fixed in the next release.
 
 ## 0.2.0 — 2026-11-08
 
