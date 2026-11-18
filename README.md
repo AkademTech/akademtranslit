@@ -259,8 +259,11 @@ No. O'RQ-1184 takes effect on 22 April 2027, will read them as the 2026 one.
 Name the variant to avoid both the warning and the change. The library never
 decides by the date: a call gives the same output on any day.
 
-The variant subtags `1995` and `2026` were requested from IANA in October
-2026; registration is pending.
+The variant subtags `1995` and `2026` (prefixes `uz` and `uz-Latn`) were
+[approved by the Language Subtag Reviewer](https://mailarchive.ietf.org/arch/msg/ietf-languages/ADDgtJg5pZ1GMiGsc3pa59aB-V4/)
+on 18 November 2026, after review on the ietf-languages list. IANA has yet to
+add them to the Language Subtag Registry; until it does, tags that use them
+are not yet valid BCP 47. The library accepts them either way.
 
 ### Migrate an existing corpus to the 2026 alphabet
 

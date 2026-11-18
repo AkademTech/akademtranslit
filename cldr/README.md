@@ -49,8 +49,11 @@ The aliases need the variant subtags `1995` and `2026` for `uz` in the IANA
 Language Subtag Registry. They were requested on the ietf-languages list on
 22 October 2026 (revised on 25 October). On 9 November 2026 the Language
 Subtag Reviewer posted the proposed records, unchanged from the request, and
-extended the review period to 15 November 2026, Anywhere on Earth. Until IANA
-adds them, the aliases are not valid BCP 47 tags.
+extended the review period to 15 November 2026, Anywhere on Earth. On
+18 November 2026 the Reviewer approved them, unchanged
+(https://mailarchive.ietf.org/arch/msg/ietf-languages/ADDgtJg5pZ1GMiGsc3pa59aB-V4/).
+IANA has yet to add them to the Language Subtag Registry. Until IANA adds
+them, the aliases are not valid BCP 47 tags.
 
 | Subtag | Description | Prefix | Comments |
 | --- | --- | --- | --- |
