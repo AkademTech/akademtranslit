@@ -51,9 +51,10 @@ Language Subtag Registry. They were requested on the ietf-languages list on
 Subtag Reviewer posted the proposed records, unchanged from the request, and
 extended the review period to 15 November 2026, Anywhere on Earth. On
 18 November 2026 the Reviewer approved them, unchanged
-(https://mailarchive.ietf.org/arch/msg/ietf-languages/ADDgtJg5pZ1GMiGsc3pa59aB-V4/).
-IANA has yet to add them to the Language Subtag Registry. Until IANA adds
-them, the aliases are not valid BCP 47 tags.
+(https://mailarchive.ietf.org/arch/msg/ietf-languages/ADDgtJg5pZ1GMiGsc3pa59aB-V4/),
+and IANA added them to the Language Subtag Registry the same day
+(`Added: 2026-11-18`, registry `File-Date: 2026-11-18`). The records below
+are as registered.
 
 | Subtag | Description | Prefix | Comments |
 | --- | --- | --- | --- |
