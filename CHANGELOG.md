@@ -7,6 +7,8 @@
 - README and `cldr/README.md`: IANA added the variant subtags `1995` and
   `2026` to the Language Subtag Registry on 18 November 2026. Tags that use
   them are valid BCP 47.
+- `CONTRIBUTING.md`: contributions are accepted under the MIT license, the
+  project's license.
 
 ## 0.3.1 — 2026-11-18
 
