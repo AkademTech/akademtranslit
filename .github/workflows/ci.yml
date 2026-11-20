@@ -49,10 +49,11 @@ jobs:
           enable-cache: false
       # The fixtures in js/test/fixtures/ are made by the Python library;
       # this fails when the library changes and they are not made again.
-      # The Python is the one that made them, 3.12.13: unicode-15.0.0.json
-      # records its version, so another 3.12.x would not match.
+      # The Python is the minor version that made them, 3.12: the output
+      # depends on its Unicode data (15.0.0), and unicode-15.0.0.json
+      # records 3.12 only, so any 3.12.x makes the same files.
       - name: Fixtures match the Python library
-        run: uv run --no-project --python 3.12.13 -- python js/tools/make-fixtures.py --check
+        run: uv run --no-project --python 3.12 -- python js/tools/make-fixtures.py --check
       # The port has no dependencies: nothing is installed for it.
       - name: Test suite
         working-directory: js

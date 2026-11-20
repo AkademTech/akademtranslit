@@ -7,6 +7,14 @@
 - README and `cldr/README.md`: IANA added the variant subtags `1995` and
   `2026` to the Language Subtag Registry on 18 November 2026. Tags that use
   them are valid BCP 47.
+- `CONTRIBUTING.md`: contributions are accepted under the MIT license, the
+  project's license.
+
+### Development
+
+- The JavaScript port's Unicode fixture records only the minor version of
+  the Python that made it (`3.12`, not `3.12.13`). CI checks the fixtures on
+  any Python 3.12.x.
 
 ## 0.3.1 — 2026-11-18
 

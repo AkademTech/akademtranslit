@@ -380,7 +380,7 @@ run and no install is needed.
   golden check on Ubuntu with Python 3.9 to 3.14 and on macOS and Windows
   with 3.14, the JavaScript port's tests on Node 24 after a check that its
   fixtures match the library (`js/tools/make-fixtures.py --check` on
-  Python 3.12.13, the version that made them), and a build job that
+  Python 3.12, the minor version that made them), and a build job that
   validates the classifiers, builds the sdist
   and wheel, runs `twine check --strict` and tests the wheel in Python 3.9.
 - `release.yml` runs on `v*` tags. Its build job checks that the tag matches

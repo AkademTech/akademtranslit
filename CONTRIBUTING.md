@@ -2,6 +2,13 @@
 
 Thank you for helping. This project follows a [code of conduct](CODE_OF_CONDUCT.md).
 
+## License of contributions
+
+Contributions are accepted under the project's license. By opening a pull
+request you agree that your contribution is licensed under the MIT license
+(see [LICENSE](LICENSE)) and that you have the right to submit it under that
+license.
+
 ## Set up
 
 With the standard library only:

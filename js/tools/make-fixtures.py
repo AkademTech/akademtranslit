@@ -39,7 +39,6 @@ import argparse
 import hashlib
 import importlib
 import json
-import platform
 import re
 import sys
 import unicodedata
@@ -435,7 +434,9 @@ def unicode_tables() -> dict:
                 out.append([cp, normal])
     return {
         "schema": "akademtranslit-js-fixture-unicode/1",
-        "python": platform.python_version(),
+        # major.minor only: the output depends on unidata_version, which a
+        # minor version fixes; any 3.12.x makes the same file.
+        "python": "{}.{}".format(*sys.version_info[:2]),
         "unidata_version": unicodedata.unidata_version,
         "made_by": "js/tools/make-fixtures.py",
         "unassigned": ranges(lambda ch: unicodedata.category(ch) == "Cn"),
