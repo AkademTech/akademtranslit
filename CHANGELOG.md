@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Documentation
+
+- README and `cldr/README.md`: IANA added the variant subtags `1995` and
+  `2026` to the Language Subtag Registry on 18 November 2026. Tags that use
+  them are valid BCP 47.
+
 ## 0.3.1 — 2026-11-18
 
 ### Fixed
