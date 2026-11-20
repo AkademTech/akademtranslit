@@ -163,10 +163,10 @@ hand:
 .venv/bin/python js/tools/make-fixtures.py --check
 ```
 
-CI runs the check before the tests, with Python 3.12.13.
-`unicode-15.0.0.json` records the Python that made it, so make the fixtures
-with that version, or change the version in `.github/workflows/ci.yml` with
-them.
+CI runs the check before the tests, with Python 3.12 (any 3.12.x).
+`unicode-15.0.0.json` records the minor version of the Python that made it,
+3.12, whose Unicode data the fixtures depend on: make the fixtures with a
+3.12.x, or change the version in `.github/workflows/ci.yml` with them.
 
 ## License
 
