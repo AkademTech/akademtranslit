@@ -47,6 +47,14 @@ Seven positional rules are implemented:
     Read ``y`` before ``о`` (бульон -> bulyon, павильон -> pavilyon) and
     dropped everywhere else (альбом -> albom). Not reversible: bulyon comes
     back as булён.
+
+More rules look at the whole word, or at the text around it (0.3.2):
+
+Roman numerals
+    A word that is a Roman numeral in capitals stays as it is when Latin is
+    converted to Cyrillic (XIX asr -> XIX аср), unless it is one letter
+    followed by a full stop, an initial (I. Boʻriyev -> И. Бўриев):
+    :func:`is_roman_numeral`.
 """
 
 from __future__ import annotations
@@ -524,3 +532,29 @@ def latin_2026_word_to_1995(word: str) -> str:
     for source, target in LATIN_2026_TO_1995_STEPS:
         word = word.replace(source, target)
     return word
+
+
+# --- whole words -----------------------------------------------------------------
+#
+# Rules that need the word as it was written, before map_word lowercases it and
+# splits it into letter units. convert applies them.
+
+# A Roman numeral, 1 to 3999, in capitals.
+_ROMAN_NUMERAL_RE = re.compile(r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})")
+
+
+def is_roman_numeral(word: str, after: str = "") -> bool:
+    """True if ``word`` is a Roman numeral, which conversion from Latin to
+    Cyrillic keeps as it is (XIX asr -> XIX аср, Pyotr I -> Пётр I).
+
+    ``word`` is a word as it stands in the text and ``after`` the character
+    that follows it, or ``""``. The word must be only the capitals
+    ``I V X L C D M`` and a well-formed numeral (``XIX``, ``IV``, ``MMXXVI``;
+    not ``IIII`` or ``Xix``). One letter followed by a full stop is an initial,
+    not a numeral: ``I. Boʻriyev`` -> ``И. Бўриев``. Known limits: an Uzbek word
+    in capitals that is also a numeral stays Latin (``MIX``), and ``Pyotr I.``
+    at the end of a sentence is read as an initial.
+    """
+    if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
+        return False
+    return len(word) > 1 or after != "."

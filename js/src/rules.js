@@ -361,3 +361,20 @@ export function latin2026WordTo1995(word) {
   for (const [source, target] of LATIN_2026_TO_1995_STEPS) word = word.replaceAll(source, target);
   return word;
 }
+
+// --- whole words -----------------------------------------------------------------
+//
+// Rules that need the word as it was written, before mapWord() lowercases it
+// and splits it into letter units. convert() applies them.
+
+/** A Roman numeral, 1 to 3999, in capitals (fullmatch: anchored at both ends). */
+export const ROMAN_NUMERAL_RE = /^M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})$/u;
+
+/**
+ * True if ``word``, followed by the character ``after`` (or ""), is a Roman
+ * numeral, which conversion from Latin to Cyrillic keeps (see rules.py).
+ */
+export function isRomanNumeral(word, after = "") {
+  if (!word || !ROMAN_NUMERAL_RE.test(word)) return false;
+  return word.length > 1 || after !== ".";
+}

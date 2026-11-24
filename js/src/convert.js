@@ -13,12 +13,12 @@ import {
   PLAIN_WORD,
   SH_CH_WORD,
   cyrillicWordToLatin1995,
+  isRomanNumeral,
   latin1995WordTo2026,
   latin1995WordToCyrillic,
   latin2026CanonicalWord,
   latin2026WordTo1995,
-  mapWords,
-  mapWordsBy,
+  mapWord,
   wordClass,
   wordRegExp,
 } from "./rules.js";
@@ -135,22 +135,33 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
   const pieces = spans(text, settings).map(([a, b, kind]) =>
     kind !== null ? [text.slice(a, b), kind] : [text.slice(a, b).normalize("NFC"), null],
   );
-  let convertPiece;
+  let sourceOf;
   if (source === "auto") {
     const sources = autoSources(
       pieces.filter(([, kind]) => kind === null).map(([piece]) => piece),
       target,
     );
-    const transforms = {};
-    for (const script of SCRIPTS) transforms[script] = steps(script, target);
-    convertPiece = (piece) => mapWordsBy(piece, (word) => transforms[sources.get(word)]);
+    sourceOf = (word) => sources.get(word);
   } else {
-    const transform = steps(source, target);
-    convertPiece = (piece) => mapWords(piece, transform);
+    sourceOf = () => source;
   }
-  // mapWords canonicalises the marks even when there are no steps.
+  const transforms = {};
+  for (const script of SCRIPTS) transforms[script] = steps(script, target);
+  const toCyrillic = target === CYRILLIC;
+  const wordRe = wordRegExp();
+  const convertWord = (word, offset, piece) => {
+    const script = sourceOf(word);
+    if (toCyrillic && script !== CYRILLIC) {
+      // The rules that need the whole word as it stands, and what follows it.
+      // The character after it is one UTF-16 unit: only "." counts.
+      const end = offset + word.length;
+      if (isRomanNumeral(word, piece.slice(end, end + 1))) return word;
+    }
+    return mapWord(word, transforms[script]);
+  };
+  // mapWord canonicalises the marks even when there are no steps.
   let out = "";
-  for (const [piece, kind] of pieces) out += kind !== null ? piece : convertPiece(piece);
+  for (const [piece, kind] of pieces) out += kind !== null ? piece : piece.replace(wordRe, convertWord);
   return out;
 }
 

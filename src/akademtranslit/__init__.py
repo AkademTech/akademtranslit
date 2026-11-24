@@ -41,10 +41,12 @@ from .rules import (
     PLAIN_WORD,
     SH_CH_WORD,
     cyrillic_word_to_latin_1995,
+    is_roman_numeral,
     latin_1995_word_to_2026,
     latin_1995_word_to_cyrillic,
     latin_2026_canonical_word,
     latin_2026_word_to_1995,
+    map_word,
     map_words,
     map_words_by,
     word_class,
@@ -311,20 +313,28 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     ]
     if source == "auto":
         sources = _auto_sources([piece for piece, kind in pieces if kind is None], target)
-        transforms = {script: _steps(script, target) for script in SCRIPTS}
-
-        def _convert(piece: str) -> str:
-            return map_words_by(piece, lambda word: transforms[sources[word]])
-
+        source_of = sources.__getitem__
     else:
-        transform = _steps(source, target)
 
-        def _convert(piece: str) -> str:
-            return map_words(piece, transform)
+        def source_of(word: str) -> str:
+            return source
 
-    # map_words canonicalises the marks even when there are no steps, which is
+    transforms = {script: _steps(script, target) for script in SCRIPTS}
+    to_cyrillic = target == CYRILLIC
+
+    def _word(match) -> str:
+        word = match.group()
+        script = source_of(word)
+        if to_cyrillic and script != CYRILLIC:
+            # The rules that need the whole word as it stands, and what follows it.
+            end = match.end()
+            if is_roman_numeral(word, match.string[end:end + 1]):
+                return word
+        return map_word(word, transforms[script])
+
+    # map_word canonicalises the marks even when there are no steps, which is
     # what makes a same-script conversion a normalising pass rather than a no-op.
-    return "".join(piece if kind is not None else _convert(piece) for piece, kind in pieces)
+    return "".join(piece if kind is not None else _WORD_RE.sub(_word, piece) for piece, kind in pieces)
 
 
 def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:

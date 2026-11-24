@@ -752,11 +752,21 @@ CHANGED_BY_WORD_LEVEL_AUTO = ["c0338", "c1037", "c1139"]
 # and U+0308 COMBINING DIAERESIS.
 CHANGED_BY_NFC = ["c0273", "c1090"]
 
+# The golden inputs among c0001-c1139 whose conversion the rules of 0.3.2
+# change (tests/test_changes_0_3_2.py): a Roman numeral stays Latin in
+# Cyrillic -- the capitals D, I, L, M, V and X alone, XXI asr and XXI аср.
+CHANGED_BY_0_3_2_RULES = [
+    "c0150", "c0170", "c0182", "c0186", "c0222", "c0226", "c1063", "c1064",
+]
+
 # SHA-256 of the conversion output of 0.3.0 before protected spans: the 12
 # fields above on c0001-c1139 except CHANGED_BY_CASE_UNITS,
-# CHANGED_BY_WORD_LEVEL_AUTO and CHANGED_BY_NFC, from golden-0.3.0.json at
-# that commit, as {id: {field: output}} in the golden files' canonical JSON.
-BEFORE_PROTECTION_SHA256 = "52671ad0453f8b123bc10b73b5cb96d6e5ced78eda3ef60a9fc630f27baa3028"
+# CHANGED_BY_WORD_LEVEL_AUTO, CHANGED_BY_NFC and CHANGED_BY_0_3_2_RULES, from
+# golden-0.3.0.json at that commit, as {id: {field: output}} in the golden
+# files' canonical JSON. (0.3.1 gives the same on these inputs with
+# protect=False; that is how the value was taken when CHANGED_BY_0_3_2_RULES
+# was added.)
+BEFORE_PROTECTION_SHA256 = "a3cc79c0dafabb03724284602b33bd2d3e41ec662161a27c193e31531a773aa4"
 
 # The same with protect=False on CHANGED_BY_CASE_UNITS, after case units.
 CASE_UNITS_SHA256 = "f8a91be6d8cb4556e2312a4794d3c2091fafb57f8218069b0589f127476970b3"
@@ -766,6 +776,9 @@ WORD_LEVEL_AUTO_SHA256 = "4fff68422384a9821c039e91ccb5c6c98aa32cdec7f6855545d2ba
 
 # The same on CHANGED_BY_NFC, after the text is composed.
 NFC_SHA256 = "dc141f9ede1bf9346033c6f3cdde36e07d017f62e89ee2ac6872ad2c45acc09b"
+
+# The same on CHANGED_BY_0_3_2_RULES, after the rules of 0.3.2.
+RULES_0_3_2_SHA256 = "946e5b95b5bf1313cac38ad76e86dfa3c8b110d53c9f0f117477bf3721919c12"
 
 
 def _golden_cases_before_protection():
@@ -783,7 +796,7 @@ def _protect_false_sha256(cases):
 
 
 def test_protect_false_gives_the_output_from_before_protection():
-    changed = CHANGED_BY_CASE_UNITS + CHANGED_BY_WORD_LEVEL_AUTO + CHANGED_BY_NFC
+    changed = CHANGED_BY_CASE_UNITS + CHANGED_BY_WORD_LEVEL_AUTO + CHANGED_BY_NFC + CHANGED_BY_0_3_2_RULES
     cases = [case for case in _golden_cases_before_protection() if case["id"] not in changed]
     assert _protect_false_sha256(cases) == BEFORE_PROTECTION_SHA256
 
@@ -804,6 +817,12 @@ def test_protect_false_on_the_inputs_that_nfc_changed():
     cases = [case for case in _golden_cases_before_protection() if case["id"] in CHANGED_BY_NFC]
     assert [case["id"] for case in cases] == CHANGED_BY_NFC
     assert _protect_false_sha256(cases) == NFC_SHA256
+
+
+def test_protect_false_on_the_inputs_that_the_rules_of_0_3_2_changed():
+    cases = [case for case in _golden_cases_before_protection() if case["id"] in CHANGED_BY_0_3_2_RULES]
+    assert [case["id"] for case in cases] == CHANGED_BY_0_3_2_RULES
+    assert _protect_false_sha256(cases) == RULES_0_3_2_SHA256
 
 
 def test_protection_changes_only_the_inputs_with_a_protected_span():
