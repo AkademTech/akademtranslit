@@ -63,6 +63,12 @@ Roman numerals
     converted to Cyrillic (XIX asr -> XIX аср), unless it is one letter
     followed by a full stop, an initial (I. Boʻriyev -> И. Бўриев):
     :func:`is_roman_numeral`.
+
+Dates
+    Cyrillic writes no hyphen after the number of a year or of a day of the
+    month (1956 йил 22 сентябрь, the 1956 rules), Latin writes one
+    (1956-yil 22-sentabr): :func:`dates` writes the separator as the target
+    does, after the words are converted.
 """
 
 from __future__ import annotations
@@ -71,6 +77,7 @@ import re
 
 from .tables import (
     APOSTROPHE_VARIANTS,
+    CYRILLIC,
     CYRILLIC_FIRST,
     CYRILLIC_LAST,
     CYRILLIC_TO_LATIN_1995,
@@ -642,3 +649,83 @@ def month_soft_sign(word: str, cyrillic: str) -> str:
     if word.lower() not in _SOFT_SIGN_MONTHS:
         return cyrillic
     return cyrillic + ("Ь" if cyrillic[-1:].isupper() else "ь")
+
+
+# --- dates -------------------------------------------------------------------------
+
+# A number with no letter or digit before it, and the one hyphen (U+002D, or
+# U+2011 NON-BREAKING HYPHEN) or the one space (U+0020, or U+00A0 NO-BREAK
+# SPACE) after it. [^\W_] is a letter or a digit.
+_NUMBER_HYPHEN_RE = re.compile(r"(?<![^\W_])([0-9]+)([-‑])")
+_NUMBER_SPACE_RE = re.compile(r"(?<![^\W_])([0-9]+)([  ])")
+
+# The days of a month as they are written: 1 to 31, without a leading zero.
+_DAYS = frozenset(str(day) for day in range(1, 32))
+
+# A month name, lowercase, with the possessive -i and a case ending, each if
+# it is there. A closed list, not any letters: 3 marta (three times), 5-martaba,
+# 2-maydon are not dates. The Latin side has both spellings of sentabr and
+# oktabr, which latin_1995 <-> latin_2026 keeps, and gacha in both alphabets.
+_CYRILLIC_MONTH_RE = re.compile(
+    "(?:январ|феврал|март|апрел|май|июн|июл|август|сентябр|октябр|ноябр|декабр)ь?"
+    "и?(?:нинг|ни|га|да|дан|даги|гача)?"
+)
+_LATIN_MONTH_RE = re.compile(
+    "(?:yanvar|fevral|mart|aprel|may|iyun|iyul|avgust|sentabr|sentyabr|oktabr|oktyabr|noyabr|dekabr)"
+    "i?(?:ning|ni|ga|da|dan|dagi|gacha|gaça)?"
+)
+
+
+def dates(text: str, target: str) -> str:
+    """``text``, converted to ``target``, with the separator after the number
+    of a year or of a day of the month as ``target`` writes it.
+
+    Cyrillic writes no hyphen there (the 1956 spelling rules, paragraph 47):
+    ``1956 йил 22 сентябрь``. Latin writes one (Resolution No. 339 of 1995,
+    rule 56): ``1991-yil 1-sentabr``. Other ordinals keep the hyphen in both:
+    ``5-sinf``, ``39-son``, ``60-yillar``.
+
+    A number counts when no letter or digit comes before it and one hyphen or
+    one space comes after it, and then:
+
+    * to Cyrillic, ``-`` becomes a space and U+2011 NON-BREAKING HYPHEN
+      becomes U+00A0 NO-BREAK SPACE, after a number of three or four digits
+      (no leading zero) followed by a word that begins with ``йил``, or after
+      a day, 1 to 31, followed by a month name;
+    * to ``latin_1995`` and ``latin_2026``, a space becomes ``-`` and U+00A0
+      becomes U+2011, after a year from 1000 to 2099 followed by a word that
+      begins with ``yil`` -- a smaller number is a count, ``5 yil`` -- or
+      after a day followed by a month name.
+
+    A month name is one of the twelve, with ``ь``, the possessive ``-i`` and
+    a case ending (``нинг ни га да дан даги гача``), each if it is there; the
+    word is compared in lowercase. Known limit: ``2000 йил давомида`` (for 2000
+    years) is read as a year and becomes ``2000-yil davomida``.
+    """
+    if target == CYRILLIC:
+        return _NUMBER_HYPHEN_RE.sub(_cyrillic_date, text)
+    return _NUMBER_SPACE_RE.sub(_latin_date, text)
+
+
+def _word_after(match) -> str:
+    """The word right after ``match``, lowercase, or ``""``."""
+    word = _WORD_RE.match(match.string, match.end())
+    return word.group().lower() if word else ""
+
+
+def _cyrillic_date(match) -> str:
+    number, word = match.group(1), _word_after(match)
+    year = 3 <= len(number) <= 4 and number[0] != "0" and word.startswith("йил")
+    day = number in _DAYS and _CYRILLIC_MONTH_RE.fullmatch(word) is not None
+    if not (year or day):
+        return match.group()
+    return number + (" " if match.group(2) == "-" else " ")
+
+
+def _latin_date(match) -> str:
+    number, word = match.group(1), _word_after(match)
+    year = len(number) == 4 and 1000 <= int(number) <= 2099 and word.startswith("yil")
+    day = number in _DAYS and _LATIN_MONTH_RE.fullmatch(word) is not None
+    if not (year or day):
+        return match.group()
+    return number + ("-" if match.group(2) == " " else "‑")

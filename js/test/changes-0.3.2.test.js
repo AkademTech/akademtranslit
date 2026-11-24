@@ -9,7 +9,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import { CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, toCyrillic, toLatin } from "../src/index.js";
-import { cyrillicWordToLatin1995, isRomanNumeral } from "../src/rules.js";
+import { cyrillicWordToLatin1995, dates, isRomanNumeral } from "../src/rules.js";
 
 const LATIN = [LATIN_1995, LATIN_2026];
 
@@ -151,7 +151,7 @@ test("month names: Latin to Cyrillic, case and boundaries", () => {
     ["Iyun", "Июнь"],
     ["SENTABRda", "СЕНТЯБРда"], // two letter units: the suffix still drops ь
     ["sentabri", "сентябри"],
-    ["1-sentabr, 2-oktabrda", "1-сентябрь, 2-октябрда"],
+    ["sentabr, oktabrda", "сентябрь, октябрда"],
     ["Martaba, mayda, iyuncha", "Мартаба, майда, июнча"], // no ь: not month names alone
   ];
   for (const [latin, cyrillic] of cases) assert.equal(toCyrillic(latin), cyrillic, latin);
@@ -181,4 +181,120 @@ test("month names: normalize keeps its key (no change in a patch release)", () =
   assert.equal(normalize("Сентябрь"), "sentyabr");
   assert.equal(normalize("октябрнинг"), "oktyabrning");
   assert.equal(cyrillicWordToLatin1995("сентябрь"), "sentyabr");
+});
+
+// --- TRANSLIT-20: dates: no hyphen after the number in Cyrillic --------------------------
+
+// One date in latin_1995, latin_2026 and Cyrillic.
+const DATES = [
+  ["1991-yilning 1-sentabri", "1991-yilning 1-sentabri", "1991 йилнинг 1 сентябри"],
+  ["1956-yil 22-sentabr", "1956-yil 22-sentabr", "1956 йил 22 сентябрь"],
+  ["2026-yilda", "2026-yilda", "2026 йилда"],
+  ["1941–1945-yillar", "1941–1945-yillar", "1941–1945 йиллар"], // an en dash before 1945
+  ["1990-1991-yillarda", "1990-1991-yillarda", "1990-1991 йилларда"],
+  ["1-may", "1-may", "1 май"],
+  ["8-martda", "8-martda", "8 мартда"],
+  ["9-mayi", "9-mayi", "9 майи"],
+  ["31-dekabrgacha", "31-dekabrgaça", "31 декабргача"],
+  ["15-iyundagi", "15-iyundagi", "15 июндаги"],
+  ["2-oktabrning", "2-oktabrning", "2 октябрнинг"],
+  ["21–22-noyabr", "21–22-noyabr", "21–22 ноябрь"],
+  ["1-YANVAR, 2026-YIL", "1-YANVAR, 2026-YIL", "1 ЯНВАРЬ, 2026 ЙИЛ"],
+  // U+2011 NON-BREAKING HYPHEN and U+00A0 NO-BREAK SPACE stay unbreakable.
+  ["1991‑yil 1‑sentabr", "1991‑yil 1‑sentabr", "1991 йил 1 сентябрь"],
+];
+
+test("dates: Latin to Cyrillic", () => {
+  for (const [latin1995, latin2026, cyrillic] of DATES) {
+    assert.equal(convert(latin1995, LATIN_1995, CYRILLIC), cyrillic, latin1995);
+    assert.equal(convert(latin2026, LATIN_2026, CYRILLIC), cyrillic, latin2026);
+    assert.equal(toCyrillic(latin1995), cyrillic, latin1995);
+  }
+});
+
+test("dates: Cyrillic to Latin", () => {
+  for (const [latin1995, latin2026, cyrillic] of DATES) {
+    assert.equal(convert(cyrillic, CYRILLIC, LATIN_1995), latin1995, cyrillic);
+    assert.equal(convert(cyrillic, CYRILLIC, LATIN_2026), latin2026, cyrillic);
+    assert.equal(toLatin(cyrillic, LATIN_1995), latin1995, cyrillic);
+    assert.equal(toLatin(cyrillic), latin2026, cyrillic);
+  }
+});
+
+test("dates: in their own orthography", () => {
+  const cases = [
+    ["1991-йилнинг 1-сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"],
+    ["1991‑йил 1‑сентябрь", CYRILLIC, "1991 йил 1 сентябрь"],
+    ["1991 йилнинг 1 сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"],
+    ["1956 yil 22 sentabr", LATIN_1995, "1956-yil 22-sentabr"],
+    ["1956 yil 22 sentabr", LATIN_1995, "1956‑yil 22‑sentabr"],
+    ["2026 yil 1 iyun", LATIN_2026, "2026-yil 1-iyun"],
+    ["2026-yil 1-iyun", LATIN_2026, "2026-yil 1-iyun"],
+  ];
+  for (const [text, orthography, expected] of cases) {
+    assert.equal(convert(text, orthography, orthography), expected, text);
+    assert.equal(convert(text, "auto", orthography), expected, text);
+  }
+});
+
+test("dates: boundaries", () => {
+  const cases = [
+    ["60-yillar", CYRILLIC, "60-йиллар"],
+    ["60-йиллар", LATIN_1995, "60-yillar"],
+    ["5-sinf, 39-son", CYRILLIC, "5-синф, 39-сон"],
+    ["5-синф, 39-сон", LATIN_1995, "5-sinf, 39-son"],
+    ["5 yil ishladi", CYRILLIC, "5 йил ишлади"],
+    ["5 йил ишлади", LATIN_1995, "5 yil ishladi"],
+    ["476 йил", LATIN_1995, "476 yil"],
+    ["2100 йил", LATIN_1995, "2100 yil"],
+    ["476-yil", CYRILLIC, "476 йил"],
+    ["2000 йил давомида", LATIN_1995, "2000-yil davomida"], // known limit
+    ["32 sentabr", CYRILLIC, "32 сентябрь"],
+    ["32 сентябрь", LATIN_1995, "32 sentabr"],
+    ["32-sentabr", CYRILLIC, "32-сентябрь"],
+    ["01-sentabr, 0991-yil, 12345-yil", CYRILLIC, "01-сентябрь, 0991-йил, 12345-йил"],
+    ["1991  йил", LATIN_1995, "1991  yil"],
+    ["1991 - yil", CYRILLIC, "1991 - йил"],
+    ["№1991-yil", CYRILLIC, "№1991 йил"],
+    ["1,5-yil", CYRILLIC, "1,5-йил"],
+    ["3 марта", LATIN_1995, "3 marta"],
+    ["5-martaba, 2-maydon", CYRILLIC, "5-мартаба, 2-майдон"],
+    ["5-мартаба, 2-майдон", LATIN_1995, "5-martaba, 2-maydon"],
+    ["5 майда", LATIN_1995, "5-mayda"], // read as May
+  ];
+  for (const [text, target, expected] of cases) assert.equal(convert(text, "auto", target), expected, text);
+});
+
+test("dates: a letter or digit before the number", () => {
+  assert.equal(dates("ҳ1991-йил", CYRILLIC), "ҳ1991-йил");
+  assert.equal(dates("21991-йил", CYRILLIC), "21991-йил");
+  assert.equal(dates("x1991 yil", LATIN_1995), "x1991 yil");
+  assert.equal(dates("_1991 yil", LATIN_1995), "_1991-yil");
+});
+
+test("dates: source auto", () => {
+  assert.equal(toCyrillic("Toşkentda 2026-yil 1-sentabr"), "Тошкентда 2026 йил 1 сентябрь");
+  assert.equal(toLatin("1991 йил 1 сентябрда", LATIN_1995), "1991-yil 1-sentabrda");
+  assert.equal(toCyrillic("Тошкентда 2026-йил ва 2026-yil"), "Тошкентда 2026 йил ва 2026-yil");
+});
+
+test("dates: in a protected span", () => {
+  assert.equal(toCyrillic("https://shahar.uz/1991-yil va 1991-yil"), "https://shahar.uz/1991-yil ва 1991 йил");
+  assert.equal(toLatin('<a title="1991 йил">1991 йил</a>', LATIN_1995), '<a title="1991 йил">1991-yil</a>');
+  assert.equal(toCyrillic("<b>1991</b>-yil"), "<b>1991</b>-йил");
+  assert.equal(convert("https://x.uz/1991-yil", LATIN_1995, CYRILLIC, { protect: false }), "ҳттпс://х.уз/1991 йил");
+});
+
+test("dates: a Cyrillic date with a hyphen comes back without it", () => {
+  const text = "Тошкент давлат университети, 2026-йил";
+  for (const latin of LATIN) {
+    assert.equal(convert(convert(text, CYRILLIC, latin), latin, CYRILLIC), "Тошкент давлат университети, 2026 йил");
+  }
+});
+
+test("dates: linear time", () => {
+  const text = "1".repeat(200_000) + "-йил " + "1-".repeat(100_000) + "1 ".repeat(100_000);
+  const start = performance.now();
+  for (const target of [CYRILLIC, LATIN_1995]) dates(text, target);
+  assert.ok(performance.now() - start < 1000);
 });

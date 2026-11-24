@@ -13,6 +13,7 @@ import {
   PLAIN_WORD,
   SH_CH_WORD,
   convertCyrillicWord,
+  dates,
   isRomanNumeral,
   latin1995WordTo2026,
   latin1995WordToCyrillic,
@@ -162,9 +163,10 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
     }
     return mapWord(word, transforms[script]);
   };
-  // mapWord canonicalises the marks even when there are no steps.
+  // mapWord canonicalises the marks even when there are no steps. Then dates:
+  // the separator after the number of a year or a day of the month.
   let out = "";
-  for (const [piece, kind] of pieces) out += kind !== null ? piece : piece.replace(wordRe, convertWord);
+  for (const [piece, kind] of pieces) out += kind !== null ? piece : dates(piece.replace(wordRe, convertWord), target);
   return out;
 }
 

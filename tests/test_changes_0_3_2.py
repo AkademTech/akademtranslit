@@ -8,10 +8,12 @@ for the JavaScript port.
 
 from __future__ import annotations
 
+import time
+
 import pytest
 
 from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, to_cyrillic, to_latin
-from akademtranslit.rules import cyrillic_word_to_latin_1995, is_roman_numeral
+from akademtranslit.rules import cyrillic_word_to_latin_1995, dates, is_roman_numeral
 
 LATIN = (LATIN_1995, LATIN_2026)
 
@@ -162,7 +164,7 @@ def test_month_names_latin_to_cyrillic(alone, alone_cyrillic, suffixed, suffixed
         ("Iyun", "Июнь"),
         ("SENTABRda", "СЕНТЯБРда"),  # two letter units: the suffix still drops ь
         ("sentabri", "сентябри"),
-        ("1-sentabr, 2-oktabrda", "1-сентябрь, 2-октябрда"),
+        ("sentabr, oktabrda", "сентябрь, октябрда"),
         ("Martaba, mayda, iyuncha", "Мартаба, майда, июнча"),  # no ь: not month names alone
     ],
 )
@@ -200,3 +202,137 @@ def test_normalize_keeps_its_key():
     assert normalize("Сентябрь") == "sentyabr"
     assert normalize("октябрнинг") == "oktyabrning"
     assert cyrillic_word_to_latin_1995("сентябрь") == "sentyabr"
+
+
+# --- TRANSLIT-20: dates: no hyphen after the number in Cyrillic --------------------------
+
+# One date in latin_1995, latin_2026 and Cyrillic.
+DATES = [
+    ("1991-yilning 1-sentabri", "1991-yilning 1-sentabri", "1991 йилнинг 1 сентябри"),
+    ("1956-yil 22-sentabr", "1956-yil 22-sentabr", "1956 йил 22 сентябрь"),
+    ("2026-yilda", "2026-yilda", "2026 йилда"),
+    ("1941–1945-yillar", "1941–1945-yillar", "1941–1945 йиллар"),  # an en dash before 1945
+    ("1990-1991-yillarda", "1990-1991-yillarda", "1990-1991 йилларда"),
+    ("1-may", "1-may", "1 май"),
+    ("8-martda", "8-martda", "8 мартда"),
+    ("9-mayi", "9-mayi", "9 майи"),
+    ("31-dekabrgacha", "31-dekabrgaça", "31 декабргача"),
+    ("15-iyundagi", "15-iyundagi", "15 июндаги"),
+    ("2-oktabrning", "2-oktabrning", "2 октябрнинг"),
+    ("21–22-noyabr", "21–22-noyabr", "21–22 ноябрь"),
+    ("1-YANVAR, 2026-YIL", "1-YANVAR, 2026-YIL", "1 ЯНВАРЬ, 2026 ЙИЛ"),
+    # U+2011 NON-BREAKING HYPHEN and U+00A0 NO-BREAK SPACE stay unbreakable.
+    ("1991‑yil 1‑sentabr", "1991‑yil 1‑sentabr", "1991 йил 1 сентябрь"),
+]
+
+
+@pytest.mark.parametrize("latin_1995,latin_2026,cyrillic", DATES)
+def test_dates_latin_to_cyrillic(latin_1995, latin_2026, cyrillic):
+    assert convert(latin_1995, LATIN_1995, CYRILLIC) == cyrillic
+    assert convert(latin_2026, LATIN_2026, CYRILLIC) == cyrillic
+    assert to_cyrillic(latin_1995) == cyrillic
+
+
+@pytest.mark.parametrize("latin_1995,latin_2026,cyrillic", DATES)
+def test_dates_cyrillic_to_latin(latin_1995, latin_2026, cyrillic):
+    assert convert(cyrillic, CYRILLIC, LATIN_1995) == latin_1995
+    assert convert(cyrillic, CYRILLIC, LATIN_2026) == latin_2026
+    assert to_latin(cyrillic, LATIN_1995) == latin_1995
+    assert to_latin(cyrillic) == latin_2026
+
+
+@pytest.mark.parametrize(
+    "text,orthography,expected",
+    [
+        ("1991-йилнинг 1-сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"),
+        ("1991‑йил 1‑сентябрь", CYRILLIC, "1991 йил 1 сентябрь"),
+        ("1991 йилнинг 1 сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"),
+        ("1956 yil 22 sentabr", LATIN_1995, "1956-yil 22-sentabr"),
+        ("1956 yil 22 sentabr", LATIN_1995, "1956‑yil 22‑sentabr"),
+        ("2026 yil 1 iyun", LATIN_2026, "2026-yil 1-iyun"),
+        ("2026-yil 1-iyun", LATIN_2026, "2026-yil 1-iyun"),
+    ],
+)
+def test_dates_in_their_own_orthography(text, orthography, expected):
+    """Converting to the orthography the text is in follows the rule too: a
+    hyphen in Cyrillic goes, a space in Latin becomes one."""
+    assert convert(text, orthography, orthography) == expected
+    assert convert(text, "auto", orthography) == expected
+
+
+# Each is converted from the first to the second; nothing else about the
+# separator changes.
+DATE_BOUNDARIES = [
+    # Other ordinals keep the hyphen in both.
+    ("60-yillar", CYRILLIC, "60-йиллар"),
+    ("60-йиллар", LATIN_1995, "60-yillar"),
+    ("5-sinf, 39-son", CYRILLIC, "5-синф, 39-сон"),
+    ("5-синф, 39-сон", LATIN_1995, "5-sinf, 39-son"),
+    # A small number before yil is a count in Latin: no hyphen added.
+    ("5 yil ishladi", CYRILLIC, "5 йил ишлади"),
+    ("5 йил ишлади", LATIN_1995, "5 yil ishladi"),
+    ("476 йил", LATIN_1995, "476 yil"),
+    ("2100 йил", LATIN_1995, "2100 yil"),
+    # Three digits are a year to Cyrillic, below 1000 they are not to Latin.
+    ("476-yil", CYRILLIC, "476 йил"),
+    # Known limit: a count of 1000 to 2099 years is read as a year.
+    ("2000 йил давомида", LATIN_1995, "2000-yil davomida"),
+    # Not a day of a month, not a number as written, not one separator.
+    ("32 sentabr", CYRILLIC, "32 сентябрь"),
+    ("32 сентябрь", LATIN_1995, "32 sentabr"),
+    ("32-sentabr", CYRILLIC, "32-сентябрь"),
+    ("01-sentabr, 0991-yil, 12345-yil", CYRILLIC, "01-сентябрь, 0991-йил, 12345-йил"),
+    ("1991  йил", LATIN_1995, "1991  yil"),
+    ("1991 - yil", CYRILLIC, "1991 - йил"),
+    ("№1991-yil", CYRILLIC, "№1991 йил"),
+    ("1,5-yil", CYRILLIC, "1,5-йил"),
+    # Words that begin like a month name but are not one: no date.
+    ("3 марта", LATIN_1995, "3 marta"),
+    ("5-martaba, 2-maydon", CYRILLIC, "5-мартаба, 2-майдон"),
+    ("5-мартаба, 2-майдон", LATIN_1995, "5-martaba, 2-maydon"),
+    # mayda is May with -da here; it is also "small" (5 майда тош): read as May.
+    ("5 майда", LATIN_1995, "5-mayda"),
+]
+
+
+@pytest.mark.parametrize("text,target,expected", DATE_BOUNDARIES)
+def test_date_boundaries(text, target, expected):
+    assert convert(text, "auto", target) == expected
+
+
+def test_a_letter_or_digit_before_the_number():
+    assert dates("ҳ1991-йил", CYRILLIC) == "ҳ1991-йил"
+    assert dates("21991-йил", CYRILLIC) == "21991-йил"
+    assert dates("x1991 yil", LATIN_1995) == "x1991 yil"
+    assert dates("_1991 yil", LATIN_1995) == "_1991-yil"
+
+
+def test_dates_with_source_auto():
+    assert to_cyrillic("Toşkentda 2026-yil 1-sentabr") == "Тошкентда 2026 йил 1 сентябрь"
+    assert to_latin("1991 йил 1 сентябрда", LATIN_1995) == "1991-yil 1-sentabrda"
+    # Mostly Cyrillic: a Latin word that shows nothing stays, and so does its date.
+    assert to_cyrillic("Тошкентда 2026-йил ва 2026-yil") == "Тошкентда 2026 йил ва 2026-yil"
+
+
+def test_dates_in_a_protected_span():
+    assert to_cyrillic("https://shahar.uz/1991-yil va 1991-yil") == "https://shahar.uz/1991-yil ва 1991 йил"
+    assert to_latin('<a title="1991 йил">1991 йил</a>', LATIN_1995) == '<a title="1991 йил">1991-yil</a>'
+    # The number and the word must be in one piece of text between protected spans.
+    assert to_cyrillic("<b>1991</b>-yil") == "<b>1991</b>-йил"
+    assert convert("https://x.uz/1991-yil", LATIN_1995, CYRILLIC, protect=False) == "ҳттпс://х.уз/1991 йил"
+
+
+@pytest.mark.parametrize("latin", LATIN)
+def test_a_cyrillic_date_with_a_hyphen_comes_back_without_it(latin):
+    """Cyrillic -> Latin -> Cyrillic writes the date as the 1956 rules do
+    (tests/test_roundtrip.py has the form without the hyphen)."""
+    text = "Тошкент давлат университети, 2026-йил"
+    assert convert(convert(text, CYRILLIC, latin), latin, CYRILLIC) == "Тошкент давлат университети, 2026 йил"
+
+
+def test_dates_take_linear_time():
+    text = "1" * 200_000 + "-йил " + "1-" * 100_000 + "1 " * 100_000
+    start = time.perf_counter()
+    for target in (CYRILLIC, LATIN_1995):
+        dates(text, target)
+    assert time.perf_counter() - start < 1

@@ -755,9 +755,12 @@ CHANGED_BY_NFC = ["c0273", "c1090"]
 # The golden inputs among c0001-c1139 whose conversion the rules of 0.3.2
 # change (tests/test_changes_0_3_2.py): a Roman numeral stays Latin in
 # Cyrillic -- the capitals D, I, L, M, V and X alone, XXI asr and XXI аср; a
-# month name alone takes ь -- iyun (c0608).
+# month name alone takes ь -- iyun (c0608); a date has no hyphen after the
+# year in Cyrillic and one in Latin -- 2026 yil, 2026-yil and 2026-йил in
+# c0307, c0325 and c0634.
 CHANGED_BY_0_3_2_RULES = [
-    "c0150", "c0170", "c0182", "c0186", "c0222", "c0226", "c0608", "c1063", "c1064",
+    "c0150", "c0170", "c0182", "c0186", "c0222", "c0226", "c0307", "c0325", "c0608", "c0634",
+    "c1063", "c1064",
 ]
 
 # SHA-256 of the conversion output of 0.3.0 before protected spans: the 12
@@ -767,7 +770,7 @@ CHANGED_BY_0_3_2_RULES = [
 # files' canonical JSON. (0.3.1 gives the same on these inputs with
 # protect=False; that is how the value was taken when CHANGED_BY_0_3_2_RULES
 # was added.)
-BEFORE_PROTECTION_SHA256 = "cff1a63a7dbcafddbcd8e42780eb9f41bf932f6d40b7afe0275d46eabd634048"
+BEFORE_PROTECTION_SHA256 = "bc4d5bfefec9ba87b91722a44eacee9dfd1ba58a8e3b83f86e1d46eb8578ec7c"
 
 # The same with protect=False on CHANGED_BY_CASE_UNITS, after case units.
 CASE_UNITS_SHA256 = "f8a91be6d8cb4556e2312a4794d3c2091fafb57f8218069b0589f127476970b3"
@@ -779,7 +782,7 @@ WORD_LEVEL_AUTO_SHA256 = "4fff68422384a9821c039e91ccb5c6c98aa32cdec7f6855545d2ba
 NFC_SHA256 = "dc141f9ede1bf9346033c6f3cdde36e07d017f62e89ee2ac6872ad2c45acc09b"
 
 # The same on CHANGED_BY_0_3_2_RULES, after the rules of 0.3.2.
-RULES_0_3_2_SHA256 = "2ad51d159fce2ba0de65a049e0829c06ddd78b576e4198b9ae8881513c0b7e9c"
+RULES_0_3_2_SHA256 = "165f84441c79c054eae51c74df7dec2df51961c846e48c68cd70eb745a61879b"
 
 
 def _golden_cases_before_protection():

@@ -4,6 +4,7 @@
 
 import {
   APOSTROPHE_VARIANTS,
+  CYRILLIC,
   CYRILLIC_FIRST,
   CYRILLIC_LAST,
   CYRILLIC_TO_LATIN_1995,
@@ -430,4 +431,57 @@ export function monthSoftSign(word, cyrillic) {
   if (!SOFT_SIGN_MONTHS.has(word.toLowerCase())) return cyrillic;
   // The last letter of a month name in Cyrillic is in the BMP.
   return cyrillic + (isUpper(cyrillic.slice(-1)) ? "Ь" : "ь");
+}
+
+// --- dates -------------------------------------------------------------------------
+
+// A number with no letter or digit before it (Python's [^\W_]), and the one
+// hyphen (U+002D or U+2011) or the one space (U+0020 or U+00A0) after it.
+const NUMBER_HYPHEN_RE = /(?<![\p{L}\p{N}])([0-9]+)([-‑])/gu;
+const NUMBER_SPACE_RE = /(?<![\p{L}\p{N}])([0-9]+)([  ])/gu;
+const WORD_AT_RE = new RegExp(WORD_SOURCE, "uy");
+
+const DAYS = new Set(Array.from({ length: 31 }, (_, k) => String(k + 1)));
+
+// A month name, lowercase, with the possessive and a case ending, each if it
+// is there (fullmatch: anchored at both ends).
+export const CYRILLIC_MONTH_RE = new RegExp(
+  "^(?:январ|феврал|март|апрел|май|июн|июл|август|сентябр|октябр|ноябр|декабр)ь?" +
+    "и?(?:нинг|ни|га|да|дан|даги|гача)?$",
+  "u",
+);
+export const LATIN_MONTH_RE = new RegExp(
+  "^(?:yanvar|fevral|mart|aprel|may|iyun|iyul|avgust|sentabr|sentyabr|oktabr|oktyabr|noyabr|dekabr)" +
+    "i?(?:ning|ni|ga|da|dan|dagi|gacha|gaça)?$",
+  "u",
+);
+
+/** The word of ``text`` that starts at ``at``, lowercase, or "". */
+function wordAt(text, at) {
+  WORD_AT_RE.lastIndex = at;
+  const m = WORD_AT_RE.exec(text);
+  return m === null ? "" : m[0].toLowerCase();
+}
+
+/**
+ * ``text``, converted to ``target``, with the separator after the number of a
+ * year or of a day of the month as ``target`` writes it (see rules.py, dates).
+ */
+export function dates(text, target) {
+  if (target === CYRILLIC) {
+    return text.replace(NUMBER_HYPHEN_RE, (all, number, hyphen, offset) => {
+      const word = wordAt(text, offset + all.length);
+      const year = number.length >= 3 && number.length <= 4 && number[0] !== "0" && word.startsWith("йил");
+      const day = DAYS.has(number) && CYRILLIC_MONTH_RE.test(word);
+      if (!(year || day)) return all;
+      return number + (hyphen === "-" ? " " : " ");
+    });
+  }
+  return text.replace(NUMBER_SPACE_RE, (all, number, space, offset) => {
+    const word = wordAt(text, offset + all.length);
+    const year = number.length === 4 && Number(number) >= 1000 && Number(number) <= 2099 && word.startsWith("yil");
+    const day = DAYS.has(number) && LATIN_MONTH_RE.test(word);
+    if (!(year || day)) return all;
+    return number + (space === " " ? "-" : "‑");
+  });
 }

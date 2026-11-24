@@ -42,6 +42,7 @@ from .rules import (
     SH_CH_WORD,
     convert_cyrillic_word,
     cyrillic_word_to_latin_1995,
+    dates,
     is_roman_numeral,
     latin_1995_word_to_2026,
     latin_1995_word_to_cyrillic,
@@ -249,6 +250,15 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     >>> convert("Ilmiy jurnal, 2026-yil, 12-son", target="latin_2026")
     'Ilmiy jurnal, 2026-yil, 12-son'
 
+    The one exception is a date. Cyrillic writes no hyphen after the number of
+    a year or of a day of the month, Latin writes one (see
+    :func:`~akademtranslit.rules.dates`):
+
+    >>> convert("1991-yilning 1-sentabri", target="cyrillic")
+    '1991 йилнинг 1 сентябри'
+    >>> convert("1956 йил 22 сентябрь", target="latin_2026")
+    '1956-yil 22-sentabr'
+
     URLs, e-mail addresses, DOIs, placeholders, markup, file paths and tokens
     such as ``pH`` and ``SpO2`` come out byte for byte (see
     :mod:`akademtranslit.protect`); with ``source="auto"`` only the rest of the
@@ -338,7 +348,12 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
 
     # map_word canonicalises the marks even when there are no steps, which is
     # what makes a same-script conversion a normalising pass rather than a no-op.
-    return "".join(piece if kind is not None else _WORD_RE.sub(_word, piece) for piece, kind in pieces)
+    # Then dates: the separator after the number of a year or a day of the
+    # month, as the target writes it.
+    return "".join(
+        piece if kind is not None else dates(_WORD_RE.sub(_word, piece), target)
+        for piece, kind in pieces
+    )
 
 
 def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:
