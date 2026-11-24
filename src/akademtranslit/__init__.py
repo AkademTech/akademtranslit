@@ -40,6 +40,7 @@ from .rules import (
     O_FORM_WORD,
     PLAIN_WORD,
     SH_CH_WORD,
+    convert_cyrillic_word,
     cyrillic_word_to_latin_1995,
     is_roman_numeral,
     latin_1995_word_to_2026,
@@ -49,6 +50,7 @@ from .rules import (
     map_word,
     map_words,
     map_words_by,
+    month_soft_sign,
     word_class,
 )
 from .scripts import fold_homoglyphs, homoglyph_spans, script_spans
@@ -120,11 +122,12 @@ _REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1" "\u021
 # the others, so no pair needs a table of its own. The other input forms of ö
 # and ş (LATIN_2026_INPUT_ALIASES) are read as those letters whenever the
 # source or the target is latin_2026; a pair not listed (cyrillic or
-# latin_1995 to itself) has no steps.
+# latin_1995 to itself) has no steps. Cyrillic is read with
+# convert_cyrillic_word; normalize keeps cyrillic_word_to_latin_1995.
 _PIPELINES: dict[tuple[str, str], tuple] = {
-    (CYRILLIC, LATIN_1995): (cyrillic_word_to_latin_1995,),
+    (CYRILLIC, LATIN_1995): (convert_cyrillic_word,),
     (CYRILLIC, LATIN_2026): (
-        cyrillic_word_to_latin_1995,
+        convert_cyrillic_word,
         latin_1995_word_to_2026,
         latin_2026_canonical_word,  # ō U+014D, ǒ U+01D2 in a Latin word of Cyrillic text
     ),
@@ -330,6 +333,7 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
             end = match.end()
             if is_roman_numeral(word, match.string[end:end + 1]):
                 return word
+            return month_soft_sign(word, map_word(word, transforms[script]))
         return map_word(word, transforms[script])
 
     # map_word canonicalises the marks even when there are no steps, which is

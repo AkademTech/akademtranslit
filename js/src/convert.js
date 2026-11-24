@@ -12,13 +12,14 @@ import {
   O_FORM_WORD,
   PLAIN_WORD,
   SH_CH_WORD,
-  cyrillicWordToLatin1995,
+  convertCyrillicWord,
   isRomanNumeral,
   latin1995WordTo2026,
   latin1995WordToCyrillic,
   latin2026CanonicalWord,
   latin2026WordTo1995,
   mapWord,
+  monthSoftSign,
   wordClass,
   wordRegExp,
 } from "./rules.js";
@@ -39,9 +40,10 @@ const REFORM_LETTERS_RE = new RegExp("[şçğöŞÇĞÖ\\u014D\\u01D2\\u014C\\u0
 const CYRILLIC_RE = new RegExp(CYRILLIC_CLASS, "u");
 
 // Every conversion is a chain of word-level steps; latin_1995 is the pivot.
+// Cyrillic is read with convertCyrillicWord; normalize keeps cyrillicWordToLatin1995.
 const PIPELINES = new Map([
-  [`${CYRILLIC}>${LATIN_1995}`, [cyrillicWordToLatin1995]],
-  [`${CYRILLIC}>${LATIN_2026}`, [cyrillicWordToLatin1995, latin1995WordTo2026, latin2026CanonicalWord]],
+  [`${CYRILLIC}>${LATIN_1995}`, [convertCyrillicWord]],
+  [`${CYRILLIC}>${LATIN_2026}`, [convertCyrillicWord, latin1995WordTo2026, latin2026CanonicalWord]],
   [`${LATIN_1995}>${CYRILLIC}`, [latin1995WordToCyrillic]],
   [`${LATIN_1995}>${LATIN_2026}`, [latin2026CanonicalWord, latin1995WordTo2026]],
   [`${LATIN_2026}>${LATIN_1995}`, [latin2026WordTo1995]],
@@ -156,6 +158,7 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
       // The character after it is one UTF-16 unit: only "." counts.
       const end = offset + word.length;
       if (isRomanNumeral(word, piece.slice(end, end + 1))) return word;
+      return monthSoftSign(word, mapWord(word, transforms[script]));
     }
     return mapWord(word, transforms[script]);
   };

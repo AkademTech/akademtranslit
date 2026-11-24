@@ -8,8 +8,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { CYRILLIC, LATIN_1995, LATIN_2026, convert, toCyrillic } from "../src/index.js";
-import { isRomanNumeral } from "../src/rules.js";
+import { CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, toCyrillic, toLatin } from "../src/index.js";
+import { cyrillicWordToLatin1995, isRomanNumeral } from "../src/rules.js";
 
 const LATIN = [LATIN_1995, LATIN_2026];
 
@@ -91,4 +91,94 @@ test("Roman numerals: isRomanNumeral", () => {
     ["IC", "", false],
   ];
   for (const [word, after, expected] of cases) assert.equal(isRomanNumeral(word, after), expected, word);
+});
+
+// --- TRANSLIT-26: month names: sentabr, oktabr; the Cyrillic ь restored -----------------
+
+const CYRILLIC_MONTHS = [
+  ["Сентябрь", "Sentabr"],
+  ["сентябрда", "sentabrda"],
+  ["сентябри", "sentabri"],
+  ["октябрнинг", "oktabrning"],
+  ["Октябрь", "Oktabr"],
+  ["СЕНТЯБРЬ", "SENTABR"],
+  ["СЕНТЯБРда", "SENTABRda"],
+  ["ноябрь", "noyabr"],
+  [
+    "январь, февраль, март, апрель, май, июнь, июль, август, декабрь",
+    "yanvar, fevral, mart, aprel, may, iyun, iyul, avgust, dekabr",
+  ],
+];
+
+const LATIN_MONTHS = [
+  ["yanvar", "январь", "yanvarda", "январда"],
+  ["fevral", "февраль", "fevralda", "февралда"],
+  ["aprel", "апрель", "aprelda", "апрелда"],
+  ["iyun", "июнь", "iyunda", "июнда"],
+  ["iyul", "июль", "iyulda", "июлда"],
+  ["sentabr", "сентябрь", "sentabrda", "сентябрда"],
+  ["sentyabr", "сентябрь", "sentyabrda", "сентябрда"],
+  ["oktabr", "октябрь", "oktabrdagi", "октябрдаги"],
+  ["oktyabr", "октябрь", "oktyabrdagi", "октябрдаги"],
+  ["noyabr", "ноябрь", "noyabrda", "ноябрда"],
+  ["dekabr", "декабрь", "dekabrda", "декабрда"],
+  ["mart", "март", "martda", "мартда"],
+  ["may", "май", "mayda", "майда"],
+  ["avgust", "август", "avgustda", "августда"],
+];
+
+test("month names: Cyrillic to Latin", () => {
+  for (const [cyrillic, latin] of CYRILLIC_MONTHS) {
+    for (const source of [CYRILLIC, "auto"]) {
+      for (const target of LATIN) assert.equal(convert(cyrillic, source, target), latin, `${cyrillic} (${source}, ${target})`);
+    }
+  }
+});
+
+test("month names: Latin to Cyrillic, alone and with a suffix", () => {
+  for (const [alone, aloneCyrillic, suffixed, suffixedCyrillic] of LATIN_MONTHS) {
+    for (const source of [...LATIN, "auto"]) {
+      assert.equal(convert(alone, source, CYRILLIC), aloneCyrillic, `${alone} (${source})`);
+      assert.equal(convert(suffixed, source, CYRILLIC), suffixedCyrillic, `${suffixed} (${source})`);
+    }
+  }
+});
+
+test("month names: Latin to Cyrillic, case and boundaries", () => {
+  const cases = [
+    ["SENTABR", "СЕНТЯБРЬ"],
+    ["Sentabr", "Сентябрь"],
+    ["Iyun", "Июнь"],
+    ["SENTABRda", "СЕНТЯБРда"], // two letter units: the suffix still drops ь
+    ["sentabri", "сентябри"],
+    ["1-sentabr, 2-oktabrda", "1-сентябрь, 2-октябрда"],
+    ["Martaba, mayda, iyuncha", "Мартаба, майда, июнча"], // no ь: not month names alone
+  ];
+  for (const [latin, cyrillic] of cases) assert.equal(toCyrillic(latin), cyrillic, latin);
+});
+
+test("month names: Cyrillic -> Latin -> Cyrillic gives them back, ь included", () => {
+  for (const word of ["январь", "февраль", "апрель", "июнь", "июль", "сентябрь", "октябрь", "ноябрь", "декабрь"]) {
+    for (const latin of LATIN) assert.equal(convert(convert(word, CYRILLIC, latin), latin, CYRILLIC), word);
+  }
+});
+
+test("month names: Latin to Latin does not change them", () => {
+  for (const word of ["sentabr", "sentyabr", "oktabrda", "oktyabrda", "yanvar"]) {
+    assert.equal(convert(word, LATIN_1995, LATIN_2026), word);
+    assert.equal(convert(word, LATIN_2026, LATIN_1995), word);
+  }
+});
+
+test("month names: in Cyrillic text, and in a protected span", () => {
+  assert.equal(toCyrillic("Сентябрь ва октябрь"), "Сентябрь ва октябрь");
+  assert.equal(toLatin("Тошкентда сентябрь ойи"), "Toşkentda sentabr oyi");
+  assert.equal(toCyrillic("https://shahar.uz/sentabr va sentabr"), "https://shahar.uz/sentabr ва сентябрь");
+  assert.equal(toLatin("https://shahar.uz/сентябрь ва сентябрь"), "https://shahar.uz/сентябрь va sentabr");
+});
+
+test("month names: normalize keeps its key (no change in a patch release)", () => {
+  assert.equal(normalize("Сентябрь"), "sentyabr");
+  assert.equal(normalize("октябрнинг"), "oktyabrning");
+  assert.equal(cyrillicWordToLatin1995("сентябрь"), "sentyabr");
 });

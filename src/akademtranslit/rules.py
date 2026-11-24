@@ -50,6 +50,14 @@ Seven positional rules are implemented:
 
 More rules look at the whole word, or at the text around it (0.3.2):
 
+Month names
+    ``сентябр`` and ``октябр`` are read ``sentabr`` and ``oktabr``, with any
+    suffix (сентябрда -> sentabrda): :func:`convert_cyrillic_word`. The other
+    direction writes я again (sentabr, sentyabr -> сентябр), and a month name
+    standing alone gets the ``ь`` the Latin side has nothing to restore it
+    from (yanvar -> январь, iyun -> июнь); with a suffix it has none (yanvarda
+    -> январда): :func:`month_soft_sign`.
+
 Roman numerals
     A word that is a Roman numeral in capitals stays as it is when Latin is
     converted to Cyrillic (XIX asr -> XIX аср), unless it is one letter
@@ -348,15 +356,49 @@ def word_class(word: str) -> str:
 _CYRILLIC_CONSONANTS = frozenset("бвгджзйклмнпрстфхцчшщқғҳ")
 _CYRILLIC_IOTATED = frozenset("еёюя")
 
+# The month names whose я latin_1995 writes as a, and where the я is:
+# сентябр -> sentabr, октябр -> oktabr, as the Katta lugʻat writes them.
+_CYRILLIC_MONTHS_WITH_A = (("сентябр", 4), ("октябр", 3))
+
 
 def cyrillic_word_to_latin_1995(word: str) -> str:
-    """Convert one lowercase Cyrillic word to ``latin_1995``."""
+    """Convert one lowercase Cyrillic word to ``latin_1995``, by the
+    positional rules of the module docstring, as 0.3.1 had them.
+
+    :func:`~akademtranslit.normalize` reads Cyrillic with it, and so does code
+    that builds its own search key from it: its output does not change in a
+    patch release. :func:`~akademtranslit.convert` uses
+    :func:`convert_cyrillic_word`, which reads some words as wholes.
+    """
+    return _cyrillic_word_to_latin_1995(word, False)
+
+
+def convert_cyrillic_word(word: str) -> str:
+    """Convert one lowercase Cyrillic word to ``latin_1995``, as
+    :func:`~akademtranslit.convert` does: as :func:`cyrillic_word_to_latin_1995`,
+    except that the month names ``сентябр`` and ``октябр``, with any suffix,
+    are ``sentabr`` and ``oktabr`` (сентябрь -> sentabr, октябрнинг ->
+    oktabrning).
+    """
+    return _cyrillic_word_to_latin_1995(word, True)
+
+
+def _cyrillic_word_to_latin_1995(word: str, whole: bool) -> str:
+    """The two above: ``whole`` adds the rules for whole words."""
+    a = -1
+    if whole:
+        for stem, at in _CYRILLIC_MONTHS_WITH_A:
+            if word.startswith(stem):
+                a = at
     out: list[str] = []
     for i, ch in enumerate(word):
         prev = word[i - 1] if i else ""
         nxt = word[i + 1] if i + 1 < len(word) else ""
 
-        if ch == "е":
+        if i == a:
+            # The я of сентябр, октябр: sentabr, oktabr.
+            out.append("a")
+        elif ch == "е":
             initial_or_after_vowel = i == 0 or prev in CYRILLIC_VOWELS or prev in "ъь"
             out.append("ye" if initial_or_after_vowel else "e")
         elif ch == "ц":
@@ -463,12 +505,31 @@ def _ts_splits(word: str, i: int) -> bool:
     return _TS_SUFFIX_RE.fullmatch(rest) is not None
 
 
+# The month names whose a Cyrillic writes as я, and where the a is: sentabr
+# -> сентябр, oktabr -> октябр. sentyabr and oktyabr have it already.
+_LATIN_MONTHS_WITH_YA = (("sentabr", 4), ("oktabr", 3))
+
+
 def latin_1995_word_to_cyrillic(word: str) -> str:
-    """Convert one lowercase ``latin_1995`` word to Cyrillic."""
+    """Convert one lowercase ``latin_1995`` word to Cyrillic.
+
+    The month names ``sentabr`` and ``oktabr``, with any suffix, are
+    ``сентябр`` and ``октябр``. The ``ь`` of a month name standing alone is
+    added to the whole word by :func:`month_soft_sign`.
+    """
     out: list[str] = []
     i = 0
     length = len(word)
+    ya = -1
+    for stem, at in _LATIN_MONTHS_WITH_YA:
+        if word.startswith(stem):
+            ya = at
     while i < length:
+        if i == ya:
+            # The a of sentabr, oktabr: сентябр, октябр.
+            out.append("я")
+            i += 1
+            continue
         # The e/ye rule outranks the table: ``ye`` is always е. A bare ``e`` is
         # э word-initially and after a vowel, except before v (Aliev ->
         # Алиев), and е everywhere else.
@@ -558,3 +619,26 @@ def is_roman_numeral(word: str, after: str = "") -> bool:
     if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
         return False
     return len(word) > 1 or after != "."
+
+
+# The month names that Cyrillic writes with ь when they stand alone (январь,
+# сентябрь); with a suffix they have none (январда, сентябрда). mart, may and
+# avgust have none.
+_SOFT_SIGN_MONTHS = frozenset((
+    "yanvar", "fevral", "aprel", "iyun", "iyul",
+    "sentabr", "sentyabr", "oktabr", "oktyabr", "noyabr", "dekabr",
+))
+
+
+def month_soft_sign(word: str, cyrillic: str) -> str:
+    """``cyrillic``, the Cyrillic of the Latin ``word``, with the ``ь`` of a
+    month name that stands alone: yanvar -> январь, SENTABR -> СЕНТЯБРЬ.
+
+    ``word`` is the word as it stands in the text. Only a whole word that is a
+    month name gets the ``ь``: with a suffix it has none (yanvarda ->
+    январда, SENTABRda -> СЕНТЯБРда), and ``mart``, ``may`` and ``avgust``
+    have none. It takes the case of the letter before it.
+    """
+    if word.lower() not in _SOFT_SIGN_MONTHS:
+        return cyrillic
+    return cyrillic + ("Ь" if cyrillic[-1:].isupper() else "ь")

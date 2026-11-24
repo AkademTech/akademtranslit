@@ -10,8 +10,8 @@ from __future__ import annotations
 
 import pytest
 
-from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, to_cyrillic, to_latin
-from akademtranslit.rules import is_roman_numeral
+from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, to_cyrillic, to_latin
+from akademtranslit.rules import cyrillic_word_to_latin_1995, is_roman_numeral
 
 LATIN = (LATIN_1995, LATIN_2026)
 
@@ -98,3 +98,105 @@ def test_roman_numerals_in_a_protected_span():
 )
 def test_is_roman_numeral(word, after, expected):
     assert is_roman_numeral(word, after) is expected
+
+
+# --- TRANSLIT-26: month names: sentabr, oktabr; the Cyrillic ь restored -----------------
+
+# Cyrillic -> Latin: сентябр and октябр with any suffix, case kept. The other
+# months were right already.
+CYRILLIC_MONTHS = [
+    ("Сентябрь", "Sentabr"),
+    ("сентябрда", "sentabrda"),
+    ("сентябри", "sentabri"),
+    ("октябрнинг", "oktabrning"),
+    ("Октябрь", "Oktabr"),
+    ("СЕНТЯБРЬ", "SENTABR"),
+    ("СЕНТЯБРда", "SENTABRda"),
+    ("ноябрь", "noyabr"),
+    (
+        "январь, февраль, март, апрель, май, июнь, июль, август, декабрь",
+        "yanvar, fevral, mart, aprel, may, iyun, iyul, avgust, dekabr",
+    ),
+]
+
+
+@pytest.mark.parametrize("target", LATIN)
+@pytest.mark.parametrize("source", (CYRILLIC, "auto"))
+@pytest.mark.parametrize("cyrillic,latin", CYRILLIC_MONTHS)
+def test_month_names_cyrillic_to_latin(cyrillic, latin, source, target):
+    assert convert(cyrillic, source, target) == latin
+
+
+# Latin -> Cyrillic: a month name standing alone takes ь, with a suffix it has
+# none; sentabr and oktabr take я.
+LATIN_MONTHS = [
+    ("yanvar", "январь", "yanvarda", "январда"),
+    ("fevral", "февраль", "fevralda", "февралда"),
+    ("aprel", "апрель", "aprelda", "апрелда"),
+    ("iyun", "июнь", "iyunda", "июнда"),
+    ("iyul", "июль", "iyulda", "июлда"),
+    ("sentabr", "сентябрь", "sentabrda", "сентябрда"),
+    ("sentyabr", "сентябрь", "sentyabrda", "сентябрда"),
+    ("oktabr", "октябрь", "oktabrdagi", "октябрдаги"),
+    ("oktyabr", "октябрь", "oktyabrdagi", "октябрдаги"),
+    ("noyabr", "ноябрь", "noyabrda", "ноябрда"),
+    ("dekabr", "декабрь", "dekabrda", "декабрда"),
+    ("mart", "март", "martda", "мартда"),
+    ("may", "май", "mayda", "майда"),
+    ("avgust", "август", "avgustda", "августда"),
+]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("alone,alone_cyrillic,suffixed,suffixed_cyrillic", LATIN_MONTHS)
+def test_month_names_latin_to_cyrillic(alone, alone_cyrillic, suffixed, suffixed_cyrillic, source):
+    assert convert(alone, source, CYRILLIC) == alone_cyrillic
+    assert convert(suffixed, source, CYRILLIC) == suffixed_cyrillic
+
+
+@pytest.mark.parametrize(
+    "latin,cyrillic",
+    [
+        ("SENTABR", "СЕНТЯБРЬ"),
+        ("Sentabr", "Сентябрь"),
+        ("Iyun", "Июнь"),
+        ("SENTABRda", "СЕНТЯБРда"),  # two letter units: the suffix still drops ь
+        ("sentabri", "сентябри"),
+        ("1-sentabr, 2-oktabrda", "1-сентябрь, 2-октябрда"),
+        ("Martaba, mayda, iyuncha", "Мартаба, майда, июнча"),  # no ь: not month names alone
+    ],
+)
+def test_month_names_latin_to_cyrillic_case_and_boundaries(latin, cyrillic):
+    assert to_cyrillic(latin) == cyrillic
+
+
+@pytest.mark.parametrize("word", ["январь", "февраль", "апрель", "июнь", "июль", "сентябрь", "октябрь", "ноябрь", "декабрь"])
+@pytest.mark.parametrize("latin", LATIN)
+def test_month_names_come_back(word, latin):
+    """Cyrillic -> Latin -> Cyrillic gives the month name back, ь included."""
+    assert convert(convert(word, CYRILLIC, latin), latin, CYRILLIC) == word
+
+
+@pytest.mark.parametrize("word", ["sentabr", "sentyabr", "oktabrda", "oktyabrda", "yanvar"])
+def test_month_names_latin_to_latin_do_not_change(word):
+    assert convert(word, LATIN_1995, LATIN_2026) == word
+    assert convert(word, LATIN_2026, LATIN_1995) == word
+
+
+def test_month_names_in_cyrillic_text():
+    assert to_cyrillic("Сентябрь ва октябрь") == "Сентябрь ва октябрь"
+    assert to_latin("Тошкентда сентябрь ойи") == "Toşkentda sentabr oyi"
+
+
+def test_month_names_in_a_protected_span():
+    assert to_cyrillic("https://shahar.uz/sentabr va sentabr") == "https://shahar.uz/sentabr ва сентябрь"
+    assert to_latin("https://shahar.uz/сентябрь ва сентябрь") == "https://shahar.uz/сентябрь va sentabr"
+
+
+def test_normalize_keeps_its_key():
+    """normalize does not change in a patch release (README, Versioning): its
+    key for сентябрь is still sentyabr, and cyrillic_word_to_latin_1995, which
+    code outside the library builds keys with, reads the word as before."""
+    assert normalize("Сентябрь") == "sentyabr"
+    assert normalize("октябрнинг") == "oktyabrning"
+    assert cyrillic_word_to_latin_1995("сентябрь") == "sentyabr"

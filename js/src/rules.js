@@ -209,22 +209,47 @@ export function wordClass(word) {
 const CYRILLIC_CONSONANTS = new Set("бвгджзйклмнпрстфхцчшщқғҳ");
 const CYRILLIC_IOTATED = new Set("еёюя");
 
+// The month names whose я latin_1995 writes as a, and where the я is.
+const CYRILLIC_MONTHS_WITH_A = [["сентябр", 4], ["октябр", 3]];
+
 /**
- * Convert one lowercase Cyrillic word to latin_1995.
+ * Convert one lowercase Cyrillic word to latin_1995, by the positional rules,
+ * as 0.3.1 had them. normalize() reads Cyrillic with it; convert() uses
+ * convertCyrillicWord() (see rules.py).
+ */
+export function cyrillicWordToLatin1995(word) {
+  return cyrillicWord(word, false);
+}
+
+/** Convert one lowercase Cyrillic word to latin_1995, as convert() does (see rules.py). */
+export function convertCyrillicWord(word) {
+  return cyrillicWord(word, true);
+}
+
+/**
+ * The two above: ``whole`` adds the rules for whole words.
  *
  * Iterates UTF-16 units. That gives Python's result: every rule compares a
  * character with Cyrillic letters, which are all in the BMP, so half of a
  * surrogate pair matches none of them, just as the whole astral character does
- * not, and both halves are copied through.
+ * not, and both halves are copied through. A month name is in the BMP, so its
+ * я is at the same index as in Python.
  */
-export function cyrillicWordToLatin1995(word) {
+function cyrillicWord(word, whole) {
+  let a = -1;
+  if (whole) {
+    for (const [stem, at] of CYRILLIC_MONTHS_WITH_A) if (word.startsWith(stem)) a = at;
+  }
   let out = "";
   const n = word.length;
   for (let i = 0; i < n; i++) {
     const ch = word[i];
     const prev = i ? word[i - 1] : "";
     const nxt = i + 1 < n ? word[i + 1] : "";
-    if (ch === "е") {
+    if (i === a) {
+      // The я of сентябр, октябр: sentabr, oktabr.
+      out += "a";
+    } else if (ch === "е") {
       const initialOrAfterVowel = i === 0 || CYRILLIC_VOWELS.has(prev) || prev === "ъ" || prev === "ь";
       out += initialOrAfterVowel ? "ye" : "e";
     } else if (ch === "ц") {
@@ -300,8 +325,12 @@ const LATIN_1995_TABLE_RE = new RegExp(
 );
 const LATIN_1995_TABLE = new Map(LATIN_1995_TO_CYRILLIC);
 
+// The month names whose a Cyrillic writes as я, and where the a is.
+const LATIN_MONTHS_WITH_YA = [["sentabr", 4], ["oktabr", 3]];
+
 /**
- * Convert one lowercase latin_1995 word to Cyrillic.
+ * Convert one lowercase latin_1995 word to Cyrillic (sentabr, oktabr with any
+ * suffix: сентябр, октябр; see rules.py).
  *
  * Iterates UTF-16 units; as in cyrillicWordToLatin1995(), every comparison is
  * with ASCII letters or the two marks, so the result is Python's.
@@ -310,7 +339,15 @@ export function latin1995WordToCyrillic(word) {
   let out = "";
   let i = 0;
   const n = word.length;
+  let ya = -1;
+  for (const [stem, at] of LATIN_MONTHS_WITH_YA) if (word.startsWith(stem)) ya = at;
   while (i < n) {
+    if (i === ya) {
+      // The a of sentabr, oktabr: сентябр, октябр.
+      out += "я";
+      i += 1;
+      continue;
+    }
     if (word.startsWith("ye", i)) {
       out += "е";
       i += 2;
@@ -377,4 +414,20 @@ export const ROMAN_NUMERAL_RE = /^M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:I
 export function isRomanNumeral(word, after = "") {
   if (!word || !ROMAN_NUMERAL_RE.test(word)) return false;
   return word.length > 1 || after !== ".";
+}
+
+// The month names that Cyrillic writes with ь when they stand alone.
+const SOFT_SIGN_MONTHS = new Set([
+  "yanvar", "fevral", "aprel", "iyun", "iyul",
+  "sentabr", "sentyabr", "oktabr", "oktyabr", "noyabr", "dekabr",
+]);
+
+/**
+ * ``cyrillic``, the Cyrillic of the Latin ``word``, with the ь of a month name
+ * that stands alone, in the case of the letter before it (see rules.py).
+ */
+export function monthSoftSign(word, cyrillic) {
+  if (!SOFT_SIGN_MONTHS.has(word.toLowerCase())) return cyrillic;
+  // The last letter of a month name in Cyrillic is in the BMP.
+  return cyrillic + (isUpper(cyrillic.slice(-1)) ? "Ь" : "ь");
 }
