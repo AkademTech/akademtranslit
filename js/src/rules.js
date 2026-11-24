@@ -213,6 +213,17 @@ const CYRILLIC_IOTATED = new Set("еёюя");
 // The month names whose я latin_1995 writes as a, and where the я is.
 const CYRILLIC_MONTHS_WITH_A = [["сентябр", 4], ["октябр", 3]];
 
+// What may follow a ц that is still read as at the end of a word: nothing,
+// or Uzbek suffixes only. Sticky and anchored at the end: Python's
+// fullmatch(word, pos), without copying the rest of the word.
+const FINAL_TS_SUFFIXES_RE = /(?:лар(?:и|им|инг|имиз|ингиз)?)?(?:нинг|ни|га|да|дан|даги|гача)?$/uy;
+
+/** True if only Uzbek suffixes, or nothing, follow word[at - 1]. */
+function finalTs(word, at) {
+  FINAL_TS_SUFFIXES_RE.lastIndex = at;
+  return FINAL_TS_SUFFIXES_RE.test(word);
+}
+
 /**
  * Convert one lowercase Cyrillic word to latin_1995, by the positional rules,
  * as 0.3.1 had them. normalize() reads Cyrillic with it; convert() uses
@@ -254,8 +265,11 @@ function cyrillicWord(word, whole) {
       const initialOrAfterVowel = i === 0 || CYRILLIC_VOWELS.has(prev) || prev === "ъ" || prev === "ь";
       out += initialOrAfterVowel ? "ye" : "e";
     } else if (ch === "ц") {
-      // ts only after a vowel; word-initially and after a consonant, s.
-      out += i > 0 && CYRILLIC_VOWELS.has(prev) ? "ts" : "s";
+      // At the end of the word, before Uzbek suffixes only: s (марганец ->
+      // marganes). Otherwise ts only after a vowel; word-initially and after
+      // a consonant, s.
+      if (whole && finalTs(word, i + 1)) out += "s";
+      else out += i > 0 && CYRILLIC_VOWELS.has(prev) ? "ts" : "s";
     } else if (ch === "с" && nxt === "ҳ") {
       out += "s" + TUTUQ;
     } else if (ch === "ъ" && (prev === "ў" || (CYRILLIC_CONSONANTS.has(prev) && CYRILLIC_IOTATED.has(nxt)))) {

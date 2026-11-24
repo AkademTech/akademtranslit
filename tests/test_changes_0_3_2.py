@@ -336,3 +336,72 @@ def test_dates_take_linear_time():
     for target in (CYRILLIC, LATIN_1995):
         dates(text, target)
     assert time.perf_counter() - start < 1
+
+
+# --- TRANSLIT-25: a word-final ц is s -------------------------------------------------
+
+FINAL_TS = [
+    ("марганец", "marganes"),
+    ("ненец", "nenes"),
+    ("шприц", "shpris"),
+    ("кварц", "kvars"),  # s before, s now
+    ("ненецлар", "neneslar"),
+    ("шприцни", "shprisni"),
+    ("ненецларнинг", "neneslarning"),
+    ("ненецларимизга", "neneslarimizga"),
+    ("шприцдаги", "shprisdagi"),
+    ("шприцгача", "shprisgacha"),
+    ("МАРГАНЕЦ", "MARGANES"),
+    ("Марганец", "Marganes"),
+]
+
+# Not at the end, and not before Uzbek suffixes only: as before.
+TS_AS_BEFORE = [
+    ("лицей", "litsey"),
+    ("боцман", "botsman"),  # ман is not one of the suffixes
+    ("плацдарм", "platsdarm"),
+    ("пицца", "pitssa"),
+    ("милиция", "militsiya"),
+    ("цирк", "sirk"),
+    ("функция", "funksiya"),
+    ("шприци", "shpritsi"),  # the possessive -i alone is not one of the suffixes
+]
+
+
+@pytest.mark.parametrize("source", (CYRILLIC, "auto"))
+@pytest.mark.parametrize("cyrillic,latin", FINAL_TS + TS_AS_BEFORE)
+def test_ts_cyrillic_to_latin_1995(cyrillic, latin, source):
+    assert convert(cyrillic, source, LATIN_1995) == latin
+
+
+@pytest.mark.parametrize("cyrillic,latin", [("шприц", "şpris"), ("шприцни", "şprisni"), ("марганец", "marganes")])
+def test_ts_cyrillic_to_latin_2026(cyrillic, latin):
+    assert convert(cyrillic, CYRILLIC, LATIN_2026) == latin
+    assert to_latin(cyrillic) == latin
+
+
+def test_ts_latin_to_cyrillic_does_not_change():
+    """Known loss (README): marganes comes back as марганес."""
+    assert to_cyrillic("marganes") == "марганес"
+    assert to_cyrillic("neneslar va shpris") == "ненеслар ва шприс"
+    assert to_cyrillic("litsey, botsman") == "лицей, боцман"
+
+
+def test_ts_in_cyrillic_text_and_in_a_protected_span():
+    assert to_cyrillic("марганец") == "марганец"
+    assert to_latin("https://shahar.uz/марганец ва марганец", LATIN_1995) == "https://shahar.uz/марганец va marganes"
+
+
+def test_normalize_keeps_its_key_for_ts():
+    """normalize does not change in a patch release: марганец is still
+    marganets there, and so in cyrillic_word_to_latin_1995."""
+    assert normalize("Марганец") == "marganets"
+    assert normalize("шприцни") == "shpritsni"
+    assert cyrillic_word_to_latin_1995("марганец") == "marganets"
+
+
+def test_ts_takes_linear_time():
+    start = time.perf_counter()
+    convert("ц" * 200_000, CYRILLIC, LATIN_1995)
+    convert("а" + "цлар" * 50_000, CYRILLIC, LATIN_1995)
+    assert time.perf_counter() - start < 1

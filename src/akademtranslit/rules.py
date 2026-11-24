@@ -50,6 +50,12 @@ Seven positional rules are implemented:
 
 More rules look at the whole word, or at the text around it (0.3.2):
 
+``ц`` at the end of a word
+    Read ``s`` at the end of a word and where only Uzbek suffixes follow it
+    (марганец -> marganes, шприц -> shpris, ненецлар -> neneslar, шприцни ->
+    shprisni), whatever comes before it: :func:`convert_cyrillic_word`. Not
+    reversible: marganes comes back as марганес.
+
 Month names
     ``сентябр`` and ``октябр`` are read ``sentabr`` and ``oktabr``, with any
     suffix (сентябрда -> sentabrda): :func:`convert_cyrillic_word`. The other
@@ -367,6 +373,14 @@ _CYRILLIC_IOTATED = frozenset("еёюя")
 # сентябр -> sentabr, октябр -> oktabr, as the Katta lugʻat writes them.
 _CYRILLIC_MONTHS_WITH_A = (("сентябр", 4), ("октябр", 3))
 
+# What may follow a ц that is still read as at the end of a word: nothing, or
+# Uzbek suffixes only -- the plural with a possessive, then a case ending, each
+# if it is there. Each begins with a consonant. The Katta lugʻat writes
+# ненецлар as neneslar.
+_FINAL_TS_SUFFIXES_RE = re.compile(
+    "(?:лар(?:и|им|инг|имиз|ингиз)?)?(?:нинг|ни|га|да|дан|даги|гача)?"
+)
+
 
 def cyrillic_word_to_latin_1995(word: str) -> str:
     """Convert one lowercase Cyrillic word to ``latin_1995``, by the
@@ -383,9 +397,15 @@ def cyrillic_word_to_latin_1995(word: str) -> str:
 def convert_cyrillic_word(word: str) -> str:
     """Convert one lowercase Cyrillic word to ``latin_1995``, as
     :func:`~akademtranslit.convert` does: as :func:`cyrillic_word_to_latin_1995`,
-    except that the month names ``сентябр`` and ``октябр``, with any suffix,
-    are ``sentabr`` and ``oktabr`` (сентябрь -> sentabr, октябрнинг ->
-    oktabrning).
+    except that
+
+    * the month names ``сентябр`` and ``октябр``, with any suffix, are
+      ``sentabr`` and ``oktabr`` (сентябрь -> sentabr, октябрнинг ->
+      oktabrning);
+    * a ``ц`` at the end of the word, or followed by Uzbek suffixes only
+      (``лар`` with a possessive, then a case ending), is ``s`` (марганец ->
+      marganes, ненецлар -> neneslar, шприцни -> shprisni; not
+      боцман, плацдарм, лицей: botsman, platsdarm, litsey).
     """
     return _cyrillic_word_to_latin_1995(word, True)
 
@@ -409,6 +429,11 @@ def _cyrillic_word_to_latin_1995(word: str, whole: bool) -> str:
             initial_or_after_vowel = i == 0 or prev in CYRILLIC_VOWELS or prev in "ъь"
             out.append("ye" if initial_or_after_vowel else "e")
         elif ch == "ц":
+            if whole and _FINAL_TS_SUFFIXES_RE.fullmatch(word, i + 1):
+                # At the end of the word, before Uzbek suffixes only: s
+                # (марганец -> marganes, ненецлар -> neneslar).
+                out.append("s")
+                continue
             # ts only after a vowel: милиция -> militsiya, революция ->
             # revolyutsiya. Word-initially and after a consonant it reduces to
             # s: цирк -> sirk, функция -> funksiya, концерт -> konsert.

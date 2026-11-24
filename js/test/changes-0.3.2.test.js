@@ -298,3 +298,68 @@ test("dates: linear time", () => {
   for (const target of [CYRILLIC, LATIN_1995]) dates(text, target);
   assert.ok(performance.now() - start < 1000);
 });
+
+// --- TRANSLIT-25: a word-final ц is s -------------------------------------------------
+
+const FINAL_TS = [
+  ["марганец", "marganes"],
+  ["ненец", "nenes"],
+  ["шприц", "shpris"],
+  ["кварц", "kvars"], // s before, s now
+  ["ненецлар", "neneslar"],
+  ["шприцни", "shprisni"],
+  ["ненецларнинг", "neneslarning"],
+  ["ненецларимизга", "neneslarimizga"],
+  ["шприцдаги", "shprisdagi"],
+  ["шприцгача", "shprisgacha"],
+  ["МАРГАНЕЦ", "MARGANES"],
+  ["Марганец", "Marganes"],
+];
+
+const TS_AS_BEFORE = [
+  ["лицей", "litsey"],
+  ["боцман", "botsman"], // ман is not one of the suffixes
+  ["плацдарм", "platsdarm"],
+  ["пицца", "pitssa"],
+  ["милиция", "militsiya"],
+  ["цирк", "sirk"],
+  ["функция", "funksiya"],
+  ["шприци", "shpritsi"], // the possessive -i alone is not one of the suffixes
+];
+
+test("ц: Cyrillic to latin_1995", () => {
+  for (const [cyrillic, latin] of [...FINAL_TS, ...TS_AS_BEFORE]) {
+    for (const source of [CYRILLIC, "auto"]) assert.equal(convert(cyrillic, source, LATIN_1995), latin, cyrillic);
+  }
+});
+
+test("ц: Cyrillic to latin_2026", () => {
+  for (const [cyrillic, latin] of [["шприц", "şpris"], ["шприцни", "şprisni"], ["марганец", "marganes"]]) {
+    assert.equal(convert(cyrillic, CYRILLIC, LATIN_2026), latin);
+    assert.equal(toLatin(cyrillic), latin);
+  }
+});
+
+test("ц: Latin to Cyrillic does not change (known loss: marganes -> марганес)", () => {
+  assert.equal(toCyrillic("marganes"), "марганес");
+  assert.equal(toCyrillic("neneslar va shpris"), "ненеслар ва шприс");
+  assert.equal(toCyrillic("litsey, botsman"), "лицей, боцман");
+});
+
+test("ц: in Cyrillic text and in a protected span", () => {
+  assert.equal(toCyrillic("марганец"), "марганец");
+  assert.equal(toLatin("https://shahar.uz/марганец ва марганец", LATIN_1995), "https://shahar.uz/марганец va marganes");
+});
+
+test("ц: normalize keeps its key", () => {
+  assert.equal(normalize("Марганец"), "marganets");
+  assert.equal(normalize("шприцни"), "shpritsni");
+  assert.equal(cyrillicWordToLatin1995("марганец"), "marganets");
+});
+
+test("ц: linear time", () => {
+  const start = performance.now();
+  convert("ц".repeat(200_000), CYRILLIC, LATIN_1995);
+  convert("а" + "цлар".repeat(50_000), CYRILLIC, LATIN_1995);
+  assert.ok(performance.now() - start < 1000);
+});
