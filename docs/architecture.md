@@ -100,9 +100,10 @@ empty text as it is. Otherwise it splits the text into protected spans and
 the text between them (`protect._spans`), and composes each piece of that
 text with `unicodedata.normalize("NFC", ...)`, so that a base letter and a
 combining mark (`O` and U+0308) are one letter (`Ö`) before any step reads
-them. With a named `source`, it calls
-`map_words` on each piece of that text with a function that applies the steps
-for `source` and `target` in order. With `source="auto"`, `_auto_sources`
+them. It goes over the words of each piece of that text with `_WORD_RE` and
+converts each with `map_word` and a function that applies the steps for its
+source and `target` in order. With a named `source` that is the source of
+every word. With `source="auto"`, `_auto_sources`
 first decides a source for each word of that text (below), and each word is
 converted with the steps for its own source. Each protected span is
 copied as it is. `to_latin` and `to_cyrillic` call `convert` with
@@ -338,6 +339,11 @@ The findings are sorted by `(start, end, code)`.
 again: it counts them and the ones that change, and adds `round-trip` for a
 word without a finding that does not come back from `latin_2026` as it was,
 and `separator` for one with `sʼh`.
+
+Neither looks at the separator between the number and the word of a date,
+which `dates` writes in `convert` (0.3.2): `1956 yil` in Latin text is not a
+`validate` finding and is not counted in `changed`, though its conversion
+and the report's `result` are `1956-yil`.
 
 ## Command line
 

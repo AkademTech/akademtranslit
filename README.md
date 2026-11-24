@@ -308,7 +308,9 @@ the words without one: `round-trip`, a word that does not come back as it was
 word is converted correctly; it is listed because `validate` on the 2026 text
 reports its `sh` as a `digraph`. `AQSh` and `MChJ` come back as `AQSH` and
 `MCHJ` (see Case, under "Guarantees, and their limits"), so the report lists
-them as `round-trip`.
+them as `round-trip`. `changed` counts words: a date whose separator the
+conversion writes (`1956 yil` → `1956-yil`; see "Dates and month names") is
+not counted, though `result` has it.
 
 ### ASCII for names and logins
 
@@ -506,7 +508,9 @@ two codes are about characters, in any orthography. The others are about
 words, at most one per word: the first row of the table that applies. After
 the last row comes `decomposed` again, for a Latin word that only NFC writes
 differently; so every word that a Latin orthography writes differently gets
-a code.
+a code. The separator between a date's number and its word is not a word:
+`1956 yil` in Latin text is not a finding, though `convert` writes
+`1956-yil` (see "Dates and month names").
 
 | Code | In | Finds | Suggestion |
 | --- | --- | --- | --- |
@@ -652,15 +656,16 @@ The `ц` rule, from Cyrillic to Latin, in order (0.3.2):
 | --- | --- | --- |
 | at the end of a word | `s` | марганец → marganes, ненец → nenes, шприц → shpris, кварц → kvars |
 | before Uzbek suffixes only: `-лар`, `-лари`, `-ларим`, `-ларинг`, `-ларимиз`, `-ларингиз`, then `-нинг`, `-ни`, `-га`, `-да`, `-дан`, `-даги` or `-гача`, each if it is there | `s` | ненецлар → neneslar, шприцни → shprisni, ненецларнинг → neneslarning |
-| after a vowel, anywhere else | `ts` | милиция → militsiya, лицей → litsey, боцман → botsman, шприци → shpritsi |
-| at the start of a word or after a consonant | `s` | цирк → sirk, функция → funksiya, плацдарм → platsdarm, пицца → pitssa |
+| after a vowel, anywhere else | `ts` | милиция → militsiya, лицей → litsey, боцман → botsman, плацдарм → platsdarm, шприци → shpritsi |
+| at the start of a word or after a consonant | `s` | цирк → sirk, функция → funksiya, the second `ц` of пицца → pitssa |
 
-The first two rows follow the «Oʻzbek tilining katta imlo lugʻati» (2023),
-which writes `neneslar`. On the 183 words with `ц` of the 1999
-Cyrillic-Latin spelling dictionary they give 144 right where the `ts`/`s`
-rule alone gave 142, and break none; `ts` only between two vowels would
-break five (`botsman`, `platsdarm`, …). The other direction does not change:
-`marganes` → `марганес` (see "Known lossy mappings").
+The first row, measured on the 183 words with `ц` of the 1999
+Cyrillic-Latin spelling dictionary, gives 144 right where the `ts`/`s` rule
+alone gave 142, and breaks none; `ts` only between two vowels would break
+five (`botsman`, `platsdarm`, …). The second row follows the «Oʻzbek
+tilining katta imlo lugʻati» (2023), which writes `neneslar`. Surnames
+follow the rule too: `Кац` → `Kas`, `Швец` → `Şves`. The other direction
+does not change: `marganes` → `марганес` (see "Known lossy mappings").
 
 The separator needs a note. In `latin_1995`, `sh` is a digraph, so a genuine
 s+h sequence has to be separated with the tutuq belgisi or it reads as `ш`. The
@@ -828,9 +833,11 @@ mark a word was typed with never changes its key (since 0.2.0 this includes
 **Lossless.** `latin_1995` ↔ `latin_2026` round-trips exactly for text in
 canonical form: marks written as `ʻ` and `ʼ`, and each word, or each letter
 unit of it (`ToshDU`, `OʻzBEKISTON`; see Case below), in lower case, with an
-initial capital, or in all caps (`OʻZBEKISTON` included); protected spans,
-such as `McDonald`, come back as they were. Other input comes back
-canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`. `migration_report`
+initial capital, or in all caps (`OʻZBEKISTON` included); dates with a
+hyphen after the number of the year and the day (`1956-yil 22-sentabr`);
+protected spans, such as `McDonald`, come back as they were. Other input
+comes back canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`,
+`1956 yil 22 sentabr` as `1956-yil 22-sentabr`. `migration_report`
 checks one text and lists the words that do not come back (see "Migrate an
 existing corpus to the 2026 alphabet").
 Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter

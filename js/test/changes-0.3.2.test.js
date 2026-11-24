@@ -315,6 +315,7 @@ const FINAL_TS = [
   ["шприцгача", "shprisgacha"],
   ["МАРГАНЕЦ", "MARGANES"],
   ["Марганец", "Marganes"],
+  ["Кац, Швец", "Kas, Shves"], // surnames too (README)
 ];
 
 const TS_AS_BEFORE = [

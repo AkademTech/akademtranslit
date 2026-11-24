@@ -34,11 +34,14 @@ release adds its number in the month.
 - A word-final `ц` is `s` from Cyrillic to Latin, and so is a `ц` followed
   by Uzbek suffixes only: `марганец` → `marganes`, `шприц` → `shpris`,
   `ненецлар` → `neneslar`, `шприцни` → `shprisni` (were `marganets`,
-  `shprits`, `nenetslar`, `shpritsni`). Latin to Cyrillic does not change:
-  `marganes` → `марганес`.
+  `shprits`, `nenetslar`, `shpritsni`). Surnames too: `Кац` → `Kas`, `Швец`
+  → `Şves`. Latin to Cyrillic does not change: `marganes` → `марганес`.
 
 `to_ascii`, `migration_report` and the suggestions of `validate` follow
-`convert`. `normalize` does not change, as in every patch release: it reads
+`convert`. A date's separator is not a word: `validate` does not report
+`1956 yil` in Latin text and `migration_report` does not count it in
+`changed`, though its `result` has `1956-yil`. `normalize` does not
+change, as in every patch release: it reads
 `марганец` and `сентябрь` as before (`marganets`, `sentyabr`), so their
 keys are not the keys of the new Latin spellings. The same holds for
 `rules.cyrillic_word_to_latin_1995`, which code outside the library builds

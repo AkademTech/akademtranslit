@@ -357,6 +357,7 @@ FINAL_TS = [
     ("шприцгача", "shprisgacha"),
     ("МАРГАНЕЦ", "MARGANES"),
     ("Марганец", "Marganes"),
+    ("Кац, Швец", "Kas, Shves"),  # surnames too (README)
 ]
 
 # Not at the end, and not before Uzbek suffixes only: as before.
