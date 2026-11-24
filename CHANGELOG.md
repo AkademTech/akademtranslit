@@ -1,6 +1,73 @@
 # Changelog
 
-## Unreleased
+## 0.3.2 — 2026-11-25
+
+### Changed
+
+The output of `convert`, `to_latin` and `to_cyrillic` changes in four rules.
+`RULES_VERSION` is `uz-2026-alphabet+project-2026.11.2`: the release that
+changes the output is the second in November 2026, and from now on such a
+release adds its number in the month.
+
+- Roman numerals stay Latin in Cyrillic: converting `latin_1995` or
+  `latin_2026` to Cyrillic keeps a word that is a well-formed Roman numeral
+  in capitals, `XIX asr` → `XIX аср`, `Pyotr I` → `Пётр I` (were `ХИХ аср`,
+  `Пётр И`). One letter followed by a full stop is an initial and is
+  converted: `I. Boʻriyev` → `И. Бўриев`. A capital `D`, `I`, `L`, `M`, `V`
+  or `X` alone stays Latin too.
+- Dates: Cyrillic writes no hyphen after the number of a year or of a day of
+  the month, as the 1956 spelling rules do, and Latin writes one:
+  `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
+  `1956 йил 22 сентябрь` → `1956-yil 22-sentabr` (were
+  `1991-йилнинг 1-сентабри`, `1956 yil 22 sentyabr`), also from an
+  orthography to itself (`2026-йил` →
+  `2026 йил`, `2026 yil` → `2026-yil`). A year is three or four digits and a
+  word in `йил…` to Cyrillic, 1000 to 2099 and a word in `yil…` to Latin; a
+  day is 1 to 31 and a month name. U+2011 NON-BREAKING HYPHEN and U+00A0
+  NO-BREAK SPACE take each other's place. Other ordinals keep the hyphen
+  (`5-sinf`, `60-yillar`).
+- Month names: Cyrillic `сентябр` and `октябр` are `sentabr` and `oktabr`,
+  with any suffix: `Сентябрь` → `Sentabr`, `октябрнинг` → `oktabrning` (were
+  `Sentyabr`, `oktyabrning`). From Latin, `sentabr` and `oktabr` are
+  `сентябр` and `октябр`, and a month name standing alone gets its `ь`:
+  `iyun` → `июнь`, `sentabr` → `сентябрь` (were `июн`, `сентабр`).
+- A word-final `ц` is `s` from Cyrillic to Latin, and so is a `ц` followed
+  by Uzbek suffixes only: `марганец` → `marganes`, `шприц` → `shpris`,
+  `ненецлар` → `neneslar`, `шприцни` → `shprisni` (were `marganets`,
+  `shprits`, `nenetslar`, `shpritsni`). Latin to Cyrillic does not change:
+  `marganes` → `марганес`.
+
+`to_ascii`, `migration_report` and the suggestions of `validate` follow
+`convert`. `normalize` does not change, as in every patch release: it reads
+`марганец` and `сентябрь` as before (`marganets`, `sentyabr`), so their
+keys are not the keys of the new Latin spellings. The same holds for
+`rules.cyrillic_word_to_latin_1995`, which code outside the library builds
+keys with; `convert` reads Cyrillic with the new
+`rules.convert_cyrillic_word`.
+
+### Output changes
+
+Golden diff 0.3.1 → 0.3.2, on 1226 inputs (38 added in 0.3.2):
+`to_cyrillic` 28, `to_latin_1995` 13, `to_latin_2026` 13, `to_ascii` 13,
+`validate_latin_1995` 9, `validate_latin_2026` 9, and `convert` from
+Cyrillic to Cyrillic 2, to `latin_1995` and `latin_2026` 13 each, from
+`latin_1995` and `latin_2026` to Cyrillic 32 each and to the two Latin
+orthographies 2 each. On the 1188 inputs that 0.3.1 had, 12 change:
+
+- Roman numerals: 8 — `D`, `I`, `L`, `M`, `V` and `X` alone, `XXI asr` and
+  `XXI аср`, in the Cyrillic fields;
+- dates: 3 — `ilmiy jurnal 2026 yil 12 son`,
+  `Ilmiy jurnal, 2026-yil, 12-son` and
+  `Тошкент давлат университети, 2026-йил`;
+- month names: 1 — `iyun`;
+- word-final `ц`: none.
+
+The 38 new inputs cover each rule and its limits; 30 of them convert
+differently from 0.3.1. `normalize`, the `sort_key` fields,
+`normalize_apostrophes`, `segments`, `script_spans`, `fold_homoglyphs` and
+the other fields are unchanged. The golden files of 0.1.1, 0.2.0, 0.3.0 and
+0.3.1 are made again from their tags with the new inputs; their results on
+the earlier inputs are unchanged.
 
 ### Documentation
 
@@ -9,12 +76,21 @@
   them are valid BCP 47.
 - `CONTRIBUTING.md`: contributions are accepted under the MIT license, the
   project's license.
+- README: dates and month names, Roman numerals, the `ц` rule as a table,
+  the rules version with a number in the month, their known limits, and
+  that `normalize` keeps its key. `docs/architecture.md`: where the rules
+  for whole words and the date step run.
 
 ### Development
 
 - The JavaScript port's Unicode fixture records only the minor version of
   the Python that made it (`3.12`, not `3.12.13`). CI checks the fixtures on
   any Python 3.12.x.
+- `tests/test_changes_0_3_2.py` and `js/test/changes-0.3.2.test.js` pin the
+  four rules; `js/test/readme.test.js` runs the README's JavaScript
+  examples. The JS fixtures are named for 0.3.2 and have six more trap
+  inputs, for the new rules; `.gitleaks.toml` names the renamed trap
+  fixture.
 
 ## 0.3.1 — 2026-11-18
 

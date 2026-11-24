@@ -39,8 +39,11 @@ no library module imports it. `tests/test_privacy.py` pins both.
 - `rules.py` is the word engine: the word pattern `_WORD_RE`,
   `canonicalize_marks`, the case of each letter (`_case_mask`, `apply_case`),
   `map_words`, `map_words_by` and `map_word`, `word_class` (the orthography
-  one word shows) and the four per-word conversion functions with the context
-  rules. It uses `tables` and `re`.
+  one word shows), the four per-word conversion functions with the context
+  rules and `convert_cyrillic_word`, the Cyrillic step of `convert`; and,
+  from 0.3.2, the rules that look at a whole word or at the text around it:
+  `is_roman_numeral`, `month_soft_sign` and `dates`. It uses `tables` and
+  `re`.
 - `normalize.py` has `normalize`, `fold_cyrillic`, `fold_latin_2026` and
   `is_cyrillic`. It uses `rules`, `tables`, `re` and `unicodedata`.
 - `collation.py` has `sort_key` (uses `rules.map_words`, `tables`, `tags`,
@@ -86,7 +89,9 @@ through it. `latin_2026` → `latin_2026` has one step,
 `ş` as those letters (`LATIN_2026_INPUT_ALIASES`: o with macron and o with
 caron, s with comma below); it also runs first in `latin_1995` → `latin_2026` and last in
 Cyrillic → `latin_2026` (a Latin word inside Cyrillic text). Cyrillic and
-`latin_1995` to themselves are not in the table and have no steps.
+`latin_1995` to themselves are not in the table and have no steps. The step
+from Cyrillic is `convert_cyrillic_word`; `normalize` reads Cyrillic with
+`cyrillic_word_to_latin_1995` instead (see Normalization).
 
 `convert` reads `source` or `target` as a language tag when it is not a name
 from `SCRIPTS` (or `"auto"` for `source`) and `protect` as `True`, `False` or
@@ -98,10 +103,20 @@ combining mark (`O` and U+0308) are one letter (`Ö`) before any step reads
 them. With a named `source`, it calls
 `map_words` on each piece of that text with a function that applies the steps
 for `source` and `target` in order. With `source="auto"`, `_auto_sources`
-first decides a source for each word of that text (below), and `map_words_by`
-converts each word with the steps for its own source. Each protected span is
+first decides a source for each word of that text (below), and each word is
+converted with the steps for its own source. Each protected span is
 copied as it is. `to_latin` and `to_cyrillic` call `convert` with
 `source="auto"`; `to_latin` reads a tag in `variant` first.
+
+Two rules need a word as it stands, before `map_word` lowercases it and
+splits it into letter units, so `convert` applies them itself, to a word
+read from a Latin orthography and converted to Cyrillic: a Roman numeral
+stays as it is (`is_roman_numeral`, which also sees the character after the
+word), and a month name standing alone gets its `ь` after the steps
+(`month_soft_sign`). Then, on each converted piece of text, `dates` writes
+the separator after the number of a year or of a day of the month as the
+target does. The text between protected spans is converted piece by piece,
+so a number and the word after it count only within one piece.
 
 `source="auto"` is decided in two passes over the words of the composed text
 outside the protected spans. `word_class` puts each word, lowercased and with its
@@ -160,9 +175,11 @@ characters.
    length changes: `ш` is one character, `sh` is two.
 
 Text between words is never passed to a step, so digits, punctuation and
-whitespace come through unchanged. Because the marks are canonicalised even
-when there are no steps, converting text to its own orthography normalises
-the marks rather than doing nothing.
+whitespace come through unchanged, except the hyphen or space after the
+number of a date, which `dates` writes for the target. Because the marks are
+canonicalised even when there are no steps, and `dates` runs for every
+target, converting text to its own orthography normalises the marks and the
+dates rather than doing nothing.
 
 ## Context rules
 
@@ -195,6 +212,29 @@ longer forms first. `latin_2026_word_to_1995` first calls
 `latin_2026_canonical_word`, which rewrites the other input forms of `ö` and
 `ş` (`LATIN_2026_INPUT_ALIASES`).
 
+From 0.3.2 more rules look at a whole word or at the text around it:
+
+- Word-final `ц`: `convert_cyrillic_word` writes `s` for a `ц` at the end of
+  the word or followed by Uzbek suffixes only (`_FINAL_TS_SUFFIXES_RE`:
+  `лар` with a possessive, then a case ending), and reads any other `ц` as
+  above. `cyrillic_word_to_latin_1995` does not.
+- Month names: `convert_cyrillic_word` writes the `я` of `сентябр` and
+  `октябр` as `a` (`_CYRILLIC_MONTHS_WITH_A`), and
+  `latin_1995_word_to_cyrillic` the `a` of `sentabr` and `oktabr` as `я`
+  (`_LATIN_MONTHS_WITH_YA`), with any suffix. `month_soft_sign` adds `ь`,
+  in the case of the letter before it, when the whole Latin word is a month
+  name that Cyrillic writes with one (`_SOFT_SIGN_MONTHS`).
+- Roman numerals: `is_roman_numeral(word, after)` is true for a word that
+  `_ROMAN_NUMERAL_RE` matches in full (1 to 3999, capitals), unless it is one
+  letter and `after` is `.`.
+- Dates: `dates(text, target)` finds a number with no letter or digit before
+  it and one separator after it (`_NUMBER_HYPHEN_RE` for Cyrillic,
+  `_NUMBER_SPACE_RE` for Latin), reads the word after it with `_WORD_RE`,
+  lowercased, and changes the separator for a year (three or four digits and
+  `йил…`; 1000 to 2099 and `yil…`) or a day (`_DAYS` and `_CYRILLIC_MONTH_RE`
+  or `_LATIN_MONTH_RE`). The word is lowercased rather than matched with
+  `re.IGNORECASE`, so the JavaScript port reads it the same way.
+
 ## Normalization
 
 `normalize` runs these steps in order:
@@ -204,7 +244,11 @@ longer forms first. `latin_2026_word_to_1995` first calls
 3. NFKC, then lowercase.
 4. If any character is in U+0400–U+052F, the words go through
    `cyrillic_word_to_latin_1995` with `map_words`, so the positional rules
-   reach the key (`Чоршанбиев` gives `chorshanbiyev`).
+   reach the key (`Чоршанбиев` gives `chorshanbiyev`). It is the 0.3.1
+   reading: the word-final `ц` and the month names of 0.3.2 are
+   `convert_cyrillic_word`'s, so `марганец` and `сентябрь` still give
+   `marganets` and `sentyabr` here, while `convert` writes `marganes` and
+   `sentabr`.
 5. Every apostrophe variant and both canonical marks are removed.
 6. `fold_latin_2026`: `ş` → `sh`, `ç` → `ch`, `ğ` → `g`, `ö` → `o`, and the
    other input forms the same way (o with macron and o with caron → `o`, s
@@ -312,11 +356,13 @@ line and column are counted from the `\n` characters before each finding.
 
 - The public API is the 33 names in `__all__` in `__init__.py`, and the
   command line as the README describes it.
-- `golden/` holds the output of the public functions on 1188 fixed inputs,
+- `golden/` holds the output of the public functions on 1226 fixed inputs,
   `inputs.json`, and of the tag functions on 57 tags and 6 names,
   `tag-inputs.json` (both append-only), one file per release
   (`golden-0.1.1.json`, `golden-0.2.0.json`, `golden-0.3.0.json`,
-  `golden-0.3.1.json`), and
+  `golden-0.3.1.json`, `golden-0.3.2.json`; when inputs are added, the files
+  of earlier releases are made again from their tagged code with `--src`),
+  and
   `SHA256SUMS`. From 0.3.0 the files have schema 2: 30 fields (listed in
   `fields()` in `tools/golden.py`; `convert` for all nine pairs, `segments`,
   `to_ascii`, `script_spans`, `fold_homoglyphs` and `validate` in the three
@@ -361,7 +407,10 @@ run and no install is needed.
   unit, abbreviations with a suffix, s with comma below, word-level `auto`,
   decomposed letters), `test_changes_0_3_1.py` (0.3.1: the inputs on which
   protected spans took quadratic time, timed, and the new code against the
-  0.3.0 code on random inputs).
+  0.3.0 code on random inputs), `test_changes_0_3_2.py` (0.3.2: Roman
+  numerals, month names, dates and the word-final `ц`, each with its
+  boundaries, the other direction, `source="auto"` and a protected span; the
+  golden inputs added for them; and that `normalize` keeps its key).
 - Contracts: `test_golden.py`, `test_public_api_compat.py`, `test_readme.py`
   (README examples, via doctest), `test_privacy.py` (no I/O in the library;
   the command-line tool imports only what it may and opens files only to
@@ -404,4 +453,7 @@ run and no install is needed.
 no dependencies. Like the library, it uses no network and stores nothing. Its
 tests check it byte for byte against the same golden vectors, and against
 fixtures that `js/tools/make-fixtures.py` makes from the library; see
-[js/README.md](../js/README.md).
+[js/README.md](../js/README.md). `js/test/changes-0.3.2.test.js` has the
+tables of `tests/test_changes_0_3_2.py`, and `js/test/readme.test.js` runs
+the JavaScript examples of the README, as `test_readme.py` runs the Python
+ones.

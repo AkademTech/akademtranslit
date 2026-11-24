@@ -249,6 +249,7 @@ test("dates: boundaries", () => {
     ["2100 йил", LATIN_1995, "2100 yil"],
     ["476-yil", CYRILLIC, "476 йил"],
     ["2000 йил давомида", LATIN_1995, "2000-yil davomida"], // known limit
+    ["2000 йиллик тарих", LATIN_1995, "2000-yillik tarix"], // the same limit
     ["32 sentabr", CYRILLIC, "32 сентябрь"],
     ["32 сентябрь", LATIN_1995, "32 sentabr"],
     ["32-sentabr", CYRILLIC, "32-сентябрь"],

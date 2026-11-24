@@ -196,15 +196,16 @@ def test_the_findings_on_the_golden_inputs_are_well_formed(orthography):
 
 @pytest.mark.parametrize("orthography", [LATIN_1995, LATIN_2026])
 def test_a_golden_input_without_findings_is_its_own_conversion(orthography):
-    # Two exceptions. A lone mark (c0339): convert writes it as the tutuq
-    # belgisi, validate does not take it for a word. And a date (c0307, from
-    # 0.3.2): convert writes a hyphen after the year, 2026 yil -> 2026-yil,
-    # and validate checks words, not the separator between them.
+    # Two kinds of exception. A lone mark (c0339): convert writes it as the
+    # tutuq belgisi, validate does not take it for a word. And a date (c0307,
+    # c1206; from 0.3.2): convert writes a hyphen after the year and the day,
+    # 2026 yil -> 2026-yil, and validate checks words, not the separator
+    # between them.
     changed = [
         case["id"] for case in _golden_cases()
         if not validate(case["text"], orthography) and convert(case["text"], orthography, orthography) != case["text"]
     ]
-    assert changed == ["c0307", "c0339"]
+    assert changed == ["c0307", "c0339", "c1206"]
 
 
 @pytest.mark.parametrize("orthography", [LATIN_1995, LATIN_2026])

@@ -36,9 +36,11 @@ SCRIPTS = (CYRILLIC, LATIN_1995, LATIN_2026)
 #: basis: ``uz-2026-alphabet`` is the 2026 alphabet of Law No. O'RQ-1184,
 #: without official spelling rules. After it, this project's rule set, named by
 #: the year and month of the release that last changed the output of those
-#: three functions. A release that changes none of their output keeps the
-#: value; ``tools/golden.py --check`` fails if one does and the value stays.
-RULES_VERSION = "uz-2026-alphabet+project-2026.11"
+#: three functions; when that release is the second or a later one in its
+#: month to change it, its number in the month follows (``2026.11.2``). A
+#: release that changes none of their output keeps the value;
+#: ``tools/golden.py --check`` fails if one does and the value stays.
+RULES_VERSION = "uz-2026-alphabet+project-2026.11.2"
 
 # --- the two modifier marks --------------------------------------------------
 #

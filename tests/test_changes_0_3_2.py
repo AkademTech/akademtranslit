@@ -8,7 +8,9 @@ for the JavaScript port.
 
 from __future__ import annotations
 
+import json
 import time
+from pathlib import Path
 
 import pytest
 
@@ -16,6 +18,7 @@ from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize,
 from akademtranslit.rules import cyrillic_word_to_latin_1995, dates, is_roman_numeral
 
 LATIN = (LATIN_1995, LATIN_2026)
+NBSP, NB_HYPHEN = "\N{NO-BREAK SPACE}", "\N{NON-BREAKING HYPHEN}"
 
 
 # --- TRANSLIT-24: a Roman numeral stays Latin in Cyrillic ------------------------------
@@ -222,7 +225,7 @@ DATES = [
     ("21–22-noyabr", "21–22-noyabr", "21–22 ноябрь"),
     ("1-YANVAR, 2026-YIL", "1-YANVAR, 2026-YIL", "1 ЯНВАРЬ, 2026 ЙИЛ"),
     # U+2011 NON-BREAKING HYPHEN and U+00A0 NO-BREAK SPACE stay unbreakable.
-    ("1991‑yil 1‑sentabr", "1991‑yil 1‑sentabr", "1991 йил 1 сентябрь"),
+    (f"1991{NB_HYPHEN}yil 1{NB_HYPHEN}sentabr", f"1991{NB_HYPHEN}yil 1{NB_HYPHEN}sentabr", f"1991{NBSP}йил 1{NBSP}сентябрь"),
 ]
 
 
@@ -245,10 +248,10 @@ def test_dates_cyrillic_to_latin(latin_1995, latin_2026, cyrillic):
     "text,orthography,expected",
     [
         ("1991-йилнинг 1-сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"),
-        ("1991‑йил 1‑сентябрь", CYRILLIC, "1991 йил 1 сентябрь"),
+        (f"1991{NB_HYPHEN}йил 1{NB_HYPHEN}сентябрь", CYRILLIC, f"1991{NBSP}йил 1{NBSP}сентябрь"),
         ("1991 йилнинг 1 сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"),
         ("1956 yil 22 sentabr", LATIN_1995, "1956-yil 22-sentabr"),
-        ("1956 yil 22 sentabr", LATIN_1995, "1956‑yil 22‑sentabr"),
+        (f"1956{NBSP}yil 22{NBSP}sentabr", LATIN_1995, f"1956{NB_HYPHEN}yil 22{NB_HYPHEN}sentabr"),
         ("2026 yil 1 iyun", LATIN_2026, "2026-yil 1-iyun"),
         ("2026-yil 1-iyun", LATIN_2026, "2026-yil 1-iyun"),
     ],
@@ -277,6 +280,7 @@ DATE_BOUNDARIES = [
     ("476-yil", CYRILLIC, "476 йил"),
     # Known limit: a count of 1000 to 2099 years is read as a year.
     ("2000 йил давомида", LATIN_1995, "2000-yil davomida"),
+    ("2000 йиллик тарих", LATIN_1995, "2000-yillik tarix"),
     # Not a day of a month, not a number as written, not one separator.
     ("32 sentabr", CYRILLIC, "32 сентябрь"),
     ("32 сентябрь", LATIN_1995, "32 sentabr"),
@@ -405,3 +409,89 @@ def test_ts_takes_linear_time():
     convert("ц" * 200_000, CYRILLIC, LATIN_1995)
     convert("а" + "цлар" * 50_000, CYRILLIC, LATIN_1995)
     assert time.perf_counter() - start < 1
+
+
+# --- the golden inputs added in 0.3.2 ---------------------------------------------------
+
+GOLDEN_INPUTS = Path(__file__).resolve().parent.parent / "golden" / "inputs.json"
+
+# id -> (text, tag, orthography), and (to_cyrillic, to_latin_1995,
+# to_latin_2026), where None is the text itself.
+NEW_INPUTS = {
+    "c1189": ("XIX asr", "roman", "latin_1995", ("XIX аср", None, None)),
+    "c1190": ("IV bob, Pyotr I", "roman", "latin_1995", ("IV боб, Пётр I", None, None)),
+    "c1191": ("I. Boʻriyev va M. Asadullayev", "roman", "latin_1995",
+              ("И. Бўриев ва М. Асадуллаев", None, "I. Böriyev va M. Asadullayev")),
+    "c1192": ("Pyotr I.", "roman", "latin_1995", ("Пётр И.", None, None)),
+    "c1193": ("MIX", "roman", "latin_1995", (None, None, None)),
+    "c1194": ("XIX аср ва Пётр I", "roman", "cyrillic", (None, "XIX asr va Pyotr I", "XIX asr va Pyotr I")),
+    "c1195": ("CD va DVD, IIII, Xix, XIXda", "roman", "latin_1995", ("CD ва ДВД, ИИИИ, Хих, ХИХда", None, None)),
+    "c1196": ("XXI asr Toşkentda", "roman", "latin_2026", ("XXI аср Тошкентда", "XXI asr Toshkentda", None)),
+    "c1197": ("Сентябрь, сентябрда, октябрнинг, ноябрь", "month", "cyrillic",
+              (None, "Sentabr, sentabrda, oktabrning, noyabr", "Sentabr, sentabrda, oktabrning, noyabr")),
+    "c1198": ("СЕНТЯБРЬ, СЕНТЯБРда", "month", "cyrillic", (None, "SENTABR, SENTABRda", "SENTABR, SENTABRda")),
+    "c1199": ("yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr", "month", "latin_1995",
+              ("январь февраль март апрель май июнь июль август сентябрь октябрь ноябрь декабрь", None, None)),
+    "c1200": ("yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+              "month", "latin_1995",
+              ("январда февралда апрелда июнда июлда сентябрда сентябрда октябрдаги ноябрда декабрда", None, None)),
+    "c1201": ("SENTABR, Sentyabr, SENTABRda, sentabri", "month", "latin_1995",
+              ("СЕНТЯБРЬ, Сентябрь, СЕНТЯБРда, сентябри", None, None)),
+    "c1202": ("Martaba, mayda, iyuncha", "month", "latin_1995", ("Мартаба, майда, июнча", None, "Martaba, mayda, iyunça")),
+    "c1203": ("1991-yilning 1-sentabri", "date", "latin_1995", ("1991 йилнинг 1 сентябри", None, None)),
+    "c1204": ("1956 йил 22 сентябрь", "date", "cyrillic", (None, "1956-yil 22-sentabr", "1956-yil 22-sentabr")),
+    "c1205": ("1991-йилнинг 1-сентябри", "date", "cyrillic",
+              ("1991 йилнинг 1 сентябри", "1991-yilning 1-sentabri", "1991-yilning 1-sentabri")),
+    "c1206": ("1956 yil 22 sentabr", "date", "latin_1995",
+              ("1956 йил 22 сентябрь", "1956-yil 22-sentabr", "1956-yil 22-sentabr")),
+    "c1207": ("5 yil ishladi", "date", "latin_1995", ("5 йил ишлади", None, "5 yil işladi")),
+    "c1208": ("2000 йил давомида", "date", "cyrillic", (None, "2000-yil davomida", "2000-yil davomida")),
+    "c1209": ("32 sentabr, 32-сентябрь", "date", "mixed",
+              (None, "32 sentabr, 32-sentabr", "32 sentabr, 32-sentabr")),
+    "c1210": (f"1991{NB_HYPHEN}yil 1{NB_HYPHEN}sentabr", "date", "latin_1995",
+              (f"1991{NBSP}йил 1{NBSP}сентябрь", None, None)),
+    "c1211": (f"1956{NBSP}йил 22{NBSP}сентябрь", "date", "cyrillic",
+              (None, f"1956{NB_HYPHEN}yil 22{NB_HYPHEN}sentabr", f"1956{NB_HYPHEN}yil 22{NB_HYPHEN}sentabr")),
+    "c1212": ("60-yillar, 5-sinf, 39-son", "date", "latin_1995", ("60-йиллар, 5-синф, 39-сон", None, None)),
+    "c1213": ("60-йиллар, 5-синф, 39-сон", "date", "cyrillic",
+              (None, "60-yillar, 5-sinf, 39-son", "60-yillar, 5-sinf, 39-son")),
+    # Mostly Cyrillic: the Latin yil stays as it is in Cyrillic, and so does its hyphen.
+    "c1214": ("476-yil, 476 йил, 2100 йил", "date", "mixed",
+              (None, "476-yil, 476 yil, 2100 yil", "476-yil, 476 yil, 2100 yil")),
+    "c1215": ("3 марта, 5-мартаба, 2-майдон, 5 майда", "date", "cyrillic",
+              (None, "3 marta, 5-martaba, 2-maydon, 5-mayda", "3 marta, 5-martaba, 2-maydon, 5-mayda")),
+    "c1216": ("1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr", "date", "latin_1995",
+              ("1941–1945 йиллар, 1990-1991 йилларда, 21–22 ноябрь", None, None)),
+    "c1217": ("8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi", "date", "latin_1995",
+              ("8 мартда, 9 майи, 31 декабргача, 15 июндаги", None, "8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi")),
+    "c1218": ("1-YANVAR, 2026-YIL", "date", "latin_1995", ("1 ЯНВАРЬ, 2026 ЙИЛ", None, None)),
+    "c1219": ("https://x.uz/1991-yil va 1991-yil", "date", "latin_1995", ("https://x.uz/1991-yil ва 1991 йил", None, None)),
+    "c1220": ("01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil", "date", "latin_1995",
+              ("01-сентябрь, 0991-йил, 12345-йил, 1991  йил, №1991 йил", None, None)),
+    "c1221": ("Toşkentda 2026-yil 1-sentabr", "date", "latin_2026",
+              ("Тошкентда 2026 йил 1 сентябрь", "Toshkentda 2026-yil 1-sentabr", None)),
+    "c1222": ("марганец, ненец, шприц, кварц", "ts", "cyrillic",
+              (None, "marganes, nenes, shpris, kvars", "marganes, nenes, şpris, kvars")),
+    "c1223": ("ненецлар, шприцни, ненецларнинг, шприцдаги", "ts", "cyrillic",
+              (None, "neneslar, shprisni, neneslarning, shprisdagi", "neneslar, şprisni, neneslarning, şprisdagi")),
+    "c1224": ("лицей, боцман, плацдарм, пицца, шприци", "ts", "cyrillic",
+              (None, "litsey, botsman, platsdarm, pitssa, shpritsi", "litsey, botsman, platsdarm, pitssa, şpritsi")),
+    "c1225": ("МАРГАНЕЦ, Марганец", "ts", "cyrillic", (None, "MARGANES, Marganes", "MARGANES, Marganes")),
+    "c1226": ("marganes, neneslar, shpris", "ts", "latin_1995", ("марганес, ненеслар, шприс", None, "marganes, neneslar, şpris")),
+}
+
+
+def test_the_new_inputs_are_golden_inputs():
+    doc = json.loads(GOLDEN_INPUTS.read_bytes().decode("utf-8"))
+    cases = {case["id"]: case for case in doc["cases"]}
+    assert [case["id"] for case in doc["cases"]][-len(NEW_INPUTS):] == list(NEW_INPUTS)
+    assert {i: (cases[i]["text"], cases[i]["tags"]) for i in NEW_INPUTS} == {
+        i: (text, [f"{tag}-0.3.2", orthography]) for i, (text, tag, orthography, _) in NEW_INPUTS.items()
+    }
+
+
+@pytest.mark.parametrize("case_id", sorted(NEW_INPUTS))
+def test_the_new_inputs_convert(case_id):
+    text, _, _, expected = NEW_INPUTS[case_id]
+    got = (to_cyrillic(text), to_latin(text, LATIN_1995), to_latin(text))
+    assert got == tuple(text if value is None else value for value in expected)

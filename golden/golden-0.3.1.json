@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "11860acfa8a27a51f7c7d6735fe92fcb517c4cd8e5fd7897746754c5b515f143",
+ "inputs_sha256": "f4a40c21fbf66b8bba680e98d3cc5dffa0ce32ad5bb28403de8754830de314ff",
  "library_version": "0.3.1",
  "results": {
   "c0001": {
@@ -92071,6 +92071,6111 @@
      10,
      "mixed-script",
      "Özbekiston"
+    ]
+   ]
+  },
+  "c1189": {
+   "convert_from_cyrillic_to_cyrillic": "XIX asr",
+   "convert_from_cyrillic_to_latin_1995": "XIX asr",
+   "convert_from_cyrillic_to_latin_2026": "XIX asr",
+   "convert_from_latin_1995_to_cyrillic": "ХИХ аср",
+   "convert_from_latin_1995_to_latin_1995": "XIX asr",
+   "convert_from_latin_1995_to_latin_2026": "XIX asr",
+   "convert_from_latin_2026_to_cyrillic": "ХИХ аср",
+   "convert_from_latin_2026_to_latin_1995": "XIX asr",
+   "convert_from_latin_2026_to_latin_2026": "XIX asr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "XIX asr",
+   "fold_homoglyphs": "XIX asr",
+   "is_cyrillic": false,
+   "normalize": "xix asr",
+   "normalize_apostrophes_ascii": "XIX asr",
+   "normalize_apostrophes_unicode": "XIX asr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "XIX",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "XIX asr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120,
+    1105,
+    1120,
+    0,
+    1097,
+    1115,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    32,
+    18,
+    32,
+    0,
+    11,
+    28,
+    27
+   ],
+   "sort_key_latin_2026": [
+    36,
+    19,
+    36,
+    0,
+    11,
+    30,
+    29
+   ],
+   "to_ascii": "XIX asr",
+   "to_cyrillic": "ХИХ аср",
+   "to_latin_1995": "XIX asr",
+   "to_latin_2026": "XIX asr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1190": {
+   "convert_from_cyrillic_to_cyrillic": "IV bob, Pyotr I",
+   "convert_from_cyrillic_to_latin_1995": "IV bob, Pyotr I",
+   "convert_from_cyrillic_to_latin_2026": "IV bob, Pyotr I",
+   "convert_from_latin_1995_to_cyrillic": "ИВ боб, Пётр И",
+   "convert_from_latin_1995_to_latin_1995": "IV bob, Pyotr I",
+   "convert_from_latin_1995_to_latin_2026": "IV bob, Pyotr I",
+   "convert_from_latin_2026_to_cyrillic": "ИВ боб, Пётр И",
+   "convert_from_latin_2026_to_latin_1995": "IV bob, Pyotr I",
+   "convert_from_latin_2026_to_latin_2026": "IV bob, Pyotr I",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "IV bob, Pyotr I",
+   "fold_homoglyphs": "IV bob, Pyotr I",
+   "is_cyrillic": false,
+   "normalize": "iv bob pyotr i",
+   "normalize_apostrophes_ascii": "IV bob, Pyotr I",
+   "normalize_apostrophes_unicode": "IV bob, Pyotr I",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "IV",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "bob",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "Pyotr",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "IV bob, Pyotr I",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    1118,
+    0,
+    1098,
+    1111,
+    1098,
+    0,
+    1112,
+    1121,
+    1111,
+    1116,
+    1114,
+    0,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    18,
+    31,
+    0,
+    12,
+    24,
+    12,
+    0,
+    25,
+    33,
+    24,
+    29,
+    27,
+    0,
+    18
+   ],
+   "sort_key_latin_2026": [
+    19,
+    35,
+    0,
+    12,
+    25,
+    12,
+    0,
+    27,
+    37,
+    25,
+    33,
+    29,
+    0,
+    19
+   ],
+   "to_ascii": "IV bob, Pyotr I",
+   "to_cyrillic": "ИВ боб, Пётр И",
+   "to_latin_1995": "IV bob, Pyotr I",
+   "to_latin_2026": "IV bob, Pyotr I",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1191": {
+   "convert_from_cyrillic_to_cyrillic": "I. Boʻriyev va M. Asadullayev",
+   "convert_from_cyrillic_to_latin_1995": "I. Boʻriyev va M. Asadullayev",
+   "convert_from_cyrillic_to_latin_2026": "I. Böriyev va M. Asadullayev",
+   "convert_from_latin_1995_to_cyrillic": "И. Бўриев ва М. Асадуллаев",
+   "convert_from_latin_1995_to_latin_1995": "I. Boʻriyev va M. Asadullayev",
+   "convert_from_latin_1995_to_latin_2026": "I. Böriyev va M. Asadullayev",
+   "convert_from_latin_2026_to_cyrillic": "И. Бўриев ва М. Асадуллаев",
+   "convert_from_latin_2026_to_latin_1995": "I. Boʻriyev va M. Asadullayev",
+   "convert_from_latin_2026_to_latin_2026": "I. Boʻriyev va M. Asadullayev",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I. Boʻriyev va M. Asadullayev",
+   "fold_homoglyphs": "I. Boʻriyev va M. Asadullayev",
+   "is_cyrillic": false,
+   "normalize": "i boriyev va m asadullayev",
+   "normalize_apostrophes_ascii": "I. Bo'riyev va M. Asadullayev",
+   "normalize_apostrophes_unicode": "I. Boʻriyev va M. Asadullayev",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     ". ",
+     null
+    ],
+    [
+     "Boʻriyev",
+     "latin_1995"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "M",
+     "latin"
+    ],
+    [
+     ". ",
+     null
+    ],
+    [
+     "Asadullayev",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I. Boʻriyev va M. Asadullayev",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1098,
+    1111,
+    1114,
+    1105,
+    1121,
+    1101,
+    1118,
+    0,
+    1118,
+    1097,
+    0,
+    1109,
+    0,
+    1097,
+    1115,
+    1097,
+    1100,
+    1117,
+    1108,
+    1108,
+    1097,
+    1121,
+    1101,
+    1118
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    12,
+    35,
+    27,
+    18,
+    33,
+    14,
+    31,
+    0,
+    31,
+    11,
+    0,
+    22,
+    0,
+    11,
+    28,
+    11,
+    13,
+    30,
+    21,
+    21,
+    11,
+    33,
+    14,
+    31
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    12,
+    25,
+    29,
+    19,
+    37,
+    14,
+    35,
+    0,
+    35,
+    11,
+    0,
+    23,
+    0,
+    11,
+    30,
+    11,
+    13,
+    34,
+    22,
+    22,
+    11,
+    37,
+    14,
+    35
+   ],
+   "to_ascii": "I. Boriyev va M. Asadullayev",
+   "to_cyrillic": "И. Бўриев ва М. Асадуллаев",
+   "to_latin_1995": "I. Boʻriyev va M. Asadullayev",
+   "to_latin_2026": "I. Böriyev va M. Asadullayev",
+   "validate_cyrillic": [
+    [
+     3,
+     11,
+     "latin-1995-word",
+     "Бўриев"
+    ]
+   ],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     3,
+     11,
+     "latin-1995-word",
+     "Böriyev"
+    ]
+   ]
+  },
+  "c1192": {
+   "convert_from_cyrillic_to_cyrillic": "Pyotr I.",
+   "convert_from_cyrillic_to_latin_1995": "Pyotr I.",
+   "convert_from_cyrillic_to_latin_2026": "Pyotr I.",
+   "convert_from_latin_1995_to_cyrillic": "Пётр И.",
+   "convert_from_latin_1995_to_latin_1995": "Pyotr I.",
+   "convert_from_latin_1995_to_latin_2026": "Pyotr I.",
+   "convert_from_latin_2026_to_cyrillic": "Пётр И.",
+   "convert_from_latin_2026_to_latin_1995": "Pyotr I.",
+   "convert_from_latin_2026_to_latin_2026": "Pyotr I.",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Pyotr I.",
+   "fold_homoglyphs": "Pyotr I.",
+   "is_cyrillic": false,
+   "normalize": "pyotr i",
+   "normalize_apostrophes_ascii": "Pyotr I.",
+   "normalize_apostrophes_unicode": "Pyotr I.",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Pyotr",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     ".",
+     null
+    ]
+   ],
+   "segments": [
+    [
+     "Pyotr I.",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1112,
+    1121,
+    1111,
+    1116,
+    1114,
+    0,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    25,
+    33,
+    24,
+    29,
+    27,
+    0,
+    18
+   ],
+   "sort_key_latin_2026": [
+    27,
+    37,
+    25,
+    33,
+    29,
+    0,
+    19
+   ],
+   "to_ascii": "Pyotr I.",
+   "to_cyrillic": "Пётр И.",
+   "to_latin_1995": "Pyotr I.",
+   "to_latin_2026": "Pyotr I.",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1193": {
+   "convert_from_cyrillic_to_cyrillic": "MIX",
+   "convert_from_cyrillic_to_latin_1995": "MIX",
+   "convert_from_cyrillic_to_latin_2026": "MIX",
+   "convert_from_latin_1995_to_cyrillic": "МИХ",
+   "convert_from_latin_1995_to_latin_1995": "MIX",
+   "convert_from_latin_1995_to_latin_2026": "MIX",
+   "convert_from_latin_2026_to_cyrillic": "МИХ",
+   "convert_from_latin_2026_to_latin_1995": "MIX",
+   "convert_from_latin_2026_to_latin_2026": "MIX",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "MIX",
+   "fold_homoglyphs": "MIX",
+   "is_cyrillic": false,
+   "normalize": "mix",
+   "normalize_apostrophes_ascii": "MIX",
+   "normalize_apostrophes_unicode": "MIX",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "MIX",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "MIX",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1109,
+    1105,
+    1120
+   ],
+   "sort_key_latin_1995": [
+    22,
+    18,
+    32
+   ],
+   "sort_key_latin_2026": [
+    23,
+    19,
+    36
+   ],
+   "to_ascii": "MIX",
+   "to_cyrillic": "МИХ",
+   "to_latin_1995": "MIX",
+   "to_latin_2026": "MIX",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1194": {
+   "convert_from_cyrillic_to_cyrillic": "XIX аср ва Пётр I",
+   "convert_from_cyrillic_to_latin_1995": "XIX asr va Pyotr I",
+   "convert_from_cyrillic_to_latin_2026": "XIX asr va Pyotr I",
+   "convert_from_latin_1995_to_cyrillic": "ХИХ аср ва Пётр И",
+   "convert_from_latin_1995_to_latin_1995": "XIX аср ва Пётр I",
+   "convert_from_latin_1995_to_latin_2026": "XIX аср ва Пётр I",
+   "convert_from_latin_2026_to_cyrillic": "ХИХ аср ва Пётр И",
+   "convert_from_latin_2026_to_latin_1995": "XIX аср ва Пётр I",
+   "convert_from_latin_2026_to_latin_2026": "XIX аср ва Пётр I",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "XIX asr va yotr I",
+   "fold_homoglyphs": "XIX аср ва Пётр I",
+   "is_cyrillic": true,
+   "normalize": "xix asr va pyotr i",
+   "normalize_apostrophes_ascii": "XIX аср ва Пётр I",
+   "normalize_apostrophes_unicode": "XIX аср ва Пётр I",
+   "script_class": "mixed",
+   "script_spans": [
+    [
+     "XIX",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "аср",
+     "cyrillic"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "ва",
+     "cyrillic"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "Пётр",
+     "cyrillic"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "XIX аср ва Пётр I",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120,
+    1105,
+    1120,
+    0,
+    11,
+    29,
+    28,
+    0,
+    13,
+    11,
+    0,
+    27,
+    17,
+    30,
+    28,
+    0,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    32,
+    18,
+    32,
+    0,
+    2072,
+    2089,
+    2088,
+    0,
+    2074,
+    2072,
+    0,
+    2087,
+    2105,
+    2090,
+    2088,
+    0,
+    18
+   ],
+   "sort_key_latin_2026": [
+    36,
+    19,
+    36,
+    0,
+    2072,
+    2089,
+    2088,
+    0,
+    2074,
+    2072,
+    0,
+    2087,
+    2105,
+    2090,
+    2088,
+    0,
+    19
+   ],
+   "to_ascii": "XIX asr va Pyotr I",
+   "to_cyrillic": "XIX аср ва Пётр I",
+   "to_latin_1995": "XIX asr va Pyotr I",
+   "to_latin_2026": "XIX asr va Pyotr I",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     4,
+     7,
+     "cyrillic-word",
+     "asr"
+    ],
+    [
+     8,
+     10,
+     "cyrillic-word",
+     "va"
+    ],
+    [
+     11,
+     15,
+     "cyrillic-word",
+     "Pyotr"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     4,
+     7,
+     "cyrillic-word",
+     "asr"
+    ],
+    [
+     8,
+     10,
+     "cyrillic-word",
+     "va"
+    ],
+    [
+     11,
+     15,
+     "cyrillic-word",
+     "Pyotr"
+    ]
+   ]
+  },
+  "c1195": {
+   "convert_from_cyrillic_to_cyrillic": "CD va DVD, IIII, Xix, XIXda",
+   "convert_from_cyrillic_to_latin_1995": "CD va DVD, IIII, Xix, XIXda",
+   "convert_from_cyrillic_to_latin_2026": "CD va DVD, IIII, Xix, XIXda",
+   "convert_from_latin_1995_to_cyrillic": "CД ва ДВД, ИИИИ, Хих, ХИХда",
+   "convert_from_latin_1995_to_latin_1995": "CD va DVD, IIII, Xix, XIXda",
+   "convert_from_latin_1995_to_latin_2026": "CD va DVD, IIII, Xix, XIXda",
+   "convert_from_latin_2026_to_cyrillic": "CД ва ДВД, ИИИИ, Хих, ХИХда",
+   "convert_from_latin_2026_to_latin_1995": "CD va DVD, IIII, Xix, XIXda",
+   "convert_from_latin_2026_to_latin_2026": "CD va DVD, IIII, Xix, XIXda",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "CD va DVD, IIII, Xix, XIXda",
+   "fold_homoglyphs": "CD va DVD, IIII, Xix, XIXda",
+   "is_cyrillic": false,
+   "normalize": "cd va dvd iiii xix xixda",
+   "normalize_apostrophes_ascii": "CD va DVD, IIII, Xix, XIXda",
+   "normalize_apostrophes_unicode": "CD va DVD, IIII, Xix, XIXda",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "CD",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "DVD",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "IIII",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "Xix",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "XIXda",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "CD va DVD, IIII, Xix, XIXda",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1099,
+    1100,
+    0,
+    1118,
+    1097,
+    0,
+    1100,
+    1118,
+    1100,
+    0,
+    1105,
+    1105,
+    1105,
+    1105,
+    0,
+    1120,
+    1105,
+    1120,
+    0,
+    1120,
+    1105,
+    1120,
+    1100,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    1099,
+    13,
+    0,
+    31,
+    11,
+    0,
+    13,
+    31,
+    13,
+    0,
+    18,
+    18,
+    18,
+    18,
+    0,
+    32,
+    18,
+    32,
+    0,
+    32,
+    18,
+    32,
+    13,
+    11
+   ],
+   "sort_key_latin_2026": [
+    1099,
+    13,
+    0,
+    35,
+    11,
+    0,
+    13,
+    35,
+    13,
+    0,
+    19,
+    19,
+    19,
+    19,
+    0,
+    36,
+    19,
+    36,
+    0,
+    36,
+    19,
+    36,
+    13,
+    11
+   ],
+   "to_ascii": "CD va DVD, IIII, Xix, XIXda",
+   "to_cyrillic": "CД ва ДВД, ИИИИ, Хих, ХИХда",
+   "to_latin_1995": "CD va DVD, IIII, Xix, XIXda",
+   "to_latin_2026": "CD va DVD, IIII, Xix, XIXda",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1196": {
+   "convert_from_cyrillic_to_cyrillic": "XXI asr Toşkentda",
+   "convert_from_cyrillic_to_latin_1995": "XXI asr Toşkentda",
+   "convert_from_cyrillic_to_latin_2026": "XXI asr Toşkentda",
+   "convert_from_latin_1995_to_cyrillic": "ХХИ аср Тоşкентда",
+   "convert_from_latin_1995_to_latin_1995": "XXI asr Toşkentda",
+   "convert_from_latin_1995_to_latin_2026": "XXI asr Toşkentda",
+   "convert_from_latin_2026_to_cyrillic": "ХХИ аср Тошкентда",
+   "convert_from_latin_2026_to_latin_1995": "XXI asr Toshkentda",
+   "convert_from_latin_2026_to_latin_2026": "XXI asr Toşkentda",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_2026",
+   "fold_cyrillic": "XXI asr Toşkentda",
+   "fold_homoglyphs": "XXI asr Toşkentda",
+   "is_cyrillic": false,
+   "normalize": "xxi asr toshkentda",
+   "normalize_apostrophes_ascii": "XXI asr Toşkentda",
+   "normalize_apostrophes_unicode": "XXI asr Toşkentda",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "XXI",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asr",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "Toşkentda",
+     "latin_2026"
+    ]
+   ],
+   "segments": [
+    [
+     "XXI asr Toşkentda",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120,
+    1120,
+    1105,
+    0,
+    1097,
+    1115,
+    1114,
+    0,
+    1116,
+    1111,
+    1351,
+    1107,
+    1101,
+    1110,
+    1116,
+    1100,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    32,
+    32,
+    18,
+    0,
+    11,
+    28,
+    27,
+    0,
+    29,
+    24,
+    1351,
+    20,
+    14,
+    23,
+    29,
+    13,
+    11
+   ],
+   "sort_key_latin_2026": [
+    36,
+    36,
+    19,
+    0,
+    11,
+    30,
+    29,
+    0,
+    33,
+    25,
+    31,
+    21,
+    14,
+    24,
+    33,
+    13,
+    11
+   ],
+   "to_ascii": "XXI asr Toshkentda",
+   "to_cyrillic": "ХХИ аср Тошкентда",
+   "to_latin_1995": "XXI asr Toshkentda",
+   "to_latin_2026": "XXI asr Toşkentda",
+   "validate_cyrillic": [
+    [
+     8,
+     17,
+     "latin-2026-word",
+     "Тошкентда"
+    ]
+   ],
+   "validate_latin_1995": [
+    [
+     8,
+     17,
+     "latin-2026-word",
+     "Toshkentda"
+    ]
+   ],
+   "validate_latin_2026": []
+  },
+  "c1197": {
+   "convert_from_cyrillic_to_cyrillic": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "convert_from_cyrillic_to_latin_1995": "Sentyabr, sentyabrda, oktyabrning, noyabr",
+   "convert_from_cyrillic_to_latin_2026": "Sentyabr, sentyabrda, oktyabrning, noyabr",
+   "convert_from_latin_1995_to_cyrillic": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "convert_from_latin_1995_to_latin_1995": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "convert_from_latin_1995_to_latin_2026": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "convert_from_latin_2026_to_cyrillic": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "convert_from_latin_2026_to_latin_1995": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "convert_from_latin_2026_to_latin_2026": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "entyabr, sentyabrda, oktyabrning, noyabr",
+   "fold_homoglyphs": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "is_cyrillic": true,
+   "normalize": "sentyabr sentyabrda oktyabrning noyabr",
+   "normalize_apostrophes_ascii": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "normalize_apostrophes_unicode": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "Сентябрь",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "сентябрда",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "октябрнинг",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "ноябрь",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "Сентябрь, сентябрда, октябрнинг, ноябрь",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    38,
+    0,
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    15,
+    11,
+    0,
+    26,
+    22,
+    30,
+    41,
+    12,
+    28,
+    25,
+    20,
+    25,
+    14,
+    0,
+    25,
+    26,
+    41,
+    12,
+    28,
+    38
+   ],
+   "sort_key_latin_1995": [
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2076,
+    2072,
+    0,
+    2086,
+    2082,
+    2090,
+    2103,
+    2073,
+    2088,
+    2085,
+    2080,
+    2085,
+    2075,
+    0,
+    2085,
+    2086,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "sort_key_latin_2026": [
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2076,
+    2072,
+    0,
+    2086,
+    2082,
+    2090,
+    2103,
+    2073,
+    2088,
+    2085,
+    2080,
+    2085,
+    2075,
+    0,
+    2085,
+    2086,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "to_ascii": "Sentyabr, sentyabrda, oktyabrning, noyabr",
+   "to_cyrillic": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "to_latin_1995": "Sentyabr, sentyabrda, oktyabrning, noyabr",
+   "to_latin_2026": "Sentyabr, sentyabrda, oktyabrning, noyabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "Sentyabr"
+    ],
+    [
+     10,
+     19,
+     "cyrillic-word",
+     "sentyabrda"
+    ],
+    [
+     21,
+     31,
+     "cyrillic-word",
+     "oktyabrning"
+    ],
+    [
+     33,
+     39,
+     "cyrillic-word",
+     "noyabr"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "Sentyabr"
+    ],
+    [
+     10,
+     19,
+     "cyrillic-word",
+     "sentyabrda"
+    ],
+    [
+     21,
+     31,
+     "cyrillic-word",
+     "oktyabrning"
+    ],
+    [
+     33,
+     39,
+     "cyrillic-word",
+     "noyabr"
+    ]
+   ]
+  },
+  "c1198": {
+   "convert_from_cyrillic_to_cyrillic": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "convert_from_cyrillic_to_latin_1995": "SENTYABR, SENTYABRda",
+   "convert_from_cyrillic_to_latin_2026": "SENTYABR, SENTYABRda",
+   "convert_from_latin_1995_to_cyrillic": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "convert_from_latin_1995_to_latin_1995": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "convert_from_latin_1995_to_latin_2026": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "convert_from_latin_2026_to_cyrillic": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "convert_from_latin_2026_to_latin_1995": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "convert_from_latin_2026_to_latin_2026": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": ", da",
+   "fold_homoglyphs": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "is_cyrillic": true,
+   "normalize": "sentyabr sentyabrda",
+   "normalize_apostrophes_ascii": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "normalize_apostrophes_unicode": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "СЕНТЯБРЬ",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "СЕНТЯБРда",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "СЕНТЯБРЬ, СЕНТЯБРда",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    38,
+    0,
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    15,
+    11
+   ],
+   "sort_key_latin_1995": [
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2076,
+    2072
+   ],
+   "sort_key_latin_2026": [
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2076,
+    2072
+   ],
+   "to_ascii": "SENTYABR, SENTYABRda",
+   "to_cyrillic": "СЕНТЯБРЬ, СЕНТЯБРда",
+   "to_latin_1995": "SENTYABR, SENTYABRda",
+   "to_latin_2026": "SENTYABR, SENTYABRda",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "SENTYABR"
+    ],
+    [
+     10,
+     19,
+     "cyrillic-word",
+     "SENTYABRda"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "SENTYABR"
+    ],
+    [
+     10,
+     19,
+     "cyrillic-word",
+     "SENTYABRda"
+    ]
+   ]
+  },
+  "c1199": {
+   "convert_from_cyrillic_to_cyrillic": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "convert_from_cyrillic_to_latin_1995": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "convert_from_cyrillic_to_latin_2026": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "convert_from_latin_1995_to_cyrillic": "январ феврал март апрел май июн июл август сентабр октабр ноябр декабр",
+   "convert_from_latin_1995_to_latin_1995": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "convert_from_latin_1995_to_latin_2026": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "convert_from_latin_2026_to_cyrillic": "январ феврал март апрел май июн июл август сентабр октабр ноябр декабр",
+   "convert_from_latin_2026_to_latin_1995": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "convert_from_latin_2026_to_latin_2026": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "fold_homoglyphs": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "is_cyrillic": false,
+   "normalize": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "normalize_apostrophes_ascii": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "normalize_apostrophes_unicode": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "yanvar",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "fevral",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "mart",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "aprel",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "may",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "iyun",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "iyul",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "avgust",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "sentabr",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "oktabr",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "noyabr",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "dekabr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1121,
+    1097,
+    1110,
+    1118,
+    1097,
+    1114,
+    0,
+    1102,
+    1101,
+    1118,
+    1114,
+    1097,
+    1108,
+    0,
+    1109,
+    1097,
+    1114,
+    1116,
+    0,
+    1097,
+    1112,
+    1114,
+    1101,
+    1108,
+    0,
+    1109,
+    1097,
+    1121,
+    0,
+    1105,
+    1121,
+    1117,
+    1110,
+    0,
+    1105,
+    1121,
+    1117,
+    1108,
+    0,
+    1097,
+    1118,
+    1103,
+    1117,
+    1115,
+    1116,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    0,
+    1111,
+    1107,
+    1116,
+    1097,
+    1098,
+    1114,
+    0,
+    1110,
+    1111,
+    1121,
+    1097,
+    1098,
+    1114,
+    0,
+    1100,
+    1101,
+    1107,
+    1097,
+    1098,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    33,
+    11,
+    23,
+    31,
+    11,
+    27,
+    0,
+    15,
+    14,
+    31,
+    27,
+    11,
+    21,
+    0,
+    22,
+    11,
+    27,
+    29,
+    0,
+    11,
+    25,
+    27,
+    14,
+    21,
+    0,
+    22,
+    11,
+    33,
+    0,
+    18,
+    33,
+    30,
+    23,
+    0,
+    18,
+    33,
+    30,
+    21,
+    0,
+    11,
+    31,
+    16,
+    30,
+    28,
+    29,
+    0,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    0,
+    24,
+    20,
+    29,
+    11,
+    12,
+    27,
+    0,
+    23,
+    24,
+    33,
+    11,
+    12,
+    27,
+    0,
+    13,
+    14,
+    20,
+    11,
+    12,
+    27
+   ],
+   "sort_key_latin_2026": [
+    37,
+    11,
+    24,
+    35,
+    11,
+    29,
+    0,
+    15,
+    14,
+    35,
+    29,
+    11,
+    22,
+    0,
+    23,
+    11,
+    29,
+    33,
+    0,
+    11,
+    27,
+    29,
+    14,
+    22,
+    0,
+    23,
+    11,
+    37,
+    0,
+    19,
+    37,
+    34,
+    24,
+    0,
+    19,
+    37,
+    34,
+    22,
+    0,
+    11,
+    35,
+    16,
+    34,
+    30,
+    33,
+    0,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    0,
+    25,
+    21,
+    33,
+    11,
+    12,
+    29,
+    0,
+    24,
+    25,
+    37,
+    11,
+    12,
+    29,
+    0,
+    13,
+    14,
+    21,
+    11,
+    12,
+    29
+   ],
+   "to_ascii": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "to_cyrillic": "январ феврал март апрел май июн июл август сентабр октабр ноябр декабр",
+   "to_latin_1995": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "to_latin_2026": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1200": {
+   "convert_from_cyrillic_to_cyrillic": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "convert_from_cyrillic_to_latin_1995": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "convert_from_cyrillic_to_latin_2026": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "convert_from_latin_1995_to_cyrillic": "январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда",
+   "convert_from_latin_1995_to_latin_1995": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "convert_from_latin_1995_to_latin_2026": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "convert_from_latin_2026_to_cyrillic": "январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда",
+   "convert_from_latin_2026_to_latin_1995": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "convert_from_latin_2026_to_latin_2026": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "fold_homoglyphs": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "is_cyrillic": false,
+   "normalize": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "normalize_apostrophes_ascii": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "normalize_apostrophes_unicode": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "yanvarda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "fevralda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "aprelda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "iyunda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "iyulda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "sentabrda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "sentyabrda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "oktabrdagi",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "noyabrda",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "dekabrda",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1121,
+    1097,
+    1110,
+    1118,
+    1097,
+    1114,
+    1100,
+    1097,
+    0,
+    1102,
+    1101,
+    1118,
+    1114,
+    1097,
+    1108,
+    1100,
+    1097,
+    0,
+    1097,
+    1112,
+    1114,
+    1101,
+    1108,
+    1100,
+    1097,
+    0,
+    1105,
+    1121,
+    1117,
+    1110,
+    1100,
+    1097,
+    0,
+    1105,
+    1121,
+    1117,
+    1108,
+    1100,
+    1097,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    1100,
+    1097,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1121,
+    1097,
+    1098,
+    1114,
+    1100,
+    1097,
+    0,
+    1111,
+    1107,
+    1116,
+    1097,
+    1098,
+    1114,
+    1100,
+    1097,
+    1103,
+    1105,
+    0,
+    1110,
+    1111,
+    1121,
+    1097,
+    1098,
+    1114,
+    1100,
+    1097,
+    0,
+    1100,
+    1101,
+    1107,
+    1097,
+    1098,
+    1114,
+    1100,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    33,
+    11,
+    23,
+    31,
+    11,
+    27,
+    13,
+    11,
+    0,
+    15,
+    14,
+    31,
+    27,
+    11,
+    21,
+    13,
+    11,
+    0,
+    11,
+    25,
+    27,
+    14,
+    21,
+    13,
+    11,
+    0,
+    18,
+    33,
+    30,
+    23,
+    13,
+    11,
+    0,
+    18,
+    33,
+    30,
+    21,
+    13,
+    11,
+    0,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    13,
+    11,
+    0,
+    28,
+    14,
+    23,
+    29,
+    33,
+    11,
+    12,
+    27,
+    13,
+    11,
+    0,
+    24,
+    20,
+    29,
+    11,
+    12,
+    27,
+    13,
+    11,
+    16,
+    18,
+    0,
+    23,
+    24,
+    33,
+    11,
+    12,
+    27,
+    13,
+    11,
+    0,
+    13,
+    14,
+    20,
+    11,
+    12,
+    27,
+    13,
+    11
+   ],
+   "sort_key_latin_2026": [
+    37,
+    11,
+    24,
+    35,
+    11,
+    29,
+    13,
+    11,
+    0,
+    15,
+    14,
+    35,
+    29,
+    11,
+    22,
+    13,
+    11,
+    0,
+    11,
+    27,
+    29,
+    14,
+    22,
+    13,
+    11,
+    0,
+    19,
+    37,
+    34,
+    24,
+    13,
+    11,
+    0,
+    19,
+    37,
+    34,
+    22,
+    13,
+    11,
+    0,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    13,
+    11,
+    0,
+    30,
+    14,
+    24,
+    33,
+    37,
+    11,
+    12,
+    29,
+    13,
+    11,
+    0,
+    25,
+    21,
+    33,
+    11,
+    12,
+    29,
+    13,
+    11,
+    16,
+    19,
+    0,
+    24,
+    25,
+    37,
+    11,
+    12,
+    29,
+    13,
+    11,
+    0,
+    13,
+    14,
+    21,
+    11,
+    12,
+    29,
+    13,
+    11
+   ],
+   "to_ascii": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "to_cyrillic": "январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда",
+   "to_latin_1995": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "to_latin_2026": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1201": {
+   "convert_from_cyrillic_to_cyrillic": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "convert_from_cyrillic_to_latin_1995": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "convert_from_cyrillic_to_latin_2026": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "convert_from_latin_1995_to_cyrillic": "СЕНТАБР, Сентябр, СЕНТАБРда, сентабри",
+   "convert_from_latin_1995_to_latin_1995": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "convert_from_latin_1995_to_latin_2026": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "convert_from_latin_2026_to_cyrillic": "СЕНТАБР, Сентябр, СЕНТАБРда, сентабри",
+   "convert_from_latin_2026_to_latin_1995": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "convert_from_latin_2026_to_latin_2026": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "fold_homoglyphs": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "is_cyrillic": false,
+   "normalize": "sentabr sentyabr sentabrda sentabri",
+   "normalize_apostrophes_ascii": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "normalize_apostrophes_unicode": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "SENTABR",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "Sentyabr",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "SENTABRda",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "sentabri",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "SENTABR, Sentyabr, SENTABRda, sentabri",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1121,
+    1097,
+    1098,
+    1114,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    1100,
+    1097,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    0,
+    28,
+    14,
+    23,
+    29,
+    33,
+    11,
+    12,
+    27,
+    0,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    13,
+    11,
+    0,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    0,
+    30,
+    14,
+    24,
+    33,
+    37,
+    11,
+    12,
+    29,
+    0,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    13,
+    11,
+    0,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    19
+   ],
+   "to_ascii": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "to_cyrillic": "СЕНТАБР, Сентябр, СЕНТАБРда, сентабри",
+   "to_latin_1995": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "to_latin_2026": "SENTABR, Sentyabr, SENTABRda, sentabri",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1202": {
+   "convert_from_cyrillic_to_cyrillic": "Martaba, mayda, iyuncha",
+   "convert_from_cyrillic_to_latin_1995": "Martaba, mayda, iyuncha",
+   "convert_from_cyrillic_to_latin_2026": "Martaba, mayda, iyunça",
+   "convert_from_latin_1995_to_cyrillic": "Мартаба, майда, июнча",
+   "convert_from_latin_1995_to_latin_1995": "Martaba, mayda, iyuncha",
+   "convert_from_latin_1995_to_latin_2026": "Martaba, mayda, iyunça",
+   "convert_from_latin_2026_to_cyrillic": "Мартаба, майда, июнча",
+   "convert_from_latin_2026_to_latin_1995": "Martaba, mayda, iyuncha",
+   "convert_from_latin_2026_to_latin_2026": "Martaba, mayda, iyuncha",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Martaba, mayda, iyuncha",
+   "fold_homoglyphs": "Martaba, mayda, iyuncha",
+   "is_cyrillic": false,
+   "normalize": "martaba mayda iyuncha",
+   "normalize_apostrophes_ascii": "Martaba, mayda, iyuncha",
+   "normalize_apostrophes_unicode": "Martaba, mayda, iyuncha",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Martaba",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "mayda",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "iyuncha",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Martaba, mayda, iyuncha",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1109,
+    1097,
+    1114,
+    1116,
+    1097,
+    1098,
+    1097,
+    0,
+    1109,
+    1097,
+    1121,
+    1100,
+    1097,
+    0,
+    1105,
+    1121,
+    1117,
+    1110,
+    1099,
+    1104,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    22,
+    11,
+    27,
+    29,
+    11,
+    12,
+    11,
+    0,
+    22,
+    11,
+    33,
+    13,
+    11,
+    0,
+    18,
+    33,
+    30,
+    23,
+    38,
+    11
+   ],
+   "sort_key_latin_2026": [
+    23,
+    11,
+    29,
+    33,
+    11,
+    12,
+    11,
+    0,
+    23,
+    11,
+    37,
+    13,
+    11,
+    0,
+    19,
+    37,
+    34,
+    24,
+    1099,
+    18,
+    11
+   ],
+   "to_ascii": "Martaba, mayda, iyuncha",
+   "to_cyrillic": "Мартаба, майда, июнча",
+   "to_latin_1995": "Martaba, mayda, iyuncha",
+   "to_latin_2026": "Martaba, mayda, iyunça",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     16,
+     23,
+     "digraph",
+     "iyunça"
+    ]
+   ]
+  },
+  "c1203": {
+   "convert_from_cyrillic_to_cyrillic": "1991-yilning 1-sentabri",
+   "convert_from_cyrillic_to_latin_1995": "1991-yilning 1-sentabri",
+   "convert_from_cyrillic_to_latin_2026": "1991-yilning 1-sentabri",
+   "convert_from_latin_1995_to_cyrillic": "1991-йилнинг 1-сентабри",
+   "convert_from_latin_1995_to_latin_1995": "1991-yilning 1-sentabri",
+   "convert_from_latin_1995_to_latin_2026": "1991-yilning 1-sentabri",
+   "convert_from_latin_2026_to_cyrillic": "1991-йилнинг 1-сентабри",
+   "convert_from_latin_2026_to_latin_1995": "1991-yilning 1-sentabri",
+   "convert_from_latin_2026_to_latin_2026": "1991-yilning 1-sentabri",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "1991-yilning 1-sentabri",
+   "fold_homoglyphs": "1991-yilning 1-sentabri",
+   "is_cyrillic": false,
+   "normalize": "1991 yilning 1 sentabri",
+   "normalize_apostrophes_ascii": "1991-yilning 1-sentabri",
+   "normalize_apostrophes_unicode": "1991-yilning 1-sentabri",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "1991-",
+     null
+    ],
+    [
+     "yilning",
+     "latin"
+    ],
+    [
+     " 1-",
+     null
+    ],
+    [
+     "sentabri",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "1991-yilning 1-sentabri",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108,
+    1110,
+    1105,
+    1110,
+    1103,
+    0,
+    2,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21,
+    23,
+    18,
+    23,
+    16,
+    0,
+    2,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22,
+    24,
+    19,
+    24,
+    16,
+    0,
+    2,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    19
+   ],
+   "to_ascii": "1991-yilning 1-sentabri",
+   "to_cyrillic": "1991-йилнинг 1-сентабри",
+   "to_latin_1995": "1991-yilning 1-sentabri",
+   "to_latin_2026": "1991-yilning 1-sentabri",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1204": {
+   "convert_from_cyrillic_to_cyrillic": "1956 йил 22 сентябрь",
+   "convert_from_cyrillic_to_latin_1995": "1956 yil 22 sentyabr",
+   "convert_from_cyrillic_to_latin_2026": "1956 yil 22 sentyabr",
+   "convert_from_latin_1995_to_cyrillic": "1956 йил 22 сентябрь",
+   "convert_from_latin_1995_to_latin_1995": "1956 йил 22 сентябрь",
+   "convert_from_latin_1995_to_latin_2026": "1956 йил 22 сентябрь",
+   "convert_from_latin_2026_to_cyrillic": "1956 йил 22 сентябрь",
+   "convert_from_latin_2026_to_latin_1995": "1956 йил 22 сентябрь",
+   "convert_from_latin_2026_to_latin_2026": "1956 йил 22 сентябрь",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "1956 yil 22 sentyabr",
+   "fold_homoglyphs": "1956 йил 22 сентябрь",
+   "is_cyrillic": true,
+   "normalize": "1956 yil 22 sentyabr",
+   "normalize_apostrophes_ascii": "1956 йил 22 сентябрь",
+   "normalize_apostrophes_unicode": "1956 йил 22 сентябрь",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "1956 ",
+     null
+    ],
+    [
+     "йил",
+     "cyrillic"
+    ],
+    [
+     " 22 ",
+     null
+    ],
+    [
+     "сентябрь",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "1956 йил 22 сентябрь",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    21,
+    20,
+    23,
+    0,
+    3,
+    3,
+    0,
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    38
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    3,
+    3,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    3,
+    3,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "to_ascii": "1956 yil 22 sentyabr",
+   "to_cyrillic": "1956 йил 22 сентябрь",
+   "to_latin_1995": "1956 yil 22 sentyabr",
+   "to_latin_2026": "1956 yil 22 sentyabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     12,
+     20,
+     "cyrillic-word",
+     "sentyabr"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     12,
+     20,
+     "cyrillic-word",
+     "sentyabr"
+    ]
+   ]
+  },
+  "c1205": {
+   "convert_from_cyrillic_to_cyrillic": "1991-йилнинг 1-сентябри",
+   "convert_from_cyrillic_to_latin_1995": "1991-yilning 1-sentyabri",
+   "convert_from_cyrillic_to_latin_2026": "1991-yilning 1-sentyabri",
+   "convert_from_latin_1995_to_cyrillic": "1991-йилнинг 1-сентябри",
+   "convert_from_latin_1995_to_latin_1995": "1991-йилнинг 1-сентябри",
+   "convert_from_latin_1995_to_latin_2026": "1991-йилнинг 1-сентябри",
+   "convert_from_latin_2026_to_cyrillic": "1991-йилнинг 1-сентябри",
+   "convert_from_latin_2026_to_latin_1995": "1991-йилнинг 1-сентябри",
+   "convert_from_latin_2026_to_latin_2026": "1991-йилнинг 1-сентябри",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "1991-yilning 1-sentyabri",
+   "fold_homoglyphs": "1991-йилнинг 1-сентябри",
+   "is_cyrillic": true,
+   "normalize": "1991 yilning 1 sentyabri",
+   "normalize_apostrophes_ascii": "1991-йилнинг 1-сентябри",
+   "normalize_apostrophes_unicode": "1991-йилнинг 1-сентябри",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "1991-",
+     null
+    ],
+    [
+     "йилнинг",
+     "cyrillic"
+    ],
+    [
+     " 1-",
+     null
+    ],
+    [
+     "сентябри",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "1991-йилнинг 1-сентябри",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    10,
+    2,
+    21,
+    20,
+    23,
+    25,
+    20,
+    25,
+    14,
+    0,
+    2,
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    20
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    10,
+    2,
+    2081,
+    2080,
+    2083,
+    2085,
+    2080,
+    2085,
+    2075,
+    0,
+    2,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2080
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    10,
+    2,
+    2081,
+    2080,
+    2083,
+    2085,
+    2080,
+    2085,
+    2075,
+    0,
+    2,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2080
+   ],
+   "to_ascii": "1991-yilning 1-sentyabri",
+   "to_cyrillic": "1991-йилнинг 1-сентябри",
+   "to_latin_1995": "1991-yilning 1-sentyabri",
+   "to_latin_2026": "1991-yilning 1-sentyabri",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     5,
+     12,
+     "cyrillic-word",
+     "yilning"
+    ],
+    [
+     15,
+     23,
+     "cyrillic-word",
+     "sentyabri"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     5,
+     12,
+     "cyrillic-word",
+     "yilning"
+    ],
+    [
+     15,
+     23,
+     "cyrillic-word",
+     "sentyabri"
+    ]
+   ]
+  },
+  "c1206": {
+   "convert_from_cyrillic_to_cyrillic": "1956 yil 22 sentabr",
+   "convert_from_cyrillic_to_latin_1995": "1956 yil 22 sentabr",
+   "convert_from_cyrillic_to_latin_2026": "1956 yil 22 sentabr",
+   "convert_from_latin_1995_to_cyrillic": "1956 йил 22 сентабр",
+   "convert_from_latin_1995_to_latin_1995": "1956 yil 22 sentabr",
+   "convert_from_latin_1995_to_latin_2026": "1956 yil 22 sentabr",
+   "convert_from_latin_2026_to_cyrillic": "1956 йил 22 сентабр",
+   "convert_from_latin_2026_to_latin_1995": "1956 yil 22 sentabr",
+   "convert_from_latin_2026_to_latin_2026": "1956 yil 22 sentabr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "1956 yil 22 sentabr",
+   "fold_homoglyphs": "1956 yil 22 sentabr",
+   "is_cyrillic": false,
+   "normalize": "1956 yil 22 sentabr",
+   "normalize_apostrophes_ascii": "1956 yil 22 sentabr",
+   "normalize_apostrophes_unicode": "1956 yil 22 sentabr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "1956 ",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     " 22 ",
+     null
+    ],
+    [
+     "sentabr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "1956 yil 22 sentabr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    1121,
+    1105,
+    1108,
+    0,
+    3,
+    3,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    33,
+    18,
+    21,
+    0,
+    3,
+    3,
+    0,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    37,
+    19,
+    22,
+    0,
+    3,
+    3,
+    0,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29
+   ],
+   "to_ascii": "1956 yil 22 sentabr",
+   "to_cyrillic": "1956 йил 22 сентабр",
+   "to_latin_1995": "1956 yil 22 sentabr",
+   "to_latin_2026": "1956 yil 22 sentabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1207": {
+   "convert_from_cyrillic_to_cyrillic": "5 yil ishladi",
+   "convert_from_cyrillic_to_latin_1995": "5 yil ishladi",
+   "convert_from_cyrillic_to_latin_2026": "5 yil işladi",
+   "convert_from_latin_1995_to_cyrillic": "5 йил ишлади",
+   "convert_from_latin_1995_to_latin_1995": "5 yil ishladi",
+   "convert_from_latin_1995_to_latin_2026": "5 yil işladi",
+   "convert_from_latin_2026_to_cyrillic": "5 йил исҳлади",
+   "convert_from_latin_2026_to_latin_1995": "5 yil isʼhladi",
+   "convert_from_latin_2026_to_latin_2026": "5 yil ishladi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "5 yil ishladi",
+   "fold_homoglyphs": "5 yil ishladi",
+   "is_cyrillic": false,
+   "normalize": "5 yil ishladi",
+   "normalize_apostrophes_ascii": "5 yil ishladi",
+   "normalize_apostrophes_unicode": "5 yil ishladi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "5 ",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "ishladi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "5 yil ishladi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    6,
+    0,
+    1121,
+    1105,
+    1108,
+    0,
+    1105,
+    1115,
+    1104,
+    1108,
+    1097,
+    1100,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    6,
+    0,
+    33,
+    18,
+    21,
+    0,
+    18,
+    37,
+    21,
+    11,
+    13,
+    18
+   ],
+   "sort_key_latin_2026": [
+    6,
+    0,
+    37,
+    19,
+    22,
+    0,
+    19,
+    30,
+    18,
+    22,
+    11,
+    13,
+    19
+   ],
+   "to_ascii": "5 yil ishladi",
+   "to_cyrillic": "5 йил ишлади",
+   "to_latin_1995": "5 yil ishladi",
+   "to_latin_2026": "5 yil işladi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     6,
+     13,
+     "digraph",
+     "işladi"
+    ]
+   ]
+  },
+  "c1208": {
+   "convert_from_cyrillic_to_cyrillic": "2000 йил давомида",
+   "convert_from_cyrillic_to_latin_1995": "2000 yil davomida",
+   "convert_from_cyrillic_to_latin_2026": "2000 yil davomida",
+   "convert_from_latin_1995_to_cyrillic": "2000 йил давомида",
+   "convert_from_latin_1995_to_latin_1995": "2000 йил давомида",
+   "convert_from_latin_1995_to_latin_2026": "2000 йил давомида",
+   "convert_from_latin_2026_to_cyrillic": "2000 йил давомида",
+   "convert_from_latin_2026_to_latin_1995": "2000 йил давомида",
+   "convert_from_latin_2026_to_latin_2026": "2000 йил давомида",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "2000 yil davomida",
+   "fold_homoglyphs": "2000 йил давомида",
+   "is_cyrillic": true,
+   "normalize": "2000 yil davomida",
+   "normalize_apostrophes_ascii": "2000 йил давомида",
+   "normalize_apostrophes_unicode": "2000 йил давомида",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "2000 ",
+     null
+    ],
+    [
+     "йил",
+     "cyrillic"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "давомида",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "2000 йил давомида",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    3,
+    1,
+    1,
+    1,
+    0,
+    21,
+    20,
+    23,
+    0,
+    15,
+    11,
+    13,
+    26,
+    24,
+    20,
+    15,
+    11
+   ],
+   "sort_key_latin_1995": [
+    3,
+    1,
+    1,
+    1,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    2076,
+    2072,
+    2074,
+    2086,
+    2084,
+    2080,
+    2076,
+    2072
+   ],
+   "sort_key_latin_2026": [
+    3,
+    1,
+    1,
+    1,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    2076,
+    2072,
+    2074,
+    2086,
+    2084,
+    2080,
+    2076,
+    2072
+   ],
+   "to_ascii": "2000 yil davomida",
+   "to_cyrillic": "2000 йил давомида",
+   "to_latin_1995": "2000 yil davomida",
+   "to_latin_2026": "2000 yil davomida",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     9,
+     17,
+     "cyrillic-word",
+     "davomida"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     9,
+     17,
+     "cyrillic-word",
+     "davomida"
+    ]
+   ]
+  },
+  "c1209": {
+   "convert_from_cyrillic_to_cyrillic": "32 sentabr, 32-сентябрь",
+   "convert_from_cyrillic_to_latin_1995": "32 sentabr, 32-sentyabr",
+   "convert_from_cyrillic_to_latin_2026": "32 sentabr, 32-sentyabr",
+   "convert_from_latin_1995_to_cyrillic": "32 сентабр, 32-сентябрь",
+   "convert_from_latin_1995_to_latin_1995": "32 sentabr, 32-сентябрь",
+   "convert_from_latin_1995_to_latin_2026": "32 sentabr, 32-сентябрь",
+   "convert_from_latin_2026_to_cyrillic": "32 сентабр, 32-сентябрь",
+   "convert_from_latin_2026_to_latin_1995": "32 sentabr, 32-сентябрь",
+   "convert_from_latin_2026_to_latin_2026": "32 sentabr, 32-сентябрь",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "32 sentabr, 32-sentyabr",
+   "fold_homoglyphs": "32 sentabr, 32-сентябрь",
+   "is_cyrillic": true,
+   "normalize": "32 sentabr 32 sentyabr",
+   "normalize_apostrophes_ascii": "32 sentabr, 32-сентябрь",
+   "normalize_apostrophes_unicode": "32 sentabr, 32-сентябрь",
+   "script_class": "mixed",
+   "script_spans": [
+    [
+     "32 ",
+     null
+    ],
+    [
+     "sentabr",
+     "latin"
+    ],
+    [
+     ", 32-",
+     null
+    ],
+    [
+     "сентябрь",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "32 sentabr, 32-сентябрь",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    4,
+    3,
+    0,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    0,
+    4,
+    3,
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    38
+   ],
+   "sort_key_latin_1995": [
+    4,
+    3,
+    0,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    0,
+    4,
+    3,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "sort_key_latin_2026": [
+    4,
+    3,
+    0,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    0,
+    4,
+    3,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "to_ascii": "32 sentabr, 32-sentyabr",
+   "to_cyrillic": "32 sentabr, 32-сентябрь",
+   "to_latin_1995": "32 sentabr, 32-sentyabr",
+   "to_latin_2026": "32 sentabr, 32-sentyabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     15,
+     23,
+     "cyrillic-word",
+     "sentyabr"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     15,
+     23,
+     "cyrillic-word",
+     "sentyabr"
+    ]
+   ]
+  },
+  "c1210": {
+   "convert_from_cyrillic_to_cyrillic": "1991‑yil 1‑sentabr",
+   "convert_from_cyrillic_to_latin_1995": "1991‑yil 1‑sentabr",
+   "convert_from_cyrillic_to_latin_2026": "1991‑yil 1‑sentabr",
+   "convert_from_latin_1995_to_cyrillic": "1991‑йил 1‑сентабр",
+   "convert_from_latin_1995_to_latin_1995": "1991‑yil 1‑sentabr",
+   "convert_from_latin_1995_to_latin_2026": "1991‑yil 1‑sentabr",
+   "convert_from_latin_2026_to_cyrillic": "1991‑йил 1‑сентабр",
+   "convert_from_latin_2026_to_latin_1995": "1991‑yil 1‑sentabr",
+   "convert_from_latin_2026_to_latin_2026": "1991‑yil 1‑sentabr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "1991‑yil 1‑sentabr",
+   "fold_homoglyphs": "1991‑yil 1‑sentabr",
+   "is_cyrillic": false,
+   "normalize": "1991 yil 1 sentabr",
+   "normalize_apostrophes_ascii": "1991‑yil 1‑sentabr",
+   "normalize_apostrophes_unicode": "1991‑yil 1‑sentabr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "1991‑",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     " 1‑",
+     null
+    ],
+    [
+     "sentabr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "1991‑yil 1‑sentabr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108,
+    0,
+    2,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21,
+    0,
+    2,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22,
+    0,
+    2,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29
+   ],
+   "to_ascii": "1991yil 1sentabr",
+   "to_cyrillic": "1991‑йил 1‑сентабр",
+   "to_latin_1995": "1991‑yil 1‑sentabr",
+   "to_latin_2026": "1991‑yil 1‑sentabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1211": {
+   "convert_from_cyrillic_to_cyrillic": "1956 йил 22 сентябрь",
+   "convert_from_cyrillic_to_latin_1995": "1956 yil 22 sentyabr",
+   "convert_from_cyrillic_to_latin_2026": "1956 yil 22 sentyabr",
+   "convert_from_latin_1995_to_cyrillic": "1956 йил 22 сентябрь",
+   "convert_from_latin_1995_to_latin_1995": "1956 йил 22 сентябрь",
+   "convert_from_latin_1995_to_latin_2026": "1956 йил 22 сентябрь",
+   "convert_from_latin_2026_to_cyrillic": "1956 йил 22 сентябрь",
+   "convert_from_latin_2026_to_latin_1995": "1956 йил 22 сентябрь",
+   "convert_from_latin_2026_to_latin_2026": "1956 йил 22 сентябрь",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "1956 yil 22 sentyabr",
+   "fold_homoglyphs": "1956 йил 22 сентябрь",
+   "is_cyrillic": true,
+   "normalize": "1956 yil 22 sentyabr",
+   "normalize_apostrophes_ascii": "1956 йил 22 сентябрь",
+   "normalize_apostrophes_unicode": "1956 йил 22 сентябрь",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "1956 ",
+     null
+    ],
+    [
+     "йил",
+     "cyrillic"
+    ],
+    [
+     " 22 ",
+     null
+    ],
+    [
+     "сентябрь",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "1956 йил 22 сентябрь",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    21,
+    20,
+    23,
+    0,
+    3,
+    3,
+    0,
+    29,
+    16,
+    25,
+    30,
+    41,
+    12,
+    28,
+    38
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    3,
+    3,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    6,
+    7,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    3,
+    3,
+    0,
+    2089,
+    2077,
+    2085,
+    2090,
+    2103,
+    2073,
+    2088,
+    2100
+   ],
+   "to_ascii": "1956 yil 22 sentyabr",
+   "to_cyrillic": "1956 йил 22 сентябрь",
+   "to_latin_1995": "1956 yil 22 sentyabr",
+   "to_latin_2026": "1956 yil 22 sentyabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     12,
+     20,
+     "cyrillic-word",
+     "sentyabr"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     12,
+     20,
+     "cyrillic-word",
+     "sentyabr"
+    ]
+   ]
+  },
+  "c1212": {
+   "convert_from_cyrillic_to_cyrillic": "60-yillar, 5-sinf, 39-son",
+   "convert_from_cyrillic_to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "convert_from_cyrillic_to_latin_2026": "60-yillar, 5-sinf, 39-son",
+   "convert_from_latin_1995_to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_1995_to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "convert_from_latin_1995_to_latin_2026": "60-yillar, 5-sinf, 39-son",
+   "convert_from_latin_2026_to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_2026_to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "convert_from_latin_2026_to_latin_2026": "60-yillar, 5-sinf, 39-son",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "60-yillar, 5-sinf, 39-son",
+   "fold_homoglyphs": "60-yillar, 5-sinf, 39-son",
+   "is_cyrillic": false,
+   "normalize": "60 yillar 5 sinf 39 son",
+   "normalize_apostrophes_ascii": "60-yillar, 5-sinf, 39-son",
+   "normalize_apostrophes_unicode": "60-yillar, 5-sinf, 39-son",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "60-",
+     null
+    ],
+    [
+     "yillar",
+     "latin"
+    ],
+    [
+     ", 5-",
+     null
+    ],
+    [
+     "sinf",
+     "latin"
+    ],
+    [
+     ", 39-",
+     null
+    ],
+    [
+     "son",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "60-yillar, 5-sinf, 39-son",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    7,
+    1,
+    1121,
+    1105,
+    1108,
+    1108,
+    1097,
+    1114,
+    0,
+    6,
+    1115,
+    1105,
+    1110,
+    1102,
+    0,
+    4,
+    10,
+    1115,
+    1111,
+    1110
+   ],
+   "sort_key_latin_1995": [
+    7,
+    1,
+    33,
+    18,
+    21,
+    21,
+    11,
+    27,
+    0,
+    6,
+    28,
+    18,
+    23,
+    15,
+    0,
+    4,
+    10,
+    28,
+    24,
+    23
+   ],
+   "sort_key_latin_2026": [
+    7,
+    1,
+    37,
+    19,
+    22,
+    22,
+    11,
+    29,
+    0,
+    6,
+    30,
+    19,
+    24,
+    15,
+    0,
+    4,
+    10,
+    30,
+    25,
+    24
+   ],
+   "to_ascii": "60-yillar, 5-sinf, 39-son",
+   "to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "to_latin_2026": "60-yillar, 5-sinf, 39-son",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1213": {
+   "convert_from_cyrillic_to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_cyrillic_to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "convert_from_cyrillic_to_latin_2026": "60-yillar, 5-sinf, 39-son",
+   "convert_from_latin_1995_to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_1995_to_latin_1995": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_1995_to_latin_2026": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_2026_to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_2026_to_latin_1995": "60-йиллар, 5-синф, 39-сон",
+   "convert_from_latin_2026_to_latin_2026": "60-йиллар, 5-синф, 39-сон",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "60-yillar, 5-sinf, 39-son",
+   "fold_homoglyphs": "60-йиллар, 5-синф, 39-сон",
+   "is_cyrillic": true,
+   "normalize": "60 yillar 5 sinf 39 son",
+   "normalize_apostrophes_ascii": "60-йиллар, 5-синф, 39-сон",
+   "normalize_apostrophes_unicode": "60-йиллар, 5-синф, 39-сон",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "60-",
+     null
+    ],
+    [
+     "йиллар",
+     "cyrillic"
+    ],
+    [
+     ", 5-",
+     null
+    ],
+    [
+     "синф",
+     "cyrillic"
+    ],
+    [
+     ", 39-",
+     null
+    ],
+    [
+     "сон",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "60-йиллар, 5-синф, 39-сон",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    7,
+    1,
+    21,
+    20,
+    23,
+    23,
+    11,
+    28,
+    0,
+    6,
+    29,
+    20,
+    25,
+    32,
+    0,
+    4,
+    10,
+    29,
+    26,
+    25
+   ],
+   "sort_key_latin_1995": [
+    7,
+    1,
+    2081,
+    2080,
+    2083,
+    2083,
+    2072,
+    2088,
+    0,
+    6,
+    2089,
+    2080,
+    2085,
+    2092,
+    0,
+    4,
+    10,
+    2089,
+    2086,
+    2085
+   ],
+   "sort_key_latin_2026": [
+    7,
+    1,
+    2081,
+    2080,
+    2083,
+    2083,
+    2072,
+    2088,
+    0,
+    6,
+    2089,
+    2080,
+    2085,
+    2092,
+    0,
+    4,
+    10,
+    2089,
+    2086,
+    2085
+   ],
+   "to_ascii": "60-yillar, 5-sinf, 39-son",
+   "to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "to_latin_2026": "60-yillar, 5-sinf, 39-son",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     3,
+     9,
+     "cyrillic-word",
+     "yillar"
+    ],
+    [
+     13,
+     17,
+     "cyrillic-word",
+     "sinf"
+    ],
+    [
+     22,
+     25,
+     "cyrillic-word",
+     "son"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     3,
+     9,
+     "cyrillic-word",
+     "yillar"
+    ],
+    [
+     13,
+     17,
+     "cyrillic-word",
+     "sinf"
+    ],
+    [
+     22,
+     25,
+     "cyrillic-word",
+     "son"
+    ]
+   ]
+  },
+  "c1214": {
+   "convert_from_cyrillic_to_cyrillic": "476-yil, 476 йил, 2100 йил",
+   "convert_from_cyrillic_to_latin_1995": "476-yil, 476 yil, 2100 yil",
+   "convert_from_cyrillic_to_latin_2026": "476-yil, 476 yil, 2100 yil",
+   "convert_from_latin_1995_to_cyrillic": "476-йил, 476 йил, 2100 йил",
+   "convert_from_latin_1995_to_latin_1995": "476-yil, 476 йил, 2100 йил",
+   "convert_from_latin_1995_to_latin_2026": "476-yil, 476 йил, 2100 йил",
+   "convert_from_latin_2026_to_cyrillic": "476-йил, 476 йил, 2100 йил",
+   "convert_from_latin_2026_to_latin_1995": "476-yil, 476 йил, 2100 йил",
+   "convert_from_latin_2026_to_latin_2026": "476-yil, 476 йил, 2100 йил",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "476-yil, 476 yil, 2100 yil",
+   "fold_homoglyphs": "476-yil, 476 йил, 2100 йил",
+   "is_cyrillic": true,
+   "normalize": "476 yil 476 yil 2100 yil",
+   "normalize_apostrophes_ascii": "476-yil, 476 йил, 2100 йил",
+   "normalize_apostrophes_unicode": "476-yil, 476 йил, 2100 йил",
+   "script_class": "mixed",
+   "script_spans": [
+    [
+     "476-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     ", 476 ",
+     null
+    ],
+    [
+     "йил",
+     "cyrillic"
+    ],
+    [
+     ", 2100 ",
+     null
+    ],
+    [
+     "йил",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "476-yil, 476 йил, 2100 йил",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    5,
+    8,
+    7,
+    1121,
+    1105,
+    1108,
+    0,
+    5,
+    8,
+    7,
+    0,
+    21,
+    20,
+    23,
+    0,
+    3,
+    2,
+    1,
+    1,
+    0,
+    21,
+    20,
+    23
+   ],
+   "sort_key_latin_1995": [
+    5,
+    8,
+    7,
+    33,
+    18,
+    21,
+    0,
+    5,
+    8,
+    7,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    3,
+    2,
+    1,
+    1,
+    0,
+    2081,
+    2080,
+    2083
+   ],
+   "sort_key_latin_2026": [
+    5,
+    8,
+    7,
+    37,
+    19,
+    22,
+    0,
+    5,
+    8,
+    7,
+    0,
+    2081,
+    2080,
+    2083,
+    0,
+    3,
+    2,
+    1,
+    1,
+    0,
+    2081,
+    2080,
+    2083
+   ],
+   "to_ascii": "476-yil, 476 yil, 2100 yil",
+   "to_cyrillic": "476-yil, 476 йил, 2100 йил",
+   "to_latin_1995": "476-yil, 476 yil, 2100 yil",
+   "to_latin_2026": "476-yil, 476 yil, 2100 yil",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     13,
+     16,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     23,
+     26,
+     "cyrillic-word",
+     "yil"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     13,
+     16,
+     "cyrillic-word",
+     "yil"
+    ],
+    [
+     23,
+     26,
+     "cyrillic-word",
+     "yil"
+    ]
+   ]
+  },
+  "c1215": {
+   "convert_from_cyrillic_to_cyrillic": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "convert_from_cyrillic_to_latin_1995": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "convert_from_cyrillic_to_latin_2026": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "convert_from_latin_1995_to_cyrillic": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "convert_from_latin_1995_to_latin_1995": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "convert_from_latin_1995_to_latin_2026": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "convert_from_latin_2026_to_cyrillic": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "convert_from_latin_2026_to_latin_1995": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "convert_from_latin_2026_to_latin_2026": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "fold_homoglyphs": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "is_cyrillic": true,
+   "normalize": "3 marta 5 martaba 2 maydon 5 mayda",
+   "normalize_apostrophes_ascii": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "normalize_apostrophes_unicode": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "3 ",
+     null
+    ],
+    [
+     "марта",
+     "cyrillic"
+    ],
+    [
+     ", 5-",
+     null
+    ],
+    [
+     "мартаба",
+     "cyrillic"
+    ],
+    [
+     ", 2-",
+     null
+    ],
+    [
+     "майдон",
+     "cyrillic"
+    ],
+    [
+     ", 5 ",
+     null
+    ],
+    [
+     "майда",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "3 марта, 5-мартаба, 2-майдон, 5 майда",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    4,
+    0,
+    24,
+    11,
+    28,
+    30,
+    11,
+    0,
+    6,
+    24,
+    11,
+    28,
+    30,
+    11,
+    12,
+    11,
+    0,
+    3,
+    24,
+    11,
+    21,
+    15,
+    26,
+    25,
+    0,
+    6,
+    0,
+    24,
+    11,
+    21,
+    15,
+    11
+   ],
+   "sort_key_latin_1995": [
+    4,
+    0,
+    2084,
+    2072,
+    2088,
+    2090,
+    2072,
+    0,
+    6,
+    2084,
+    2072,
+    2088,
+    2090,
+    2072,
+    2073,
+    2072,
+    0,
+    3,
+    2084,
+    2072,
+    2081,
+    2076,
+    2086,
+    2085,
+    0,
+    6,
+    0,
+    2084,
+    2072,
+    2081,
+    2076,
+    2072
+   ],
+   "sort_key_latin_2026": [
+    4,
+    0,
+    2084,
+    2072,
+    2088,
+    2090,
+    2072,
+    0,
+    6,
+    2084,
+    2072,
+    2088,
+    2090,
+    2072,
+    2073,
+    2072,
+    0,
+    3,
+    2084,
+    2072,
+    2081,
+    2076,
+    2086,
+    2085,
+    0,
+    6,
+    0,
+    2084,
+    2072,
+    2081,
+    2076,
+    2072
+   ],
+   "to_ascii": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "to_cyrillic": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "to_latin_1995": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "to_latin_2026": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     2,
+     7,
+     "cyrillic-word",
+     "marta"
+    ],
+    [
+     11,
+     18,
+     "cyrillic-word",
+     "martaba"
+    ],
+    [
+     22,
+     28,
+     "cyrillic-word",
+     "maydon"
+    ],
+    [
+     32,
+     37,
+     "cyrillic-word",
+     "mayda"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     2,
+     7,
+     "cyrillic-word",
+     "marta"
+    ],
+    [
+     11,
+     18,
+     "cyrillic-word",
+     "martaba"
+    ],
+    [
+     22,
+     28,
+     "cyrillic-word",
+     "maydon"
+    ],
+    [
+     32,
+     37,
+     "cyrillic-word",
+     "mayda"
+    ]
+   ]
+  },
+  "c1216": {
+   "convert_from_cyrillic_to_cyrillic": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "convert_from_cyrillic_to_latin_1995": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "convert_from_cyrillic_to_latin_2026": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "convert_from_latin_1995_to_cyrillic": "1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр",
+   "convert_from_latin_1995_to_latin_1995": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "convert_from_latin_1995_to_latin_2026": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "convert_from_latin_2026_to_cyrillic": "1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр",
+   "convert_from_latin_2026_to_latin_1995": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "convert_from_latin_2026_to_latin_2026": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "fold_homoglyphs": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "is_cyrillic": false,
+   "normalize": "1941 1945 yillar 1990 1991 yillarda 21 22 noyabr",
+   "normalize_apostrophes_ascii": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "normalize_apostrophes_unicode": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "1941–1945-",
+     null
+    ],
+    [
+     "yillar",
+     "latin"
+    ],
+    [
+     ", 1990-1991-",
+     null
+    ],
+    [
+     "yillarda",
+     "latin"
+    ],
+    [
+     ", 21–22-",
+     null
+    ],
+    [
+     "noyabr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    5,
+    2,
+    2,
+    10,
+    5,
+    6,
+    1121,
+    1105,
+    1108,
+    1108,
+    1097,
+    1114,
+    0,
+    2,
+    10,
+    10,
+    1,
+    2,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108,
+    1108,
+    1097,
+    1114,
+    1100,
+    1097,
+    0,
+    3,
+    2,
+    3,
+    3,
+    1110,
+    1111,
+    1121,
+    1097,
+    1098,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    5,
+    2,
+    2,
+    10,
+    5,
+    6,
+    33,
+    18,
+    21,
+    21,
+    11,
+    27,
+    0,
+    2,
+    10,
+    10,
+    1,
+    2,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21,
+    21,
+    11,
+    27,
+    13,
+    11,
+    0,
+    3,
+    2,
+    3,
+    3,
+    23,
+    24,
+    33,
+    11,
+    12,
+    27
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    5,
+    2,
+    2,
+    10,
+    5,
+    6,
+    37,
+    19,
+    22,
+    22,
+    11,
+    29,
+    0,
+    2,
+    10,
+    10,
+    1,
+    2,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22,
+    22,
+    11,
+    29,
+    13,
+    11,
+    0,
+    3,
+    2,
+    3,
+    3,
+    24,
+    25,
+    37,
+    11,
+    12,
+    29
+   ],
+   "to_ascii": "19411945-yillar, 1990-1991-yillarda, 2122-noyabr",
+   "to_cyrillic": "1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр",
+   "to_latin_1995": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "to_latin_2026": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1217": {
+   "convert_from_cyrillic_to_cyrillic": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "convert_from_cyrillic_to_latin_1995": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "convert_from_cyrillic_to_latin_2026": "8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi",
+   "convert_from_latin_1995_to_cyrillic": "8-мартда, 9-майи, 31-декабргача, 15-июндаги",
+   "convert_from_latin_1995_to_latin_1995": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "convert_from_latin_1995_to_latin_2026": "8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi",
+   "convert_from_latin_2026_to_cyrillic": "8-мартда, 9-майи, 31-декабргача, 15-июндаги",
+   "convert_from_latin_2026_to_latin_1995": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "convert_from_latin_2026_to_latin_2026": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "fold_homoglyphs": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "is_cyrillic": false,
+   "normalize": "8 martda 9 mayi 31 dekabrgacha 15 iyundagi",
+   "normalize_apostrophes_ascii": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "normalize_apostrophes_unicode": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "8-",
+     null
+    ],
+    [
+     "martda",
+     "latin"
+    ],
+    [
+     ", 9-",
+     null
+    ],
+    [
+     "mayi",
+     "latin"
+    ],
+    [
+     ", 31-",
+     null
+    ],
+    [
+     "dekabrgacha",
+     "latin"
+    ],
+    [
+     ", 15-",
+     null
+    ],
+    [
+     "iyundagi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    9,
+    1109,
+    1097,
+    1114,
+    1116,
+    1100,
+    1097,
+    0,
+    10,
+    1109,
+    1097,
+    1121,
+    1105,
+    0,
+    4,
+    2,
+    1100,
+    1101,
+    1107,
+    1097,
+    1098,
+    1114,
+    1103,
+    1097,
+    1099,
+    1104,
+    1097,
+    0,
+    2,
+    6,
+    1105,
+    1121,
+    1117,
+    1110,
+    1100,
+    1097,
+    1103,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    9,
+    22,
+    11,
+    27,
+    29,
+    13,
+    11,
+    0,
+    10,
+    22,
+    11,
+    33,
+    18,
+    0,
+    4,
+    2,
+    13,
+    14,
+    20,
+    11,
+    12,
+    27,
+    16,
+    11,
+    38,
+    11,
+    0,
+    2,
+    6,
+    18,
+    33,
+    30,
+    23,
+    13,
+    11,
+    16,
+    18
+   ],
+   "sort_key_latin_2026": [
+    9,
+    23,
+    11,
+    29,
+    33,
+    13,
+    11,
+    0,
+    10,
+    23,
+    11,
+    37,
+    19,
+    0,
+    4,
+    2,
+    13,
+    14,
+    21,
+    11,
+    12,
+    29,
+    16,
+    11,
+    1099,
+    18,
+    11,
+    0,
+    2,
+    6,
+    19,
+    37,
+    34,
+    24,
+    13,
+    11,
+    16,
+    19
+   ],
+   "to_ascii": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "to_cyrillic": "8-мартда, 9-майи, 31-декабргача, 15-июндаги",
+   "to_latin_1995": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "to_latin_2026": "8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     21,
+     32,
+     "digraph",
+     "dekabrgaça"
+    ]
+   ]
+  },
+  "c1218": {
+   "convert_from_cyrillic_to_cyrillic": "1-YANVAR, 2026-YIL",
+   "convert_from_cyrillic_to_latin_1995": "1-YANVAR, 2026-YIL",
+   "convert_from_cyrillic_to_latin_2026": "1-YANVAR, 2026-YIL",
+   "convert_from_latin_1995_to_cyrillic": "1-ЯНВАР, 2026-ЙИЛ",
+   "convert_from_latin_1995_to_latin_1995": "1-YANVAR, 2026-YIL",
+   "convert_from_latin_1995_to_latin_2026": "1-YANVAR, 2026-YIL",
+   "convert_from_latin_2026_to_cyrillic": "1-ЯНВАР, 2026-ЙИЛ",
+   "convert_from_latin_2026_to_latin_1995": "1-YANVAR, 2026-YIL",
+   "convert_from_latin_2026_to_latin_2026": "1-YANVAR, 2026-YIL",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "1-YANVAR, 2026-YIL",
+   "fold_homoglyphs": "1-YANVAR, 2026-YIL",
+   "is_cyrillic": false,
+   "normalize": "1 yanvar 2026 yil",
+   "normalize_apostrophes_ascii": "1-YANVAR, 2026-YIL",
+   "normalize_apostrophes_unicode": "1-YANVAR, 2026-YIL",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "1-",
+     null
+    ],
+    [
+     "YANVAR",
+     "latin"
+    ],
+    [
+     ", 2026-",
+     null
+    ],
+    [
+     "YIL",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "1-YANVAR, 2026-YIL",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    1121,
+    1097,
+    1110,
+    1118,
+    1097,
+    1114,
+    0,
+    3,
+    1,
+    3,
+    7,
+    1121,
+    1105,
+    1108
+   ],
+   "sort_key_latin_1995": [
+    2,
+    33,
+    11,
+    23,
+    31,
+    11,
+    27,
+    0,
+    3,
+    1,
+    3,
+    7,
+    33,
+    18,
+    21
+   ],
+   "sort_key_latin_2026": [
+    2,
+    37,
+    11,
+    24,
+    35,
+    11,
+    29,
+    0,
+    3,
+    1,
+    3,
+    7,
+    37,
+    19,
+    22
+   ],
+   "to_ascii": "1-YANVAR, 2026-YIL",
+   "to_cyrillic": "1-ЯНВАР, 2026-ЙИЛ",
+   "to_latin_1995": "1-YANVAR, 2026-YIL",
+   "to_latin_2026": "1-YANVAR, 2026-YIL",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1219": {
+   "convert_from_cyrillic_to_cyrillic": "https://x.uz/1991-yil va 1991-yil",
+   "convert_from_cyrillic_to_latin_1995": "https://x.uz/1991-yil va 1991-yil",
+   "convert_from_cyrillic_to_latin_2026": "https://x.uz/1991-yil va 1991-yil",
+   "convert_from_latin_1995_to_cyrillic": "https://x.uz/1991-yil ва 1991-йил",
+   "convert_from_latin_1995_to_latin_1995": "https://x.uz/1991-yil va 1991-yil",
+   "convert_from_latin_1995_to_latin_2026": "https://x.uz/1991-yil va 1991-yil",
+   "convert_from_latin_2026_to_cyrillic": "https://x.uz/1991-yil ва 1991-йил",
+   "convert_from_latin_2026_to_latin_1995": "https://x.uz/1991-yil va 1991-yil",
+   "convert_from_latin_2026_to_latin_2026": "https://x.uz/1991-yil va 1991-yil",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "https://x.uz/1991-yil va 1991-yil",
+   "fold_homoglyphs": "https://x.uz/1991-yil va 1991-yil",
+   "is_cyrillic": false,
+   "normalize": "https x uz 1991 yil va 1991 yil",
+   "normalize_apostrophes_ascii": "https://x.uz/1991-yil va 1991-yil",
+   "normalize_apostrophes_unicode": "https://x.uz/1991-yil va 1991-yil",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "https",
+     "latin"
+    ],
+    [
+     "://",
+     null
+    ],
+    [
+     "x",
+     "latin"
+    ],
+    [
+     ".",
+     null
+    ],
+    [
+     "uz",
+     "latin"
+    ],
+    [
+     "/1991-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " 1991-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "https://x.uz/1991-yil",
+     "url"
+    ],
+    [
+     " va 1991-yil",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1104,
+    1116,
+    1116,
+    1112,
+    1115,
+    1120,
+    1117,
+    1122,
+    2,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108,
+    0,
+    1118,
+    1097,
+    0,
+    2,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108
+   ],
+   "sort_key_latin_1995": [
+    17,
+    29,
+    29,
+    25,
+    28,
+    32,
+    30,
+    34,
+    2,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21,
+    0,
+    31,
+    11,
+    0,
+    2,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21
+   ],
+   "sort_key_latin_2026": [
+    18,
+    33,
+    33,
+    27,
+    30,
+    36,
+    34,
+    38,
+    2,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22,
+    0,
+    35,
+    11,
+    0,
+    2,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22
+   ],
+   "to_ascii": "https://x.uz/1991-yil va 1991-yil",
+   "to_cyrillic": "https://x.uz/1991-yil ва 1991-йил",
+   "to_latin_1995": "https://x.uz/1991-yil va 1991-yil",
+   "to_latin_2026": "https://x.uz/1991-yil va 1991-yil",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1220": {
+   "convert_from_cyrillic_to_cyrillic": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "convert_from_cyrillic_to_latin_1995": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "convert_from_cyrillic_to_latin_2026": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "convert_from_latin_1995_to_cyrillic": "01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил",
+   "convert_from_latin_1995_to_latin_1995": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "convert_from_latin_1995_to_latin_2026": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "convert_from_latin_2026_to_cyrillic": "01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил",
+   "convert_from_latin_2026_to_latin_1995": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "convert_from_latin_2026_to_latin_2026": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "fold_homoglyphs": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "is_cyrillic": false,
+   "normalize": "01 sentabr 0991 yil 12345 yil 1991 yil no1991 yil",
+   "normalize_apostrophes_ascii": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "normalize_apostrophes_unicode": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "01-",
+     null
+    ],
+    [
+     "sentabr",
+     "latin"
+    ],
+    [
+     ", 0991-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     ", 12345-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     ", 1991  ",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     ", №1991-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1,
+    2,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114,
+    0,
+    1,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108,
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    1121,
+    1105,
+    1108,
+    0,
+    2,
+    10,
+    10,
+    2,
+    0,
+    1121,
+    1105,
+    1108,
+    0,
+    2,
+    10,
+    10,
+    2,
+    1121,
+    1105,
+    1108
+   ],
+   "sort_key_latin_1995": [
+    1,
+    2,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27,
+    0,
+    1,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21,
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    33,
+    18,
+    21,
+    0,
+    2,
+    10,
+    10,
+    2,
+    0,
+    33,
+    18,
+    21,
+    0,
+    2,
+    10,
+    10,
+    2,
+    33,
+    18,
+    21
+   ],
+   "sort_key_latin_2026": [
+    1,
+    2,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29,
+    0,
+    1,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22,
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    37,
+    19,
+    22,
+    0,
+    2,
+    10,
+    10,
+    2,
+    0,
+    37,
+    19,
+    22,
+    0,
+    2,
+    10,
+    10,
+    2,
+    37,
+    19,
+    22
+   ],
+   "to_ascii": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, No1991-yil",
+   "to_cyrillic": "01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил",
+   "to_latin_1995": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "to_latin_2026": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1221": {
+   "convert_from_cyrillic_to_cyrillic": "Toşkentda 2026-yil 1-sentabr",
+   "convert_from_cyrillic_to_latin_1995": "Toşkentda 2026-yil 1-sentabr",
+   "convert_from_cyrillic_to_latin_2026": "Toşkentda 2026-yil 1-sentabr",
+   "convert_from_latin_1995_to_cyrillic": "Тоşкентда 2026-йил 1-сентабр",
+   "convert_from_latin_1995_to_latin_1995": "Toşkentda 2026-yil 1-sentabr",
+   "convert_from_latin_1995_to_latin_2026": "Toşkentda 2026-yil 1-sentabr",
+   "convert_from_latin_2026_to_cyrillic": "Тошкентда 2026-йил 1-сентабр",
+   "convert_from_latin_2026_to_latin_1995": "Toshkentda 2026-yil 1-sentabr",
+   "convert_from_latin_2026_to_latin_2026": "Toşkentda 2026-yil 1-sentabr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_2026",
+   "fold_cyrillic": "Toşkentda 2026-yil 1-sentabr",
+   "fold_homoglyphs": "Toşkentda 2026-yil 1-sentabr",
+   "is_cyrillic": false,
+   "normalize": "toshkentda 2026 yil 1 sentabr",
+   "normalize_apostrophes_ascii": "Toşkentda 2026-yil 1-sentabr",
+   "normalize_apostrophes_unicode": "Toşkentda 2026-yil 1-sentabr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Toşkentda",
+     "latin_2026"
+    ],
+    [
+     " 2026-",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ],
+    [
+     " 1-",
+     null
+    ],
+    [
+     "sentabr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Toşkentda 2026-yil 1-sentabr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1116,
+    1111,
+    1351,
+    1107,
+    1101,
+    1110,
+    1116,
+    1100,
+    1097,
+    0,
+    3,
+    1,
+    3,
+    7,
+    1121,
+    1105,
+    1108,
+    0,
+    2,
+    1115,
+    1101,
+    1110,
+    1116,
+    1097,
+    1098,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    29,
+    24,
+    1351,
+    20,
+    14,
+    23,
+    29,
+    13,
+    11,
+    0,
+    3,
+    1,
+    3,
+    7,
+    33,
+    18,
+    21,
+    0,
+    2,
+    28,
+    14,
+    23,
+    29,
+    11,
+    12,
+    27
+   ],
+   "sort_key_latin_2026": [
+    33,
+    25,
+    31,
+    21,
+    14,
+    24,
+    33,
+    13,
+    11,
+    0,
+    3,
+    1,
+    3,
+    7,
+    37,
+    19,
+    22,
+    0,
+    2,
+    30,
+    14,
+    24,
+    33,
+    11,
+    12,
+    29
+   ],
+   "to_ascii": "Toshkentda 2026-yil 1-sentabr",
+   "to_cyrillic": "Тошкентда 2026-йил 1-сентабр",
+   "to_latin_1995": "Toshkentda 2026-yil 1-sentabr",
+   "to_latin_2026": "Toşkentda 2026-yil 1-sentabr",
+   "validate_cyrillic": [
+    [
+     0,
+     9,
+     "latin-2026-word",
+     "Тошкентда"
+    ]
+   ],
+   "validate_latin_1995": [
+    [
+     0,
+     9,
+     "latin-2026-word",
+     "Toshkentda"
+    ]
+   ],
+   "validate_latin_2026": []
+  },
+  "c1222": {
+   "convert_from_cyrillic_to_cyrillic": "марганец, ненец, шприц, кварц",
+   "convert_from_cyrillic_to_latin_1995": "marganets, nenets, shprits, kvars",
+   "convert_from_cyrillic_to_latin_2026": "marganets, nenets, şprits, kvars",
+   "convert_from_latin_1995_to_cyrillic": "марганец, ненец, шприц, кварц",
+   "convert_from_latin_1995_to_latin_1995": "марганец, ненец, шприц, кварц",
+   "convert_from_latin_1995_to_latin_2026": "марганец, ненец, шприц, кварц",
+   "convert_from_latin_2026_to_cyrillic": "марганец, ненец, шприц, кварц",
+   "convert_from_latin_2026_to_latin_1995": "марганец, ненец, шприц, кварц",
+   "convert_from_latin_2026_to_latin_2026": "марганец, ненец, шприц, кварц",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "marganets, nenets, shprits, kvarts",
+   "fold_homoglyphs": "марганец, ненец, шприц, кварц",
+   "is_cyrillic": true,
+   "normalize": "marganets nenets shprits kvars",
+   "normalize_apostrophes_ascii": "марганец, ненец, шприц, кварц",
+   "normalize_apostrophes_unicode": "марганец, ненец, шприц, кварц",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "марганец",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "ненец",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "шприц",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "кварц",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "марганец, ненец, шприц, кварц",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    24,
+    11,
+    28,
+    14,
+    11,
+    25,
+    16,
+    34,
+    0,
+    25,
+    16,
+    25,
+    16,
+    34,
+    0,
+    36,
+    27,
+    28,
+    20,
+    34,
+    0,
+    22,
+    13,
+    11,
+    28,
+    34
+   ],
+   "sort_key_latin_1995": [
+    2084,
+    2072,
+    2088,
+    2075,
+    2072,
+    2085,
+    2077,
+    2094,
+    0,
+    2085,
+    2077,
+    2085,
+    2077,
+    2094,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    0,
+    2082,
+    2074,
+    2072,
+    2088,
+    2094
+   ],
+   "sort_key_latin_2026": [
+    2084,
+    2072,
+    2088,
+    2075,
+    2072,
+    2085,
+    2077,
+    2094,
+    0,
+    2085,
+    2077,
+    2085,
+    2077,
+    2094,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    0,
+    2082,
+    2074,
+    2072,
+    2088,
+    2094
+   ],
+   "to_ascii": "marganets, nenets, shprits, kvars",
+   "to_cyrillic": "марганец, ненец, шприц, кварц",
+   "to_latin_1995": "marganets, nenets, shprits, kvars",
+   "to_latin_2026": "marganets, nenets, şprits, kvars",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "marganets"
+    ],
+    [
+     10,
+     15,
+     "cyrillic-word",
+     "nenets"
+    ],
+    [
+     17,
+     22,
+     "cyrillic-word",
+     "shprits"
+    ],
+    [
+     24,
+     29,
+     "cyrillic-word",
+     "kvars"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "marganets"
+    ],
+    [
+     10,
+     15,
+     "cyrillic-word",
+     "nenets"
+    ],
+    [
+     17,
+     22,
+     "cyrillic-word",
+     "şprits"
+    ],
+    [
+     24,
+     29,
+     "cyrillic-word",
+     "kvars"
+    ]
+   ]
+  },
+  "c1223": {
+   "convert_from_cyrillic_to_cyrillic": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "convert_from_cyrillic_to_latin_1995": "nenetslar, shpritsni, nenetslarning, shpritsdagi",
+   "convert_from_cyrillic_to_latin_2026": "nenetslar, şpritsni, nenetslarning, şpritsdagi",
+   "convert_from_latin_1995_to_cyrillic": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "convert_from_latin_1995_to_latin_1995": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "convert_from_latin_1995_to_latin_2026": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "convert_from_latin_2026_to_cyrillic": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "convert_from_latin_2026_to_latin_1995": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "convert_from_latin_2026_to_latin_2026": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "nenetslar, shpritsni, nenetslarning, shpritsdagi",
+   "fold_homoglyphs": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "is_cyrillic": true,
+   "normalize": "nenetslar shpritsni nenetslarning shpritsdagi",
+   "normalize_apostrophes_ascii": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "normalize_apostrophes_unicode": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "ненецлар",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "шприцни",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "ненецларнинг",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "шприцдаги",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "ненецлар, шприцни, ненецларнинг, шприцдаги",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    25,
+    16,
+    25,
+    16,
+    34,
+    23,
+    11,
+    28,
+    0,
+    36,
+    27,
+    28,
+    20,
+    34,
+    25,
+    20,
+    0,
+    25,
+    16,
+    25,
+    16,
+    34,
+    23,
+    11,
+    28,
+    25,
+    20,
+    25,
+    14,
+    0,
+    36,
+    27,
+    28,
+    20,
+    34,
+    15,
+    11,
+    14,
+    20
+   ],
+   "sort_key_latin_1995": [
+    2085,
+    2077,
+    2085,
+    2077,
+    2094,
+    2083,
+    2072,
+    2088,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    2085,
+    2080,
+    0,
+    2085,
+    2077,
+    2085,
+    2077,
+    2094,
+    2083,
+    2072,
+    2088,
+    2085,
+    2080,
+    2085,
+    2075,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    2076,
+    2072,
+    2075,
+    2080
+   ],
+   "sort_key_latin_2026": [
+    2085,
+    2077,
+    2085,
+    2077,
+    2094,
+    2083,
+    2072,
+    2088,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    2085,
+    2080,
+    0,
+    2085,
+    2077,
+    2085,
+    2077,
+    2094,
+    2083,
+    2072,
+    2088,
+    2085,
+    2080,
+    2085,
+    2075,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    2076,
+    2072,
+    2075,
+    2080
+   ],
+   "to_ascii": "nenetslar, shpritsni, nenetslarning, shpritsdagi",
+   "to_cyrillic": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "to_latin_1995": "nenetslar, shpritsni, nenetslarning, shpritsdagi",
+   "to_latin_2026": "nenetslar, şpritsni, nenetslarning, şpritsdagi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "nenetslar"
+    ],
+    [
+     10,
+     17,
+     "cyrillic-word",
+     "shpritsni"
+    ],
+    [
+     19,
+     31,
+     "cyrillic-word",
+     "nenetslarning"
+    ],
+    [
+     33,
+     42,
+     "cyrillic-word",
+     "shpritsdagi"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "nenetslar"
+    ],
+    [
+     10,
+     17,
+     "cyrillic-word",
+     "şpritsni"
+    ],
+    [
+     19,
+     31,
+     "cyrillic-word",
+     "nenetslarning"
+    ],
+    [
+     33,
+     42,
+     "cyrillic-word",
+     "şpritsdagi"
+    ]
+   ]
+  },
+  "c1224": {
+   "convert_from_cyrillic_to_cyrillic": "лицей, боцман, плацдарм, пицца, шприци",
+   "convert_from_cyrillic_to_latin_1995": "litsey, botsman, platsdarm, pitssa, shpritsi",
+   "convert_from_cyrillic_to_latin_2026": "litsey, botsman, platsdarm, pitssa, şpritsi",
+   "convert_from_latin_1995_to_cyrillic": "лицей, боцман, плацдарм, пицца, шприци",
+   "convert_from_latin_1995_to_latin_1995": "лицей, боцман, плацдарм, пицца, шприци",
+   "convert_from_latin_1995_to_latin_2026": "лицей, боцман, плацдарм, пицца, шприци",
+   "convert_from_latin_2026_to_cyrillic": "лицей, боцман, плацдарм, пицца, шприци",
+   "convert_from_latin_2026_to_latin_1995": "лицей, боцман, плацдарм, пицца, шприци",
+   "convert_from_latin_2026_to_latin_2026": "лицей, боцман, плацдарм, пицца, шприци",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "litsey, botsman, platsdarm, pitstsa, shpritsi",
+   "fold_homoglyphs": "лицей, боцман, плацдарм, пицца, шприци",
+   "is_cyrillic": true,
+   "normalize": "litsey botsman platsdarm pitssa shpritsi",
+   "normalize_apostrophes_ascii": "лицей, боцман, плацдарм, пицца, шприци",
+   "normalize_apostrophes_unicode": "лицей, боцман, плацдарм, пицца, шприци",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "лицей",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "боцман",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "плацдарм",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "пицца",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "шприци",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "лицей, боцман, плацдарм, пицца, шприци",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    23,
+    20,
+    34,
+    16,
+    21,
+    0,
+    12,
+    26,
+    34,
+    24,
+    11,
+    25,
+    0,
+    27,
+    23,
+    11,
+    34,
+    15,
+    11,
+    28,
+    24,
+    0,
+    27,
+    20,
+    34,
+    34,
+    11,
+    0,
+    36,
+    27,
+    28,
+    20,
+    34,
+    20
+   ],
+   "sort_key_latin_1995": [
+    2083,
+    2080,
+    2094,
+    2077,
+    2081,
+    0,
+    2073,
+    2086,
+    2094,
+    2084,
+    2072,
+    2085,
+    0,
+    2087,
+    2083,
+    2072,
+    2094,
+    2076,
+    2072,
+    2088,
+    2084,
+    0,
+    2087,
+    2080,
+    2094,
+    2094,
+    2072,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    2080
+   ],
+   "sort_key_latin_2026": [
+    2083,
+    2080,
+    2094,
+    2077,
+    2081,
+    0,
+    2073,
+    2086,
+    2094,
+    2084,
+    2072,
+    2085,
+    0,
+    2087,
+    2083,
+    2072,
+    2094,
+    2076,
+    2072,
+    2088,
+    2084,
+    0,
+    2087,
+    2080,
+    2094,
+    2094,
+    2072,
+    0,
+    2096,
+    2087,
+    2088,
+    2080,
+    2094,
+    2080
+   ],
+   "to_ascii": "litsey, botsman, platsdarm, pitssa, shpritsi",
+   "to_cyrillic": "лицей, боцман, плацдарм, пицца, шприци",
+   "to_latin_1995": "litsey, botsman, platsdarm, pitssa, shpritsi",
+   "to_latin_2026": "litsey, botsman, platsdarm, pitssa, şpritsi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     0,
+     5,
+     "cyrillic-word",
+     "litsey"
+    ],
+    [
+     7,
+     13,
+     "cyrillic-word",
+     "botsman"
+    ],
+    [
+     15,
+     23,
+     "cyrillic-word",
+     "platsdarm"
+    ],
+    [
+     25,
+     30,
+     "cyrillic-word",
+     "pitssa"
+    ],
+    [
+     32,
+     38,
+     "cyrillic-word",
+     "shpritsi"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     0,
+     5,
+     "cyrillic-word",
+     "litsey"
+    ],
+    [
+     7,
+     13,
+     "cyrillic-word",
+     "botsman"
+    ],
+    [
+     15,
+     23,
+     "cyrillic-word",
+     "platsdarm"
+    ],
+    [
+     25,
+     30,
+     "cyrillic-word",
+     "pitssa"
+    ],
+    [
+     32,
+     38,
+     "cyrillic-word",
+     "şpritsi"
+    ]
+   ]
+  },
+  "c1225": {
+   "convert_from_cyrillic_to_cyrillic": "МАРГАНЕЦ, Марганец",
+   "convert_from_cyrillic_to_latin_1995": "MARGANETS, Marganets",
+   "convert_from_cyrillic_to_latin_2026": "MARGANETS, Marganets",
+   "convert_from_latin_1995_to_cyrillic": "МАРГАНЕЦ, Марганец",
+   "convert_from_latin_1995_to_latin_1995": "МАРГАНЕЦ, Марганец",
+   "convert_from_latin_1995_to_latin_2026": "МАРГАНЕЦ, Марганец",
+   "convert_from_latin_2026_to_cyrillic": "МАРГАНЕЦ, Марганец",
+   "convert_from_latin_2026_to_latin_1995": "МАРГАНЕЦ, Марганец",
+   "convert_from_latin_2026_to_latin_2026": "МАРГАНЕЦ, Марганец",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": ", arganets",
+   "fold_homoglyphs": "МАРГАНЕЦ, Марганец",
+   "is_cyrillic": true,
+   "normalize": "marganets marganets",
+   "normalize_apostrophes_ascii": "МАРГАНЕЦ, Марганец",
+   "normalize_apostrophes_unicode": "МАРГАНЕЦ, Марганец",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "МАРГАНЕЦ",
+     "cyrillic"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "Марганец",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "МАРГАНЕЦ, Марганец",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    24,
+    11,
+    28,
+    14,
+    11,
+    25,
+    16,
+    34,
+    0,
+    24,
+    11,
+    28,
+    14,
+    11,
+    25,
+    16,
+    34
+   ],
+   "sort_key_latin_1995": [
+    2084,
+    2072,
+    2088,
+    2075,
+    2072,
+    2085,
+    2077,
+    2094,
+    0,
+    2084,
+    2072,
+    2088,
+    2075,
+    2072,
+    2085,
+    2077,
+    2094
+   ],
+   "sort_key_latin_2026": [
+    2084,
+    2072,
+    2088,
+    2075,
+    2072,
+    2085,
+    2077,
+    2094,
+    0,
+    2084,
+    2072,
+    2088,
+    2075,
+    2072,
+    2085,
+    2077,
+    2094
+   ],
+   "to_ascii": "MARGANETS, Marganets",
+   "to_cyrillic": "МАРГАНЕЦ, Марганец",
+   "to_latin_1995": "MARGANETS, Marganets",
+   "to_latin_2026": "MARGANETS, Marganets",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "MARGANETS"
+    ],
+    [
+     10,
+     18,
+     "cyrillic-word",
+     "Marganets"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     0,
+     8,
+     "cyrillic-word",
+     "MARGANETS"
+    ],
+    [
+     10,
+     18,
+     "cyrillic-word",
+     "Marganets"
+    ]
+   ]
+  },
+  "c1226": {
+   "convert_from_cyrillic_to_cyrillic": "marganes, neneslar, shpris",
+   "convert_from_cyrillic_to_latin_1995": "marganes, neneslar, shpris",
+   "convert_from_cyrillic_to_latin_2026": "marganes, neneslar, şpris",
+   "convert_from_latin_1995_to_cyrillic": "марганес, ненеслар, шприс",
+   "convert_from_latin_1995_to_latin_1995": "marganes, neneslar, shpris",
+   "convert_from_latin_1995_to_latin_2026": "marganes, neneslar, şpris",
+   "convert_from_latin_2026_to_cyrillic": "марганес, ненеслар, сҳприс",
+   "convert_from_latin_2026_to_latin_1995": "marganes, neneslar, sʼhpris",
+   "convert_from_latin_2026_to_latin_2026": "marganes, neneslar, shpris",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "marganes, neneslar, shpris",
+   "fold_homoglyphs": "marganes, neneslar, shpris",
+   "is_cyrillic": false,
+   "normalize": "marganes neneslar shpris",
+   "normalize_apostrophes_ascii": "marganes, neneslar, shpris",
+   "normalize_apostrophes_unicode": "marganes, neneslar, shpris",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "marganes",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "neneslar",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "shpris",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "marganes, neneslar, shpris",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1109,
+    1097,
+    1114,
+    1103,
+    1097,
+    1110,
+    1101,
+    1115,
+    0,
+    1110,
+    1101,
+    1110,
+    1101,
+    1115,
+    1108,
+    1097,
+    1114,
+    0,
+    1115,
+    1104,
+    1112,
+    1114,
+    1105,
+    1115
+   ],
+   "sort_key_latin_1995": [
+    22,
+    11,
+    27,
+    16,
+    11,
+    23,
+    14,
+    28,
+    0,
+    23,
+    14,
+    23,
+    14,
+    28,
+    21,
+    11,
+    27,
+    0,
+    37,
+    25,
+    27,
+    18,
+    28
+   ],
+   "sort_key_latin_2026": [
+    23,
+    11,
+    29,
+    16,
+    11,
+    24,
+    14,
+    30,
+    0,
+    24,
+    14,
+    24,
+    14,
+    30,
+    22,
+    11,
+    29,
+    0,
+    30,
+    18,
+    27,
+    29,
+    19,
+    30
+   ],
+   "to_ascii": "marganes, neneslar, shpris",
+   "to_cyrillic": "марганес, ненеслар, шприс",
+   "to_latin_1995": "marganes, neneslar, shpris",
+   "to_latin_2026": "marganes, neneslar, şpris",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     20,
+     26,
+     "digraph",
+     "şpris"
     ]
    ]
   }

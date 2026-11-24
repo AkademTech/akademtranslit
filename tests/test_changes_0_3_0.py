@@ -463,7 +463,9 @@ def test_to_latin_gives_the_same_with_a_tag_or_a_name():
 
 
 def test_rules_version_has_the_documented_shape():
-    assert re.fullmatch(r"[a-z0-9-]+\+project-\d{4}\.\d{2}", RULES_VERSION)
+    # The year and the month, and from 0.3.2 the release's number in the month
+    # when it is not the first in that month to change the output (2026.11.2).
+    assert re.fullmatch(r"[a-z0-9-]+\+project-\d{4}\.\d{2}(?:\.[2-9]|\.[1-9][0-9]+)?", RULES_VERSION)
     assert RULES_VERSION.startswith("uz-2026-alphabet+")
 
 
