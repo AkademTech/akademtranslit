@@ -681,8 +681,8 @@ def month_soft_sign(word: str, cyrillic: str) -> str:
 # A number with no letter or digit before it, and the one hyphen (U+002D, or
 # U+2011 NON-BREAKING HYPHEN) or the one space (U+0020, or U+00A0 NO-BREAK
 # SPACE) after it. [^\W_] is a letter or a digit.
-_NUMBER_HYPHEN_RE = re.compile(r"(?<![^\W_])([0-9]+)([-‑])")
-_NUMBER_SPACE_RE = re.compile(r"(?<![^\W_])([0-9]+)([  ])")
+_NUMBER_HYPHEN_RE = re.compile(r"(?<![^\W_])([0-9]+)([-\N{NON-BREAKING HYPHEN}])")
+_NUMBER_SPACE_RE = re.compile(r"(?<![^\W_])([0-9]+)([ \N{NO-BREAK SPACE}])")
 
 # The days of a month as they are written: 1 to 31, without a leading zero.
 _DAYS = frozenset(str(day) for day in range(1, 32))
@@ -744,7 +744,7 @@ def _cyrillic_date(match) -> str:
     day = number in _DAYS and _CYRILLIC_MONTH_RE.fullmatch(word) is not None
     if not (year or day):
         return match.group()
-    return number + (" " if match.group(2) == "-" else " ")
+    return number + (" " if match.group(2) == "-" else "\N{NO-BREAK SPACE}")
 
 
 def _latin_date(match) -> str:
@@ -753,4 +753,4 @@ def _latin_date(match) -> str:
     day = number in _DAYS and _LATIN_MONTH_RE.fullmatch(word) is not None
     if not (year or day):
         return match.group()
-    return number + ("-" if match.group(2) == " " else "‑")
+    return number + ("-" if match.group(2) == " " else "\N{NON-BREAKING HYPHEN}")

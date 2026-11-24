@@ -201,7 +201,7 @@ const DATES = [
   ["21–22-noyabr", "21–22-noyabr", "21–22 ноябрь"],
   ["1-YANVAR, 2026-YIL", "1-YANVAR, 2026-YIL", "1 ЯНВАРЬ, 2026 ЙИЛ"],
   // U+2011 NON-BREAKING HYPHEN and U+00A0 NO-BREAK SPACE stay unbreakable.
-  ["1991‑yil 1‑sentabr", "1991‑yil 1‑sentabr", "1991 йил 1 сентябрь"],
+  ["1991\u{2011}yil 1\u{2011}sentabr", "1991\u{2011}yil 1\u{2011}sentabr", "1991\u{A0}йил 1\u{A0}сентябрь"],
 ];
 
 test("dates: Latin to Cyrillic", () => {
@@ -224,10 +224,10 @@ test("dates: Cyrillic to Latin", () => {
 test("dates: in their own orthography", () => {
   const cases = [
     ["1991-йилнинг 1-сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"],
-    ["1991‑йил 1‑сентябрь", CYRILLIC, "1991 йил 1 сентябрь"],
+    ["1991\u{2011}йил 1\u{2011}сентябрь", CYRILLIC, "1991\u{A0}йил 1\u{A0}сентябрь"],
     ["1991 йилнинг 1 сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"],
     ["1956 yil 22 sentabr", LATIN_1995, "1956-yil 22-sentabr"],
-    ["1956 yil 22 sentabr", LATIN_1995, "1956‑yil 22‑sentabr"],
+    ["1956\u{A0}yil 22\u{A0}sentabr", LATIN_1995, "1956\u{2011}yil 22\u{2011}sentabr"],
     ["2026 yil 1 iyun", LATIN_2026, "2026-yil 1-iyun"],
     ["2026-yil 1-iyun", LATIN_2026, "2026-yil 1-iyun"],
   ];

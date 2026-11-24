@@ -451,8 +451,8 @@ export function monthSoftSign(word, cyrillic) {
 
 // A number with no letter or digit before it (Python's [^\W_]), and the one
 // hyphen (U+002D or U+2011) or the one space (U+0020 or U+00A0) after it.
-const NUMBER_HYPHEN_RE = /(?<![\p{L}\p{N}])([0-9]+)([-‑])/gu;
-const NUMBER_SPACE_RE = /(?<![\p{L}\p{N}])([0-9]+)([  ])/gu;
+const NUMBER_HYPHEN_RE = /(?<![\p{L}\p{N}])([0-9]+)([-\u{2011}])/gu;
+const NUMBER_SPACE_RE = /(?<![\p{L}\p{N}])([0-9]+)([ \u{A0}])/gu;
 const WORD_AT_RE = new RegExp(WORD_SOURCE, "uy");
 
 const DAYS = new Set(Array.from({ length: 31 }, (_, k) => String(k + 1)));
@@ -488,7 +488,7 @@ export function dates(text, target) {
       const year = number.length >= 3 && number.length <= 4 && number[0] !== "0" && word.startsWith("йил");
       const day = DAYS.has(number) && CYRILLIC_MONTH_RE.test(word);
       if (!(year || day)) return all;
-      return number + (hyphen === "-" ? " " : " ");
+      return number + (hyphen === "-" ? " " : "\u{A0}");
     });
   }
   return text.replace(NUMBER_SPACE_RE, (all, number, space, offset) => {
@@ -496,6 +496,6 @@ export function dates(text, target) {
     const year = number.length === 4 && Number(number) >= 1000 && Number(number) <= 2099 && word.startsWith("yil");
     const day = DAYS.has(number) && LATIN_MONTH_RE.test(word);
     if (!(year || day)) return all;
-    return number + (space === " " ? "-" : "‑");
+    return number + (space === " " ? "-" : "\u{2011}");
   });
 }
