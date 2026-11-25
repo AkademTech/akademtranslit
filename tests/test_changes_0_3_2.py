@@ -917,6 +917,27 @@ NEW_INPUTS = {
     "c1231": ("X", "roman", "latin_1995", ("Х", None, None)),
     "c1232": ("2026 yil", "date", "latin_1995", ("2026 йил", None, None)),
     "c1233": ("1991-йил", "date", "cyrillic", (None, "1991-yil", "1991-yil")),
+    # 0.3.2c: one letter is I, V or X; harf and tovush; a hyphen; series; more counted words.
+    "c1234": ("V–VI asrlar", "roman", "latin_1995", ("V–VI асрлар", None, None)),
+    "c1235": ("X–XII asrlarda", "roman", "latin_1995", ("X–XII асрларда", None, None)),
+    "c1236": ("I-II kurs talabalari", "roman", "latin_1995", ("I-II курс талабалари", None, None)),
+    "c1237": ("I, II va III boblar", "roman", "latin_1995", ("I, II ва III боблар", None, None)),
+    "c1238": ("I va II jahon urushlari", "roman", "latin_1995",
+              ("I ва II жаҳон урушлари", None, "I va II jahon uruşlari")),
+    "c1239": ("V va X harflari", "roman", "latin_1995", ("В ва Х ҳарфлари", None, None)),
+    "c1240": ("Lotin V harfi", "roman", "latin_1995", ("Лотин В ҳарфи", None, None)),
+    "c1241": ("D guruhida, M harfi", "roman", "latin_1995", ("Д гуруҳида, М ҳарфи", None, None)),
+    "c1242": ("V-asr, I-jahon urushi", "roman", "latin_1995", ("V-аср, I-жаҳон уруши", None, "V-asr, I-jahon uruşi")),
+    "c1243": ("I kvartal, I semestr, I smenada", "roman", "latin_1995", ("I квартал, I семестр, I сменада", None, None)),
+    "c1244": ("I oʻrinni egalladi", "roman", "latin_1995", ("I ўринни эгаллади", None, "I örinni egalladi")),
+    "c1245": ("XX asrning I yarmi", "roman", "latin_1995", ("XX асрнинг I ярми", None, None)),
+    "c1246": ("I Xalqaro ilmiy-amaliy konferensiya", "roman", "latin_1995",
+              ("I Халқаро илмий-амалий конференсия", None, None)),
+    "c1247": ("I. Karimov va V. Ivanov", "roman", "latin_1995", ("И. Каримов ва В. Иванов", None, None)),
+    "c1248": ("A, B, C va D toifalar", "roman", "latin_1995", ("А, Б, C ва Д тоифалар", None, None)),
+    "c1249": ("V va X", "roman", "latin_1995", ("В ва Х", None, None)),
+    "c1250": ("V–VI asrlar, I bölim, I çorak", "roman", "latin_2026",
+              ("V–VI асрлар, I бўлим, I чорак", "V–VI asrlar, I boʻlim, I chorak", None)),
 }
 
 

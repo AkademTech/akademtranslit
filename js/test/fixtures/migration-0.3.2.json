@@ -2,7 +2,7 @@
  "schema": "akademtranslit-js-fixture-migration/1",
  "library_version": "0.3.2",
  "rules_version": "uz-2026-alphabet+project-2026.11.2",
- "inputs_sha256": "b39b82103b3862f090df10aac5d21a872e3e296eb826cf580fb54f31f0c24e55",
+ "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
  "made_by": "js/tools/make-fixtures.py",
  "results": {
   "c0001": {
@@ -35288,6 +35288,372 @@
      ]
     ],
     "result": "1991-йил"
+   }
+  },
+  "c1234": {
+   "protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V–VI asrlar"
+   },
+   "no_protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V–VI asrlar"
+   }
+  },
+  "c1235": {
+   "protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "X–XII asrlarda"
+   },
+   "no_protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "X–XII asrlarda"
+   }
+  },
+  "c1236": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I-II kurs talabalari"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I-II kurs talabalari"
+   }
+  },
+  "c1237": {
+   "protect": {
+    "words": 5,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I, II va III boblar"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I, II va III boblar"
+   }
+  },
+  "c1238": {
+   "protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I va II jahon uruşlari"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I va II jahon uruşlari"
+   }
+  },
+  "c1239": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V va X harflari"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V va X harflari"
+   }
+  },
+  "c1240": {
+   "protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Lotin V harfi"
+   },
+   "no_protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Lotin V harfi"
+   }
+  },
+  "c1241": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "D guruhida, M harfi"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "D guruhida, M harfi"
+   }
+  },
+  "c1242": {
+   "protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V-asr, I-jahon uruşi"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V-asr, I-jahon uruşi"
+   }
+  },
+  "c1243": {
+   "protect": {
+    "words": 6,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I kvartal, I semestr, I smenada"
+   },
+   "no_protect": {
+    "words": 6,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I kvartal, I semestr, I smenada"
+   }
+  },
+  "c1244": {
+   "protect": {
+    "words": 3,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I örinni egalladi"
+   },
+   "no_protect": {
+    "words": 3,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I örinni egalladi"
+   }
+  },
+  "c1245": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "XX asrning I yarmi"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "XX asrning I yarmi"
+   }
+  },
+  "c1246": {
+   "protect": {
+    "words": 5,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I Xalqaro ilmiy-amaliy konferensiya"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I Xalqaro ilmiy-amaliy konferensiya"
+   }
+  },
+  "c1247": {
+   "protect": {
+    "words": 5,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I. Karimov va V. Ivanov"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I. Karimov va V. Ivanov"
+   }
+  },
+  "c1248": {
+   "protect": {
+    "words": 6,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "A, B, C va D toifalar"
+   },
+   "no_protect": {
+    "words": 6,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "A, B, C va D toifalar"
+   }
+  },
+  "c1249": {
+   "protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V va X"
+   },
+   "no_protect": {
+    "words": 3,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V va X"
+   }
+  },
+  "c1250": {
+   "protect": {
+    "words": 7,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": false,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [
+     [
+      15,
+      20,
+      "latin-2026-word",
+      "boʻlim"
+     ],
+     [
+      24,
+      29,
+      "latin-2026-word",
+      "chorak"
+     ]
+    ],
+    "result": "V–VI asrlar, I bölim, I çorak"
+   },
+   "no_protect": {
+    "words": 7,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": false,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [
+     [
+      15,
+      20,
+      "latin-2026-word",
+      "boʻlim"
+     ],
+     [
+      24,
+      29,
+      "latin-2026-word",
+      "chorak"
+     ]
+    ],
+    "result": "V–VI asrlar, I bölim, I çorak"
    }
   }
  }

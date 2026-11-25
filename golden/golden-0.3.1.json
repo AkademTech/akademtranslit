@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "b39b82103b3862f090df10aac5d21a872e3e296eb826cf580fb54f31f0c24e55",
+ "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
  "library_version": "0.3.1",
  "results": {
   "c0001": {
@@ -98714,6 +98714,2238 @@
      "yil"
     ]
    ]
+  },
+  "c1234": {
+   "convert_from_cyrillic_to_cyrillic": "V–VI asrlar",
+   "convert_from_cyrillic_to_latin_1995": "V–VI asrlar",
+   "convert_from_cyrillic_to_latin_2026": "V–VI asrlar",
+   "convert_from_latin_1995_to_cyrillic": "В–ВИ асрлар",
+   "convert_from_latin_1995_to_latin_1995": "V–VI asrlar",
+   "convert_from_latin_1995_to_latin_2026": "V–VI asrlar",
+   "convert_from_latin_2026_to_cyrillic": "В–ВИ асрлар",
+   "convert_from_latin_2026_to_latin_1995": "V–VI asrlar",
+   "convert_from_latin_2026_to_latin_2026": "V–VI asrlar",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V–VI asrlar",
+   "fold_homoglyphs": "V–VI asrlar",
+   "is_cyrillic": false,
+   "normalize": "v vi asrlar",
+   "normalize_apostrophes_ascii": "V–VI asrlar",
+   "normalize_apostrophes_unicode": "V–VI asrlar",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     "–",
+     null
+    ],
+    [
+     "VI",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asrlar",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V–VI asrlar",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    1118,
+    1105,
+    0,
+    1097,
+    1115,
+    1114,
+    1108,
+    1097,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    31,
+    31,
+    18,
+    0,
+    11,
+    28,
+    27,
+    21,
+    11,
+    27
+   ],
+   "sort_key_latin_2026": [
+    35,
+    35,
+    19,
+    0,
+    11,
+    30,
+    29,
+    22,
+    11,
+    29
+   ],
+   "to_ascii": "VVI asrlar",
+   "to_cyrillic": "В–ВИ асрлар",
+   "to_latin_1995": "V–VI asrlar",
+   "to_latin_2026": "V–VI asrlar",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1235": {
+   "convert_from_cyrillic_to_cyrillic": "X–XII asrlarda",
+   "convert_from_cyrillic_to_latin_1995": "X–XII asrlarda",
+   "convert_from_cyrillic_to_latin_2026": "X–XII asrlarda",
+   "convert_from_latin_1995_to_cyrillic": "Х–ХИИ асрларда",
+   "convert_from_latin_1995_to_latin_1995": "X–XII asrlarda",
+   "convert_from_latin_1995_to_latin_2026": "X–XII asrlarda",
+   "convert_from_latin_2026_to_cyrillic": "Х–ХИИ асрларда",
+   "convert_from_latin_2026_to_latin_1995": "X–XII asrlarda",
+   "convert_from_latin_2026_to_latin_2026": "X–XII asrlarda",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "X–XII asrlarda",
+   "fold_homoglyphs": "X–XII asrlarda",
+   "is_cyrillic": false,
+   "normalize": "x xii asrlarda",
+   "normalize_apostrophes_ascii": "X–XII asrlarda",
+   "normalize_apostrophes_unicode": "X–XII asrlarda",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "X",
+     "latin"
+    ],
+    [
+     "–",
+     null
+    ],
+    [
+     "XII",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asrlarda",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "X–XII asrlarda",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120,
+    1120,
+    1105,
+    1105,
+    0,
+    1097,
+    1115,
+    1114,
+    1108,
+    1097,
+    1114,
+    1100,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    32,
+    32,
+    18,
+    18,
+    0,
+    11,
+    28,
+    27,
+    21,
+    11,
+    27,
+    13,
+    11
+   ],
+   "sort_key_latin_2026": [
+    36,
+    36,
+    19,
+    19,
+    0,
+    11,
+    30,
+    29,
+    22,
+    11,
+    29,
+    13,
+    11
+   ],
+   "to_ascii": "XXII asrlarda",
+   "to_cyrillic": "Х–ХИИ асрларда",
+   "to_latin_1995": "X–XII asrlarda",
+   "to_latin_2026": "X–XII asrlarda",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1236": {
+   "convert_from_cyrillic_to_cyrillic": "I-II kurs talabalari",
+   "convert_from_cyrillic_to_latin_1995": "I-II kurs talabalari",
+   "convert_from_cyrillic_to_latin_2026": "I-II kurs talabalari",
+   "convert_from_latin_1995_to_cyrillic": "И-ИИ курс талабалари",
+   "convert_from_latin_1995_to_latin_1995": "I-II kurs talabalari",
+   "convert_from_latin_1995_to_latin_2026": "I-II kurs talabalari",
+   "convert_from_latin_2026_to_cyrillic": "И-ИИ курс талабалари",
+   "convert_from_latin_2026_to_latin_1995": "I-II kurs talabalari",
+   "convert_from_latin_2026_to_latin_2026": "I-II kurs talabalari",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I-II kurs talabalari",
+   "fold_homoglyphs": "I-II kurs talabalari",
+   "is_cyrillic": false,
+   "normalize": "i ii kurs talabalari",
+   "normalize_apostrophes_ascii": "I-II kurs talabalari",
+   "normalize_apostrophes_unicode": "I-II kurs talabalari",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     "-",
+     null
+    ],
+    [
+     "II",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "kurs",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "talabalari",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I-II kurs talabalari",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    1105,
+    1105,
+    0,
+    1107,
+    1117,
+    1114,
+    1115,
+    0,
+    1116,
+    1097,
+    1108,
+    1097,
+    1098,
+    1097,
+    1108,
+    1097,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    18,
+    18,
+    18,
+    0,
+    20,
+    30,
+    27,
+    28,
+    0,
+    29,
+    11,
+    21,
+    11,
+    12,
+    11,
+    21,
+    11,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    19,
+    19,
+    19,
+    0,
+    21,
+    34,
+    29,
+    30,
+    0,
+    33,
+    11,
+    22,
+    11,
+    12,
+    11,
+    22,
+    11,
+    29,
+    19
+   ],
+   "to_ascii": "I-II kurs talabalari",
+   "to_cyrillic": "И-ИИ курс талабалари",
+   "to_latin_1995": "I-II kurs talabalari",
+   "to_latin_2026": "I-II kurs talabalari",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1237": {
+   "convert_from_cyrillic_to_cyrillic": "I, II va III boblar",
+   "convert_from_cyrillic_to_latin_1995": "I, II va III boblar",
+   "convert_from_cyrillic_to_latin_2026": "I, II va III boblar",
+   "convert_from_latin_1995_to_cyrillic": "И, ИИ ва ИИИ боблар",
+   "convert_from_latin_1995_to_latin_1995": "I, II va III boblar",
+   "convert_from_latin_1995_to_latin_2026": "I, II va III boblar",
+   "convert_from_latin_2026_to_cyrillic": "И, ИИ ва ИИИ боблар",
+   "convert_from_latin_2026_to_latin_1995": "I, II va III boblar",
+   "convert_from_latin_2026_to_latin_2026": "I, II va III boblar",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I, II va III boblar",
+   "fold_homoglyphs": "I, II va III boblar",
+   "is_cyrillic": false,
+   "normalize": "i ii va iii boblar",
+   "normalize_apostrophes_ascii": "I, II va III boblar",
+   "normalize_apostrophes_unicode": "I, II va III boblar",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "II",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "III",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "boblar",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I, II va III boblar",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1105,
+    1105,
+    0,
+    1118,
+    1097,
+    0,
+    1105,
+    1105,
+    1105,
+    0,
+    1098,
+    1111,
+    1098,
+    1108,
+    1097,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    18,
+    18,
+    0,
+    31,
+    11,
+    0,
+    18,
+    18,
+    18,
+    0,
+    12,
+    24,
+    12,
+    21,
+    11,
+    27
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    19,
+    19,
+    0,
+    35,
+    11,
+    0,
+    19,
+    19,
+    19,
+    0,
+    12,
+    25,
+    12,
+    22,
+    11,
+    29
+   ],
+   "to_ascii": "I, II va III boblar",
+   "to_cyrillic": "И, ИИ ва ИИИ боблар",
+   "to_latin_1995": "I, II va III boblar",
+   "to_latin_2026": "I, II va III boblar",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1238": {
+   "convert_from_cyrillic_to_cyrillic": "I va II jahon urushlari",
+   "convert_from_cyrillic_to_latin_1995": "I va II jahon urushlari",
+   "convert_from_cyrillic_to_latin_2026": "I va II jahon uruşlari",
+   "convert_from_latin_1995_to_cyrillic": "И ва ИИ жаҳон урушлари",
+   "convert_from_latin_1995_to_latin_1995": "I va II jahon urushlari",
+   "convert_from_latin_1995_to_latin_2026": "I va II jahon uruşlari",
+   "convert_from_latin_2026_to_cyrillic": "И ва ИИ жаҳон урусҳлари",
+   "convert_from_latin_2026_to_latin_1995": "I va II jahon urusʼhlari",
+   "convert_from_latin_2026_to_latin_2026": "I va II jahon urushlari",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I va II jahon urushlari",
+   "fold_homoglyphs": "I va II jahon urushlari",
+   "is_cyrillic": false,
+   "normalize": "i va ii jahon urushlari",
+   "normalize_apostrophes_ascii": "I va II jahon urushlari",
+   "normalize_apostrophes_unicode": "I va II jahon urushlari",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "II",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "jahon",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "urushlari",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I va II jahon urushlari",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1118,
+    1097,
+    0,
+    1105,
+    1105,
+    0,
+    1106,
+    1097,
+    1104,
+    1111,
+    1110,
+    0,
+    1117,
+    1114,
+    1117,
+    1115,
+    1104,
+    1108,
+    1097,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    31,
+    11,
+    0,
+    18,
+    18,
+    0,
+    19,
+    11,
+    17,
+    24,
+    23,
+    0,
+    30,
+    27,
+    30,
+    37,
+    21,
+    11,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    35,
+    11,
+    0,
+    19,
+    19,
+    0,
+    20,
+    11,
+    18,
+    25,
+    24,
+    0,
+    34,
+    29,
+    34,
+    30,
+    18,
+    22,
+    11,
+    29,
+    19
+   ],
+   "to_ascii": "I va II jahon urushlari",
+   "to_cyrillic": "И ва ИИ жаҳон урушлари",
+   "to_latin_1995": "I va II jahon urushlari",
+   "to_latin_2026": "I va II jahon uruşlari",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     14,
+     23,
+     "digraph",
+     "uruşlari"
+    ]
+   ]
+  },
+  "c1239": {
+   "convert_from_cyrillic_to_cyrillic": "V va X harflari",
+   "convert_from_cyrillic_to_latin_1995": "V va X harflari",
+   "convert_from_cyrillic_to_latin_2026": "V va X harflari",
+   "convert_from_latin_1995_to_cyrillic": "В ва Х ҳарфлари",
+   "convert_from_latin_1995_to_latin_1995": "V va X harflari",
+   "convert_from_latin_1995_to_latin_2026": "V va X harflari",
+   "convert_from_latin_2026_to_cyrillic": "В ва Х ҳарфлари",
+   "convert_from_latin_2026_to_latin_1995": "V va X harflari",
+   "convert_from_latin_2026_to_latin_2026": "V va X harflari",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V va X harflari",
+   "fold_homoglyphs": "V va X harflari",
+   "is_cyrillic": false,
+   "normalize": "v va x harflari",
+   "normalize_apostrophes_ascii": "V va X harflari",
+   "normalize_apostrophes_unicode": "V va X harflari",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "X",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harflari",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V va X harflari",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    0,
+    1118,
+    1097,
+    0,
+    1120,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1108,
+    1097,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    31,
+    0,
+    31,
+    11,
+    0,
+    32,
+    0,
+    17,
+    11,
+    27,
+    15,
+    21,
+    11,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    35,
+    0,
+    35,
+    11,
+    0,
+    36,
+    0,
+    18,
+    11,
+    29,
+    15,
+    22,
+    11,
+    29,
+    19
+   ],
+   "to_ascii": "V va X harflari",
+   "to_cyrillic": "В ва Х ҳарфлари",
+   "to_latin_1995": "V va X harflari",
+   "to_latin_2026": "V va X harflari",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1240": {
+   "convert_from_cyrillic_to_cyrillic": "Lotin V harfi",
+   "convert_from_cyrillic_to_latin_1995": "Lotin V harfi",
+   "convert_from_cyrillic_to_latin_2026": "Lotin V harfi",
+   "convert_from_latin_1995_to_cyrillic": "Лотин В ҳарфи",
+   "convert_from_latin_1995_to_latin_1995": "Lotin V harfi",
+   "convert_from_latin_1995_to_latin_2026": "Lotin V harfi",
+   "convert_from_latin_2026_to_cyrillic": "Лотин В ҳарфи",
+   "convert_from_latin_2026_to_latin_1995": "Lotin V harfi",
+   "convert_from_latin_2026_to_latin_2026": "Lotin V harfi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Lotin V harfi",
+   "fold_homoglyphs": "Lotin V harfi",
+   "is_cyrillic": false,
+   "normalize": "lotin v harfi",
+   "normalize_apostrophes_ascii": "Lotin V harfi",
+   "normalize_apostrophes_unicode": "Lotin V harfi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Lotin",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harfi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Lotin V harfi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1108,
+    1111,
+    1116,
+    1105,
+    1110,
+    0,
+    1118,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    21,
+    24,
+    29,
+    18,
+    23,
+    0,
+    31,
+    0,
+    17,
+    11,
+    27,
+    15,
+    18
+   ],
+   "sort_key_latin_2026": [
+    22,
+    25,
+    33,
+    19,
+    24,
+    0,
+    35,
+    0,
+    18,
+    11,
+    29,
+    15,
+    19
+   ],
+   "to_ascii": "Lotin V harfi",
+   "to_cyrillic": "Лотин В ҳарфи",
+   "to_latin_1995": "Lotin V harfi",
+   "to_latin_2026": "Lotin V harfi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1241": {
+   "convert_from_cyrillic_to_cyrillic": "D guruhida, M harfi",
+   "convert_from_cyrillic_to_latin_1995": "D guruhida, M harfi",
+   "convert_from_cyrillic_to_latin_2026": "D guruhida, M harfi",
+   "convert_from_latin_1995_to_cyrillic": "Д гуруҳида, М ҳарфи",
+   "convert_from_latin_1995_to_latin_1995": "D guruhida, M harfi",
+   "convert_from_latin_1995_to_latin_2026": "D guruhida, M harfi",
+   "convert_from_latin_2026_to_cyrillic": "Д гуруҳида, М ҳарфи",
+   "convert_from_latin_2026_to_latin_1995": "D guruhida, M harfi",
+   "convert_from_latin_2026_to_latin_2026": "D guruhida, M harfi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "D guruhida, M harfi",
+   "fold_homoglyphs": "D guruhida, M harfi",
+   "is_cyrillic": false,
+   "normalize": "d guruhida m harfi",
+   "normalize_apostrophes_ascii": "D guruhida, M harfi",
+   "normalize_apostrophes_unicode": "D guruhida, M harfi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "D",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "guruhida",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "M",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harfi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "D guruhida, M harfi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1100,
+    0,
+    1103,
+    1117,
+    1114,
+    1117,
+    1104,
+    1105,
+    1100,
+    1097,
+    0,
+    1109,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    13,
+    0,
+    16,
+    30,
+    27,
+    30,
+    17,
+    18,
+    13,
+    11,
+    0,
+    22,
+    0,
+    17,
+    11,
+    27,
+    15,
+    18
+   ],
+   "sort_key_latin_2026": [
+    13,
+    0,
+    16,
+    34,
+    29,
+    34,
+    18,
+    19,
+    13,
+    11,
+    0,
+    23,
+    0,
+    18,
+    11,
+    29,
+    15,
+    19
+   ],
+   "to_ascii": "D guruhida, M harfi",
+   "to_cyrillic": "Д гуруҳида, М ҳарфи",
+   "to_latin_1995": "D guruhida, M harfi",
+   "to_latin_2026": "D guruhida, M harfi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1242": {
+   "convert_from_cyrillic_to_cyrillic": "V-asr, I-jahon urushi",
+   "convert_from_cyrillic_to_latin_1995": "V-asr, I-jahon urushi",
+   "convert_from_cyrillic_to_latin_2026": "V-asr, I-jahon uruşi",
+   "convert_from_latin_1995_to_cyrillic": "В-аср, И-жаҳон уруши",
+   "convert_from_latin_1995_to_latin_1995": "V-asr, I-jahon urushi",
+   "convert_from_latin_1995_to_latin_2026": "V-asr, I-jahon uruşi",
+   "convert_from_latin_2026_to_cyrillic": "В-аср, И-жаҳон урусҳи",
+   "convert_from_latin_2026_to_latin_1995": "V-asr, I-jahon urusʼhi",
+   "convert_from_latin_2026_to_latin_2026": "V-asr, I-jahon urushi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V-asr, I-jahon urushi",
+   "fold_homoglyphs": "V-asr, I-jahon urushi",
+   "is_cyrillic": false,
+   "normalize": "v asr i jahon urushi",
+   "normalize_apostrophes_ascii": "V-asr, I-jahon urushi",
+   "normalize_apostrophes_unicode": "V-asr, I-jahon urushi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     "-",
+     null
+    ],
+    [
+     "asr",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     "-",
+     null
+    ],
+    [
+     "jahon",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "urushi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V-asr, I-jahon urushi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    1097,
+    1115,
+    1114,
+    0,
+    1105,
+    1106,
+    1097,
+    1104,
+    1111,
+    1110,
+    0,
+    1117,
+    1114,
+    1117,
+    1115,
+    1104,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    31,
+    11,
+    28,
+    27,
+    0,
+    18,
+    19,
+    11,
+    17,
+    24,
+    23,
+    0,
+    30,
+    27,
+    30,
+    37,
+    18
+   ],
+   "sort_key_latin_2026": [
+    35,
+    11,
+    30,
+    29,
+    0,
+    19,
+    20,
+    11,
+    18,
+    25,
+    24,
+    0,
+    34,
+    29,
+    34,
+    30,
+    18,
+    19
+   ],
+   "to_ascii": "V-asr, I-jahon urushi",
+   "to_cyrillic": "В-аср, И-жаҳон уруши",
+   "to_latin_1995": "V-asr, I-jahon urushi",
+   "to_latin_2026": "V-asr, I-jahon uruşi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     15,
+     21,
+     "digraph",
+     "uruşi"
+    ]
+   ]
+  },
+  "c1243": {
+   "convert_from_cyrillic_to_cyrillic": "I kvartal, I semestr, I smenada",
+   "convert_from_cyrillic_to_latin_1995": "I kvartal, I semestr, I smenada",
+   "convert_from_cyrillic_to_latin_2026": "I kvartal, I semestr, I smenada",
+   "convert_from_latin_1995_to_cyrillic": "И квартал, И семестр, И сменада",
+   "convert_from_latin_1995_to_latin_1995": "I kvartal, I semestr, I smenada",
+   "convert_from_latin_1995_to_latin_2026": "I kvartal, I semestr, I smenada",
+   "convert_from_latin_2026_to_cyrillic": "И квартал, И семестр, И сменада",
+   "convert_from_latin_2026_to_latin_1995": "I kvartal, I semestr, I smenada",
+   "convert_from_latin_2026_to_latin_2026": "I kvartal, I semestr, I smenada",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I kvartal, I semestr, I smenada",
+   "fold_homoglyphs": "I kvartal, I semestr, I smenada",
+   "is_cyrillic": false,
+   "normalize": "i kvartal i semestr i smenada",
+   "normalize_apostrophes_ascii": "I kvartal, I semestr, I smenada",
+   "normalize_apostrophes_unicode": "I kvartal, I semestr, I smenada",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "kvartal",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "semestr",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "smenada",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I kvartal, I semestr, I smenada",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1107,
+    1118,
+    1097,
+    1114,
+    1116,
+    1097,
+    1108,
+    0,
+    1105,
+    0,
+    1115,
+    1101,
+    1109,
+    1101,
+    1115,
+    1116,
+    1114,
+    0,
+    1105,
+    0,
+    1115,
+    1109,
+    1101,
+    1110,
+    1097,
+    1100,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    20,
+    31,
+    11,
+    27,
+    29,
+    11,
+    21,
+    0,
+    18,
+    0,
+    28,
+    14,
+    22,
+    14,
+    28,
+    29,
+    27,
+    0,
+    18,
+    0,
+    28,
+    22,
+    14,
+    23,
+    11,
+    13,
+    11
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    21,
+    35,
+    11,
+    29,
+    33,
+    11,
+    22,
+    0,
+    19,
+    0,
+    30,
+    14,
+    23,
+    14,
+    30,
+    33,
+    29,
+    0,
+    19,
+    0,
+    30,
+    23,
+    14,
+    24,
+    11,
+    13,
+    11
+   ],
+   "to_ascii": "I kvartal, I semestr, I smenada",
+   "to_cyrillic": "И квартал, И семестр, И сменада",
+   "to_latin_1995": "I kvartal, I semestr, I smenada",
+   "to_latin_2026": "I kvartal, I semestr, I smenada",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1244": {
+   "convert_from_cyrillic_to_cyrillic": "I oʻrinni egalladi",
+   "convert_from_cyrillic_to_latin_1995": "I oʻrinni egalladi",
+   "convert_from_cyrillic_to_latin_2026": "I örinni egalladi",
+   "convert_from_latin_1995_to_cyrillic": "И ўринни эгаллади",
+   "convert_from_latin_1995_to_latin_1995": "I oʻrinni egalladi",
+   "convert_from_latin_1995_to_latin_2026": "I örinni egalladi",
+   "convert_from_latin_2026_to_cyrillic": "И ўринни эгаллади",
+   "convert_from_latin_2026_to_latin_1995": "I oʻrinni egalladi",
+   "convert_from_latin_2026_to_latin_2026": "I oʻrinni egalladi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I oʻrinni egalladi",
+   "fold_homoglyphs": "I oʻrinni egalladi",
+   "is_cyrillic": false,
+   "normalize": "i orinni egalladi",
+   "normalize_apostrophes_ascii": "I o'rinni egalladi",
+   "normalize_apostrophes_unicode": "I oʻrinni egalladi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "oʻrinni",
+     "latin_1995"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "egalladi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I oʻrinni egalladi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1111,
+    1114,
+    1105,
+    1110,
+    1110,
+    1105,
+    0,
+    1101,
+    1103,
+    1097,
+    1108,
+    1108,
+    1097,
+    1100,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    35,
+    27,
+    18,
+    23,
+    23,
+    18,
+    0,
+    14,
+    16,
+    11,
+    21,
+    21,
+    11,
+    13,
+    18
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    25,
+    29,
+    19,
+    24,
+    24,
+    19,
+    0,
+    14,
+    16,
+    11,
+    22,
+    22,
+    11,
+    13,
+    19
+   ],
+   "to_ascii": "I orinni egalladi",
+   "to_cyrillic": "И ўринни эгаллади",
+   "to_latin_1995": "I oʻrinni egalladi",
+   "to_latin_2026": "I örinni egalladi",
+   "validate_cyrillic": [
+    [
+     2,
+     9,
+     "latin-1995-word",
+     "ўринни"
+    ]
+   ],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     2,
+     9,
+     "latin-1995-word",
+     "örinni"
+    ]
+   ]
+  },
+  "c1245": {
+   "convert_from_cyrillic_to_cyrillic": "XX asrning I yarmi",
+   "convert_from_cyrillic_to_latin_1995": "XX asrning I yarmi",
+   "convert_from_cyrillic_to_latin_2026": "XX asrning I yarmi",
+   "convert_from_latin_1995_to_cyrillic": "ХХ асрнинг И ярми",
+   "convert_from_latin_1995_to_latin_1995": "XX asrning I yarmi",
+   "convert_from_latin_1995_to_latin_2026": "XX asrning I yarmi",
+   "convert_from_latin_2026_to_cyrillic": "ХХ асрнинг И ярми",
+   "convert_from_latin_2026_to_latin_1995": "XX asrning I yarmi",
+   "convert_from_latin_2026_to_latin_2026": "XX asrning I yarmi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "XX asrning I yarmi",
+   "fold_homoglyphs": "XX asrning I yarmi",
+   "is_cyrillic": false,
+   "normalize": "xx asrning i yarmi",
+   "normalize_apostrophes_ascii": "XX asrning I yarmi",
+   "normalize_apostrophes_unicode": "XX asrning I yarmi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "XX",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asrning",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "yarmi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "XX asrning I yarmi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120,
+    1120,
+    0,
+    1097,
+    1115,
+    1114,
+    1110,
+    1105,
+    1110,
+    1103,
+    0,
+    1105,
+    0,
+    1121,
+    1097,
+    1114,
+    1109,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    32,
+    32,
+    0,
+    11,
+    28,
+    27,
+    23,
+    18,
+    23,
+    16,
+    0,
+    18,
+    0,
+    33,
+    11,
+    27,
+    22,
+    18
+   ],
+   "sort_key_latin_2026": [
+    36,
+    36,
+    0,
+    11,
+    30,
+    29,
+    24,
+    19,
+    24,
+    16,
+    0,
+    19,
+    0,
+    37,
+    11,
+    29,
+    23,
+    19
+   ],
+   "to_ascii": "XX asrning I yarmi",
+   "to_cyrillic": "ХХ асрнинг И ярми",
+   "to_latin_1995": "XX asrning I yarmi",
+   "to_latin_2026": "XX asrning I yarmi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1246": {
+   "convert_from_cyrillic_to_cyrillic": "I Xalqaro ilmiy-amaliy konferensiya",
+   "convert_from_cyrillic_to_latin_1995": "I Xalqaro ilmiy-amaliy konferensiya",
+   "convert_from_cyrillic_to_latin_2026": "I Xalqaro ilmiy-amaliy konferensiya",
+   "convert_from_latin_1995_to_cyrillic": "И Халқаро илмий-амалий конференсия",
+   "convert_from_latin_1995_to_latin_1995": "I Xalqaro ilmiy-amaliy konferensiya",
+   "convert_from_latin_1995_to_latin_2026": "I Xalqaro ilmiy-amaliy konferensiya",
+   "convert_from_latin_2026_to_cyrillic": "И Халқаро илмий-амалий конференсия",
+   "convert_from_latin_2026_to_latin_1995": "I Xalqaro ilmiy-amaliy konferensiya",
+   "convert_from_latin_2026_to_latin_2026": "I Xalqaro ilmiy-amaliy konferensiya",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I Xalqaro ilmiy-amaliy konferensiya",
+   "fold_homoglyphs": "I Xalqaro ilmiy-amaliy konferensiya",
+   "is_cyrillic": false,
+   "normalize": "i xalqaro ilmiy amaliy konferensiya",
+   "normalize_apostrophes_ascii": "I Xalqaro ilmiy-amaliy konferensiya",
+   "normalize_apostrophes_unicode": "I Xalqaro ilmiy-amaliy konferensiya",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "Xalqaro",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "ilmiy",
+     "latin"
+    ],
+    [
+     "-",
+     null
+    ],
+    [
+     "amaliy",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "konferensiya",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I Xalqaro ilmiy-amaliy konferensiya",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1120,
+    1097,
+    1108,
+    1113,
+    1097,
+    1114,
+    1111,
+    0,
+    1105,
+    1108,
+    1109,
+    1105,
+    1121,
+    1097,
+    1109,
+    1097,
+    1108,
+    1105,
+    1121,
+    0,
+    1107,
+    1111,
+    1110,
+    1102,
+    1101,
+    1114,
+    1101,
+    1110,
+    1115,
+    1105,
+    1121,
+    1097
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    32,
+    11,
+    21,
+    26,
+    11,
+    27,
+    24,
+    0,
+    18,
+    21,
+    22,
+    18,
+    33,
+    11,
+    22,
+    11,
+    21,
+    18,
+    33,
+    0,
+    20,
+    24,
+    23,
+    15,
+    14,
+    27,
+    14,
+    23,
+    28,
+    18,
+    33,
+    11
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    36,
+    11,
+    22,
+    28,
+    11,
+    29,
+    25,
+    0,
+    19,
+    22,
+    23,
+    19,
+    37,
+    11,
+    23,
+    11,
+    22,
+    19,
+    37,
+    0,
+    21,
+    25,
+    24,
+    15,
+    14,
+    29,
+    14,
+    24,
+    30,
+    19,
+    37,
+    11
+   ],
+   "to_ascii": "I Xalqaro ilmiy-amaliy konferensiya",
+   "to_cyrillic": "И Халқаро илмий-амалий конференсия",
+   "to_latin_1995": "I Xalqaro ilmiy-amaliy konferensiya",
+   "to_latin_2026": "I Xalqaro ilmiy-amaliy konferensiya",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1247": {
+   "convert_from_cyrillic_to_cyrillic": "I. Karimov va V. Ivanov",
+   "convert_from_cyrillic_to_latin_1995": "I. Karimov va V. Ivanov",
+   "convert_from_cyrillic_to_latin_2026": "I. Karimov va V. Ivanov",
+   "convert_from_latin_1995_to_cyrillic": "И. Каримов ва В. Иванов",
+   "convert_from_latin_1995_to_latin_1995": "I. Karimov va V. Ivanov",
+   "convert_from_latin_1995_to_latin_2026": "I. Karimov va V. Ivanov",
+   "convert_from_latin_2026_to_cyrillic": "И. Каримов ва В. Иванов",
+   "convert_from_latin_2026_to_latin_1995": "I. Karimov va V. Ivanov",
+   "convert_from_latin_2026_to_latin_2026": "I. Karimov va V. Ivanov",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I. Karimov va V. Ivanov",
+   "fold_homoglyphs": "I. Karimov va V. Ivanov",
+   "is_cyrillic": false,
+   "normalize": "i karimov va v ivanov",
+   "normalize_apostrophes_ascii": "I. Karimov va V. Ivanov",
+   "normalize_apostrophes_unicode": "I. Karimov va V. Ivanov",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     ". ",
+     null
+    ],
+    [
+     "Karimov",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     ". ",
+     null
+    ],
+    [
+     "Ivanov",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I. Karimov va V. Ivanov",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1107,
+    1097,
+    1114,
+    1105,
+    1109,
+    1111,
+    1118,
+    0,
+    1118,
+    1097,
+    0,
+    1118,
+    0,
+    1105,
+    1118,
+    1097,
+    1110,
+    1111,
+    1118
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    20,
+    11,
+    27,
+    18,
+    22,
+    24,
+    31,
+    0,
+    31,
+    11,
+    0,
+    31,
+    0,
+    18,
+    31,
+    11,
+    23,
+    24,
+    31
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    21,
+    11,
+    29,
+    19,
+    23,
+    25,
+    35,
+    0,
+    35,
+    11,
+    0,
+    35,
+    0,
+    19,
+    35,
+    11,
+    24,
+    25,
+    35
+   ],
+   "to_ascii": "I. Karimov va V. Ivanov",
+   "to_cyrillic": "И. Каримов ва В. Иванов",
+   "to_latin_1995": "I. Karimov va V. Ivanov",
+   "to_latin_2026": "I. Karimov va V. Ivanov",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1248": {
+   "convert_from_cyrillic_to_cyrillic": "A, B, C va D toifalar",
+   "convert_from_cyrillic_to_latin_1995": "A, B, C va D toifalar",
+   "convert_from_cyrillic_to_latin_2026": "A, B, C va D toifalar",
+   "convert_from_latin_1995_to_cyrillic": "А, Б, C ва Д тоифалар",
+   "convert_from_latin_1995_to_latin_1995": "A, B, C va D toifalar",
+   "convert_from_latin_1995_to_latin_2026": "A, B, C va D toifalar",
+   "convert_from_latin_2026_to_cyrillic": "А, Б, C ва Д тоифалар",
+   "convert_from_latin_2026_to_latin_1995": "A, B, C va D toifalar",
+   "convert_from_latin_2026_to_latin_2026": "A, B, C va D toifalar",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "A, B, C va D toifalar",
+   "fold_homoglyphs": "A, B, C va D toifalar",
+   "is_cyrillic": false,
+   "normalize": "a b c va d toifalar",
+   "normalize_apostrophes_ascii": "A, B, C va D toifalar",
+   "normalize_apostrophes_unicode": "A, B, C va D toifalar",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "A",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "B",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "C",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "D",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "toifalar",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "A, B, C va D toifalar",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1097,
+    0,
+    1098,
+    0,
+    1099,
+    0,
+    1118,
+    1097,
+    0,
+    1100,
+    0,
+    1116,
+    1111,
+    1105,
+    1102,
+    1097,
+    1108,
+    1097,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    11,
+    0,
+    12,
+    0,
+    1099,
+    0,
+    31,
+    11,
+    0,
+    13,
+    0,
+    29,
+    24,
+    18,
+    15,
+    11,
+    21,
+    11,
+    27
+   ],
+   "sort_key_latin_2026": [
+    11,
+    0,
+    12,
+    0,
+    1099,
+    0,
+    35,
+    11,
+    0,
+    13,
+    0,
+    33,
+    25,
+    19,
+    15,
+    11,
+    22,
+    11,
+    29
+   ],
+   "to_ascii": "A, B, C va D toifalar",
+   "to_cyrillic": "А, Б, C ва Д тоифалар",
+   "to_latin_1995": "A, B, C va D toifalar",
+   "to_latin_2026": "A, B, C va D toifalar",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1249": {
+   "convert_from_cyrillic_to_cyrillic": "V va X",
+   "convert_from_cyrillic_to_latin_1995": "V va X",
+   "convert_from_cyrillic_to_latin_2026": "V va X",
+   "convert_from_latin_1995_to_cyrillic": "В ва Х",
+   "convert_from_latin_1995_to_latin_1995": "V va X",
+   "convert_from_latin_1995_to_latin_2026": "V va X",
+   "convert_from_latin_2026_to_cyrillic": "В ва Х",
+   "convert_from_latin_2026_to_latin_1995": "V va X",
+   "convert_from_latin_2026_to_latin_2026": "V va X",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V va X",
+   "fold_homoglyphs": "V va X",
+   "is_cyrillic": false,
+   "normalize": "v va x",
+   "normalize_apostrophes_ascii": "V va X",
+   "normalize_apostrophes_unicode": "V va X",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "X",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V va X",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    0,
+    1118,
+    1097,
+    0,
+    1120
+   ],
+   "sort_key_latin_1995": [
+    31,
+    0,
+    31,
+    11,
+    0,
+    32
+   ],
+   "sort_key_latin_2026": [
+    35,
+    0,
+    35,
+    11,
+    0,
+    36
+   ],
+   "to_ascii": "V va X",
+   "to_cyrillic": "В ва Х",
+   "to_latin_1995": "V va X",
+   "to_latin_2026": "V va X",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1250": {
+   "convert_from_cyrillic_to_cyrillic": "V–VI asrlar, I bölim, I çorak",
+   "convert_from_cyrillic_to_latin_1995": "V–VI asrlar, I bölim, I çorak",
+   "convert_from_cyrillic_to_latin_2026": "V–VI asrlar, I bölim, I çorak",
+   "convert_from_latin_1995_to_cyrillic": "В–ВИ асрлар, И бöлим, И çорак",
+   "convert_from_latin_1995_to_latin_1995": "V–VI asrlar, I bölim, I çorak",
+   "convert_from_latin_1995_to_latin_2026": "V–VI asrlar, I bölim, I çorak",
+   "convert_from_latin_2026_to_cyrillic": "В–ВИ асрлар, И бўлим, И чорак",
+   "convert_from_latin_2026_to_latin_1995": "V–VI asrlar, I boʻlim, I chorak",
+   "convert_from_latin_2026_to_latin_2026": "V–VI asrlar, I bölim, I çorak",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_2026",
+   "fold_cyrillic": "V–VI asrlar, I bölim, I çorak",
+   "fold_homoglyphs": "V–VI asrlar, I bölim, I çorak",
+   "is_cyrillic": false,
+   "normalize": "v vi asrlar i bolim i chorak",
+   "normalize_apostrophes_ascii": "V–VI asrlar, I bölim, I çorak",
+   "normalize_apostrophes_unicode": "V–VI asrlar, I bölim, I çorak",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     "–",
+     null
+    ],
+    [
+     "VI",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asrlar",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "bölim",
+     "latin_2026"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "çorak",
+     "latin_2026"
+    ]
+   ],
+   "segments": [
+    [
+     "V–VI asrlar, I bölim, I çorak",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    1118,
+    1105,
+    0,
+    1097,
+    1115,
+    1114,
+    1108,
+    1097,
+    1114,
+    0,
+    1105,
+    0,
+    1098,
+    1246,
+    1108,
+    1105,
+    1109,
+    0,
+    1105,
+    0,
+    1231,
+    1111,
+    1114,
+    1097,
+    1107
+   ],
+   "sort_key_latin_1995": [
+    31,
+    31,
+    18,
+    0,
+    11,
+    28,
+    27,
+    21,
+    11,
+    27,
+    0,
+    18,
+    0,
+    12,
+    1246,
+    21,
+    18,
+    22,
+    0,
+    18,
+    0,
+    1231,
+    24,
+    27,
+    11,
+    20
+   ],
+   "sort_key_latin_2026": [
+    35,
+    35,
+    19,
+    0,
+    11,
+    30,
+    29,
+    22,
+    11,
+    29,
+    0,
+    19,
+    0,
+    12,
+    26,
+    22,
+    19,
+    23,
+    0,
+    19,
+    0,
+    32,
+    25,
+    29,
+    11,
+    21
+   ],
+   "to_ascii": "VVI asrlar, I bolim, I chorak",
+   "to_cyrillic": "В–ВИ асрлар, И бўлим, И чорак",
+   "to_latin_1995": "V–VI asrlar, I boʻlim, I chorak",
+   "to_latin_2026": "V–VI asrlar, I bölim, I çorak",
+   "validate_cyrillic": [
+    [
+     15,
+     20,
+     "latin-2026-word",
+     "бўлим"
+    ],
+    [
+     24,
+     29,
+     "latin-2026-word",
+     "чорак"
+    ]
+   ],
+   "validate_latin_1995": [
+    [
+     15,
+     20,
+     "latin-2026-word",
+     "boʻlim"
+    ],
+    [
+     24,
+     29,
+     "latin-2026-word",
+     "chorak"
+    ]
+   ],
+   "validate_latin_2026": []
   }
  },
  "rules_version": "uz-2026-alphabet+project-2026.11",

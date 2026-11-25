@@ -9301,6 +9301,142 @@
     "cyrillic"
    ],
    "text": "1991-йил"
+  },
+  {
+   "id": "c1234",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V–VI asrlar"
+  },
+  {
+   "id": "c1235",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "X–XII asrlarda"
+  },
+  {
+   "id": "c1236",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I-II kurs talabalari"
+  },
+  {
+   "id": "c1237",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I, II va III boblar"
+  },
+  {
+   "id": "c1238",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I va II jahon urushlari"
+  },
+  {
+   "id": "c1239",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V va X harflari"
+  },
+  {
+   "id": "c1240",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Lotin V harfi"
+  },
+  {
+   "id": "c1241",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "D guruhida, M harfi"
+  },
+  {
+   "id": "c1242",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V-asr, I-jahon urushi"
+  },
+  {
+   "id": "c1243",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I kvartal, I semestr, I smenada"
+  },
+  {
+   "id": "c1244",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I oʻrinni egalladi"
+  },
+  {
+   "id": "c1245",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "XX asrning I yarmi"
+  },
+  {
+   "id": "c1246",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I Xalqaro ilmiy-amaliy konferensiya"
+  },
+  {
+   "id": "c1247",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I. Karimov va V. Ivanov"
+  },
+  {
+   "id": "c1248",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "A, B, C va D toifalar"
+  },
+  {
+   "id": "c1249",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V va X"
+  },
+  {
+   "id": "c1250",
+   "tags": [
+    "roman-0.3.2",
+    "latin_2026"
+   ],
+   "text": "V–VI asrlar, I bölim, I çorak"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

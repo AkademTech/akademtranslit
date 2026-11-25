@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "b39b82103b3862f090df10aac5d21a872e3e296eb826cf580fb54f31f0c24e55",
+ "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -8632,6 +8632,125 @@
    "to_cyrillic": "1991-йил",
    "to_latin_1995": "1991-yil",
    "to_latin_2026": "1991-yil"
+  },
+  "c1234": {
+   "detect_script": "latin_1995",
+   "normalize": "v vi asrlar",
+   "to_cyrillic": "В–ВИ асрлар",
+   "to_latin_1995": "V–VI asrlar",
+   "to_latin_2026": "V–VI asrlar"
+  },
+  "c1235": {
+   "detect_script": "latin_1995",
+   "normalize": "x xii asrlarda",
+   "to_cyrillic": "Х–ХИИ асрларда",
+   "to_latin_1995": "X–XII asrlarda",
+   "to_latin_2026": "X–XII asrlarda"
+  },
+  "c1236": {
+   "detect_script": "latin_1995",
+   "normalize": "i ii kurs talabalari",
+   "to_cyrillic": "И-ИИ курс талабалари",
+   "to_latin_1995": "I-II kurs talabalari",
+   "to_latin_2026": "I-II kurs talabalari"
+  },
+  "c1237": {
+   "detect_script": "latin_1995",
+   "normalize": "i ii va iii boblar",
+   "to_cyrillic": "И, ИИ ва ИИИ боблар",
+   "to_latin_1995": "I, II va III boblar",
+   "to_latin_2026": "I, II va III boblar"
+  },
+  "c1238": {
+   "detect_script": "latin_1995",
+   "normalize": "i va ii jahon urushlari",
+   "to_cyrillic": "И ва ИИ жаҳон урушлари",
+   "to_latin_1995": "I va II jahon urushlari",
+   "to_latin_2026": "I va II jahon uruşlari"
+  },
+  "c1239": {
+   "detect_script": "latin_1995",
+   "normalize": "v va x harflari",
+   "to_cyrillic": "В ва Х ҳарфлари",
+   "to_latin_1995": "V va X harflari",
+   "to_latin_2026": "V va X harflari"
+  },
+  "c1240": {
+   "detect_script": "latin_1995",
+   "normalize": "lotin v harfi",
+   "to_cyrillic": "Лотин В ҳарфи",
+   "to_latin_1995": "Lotin V harfi",
+   "to_latin_2026": "Lotin V harfi"
+  },
+  "c1241": {
+   "detect_script": "latin_1995",
+   "normalize": "d guruhida m harfi",
+   "to_cyrillic": "Д гуруҳида, М ҳарфи",
+   "to_latin_1995": "D guruhida, M harfi",
+   "to_latin_2026": "D guruhida, M harfi"
+  },
+  "c1242": {
+   "detect_script": "latin_1995",
+   "normalize": "v asr i jahon urushi",
+   "to_cyrillic": "В-аср, И-жаҳон уруши",
+   "to_latin_1995": "V-asr, I-jahon urushi",
+   "to_latin_2026": "V-asr, I-jahon uruşi"
+  },
+  "c1243": {
+   "detect_script": "latin_1995",
+   "normalize": "i kvartal i semestr i smenada",
+   "to_cyrillic": "И квартал, И семестр, И сменада",
+   "to_latin_1995": "I kvartal, I semestr, I smenada",
+   "to_latin_2026": "I kvartal, I semestr, I smenada"
+  },
+  "c1244": {
+   "detect_script": "latin_1995",
+   "normalize": "i orinni egalladi",
+   "to_cyrillic": "И ўринни эгаллади",
+   "to_latin_1995": "I oʻrinni egalladi",
+   "to_latin_2026": "I örinni egalladi"
+  },
+  "c1245": {
+   "detect_script": "latin_1995",
+   "normalize": "xx asrning i yarmi",
+   "to_cyrillic": "ХХ асрнинг И ярми",
+   "to_latin_1995": "XX asrning I yarmi",
+   "to_latin_2026": "XX asrning I yarmi"
+  },
+  "c1246": {
+   "detect_script": "latin_1995",
+   "normalize": "i xalqaro ilmiy amaliy konferensiya",
+   "to_cyrillic": "И Халқаро илмий-амалий конференсия",
+   "to_latin_1995": "I Xalqaro ilmiy-amaliy konferensiya",
+   "to_latin_2026": "I Xalqaro ilmiy-amaliy konferensiya"
+  },
+  "c1247": {
+   "detect_script": "latin_1995",
+   "normalize": "i karimov va v ivanov",
+   "to_cyrillic": "И. Каримов ва В. Иванов",
+   "to_latin_1995": "I. Karimov va V. Ivanov",
+   "to_latin_2026": "I. Karimov va V. Ivanov"
+  },
+  "c1248": {
+   "detect_script": "latin_1995",
+   "normalize": "a b c va d toifalar",
+   "to_cyrillic": "А, Б, C ва Д тоифалар",
+   "to_latin_1995": "A, B, C va D toifalar",
+   "to_latin_2026": "A, B, C va D toifalar"
+  },
+  "c1249": {
+   "detect_script": "latin_1995",
+   "normalize": "v va x",
+   "to_cyrillic": "В ва Х",
+   "to_latin_1995": "V va X",
+   "to_latin_2026": "V va X"
+  },
+  "c1250": {
+   "detect_script": "latin_2026",
+   "normalize": "v vi asrlar i bolim i chorak",
+   "to_cyrillic": "В–ВИ асрлар, И бўлим, И чорак",
+   "to_latin_1995": "V–VI asrlar, I boʻlim, I chorak",
+   "to_latin_2026": "V–VI asrlar, I bölim, I çorak"
   }
  },
  "schema": "akademtranslit-golden/1"

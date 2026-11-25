@@ -13,19 +13,40 @@ release adds its number in the month.
   `latin_2026` to Cyrillic keeps a word that is a well-formed Roman numeral
   in capitals, `XIX asr` → `XIX аср`, `IV bob` → `IV боб` (were `ХИХ аср`,
   `ИВ боб`). Two letters or more are a numeral wherever they stand. One
-  letter is most often the letter itself, so it is a numeral only in
-  context, with one space or U+00A0 between: before a word that begins with
-  `asr`, `ming`, `bob`, `qism`, `jild`, `tom`, `sinf`, `kurs`, `boʻlim`,
-  `guruh`, `chorak`, `bosqich`, `daraja`, `toifa`, `qurultoy`, `syezd`,
-  `sessiya`, `chaqiriq` or `jahon` (or the 2026 form of one: `bölim`,
-  `çorak`, `bosqiç`, `çaqiriq`), `V asr` → `V аср`, `I jahon urushi` →
-  `I жаҳон уруши`; or after a word of two letters or more that begins with
-  a capital, when no full stop follows, `Pyotr I` → `Пётр I`,
-  `Nikolay I` → `Николай I` (were `В аср`, `И жаҳон уруши`, `Пётр И`,
-  `Николай И`). Otherwise it is a letter, as before: `V` → `В`,
-  `V harfi` → `В ҳарфи`, `I. Boʻriyev` → `И. Бўриев`. A known limit: any
-  capitalised word before one letter makes it a numeral,
-  `Lotin V harfi` → `Лотин V ҳарфи`.
+  `L`, `C`, `D` or `M` is a letter wherever it stands, as before:
+  `D guruhida` → `Д гуруҳида`, `M harfi` → `М ҳарфи`. One `I`, `V` or `X`
+  is most often the letter itself, so it is a numeral only in context:
+  - before a word that begins with `asr`, `ming`, `bob`, `qism`, `jild`,
+    `tom`, `sinf`, `kurs`, `boʻlim`, `guruh`, `chorak`, `bosqich`,
+    `daraja`, `toifa`, `qurultoy`, `syezd`, `sessiya`, `chaqiriq`,
+    `jahon`, `kvartal`, `semestr`, `smena`, `kitob`, `kategoriya`,
+    `oʻrin`, `yarim`, `yarmi`, `xalqaro`, `respublika`, `konferensiya`,
+    `kongress`, `anjuman` or `simpozium` (or the 2026 form of one:
+    `bölim`, `çorak`, `bosqiç`, `çaqiriq`, `örin`), after one space,
+    U+00A0, `-` or U+2011: `V asr` → `V аср`, `V-asr` → `V-аср`,
+    `I jahon urushi` → `I жаҳон уруши`, `I Xalqaro ilmiy-amaliy
+    konferensiya` → `I Халқаро илмий-амалий конференсия`;
+  - after a word of two letters or more that begins with a capital, with
+    one space or U+00A0 between and no full stop after: `Pyotr I` →
+    `Пётр I`, `Nikolay I` → `Николай I`;
+  - in a series with a numeral: two numerals or more linked by a hyphen or
+    dash with no space around it (U+002D, U+2010 to U+2014), by a comma
+    and one space, or by `va` or `yoki` with one space on each side, of
+    which one is a numeral on its own: `V–VI asrlar` → `V–VI асрлар`,
+    `I, II va III boblar` → `I, II ва III боблар`, `I va II jahon
+    urushlari` → `I ва II жаҳон урушлари` (were `В аср`, `И жаҳон уруши`,
+    `Пётр И`, `В–ВИ асрлар`, `И, ИИ ва ИИИ боблар`).
+
+  Before a word that begins with `harf` or `tovush` it is a letter even
+  so, and after a series none is made a numeral by the others:
+  `V harfi` → `В ҳарфи`, `Lotin V harfi` → `Лотин В ҳарфи`,
+  `V, X va XV harflari` → `В, Х ва XV ҳарфлари`. Otherwise it is a
+  letter, as before: `V` → `В`, `V va X` → `В ва Х`, `I. Boʻriyev` →
+  `И. Бўриев`. Known limits: `Pyotr I.` and `Karl V.` at the end of a
+  sentence are read as initials; any capitalised word before one letter
+  makes it a numeral, the first of a sentence too, `Variant V` →
+  `Вариант V`; a dash with spaces around it does not link a series,
+  `V – VI asrlar` → `В – VI асрлар`.
 - Dates: Cyrillic writes no hyphen after the number of a year or of a day of
   the month, as the 1956 spelling rules do, and Latin writes one:
   `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
@@ -68,11 +89,11 @@ keys with; `convert` reads Cyrillic with the new
 
 ### Output changes
 
-Golden diff 0.3.1 → 0.3.2, on 1233 inputs (45 added in 0.3.2):
-`to_cyrillic` 23, `to_latin_1995` 11, `to_latin_2026` 11, `to_ascii` 12,
+Golden diff 0.3.1 → 0.3.2, on 1250 inputs (62 added in 0.3.2):
+`to_cyrillic` 34, `to_latin_1995` 11, `to_latin_2026` 11, `to_ascii` 12,
 `validate_latin_1995` 9, `validate_latin_2026` 9, and `convert` from
 Cyrillic to `latin_1995` and `latin_2026` 14 each and from `latin_1995`
-and `latin_2026` to Cyrillic 30 each. `convert` within one script —
+and `latin_2026` to Cyrillic 41 each. `convert` within one script —
 Cyrillic to Cyrillic and among the Latin orthographies — changes nothing.
 On the 1188 inputs that 0.3.1 had, 6 change, each only where it changes
 script:
@@ -85,7 +106,7 @@ script:
 - month names: 1 — `iyun`;
 - word-final `ц`: none.
 
-The 45 new inputs cover each rule and its limits; 35 of them convert
+The 62 new inputs cover each rule and its limits; 46 of them convert
 differently from 0.3.1. `normalize`, the `sort_key` fields,
 `normalize_apostrophes`, `segments`, `script_spans`, `fold_homoglyphs` and
 the other fields are unchanged. The golden files of 0.1.1, 0.2.0, 0.3.0 and
