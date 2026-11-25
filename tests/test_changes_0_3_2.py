@@ -245,22 +245,53 @@ def test_dates_cyrillic_to_latin(latin_1995, latin_2026, cyrillic):
 
 
 @pytest.mark.parametrize(
-    "text,orthography,expected",
+    "text,orthography",
     [
-        ("1991-йилнинг 1-сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"),
-        (f"1991{NB_HYPHEN}йил 1{NB_HYPHEN}сентябрь", CYRILLIC, f"1991{NBSP}йил 1{NBSP}сентябрь"),
-        ("1991 йилнинг 1 сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"),
-        ("1956 yil 22 sentabr", LATIN_1995, "1956-yil 22-sentabr"),
-        (f"1956{NBSP}yil 22{NBSP}sentabr", LATIN_1995, f"1956{NB_HYPHEN}yil 22{NB_HYPHEN}sentabr"),
-        ("2026 yil 1 iyun", LATIN_2026, "2026-yil 1-iyun"),
-        ("2026-yil 1-iyun", LATIN_2026, "2026-yil 1-iyun"),
+        ("1991-йилнинг 1-сентябри", CYRILLIC),
+        ("1991-йил", CYRILLIC),
+        (f"1991{NB_HYPHEN}йил 1{NB_HYPHEN}сентябрь", CYRILLIC),
+        ("1991 йилнинг 1 сентябри", CYRILLIC),
+        ("1956 yil 22 sentabr", LATIN_1995),
+        ("ilmiy jurnal 2026 yil 12 son", LATIN_1995),
+        (f"1956{NBSP}yil 22{NBSP}sentabr", LATIN_1995),
+        ("2026 yil 1 iyun", LATIN_2026),
+        ("2026-yil 1-iyun", LATIN_2026),
     ],
 )
-def test_dates_in_their_own_orthography(text, orthography, expected):
-    """Converting to the orthography the text is in follows the rule too: a
-    hyphen in Cyrillic goes, a space in Latin becomes one."""
-    assert convert(text, orthography, orthography) == expected
-    assert convert(text, "auto", orthography) == expected
+def test_dates_in_their_own_orthography(text, orthography):
+    """Within one script the separator is the author's: converting to the
+    orthography the text is in leaves it as it is."""
+    assert convert(text, orthography, orthography) == text
+    assert convert(text, "auto", orthography) == text
+
+
+@pytest.mark.parametrize(
+    "latin_1995,latin_2026",
+    [
+        ("2026 yil", "2026 yil"),
+        ("1956 yil 22 sentabr", "1956 yil 22 sentabr"),
+        ("ilmiy jurnal 2026 yil 12 son", "ilmiy jurnal 2026 yil 12 son"),
+        ("1991-yilning 1-sentabri", "1991-yilning 1-sentabri"),
+        (f"1956{NBSP}yil 22{NBSP}sentabr", f"1956{NBSP}yil 22{NBSP}sentabr"),
+        (f"1991{NB_HYPHEN}yil 1{NB_HYPHEN}sentabr", f"1991{NB_HYPHEN}yil 1{NB_HYPHEN}sentabr"),
+        ("31 dekabrgacha, 2026 yil", "31 dekabrgaça, 2026 yil"),
+    ],
+)
+def test_dates_latin_1995_to_latin_2026(latin_1995, latin_2026):
+    """latin_1995 <-> latin_2026 is one script: the separator stays."""
+    assert convert(latin_1995, LATIN_1995, LATIN_2026) == latin_2026
+    assert convert(latin_2026, LATIN_2026, LATIN_1995) == latin_1995
+    assert to_latin(latin_1995) == latin_2026
+    assert to_latin(latin_2026, LATIN_1995) == latin_1995
+
+
+def test_dates_are_read_in_the_named_source():
+    """A word counts in the script it is read in: with a named source, that
+    source, whatever its letters (c0307 read as Cyrillic)."""
+    assert convert("ilmiy jurnal 2026 yil 12 son", CYRILLIC, LATIN_1995) == "ilmiy jurnal 2026-yil 12 son"
+    assert convert("1956 yil 22 sentabr", CYRILLIC, LATIN_2026) == "1956-yil 22-sentabr"
+    assert convert("1991-йил", LATIN_1995, CYRILLIC) == "1991 йил"
+    assert convert("1991-йил", LATIN_2026, CYRILLIC) == "1991 йил"
 
 
 # Each is converted from the first to the second; nothing else about the
@@ -311,11 +342,26 @@ def test_a_letter_or_digit_before_the_number():
     assert dates("_1991 yil", LATIN_1995) == "_1991-yil"
 
 
+def test_dates_only_before_a_word_from_the_other_script():
+    # crossed: where a word read in the other script starts.
+    assert dates("1991-йил", CYRILLIC, set()) == "1991-йил"
+    assert dates("1991-йил", CYRILLIC, {5}) == "1991 йил"
+    assert dates("1991-йил 1991-йил", CYRILLIC, {14}) == "1991-йил 1991 йил"
+    assert dates("1991 yil 1 sentabr", LATIN_1995, {5}) == "1991-yil 1 sentabr"
+    assert dates("1991 yil 1 sentabr", LATIN_1995, {11}) == "1991 yil 1-sentabr"
+
+
 def test_dates_with_source_auto():
     assert to_cyrillic("Toşkentda 2026-yil 1-sentabr") == "Тошкентда 2026 йил 1 сентябрь"
     assert to_latin("1991 йил 1 сентябрда", LATIN_1995) == "1991-yil 1-sentabrda"
-    # Mostly Cyrillic: a Latin word that shows nothing stays, and so does its date.
-    assert to_cyrillic("Тошкентда 2026-йил ва 2026-yil") == "Тошкентда 2026 йил ва 2026-yil"
+    # Mostly Cyrillic: a Latin word that shows nothing is read as Cyrillic and
+    # stays, and a date in Cyrillic is in its own script: both keep the hyphen.
+    assert to_cyrillic("Тошкентда 2026-йил ва 2026-yil") == "Тошкентда 2026-йил ва 2026-yil"
+    # Each date by the script its word is read in.
+    assert to_latin("1956 йил va 1956 yil", LATIN_1995) == "1956-yil va 1956 yil"
+    assert to_latin("1956 йил va 1956 yil") == "1956-yil va 1956 yil"
+    assert to_cyrillic("1956-yil va 1956-йил") == "1956 йил ва 1956-йил"
+    assert to_cyrillic("1 sentabr, 1-сентябрь, 1-sentabr") == "1 сентябрь, 1-сентябрь, 1 сентябрь"
 
 
 def test_dates_in_a_protected_span():
@@ -442,9 +488,8 @@ NEW_INPUTS = {
     "c1203": ("1991-yilning 1-sentabri", "date", "latin_1995", ("1991 йилнинг 1 сентябри", None, None)),
     "c1204": ("1956 йил 22 сентябрь", "date", "cyrillic", (None, "1956-yil 22-sentabr", "1956-yil 22-sentabr")),
     "c1205": ("1991-йилнинг 1-сентябри", "date", "cyrillic",
-              ("1991 йилнинг 1 сентябри", "1991-yilning 1-sentabri", "1991-yilning 1-sentabri")),
-    "c1206": ("1956 yil 22 sentabr", "date", "latin_1995",
-              ("1956 йил 22 сентябрь", "1956-yil 22-sentabr", "1956-yil 22-sentabr")),
+              (None, "1991-yilning 1-sentabri", "1991-yilning 1-sentabri")),
+    "c1206": ("1956 yil 22 sentabr", "date", "latin_1995", ("1956 йил 22 сентябрь", None, None)),
     "c1207": ("5 yil ishladi", "date", "latin_1995", ("5 йил ишлади", None, "5 yil işladi")),
     "c1208": ("2000 йил давомида", "date", "cyrillic", (None, "2000-yil davomida", "2000-yil davomida")),
     "c1209": ("32 sentabr, 32-сентябрь", "date", "mixed",

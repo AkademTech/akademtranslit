@@ -308,9 +308,7 @@ the words without one: `round-trip`, a word that does not come back as it was
 word is converted correctly; it is listed because `validate` on the 2026 text
 reports its `sh` as a `digraph`. `AQSh` and `MChJ` come back as `AQSH` and
 `MCHJ` (see Case, under "Guarantees, and their limits"), so the report lists
-them as `round-trip`. `changed` counts words: a date whose separator the
-conversion writes (`1956 yil` → `1956-yil`; see "Dates and month names") is
-not counted, though `result` has it.
+them as `round-trip`.
 
 ### ASCII for names and logins
 
@@ -508,9 +506,7 @@ two codes are about characters, in any orthography. The others are about
 words, at most one per word: the first row of the table that applies. After
 the last row comes `decomposed` again, for a Latin word that only NFC writes
 differently; so every word that a Latin orthography writes differently gets
-a code. The separator between a date's number and its word is not a word:
-`1956 yil` in Latin text is not a finding, though `convert` writes
-`1956-yil` (see "Dates and month names").
+a code.
 
 | Code | In | Finds | Suggestion |
 | --- | --- | --- | --- |
@@ -720,18 +716,26 @@ The known misses:
 Cyrillic writes no hyphen after the number of a year or of a day of the
 month, as the 1956 spelling rules do (paragraph 47); Latin writes one (rule
 56 of Resolution No. 339 of 1995). From 0.3.2 `convert`, `to_latin` and
-`to_cyrillic` write the separator as the target does, also when the text is
-already in the target's orthography:
+`to_cyrillic` write the separator as the target does when a date changes
+script. Within one script — `latin_1995` ↔ `latin_2026`, or an orthography
+to itself — the separator is the author's and stays as written:
 
 ```python
 >>> to_cyrillic("1991-yilning 1-sentabri")
 '1991 йилнинг 1 сентябри'
 >>> to_latin("1956 йил 22 сентябрь")
 '1956-yil 22-sentabr'
+>>> to_latin("2026 yil 1 sentabr")
+'2026 yil 1 sentabr'
 >>> convert("1991-йилда", source="cyrillic", target="cyrillic")
-'1991 йилда'
+'1991-йилда'
 
 ```
+
+The script is the one the word after the number is read in: with a named
+`source`, that source; with `source="auto"`, the one `convert` reads that
+word in, so in a text with both, each date goes by its own word
+(`1956 йил va 1956 yil` to Latin gives `1956-yil va 1956 yil`).
 
 Other ordinals keep the hyphen in both: `5-sinf` ↔ `5-синф`, `39-son` ↔
 `39-сон`, `60-yillar` ↔ `60-йиллар`. A number is a date when no letter or
@@ -791,8 +795,6 @@ The known limits:
   times), `5-мартаба`, `2-майдон` keep their separator.
 - From Cyrillic to Latin a year below 1000 keeps its space (`476 йил` →
   `476 yil`), while to Cyrillic `476-yil` gives `476 йил`.
-- `validate` checks words, not the separator between them: it does not
-  report `1991 yil` in Latin text.
 
 ### Roman numerals
 
@@ -833,11 +835,9 @@ mark a word was typed with never changes its key (since 0.2.0 this includes
 **Lossless.** `latin_1995` ↔ `latin_2026` round-trips exactly for text in
 canonical form: marks written as `ʻ` and `ʼ`, and each word, or each letter
 unit of it (`ToshDU`, `OʻzBEKISTON`; see Case below), in lower case, with an
-initial capital, or in all caps (`OʻZBEKISTON` included); dates with a
-hyphen after the number of the year and the day (`1956-yil 22-sentabr`);
-protected spans, such as `McDonald`, come back as they were. Other input
-comes back canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`,
-`1956 yil 22 sentabr` as `1956-yil 22-sentabr`. `migration_report`
+initial capital, or in all caps (`OʻZBEKISTON` included); protected spans,
+such as `McDonald`, come back as they were. Other input comes back
+canonicalised — `o'zbek` as `oʻzbek`, `MChJ` as `MCHJ`. `migration_report`
 checks one text and lists the words that do not come back (see "Migrate an
 existing corpus to the 2026 alphabet").
 Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter

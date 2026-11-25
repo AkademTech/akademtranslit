@@ -755,9 +755,9 @@ CHANGED_BY_NFC = ["c0273", "c1090"]
 # The golden inputs among c0001-c1139 whose conversion the rules of 0.3.2
 # change (tests/test_changes_0_3_2.py): a Roman numeral stays Latin in
 # Cyrillic -- the capitals D, I, L, M, V and X alone, XXI asr and XXI аср; a
-# month name alone takes ь -- iyun (c0608); a date has no hyphen after the
-# year in Cyrillic and one in Latin -- 2026 yil, 2026-yil and 2026-йил in
-# c0307, c0325 and c0634.
+# month name alone takes ь -- iyun (c0608); a date that changes script has no
+# hyphen after the year in Cyrillic and one in Latin -- 2026 yil, 2026-yil
+# and 2026-йил in c0307, c0325 and c0634.
 CHANGED_BY_0_3_2_RULES = [
     "c0150", "c0170", "c0182", "c0186", "c0222", "c0226", "c0307", "c0325", "c0608", "c0634",
     "c1063", "c1064",
@@ -782,7 +782,7 @@ WORD_LEVEL_AUTO_SHA256 = "4fff68422384a9821c039e91ccb5c6c98aa32cdec7f6855545d2ba
 NFC_SHA256 = "dc141f9ede1bf9346033c6f3cdde36e07d017f62e89ee2ac6872ad2c45acc09b"
 
 # The same on CHANGED_BY_0_3_2_RULES, after the rules of 0.3.2.
-RULES_0_3_2_SHA256 = "165f84441c79c054eae51c74df7dec2df51961c846e48c68cd70eb745a61879b"
+RULES_0_3_2_SHA256 = "eb4c8424bd6754f3ac3f212709bfbf540b7efbc5f1c328b23509a39d803d24bc"
 
 
 def _golden_cases_before_protection():

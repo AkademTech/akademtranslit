@@ -164,9 +164,24 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
     return mapWord(word, transforms[script]);
   };
   // mapWord canonicalises the marks even when there are no steps. Then dates:
-  // the separator after the number of a year or a day of the month.
+  // the separator after the number of a year or a day of the month, before a
+  // word read in the other script; crossed holds where those words start in
+  // the converted piece (UTF-16 offsets, as dates() reads them).
+  const convertPiece = (piece) => {
+    let converted = "";
+    const crossed = new Set();
+    let last = 0;
+    for (const match of piece.matchAll(wordRe)) {
+      const between = piece.slice(last, match.index);
+      if ((sourceOf(match[0]) === CYRILLIC) !== toCyrillic) crossed.add(converted.length + between.length);
+      converted += between + convertWord(match[0], match.index, piece);
+      last = match.index + match[0].length;
+    }
+    converted += piece.slice(last);
+    return dates(converted, target, crossed);
+  };
   let out = "";
-  for (const [piece, kind] of pieces) out += kind !== null ? piece : dates(piece.replace(wordRe, convertWord), target);
+  for (const [piece, kind] of pieces) out += kind !== null ? piece : convertPiece(piece);
   return out;
 }
 

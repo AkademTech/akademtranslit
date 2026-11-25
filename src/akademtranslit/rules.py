@@ -74,7 +74,8 @@ Dates
     Cyrillic writes no hyphen after the number of a year or of a day of the
     month (1956 йил 22 сентябрь, the 1956 rules), Latin writes one
     (1956-yil 22-sentabr): :func:`dates` writes the separator as the target
-    does, after the words are converted.
+    does, after the words are converted, when the word after the number
+    comes from the other script. Within one script it stays as written.
 """
 
 from __future__ import annotations
@@ -701,14 +702,24 @@ _LATIN_MONTH_RE = re.compile(
 )
 
 
-def dates(text: str, target: str) -> str:
+def dates(text: str, target: str, crossed=None) -> str:
     """``text``, converted to ``target``, with the separator after the number
-    of a year or of a day of the month as ``target`` writes it.
+    of a year or of a day of the month as ``target`` writes it, where the word
+    after the number comes from the other script.
 
     Cyrillic writes no hyphen there (the 1956 spelling rules, paragraph 47):
     ``1956 йил 22 сентябрь``. Latin writes one (Resolution No. 339 of 1995,
     rule 56): ``1991-yil 1-sentabr``. Other ordinals keep the hyphen in both:
     ``5-sinf``, ``39-son``, ``60-yillar``.
+
+    ``crossed`` holds the offsets in ``text`` at which a word starts that was
+    read in the other script: in ``latin_1995`` or ``latin_2026`` when
+    ``target`` is Cyrillic, in Cyrillic when ``target`` is Latin. Only a
+    number followed by such a word is written anew. Within one script --
+    ``latin_1995`` <-> ``latin_2026``, or an orthography to itself -- the
+    separator is the author's and stays: ``2026 yil`` stays ``2026 yil``,
+    ``1991-йил`` stays ``1991-йил``. With ``crossed`` left out, every word
+    counts as read in the other script.
 
     A number counts when no letter or digit comes before it and one hyphen or
     one space comes after it, and then:
@@ -728,8 +739,12 @@ def dates(text: str, target: str) -> str:
     years) is read as a year and becomes ``2000-yil davomida``.
     """
     if target == CYRILLIC:
-        return _NUMBER_HYPHEN_RE.sub(_cyrillic_date, text)
-    return _NUMBER_SPACE_RE.sub(_latin_date, text)
+        number, date = _NUMBER_HYPHEN_RE, _cyrillic_date
+    else:
+        number, date = _NUMBER_SPACE_RE, _latin_date
+    if crossed is None:
+        return number.sub(date, text)
+    return number.sub(lambda match: date(match) if match.end() in crossed else match.group(), text)
 
 
 def _word_after(match) -> str:

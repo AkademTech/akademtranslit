@@ -479,11 +479,16 @@ function wordAt(text, at) {
 
 /**
  * ``text``, converted to ``target``, with the separator after the number of a
- * year or of a day of the month as ``target`` writes it (see rules.py, dates).
+ * year or of a day of the month as ``target`` writes it, where the word after
+ * the number comes from the other script (see rules.py, dates). ``crossed``
+ * holds the offsets (UTF-16) in ``text`` at which a word read in the other
+ * script starts; only a number before one is written anew. null: every word.
  */
-export function dates(text, target) {
+export function dates(text, target, crossed = null) {
+  const skip = (all, offset) => crossed !== null && !crossed.has(offset + all.length);
   if (target === CYRILLIC) {
     return text.replace(NUMBER_HYPHEN_RE, (all, number, hyphen, offset) => {
+      if (skip(all, offset)) return all;
       const word = wordAt(text, offset + all.length);
       const year = number.length >= 3 && number.length <= 4 && number[0] !== "0" && word.startsWith("йил");
       const day = DAYS.has(number) && CYRILLIC_MONTH_RE.test(word);
@@ -492,6 +497,7 @@ export function dates(text, target) {
     });
   }
   return text.replace(NUMBER_SPACE_RE, (all, number, space, offset) => {
+    if (skip(all, offset)) return all;
     const word = wordAt(text, offset + all.length);
     const year = number.length === 4 && Number(number) >= 1000 && Number(number) <= 2099 && word.startsWith("yil");
     const day = DAYS.has(number) && LATIN_MONTH_RE.test(word);

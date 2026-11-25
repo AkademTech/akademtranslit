@@ -221,20 +221,47 @@ test("dates: Cyrillic to Latin", () => {
   }
 });
 
-test("dates: in their own orthography", () => {
+test("dates: in their own orthography the separator stays", () => {
   const cases = [
-    ["1991-йилнинг 1-сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"],
-    ["1991\u{2011}йил 1\u{2011}сентябрь", CYRILLIC, "1991\u{A0}йил 1\u{A0}сентябрь"],
-    ["1991 йилнинг 1 сентябри", CYRILLIC, "1991 йилнинг 1 сентябри"],
-    ["1956 yil 22 sentabr", LATIN_1995, "1956-yil 22-sentabr"],
-    ["1956\u{A0}yil 22\u{A0}sentabr", LATIN_1995, "1956\u{2011}yil 22\u{2011}sentabr"],
-    ["2026 yil 1 iyun", LATIN_2026, "2026-yil 1-iyun"],
-    ["2026-yil 1-iyun", LATIN_2026, "2026-yil 1-iyun"],
+    ["1991-йилнинг 1-сентябри", CYRILLIC],
+    ["1991-йил", CYRILLIC],
+    ["1991\u{2011}йил 1\u{2011}сентябрь", CYRILLIC],
+    ["1991 йилнинг 1 сентябри", CYRILLIC],
+    ["1956 yil 22 sentabr", LATIN_1995],
+    ["ilmiy jurnal 2026 yil 12 son", LATIN_1995],
+    ["1956\u{A0}yil 22\u{A0}sentabr", LATIN_1995],
+    ["2026 yil 1 iyun", LATIN_2026],
+    ["2026-yil 1-iyun", LATIN_2026],
   ];
-  for (const [text, orthography, expected] of cases) {
-    assert.equal(convert(text, orthography, orthography), expected, text);
-    assert.equal(convert(text, "auto", orthography), expected, text);
+  for (const [text, orthography] of cases) {
+    assert.equal(convert(text, orthography, orthography), text, text);
+    assert.equal(convert(text, "auto", orthography), text, text);
   }
+});
+
+test("dates: latin_1995 <-> latin_2026 is one script, the separator stays", () => {
+  const cases = [
+    ["2026 yil", "2026 yil"],
+    ["1956 yil 22 sentabr", "1956 yil 22 sentabr"],
+    ["ilmiy jurnal 2026 yil 12 son", "ilmiy jurnal 2026 yil 12 son"],
+    ["1991-yilning 1-sentabri", "1991-yilning 1-sentabri"],
+    ["1956\u{A0}yil 22\u{A0}sentabr", "1956\u{A0}yil 22\u{A0}sentabr"],
+    ["1991\u{2011}yil 1\u{2011}sentabr", "1991\u{2011}yil 1\u{2011}sentabr"],
+    ["31 dekabrgacha, 2026 yil", "31 dekabrgaça, 2026 yil"],
+  ];
+  for (const [latin1995, latin2026] of cases) {
+    assert.equal(convert(latin1995, LATIN_1995, LATIN_2026), latin2026, latin1995);
+    assert.equal(convert(latin2026, LATIN_2026, LATIN_1995), latin1995, latin2026);
+    assert.equal(toLatin(latin1995), latin2026, latin1995);
+    assert.equal(toLatin(latin2026, LATIN_1995), latin1995, latin2026);
+  }
+});
+
+test("dates: read in the named source", () => {
+  assert.equal(convert("ilmiy jurnal 2026 yil 12 son", CYRILLIC, LATIN_1995), "ilmiy jurnal 2026-yil 12 son");
+  assert.equal(convert("1956 yil 22 sentabr", CYRILLIC, LATIN_2026), "1956-yil 22-sentabr");
+  assert.equal(convert("1991-йил", LATIN_1995, CYRILLIC), "1991 йил");
+  assert.equal(convert("1991-йил", LATIN_2026, CYRILLIC), "1991 йил");
 });
 
 test("dates: boundaries", () => {
@@ -273,10 +300,25 @@ test("dates: a letter or digit before the number", () => {
   assert.equal(dates("_1991 yil", LATIN_1995), "_1991-yil");
 });
 
+test("dates: only before a word from the other script", () => {
+  // crossed: where a word read in the other script starts (UTF-16 offsets).
+  assert.equal(dates("1991-йил", CYRILLIC, new Set()), "1991-йил");
+  assert.equal(dates("1991-йил", CYRILLIC, new Set([5])), "1991 йил");
+  assert.equal(dates("1991-йил 1991-йил", CYRILLIC, new Set([14])), "1991-йил 1991 йил");
+  assert.equal(dates("1991 yil 1 sentabr", LATIN_1995, new Set([5])), "1991-yil 1 sentabr");
+  assert.equal(dates("1991 yil 1 sentabr", LATIN_1995, new Set([11])), "1991 yil 1-sentabr");
+});
+
 test("dates: source auto", () => {
   assert.equal(toCyrillic("Toşkentda 2026-yil 1-sentabr"), "Тошкентда 2026 йил 1 сентябрь");
   assert.equal(toLatin("1991 йил 1 сентябрда", LATIN_1995), "1991-yil 1-sentabrda");
-  assert.equal(toCyrillic("Тошкентда 2026-йил ва 2026-yil"), "Тошкентда 2026 йил ва 2026-yil");
+  // Mostly Cyrillic: both dates are in their own script and keep the hyphen.
+  assert.equal(toCyrillic("Тошкентда 2026-йил ва 2026-yil"), "Тошкентда 2026-йил ва 2026-yil");
+  // Each date by the script its word is read in.
+  assert.equal(toLatin("1956 йил va 1956 yil", LATIN_1995), "1956-yil va 1956 yil");
+  assert.equal(toLatin("1956 йил va 1956 yil"), "1956-yil va 1956 yil");
+  assert.equal(toCyrillic("1956-yil va 1956-йил"), "1956 йил ва 1956-йил");
+  assert.equal(toCyrillic("1 sentabr, 1-сентябрь, 1-sentabr"), "1 сентябрь, 1-сентябрь, 1 сентябрь");
 });
 
 test("dates: in a protected span", () => {

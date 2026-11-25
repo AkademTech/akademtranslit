@@ -250,14 +250,19 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     >>> convert("Ilmiy jurnal, 2026-yil, 12-son", target="latin_2026")
     'Ilmiy jurnal, 2026-yil, 12-son'
 
-    The one exception is a date. Cyrillic writes no hyphen after the number of
-    a year or of a day of the month, Latin writes one (see
-    :func:`~akademtranslit.rules.dates`):
+    The one exception is a date that changes script. Cyrillic writes no
+    hyphen after the number of a year or of a day of the month, Latin writes
+    one (see :func:`~akademtranslit.rules.dates`):
 
     >>> convert("1991-yilning 1-sentabri", target="cyrillic")
     '1991 йилнинг 1 сентябри'
     >>> convert("1956 йил 22 сентябрь", target="latin_2026")
     '1956-yil 22-sentabr'
+
+    Within one script the separator is the author's and stays as it is:
+
+    >>> convert("2026 yil", source="latin_1995", target="latin_2026")
+    '2026 yil'
 
     URLs, e-mail addresses, DOIs, placeholders, markup, file paths and tokens
     such as ``pH`` and ``SpO2`` come out byte for byte (see
@@ -346,14 +351,27 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
             return month_soft_sign(word, map_word(word, transforms[script]))
         return map_word(word, transforms[script])
 
-    # map_word canonicalises the marks even when there are no steps, which is
-    # what makes a same-script conversion a normalising pass rather than a no-op.
-    # Then dates: the separator after the number of a year or a day of the
-    # month, as the target writes it.
-    return "".join(
-        piece if kind is not None else dates(_WORD_RE.sub(_word, piece), target)
-        for piece, kind in pieces
-    )
+    def _piece(piece: str) -> str:
+        # map_word canonicalises the marks even when there are no steps, which
+        # is what makes a same-script conversion a normalising pass rather
+        # than a no-op. Then dates: the separator after the number of a year
+        # or a day of the month, as the target writes it, before a word read
+        # in the other script; crossed holds where those words start in out.
+        out = []
+        crossed = set()
+        size = last = 0
+        for match in _WORD_RE.finditer(piece):
+            between = piece[last:match.start()]
+            word = _word(match)
+            if (source_of(match.group()) == CYRILLIC) != to_cyrillic:
+                crossed.add(size + len(between))
+            out += (between, word)
+            size += len(between) + len(word)
+            last = match.end()
+        out.append(piece[last:])
+        return dates("".join(out), target, crossed)
+
+    return "".join(piece if kind is not None else _piece(piece) for piece, kind in pieces)
 
 
 def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:

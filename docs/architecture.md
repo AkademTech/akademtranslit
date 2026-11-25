@@ -116,8 +116,13 @@ stays as it is (`is_roman_numeral`, which also sees the character after the
 word), and a month name standing alone gets its `ь` after the steps
 (`month_soft_sign`). Then, on each converted piece of text, `dates` writes
 the separator after the number of a year or of a day of the month as the
-target does. The text between protected spans is converted piece by piece,
-so a number and the word after it count only within one piece.
+target does, where the word after the number was read in the other script.
+`convert` goes over the words of the piece itself, so that it knows where
+each converted word starts: it passes `dates` the offsets of the words read
+in Cyrillic when the target is Latin, or in a Latin orthography when the
+target is Cyrillic. Within one script the separator stays. The text between
+protected spans is converted piece by piece, so a number and the word after
+it count only within one piece.
 
 `source="auto"` is decided in two passes over the words of the composed text
 outside the protected spans. `word_class` puts each word, lowercased and with its
@@ -228,13 +233,16 @@ From 0.3.2 more rules look at a whole word or at the text around it:
 - Roman numerals: `is_roman_numeral(word, after)` is true for a word that
   `_ROMAN_NUMERAL_RE` matches in full (1 to 3999, capitals), unless it is one
   letter and `after` is `.`.
-- Dates: `dates(text, target)` finds a number with no letter or digit before
-  it and one separator after it (`_NUMBER_HYPHEN_RE` for Cyrillic,
-  `_NUMBER_SPACE_RE` for Latin), reads the word after it with `_WORD_RE`,
-  lowercased, and changes the separator for a year (three or four digits and
-  `йил…`; 1000 to 2099 and `yil…`) or a day (`_DAYS` and `_CYRILLIC_MONTH_RE`
-  or `_LATIN_MONTH_RE`). The word is lowercased rather than matched with
-  `re.IGNORECASE`, so the JavaScript port reads it the same way.
+- Dates: `dates(text, target, crossed)` finds a number with no letter or
+  digit before it and one separator after it (`_NUMBER_HYPHEN_RE` for
+  Cyrillic, `_NUMBER_SPACE_RE` for Latin). If the word after it starts at
+  an offset in `crossed` (a word read in the other script; with `crossed`
+  left out, any word), it reads that word with `_WORD_RE`, lowercased, and
+  changes the separator for a year (three or four digits and `йил…`; 1000
+  to 2099 and `yil…`) or a day (`_DAYS` and `_CYRILLIC_MONTH_RE` or
+  `_LATIN_MONTH_RE`). The word is lowercased rather than matched with
+  `re.IGNORECASE`, so the JavaScript port reads it the same way. The JS
+  port's offsets count UTF-16 units, as its `replace` callbacks do.
 
 ## Normalization
 
@@ -340,10 +348,9 @@ again: it counts them and the ones that change, and adds `round-trip` for a
 word without a finding that does not come back from `latin_2026` as it was,
 and `separator` for one with `sʼh`.
 
-Neither looks at the separator between the number and the word of a date,
-which `dates` writes in `convert` (0.3.2): `1956 yil` in Latin text is not a
-`validate` finding and is not counted in `changed`, though its conversion
-and the report's `result` are `1956-yil`.
+Neither looks at the separator between the number and the word of a date.
+`convert` keeps it within one script (0.3.2), so `1956 yil` in Latin text is
+not a `validate` finding and the report's `result` has `1956 yil` too.
 
 ## Command line
 
