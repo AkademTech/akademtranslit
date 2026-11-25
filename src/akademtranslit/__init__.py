@@ -40,6 +40,8 @@ from .rules import (
     O_FORM_WORD,
     PLAIN_WORD,
     SH_CH_WORD,
+    _names_a_letter,
+    _roman_series_member,
     convert_cyrillic_word,
     cyrillic_word_to_latin_1995,
     dates,
@@ -234,28 +236,92 @@ def _steps(source: str, target: str):
     return _word
 
 
-# What separates one letter from the word that makes it a Roman numeral.
+# What separates one letter from the words that make it a Roman numeral or
+# a letter: the word before it (Pyotr I) counts after one space or U+00A0,
+# the word after it (V asr, V-asr, V harfi) after one of those, a hyphen or
+# U+2011 NON-BREAKING HYPHEN.
 _ONE_SPACE = frozenset((" ", "\N{NO-BREAK SPACE}"))
+_BEFORE_FOLLOWING = _ONE_SPACE | {"-", "\N{NON-BREAKING HYPHEN}"}
+
+# What links two numerals in a series (V–VI, I, II va III, I yoki II): one
+# hyphen or dash with no space around it, a comma and one space or U+00A0,
+# or the word va or yoki with one space or U+00A0 on each side.
+_SERIES_LINKS = frozenset("-\N{HYPHEN}\N{NON-BREAKING HYPHEN}\N{FIGURE DASH}\N{EN DASH}\N{EM DASH}") | {
+    ", ", ",\N{NO-BREAK SPACE}",
+}
+_SERIES_WORDS = frozenset(("va", "yoki"))
 
 
-def _roman_numeral(match, previous) -> bool:
-    """:func:`~akademtranslit.rules.is_roman_numeral` for the word of
-    ``match``, in the text it was found in. ``previous`` is the match of the
-    word before it, or ``None``. The words beside it count when one space or
-    U+00A0 NO-BREAK SPACE is all that separates them; they are looked up for
-    one letter only."""
-    word, text, start, end = match.group(), match.string, match.start(), match.end()
-    after = text[end:end + 1]
-    if len(word) != 1:
-        return is_roman_numeral(word, after)
-    following = ""
-    if after in _ONE_SPACE:
-        next_word = _WORD_RE.match(text, end + 1)
-        following = next_word.group() if next_word else ""
-    before = ""
-    if previous is not None and previous.end() == start - 1 and text[start - 1] in _ONE_SPACE:
-        before = previous.group()
-    return is_roman_numeral(word, after, before, following)
+def _roman_numerals(piece: str, matches: list) -> set:
+    """The indices in ``matches``, the words of ``piece`` in order, of the
+    words that conversion to Cyrillic keeps as Roman numerals.
+
+    A word on its own is one when
+    :func:`~akademtranslit.rules.is_roman_numeral` says so, given the
+    character after it and, for one letter, the words beside it (see
+    ``_BEFORE_FOLLOWING``). Members linked into a series (``_SERIES_LINKS``,
+    ``_SERIES_WORDS``; ``_roman_series_member``) go together: when one of
+    two or more is a numeral on its own, all are (V–VI, I va II jahon) --
+    unless the word after the series begins with harf or tovush, when none
+    is made one and each is what it is on its own (V, X va XV harflari ->
+    В, Х ва XV ҳарфлари; Nikolay I, V harfi -> Николай I, В ҳарфи). Each
+    word is looked at a fixed number of times, so this is linear in the
+    length of the piece.
+    """
+    count = len(matches)
+
+    def between(i: int, j: int) -> str:
+        return piece[matches[i].end():matches[j].start()]
+
+    def after(i: int) -> str:
+        end = matches[i].end()
+        return piece[end:end + 1]
+
+    def following(i: int) -> str:
+        return matches[i + 1].group() if i + 1 < count and between(i, i + 1) in _BEFORE_FOLLOWING else ""
+
+    def alone(i: int) -> bool:
+        word = matches[i].group()
+        if len(word) != 1:
+            return is_roman_numeral(word, after(i))
+        before = matches[i - 1].group() if i > 0 and between(i - 1, i) in _ONE_SPACE else ""
+        return is_roman_numeral(word, after(i), before, following(i))
+
+    def member(i: int) -> bool:
+        return _roman_series_member(matches[i].group(), after(i))
+
+    def linked(i: int):
+        """The index of the member that the member at ``i`` links to, or None."""
+        if i + 1 < count and between(i, i + 1) in _SERIES_LINKS and member(i + 1):
+            return i + 1
+        if (
+            i + 2 < count
+            and matches[i + 1].group() in _SERIES_WORDS
+            and between(i, i + 1) in _ONE_SPACE
+            and between(i + 1, i + 2) in _ONE_SPACE
+            and member(i + 2)
+        ):
+            return i + 2
+        return None
+
+    kept = set()
+    i = 0
+    while i < count:
+        series = [i]
+        if member(i):
+            link = linked(i)
+            while link is not None:
+                series.append(link)
+                link = linked(link)
+        if len(series) == 1:
+            if alone(i):
+                kept.add(i)
+        elif _names_a_letter(following(series[-1])):
+            kept.update(k for k in series if alone(k))
+        elif any(alone(k) for k in series):
+            kept.update(series)
+        i = series[-1] + 1
+    return kept
 
 
 def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protect=True) -> str:
@@ -364,14 +430,14 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     transforms = {script: _steps(script, target) for script in SCRIPTS}
     to_cyrillic = target == CYRILLIC
 
-    def _word(match, previous) -> str:
+    def _word(match, numeral: bool) -> str:
         word = match.group()
         script = source_of(word)
         if to_cyrillic and script != CYRILLIC:
             # The rules that need the whole word as it stands, and the text
-            # around it: the next character, and for one letter the words
-            # beside it (previous is the match of the word before, or None).
-            if _roman_numeral(match, previous):
+            # around it: a Roman numeral (numeral, from _roman_numerals,
+            # which sees the words beside it) stays as it is.
+            if numeral:
                 return word
             return month_soft_sign(word, map_word(word, transforms[script]))
         return map_word(word, transforms[script])
@@ -385,16 +451,16 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
         out = []
         crossed = set()
         size = last = 0
-        previous = None
-        for match in _WORD_RE.finditer(piece):
+        matches = list(_WORD_RE.finditer(piece))
+        numerals = _roman_numerals(piece, matches) if to_cyrillic else set()
+        for index, match in enumerate(matches):
             between = piece[last:match.start()]
-            word = _word(match, previous)
+            word = _word(match, index in numerals)
             if (source_of(match.group()) == CYRILLIC) != to_cyrillic:
                 crossed.add(size + len(between))
             out += (between, word)
             size += len(between) + len(word)
             last = match.end()
-            previous = match
         out.append(piece[last:])
         return dates("".join(out), target, crossed)
 

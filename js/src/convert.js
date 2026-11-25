@@ -21,6 +21,8 @@ import {
   latin2026WordTo1995,
   mapWord,
   monthSoftSign,
+  namesALetter,
+  romanSeriesMember,
   wordClass,
   wordRegExp,
 } from "./rules.js";
@@ -115,34 +117,72 @@ function steps(source, target) {
   };
 }
 
-// What separates one letter from the word that makes it a Roman numeral.
+// What separates one letter from the words that make it a Roman numeral or a
+// letter: the word before it after one space or U+00A0, the word after it
+// after one of those, a hyphen or U+2011 (see __init__.py).
 const ONE_SPACE = new Set([" ", "\u{A0}"]);
-const WORD_AT_RE = new RegExp(wordRegExp().source, "uy");
+const BEFORE_FOLLOWING = new Set([...ONE_SPACE, "-", "\u{2011}"]);
+
+// What links two numerals in a series: one hyphen or dash with no space
+// around it, a comma and one space or U+00A0, or va or yoki with one space
+// or U+00A0 on each side.
+const SERIES_LINKS = new Set(["-", "\u{2010}", "\u{2011}", "\u{2012}", "\u{2013}", "\u{2014}", ", ", ",\u{A0}"]);
+const SERIES_WORDS = new Set(["va", "yoki"]);
 
 /**
- * isRomanNumeral for the word of ``match`` (from matchAll over ``piece``);
- * ``previous`` is the match of the word before it, or null. The words beside
- * it count when one space or U+00A0 is all that separates them; they are
- * looked up for one letter only. The characters beside a word here are one
- * UTF-16 unit each: only ".", " " and U+00A0 count.
+ * The indices in ``matches`` (from matchAll over ``piece``, in order) of the
+ * words that conversion to Cyrillic keeps as Roman numerals: a word that is
+ * one on its own (isRomanNumeral), and the members of a series of two or more
+ * of which one is, unless the word after the series begins with harf or
+ * tovush, when each member is what it is on its own (see __init__.py,
+ * _roman_numerals). Linear in the length of the
+ * piece. The characters beside a word here are one UTF-16 unit each: only
+ * ".", the spaces, the hyphens and dashes and "," count.
  */
-function romanNumeral(match, previous, piece) {
-  const word = match[0];
-  const start = match.index;
-  const end = start + word.length;
-  const after = piece.slice(end, end + 1);
-  if (word.length !== 1) return isRomanNumeral(word, after);
-  let following = "";
-  if (ONE_SPACE.has(after)) {
-    WORD_AT_RE.lastIndex = end + 1;
-    const next = WORD_AT_RE.exec(piece);
-    following = next === null ? "" : next[0];
+function romanNumerals(piece, matches) {
+  const count = matches.length;
+  const end = (i) => matches[i].index + matches[i][0].length;
+  const between = (i, j) => piece.slice(end(i), matches[j].index);
+  const after = (i) => piece.slice(end(i), end(i) + 1);
+  const following = (i) => (i + 1 < count && BEFORE_FOLLOWING.has(between(i, i + 1)) ? matches[i + 1][0] : "");
+  const alone = (i) => {
+    const word = matches[i][0];
+    if (word.length !== 1) return isRomanNumeral(word, after(i));
+    const before = i > 0 && ONE_SPACE.has(between(i - 1, i)) ? matches[i - 1][0] : "";
+    return isRomanNumeral(word, after(i), before, following(i));
+  };
+  const member = (i) => romanSeriesMember(matches[i][0], after(i));
+  const linked = (i) => {
+    if (i + 1 < count && SERIES_LINKS.has(between(i, i + 1)) && member(i + 1)) return i + 1;
+    if (
+      i + 2 < count &&
+      SERIES_WORDS.has(matches[i + 1][0]) &&
+      ONE_SPACE.has(between(i, i + 1)) &&
+      ONE_SPACE.has(between(i + 1, i + 2)) &&
+      member(i + 2)
+    ) {
+      return i + 2;
+    }
+    return null;
+  };
+
+  const kept = new Set();
+  let i = 0;
+  while (i < count) {
+    const series = [i];
+    if (member(i)) {
+      for (let link = linked(i); link !== null; link = linked(link)) series.push(link);
+    }
+    if (series.length === 1) {
+      if (alone(i)) kept.add(i);
+    } else if (namesALetter(following(series.at(-1)))) {
+      for (const k of series) if (alone(k)) kept.add(k);
+    } else if (series.some(alone)) {
+      for (const k of series) kept.add(k);
+    }
+    i = series.at(-1) + 1;
   }
-  let before = "";
-  if (previous !== null && previous.index + previous[0].length === start - 1 && ONE_SPACE.has(piece[start - 1])) {
-    before = previous[0];
-  }
-  return isRomanNumeral(word, after, before, following);
+  return kept;
 }
 
 /**
@@ -182,13 +222,13 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
   for (const script of SCRIPTS) transforms[script] = steps(script, target);
   const toCyrillic = target === CYRILLIC;
   const wordRe = wordRegExp();
-  const convertWord = (match, previous, piece) => {
+  const convertWord = (match, numeral) => {
     const word = match[0];
     const script = sourceOf(word);
     if (toCyrillic && script !== CYRILLIC) {
       // The rules that need the whole word as it stands, and the text around
-      // it: the next character, and for one letter the words beside it.
-      if (romanNumeral(match, previous, piece)) return word;
+      // it: a Roman numeral (numeral, from romanNumerals) stays as it is.
+      if (numeral) return word;
       return monthSoftSign(word, mapWord(word, transforms[script]));
     }
     return mapWord(word, transforms[script]);
@@ -201,13 +241,13 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
     let converted = "";
     const crossed = new Set();
     let last = 0;
-    let previous = null;
-    for (const match of piece.matchAll(wordRe)) {
+    const matches = [...piece.matchAll(wordRe)];
+    const numerals = toCyrillic ? romanNumerals(piece, matches) : new Set();
+    for (const [index, match] of matches.entries()) {
       const between = piece.slice(last, match.index);
       if ((sourceOf(match[0]) === CYRILLIC) !== toCyrillic) crossed.add(converted.length + between.length);
-      converted += between + convertWord(match, previous, piece);
+      converted += between + convertWord(match, numerals.has(index));
       last = match.index + match[0].length;
-      previous = match;
     }
     converted += piece.slice(last);
     return dates(converted, target, crossed);

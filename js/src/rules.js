@@ -431,6 +431,8 @@ const ROMAN_ONE_LETTER = new Set("IVX");
 const ROMAN_COUNTED_1995 = [
   "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
   "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+  "kvartal", "semestr", "smena", "kitob", "kategoriya", "oʻrin", "yarim", "yarmi", "xalqaro",
+  "respublika", "konferensiya", "kongress", "anjuman", "simpozium",
 ];
 export const ROMAN_COUNTED = [...new Set([...ROMAN_COUNTED_1995, ...ROMAN_COUNTED_1995.map(latin1995WordTo2026)])];
 
@@ -443,20 +445,39 @@ const ROMAN_LETTER_WORDS = [
 ];
 
 /**
+ * True if ``following``, the word after one letter, begins in any case with
+ * harf or tovush (tovuş): the letter is a letter (see rules.py, _names_a_letter).
+ */
+export function namesALetter(following) {
+  const word = latin2026CanonicalWord(canonicalizeMarks(following.toLowerCase()));
+  return ROMAN_LETTER_WORDS.some((start) => word.startsWith(start));
+}
+
+/**
+ * True if ``word``, followed by the character ``after``, can be a member of a
+ * series of numerals: two letters or more, or one I, V or X with no "." after
+ * it (see rules.py, _roman_series_member).
+ */
+export function romanSeriesMember(word, after = "") {
+  if (!word || !ROMAN_NUMERAL_RE.test(word)) return false;
+  return word.length > 1 || (ROMAN_ONE_LETTER.has(word) && after !== ".");
+}
+
+/**
  * True if ``word``, followed by the character ``after`` (or ""), is a Roman
- * numeral, which conversion from Latin to Cyrillic keeps (see rules.py).
- * ``previous`` and ``following`` are the words beside it, or "". Two letters
- * or more are a numeral anywhere. One L, C, D or M is a letter. One I, V or
- * X is a letter before a word in ROMAN_LETTER_WORDS; a numeral before a word
- * in ROMAN_COUNTED, or after a word of two letters or more that begins with
- * a capital and not before ".".
+ * numeral on its own, which conversion from Latin to Cyrillic keeps (see
+ * rules.py). ``previous`` and ``following`` are the words beside it, or "".
+ * Two letters or more are a numeral anywhere. One L, C, D or M is a letter.
+ * One I, V or X is a letter before a word in ROMAN_LETTER_WORDS; a numeral
+ * before a word in ROMAN_COUNTED, or after a word of two letters or more that
+ * begins with a capital and not before ".". convert() also reads a series.
  */
 export function isRomanNumeral(word, after = "", previous = "", following = "") {
   if (!word || !ROMAN_NUMERAL_RE.test(word)) return false;
   if (word.length > 1) return true;
   if (!ROMAN_ONE_LETTER.has(word)) return false;
+  if (namesALetter(following)) return false;
   following = latin2026CanonicalWord(canonicalizeMarks(following.toLowerCase()));
-  if (ROMAN_LETTER_WORDS.some((start) => following.startsWith(start))) return false;
   if (ROMAN_COUNTED.some((start) => following.startsWith(start))) return true;
   // Code points, as Python counts them; the first one, as str.isupper sees it.
   const chars = Array.from(previous);

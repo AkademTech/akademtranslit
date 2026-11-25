@@ -67,11 +67,12 @@ Month names
 Roman numerals
     A word that is a Roman numeral in capitals stays as it is when Latin is
     converted to Cyrillic (XIX asr -> XIX аср). One I, V or X is a numeral
-    only in context -- before a word such as asr or jahon (V asr -> V аср),
-    or after a name (Pyotr I -> Пётр I), but never before harf or tovush --
-    and a letter otherwise (V harfi -> В ҳарфи, I. Boʻriyev -> И. Бўриев);
-    one L, C, D or M is always a letter (D guruhi -> Д гуруҳи):
-    :func:`is_roman_numeral`.
+    only in context -- before a word such as asr or jahon (V asr -> V аср,
+    V-asr -> V-аср), after a name (Pyotr I -> Пётр I), or in a series with
+    a numeral (V–VI asrlar -> V–VI асрлар), but never before harf or tovush
+    -- and a letter otherwise (V harfi -> В ҳарфи, V va X -> В ва Х,
+    I. Boʻriyev -> И. Бўриев); one L, C, D or M is always a letter
+    (D guruhi -> Д гуруҳи): :func:`is_roman_numeral`.
 
 Dates
     Cyrillic writes no hyphen after the number of a year or of a day of the
@@ -644,12 +645,16 @@ _ROMAN_NUMERAL_RE = re.compile(r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX
 _ROMAN_ONE_LETTER = frozenset("IVX")
 
 # The words that make one letter before them a numeral (V asr, I jahon
-# urushi, X sinf): the word after the letter begins with one of these, in
-# latin_1995 or, written by the table, in latin_2026 (bölim, çorak, bosqiç,
-# çaqiriq).
+# urushi, X sinf, I kvartal, I Xalqaro konferensiya): the word after the
+# letter begins with one of these, in latin_1995 or, written by the table,
+# in latin_2026 (bölim, çorak, bosqiç, çaqiriq, örin).
 _ROMAN_COUNTED = (
     "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
     "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+)
+_ROMAN_COUNTED += (
+    "kvartal", "semestr", "smena", "kitob", "kategoriya", "oʻrin", "yarim", "yarmi", "xalqaro",
+    "respublika", "konferensiya", "kongress", "anjuman", "simpozium",
 )
 _ROMAN_COUNTED = tuple(dict.fromkeys(_ROMAN_COUNTED + tuple(map(latin_1995_word_to_2026, _ROMAN_COUNTED))))
 
@@ -662,14 +667,32 @@ _ROMAN_LETTER_WORDS = tuple(dict.fromkeys(
 ))
 
 
+def _names_a_letter(following: str) -> bool:
+    """True if ``following``, the word after one letter, begins in any case
+    with ``harf`` or ``tovush`` (``tovuş``): the letter is a letter (V harfi,
+    Lotin V harfi, V va X harflari)."""
+    return latin_2026_canonical_word(canonicalize_marks(following.lower())).startswith(_ROMAN_LETTER_WORDS)
+
+
+def _roman_series_member(word: str, after: str = "") -> bool:
+    """True if ``word``, followed by the character ``after``, can be a member
+    of a series of numerals (V–VI, I, II va III): a well-formed numeral of two
+    letters or more, or one ``I``, ``V`` or ``X`` with no full stop after it
+    (``V.`` is an initial)."""
+    if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
+        return False
+    return len(word) > 1 or (word in _ROMAN_ONE_LETTER and after != ".")
+
+
 def is_roman_numeral(word: str, after: str = "", previous: str = "", following: str = "") -> bool:
-    """True if ``word`` is a Roman numeral, which conversion from Latin to
-    Cyrillic keeps as it is (XIX asr -> XIX аср, Pyotr I -> Пётр I).
+    """True if ``word`` is a Roman numeral on its own, which conversion from
+    Latin to Cyrillic keeps as it is (XIX asr -> XIX аср, Pyotr I -> Пётр I).
 
     ``word`` is a word as it stands in the text and ``after`` the character
-    that follows it, or ``""``. ``previous`` and ``following`` are the words
-    before and after it as they stand, when one space or U+00A0 NO-BREAK
-    SPACE is all that separates them from it, or ``""``.
+    that follows it, or ``""``. ``previous`` is the word before it as it
+    stands, when one space or U+00A0 NO-BREAK SPACE is all that separates
+    them, or ``""``; ``following`` the word after it, when one space,
+    U+00A0, ``-`` or U+2011 NON-BREAKING HYPHEN is (``V-asr``), or ``""``.
 
     The word must be only the capitals ``I V X L C D M`` and a well-formed
     numeral (``XIX``, ``IV``, ``MMXXVI``; not ``IIII`` or ``Xix``). Two
@@ -678,14 +701,17 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
     ``M harfi`` -> ``М ҳарфи``). One ``I``, ``V`` or ``X`` is a letter
     (``V`` -> ``В``), and a numeral only
 
-    * before a word that begins, in any case, with ``asr ming bob qism jild
-      tom sinf kurs boʻlim guruh chorak bosqich daraja toifa qurultoy syezd
-      sessiya chaqiriq jahon``, or with their ``latin_2026`` forms
-      (``bölim``, ``çorak``, ``bosqiç``, ``çaqiriq``): ``V asr`` -> ``V аср``,
-      ``I jahon urushi`` -> ``I жаҳон уруши``; or
-    * after a word of two letters or more that begins with a capital, and
-      not before a full stop: ``Pyotr I`` -> ``Пётр I``, ``Nikolay I`` ->
-      ``Николай I``.
+    * (a) before a word that begins, in any case, with ``asr ming bob qism
+      jild tom sinf kurs boʻlim guruh chorak bosqich daraja toifa qurultoy
+      syezd sessiya chaqiriq jahon kvartal semestr smena kitob kategoriya
+      oʻrin yarim yarmi xalqaro respublika konferensiya kongress anjuman
+      simpozium``, or with their ``latin_2026`` forms (``bölim``, ``çorak``,
+      ``bosqiç``, ``çaqiriq``, ``örin``): ``V asr`` -> ``V аср``,
+      ``V-asr`` -> ``V-аср``, ``I jahon urushi`` -> ``I жаҳон уруши``,
+      ``I Xalqaro konferensiya`` -> ``I Халқаро конференсия``; or
+    * (b) after a word of two letters or more that begins with a capital,
+      and not before a full stop: ``Pyotr I`` -> ``Пётр I``, ``Nikolay I``
+      -> ``Николай I``.
 
     Before a word that begins, in any case, with ``harf`` or ``tovush``
     (``tovuş``) it is a letter even so: ``V harfi`` -> ``В ҳарфи``,
@@ -696,6 +722,19 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
     numeral stays Latin (``MIX``), ``Pyotr I.`` at the end of a sentence is
     read as an initial, and any capitalised word before one letter counts,
     the first of a sentence too (``Variant V`` -> ``Вариант V``).
+
+    :func:`~akademtranslit.convert` also reads numerals in a series
+    together: ``V–VI asrlar`` -> ``V–VI асрлар``, ``I, II va III boblar``
+    -> ``I, II ва III боблар``, while ``V va X`` -> ``В ва Х``. Members are
+    linked by one hyphen or dash with no space around it (``-`` U+2010
+    U+2011 U+2012 U+2013 U+2014), by a comma and one space or U+00A0, or by
+    ``va`` or ``yoki`` with one space or U+00A0 on each side; a member is a
+    numeral of two letters or more, or one ``I``, ``V`` or ``X`` with no
+    full stop after it. When one member of a series of two or more is a
+    numeral on its own, every member is; when the word after the series
+    begins with ``harf`` or ``tovush``, none is made one, and each is what
+    it is on its own (``V, X va XV harflari`` -> ``В, Х ва XV ҳарфлари``,
+    ``Nikolay I, V harfi`` -> ``Николай I, В ҳарфи``).
     """
     if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
         return False
@@ -703,9 +742,9 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
         return True
     if word not in _ROMAN_ONE_LETTER:
         return False
-    following = latin_2026_canonical_word(canonicalize_marks(following.lower()))
-    if following.startswith(_ROMAN_LETTER_WORDS):
+    if _names_a_letter(following):
         return False
+    following = latin_2026_canonical_word(canonicalize_marks(following.lower()))
     if following.startswith(_ROMAN_COUNTED):
         return True
     letters = sum(ch not in APOSTROPHE_VARIANTS for ch in previous)

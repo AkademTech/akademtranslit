@@ -113,7 +113,8 @@ Two rules need a word as it stands, before `map_word` lowercases it and
 splits it into letter units, so `convert` applies them itself, to a word
 read from a Latin orthography and converted to Cyrillic: a Roman numeral
 stays as it is (`is_roman_numeral`, which also sees the character after the
-word, and for one letter the words beside it), and a month name standing
+word, and for one letter the words beside it; `_roman_numerals` reads the
+numerals of a series together), and a month name standing
 alone gets its `ь` after the steps
 (`month_soft_sign`). Then, on each converted piece of text, `dates` writes
 the separator after the number of a year or of a day of the month as the
@@ -240,10 +241,21 @@ From 0.3.2 more rules look at a whole word or at the text around it:
   only when `following` begins with a word of `_ROMAN_COUNTED` (the 1995
   list and its 2026 forms, written by `latin_1995_word_to_2026`), or when
   `previous` begins with a capital, has two characters or more besides
-  apostrophe marks, and `after` is not `.`.
-  `convert` (`_roman_numeral`) looks up `previous` and `following` for one
-  letter only, and passes them when one space or U+00A0 is all that
-  separates them from it.
+  apostrophe marks, and `after` is not `.`. `_names_a_letter` is the
+  `harf`/`tovush` test and `_roman_series_member` says whether a word can be
+  a member of a series (two letters or more, or one `I V X` not before `.`).
+  `convert` (`_roman_numerals`) goes over the words of each piece once,
+  before converting them. It looks up `previous` and `following` for one
+  letter only, and passes `previous` when one space or U+00A0 separates it
+  from the letter, `following` when one space, U+00A0, `-` or U+2011 does
+  (`_BEFORE_FOLLOWING`). It links members into a series by
+  `_SERIES_LINKS` (a hyphen or dash, U+002D and U+2010 to U+2014, with
+  nothing around it; a comma and one space or U+00A0) or `_SERIES_WORDS`
+  (`va`, `yoki`, with one space or U+00A0 on each side). A series of two
+  or more is kept whole when one member is a numeral on its own, unless
+  the word after its last member begins with `harf` or `tovush`: then each
+  member is kept only if it is a numeral on its own. Each word is looked
+  at a fixed number of times, so the pass is linear.
 - Dates: `dates(text, target, crossed)` finds a number with no letter or
   digit before it and one separator after it (`_NUMBER_HYPHEN_RE` for
   Cyrillic, `_NUMBER_SPACE_RE` for Latin). If the word after it starts at

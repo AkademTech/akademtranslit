@@ -39,6 +39,8 @@ ROMAN_NUMERALS = [
     ("V ASR", "V АСР"),
     ("V Asrda", "V Асрда"),
     ("V\N{NO-BREAK SPACE}asr", "V\N{NO-BREAK SPACE}аср"),
+    ("V-asr", "V-аср"),
+    (f"V{NB_HYPHEN}asr", f"V{NB_HYPHEN}аср"),
     ("V bo'lim, V bo‘lim", "V бўлим, V бўлим"),
     # ... (b) the word before it.
     ("Pyotr I", "Пётр I"),
@@ -65,11 +67,13 @@ NOT_ROMAN_NUMERALS = [
     ("X", "Х"),
     ("V harfi", "В ҳарфи"),
     ("V  asr", "В  аср"),  # two spaces
-    ("V-asr", "В-аср"),
+    ("V–asr", "В–аср"),  # a dash is not a hyphen
+    ("V- asr", "В- аср"),
     ("V. asr", "В. аср"),
     ("V, asr", "В, аср"),
     ("Pyotr  I", "Пётр  И"),  # two spaces
     ("Pyotr, I", "Пётр, И"),
+    ("Pyotr-I", "Пётр-И"),  # the word before counts after one space only
     ("pyotr I", "пётр И"),  # no capital before it
     ("A I", "А И"),  # one letter before it
     ("Oʻ I", "Ў И"),  # oʻ is one letter
@@ -128,12 +132,15 @@ def test_roman_numerals_as_before(latin, cyrillic, source):
     assert convert(latin, source, CYRILLIC) == cyrillic
 
 
-# The words that make one letter before them a numeral, and their 2026 forms.
+# The words that make one letter before them a numeral (the last 14 since 0.3.2c), and
+# their 2026 forms.
 COUNTED = [
     "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
     "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+    "kvartal", "semestr", "smena", "kitob", "kategoriya", "oʻrin", "yarim", "yarmi", "xalqaro",
+    "respublika", "konferensiya", "kongress", "anjuman", "simpozium",
 ]
-COUNTED_2026 = ["bölim", "çorak", "bosqiç", "çaqiriq"]
+COUNTED_2026 = ["bölim", "çorak", "bosqiç", "çaqiriq", "örin"]
 
 
 @pytest.mark.parametrize("source", LATIN + ("auto",))
@@ -256,6 +263,12 @@ def test_roman_numerals_in_a_protected_span():
         ("I", " ", "", "BOʼLIM", True),
         ("I", " ", "", "bōlim", True),  # o with macron: ö in latin_2026
         ("I", " ", "", "çaqiriq", True),
+        ("I", " ", "", "kvartal", True),
+        ("I", " ", "", "Xalqaro", True),
+        ("I", " ", "", "o'rinni", True),
+        ("I", " ", "", "örin", True),
+        ("I", " ", "", "yarmi", True),
+        ("I", "-", "", "asr", True),  # the caller passes the word after a hyphen
         ("I", " ", "", "harfi", False),
         ("I", " ", "", "as", False),
         ("I", "", "Pyotr", "", True),
@@ -294,6 +307,159 @@ def test_is_roman_numeral_takes_the_character_after_alone():
     assert is_roman_numeral("XIX", ".") is True
     assert is_roman_numeral("I") is False
     assert is_roman_numeral("I", ".") is False
+
+
+# (a) after a hyphen: the word after one letter counts after one space, U+00A0, a
+# hyphen or U+2011; the word before it, for (b), after one space or U+00A0 only.
+HYPHENATED = [
+    ("V-asr", "V-аср"),
+    ("I-jahon urushi", "I-жаҳон уруши"),
+    (f"X{NB_HYPHEN}sinf", f"X{NB_HYPHEN}синф"),
+    ("I-kvartal", "I-квартал"),
+    ("V-harfi", "В-ҳарфи"),  # harf counts after a hyphen too
+    ("D-guruh", "Д-гуруҳ"),
+    ("V‐asr", "В‐аср"),  # U+2010 is not one of them
+    ("V–asr", "В–аср"),
+    ("V- asr", "В- аср"),
+    ("V -asr", "В -аср"),
+    ("Pyotr-I", "Пётр-И"),
+    (f"Pyotr{NB_HYPHEN}I", f"Пётр{NB_HYPHEN}И"),
+]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("latin,cyrillic", HYPHENATED)
+def test_one_letter_and_a_hyphen(latin, cyrillic, source):
+    if source == LATIN_2026:
+        latin = convert(latin, LATIN_1995, LATIN_2026)  # urushi -> uruşi
+    assert convert(latin, source, CYRILLIC) == cyrillic
+
+
+# Series: numerals linked by a dash with no space around it, a comma and one space,
+# or va or yoki with one space on each side, go together.
+SERIES = [
+    # The 0.3.2c task.
+    ("V–VI asrlar", "V–VI асрлар"),
+    ("X–XII asrlarda", "X–XII асрларда"),
+    ("I-II kurs talabalari", "I-II курс талабалари"),
+    ("I–V asrlar", "I–V асрлар"),
+    ("I, II va III boblar", "I, II ва III боблар"),
+    ("I va II jahon urushlari", "I ва II жаҳон урушлари"),
+    ("I yoki II guruh", "I ёки II гуруҳ"),
+    ("V, X va XV asrlar", "V, X ва XV асрлар"),
+    ("I–II.", "I–II."),
+    ("V–VI", "V–VI"),
+    ("V va X", "В ва Х"),  # no member is a numeral on its own
+    ("I. Karimov va V. Ivanov", "И. Каримов ва В. Иванов"),
+    ("Karimov I. va Ivanov V.", "Каримов И. ва Иванов В."),
+    # One member a numeral on its own: two letters, (a) or (b).
+    ("V va X asrlar", "V ва X асрлар"),
+    ("Karl V va X", "Карл V ва X"),
+    ("I, I, I va II", "I, I, I ва II"),
+    ("Pyotr I, II", "Пётр I, II"),
+    ("Тошкент I–II асрлар, V va VI", "Тошкент I–II асрлар, V ва VI"),
+    # U+00A0 for the space.
+    ("V,\N{NO-BREAK SPACE}X va XV asrlar", "V,\N{NO-BREAK SPACE}X ва XV асрлар"),
+    ("I\N{NO-BREAK SPACE}va\N{NO-BREAK SPACE}II", "I\N{NO-BREAK SPACE}ва\N{NO-BREAK SPACE}II"),
+    # What is not a member: one letter before a full stop, and one L, C, D or M.
+    ("II va V.", "II ва В."),
+    ("V.–VI", "В.–VI"),
+    ("L–LI", "Л–LI"),
+    ("C–CI", "C–CI"),
+    ("D va DI", "Д ва DI"),
+    ("M, MI", "М, MI"),
+    # What does not link.
+    ("I – II asrlar", "И – II асрлар"),
+    ("I -II asrlar", "И -II асрлар"),
+    ("I- II asrlar", "И- II асрлар"),
+    ("I II asrlar", "И II асрлар"),
+    ("I,II", "И,II"),
+    ("I ,II", "И ,II"),
+    ("I,  II", "И,  II"),
+    ("I  va II", "И  ва II"),
+    ("I va  II", "И ва  II"),
+    ("I Va II", "И Ва II"),
+    ("I va-II", "И ва-II"),
+    ("I ham II", "И ҳам II"),
+    ("I va asr II", "И ва аср II"),
+    # harf or tovush after the series: no member is made a numeral by the others,
+    # each is what it is on its own.
+    ("V, X va XV harflari", "В, Х ва XV ҳарфлари"),
+    ("V–VI harflari", "В–VI ҳарфлари"),
+    ("V yoki X tovushi", "В ёки Х товуши"),
+    ("Nikolay I, V harfi", "Николай I, В ҳарфи"),
+    ("Karl V, X harfi", "Карл V, Х ҳарфи"),
+    ("Lotin V va X harflari", "Лотин V ва Х ҳарфлари"),  # known limit of (b), as Variant V
+    ("V–VI-harflar", "В–VI-ҳарфлар"),
+    ("V–VI asrlar harflari", "V–VI асрлар ҳарфлари"),  # not the word after the series
+]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("latin,cyrillic", SERIES)
+def test_roman_numerals_in_a_series(latin, cyrillic, source):
+    if source == LATIN_2026:
+        latin = convert(latin, LATIN_1995, LATIN_2026)  # urushlari -> uruşlari
+    assert convert(latin, source, CYRILLIC) == cyrillic
+
+
+@pytest.mark.parametrize("dash", ["-", "\N{HYPHEN}", NB_HYPHEN, "\N{FIGURE DASH}", "\N{EN DASH}", "\N{EM DASH}"])
+def test_every_dash_links_a_series(dash):
+    assert to_cyrillic(f"I{dash}II asrlar") == f"I{dash}II асрлар"
+    assert to_cyrillic(f"V{dash}VI") == f"V{dash}VI"
+    assert to_cyrillic(f"V{dash}X{dash}XV") == f"V{dash}X{dash}XV"
+    assert to_cyrillic(f"V{dash}X") == f"В{dash}Х"
+    assert to_cyrillic(f"V {dash} VI") == f"В {dash} VI"
+    assert to_cyrillic(f"V{dash}VI harflari") == f"В{dash}VI ҳарфлари"
+
+
+def test_a_series_in_a_2026_text():
+    text = "V–VI asrlar, I bölim, I çorak"
+    assert convert(text, LATIN_2026, CYRILLIC) == "V–VI асрлар, I бўлим, I чорак"
+    assert to_cyrillic(text) == "V–VI асрлар, I бўлим, I чорак"
+    assert convert("V–VI asrlar, I boʻlim, I chorak", LATIN_1995, CYRILLIC) == "V–VI асрлар, I бўлим, I чорак"
+
+
+def test_a_series_in_the_other_directions_and_in_a_protected_span():
+    assert convert("V–VI asrlar", LATIN_1995, LATIN_2026) == "V–VI asrlar"
+    assert convert("V–VI асрлар", CYRILLIC, CYRILLIC) == "V–VI асрлар"
+    assert to_latin("V–VI асрлар, V va X") == "V–VI asrlar, V va X"
+    assert to_cyrillic("https://shahar.uz/V–VI va V–VI asrlar") == "https://shahar.uz/V–VI ва V–VI асрлар"
+    # A series does not reach across a protected span.
+    assert to_cyrillic("V–https://shahar.uz VI") == "В–https://shahar.uz VI"
+
+
+# The words added to (a) in 0.3.2c: the task's table.
+COUNTED_0_3_2C = [
+    ("I kvartal", "I квартал"),
+    ("I semestr", "I семестр"),
+    ("I smenada", "I сменада"),
+    ("I kitob", "I китоб"),
+    ("I kategoriya", "I категория"),
+    ("I oʻrinni egalladi", "I ўринни эгаллади"),
+    ("I o'rin", "I ўрин"),
+    ("XX asrning I yarmi", "XX асрнинг I ярми"),
+    ("I yarim yillik", "I ярим йиллик"),
+    ("I Xalqaro ilmiy-amaliy konferensiya", "I Халқаро илмий-амалий конференсия"),
+    ("I Respublika anjumani", "I Республика анжумани"),
+    ("I kongress", "I конгресс"),
+    ("I simpozium", "I симпозиум"),
+]
+
+
+@pytest.mark.parametrize("source", (LATIN_1995, "auto"))
+@pytest.mark.parametrize("latin,cyrillic", COUNTED_0_3_2C)
+def test_the_new_counted_words(latin, cyrillic, source):
+    assert convert(latin, source, CYRILLIC) == cyrillic
+    in_2026 = convert(latin, LATIN_1995, LATIN_2026)
+    assert convert(in_2026, LATIN_2026, CYRILLIC) == cyrillic
+
+
+def test_series_take_linear_time():
+    start = time.perf_counter()
+    for text in ("I, " * 10_000 + "II", "I va " * 10_000 + "II", "V–" * 10_000 + "VI", "I, " * 10_000 + "V"):
+        convert(text, LATIN_1995, CYRILLIC)
+    assert time.perf_counter() - start < 1
 
 
 # --- TRANSLIT-26: month names: sentabr, oktabr; the Cyrillic ь restored -----------------
