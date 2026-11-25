@@ -382,14 +382,14 @@ SERIES = [
     ("I va-II", "И ва-II"),
     ("I ham II", "И ҳам II"),
     ("I va asr II", "И ва аср II"),
-    # harf or tovush after the series: no member is made a numeral by the others,
-    # each is what it is on its own.
+    # harf or tovush after the series: every member of one letter is a letter, even
+    # one that is a numeral on its own (0.3.2d); two letters or more stay numerals.
     ("V, X va XV harflari", "В, Х ва XV ҳарфлари"),
     ("V–VI harflari", "В–VI ҳарфлари"),
     ("V yoki X tovushi", "В ёки Х товуши"),
-    ("Nikolay I, V harfi", "Николай I, В ҳарфи"),
-    ("Karl V, X harfi", "Карл V, Х ҳарфи"),
-    ("Lotin V va X harflari", "Лотин V ва Х ҳарфлари"),  # known limit of (b), as Variant V
+    ("Nikolay I, V harfi", "Николай И, В ҳарфи"),  # known limit (README)
+    ("Karl V, X harfi", "Карл В, Х ҳарфи"),
+    ("Lotin V va X harflari", "Лотин В ва Х ҳарфлари"),
     ("V–VI-harflar", "В–VI-ҳарфлар"),
     ("V–VI asrlar harflari", "V–VI асрлар ҳарфлари"),  # not the word after the series
 ]
@@ -400,6 +400,38 @@ SERIES = [
 def test_roman_numerals_in_a_series(latin, cyrillic, source):
     if source == LATIN_2026:
         latin = convert(latin, LATIN_1995, LATIN_2026)  # urushlari -> uruşlari
+    assert convert(latin, source, CYRILLIC) == cyrillic
+
+
+# Section 1 of the 0.3.2d task: harf or tovush after a series makes every member of
+# one letter a letter, one that (a) or (b) makes a numeral on its own too; members of
+# two letters or more stay numerals.
+SERIES_BEFORE_HARF = [
+    ("Ushbu V va X harflari", "Ушбу В ва Х ҳарфлари"),  # (b): Ushbu, first word of a sentence
+    ("Lotin V va X harflari", "Лотин В ва Х ҳарфлари"),
+    ("Lotin V, X harflari", "Лотин В, Х ҳарфлари"),
+    ("V, X va XV harflari", "В, Х ва XV ҳарфлари"),  # as before
+    ("Nikolay I, V harfi", "Николай И, В ҳарфи"),  # known limit (README)
+    ("Pyotr I yoki V TOVUSHLARI", "Пётр И ёки В ТОВУШЛАРИ"),
+    ("Lotin V\N{NO-BREAK SPACE}va X\N{NO-BREAK SPACE}Harflari", "Лотин В\N{NO-BREAK SPACE}ва Х\N{NO-BREAK SPACE}Ҳарфлари"),
+    ("XX, V va X harflari", "XX, В ва Х ҳарфлари"),
+    ("Lotin V va X harflari, Karl V", "Лотин В ва Х ҳарфлари, Карл V"),  # only the series before harf
+]
+
+# Section 3 of the 0.3.2d task: as at bfcbb9f.
+ROMAN_AS_AT_BFCBB9F = [
+    ("Masalan, V va X harflari", "Масалан, В ва Х ҳарфлари"),
+    ("Lotin V va X", "Лотин V ва X"),
+    ("Karl V, X", "Карл V, X"),
+    ("IV – V asrlar", "IV – V асрлар"),
+]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("latin,cyrillic", SERIES_BEFORE_HARF + ROMAN_AS_AT_BFCBB9F)
+def test_roman_numerals_in_a_series_before_harf_and_as_at_bfcbb9f(latin, cyrillic, source):
+    if source == LATIN_2026:
+        latin = convert(latin, LATIN_1995, LATIN_2026)  # tovushlari -> tovuşlari
     assert convert(latin, source, CYRILLIC) == cyrillic
 
 

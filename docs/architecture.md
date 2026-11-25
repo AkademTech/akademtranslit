@@ -253,8 +253,8 @@ From 0.3.2 more rules look at a whole word or at the text around it:
   nothing around it; a comma and one space or U+00A0) or `_SERIES_WORDS`
   (`va`, `yoki`, with one space or U+00A0 on each side). A series of two
   or more is kept whole when one member is a numeral on its own, unless
-  the word after its last member begins with `harf` or `tovush`: then each
-  member is kept only if it is a numeral on its own. Each word is looked
+  the word after its last member begins with `harf` or `tovush`: then only
+  its members of two letters or more are kept. Each word is looked
   at a fixed number of times, so the pass is linear.
 - Dates: `dates(text, target, crossed)` finds a number with no letter or
   digit before it and one separator after it (`_NUMBER_HYPHEN_RE` for

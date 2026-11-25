@@ -262,9 +262,11 @@ def _roman_numerals(piece: str, matches: list) -> set:
     ``_BEFORE_FOLLOWING``). Members linked into a series (``_SERIES_LINKS``,
     ``_SERIES_WORDS``; ``_roman_series_member``) go together: when one of
     two or more is a numeral on its own, all are (V–VI, I va II jahon) --
-    unless the word after the series begins with harf or tovush, when none
-    is made one and each is what it is on its own (V, X va XV harflari ->
-    В, Х ва XV ҳарфлари; Nikolay I, V harfi -> Николай I, В ҳарфи). Each
+    unless the word after the series begins with harf or tovush, when every
+    member of one letter is a letter, even one that is a numeral on its own,
+    and only those of two letters or more are kept (Ushbu V va X harflari ->
+    Ушбу В ва Х ҳарфлари; V, X va XV harflari -> В, Х ва XV ҳарфлари; and
+    so, a known limit, Nikolay I, V harfi -> Николай И, В ҳарфи). Each
     word is looked at a fixed number of times, so this is linear in the
     length of the piece.
     """
@@ -317,7 +319,7 @@ def _roman_numerals(piece: str, matches: list) -> set:
             if alone(i):
                 kept.add(i)
         elif _names_a_letter(following(series[-1])):
-            kept.update(k for k in series if alone(k))
+            kept.update(k for k in series if len(matches[k].group()) > 1)
         elif any(alone(k) for k in series):
             kept.update(series)
         i = series[-1] + 1

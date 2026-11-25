@@ -791,7 +791,8 @@ toLatin("1956 йил 22 сентябрь"); // "1956-yil 22-sentabr"
 toLatin("Сентябрь, октябрнинг, ноябрь"); // "Sentabr, oktabrning, noyabr"
 toCyrillic("yanvar, iyun, SENTABR, sentabrda"); // "январь, июнь, СЕНТЯБРЬ, сентябрда"
 toCyrillic("XIX asr, IV bob, Pyotr I"); // "XIX аср, IV боб, Пётр I"
-toCyrillic("V asr, I jahon urushi, Nikolay I, V harfi"); // "V аср, I жаҳон уруши, Николай I, В ҳарфи"
+toCyrillic("V asr, I jahon urushi, Nikolay I"); // "V аср, I жаҳон уруши, Николай I"
+toCyrillic("V harfi"); // "В ҳарфи"
 toLatin("марганец, ненецлар"); // "marganes, neneslar"
 ```
 
@@ -815,8 +816,10 @@ A Roman numeral stays Latin when Latin text is converted to Cyrillic (0.3.2):
 'XIX аср, IV боб, Пётр I'
 >>> to_cyrillic("I. Boʻriyev va M. Asadullayev")
 'И. Бўриев ва М. Асадуллаев'
->>> to_cyrillic("V asr, I jahon urushi, Nikolay I, V harfi")
-'V аср, I жаҳон уруши, Николай I, В ҳарфи'
+>>> to_cyrillic("V asr, I jahon urushi, Nikolay I")
+'V аср, I жаҳон уруши, Николай I'
+>>> to_cyrillic("V harfi")
+'В ҳарфи'
 >>> to_cyrillic("D guruhida, M harfi, Lotin V harfi")
 'Д гуруҳида, М ҳарфи, Лотин В ҳарфи'
 >>> to_cyrillic("V–VI asrlar, I, II va III boblar, V-asr, V va X")
@@ -861,17 +864,20 @@ letters (`V va X` → `В ва Х`).
 
 Before a word that begins, in any case, with `harf` or `tovush` (2026:
 `tovuş`) one letter is a letter whatever else stands beside it: `V harfi`
-→ `В ҳарфи`, `Lotin V harfi` → `Лотин В ҳарфи`. After a series, no
-member is made a numeral by the others, and each is what it is on its
-own: `V, X va XV harflari` → `В, Х ва XV ҳарфлари`, `Nikolay I, V harfi`
-→ `Николай I, В ҳарфи`.
+→ `В ҳарфи`, `Lotin V harfi` → `Лотин В ҳарфи`. After a series every
+member of one letter is a letter, even one that is a numeral on its own,
+and the members of two letters or more stay numerals:
+`Ushbu V va X harflari` → `Ушбу В ва Х ҳарфлари`, `V, X va XV harflari`
+→ `В, Х ва XV ҳарфлари`.
 
 One letter followed by a full stop is an initial: `I. Boʻriyev` →
 `И. Бўриев`. The known limits: an Uzbek word in capitals that is also a
 numeral stays Latin (`MIX`, `DIV`); `Pyotr I.` and `Karl V.` at the end of
 a sentence are read as initials, `Пётр И.`, `Карл В.`; any capitalised
 word before one letter makes it a numeral, the first word of a sentence
-too, `Variant V` → `Вариант V`; and a dash with spaces around it does not
+too, `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
+letter before `harf` is read as a letter, `Nikolay I, V harfi` →
+`Николай И, В ҳарфи`; and a dash with spaces around it does not
 link a series, `V – VI asrlar` → `В – VI асрлар`. From Cyrillic to Latin a
 numeral is already Latin and stays.
 

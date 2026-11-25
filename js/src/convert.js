@@ -134,9 +134,9 @@ const SERIES_WORDS = new Set(["va", "yoki"]);
  * words that conversion to Cyrillic keeps as Roman numerals: a word that is
  * one on its own (isRomanNumeral), and the members of a series of two or more
  * of which one is, unless the word after the series begins with harf or
- * tovush, when each member is what it is on its own (see __init__.py,
- * _roman_numerals). Linear in the length of the
- * piece. The characters beside a word here are one UTF-16 unit each: only
+ * tovush, when only the members of two letters or more are kept and every
+ * one letter is a letter (see __init__.py, _roman_numerals). Linear in the
+ * length of the piece. The characters beside a word here are one UTF-16 unit each: only
  * ".", the spaces, the hyphens and dashes and "," count.
  */
 function romanNumerals(piece, matches) {
@@ -176,7 +176,7 @@ function romanNumerals(piece, matches) {
     if (series.length === 1) {
       if (alone(i)) kept.add(i);
     } else if (namesALetter(following(series.at(-1)))) {
-      for (const k of series) if (alone(k)) kept.add(k);
+      for (const k of series) if (matches[k][0].length > 1) kept.add(k);
     } else if (series.some(alone)) {
       for (const k of series) kept.add(k);
     }
