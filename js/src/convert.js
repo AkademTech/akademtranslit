@@ -123,10 +123,16 @@ function steps(source, target) {
 const ONE_SPACE = new Set([" ", "\u{A0}"]);
 const BEFORE_FOLLOWING = new Set([...ONE_SPACE, "-", "\u{2011}"]);
 
-// What links two numerals in a series: one hyphen or dash with no space
-// around it, a comma and one space or U+00A0, or va or yoki with one space
-// or U+00A0 on each side.
-const SERIES_LINKS = new Set(["-", "\u{2010}", "\u{2011}", "\u{2012}", "\u{2013}", "\u{2014}", ", ", ",\u{A0}"]);
+// What links two numerals in a series: one hyphen or dash, with no space
+// around it or with one space or U+00A0 on each side; a comma and one space
+// or U+00A0; or va or yoki, in any case, with one space or U+00A0 on each side.
+const SERIES_DASHES = ["-", "\u{2010}", "\u{2011}", "\u{2012}", "\u{2013}", "\u{2014}"];
+const SERIES_LINKS = new Set([
+  ...SERIES_DASHES,
+  ", ",
+  ",\u{A0}",
+  ...SERIES_DASHES.flatMap((dash) => [...ONE_SPACE].flatMap((a) => [...ONE_SPACE].map((b) => a + dash + b))),
+]);
 const SERIES_WORDS = new Set(["va", "yoki"]);
 
 /**
@@ -156,7 +162,7 @@ function romanNumerals(piece, matches) {
     if (i + 1 < count && SERIES_LINKS.has(between(i, i + 1)) && member(i + 1)) return i + 1;
     if (
       i + 2 < count &&
-      SERIES_WORDS.has(matches[i + 1][0]) &&
+      SERIES_WORDS.has(matches[i + 1][0].toLowerCase()) &&
       ONE_SPACE.has(between(i, i + 1)) &&
       ONE_SPACE.has(between(i + 1, i + 2)) &&
       member(i + 2)

@@ -249,9 +249,10 @@ From 0.3.2 more rules look at a whole word or at the text around it:
   letter only, and passes `previous` when one space or U+00A0 separates it
   from the letter, `following` when one space, U+00A0, `-` or U+2011 does
   (`_BEFORE_FOLLOWING`). It links members into a series by
-  `_SERIES_LINKS` (a hyphen or dash, U+002D and U+2010 to U+2014, with
-  nothing around it; a comma and one space or U+00A0) or `_SERIES_WORDS`
-  (`va`, `yoki`, with one space or U+00A0 on each side). A series of two
+  `_SERIES_LINKS` (a hyphen or dash of `_SERIES_DASHES`, U+002D and U+2010
+  to U+2014, with nothing around it or with one space or U+00A0 on each
+  side; a comma and one space or U+00A0) or `_SERIES_WORDS` (`va`, `yoki`,
+  compared lowercased, with one space or U+00A0 on each side). A series of two
   or more is kept whole when one member is a numeral on its own, unless
   the word after its last member begins with `harf` or `tovush`: then only
   its members of two letters or more are kept. Each word is looked

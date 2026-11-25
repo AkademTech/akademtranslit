@@ -824,6 +824,8 @@ A Roman numeral stays Latin when Latin text is converted to Cyrillic (0.3.2):
 'Д гуруҳида, М ҳарфи, Лотин В ҳарфи'
 >>> to_cyrillic("V–VI asrlar, I, II va III boblar, V-asr, V va X")
 'V–VI асрлар, I, II ва III боблар, V-аср, В ва Х'
+>>> to_cyrillic("V – VI asrlar, I VA II JAHON URUSHLARI")
+'V – VI асрлар, I ВА II ЖАҲОН УРУШЛАРИ'
 >>> to_cyrillic("I Xalqaro ilmiy-amaliy konferensiya")
 'I Халқаро илмий-амалий конференсия'
 
@@ -853,11 +855,14 @@ a numeral only in context:
 - in a series with a numeral: `V–VI asrlar` → `V–VI асрлар`,
   `I va II jahon urushlari` → `I ва II жаҳон урушлари`.
 
-A series is two numerals or more linked by a hyphen or dash with no space
-around it (`-`, U+2010 to U+2014), by a comma and one space or U+00A0, or
-by `va` or `yoki` with one space or U+00A0 on each side. A member is a
-numeral of two letters or more, or one `I`, `V` or `X` with no full stop
-after it. When one member is a numeral on its own — two letters or more,
+A series is two numerals or more linked by a hyphen or dash (`-`, U+2010
+to U+2014) with no space around it or with one space or U+00A0 on each
+side (`V – VI asrlar` → `V – VI асрлар`), by a comma and one space or
+U+00A0, or by `va` or `yoki`, in any case, with one space or U+00A0 on
+each side (`I VA II JAHON URUSHLARI` → `I ВА II ЖАҲОН УРУШЛАРИ`). A member
+is a numeral of two letters or more, or one `I`, `V` or `X` with no full
+stop after it, so a dash before another word links nothing:
+`X – nomaʼlum, V – tezlik` → `Х – номаълум, В – тезлик`. When one member is a numeral on its own — two letters or more,
 or one letter by the two rules above — every member is
 (`I, II va III boblar` → `I, II ва III боблар`); otherwise they are
 letters (`V va X` → `В ва Х`).
@@ -875,11 +880,10 @@ One letter followed by a full stop is an initial: `I. Boʻriyev` →
 numeral stays Latin (`MIX`, `DIV`); `Pyotr I.` and `Karl V.` at the end of
 a sentence are read as initials, `Пётр И.`, `Карл В.`; any capitalised
 word before one letter makes it a numeral, the first word of a sentence
-too, `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
-letter before `harf` is read as a letter, `Nikolay I, V harfi` →
-`Николай И, В ҳарфи`; and a dash with spaces around it does not
-link a series, `V – VI asrlar` → `В – VI асрлар`. From Cyrillic to Latin a
-numeral is already Latin and stays.
+too, `Variant V` → `Вариант V`; and a ruler's numeral linked by a comma
+to a letter before `harf` is read as a letter, `Nikolay I, V harfi` →
+`Николай И, В ҳарфи`. From Cyrillic to Latin a numeral is already Latin
+and stays.
 
 ### The two modifier marks
 

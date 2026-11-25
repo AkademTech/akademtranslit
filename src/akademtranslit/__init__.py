@@ -243,12 +243,14 @@ def _steps(source: str, target: str):
 _ONE_SPACE = frozenset((" ", "\N{NO-BREAK SPACE}"))
 _BEFORE_FOLLOWING = _ONE_SPACE | {"-", "\N{NON-BREAKING HYPHEN}"}
 
-# What links two numerals in a series (V–VI, I, II va III, I yoki II): one
-# hyphen or dash with no space around it, a comma and one space or U+00A0,
-# or the word va or yoki with one space or U+00A0 on each side.
-_SERIES_LINKS = frozenset("-\N{HYPHEN}\N{NON-BREAKING HYPHEN}\N{FIGURE DASH}\N{EN DASH}\N{EM DASH}") | {
+# What links two numerals in a series (V–VI, V – VI, I, II va III, I yoki II,
+# I VA II): one hyphen or dash, with no space around it or with one space or
+# U+00A0 on each side; a comma and one space or U+00A0; or the word va or
+# yoki, in any case, with one space or U+00A0 on each side.
+_SERIES_DASHES = "-\N{HYPHEN}\N{NON-BREAKING HYPHEN}\N{FIGURE DASH}\N{EN DASH}\N{EM DASH}"
+_SERIES_LINKS = frozenset(_SERIES_DASHES) | {
     ", ", ",\N{NO-BREAK SPACE}",
-}
+} | {a + d + b for d in _SERIES_DASHES for a in _ONE_SPACE for b in _ONE_SPACE}
 _SERIES_WORDS = frozenset(("va", "yoki"))
 
 
@@ -261,7 +263,8 @@ def _roman_numerals(piece: str, matches: list) -> set:
     character after it and, for one letter, the words beside it (see
     ``_BEFORE_FOLLOWING``). Members linked into a series (``_SERIES_LINKS``,
     ``_SERIES_WORDS``; ``_roman_series_member``) go together: when one of
-    two or more is a numeral on its own, all are (V–VI, I va II jahon) --
+    two or more is a numeral on its own, all are (V–VI, V – VI asrlar,
+    I va II jahon, I VA II JAHON) --
     unless the word after the series begins with harf or tovush, when every
     member of one letter is a letter, even one that is a numeral on its own,
     and only those of two letters or more are kept (Ushbu V va X harflari ->
@@ -298,7 +301,7 @@ def _roman_numerals(piece: str, matches: list) -> set:
             return i + 1
         if (
             i + 2 < count
-            and matches[i + 1].group() in _SERIES_WORDS
+            and matches[i + 1].group().lower() in _SERIES_WORDS
             and between(i, i + 1) in _ONE_SPACE
             and between(i + 1, i + 2) in _ONE_SPACE
             and member(i + 2)

@@ -726,11 +726,14 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
     :func:`~akademtranslit.convert` also reads numerals in a series
     together: ``V–VI asrlar`` -> ``V–VI асрлар``, ``I, II va III boblar``
     -> ``I, II ва III боблар``, while ``V va X`` -> ``В ва Х``. Members are
-    linked by one hyphen or dash with no space around it (``-`` U+2010
-    U+2011 U+2012 U+2013 U+2014), by a comma and one space or U+00A0, or by
-    ``va`` or ``yoki`` with one space or U+00A0 on each side; a member is a
-    numeral of two letters or more, or one ``I``, ``V`` or ``X`` with no
-    full stop after it. When one member of a series of two or more is a
+    linked by one hyphen or dash (``-`` U+2010 U+2011 U+2012 U+2013
+    U+2014), with no space around it or with one space or U+00A0 on each
+    side (``V – VI asrlar`` -> ``V – VI асрлар``), by a comma and one space
+    or U+00A0, or by ``va`` or ``yoki``, in any case, with one space or
+    U+00A0 on each side (``I VA II JAHON`` -> ``I ВА II ЖАҲОН``); a member is
+    a numeral of two letters or more, or one ``I``, ``V`` or ``X`` with no
+    full stop after it, so a dash before another word links nothing
+    (``X – nomaʼlum`` -> ``Х – номаълум``). When one member of a series of two or more is a
     numeral on its own, every member is; when the word after the series
     begins with ``harf`` or ``tovush``, every member of one letter is a
     letter, even one that is a numeral on its own, and those of two letters

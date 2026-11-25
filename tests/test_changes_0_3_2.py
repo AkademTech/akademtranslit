@@ -335,8 +335,9 @@ def test_one_letter_and_a_hyphen(latin, cyrillic, source):
     assert convert(latin, source, CYRILLIC) == cyrillic
 
 
-# Series: numerals linked by a dash with no space around it, a comma and one space,
-# or va or yoki with one space on each side, go together.
+# Series: numerals linked by a dash with no space around it or with one space on each
+# side, a comma and one space, or va or yoki in any case with one space on each side,
+# go together.
 SERIES = [
     # The 0.3.2c task.
     ("V–VI asrlar", "V–VI асрлар"),
@@ -368,17 +369,38 @@ SERIES = [
     ("C–CI", "C–CI"),
     ("D va DI", "Д ва DI"),
     ("M, MI", "М, MI"),
+    # Section 2 of the 0.3.2d task: a dash with one space or U+00A0 on each side links,
+    # and va or yoki in any case.
+    ("V – VI asrlar", "V – VI асрлар"),
+    ("V - VI asrlar", "V - VI асрлар"),
+    ("V — VI asrlar", "V — VI асрлар"),
+    ("I\N{NO-BREAK SPACE}–\N{NO-BREAK SPACE}II kurs", "I\N{NO-BREAK SPACE}–\N{NO-BREAK SPACE}II курс"),
+    ("I VA II JAHON URUSHLARI", "I ВА II ЖАҲОН УРУШЛАРИ"),
+    ("I Va II", "I Ва II"),
+    ("I YOKI II GURUH", "I ЁКИ II ГУРУҲ"),
+    ("X – nomaʼlum, V – tezlik", "Х – номаълум, В – тезлик"),  # no numeral after the dash
+    ("Pyotr I – rus podshosi", "Пётр I – рус подшоси"),  # as before
+    # A spaced dash links only a member, and like the other links.
+    ("X – nomaʼlum, V – tezlik, XX asr", "Х – номаълум, В – тезлик, XX аср"),
+    ("I – II asrlar", "I – II асрлар"),
+    ("I – II va III boblar", "I – II ва III боблар"),
+    ("V – X", "В – Х"),  # no member is a numeral on its own
+    ("V – VI harflari", "В – VI ҳарфлари"),
+    ("I\N{NO-BREAK SPACE}– II", "I\N{NO-BREAK SPACE}– II"),
+    ("I Yoki II", "I Ёки II"),
     # What does not link.
-    ("I – II asrlar", "И – II асрлар"),
     ("I -II asrlar", "И -II асрлар"),
     ("I- II asrlar", "И- II асрлар"),
+    ("I  – II asrlar", "И  – II асрлар"),
+    ("I –  II asrlar", "И –  II асрлар"),
+    ("I –– II asrlar", "И –– II асрлар"),
     ("I II asrlar", "И II асрлар"),
     ("I,II", "И,II"),
     ("I ,II", "И ,II"),
     ("I,  II", "И,  II"),
     ("I  va II", "И  ва II"),
     ("I va  II", "И ва  II"),
-    ("I Va II", "И Ва II"),
+    ("I VA  II", "И ВА  II"),
     ("I va-II", "И ва-II"),
     ("I ham II", "И ҳам II"),
     ("I va asr II", "И ва аср II"),
@@ -441,8 +463,17 @@ def test_every_dash_links_a_series(dash):
     assert to_cyrillic(f"V{dash}VI") == f"V{dash}VI"
     assert to_cyrillic(f"V{dash}X{dash}XV") == f"V{dash}X{dash}XV"
     assert to_cyrillic(f"V{dash}X") == f"В{dash}Х"
-    assert to_cyrillic(f"V {dash} VI") == f"В {dash} VI"
     assert to_cyrillic(f"V{dash}VI harflari") == f"В{dash}VI ҳарфлари"
+    # One space or U+00A0 on each side links too (0.3.2d), on one side only or two do not.
+    for a in (" ", NBSP):
+        for b in (" ", NBSP):
+            assert to_cyrillic(f"V{a}{dash}{b}VI asrlar") == f"V{a}{dash}{b}VI асрлар"
+            assert to_cyrillic(f"V{a}{dash}{b}X") == f"В{a}{dash}{b}Х"
+            assert to_cyrillic(f"V{a}{dash}{b}tezlik, XV") == f"В{a}{dash}{b}тезлик, XV"
+        assert to_cyrillic(f"V{a}{dash}VI") == f"В{a}{dash}VI"
+        assert to_cyrillic(f"V{dash}{a}VI") == f"В{dash}{a}VI"
+        assert to_cyrillic(f"V{a}{a}{dash} VI") == f"В{a}{a}{dash} VI"
+        assert to_cyrillic(f"V {dash}{a}{a}VI") == f"В {dash}{a}{a}VI"
 
 
 def test_a_series_in_a_2026_text():
@@ -489,7 +520,10 @@ def test_the_new_counted_words(latin, cyrillic, source):
 
 def test_series_take_linear_time():
     start = time.perf_counter()
-    for text in ("I, " * 10_000 + "II", "I va " * 10_000 + "II", "V–" * 10_000 + "VI", "I, " * 10_000 + "V"):
+    for text in (
+        "I, " * 10_000 + "II", "I va " * 10_000 + "II", "V–" * 10_000 + "VI", "I, " * 10_000 + "V",
+        "V – " * 10_000 + "VI", "I VA " * 10_000 + "II",
+    ):
         convert(text, LATIN_1995, CYRILLIC)
     assert time.perf_counter() - start < 1
 
