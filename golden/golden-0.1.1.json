@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "f4a40c21fbf66b8bba680e98d3cc5dffa0ce32ad5bb28403de8754830de314ff",
+ "inputs_sha256": "b39b82103b3862f090df10aac5d21a872e3e296eb826cf580fb54f31f0c24e55",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -8583,6 +8583,55 @@
    "to_cyrillic": "марганес, ненеслар, шприс",
    "to_latin_1995": "marganes, neneslar, shpris",
    "to_latin_2026": "marganes, neneslar, şpris"
+  },
+  "c1227": {
+   "detect_script": "latin_1995",
+   "normalize": "v harfi",
+   "to_cyrillic": "В ҳарфи",
+   "to_latin_1995": "V harfi",
+   "to_latin_2026": "V harfi"
+  },
+  "c1228": {
+   "detect_script": "latin_1995",
+   "normalize": "v asr",
+   "to_cyrillic": "В аср",
+   "to_latin_1995": "V asr",
+   "to_latin_2026": "V asr"
+  },
+  "c1229": {
+   "detect_script": "latin_1995",
+   "normalize": "i jahon urushi",
+   "to_cyrillic": "И жаҳон уруши",
+   "to_latin_1995": "I jahon urushi",
+   "to_latin_2026": "I jahon uruşi"
+  },
+  "c1230": {
+   "detect_script": "latin_1995",
+   "normalize": "nikolay i",
+   "to_cyrillic": "Николай И",
+   "to_latin_1995": "Nikolay I",
+   "to_latin_2026": "Nikolay I"
+  },
+  "c1231": {
+   "detect_script": "latin_1995",
+   "normalize": "x",
+   "to_cyrillic": "Х",
+   "to_latin_1995": "X",
+   "to_latin_2026": "X"
+  },
+  "c1232": {
+   "detect_script": "latin_1995",
+   "normalize": "2026 yil",
+   "to_cyrillic": "2026 йил",
+   "to_latin_1995": "2026 yil",
+   "to_latin_2026": "2026 yil"
+  },
+  "c1233": {
+   "detect_script": "cyrillic",
+   "normalize": "1991 yil",
+   "to_cyrillic": "1991-йил",
+   "to_latin_1995": "1991-yil",
+   "to_latin_2026": "1991-yil"
   }
  },
  "schema": "akademtranslit-golden/1"

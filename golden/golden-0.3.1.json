@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "f4a40c21fbf66b8bba680e98d3cc5dffa0ce32ad5bb28403de8754830de314ff",
+ "inputs_sha256": "b39b82103b3862f090df10aac5d21a872e3e296eb826cf580fb54f31f0c24e55",
  "library_version": "0.3.1",
  "results": {
   "c0001": {
@@ -98176,6 +98176,542 @@
      26,
      "digraph",
      "şpris"
+    ]
+   ]
+  },
+  "c1227": {
+   "convert_from_cyrillic_to_cyrillic": "V harfi",
+   "convert_from_cyrillic_to_latin_1995": "V harfi",
+   "convert_from_cyrillic_to_latin_2026": "V harfi",
+   "convert_from_latin_1995_to_cyrillic": "В ҳарфи",
+   "convert_from_latin_1995_to_latin_1995": "V harfi",
+   "convert_from_latin_1995_to_latin_2026": "V harfi",
+   "convert_from_latin_2026_to_cyrillic": "В ҳарфи",
+   "convert_from_latin_2026_to_latin_1995": "V harfi",
+   "convert_from_latin_2026_to_latin_2026": "V harfi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V harfi",
+   "fold_homoglyphs": "V harfi",
+   "is_cyrillic": false,
+   "normalize": "v harfi",
+   "normalize_apostrophes_ascii": "V harfi",
+   "normalize_apostrophes_unicode": "V harfi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harfi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V harfi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    31,
+    0,
+    17,
+    11,
+    27,
+    15,
+    18
+   ],
+   "sort_key_latin_2026": [
+    35,
+    0,
+    18,
+    11,
+    29,
+    15,
+    19
+   ],
+   "to_ascii": "V harfi",
+   "to_cyrillic": "В ҳарфи",
+   "to_latin_1995": "V harfi",
+   "to_latin_2026": "V harfi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1228": {
+   "convert_from_cyrillic_to_cyrillic": "V asr",
+   "convert_from_cyrillic_to_latin_1995": "V asr",
+   "convert_from_cyrillic_to_latin_2026": "V asr",
+   "convert_from_latin_1995_to_cyrillic": "В аср",
+   "convert_from_latin_1995_to_latin_1995": "V asr",
+   "convert_from_latin_1995_to_latin_2026": "V asr",
+   "convert_from_latin_2026_to_cyrillic": "В аср",
+   "convert_from_latin_2026_to_latin_1995": "V asr",
+   "convert_from_latin_2026_to_latin_2026": "V asr",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V asr",
+   "fold_homoglyphs": "V asr",
+   "is_cyrillic": false,
+   "normalize": "v asr",
+   "normalize_apostrophes_ascii": "V asr",
+   "normalize_apostrophes_unicode": "V asr",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asr",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V asr",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    0,
+    1097,
+    1115,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    31,
+    0,
+    11,
+    28,
+    27
+   ],
+   "sort_key_latin_2026": [
+    35,
+    0,
+    11,
+    30,
+    29
+   ],
+   "to_ascii": "V asr",
+   "to_cyrillic": "В аср",
+   "to_latin_1995": "V asr",
+   "to_latin_2026": "V asr",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1229": {
+   "convert_from_cyrillic_to_cyrillic": "I jahon urushi",
+   "convert_from_cyrillic_to_latin_1995": "I jahon urushi",
+   "convert_from_cyrillic_to_latin_2026": "I jahon uruşi",
+   "convert_from_latin_1995_to_cyrillic": "И жаҳон уруши",
+   "convert_from_latin_1995_to_latin_1995": "I jahon urushi",
+   "convert_from_latin_1995_to_latin_2026": "I jahon uruşi",
+   "convert_from_latin_2026_to_cyrillic": "И жаҳон урусҳи",
+   "convert_from_latin_2026_to_latin_1995": "I jahon urusʼhi",
+   "convert_from_latin_2026_to_latin_2026": "I jahon urushi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I jahon urushi",
+   "fold_homoglyphs": "I jahon urushi",
+   "is_cyrillic": false,
+   "normalize": "i jahon urushi",
+   "normalize_apostrophes_ascii": "I jahon urushi",
+   "normalize_apostrophes_unicode": "I jahon urushi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "jahon",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "urushi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I jahon urushi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1106,
+    1097,
+    1104,
+    1111,
+    1110,
+    0,
+    1117,
+    1114,
+    1117,
+    1115,
+    1104,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    19,
+    11,
+    17,
+    24,
+    23,
+    0,
+    30,
+    27,
+    30,
+    37,
+    18
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    20,
+    11,
+    18,
+    25,
+    24,
+    0,
+    34,
+    29,
+    34,
+    30,
+    18,
+    19
+   ],
+   "to_ascii": "I jahon urushi",
+   "to_cyrillic": "И жаҳон уруши",
+   "to_latin_1995": "I jahon urushi",
+   "to_latin_2026": "I jahon uruşi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     8,
+     14,
+     "digraph",
+     "uruşi"
+    ]
+   ]
+  },
+  "c1230": {
+   "convert_from_cyrillic_to_cyrillic": "Nikolay I",
+   "convert_from_cyrillic_to_latin_1995": "Nikolay I",
+   "convert_from_cyrillic_to_latin_2026": "Nikolay I",
+   "convert_from_latin_1995_to_cyrillic": "Николай И",
+   "convert_from_latin_1995_to_latin_1995": "Nikolay I",
+   "convert_from_latin_1995_to_latin_2026": "Nikolay I",
+   "convert_from_latin_2026_to_cyrillic": "Николай И",
+   "convert_from_latin_2026_to_latin_1995": "Nikolay I",
+   "convert_from_latin_2026_to_latin_2026": "Nikolay I",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Nikolay I",
+   "fold_homoglyphs": "Nikolay I",
+   "is_cyrillic": false,
+   "normalize": "nikolay i",
+   "normalize_apostrophes_ascii": "Nikolay I",
+   "normalize_apostrophes_unicode": "Nikolay I",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Nikolay",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Nikolay I",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1110,
+    1105,
+    1107,
+    1111,
+    1108,
+    1097,
+    1121,
+    0,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    23,
+    18,
+    20,
+    24,
+    21,
+    11,
+    33,
+    0,
+    18
+   ],
+   "sort_key_latin_2026": [
+    24,
+    19,
+    21,
+    25,
+    22,
+    11,
+    37,
+    0,
+    19
+   ],
+   "to_ascii": "Nikolay I",
+   "to_cyrillic": "Николай И",
+   "to_latin_1995": "Nikolay I",
+   "to_latin_2026": "Nikolay I",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1231": {
+   "convert_from_cyrillic_to_cyrillic": "X",
+   "convert_from_cyrillic_to_latin_1995": "X",
+   "convert_from_cyrillic_to_latin_2026": "X",
+   "convert_from_latin_1995_to_cyrillic": "Х",
+   "convert_from_latin_1995_to_latin_1995": "X",
+   "convert_from_latin_1995_to_latin_2026": "X",
+   "convert_from_latin_2026_to_cyrillic": "Х",
+   "convert_from_latin_2026_to_latin_1995": "X",
+   "convert_from_latin_2026_to_latin_2026": "X",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "X",
+   "fold_homoglyphs": "X",
+   "is_cyrillic": false,
+   "normalize": "x",
+   "normalize_apostrophes_ascii": "X",
+   "normalize_apostrophes_unicode": "X",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "X",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "X",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120
+   ],
+   "sort_key_latin_1995": [
+    32
+   ],
+   "sort_key_latin_2026": [
+    36
+   ],
+   "to_ascii": "X",
+   "to_cyrillic": "Х",
+   "to_latin_1995": "X",
+   "to_latin_2026": "X",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1232": {
+   "convert_from_cyrillic_to_cyrillic": "2026 yil",
+   "convert_from_cyrillic_to_latin_1995": "2026 yil",
+   "convert_from_cyrillic_to_latin_2026": "2026 yil",
+   "convert_from_latin_1995_to_cyrillic": "2026 йил",
+   "convert_from_latin_1995_to_latin_1995": "2026 yil",
+   "convert_from_latin_1995_to_latin_2026": "2026 yil",
+   "convert_from_latin_2026_to_cyrillic": "2026 йил",
+   "convert_from_latin_2026_to_latin_1995": "2026 yil",
+   "convert_from_latin_2026_to_latin_2026": "2026 yil",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "2026 yil",
+   "fold_homoglyphs": "2026 yil",
+   "is_cyrillic": false,
+   "normalize": "2026 yil",
+   "normalize_apostrophes_ascii": "2026 yil",
+   "normalize_apostrophes_unicode": "2026 yil",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "2026 ",
+     null
+    ],
+    [
+     "yil",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "2026 yil",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    3,
+    1,
+    3,
+    7,
+    0,
+    1121,
+    1105,
+    1108
+   ],
+   "sort_key_latin_1995": [
+    3,
+    1,
+    3,
+    7,
+    0,
+    33,
+    18,
+    21
+   ],
+   "sort_key_latin_2026": [
+    3,
+    1,
+    3,
+    7,
+    0,
+    37,
+    19,
+    22
+   ],
+   "to_ascii": "2026 yil",
+   "to_cyrillic": "2026 йил",
+   "to_latin_1995": "2026 yil",
+   "to_latin_2026": "2026 yil",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1233": {
+   "convert_from_cyrillic_to_cyrillic": "1991-йил",
+   "convert_from_cyrillic_to_latin_1995": "1991-yil",
+   "convert_from_cyrillic_to_latin_2026": "1991-yil",
+   "convert_from_latin_1995_to_cyrillic": "1991-йил",
+   "convert_from_latin_1995_to_latin_1995": "1991-йил",
+   "convert_from_latin_1995_to_latin_2026": "1991-йил",
+   "convert_from_latin_2026_to_cyrillic": "1991-йил",
+   "convert_from_latin_2026_to_latin_1995": "1991-йил",
+   "convert_from_latin_2026_to_latin_2026": "1991-йил",
+   "cyrillic_language": "unknown",
+   "detect_script": "cyrillic",
+   "fold_cyrillic": "1991-yil",
+   "fold_homoglyphs": "1991-йил",
+   "is_cyrillic": true,
+   "normalize": "1991 yil",
+   "normalize_apostrophes_ascii": "1991-йил",
+   "normalize_apostrophes_unicode": "1991-йил",
+   "script_class": "cyrillic",
+   "script_spans": [
+    [
+     "1991-",
+     null
+    ],
+    [
+     "йил",
+     "cyrillic"
+    ]
+   ],
+   "segments": [
+    [
+     "1991-йил",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    2,
+    10,
+    10,
+    2,
+    21,
+    20,
+    23
+   ],
+   "sort_key_latin_1995": [
+    2,
+    10,
+    10,
+    2,
+    2081,
+    2080,
+    2083
+   ],
+   "sort_key_latin_2026": [
+    2,
+    10,
+    10,
+    2,
+    2081,
+    2080,
+    2083
+   ],
+   "to_ascii": "1991-yil",
+   "to_cyrillic": "1991-йил",
+   "to_latin_1995": "1991-yil",
+   "to_latin_2026": "1991-yil",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
+    ]
+   ],
+   "validate_latin_2026": [
+    [
+     5,
+     8,
+     "cyrillic-word",
+     "yil"
     ]
    ]
   }

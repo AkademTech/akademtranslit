@@ -649,6 +649,14 @@ NEW_INPUTS = {
               (None, "litsey, botsman, platsdarm, pitssa, shpritsi", "litsey, botsman, platsdarm, pitssa, şpritsi")),
     "c1225": ("МАРГАНЕЦ, Марганец", "ts", "cyrillic", (None, "MARGANES, Marganes", "MARGANES, Marganes")),
     "c1226": ("marganes, neneslar, shpris", "ts", "latin_1995", ("марганес, ненеслар, шприс", None, "marganes, neneslar, şpris")),
+    # One letter is a numeral only in context; a date's separator stays within one script.
+    "c1227": ("V harfi", "roman", "latin_1995", ("В ҳарфи", None, None)),
+    "c1228": ("V asr", "roman", "latin_1995", ("V аср", None, None)),
+    "c1229": ("I jahon urushi", "roman", "latin_1995", ("I жаҳон уруши", None, "I jahon uruşi")),
+    "c1230": ("Nikolay I", "roman", "latin_1995", ("Николай I", None, None)),
+    "c1231": ("X", "roman", "latin_1995", ("Х", None, None)),
+    "c1232": ("2026 yil", "date", "latin_1995", ("2026 йил", None, None)),
+    "c1233": ("1991-йил", "date", "cyrillic", (None, "1991-yil", "1991-yil")),
 }
 
 

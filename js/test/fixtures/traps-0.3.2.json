@@ -10390,13 +10390,13 @@
       "ToşDUga"
      ]
     ],
-    "convert_auto_to_cyrillic_protect_false": "пҲ 7,4 СпО2 Б12 3D иПҳоне МcДоналд МЧЖ АҚШ ТошДУ ЧатГПТ ПҳД АкадемИД 10та 2026йил 100мг ТошДУга ЧатГПТда",
+    "convert_auto_to_cyrillic_protect_false": "пҲ 7,4 СпО2 Б12 3Д иПҳоне МcДоналд МЧЖ АҚШ ТошДУ ЧатГПТ ПҳД АкадемИД 10та 2026йил 100мг ТошДУга ЧатГПТда",
     "convert_auto_to_latin_1995_protect_false": "pH 7,4 SpO2 B12 3D iPhone McDonald MChJ AQSh ToshDU ChatGPT PhD AkademID 10ta 2026yil 100mg ToshDUga ChatGPTda",
     "convert_auto_to_latin_2026_protect_false": "pH 7,4 SpO2 B12 3D iPhone McDonald MÇJ AQŞ ToşDU ÇatGPT PhD AkademID 10ta 2026yil 100mg ToşDUga ÇatGPTda",
     "convert_terms_to_cyrillic": "pH 7,4 SpO2 B12 3D iPhone McDonald МЧЖ АҚШ ToshDU ChatGPT PhD AkademID 10та 2026йил 100мг ТошДУга ChatGPTda",
     "convert_tags_latin_1995_to_cyrillic": "pH 7,4 SpO2 B12 3D iPhone McDonald МЧЖ АҚШ ТошДУ ChatGPT PhD AkademID 10та 2026йил 100мг ТошДУга ChatGPTda",
     "to_latin_tag_latin_1995": "pH 7,4 SpO2 B12 3D iPhone McDonald MChJ AQSh ToshDU ChatGPT PhD AkademID 10ta 2026yil 100mg ToshDUga ChatGPTda",
-    "to_cyrillic_protect_false": "пҲ 7,4 СпО2 Б12 3D иПҳоне МcДоналд МЧЖ АҚШ ТошДУ ЧатГПТ ПҳД АкадемИД 10та 2026йил 100мг ТошДУга ЧатГПТда",
+    "to_cyrillic_protect_false": "пҲ 7,4 СпО2 Б12 3Д иПҳоне МcДоналд МЧЖ АҚШ ТошДУ ЧатГПТ ПҳД АкадемИД 10та 2026йил 100мг ТошДУга ЧатГПТда",
     "segments_protect_false": [
      [
       "pH 7,4 SpO2 B12 3D iPhone McDonald MChJ AQSh ToshDU ChatGPT PhD AkademID 10ta 2026yil 100mg ToshDUga ChatGPTda",
@@ -17457,7 +17457,7 @@
    "results": {
     "detect_script": "latin_1995",
     "normalize": "xix asr ia i xix xix i",
-    "to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
+    "to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
     "to_latin_1995": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "to_latin_2026": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "sort_key_cyrillic": [
@@ -17539,10 +17539,10 @@
     "convert_from_cyrillic_to_cyrillic": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "convert_from_cyrillic_to_latin_1995": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "convert_from_cyrillic_to_latin_2026": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
-    "convert_from_latin_1995_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
+    "convert_from_latin_1995_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
     "convert_from_latin_1995_to_latin_1995": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "convert_from_latin_1995_to_latin_2026": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
-    "convert_from_latin_2026_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
+    "convert_from_latin_2026_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
     "convert_from_latin_2026_to_latin_1995": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "convert_from_latin_2026_to_latin_2026": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "fold_cyrillic": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
@@ -17616,13 +17616,13 @@
     "validate_cyrillic": [],
     "validate_latin_1995": [],
     "validate_latin_2026": [],
-    "convert_auto_to_cyrillic_protect_false": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
+    "convert_auto_to_cyrillic_protect_false": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
     "convert_auto_to_latin_1995_protect_false": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
     "convert_auto_to_latin_2026_protect_false": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
-    "convert_terms_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
-    "convert_tags_latin_1995_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
+    "convert_terms_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
+    "convert_tags_latin_1995_to_cyrillic": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
     "to_latin_tag_latin_1995": "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
-    "to_cyrillic_protect_false": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. I😀.",
+    "to_cyrillic_protect_false": "XIX́ аср, И𝐀. И. ＸＩＸ XIX😀. И😀.",
     "segments_protect_false": [
      [
       "XIX́ asr, I𝐀. I. ＸＩＸ XIX😀. I😀.",
@@ -18148,8 +18148,8 @@
     "detect_script": "cyrillic",
     "normalize": "1991 yil 1 sentabr 22 yil 1991 yil",
     "to_cyrillic": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
-    "to_latin_1995": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
-    "to_latin_2026": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
+    "to_latin_1995": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑yil",
+    "to_latin_2026": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑yil",
     "sort_key_cyrillic": [
      2,
      10,
@@ -18260,11 +18260,11 @@
     "convert_from_cyrillic_to_latin_1995": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
     "convert_from_cyrillic_to_latin_2026": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
     "convert_from_latin_1995_to_cyrillic": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
-    "convert_from_latin_1995_to_latin_1995": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑йил",
-    "convert_from_latin_1995_to_latin_2026": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑йил",
+    "convert_from_latin_1995_to_latin_1995": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил",
+    "convert_from_latin_1995_to_latin_2026": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил",
     "convert_from_latin_2026_to_cyrillic": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
-    "convert_from_latin_2026_to_latin_1995": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑йил",
-    "convert_from_latin_2026_to_latin_2026": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑йил",
+    "convert_from_latin_2026_to_latin_1995": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил",
+    "convert_from_latin_2026_to_latin_2026": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил",
     "fold_cyrillic": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑yil",
     "is_cyrillic": true,
     "segments": [
@@ -18273,7 +18273,7 @@
       null
      ]
     ],
-    "to_ascii": "1991-yil  1-sentabr 22  yil 1991yil",
+    "to_ascii": "1991-yil  1 sentabr 22  yil 1991--yil",
     "script_spans": [
      [
       "1991-",
@@ -18327,11 +18327,11 @@
      ]
     ],
     "convert_auto_to_cyrillic_protect_false": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
-    "convert_auto_to_latin_1995_protect_false": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
-    "convert_auto_to_latin_2026_protect_false": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
+    "convert_auto_to_latin_1995_protect_false": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑yil",
+    "convert_auto_to_latin_2026_protect_false": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑yil",
     "convert_terms_to_cyrillic": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
     "convert_tags_latin_1995_to_cyrillic": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
-    "to_latin_tag_latin_1995": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑yil",
+    "to_latin_tag_latin_1995": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑yil",
     "to_cyrillic_protect_false": "1991 йил 😀 1 сентябрь😀 22  йил 1991‑‑йил",
     "segments_protect_false": [
      [
@@ -18428,7 +18428,7 @@
        "yil"
       ]
      ],
-     "result": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑йил"
+     "result": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил"
     },
     "migration_report_protect_false": {
      "words": 4,
@@ -18444,7 +18444,7 @@
        "yil"
       ]
      ],
-     "result": "1991-yil 😀 1-sentabr😀 22  yil 1991‑‑йил"
+     "result": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил"
     },
     "str_lower": "1991-yil 😀 1 sentabr😀 22  yil 1991‑‑йил",
     "str_upper": "1991-YIL 😀 1 SENTABR😀 22  YIL 1991‑‑ЙИЛ"

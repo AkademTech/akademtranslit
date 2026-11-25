@@ -183,10 +183,10 @@ characters.
 
 Text between words is never passed to a step, so digits, punctuation and
 whitespace come through unchanged, except the hyphen or space after the
-number of a date, which `dates` writes for the target. Because the marks are
-canonicalised even when there are no steps, and `dates` runs for every
-target, converting text to its own orthography normalises the marks and the
-dates rather than doing nothing.
+number of a date that changes script, which `dates` writes for the target.
+Because the marks are canonicalised even when there are no steps,
+converting text to its own orthography normalises the marks rather than
+doing nothing. A date in its own script keeps its separator.
 
 ## Context rules
 

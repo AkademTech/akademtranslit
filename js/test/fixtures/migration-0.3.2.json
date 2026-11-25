@@ -2,7 +2,7 @@
  "schema": "akademtranslit-js-fixture-migration/1",
  "library_version": "0.3.2",
  "rules_version": "uz-2026-alphabet+project-2026.11.2",
- "inputs_sha256": "f4a40c21fbf66b8bba680e98d3cc5dffa0ce32ad5bb28403de8754830de314ff",
+ "inputs_sha256": "b39b82103b3862f090df10aac5d21a872e3e296eb826cf580fb54f31f0c24e55",
  "made_by": "js/tools/make-fixtures.py",
  "results": {
   "c0001": {
@@ -8701,7 +8701,7 @@
     "round_trip": true,
     "rules_version": "uz-2026-alphabet+project-2026.11.2",
     "check": [],
-    "result": "ilmiy jurnal 2026-yil 12 son"
+    "result": "ilmiy jurnal 2026 yil 12 son"
    },
    "no_protect": {
     "words": 4,
@@ -8710,7 +8710,7 @@
     "round_trip": true,
     "rules_version": "uz-2026-alphabet+project-2026.11.2",
     "check": [],
-    "result": "ilmiy jurnal 2026-yil 12 son"
+    "result": "ilmiy jurnal 2026 yil 12 son"
    }
   },
   "c0308": {
@@ -34342,7 +34342,7 @@
     "round_trip": true,
     "rules_version": "uz-2026-alphabet+project-2026.11.2",
     "check": [],
-    "result": "1956-yil 22-sentabr"
+    "result": "1956 yil 22 sentabr"
    },
    "no_protect": {
     "words": 2,
@@ -34351,7 +34351,7 @@
     "round_trip": true,
     "rules_version": "uz-2026-alphabet+project-2026.11.2",
     "check": [],
-    "result": "1956-yil 22-sentabr"
+    "result": "1956 yil 22 sentabr"
    }
   },
   "c1207": {
@@ -35134,6 +35134,160 @@
     "rules_version": "uz-2026-alphabet+project-2026.11.2",
     "check": [],
     "result": "marganes, neneslar, şpris"
+   }
+  },
+  "c1227": {
+   "protect": {
+    "words": 2,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V harfi"
+   },
+   "no_protect": {
+    "words": 2,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V harfi"
+   }
+  },
+  "c1228": {
+   "protect": {
+    "words": 2,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V asr"
+   },
+   "no_protect": {
+    "words": 2,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V asr"
+   }
+  },
+  "c1229": {
+   "protect": {
+    "words": 3,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I jahon uruşi"
+   },
+   "no_protect": {
+    "words": 3,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I jahon uruşi"
+   }
+  },
+  "c1230": {
+   "protect": {
+    "words": 2,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Nikolay I"
+   },
+   "no_protect": {
+    "words": 2,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Nikolay I"
+   }
+  },
+  "c1231": {
+   "protect": {
+    "words": 1,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "X"
+   },
+   "no_protect": {
+    "words": 1,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "X"
+   }
+  },
+  "c1232": {
+   "protect": {
+    "words": 1,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "2026 yil"
+   },
+   "no_protect": {
+    "words": 1,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "2026 yil"
+   }
+  },
+  "c1233": {
+   "protect": {
+    "words": 1,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [
+     [
+      5,
+      8,
+      "cyrillic-word",
+      "yil"
+     ]
+    ],
+    "result": "1991-йил"
+   },
+   "no_protect": {
+    "words": 1,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [
+     [
+      5,
+      8,
+      "cyrillic-word",
+      "yil"
+     ]
+    ],
+    "result": "1991-йил"
    }
   }
  }

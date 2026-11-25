@@ -4,28 +4,40 @@
 
 ### Changed
 
-The output of `convert`, `to_latin` and `to_cyrillic` changes in four rules.
-`RULES_VERSION` is `uz-2026-alphabet+project-2026.11.2`: the release that
+The output of `convert`, `to_latin` and `to_cyrillic` changes in four rules,
+and `to_ascii` writes U+2011 as a hyphen. `RULES_VERSION` is `uz-2026-alphabet+project-2026.11.2`: the release that
 changes the output is the second in November 2026, and from now on such a
 release adds its number in the month.
 
 - Roman numerals stay Latin in Cyrillic: converting `latin_1995` or
   `latin_2026` to Cyrillic keeps a word that is a well-formed Roman numeral
-  in capitals, `XIX asr` → `XIX аср`, `Pyotr I` → `Пётр I` (were `ХИХ аср`,
-  `Пётр И`). One letter followed by a full stop is an initial and is
-  converted: `I. Boʻriyev` → `И. Бўриев`. A capital `D`, `I`, `L`, `M`, `V`
-  or `X` alone stays Latin too.
+  in capitals, `XIX asr` → `XIX аср`, `IV bob` → `IV боб` (were `ХИХ аср`,
+  `ИВ боб`). Two letters or more are a numeral wherever they stand. One
+  letter is most often the letter itself, so it is a numeral only in
+  context, with one space or U+00A0 between: before a word that begins with
+  `asr`, `ming`, `bob`, `qism`, `jild`, `tom`, `sinf`, `kurs`, `boʻlim`,
+  `guruh`, `chorak`, `bosqich`, `daraja`, `toifa`, `qurultoy`, `syezd`,
+  `sessiya`, `chaqiriq` or `jahon` (or the 2026 form of one: `bölim`,
+  `çorak`, `bosqiç`, `çaqiriq`), `V asr` → `V аср`, `I jahon urushi` →
+  `I жаҳон уруши`; or after a word of two letters or more that begins with
+  a capital, when no full stop follows, `Pyotr I` → `Пётр I`,
+  `Nikolay I` → `Николай I` (were `В аср`, `И жаҳон уруши`, `Пётр И`,
+  `Николай И`). Otherwise it is a letter, as before: `V` → `В`,
+  `V harfi` → `В ҳарфи`, `I. Boʻriyev` → `И. Бўриев`.
 - Dates: Cyrillic writes no hyphen after the number of a year or of a day of
   the month, as the 1956 spelling rules do, and Latin writes one:
   `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
   `1956 йил 22 сентябрь` → `1956-yil 22-sentabr` (were
-  `1991-йилнинг 1-сентабри`, `1956 yil 22 sentyabr`), also from an
-  orthography to itself (`2026-йил` →
-  `2026 йил`, `2026 yil` → `2026-yil`). A year is three or four digits and a
-  word in `йил…` to Cyrillic, 1000 to 2099 and a word in `yil…` to Latin; a
-  day is 1 to 31 and a month name. U+2011 NON-BREAKING HYPHEN and U+00A0
-  NO-BREAK SPACE take each other's place. Other ordinals keep the hyphen
-  (`5-sinf`, `60-yillar`).
+  `1991-йилнинг 1-сентабри`, `1956 yil 22 sentyabr`). The separator changes
+  only when the date changes script: the word after the number was read in
+  Latin and the target is Cyrillic, or the other way round. Within one
+  script — `latin_1995` ↔ `latin_2026`, or an orthography to itself — it is
+  the author's and stays: `2026 yil` stays `2026 yil`, `1991-йил` stays
+  `1991-йил`. With `source="auto"` each date goes by the script its word is
+  read in. A year is three or four digits and a word in `йил…` to Cyrillic,
+  1000 to 2099 and a word in `yil…` to Latin; a day is 1 to 31 and a month
+  name. U+2011 NON-BREAKING HYPHEN and U+00A0 NO-BREAK SPACE take each
+  other's place. Other ordinals keep the hyphen (`5-sinf`, `60-yillar`).
 - Month names: Cyrillic `сентябр` and `октябр` are `sentabr` and `oktabr`,
   with any suffix: `Сентябрь` → `Sentabr`, `октябрнинг` → `oktabrning` (were
   `Sentyabr`, `oktyabrning`). From Latin, `sentabr` and `oktabr` are
@@ -36,11 +48,15 @@ release adds its number in the month.
   `ненецлар` → `neneslar`, `шприцни` → `shprisni` (were `marganets`,
   `shprits`, `nenetslar`, `shpritsni`). Surnames too: `Кац` → `Kas`, `Швец`
   → `Şves`. Latin to Cyrillic does not change: `marganes` → `марганес`.
+- `to_ascii` writes U+2011 NON-BREAKING HYPHEN as `-`. It removed it before,
+  with the other characters that are not ASCII, so a date that Latin writes
+  with it ran together: `1956` U+00A0 `йил 22` U+00A0 `сентябрь` →
+  `1956-yil 22-sentabr` (was `1956yil 22sentabr`). U+00A0 is a space, as
+  before.
 
 `to_ascii`, `migration_report` and the suggestions of `validate` follow
-`convert`. A date's separator is not a word: `validate` does not report
-`1956 yil` in Latin text and `migration_report` does not count it in
-`changed`, though its `result` has `1956-yil`. `normalize` does not
+`convert`. `migration_report` converts within the Latin script, so it keeps
+a date's separator, as `validate` does. `normalize` does not
 change, as in every patch release: it reads
 `марганец` and `сентябрь` as before (`marganets`, `sentyabr`), so their
 keys are not the keys of the new Latin spellings. The same holds for
@@ -50,22 +66,24 @@ keys with; `convert` reads Cyrillic with the new
 
 ### Output changes
 
-Golden diff 0.3.1 → 0.3.2, on 1226 inputs (38 added in 0.3.2):
-`to_cyrillic` 28, `to_latin_1995` 13, `to_latin_2026` 13, `to_ascii` 13,
+Golden diff 0.3.1 → 0.3.2, on 1233 inputs (45 added in 0.3.2):
+`to_cyrillic` 23, `to_latin_1995` 11, `to_latin_2026` 11, `to_ascii` 12,
 `validate_latin_1995` 9, `validate_latin_2026` 9, and `convert` from
-Cyrillic to Cyrillic 2, to `latin_1995` and `latin_2026` 13 each, from
-`latin_1995` and `latin_2026` to Cyrillic 32 each and to the two Latin
-orthographies 2 each. On the 1188 inputs that 0.3.1 had, 12 change:
+Cyrillic to `latin_1995` and `latin_2026` 14 each and from `latin_1995`
+and `latin_2026` to Cyrillic 30 each. `convert` within one script —
+Cyrillic to Cyrillic and among the Latin orthographies — changes nothing.
+On the 1188 inputs that 0.3.1 had, 6 change, each only where it changes
+script:
 
-- Roman numerals: 8 — `D`, `I`, `L`, `M`, `V` and `X` alone, `XXI asr` and
-  `XXI аср`, in the Cyrillic fields;
-- dates: 3 — `ilmiy jurnal 2026 yil 12 son`,
-  `Ilmiy jurnal, 2026-yil, 12-son` and
-  `Тошкент давлат университети, 2026-йил`;
+- Roman numerals: 2 — `XXI asr` and `XXI аср`, in the Cyrillic fields;
+- dates: 3 — `ilmiy jurnal 2026 yil 12 son` read as Cyrillic and
+  converted to Latin, `Ilmiy jurnal, 2026-yil, 12-son` converted to
+  Cyrillic, and `Тошкент давлат университети, 2026-йил` read as Latin and
+  converted to Cyrillic;
 - month names: 1 — `iyun`;
 - word-final `ц`: none.
 
-The 38 new inputs cover each rule and its limits; 30 of them convert
+The 45 new inputs cover each rule and its limits; 35 of them convert
 differently from 0.3.1. `normalize`, the `sort_key` fields,
 `normalize_apostrophes`, `segments`, `script_spans`, `fold_homoglyphs` and
 the other fields are unchanged. The golden files of 0.1.1, 0.2.0, 0.3.0 and
@@ -90,10 +108,10 @@ the earlier inputs are unchanged.
   the Python that made it (`3.12`, not `3.12.13`). CI checks the fixtures on
   any Python 3.12.x.
 - `tests/test_changes_0_3_2.py` and `js/test/changes-0.3.2.test.js` pin the
-  four rules; `js/test/readme.test.js` runs the README's JavaScript
-  examples. The JS fixtures are named for 0.3.2 and have six more trap
-  inputs, for the new rules; `.gitleaks.toml` names the renamed trap
-  fixture.
+  four rules and `to_ascii`'s U+2011; `js/test/readme.test.js` runs the
+  README's JavaScript examples. The JS fixtures are named for 0.3.2 and
+  have six more trap inputs, for the new rules; `.gitleaks.toml` names the
+  renamed trap fixture.
 
 ## 0.3.1 — 2026-11-18
 

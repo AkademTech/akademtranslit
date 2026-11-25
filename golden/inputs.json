@@ -9245,6 +9245,62 @@
     "latin_1995"
    ],
    "text": "marganes, neneslar, shpris"
+  },
+  {
+   "id": "c1227",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V harfi"
+  },
+  {
+   "id": "c1228",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V asr"
+  },
+  {
+   "id": "c1229",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I jahon urushi"
+  },
+  {
+   "id": "c1230",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Nikolay I"
+  },
+  {
+   "id": "c1231",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "X"
+  },
+  {
+   "id": "c1232",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "2026 yil"
+  },
+  {
+   "id": "c1233",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "1991-йил"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"
