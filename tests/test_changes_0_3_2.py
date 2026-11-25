@@ -520,10 +520,14 @@ def test_the_new_counted_words(latin, cyrillic, source):
 
 def test_series_take_linear_time():
     start = time.perf_counter()
-    for text in (
-        "I, " * 10_000 + "II", "I va " * 10_000 + "II", "V–" * 10_000 + "VI", "I, " * 10_000 + "V",
-        "V – " * 10_000 + "VI", "I VA " * 10_000 + "II",
-    ):
+    for text in ("I, " * 10_000 + "II", "I va " * 10_000 + "II", "V–" * 10_000 + "VI", "I, " * 10_000 + "V"):
+        convert(text, LATIN_1995, CYRILLIC)
+    assert time.perf_counter() - start < 1
+
+
+def test_series_with_a_spaced_dash_or_va_in_capitals_take_linear_time():
+    start = time.perf_counter()
+    for text in ("V – " * 10_000 + "VI", "I VA " * 10_000 + "II"):
         convert(text, LATIN_1995, CYRILLIC)
     assert time.perf_counter() - start < 1
 

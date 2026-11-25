@@ -862,10 +862,10 @@ U+00A0, or by `va` or `yoki`, in any case, with one space or U+00A0 on
 each side (`I VA II JAHON URUSHLARI` → `I ВА II ЖАҲОН УРУШЛАРИ`). A member
 is a numeral of two letters or more, or one `I`, `V` or `X` with no full
 stop after it, so a dash before another word links nothing:
-`X – nomaʼlum, V – tezlik` → `Х – номаълум, В – тезлик`. When one member is a numeral on its own — two letters or more,
-or one letter by the two rules above — every member is
-(`I, II va III boblar` → `I, II ва III боблар`); otherwise they are
-letters (`V va X` → `В ва Х`).
+`X – nomaʼlum, V – tezlik` → `Х – номаълум, В – тезлик`. When one member
+is a numeral on its own — two letters or more, or one letter by the two
+rules above — every member is (`I, II va III boblar` →
+`I, II ва III боблар`); otherwise they are letters (`V va X` → `В ва Х`).
 
 Before a word that begins, in any case, with `harf` or `tovush` (2026:
 `tovuş`) one letter is a letter whatever else stands beside it: `V harfi`

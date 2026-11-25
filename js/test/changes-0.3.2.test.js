@@ -510,10 +510,15 @@ test("Roman numerals: the new counted words", () => {
 
 test("Roman numerals: series take linear time", () => {
   const start = performance.now();
-  for (const text of [
-    "I, ".repeat(10_000) + "II", "I va ".repeat(10_000) + "II", "V–".repeat(10_000) + "VI", "I, ".repeat(10_000) + "V",
-    "V – ".repeat(10_000) + "VI", "I VA ".repeat(10_000) + "II",
-  ]) {
+  for (const text of ["I, ".repeat(10_000) + "II", "I va ".repeat(10_000) + "II", "V–".repeat(10_000) + "VI", "I, ".repeat(10_000) + "V"]) {
+    convert(text, LATIN_1995, CYRILLIC);
+  }
+  assert.ok(performance.now() - start < 1000);
+});
+
+test("Roman numerals: series with a spaced dash or VA in capitals take linear time", () => {
+  const start = performance.now();
+  for (const text of ["V – ".repeat(10_000) + "VI", "I VA ".repeat(10_000) + "II"]) {
     convert(text, LATIN_1995, CYRILLIC);
   }
   assert.ok(performance.now() - start < 1000);

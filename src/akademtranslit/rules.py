@@ -733,14 +733,14 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
     U+00A0 on each side (``I VA II JAHON`` -> ``I ВА II ЖАҲОН``); a member is
     a numeral of two letters or more, or one ``I``, ``V`` or ``X`` with no
     full stop after it, so a dash before another word links nothing
-    (``X – nomaʼlum`` -> ``Х – номаълум``). When one member of a series of two or more is a
-    numeral on its own, every member is; when the word after the series
-    begins with ``harf`` or ``tovush``, every member of one letter is a
-    letter, even one that is a numeral on its own, and those of two letters
-    or more stay numerals (``Ushbu V va X harflari`` -> ``Ушбу В ва Х
-    ҳарфлари``, ``V, X va XV harflari`` -> ``В, Х ва XV ҳарфлари``). A
-    known limit: a ruler's numeral linked to a letter by a comma is read as
-    a letter, ``Nikolay I, V harfi`` -> ``Николай И, В ҳарфи``.
+    (``X – nomaʼlum`` -> ``Х – номаълум``). When one member of a series of
+    two or more is a numeral on its own, every member is; when the word
+    after the series begins with ``harf`` or ``tovush``, every member of one
+    letter is a letter, even one that is a numeral on its own, and those of
+    two letters or more stay numerals (``Ushbu V va X harflari`` -> ``Ушбу
+    В ва Х ҳарфлари``, ``V, X va XV harflari`` -> ``В, Х ва XV ҳарфлари``).
+    A known limit: a ruler's numeral linked to a letter by a comma is read
+    as a letter, ``Nikolay I, V harfi`` -> ``Николай И, В ҳарфи``.
     """
     if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
         return False
