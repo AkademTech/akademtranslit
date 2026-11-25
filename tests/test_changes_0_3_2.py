@@ -47,7 +47,7 @@ ROMAN_NUMERALS = [
     ("Pyotr I, Nikolay II", "Пётр I, Николай II"),
     ("Пётр I", "Пётр I"),  # a Cyrillic word before it, with a Latin source
     # Known limit (README): a capitalised word before a letter makes it a numeral.
-    ("Lotin V harfi", "Лотин V ҳарфи"),
+    ("Variant V", "Вариант V"),
 ]
 
 # Boundaries: an initial, a letter, a known limit, and what is not a numeral.
@@ -75,12 +75,56 @@ NOT_ROMAN_NUMERALS = [
     ("Oʻ I", "Ў И"),  # oʻ is one letter
     ("I va V", "И ва В"),
     ("V basr", "В баср"),  # asr inside a word does not count
+    # One L, C, D or M is a letter wherever it stands (C is not in the alphabet and stays).
+    ("D guruhida", "Д гуруҳида"),
+    ("M harfi", "М ҳарфи"),
+    ("A, B, C va D toifalar", "А, Б, C ва Д тоифалар"),
+    ("L asr", "Л аср"),
+    ("Karl D", "Карл Д"),
+    # Before harf or tovush one I, V or X is a letter, after a name too.
+    ("Lotin V harfi", "Лотин В ҳарфи"),
+    ("V va X harflari", "В ва Х ҳарфлари"),
+    ("V, X harflari", "В, Х ҳарфлари"),
+    ("Pyotr I harfi", "Пётр И ҳарфи"),
+    ("Lotin X HARFLARI", "Лотин Х ҲАРФЛАРИ"),
+    ("V\N{NO-BREAK SPACE}Harflari", "В\N{NO-BREAK SPACE}Ҳарфлари"),
 ]
 
 
 @pytest.mark.parametrize("source", LATIN + ("auto",))
 @pytest.mark.parametrize("latin,cyrillic", ROMAN_NUMERALS + NOT_ROMAN_NUMERALS)
 def test_roman_numerals_latin_to_cyrillic(latin, cyrillic, source):
+    assert convert(latin, source, CYRILLIC) == cyrillic
+
+
+# Section 6 of the 0.3.2c task: what one letter or a numeral gave at ba40a26 and still
+# gives, and the known limits.
+ROMAN_AS_AT_BA40A26 = [
+    ("V harfi", "В ҳарфи"),
+    ("V asr", "V аср"),
+    ("Nikolay I", "Николай I"),
+    ("Pyotr, I", "Пётр, И"),
+    ("X", "Х"),
+    ("D I L M V X", "Д И Л М В Х"),
+    ("XIX asr, IV bob", "XIX аср, IV боб"),
+    ("MIX", "MIX"),
+    ("CD va DVD", "CD ва ДВД"),
+    ("Karl V", "Карл V"),
+    ("Lyudovik XIV va Lyudovik XV", "Людовик XIV ва Людовик XV"),
+    ("C toifa", "C тоифа"),
+    ("B toifali", "Б тоифали"),
+    ("C va D", "C ва Д"),
+    # Known limits (README): an initial at the end of a sentence, and a capitalised
+    # word at the start of one.
+    ("Pyotr I.", "Пётр И."),
+    ("Karl V.", "Карл В."),
+    ("Variant V", "Вариант V"),
+]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("latin,cyrillic", ROMAN_AS_AT_BA40A26)
+def test_roman_numerals_as_before(latin, cyrillic, source):
     assert convert(latin, source, CYRILLIC) == cyrillic
 
 
@@ -95,10 +139,22 @@ COUNTED_2026 = ["bölim", "çorak", "bosqiç", "çaqiriq"]
 @pytest.mark.parametrize("source", LATIN + ("auto",))
 @pytest.mark.parametrize("word", COUNTED + COUNTED_2026)
 def test_one_letter_before_a_counted_word(word, source):
-    for letter in "IVXLCDM":
+    for letter in "IVX":
         for text in (f"{letter} {word}", f"{letter} {word.upper()}", f"{letter} {word}lar"):
             rest = text[2:]
             assert convert(text, source, CYRILLIC) == f"{letter} " + convert(rest, source, CYRILLIC), text
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("word", COUNTED + COUNTED_2026)
+def test_one_l_c_d_or_m_before_a_counted_word_is_a_letter(word, source):
+    for letter in "LCDM":
+        for text in (f"{letter} {word}", f"Pyotr {letter} {word}"):
+            expected = " ".join(convert(part, source, CYRILLIC) for part in text.split(" "))
+            assert convert(text, source, CYRILLIC) == expected, text
+    assert convert(f"L {word}", source, CYRILLIC).startswith("Л ")
+    assert convert(f"D {word}", source, CYRILLIC).startswith("Д ")
+    assert convert(f"M {word}", source, CYRILLIC).startswith("М ")
 
 
 @pytest.mark.parametrize("word", ["harfi", "va", "as", "asos", "boshqa", "minora", "to", "sin", "jahl", "bo"])
@@ -108,6 +164,33 @@ def test_one_letter_before_another_word_is_a_letter(word):
     assert to_cyrillic(f"V {word}").startswith("В ")
 
 
+# The words that make one letter before them a letter, and the 2026 form.
+LETTER_WORDS = ["harf", "harfi", "harflari", "harfini", "tovush", "tovushi", "tovushlar"]
+LETTER_WORDS_2026 = ["tovuş", "tovuşi", "tovuşlar"]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("word", LETTER_WORDS + LETTER_WORDS_2026)
+def test_one_letter_before_harf_or_tovush_is_a_letter(word, source):
+    """Before harf or tovush, in any case, nothing makes one letter a numeral:
+    not the name before it (b), and not a counted word, which cannot follow."""
+    if source == LATIN_1995 and word in LETTER_WORDS_2026:
+        return  # ş is not a latin_1995 letter
+    for letter, cyrillic in (("I", "И"), ("V", "В"), ("X", "Х")):
+        for form in (word, word.upper(), word.capitalize()):
+            for before in ("", "Lotin ", "Pyotr\N{NO-BREAK SPACE}"):
+                text = f"{before}{letter} {form}"
+                got = convert(text, source, CYRILLIC)
+                assert got == convert(before, source, CYRILLIC) + f"{cyrillic} " + convert(form, source, CYRILLIC), text
+
+
+def test_a_word_that_only_begins_like_harf_counts():
+    """As with the counted words, the word after the letter begins with harf
+    or tovush; harfiy (literal) does too."""
+    assert to_cyrillic("Lotin V harfiy") == "Лотин В ҳарфий"
+    assert to_cyrillic("Lotin V harakat") == "Лотин V ҳаракат"  # not harf
+
+
 @pytest.mark.parametrize("latin_1995,latin_2026,cyrillic", [
     ("I jahon urushi", "I jahon uruşi", "I жаҳон уруши"),
     ("V boʻlim", "V bölim", "V бўлим"),
@@ -115,6 +198,8 @@ def test_one_letter_before_another_word_is_a_letter(word):
     ("I bosqich", "I bosqiç", "I босқич"),
     ("V harfi", "V harfi", "В ҳарфи"),
     ("Nikolay I", "Nikolay I", "Николай I"),
+    ("I tovushi", "I tovuşi", "И товуши"),
+    ("Lotin X TOVUSHI", "Lotin X TOVUŞI", "Лотин Х ТОВУШИ"),
 ])
 def test_roman_numerals_one_letter_in_both_latin_orthographies(latin_1995, latin_2026, cyrillic):
     assert convert(latin_1995, LATIN_1995, CYRILLIC) == cyrillic
@@ -176,7 +261,16 @@ def test_roman_numerals_in_a_protected_span():
         ("I", "", "Pyotr", "", True),
         ("I", ",", "Pyotr", "", True),
         ("I", ".", "Pyotr", "", False),
-        ("I", " ", "Pyotr", "harfi", True),
+        ("I", " ", "Pyotr", "harfi", False),
+        ("V", " ", "Lotin", "Harflari", False),
+        ("X", " ", "", "TOVUSHI", False),
+        ("X", " ", "", "tovuşi", False),
+        ("X", " ", "", "harakat", False),
+        ("X", " ", "Pyotr", "harakat", True),
+        ("L", " ", "", "asr", False),
+        ("C", "", "Pyotr", "", False),
+        ("D", " ", "", "guruhida", False),
+        ("M", " ", "Karl", "toifa", False),
         ("I", "", "Пётр", "", True),
         ("I", "", "pyotr", "", False),
         ("I", "", "A", "", False),

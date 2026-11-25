@@ -39,7 +39,7 @@ const ROMAN_NUMERALS = [
   ["Pyotr I, Nikolay II", "Пётр I, Николай II"],
   ["Пётр I", "Пётр I"], // a Cyrillic word before it, with a Latin source
   // Known limit (README): a capitalised word before a letter makes it a numeral.
-  ["Lotin V harfi", "Лотин V ҳарфи"],
+  ["Variant V", "Вариант V"],
 ];
 
 // Boundaries: an initial, a letter, a known limit, and what is not a numeral.
@@ -67,10 +67,55 @@ const NOT_ROMAN_NUMERALS = [
   ["Oʻ I", "Ў И"], // oʻ is one letter
   ["I va V", "И ва В"],
   ["V basr", "В баср"], // asr inside a word does not count
+  // One L, C, D or M is a letter wherever it stands (C is not in the alphabet and stays).
+  ["D guruhida", "Д гуруҳида"],
+  ["M harfi", "М ҳарфи"],
+  ["A, B, C va D toifalar", "А, Б, C ва Д тоифалар"],
+  ["L asr", "Л аср"],
+  ["Karl D", "Карл Д"],
+  // Before harf or tovush one I, V or X is a letter, after a name too.
+  ["Lotin V harfi", "Лотин В ҳарфи"],
+  ["V va X harflari", "В ва Х ҳарфлари"],
+  ["V, X harflari", "В, Х ҳарфлари"],
+  ["Pyotr I harfi", "Пётр И ҳарфи"],
+  ["Lotin X HARFLARI", "Лотин Х ҲАРФЛАРИ"],
+  ["V\u{A0}Harflari", "В\u{A0}Ҳарфлари"],
 ];
 
 test("Roman numerals: Latin to Cyrillic", () => {
   for (const [latin, cyrillic] of [...ROMAN_NUMERALS, ...NOT_ROMAN_NUMERALS]) {
+    for (const source of [...LATIN, "auto"]) {
+      assert.equal(convert(latin, source, CYRILLIC), cyrillic, `${latin} (${source})`);
+    }
+  }
+});
+
+// Section 6 of the 0.3.2c task: what one letter or a numeral gave at ba40a26 and still
+// gives, and the known limits.
+const ROMAN_AS_AT_BA40A26 = [
+  ["V harfi", "В ҳарфи"],
+  ["V asr", "V аср"],
+  ["Nikolay I", "Николай I"],
+  ["Pyotr, I", "Пётр, И"],
+  ["X", "Х"],
+  ["D I L M V X", "Д И Л М В Х"],
+  ["XIX asr, IV bob", "XIX аср, IV боб"],
+  ["MIX", "MIX"],
+  ["CD va DVD", "CD ва ДВД"],
+  ["Karl V", "Карл V"],
+  ["Lyudovik XIV va Lyudovik XV", "Людовик XIV ва Людовик XV"],
+  ["C toifa", "C тоифа"],
+  ["B toifali", "Б тоифали"],
+  ["C va D", "C ва Д"],
+  // Known limits (README): an initial at the end of a sentence, and a capitalised
+  // word at the start of one.
+  ["Pyotr I.", "Пётр И."],
+  ["Karl V.", "Карл В."],
+  ["Variant V", "Вариант V"],
+];
+
+test("Roman numerals: as before", () => {
+  for (const [latin, cyrillic] of ROMAN_AS_AT_BA40A26) {
     for (const source of [...LATIN, "auto"]) {
       assert.equal(convert(latin, source, CYRILLIC), cyrillic, `${latin} (${source})`);
     }
@@ -87,12 +132,28 @@ const COUNTED_2026 = ["bölim", "çorak", "bosqiç", "çaqiriq"];
 test("Roman numerals: one letter before a counted word", () => {
   for (const word of [...COUNTED, ...COUNTED_2026]) {
     for (const source of [...LATIN, "auto"]) {
-      for (const letter of "IVXLCDM") {
+      for (const letter of "IVX") {
         for (const text of [`${letter} ${word}`, `${letter} ${word.toUpperCase()}`, `${letter} ${word}lar`]) {
           const rest = text.slice(2);
           assert.equal(convert(text, source, CYRILLIC), `${letter} ` + convert(rest, source, CYRILLIC), `${text} (${source})`);
         }
       }
+    }
+  }
+});
+
+test("Roman numerals: one L, C, D or M before a counted word is a letter", () => {
+  for (const word of [...COUNTED, ...COUNTED_2026]) {
+    for (const source of [...LATIN, "auto"]) {
+      for (const letter of "LCDM") {
+        for (const text of [`${letter} ${word}`, `Pyotr ${letter} ${word}`]) {
+          const expected = text.split(" ").map((part) => convert(part, source, CYRILLIC)).join(" ");
+          assert.equal(convert(text, source, CYRILLIC), expected, `${text} (${source})`);
+        }
+      }
+      assert.ok(convert(`L ${word}`, source, CYRILLIC).startsWith("Л "), word);
+      assert.ok(convert(`D ${word}`, source, CYRILLIC).startsWith("Д "), word);
+      assert.ok(convert(`M ${word}`, source, CYRILLIC).startsWith("М "), word);
     }
   }
 });
@@ -103,6 +164,30 @@ test("Roman numerals: one letter before another word is a letter", () => {
   }
 });
 
+// The words that make one letter before them a letter, and the 2026 form.
+const LETTER_WORDS = ["harf", "harfi", "harflari", "harfini", "tovush", "tovushi", "tovushlar"];
+const LETTER_WORDS_2026 = ["tovuş", "tovuşi", "tovuşlar"];
+
+test("Roman numerals: one letter before harf or tovush is a letter", () => {
+  const capitalize = (word) => word[0].toUpperCase() + word.slice(1);
+  for (const word of [...LETTER_WORDS, ...LETTER_WORDS_2026]) {
+    for (const source of [...LATIN, "auto"]) {
+      if (source === LATIN_1995 && LETTER_WORDS_2026.includes(word)) continue; // ş is not a latin_1995 letter
+      for (const [letter, cyrillic] of [["I", "И"], ["V", "В"], ["X", "Х"]]) {
+        for (const form of [word, word.toUpperCase(), capitalize(word)]) {
+          for (const before of ["", "Lotin ", "Pyotr\u{A0}"]) {
+            const text = `${before}${letter} ${form}`;
+            const expected = convert(before, source, CYRILLIC) + `${cyrillic} ` + convert(form, source, CYRILLIC);
+            assert.equal(convert(text, source, CYRILLIC), expected, `${text} (${source})`);
+          }
+        }
+      }
+    }
+  }
+  assert.equal(toCyrillic("Lotin V harfiy"), "Лотин В ҳарфий");
+  assert.equal(toCyrillic("Lotin V harakat"), "Лотин V ҳаракат"); // not harf
+});
+
 test("Roman numerals: one letter in both Latin orthographies", () => {
   const cases = [
     ["I jahon urushi", "I jahon uruşi", "I жаҳон уруши"],
@@ -111,6 +196,8 @@ test("Roman numerals: one letter in both Latin orthographies", () => {
     ["I bosqich", "I bosqiç", "I босқич"],
     ["V harfi", "V harfi", "В ҳарфи"],
     ["Nikolay I", "Nikolay I", "Николай I"],
+    ["I tovushi", "I tovuşi", "И товуши"],
+    ["Lotin X TOVUSHI", "Lotin X TOVUŞI", "Лотин Х ТОВУШИ"],
   ];
   for (const [latin1995, latin2026, cyrillic] of cases) {
     assert.equal(convert(latin1995, LATIN_1995, CYRILLIC), cyrillic, latin1995);
@@ -170,7 +257,16 @@ test("Roman numerals: isRomanNumeral", () => {
     ["I", "", "Pyotr", "", true],
     ["I", ",", "Pyotr", "", true],
     ["I", ".", "Pyotr", "", false],
-    ["I", " ", "Pyotr", "harfi", true],
+    ["I", " ", "Pyotr", "harfi", false],
+    ["V", " ", "Lotin", "Harflari", false],
+    ["X", " ", "", "TOVUSHI", false],
+    ["X", " ", "", "tovuşi", false],
+    ["X", " ", "", "harakat", false],
+    ["X", " ", "Pyotr", "harakat", true],
+    ["L", " ", "", "asr", false],
+    ["C", "", "Pyotr", "", false],
+    ["D", " ", "", "guruhida", false],
+    ["M", " ", "Karl", "toifa", false],
     ["I", "", "Пётр", "", true],
     ["I", "", "pyotr", "", false],
     ["I", "", "A", "", false],

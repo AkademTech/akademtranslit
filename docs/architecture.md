@@ -233,11 +233,14 @@ From 0.3.2 more rules look at a whole word or at the text around it:
   name that Cyrillic writes with one (`_SOFT_SIGN_MONTHS`).
 - Roman numerals: `is_roman_numeral(word, after, previous, following)` is
   true for a word of two letters or more that `_ROMAN_NUMERAL_RE` matches in
-  full (1 to 3999, capitals). One letter is true only when `following`,
-  lowercased and with its marks and 2026 input forms canonical, begins with
-  a word of `_ROMAN_COUNTED` (the 1995 list and its 2026 forms, written by
-  `latin_1995_word_to_2026`), or when `previous` begins with a capital, has
-  two characters or more besides apostrophe marks, and `after` is not `.`.
+  full (1 to 3999, capitals). One letter is false unless it is in
+  `_ROMAN_ONE_LETTER` (`I V X`), and false when `following`, lowercased and
+  with its marks and 2026 input forms canonical, begins with a word of
+  `_ROMAN_LETTER_WORDS` (`harf`, `tovush`, `tovuş`). Otherwise it is true
+  only when `following` begins with a word of `_ROMAN_COUNTED` (the 1995
+  list and its 2026 forms, written by `latin_1995_word_to_2026`), or when
+  `previous` begins with a capital, has two characters or more besides
+  apostrophe marks, and `after` is not `.`.
   `convert` (`_roman_numeral`) looks up `previous` and `following` for one
   letter only, and passes them when one space or U+00A0 is all that
   separates them from it.

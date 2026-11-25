@@ -817,14 +817,19 @@ A Roman numeral stays Latin when Latin text is converted to Cyrillic (0.3.2):
 'И. Бўриев ва М. Асадуллаев'
 >>> to_cyrillic("V asr, I jahon urushi, Nikolay I, V harfi")
 'V аср, I жаҳон уруши, Николай I, В ҳарфи'
+>>> to_cyrillic("D guruhida, M harfi, Lotin V harfi")
+'Д гуруҳида, М ҳарфи, Лотин В ҳарфи'
 
 ```
 
 The word must be only the capitals `I V X L C D M` and a well-formed
 numeral from 1 to 3999 (`XIX`, `MMXXVI`; not `IIII`, `Xix` or `XIXda`).
-Two letters or more are a numeral wherever they stand. One letter is most
-often the letter itself (`V` → `В`, `V harfi` → `В ҳарфи`), so it is a
-numeral only in context, with one space or U+00A0 NO-BREAK SPACE between:
+Two letters or more are a numeral wherever they stand. One `L`, `C`, `D`
+or `M` is always a letter, whatever stands beside it: such numerals are
+rare, the letters are not (`D guruhida` → `Д гуруҳида`, `C toifa` →
+`C тоифа`, `M harfi` → `М ҳарфи`; `C` is not in the alphabet and stays).
+One `I`, `V` or `X` is most often the letter itself (`V` → `В`), so it is
+a numeral only in context, with one space or U+00A0 NO-BREAK SPACE between:
 
 - before a word that begins, in any case, with `asr`, `ming`, `bob`,
   `qism`, `jild`, `tom`, `sinf`, `kurs`, `boʻlim`, `guruh`, `chorak`,
@@ -834,12 +839,17 @@ numeral only in context, with one space or U+00A0 NO-BREAK SPACE between:
 - after a word of two letters or more that begins with a capital, when no
   full stop follows: `Pyotr I` → `Пётр I`.
 
+Before a word that begins, in any case, with `harf` or `tovush` (2026:
+`tovuş`) it is a letter even after a name: `V harfi` → `В ҳарфи`,
+`Lotin V harfi` → `Лотин В ҳарфи`.
+
 One letter followed by a full stop is an initial: `I. Boʻriyev` →
 `И. Бўриев`. The known limits: an Uzbek word in capitals that is also a
-numeral stays Latin (`MIX`, `DIV`); `Pyotr I.` at the end of a sentence is
-read as an initial, `Пётр И.`; and a capitalised word before a letter makes
-it a numeral, `Lotin V harfi` → `Лотин V ҳарфи`. From Cyrillic to Latin a
-numeral is already Latin and stays.
+numeral stays Latin (`MIX`, `DIV`); `Pyotr I.` and `Karl V.` at the end of
+a sentence are read as initials, `Пётр И.`, `Карл В.`; and any capitalised
+word before one letter makes it a numeral, the first word of a sentence
+too, `Variant V` → `Вариант V`. From Cyrillic to Latin a numeral is
+already Latin and stays.
 
 ### The two modifier marks
 

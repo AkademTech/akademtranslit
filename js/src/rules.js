@@ -422,6 +422,10 @@ export function latin2026WordTo1995(word) {
 /** A Roman numeral, 1 to 3999, in capitals (fullmatch: anchored at both ends). */
 export const ROMAN_NUMERAL_RE = /^M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})$/u;
 
+// The letters that can be a numeral on their own; L, C, D and M alone are
+// letters wherever they stand (see rules.py, _ROMAN_ONE_LETTER).
+const ROMAN_ONE_LETTER = new Set("IVX");
+
 // The words that make one letter before them a numeral, in latin_1995 and,
 // written by the table, in latin_2026 (see rules.py, _ROMAN_COUNTED).
 const ROMAN_COUNTED_1995 = [
@@ -430,18 +434,29 @@ const ROMAN_COUNTED_1995 = [
 ];
 export const ROMAN_COUNTED = [...new Set([...ROMAN_COUNTED_1995, ...ROMAN_COUNTED_1995.map(latin1995WordTo2026)])];
 
+// The words that make one letter before them a letter whatever else would
+// make it a numeral, in latin_1995 and latin_2026 (see rules.py,
+// _ROMAN_LETTER_WORDS).
+const ROMAN_LETTER_WORDS_1995 = ["harf", "tovush"];
+const ROMAN_LETTER_WORDS = [
+  ...new Set([...ROMAN_LETTER_WORDS_1995, ...ROMAN_LETTER_WORDS_1995.map(latin1995WordTo2026)]),
+];
+
 /**
  * True if ``word``, followed by the character ``after`` (or ""), is a Roman
  * numeral, which conversion from Latin to Cyrillic keeps (see rules.py).
- * ``previous`` and ``following`` are the words beside it when one space or
- * U+00A0 is all that separates them, or "". Two letters or more are a
- * numeral anywhere; one letter only before a word in ROMAN_COUNTED, or after
- * a word of two letters or more that begins with a capital and not before ".".
+ * ``previous`` and ``following`` are the words beside it, or "". Two letters
+ * or more are a numeral anywhere. One L, C, D or M is a letter. One I, V or
+ * X is a letter before a word in ROMAN_LETTER_WORDS; a numeral before a word
+ * in ROMAN_COUNTED, or after a word of two letters or more that begins with
+ * a capital and not before ".".
  */
 export function isRomanNumeral(word, after = "", previous = "", following = "") {
   if (!word || !ROMAN_NUMERAL_RE.test(word)) return false;
   if (word.length > 1) return true;
+  if (!ROMAN_ONE_LETTER.has(word)) return false;
   following = latin2026CanonicalWord(canonicalizeMarks(following.toLowerCase()));
+  if (ROMAN_LETTER_WORDS.some((start) => following.startsWith(start))) return false;
   if (ROMAN_COUNTED.some((start) => following.startsWith(start))) return true;
   // Code points, as Python counts them; the first one, as str.isupper sees it.
   const chars = Array.from(previous);

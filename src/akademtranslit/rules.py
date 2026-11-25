@@ -66,10 +66,12 @@ Month names
 
 Roman numerals
     A word that is a Roman numeral in capitals stays as it is when Latin is
-    converted to Cyrillic (XIX asr -> XIX аср). One letter is a numeral only
-    in context -- before a word such as asr or jahon (V asr -> V аср), or
-    after a name (Pyotr I -> Пётр I) -- and a letter otherwise (V harfi ->
-    В ҳарфи, I. Boʻriyev -> И. Бўриев): :func:`is_roman_numeral`.
+    converted to Cyrillic (XIX asr -> XIX аср). One I, V or X is a numeral
+    only in context -- before a word such as asr or jahon (V asr -> V аср),
+    or after a name (Pyotr I -> Пётр I), but never before harf or tovush --
+    and a letter otherwise (V harfi -> В ҳарфи, I. Boʻriyev -> И. Бўриев);
+    one L, C, D or M is always a letter (D guruhi -> Д гуруҳи):
+    :func:`is_roman_numeral`.
 
 Dates
     Cyrillic writes no hyphen after the number of a year or of a day of the
@@ -637,6 +639,10 @@ def latin_2026_word_to_1995(word: str) -> str:
 # A Roman numeral, 1 to 3999, in capitals.
 _ROMAN_NUMERAL_RE = re.compile(r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})")
 
+# The letters that can be a numeral on their own. L, C, D and M alone are
+# letters wherever they stand (D guruhi, C toifa, M harfi).
+_ROMAN_ONE_LETTER = frozenset("IVX")
+
 # The words that make one letter before them a numeral (V asr, I jahon
 # urushi, X sinf): the word after the letter begins with one of these, in
 # latin_1995 or, written by the table, in latin_2026 (bölim, çorak, bosqiç,
@@ -646,6 +652,14 @@ _ROMAN_COUNTED = (
     "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
 )
 _ROMAN_COUNTED = tuple(dict.fromkeys(_ROMAN_COUNTED + tuple(map(latin_1995_word_to_2026, _ROMAN_COUNTED))))
+
+# The words that make one letter before them a letter, whatever else would
+# make it a numeral (V harfi, Lotin V harfi, I tovushi): the word after it
+# begins with one of these, in latin_1995 or in latin_2026 (tovuş).
+_ROMAN_LETTER_WORDS = ("harf", "tovush")
+_ROMAN_LETTER_WORDS = tuple(dict.fromkeys(
+    _ROMAN_LETTER_WORDS + tuple(map(latin_1995_word_to_2026, _ROMAN_LETTER_WORDS))
+))
 
 
 def is_roman_numeral(word: str, after: str = "", previous: str = "", following: str = "") -> bool:
@@ -659,8 +673,10 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
 
     The word must be only the capitals ``I V X L C D M`` and a well-formed
     numeral (``XIX``, ``IV``, ``MMXXVI``; not ``IIII`` or ``Xix``). Two
-    letters or more are a numeral wherever they stand. One letter is a letter
-    (``V`` -> ``В``, ``V harfi`` -> ``В ҳарфи``), and a numeral only
+    letters or more are a numeral wherever they stand. One ``L``, ``C``,
+    ``D`` or ``M`` is always a letter (``D guruhida`` -> ``Д гуруҳида``,
+    ``M harfi`` -> ``М ҳарфи``). One ``I``, ``V`` or ``X`` is a letter
+    (``V`` -> ``В``), and a numeral only
 
     * before a word that begins, in any case, with ``asr ming bob qism jild
       tom sinf kurs boʻlim guruh chorak bosqich daraja toifa qurultoy syezd
@@ -671,16 +687,25 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
       not before a full stop: ``Pyotr I`` -> ``Пётр I``, ``Nikolay I`` ->
       ``Николай I``.
 
+    Before a word that begins, in any case, with ``harf`` or ``tovush``
+    (``tovuş``) it is a letter even so: ``V harfi`` -> ``В ҳарфи``,
+    ``Lotin V harfi`` -> ``Лотин В ҳарфи``.
+
     One letter followed by a full stop is an initial: ``I. Boʻriyev`` ->
     ``И. Бўриев``. Known limits: an Uzbek word in capitals that is also a
-    numeral stays Latin (``MIX``), and ``Pyotr I.`` at the end of a sentence
-    is read as an initial.
+    numeral stays Latin (``MIX``), ``Pyotr I.`` at the end of a sentence is
+    read as an initial, and any capitalised word before one letter counts,
+    the first of a sentence too (``Variant V`` -> ``Вариант V``).
     """
     if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
         return False
     if len(word) > 1:
         return True
+    if word not in _ROMAN_ONE_LETTER:
+        return False
     following = latin_2026_canonical_word(canonicalize_marks(following.lower()))
+    if following.startswith(_ROMAN_LETTER_WORDS):
+        return False
     if following.startswith(_ROMAN_COUNTED):
         return True
     letters = sum(ch not in APOSTROPHE_VARIANTS for ch in previous)
