@@ -30,23 +30,29 @@ release adds its number in the month.
     one space or U+00A0 between and no full stop after: `Pyotr I` →
     `Пётр I`, `Nikolay I` → `Николай I`;
   - in a series with a numeral: two numerals or more linked by a hyphen or
-    dash with no space around it (U+002D, U+2010 to U+2014), by a comma
-    and one space, or by `va` or `yoki` with one space on each side, of
-    which one is a numeral on its own: `V–VI asrlar` → `V–VI асрлар`,
-    `I, II va III boblar` → `I, II ва III боблар`, `I va II jahon
-    urushlari` → `I ва II жаҳон урушлари` (were `В аср`, `И жаҳон уруши`,
-    `Пётр И`, `В–ВИ асрлар`, `И, ИИ ва ИИИ боблар`).
+    dash (U+002D, U+2010 to U+2014) with no space around it or with one
+    space on each side, by a comma and one space, or by `va` or `yoki`,
+    in any case, with one space on each side, of which one is a numeral
+    on its own: `V–VI asrlar` → `V–VI асрлар`, `V – VI asrlar` →
+    `V – VI асрлар`, `I, II va III boblar` → `I, II ва III боблар`,
+    `I va II jahon urushlari` → `I ва II жаҳон урушлари`,
+    `I VA II JAHON URUSHLARI` → `I ВА II ЖАҲОН УРУШЛАРИ` (were `В аср`,
+    `И жаҳон уруши`, `Пётр И`, `В–ВИ асрлар`, `И, ИИ ва ИИИ боблар`). A
+    dash before a word that is not a numeral links nothing:
+    `X – nomaʼlum, V – tezlik` → `Х – номаълум, В – тезлик`.
 
   Before a word that begins with `harf` or `tovush` it is a letter even
-  so, and after a series none is made a numeral by the others:
-  `V harfi` → `В ҳарфи`, `Lotin V harfi` → `Лотин В ҳарфи`,
-  `V, X va XV harflari` → `В, Х ва XV ҳарфлари`. Otherwise it is a
-  letter, as before: `V` → `В`, `V va X` → `В ва Х`, `I. Boʻriyev` →
-  `И. Бўриев`. Known limits: `Pyotr I.` and `Karl V.` at the end of a
-  sentence are read as initials; any capitalised word before one letter
-  makes it a numeral, the first of a sentence too, `Variant V` →
-  `Вариант V`; a dash with spaces around it does not link a series,
-  `V – VI asrlar` → `В – VI асрлар`.
+  so, and after a series every member of one letter is a letter, while
+  those of two letters or more stay numerals: `V harfi` → `В ҳарфи`,
+  `Lotin V harfi` → `Лотин В ҳарфи`, `Ushbu V va X harflari` →
+  `Ушбу В ва Х ҳарфлари`, `V, X va XV harflari` → `В, Х ва XV ҳарфлари`.
+  Otherwise it is a letter, as before: `V` → `В`, `V va X` → `В ва Х`,
+  `I. Boʻriyev` → `И. Бўриев`. Known limits: `Pyotr I.` and `Karl V.` at
+  the end of a sentence are read as initials; any capitalised word before
+  one letter makes it a numeral, the first of a sentence too,
+  `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
+  letter before `harf` is read as a letter, `Nikolay I, V harfi` →
+  `Николай И, В ҳарфи`.
 - Dates: Cyrillic writes no hyphen after the number of a year or of a day of
   the month, as the 1956 spelling rules do, and Latin writes one:
   `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
@@ -89,11 +95,11 @@ keys with; `convert` reads Cyrillic with the new
 
 ### Output changes
 
-Golden diff 0.3.1 → 0.3.2, on 1250 inputs (62 added in 0.3.2):
-`to_cyrillic` 34, `to_latin_1995` 11, `to_latin_2026` 11, `to_ascii` 12,
+Golden diff 0.3.1 → 0.3.2, on 1256 inputs (68 added in 0.3.2):
+`to_cyrillic` 36, `to_latin_1995` 11, `to_latin_2026` 11, `to_ascii` 12,
 `validate_latin_1995` 9, `validate_latin_2026` 9, and `convert` from
 Cyrillic to `latin_1995` and `latin_2026` 14 each and from `latin_1995`
-and `latin_2026` to Cyrillic 41 each. `convert` within one script —
+and `latin_2026` to Cyrillic 43 each. `convert` within one script —
 Cyrillic to Cyrillic and among the Latin orthographies — changes nothing.
 On the 1188 inputs that 0.3.1 had, 6 change, each only where it changes
 script:
@@ -106,7 +112,7 @@ script:
 - month names: 1 — `iyun`;
 - word-final `ц`: none.
 
-The 62 new inputs cover each rule and its limits; 46 of them convert
+The 68 new inputs cover each rule and its limits; 48 of them convert
 differently from 0.3.1. `normalize`, the `sort_key` fields,
 `normalize_apostrophes`, `segments`, `script_spans`, `fold_homoglyphs` and
 the other fields are unchanged. The golden files of 0.1.1, 0.2.0, 0.3.0 and

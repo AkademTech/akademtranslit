@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
+ "inputs_sha256": "3ec5e4ea86d777db03540015296cf7278788c0a2c77782978eeda3db66bbcb47",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -8751,6 +8751,48 @@
    "to_cyrillic": "В–ВИ асрлар, И бўлим, И чорак",
    "to_latin_1995": "V–VI asrlar, I boʻlim, I chorak",
    "to_latin_2026": "V–VI asrlar, I bölim, I çorak"
+  },
+  "c1251": {
+   "detect_script": "latin_1995",
+   "normalize": "ushbu v va x harflari",
+   "to_cyrillic": "Ушбу В ва Х ҳарфлари",
+   "to_latin_1995": "Ushbu V va X harflari",
+   "to_latin_2026": "Uşbu V va X harflari"
+  },
+  "c1252": {
+   "detect_script": "latin_1995",
+   "normalize": "lotin v x harflari",
+   "to_cyrillic": "Лотин В, Х ҳарфлари",
+   "to_latin_1995": "Lotin V, X harflari",
+   "to_latin_2026": "Lotin V, X harflari"
+  },
+  "c1253": {
+   "detect_script": "latin_1995",
+   "normalize": "v vi asrlar v vi asrlar",
+   "to_cyrillic": "В – ВИ асрлар, В - ВИ асрлар",
+   "to_latin_1995": "V – VI asrlar, V - VI asrlar",
+   "to_latin_2026": "V – VI asrlar, V - VI asrlar"
+  },
+  "c1254": {
+   "detect_script": "latin_1995",
+   "normalize": "i va ii jahon urushlari",
+   "to_cyrillic": "И ВА ИИ ЖАҲОН УРУШЛАРИ",
+   "to_latin_1995": "I VA II JAHON URUSHLARI",
+   "to_latin_2026": "I VA II JAHON URUŞLARI"
+  },
+  "c1255": {
+   "detect_script": "latin_1995",
+   "normalize": "x nomalum v tezlik",
+   "to_cyrillic": "Х – номаълум, В – тезлик",
+   "to_latin_1995": "X – nomaʼlum, V – tezlik",
+   "to_latin_2026": "X – nomaʼlum, V – tezlik"
+  },
+  "c1256": {
+   "detect_script": "latin_1995",
+   "normalize": "nikolay i v harfi",
+   "to_cyrillic": "Николай И, В ҳарфи",
+   "to_latin_1995": "Nikolay I, V harfi",
+   "to_latin_2026": "Nikolay I, V harfi"
   }
  },
  "schema": "akademtranslit-golden/1"

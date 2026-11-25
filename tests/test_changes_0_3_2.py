@@ -1004,6 +1004,14 @@ NEW_INPUTS = {
     "c1249": ("V va X", "roman", "latin_1995", ("В ва Х", None, None)),
     "c1250": ("V–VI asrlar, I bölim, I çorak", "roman", "latin_2026",
               ("V–VI асрлар, I бўлим, I чорак", "V–VI asrlar, I boʻlim, I chorak", None)),
+    # 0.3.2d: harf after a series; a spaced dash; VA in capitals; a dash before a word.
+    "c1251": ("Ushbu V va X harflari", "roman", "latin_1995", ("Ушбу В ва Х ҳарфлари", None, "Uşbu V va X harflari")),
+    "c1252": ("Lotin V, X harflari", "roman", "latin_1995", ("Лотин В, Х ҳарфлари", None, None)),
+    "c1253": ("V – VI asrlar, V - VI asrlar", "roman", "latin_1995", ("V – VI асрлар, V - VI асрлар", None, None)),
+    "c1254": ("I VA II JAHON URUSHLARI", "roman", "latin_1995",
+              ("I ВА II ЖАҲОН УРУШЛАРИ", None, "I VA II JAHON URUŞLARI")),
+    "c1255": ("X – nomaʼlum, V – tezlik", "roman", "latin_1995", ("Х – номаълум, В – тезлик", None, None)),
+    "c1256": ("Nikolay I, V harfi", "roman", "latin_1995", ("Николай И, В ҳарфи", None, None)),
 }
 
 

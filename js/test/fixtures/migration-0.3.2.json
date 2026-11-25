@@ -2,7 +2,7 @@
  "schema": "akademtranslit-js-fixture-migration/1",
  "library_version": "0.3.2",
  "rules_version": "uz-2026-alphabet+project-2026.11.2",
- "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
+ "inputs_sha256": "3ec5e4ea86d777db03540015296cf7278788c0a2c77782978eeda3db66bbcb47",
  "made_by": "js/tools/make-fixtures.py",
  "results": {
   "c0001": {
@@ -35654,6 +35654,126 @@
      ]
     ],
     "result": "V–VI asrlar, I bölim, I çorak"
+   }
+  },
+  "c1251": {
+   "protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Uşbu V va X harflari"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Uşbu V va X harflari"
+   }
+  },
+  "c1252": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Lotin V, X harflari"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Lotin V, X harflari"
+   }
+  },
+  "c1253": {
+   "protect": {
+    "words": 6,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V – VI asrlar, V - VI asrlar"
+   },
+   "no_protect": {
+    "words": 6,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "V – VI asrlar, V - VI asrlar"
+   }
+  },
+  "c1254": {
+   "protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I VA II JAHON URUŞLARI"
+   },
+   "no_protect": {
+    "words": 5,
+    "changed": 1,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "I VA II JAHON URUŞLARI"
+   }
+  },
+  "c1255": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "X – nomaʼlum, V – tezlik"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "X – nomaʼlum, V – tezlik"
+   }
+  },
+  "c1256": {
+   "protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Nikolay I, V harfi"
+   },
+   "no_protect": {
+    "words": 4,
+    "changed": 0,
+    "protected": 0,
+    "round_trip": true,
+    "rules_version": "uz-2026-alphabet+project-2026.11.2",
+    "check": [],
+    "result": "Nikolay I, V harfi"
    }
   }
  }

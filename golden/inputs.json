@@ -9437,6 +9437,54 @@
     "latin_2026"
    ],
    "text": "V–VI asrlar, I bölim, I çorak"
+  },
+  {
+   "id": "c1251",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Ushbu V va X harflari"
+  },
+  {
+   "id": "c1252",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Lotin V, X harflari"
+  },
+  {
+   "id": "c1253",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V – VI asrlar, V - VI asrlar"
+  },
+  {
+   "id": "c1254",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I VA II JAHON URUSHLARI"
+  },
+  {
+   "id": "c1255",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "X – nomaʼlum, V – tezlik"
+  },
+  {
+   "id": "c1256",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Nikolay I, V harfi"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

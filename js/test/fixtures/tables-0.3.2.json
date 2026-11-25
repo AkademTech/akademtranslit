@@ -2,7 +2,7 @@
  "schema": "akademtranslit-js-fixture-tables/1",
  "library_version": "0.3.2",
  "rules_version": "uz-2026-alphabet+project-2026.11.2",
- "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
+ "inputs_sha256": "3ec5e4ea86d777db03540015296cf7278788c0a2c77782978eeda3db66bbcb47",
  "made_by": "js/tools/make-fixtures.py",
  "tables": {
   "APOSTROPHE_VARIANTS": [

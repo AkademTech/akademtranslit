@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "bdf92259affad836f022b3508c6705b51073ca1e89085251e362bd68a47fb0ee",
+ "inputs_sha256": "3ec5e4ea86d777db03540015296cf7278788c0a2c77782978eeda3db66bbcb47",
  "library_version": "0.3.0",
  "results": {
   "c0001": {
@@ -100945,6 +100945,824 @@
      "chorak"
     ]
    ],
+   "validate_latin_2026": []
+  },
+  "c1251": {
+   "convert_from_cyrillic_to_cyrillic": "Ushbu V va X harflari",
+   "convert_from_cyrillic_to_latin_1995": "Ushbu V va X harflari",
+   "convert_from_cyrillic_to_latin_2026": "Uşbu V va X harflari",
+   "convert_from_latin_1995_to_cyrillic": "Ушбу В ва Х ҳарфлари",
+   "convert_from_latin_1995_to_latin_1995": "Ushbu V va X harflari",
+   "convert_from_latin_1995_to_latin_2026": "Uşbu V va X harflari",
+   "convert_from_latin_2026_to_cyrillic": "Усҳбу В ва Х ҳарфлари",
+   "convert_from_latin_2026_to_latin_1995": "Usʼhbu V va X harflari",
+   "convert_from_latin_2026_to_latin_2026": "Ushbu V va X harflari",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Ushbu V va X harflari",
+   "fold_homoglyphs": "Ushbu V va X harflari",
+   "is_cyrillic": false,
+   "normalize": "ushbu v va x harflari",
+   "normalize_apostrophes_ascii": "Ushbu V va X harflari",
+   "normalize_apostrophes_unicode": "Ushbu V va X harflari",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Ushbu",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "va",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "X",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harflari",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Ushbu V va X harflari",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1117,
+    1115,
+    1104,
+    1098,
+    1117,
+    0,
+    1118,
+    0,
+    1118,
+    1097,
+    0,
+    1120,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1108,
+    1097,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    30,
+    37,
+    12,
+    30,
+    0,
+    31,
+    0,
+    31,
+    11,
+    0,
+    32,
+    0,
+    17,
+    11,
+    27,
+    15,
+    21,
+    11,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    34,
+    30,
+    18,
+    12,
+    34,
+    0,
+    35,
+    0,
+    35,
+    11,
+    0,
+    36,
+    0,
+    18,
+    11,
+    29,
+    15,
+    22,
+    11,
+    29,
+    19
+   ],
+   "to_ascii": "Ushbu V va X harflari",
+   "to_cyrillic": "Ушбу В ва Х ҳарфлари",
+   "to_latin_1995": "Ushbu V va X harflari",
+   "to_latin_2026": "Uşbu V va X harflari",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     0,
+     5,
+     "digraph",
+     "Uşbu"
+    ]
+   ]
+  },
+  "c1252": {
+   "convert_from_cyrillic_to_cyrillic": "Lotin V, X harflari",
+   "convert_from_cyrillic_to_latin_1995": "Lotin V, X harflari",
+   "convert_from_cyrillic_to_latin_2026": "Lotin V, X harflari",
+   "convert_from_latin_1995_to_cyrillic": "Лотин В, Х ҳарфлари",
+   "convert_from_latin_1995_to_latin_1995": "Lotin V, X harflari",
+   "convert_from_latin_1995_to_latin_2026": "Lotin V, X harflari",
+   "convert_from_latin_2026_to_cyrillic": "Лотин В, Х ҳарфлари",
+   "convert_from_latin_2026_to_latin_1995": "Lotin V, X harflari",
+   "convert_from_latin_2026_to_latin_2026": "Lotin V, X harflari",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Lotin V, X harflari",
+   "fold_homoglyphs": "Lotin V, X harflari",
+   "is_cyrillic": false,
+   "normalize": "lotin v x harflari",
+   "normalize_apostrophes_ascii": "Lotin V, X harflari",
+   "normalize_apostrophes_unicode": "Lotin V, X harflari",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Lotin",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "X",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harflari",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Lotin V, X harflari",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1108,
+    1111,
+    1116,
+    1105,
+    1110,
+    0,
+    1118,
+    0,
+    1120,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1108,
+    1097,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    21,
+    24,
+    29,
+    18,
+    23,
+    0,
+    31,
+    0,
+    32,
+    0,
+    17,
+    11,
+    27,
+    15,
+    21,
+    11,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    22,
+    25,
+    33,
+    19,
+    24,
+    0,
+    35,
+    0,
+    36,
+    0,
+    18,
+    11,
+    29,
+    15,
+    22,
+    11,
+    29,
+    19
+   ],
+   "to_ascii": "Lotin V, X harflari",
+   "to_cyrillic": "Лотин В, Х ҳарфлари",
+   "to_latin_1995": "Lotin V, X harflari",
+   "to_latin_2026": "Lotin V, X harflari",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1253": {
+   "convert_from_cyrillic_to_cyrillic": "V – VI asrlar, V - VI asrlar",
+   "convert_from_cyrillic_to_latin_1995": "V – VI asrlar, V - VI asrlar",
+   "convert_from_cyrillic_to_latin_2026": "V – VI asrlar, V - VI asrlar",
+   "convert_from_latin_1995_to_cyrillic": "В – ВИ асрлар, В - ВИ асрлар",
+   "convert_from_latin_1995_to_latin_1995": "V – VI asrlar, V - VI asrlar",
+   "convert_from_latin_1995_to_latin_2026": "V – VI asrlar, V - VI asrlar",
+   "convert_from_latin_2026_to_cyrillic": "В – ВИ асрлар, В - ВИ асрлар",
+   "convert_from_latin_2026_to_latin_1995": "V – VI asrlar, V - VI asrlar",
+   "convert_from_latin_2026_to_latin_2026": "V – VI asrlar, V - VI asrlar",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "V – VI asrlar, V - VI asrlar",
+   "fold_homoglyphs": "V – VI asrlar, V - VI asrlar",
+   "is_cyrillic": false,
+   "normalize": "v vi asrlar v vi asrlar",
+   "normalize_apostrophes_ascii": "V – VI asrlar, V - VI asrlar",
+   "normalize_apostrophes_unicode": "V – VI asrlar, V - VI asrlar",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " – ",
+     null
+    ],
+    [
+     "VI",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asrlar",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " - ",
+     null
+    ],
+    [
+     "VI",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "asrlar",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "V – VI asrlar, V - VI asrlar",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1118,
+    0,
+    1118,
+    1105,
+    0,
+    1097,
+    1115,
+    1114,
+    1108,
+    1097,
+    1114,
+    0,
+    1118,
+    0,
+    1118,
+    1105,
+    0,
+    1097,
+    1115,
+    1114,
+    1108,
+    1097,
+    1114
+   ],
+   "sort_key_latin_1995": [
+    31,
+    0,
+    31,
+    18,
+    0,
+    11,
+    28,
+    27,
+    21,
+    11,
+    27,
+    0,
+    31,
+    0,
+    31,
+    18,
+    0,
+    11,
+    28,
+    27,
+    21,
+    11,
+    27
+   ],
+   "sort_key_latin_2026": [
+    35,
+    0,
+    35,
+    19,
+    0,
+    11,
+    30,
+    29,
+    22,
+    11,
+    29,
+    0,
+    35,
+    0,
+    35,
+    19,
+    0,
+    11,
+    30,
+    29,
+    22,
+    11,
+    29
+   ],
+   "to_ascii": "V  VI asrlar, V - VI asrlar",
+   "to_cyrillic": "В – ВИ асрлар, В - ВИ асрлар",
+   "to_latin_1995": "V – VI asrlar, V - VI asrlar",
+   "to_latin_2026": "V – VI asrlar, V - VI asrlar",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1254": {
+   "convert_from_cyrillic_to_cyrillic": "I VA II JAHON URUSHLARI",
+   "convert_from_cyrillic_to_latin_1995": "I VA II JAHON URUSHLARI",
+   "convert_from_cyrillic_to_latin_2026": "I VA II JAHON URUŞLARI",
+   "convert_from_latin_1995_to_cyrillic": "И ВА ИИ ЖАҲОН УРУШЛАРИ",
+   "convert_from_latin_1995_to_latin_1995": "I VA II JAHON URUSHLARI",
+   "convert_from_latin_1995_to_latin_2026": "I VA II JAHON URUŞLARI",
+   "convert_from_latin_2026_to_cyrillic": "И ВА ИИ ЖАҲОН УРУСҲЛАРИ",
+   "convert_from_latin_2026_to_latin_1995": "I VA II JAHON URUSʼHLARI",
+   "convert_from_latin_2026_to_latin_2026": "I VA II JAHON URUSHLARI",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "I VA II JAHON URUSHLARI",
+   "fold_homoglyphs": "I VA II JAHON URUSHLARI",
+   "is_cyrillic": false,
+   "normalize": "i va ii jahon urushlari",
+   "normalize_apostrophes_ascii": "I VA II JAHON URUSHLARI",
+   "normalize_apostrophes_unicode": "I VA II JAHON URUSHLARI",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "I",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "VA",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "II",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "JAHON",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "URUSHLARI",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "I VA II JAHON URUSHLARI",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1105,
+    0,
+    1118,
+    1097,
+    0,
+    1105,
+    1105,
+    0,
+    1106,
+    1097,
+    1104,
+    1111,
+    1110,
+    0,
+    1117,
+    1114,
+    1117,
+    1115,
+    1104,
+    1108,
+    1097,
+    1114,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    18,
+    0,
+    31,
+    11,
+    0,
+    18,
+    18,
+    0,
+    19,
+    11,
+    17,
+    24,
+    23,
+    0,
+    30,
+    27,
+    30,
+    37,
+    21,
+    11,
+    27,
+    18
+   ],
+   "sort_key_latin_2026": [
+    19,
+    0,
+    35,
+    11,
+    0,
+    19,
+    19,
+    0,
+    20,
+    11,
+    18,
+    25,
+    24,
+    0,
+    34,
+    29,
+    34,
+    30,
+    18,
+    22,
+    11,
+    29,
+    19
+   ],
+   "to_ascii": "I VA II JAHON URUSHLARI",
+   "to_cyrillic": "И ВА ИИ ЖАҲОН УРУШЛАРИ",
+   "to_latin_1995": "I VA II JAHON URUSHLARI",
+   "to_latin_2026": "I VA II JAHON URUŞLARI",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": [
+    [
+     14,
+     23,
+     "digraph",
+     "URUŞLARI"
+    ]
+   ]
+  },
+  "c1255": {
+   "convert_from_cyrillic_to_cyrillic": "X – nomaʼlum, V – tezlik",
+   "convert_from_cyrillic_to_latin_1995": "X – nomaʼlum, V – tezlik",
+   "convert_from_cyrillic_to_latin_2026": "X – nomaʼlum, V – tezlik",
+   "convert_from_latin_1995_to_cyrillic": "Х – номаълум, В – тезлик",
+   "convert_from_latin_1995_to_latin_1995": "X – nomaʼlum, V – tezlik",
+   "convert_from_latin_1995_to_latin_2026": "X – nomaʼlum, V – tezlik",
+   "convert_from_latin_2026_to_cyrillic": "Х – номаълум, В – тезлик",
+   "convert_from_latin_2026_to_latin_1995": "X – nomaʼlum, V – tezlik",
+   "convert_from_latin_2026_to_latin_2026": "X – nomaʼlum, V – tezlik",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "X – nomaʼlum, V – tezlik",
+   "fold_homoglyphs": "X – nomaʼlum, V – tezlik",
+   "is_cyrillic": false,
+   "normalize": "x nomalum v tezlik",
+   "normalize_apostrophes_ascii": "X – noma'lum, V – tezlik",
+   "normalize_apostrophes_unicode": "X – nomaʼlum, V – tezlik",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "X",
+     "latin"
+    ],
+    [
+     " – ",
+     null
+    ],
+    [
+     "nomaʼlum",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " – ",
+     null
+    ],
+    [
+     "tezlik",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "X – nomaʼlum, V – tezlik",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1120,
+    0,
+    1110,
+    1111,
+    1109,
+    1097,
+    1108,
+    1117,
+    1109,
+    0,
+    1118,
+    0,
+    1116,
+    1101,
+    1122,
+    1108,
+    1105,
+    1107
+   ],
+   "sort_key_latin_1995": [
+    32,
+    0,
+    23,
+    24,
+    22,
+    11,
+    21,
+    30,
+    22,
+    0,
+    31,
+    0,
+    29,
+    14,
+    34,
+    21,
+    18,
+    20
+   ],
+   "sort_key_latin_2026": [
+    36,
+    0,
+    24,
+    25,
+    23,
+    11,
+    22,
+    34,
+    23,
+    0,
+    35,
+    0,
+    33,
+    14,
+    38,
+    22,
+    19,
+    21
+   ],
+   "to_ascii": "X  nomalum, V  tezlik",
+   "to_cyrillic": "Х – номаълум, В – тезлик",
+   "to_latin_1995": "X – nomaʼlum, V – tezlik",
+   "to_latin_2026": "X – nomaʼlum, V – tezlik",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
+   "validate_latin_2026": []
+  },
+  "c1256": {
+   "convert_from_cyrillic_to_cyrillic": "Nikolay I, V harfi",
+   "convert_from_cyrillic_to_latin_1995": "Nikolay I, V harfi",
+   "convert_from_cyrillic_to_latin_2026": "Nikolay I, V harfi",
+   "convert_from_latin_1995_to_cyrillic": "Николай И, В ҳарфи",
+   "convert_from_latin_1995_to_latin_1995": "Nikolay I, V harfi",
+   "convert_from_latin_1995_to_latin_2026": "Nikolay I, V harfi",
+   "convert_from_latin_2026_to_cyrillic": "Николай И, В ҳарфи",
+   "convert_from_latin_2026_to_latin_1995": "Nikolay I, V harfi",
+   "convert_from_latin_2026_to_latin_2026": "Nikolay I, V harfi",
+   "cyrillic_language": "unknown",
+   "detect_script": "latin_1995",
+   "fold_cyrillic": "Nikolay I, V harfi",
+   "fold_homoglyphs": "Nikolay I, V harfi",
+   "is_cyrillic": false,
+   "normalize": "nikolay i v harfi",
+   "normalize_apostrophes_ascii": "Nikolay I, V harfi",
+   "normalize_apostrophes_unicode": "Nikolay I, V harfi",
+   "script_class": "latin",
+   "script_spans": [
+    [
+     "Nikolay",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "I",
+     "latin"
+    ],
+    [
+     ", ",
+     null
+    ],
+    [
+     "V",
+     "latin"
+    ],
+    [
+     " ",
+     null
+    ],
+    [
+     "harfi",
+     "latin"
+    ]
+   ],
+   "segments": [
+    [
+     "Nikolay I, V harfi",
+     null
+    ]
+   ],
+   "sort_key_cyrillic": [
+    1110,
+    1105,
+    1107,
+    1111,
+    1108,
+    1097,
+    1121,
+    0,
+    1105,
+    0,
+    1118,
+    0,
+    1104,
+    1097,
+    1114,
+    1102,
+    1105
+   ],
+   "sort_key_latin_1995": [
+    23,
+    18,
+    20,
+    24,
+    21,
+    11,
+    33,
+    0,
+    18,
+    0,
+    31,
+    0,
+    17,
+    11,
+    27,
+    15,
+    18
+   ],
+   "sort_key_latin_2026": [
+    24,
+    19,
+    21,
+    25,
+    22,
+    11,
+    37,
+    0,
+    19,
+    0,
+    35,
+    0,
+    18,
+    11,
+    29,
+    15,
+    19
+   ],
+   "to_ascii": "Nikolay I, V harfi",
+   "to_cyrillic": "Николай И, В ҳарфи",
+   "to_latin_1995": "Nikolay I, V harfi",
+   "to_latin_2026": "Nikolay I, V harfi",
+   "validate_cyrillic": [],
+   "validate_latin_1995": [],
    "validate_latin_2026": []
   }
  },
