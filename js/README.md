@@ -15,14 +15,14 @@ Every number below is the output of a test in this directory, run on Node
 
 | Check | Result |
 | --- | --- |
-| `golden/golden-0.3.2.json`, every input and field (`test/golden.test.js`) | 36,780 / 36,780 values (30 fields x 1,226 inputs) |
+| `golden/golden-0.3.2.json`, every input and field (`test/golden.test.js`) | 36,990 / 36,990 values (30 fields x 1,233 inputs) |
 | the same file, `tags` and `scripts` sections | 57 / 57 and 6 / 6 |
-| `migrationReport`, with and without `protect`, on every golden input (`test/migration.test.js`) | 2,452 / 2,452 |
-| calls the golden file does not make (`protect: false`, terms, the strip options, `homoglyphSpans`) on every golden input | 14,712 / 14,712 |
+| `migrationReport`, with and without `protect`, on every golden input (`test/migration.test.js`) | 2,466 / 2,466 |
+| calls the golden file does not make (`protect: false`, terms, the strip options, `homoglyphSpans`) on every golden input | 14,796 / 14,796 |
 | 52 inputs made for the places where JavaScript differs from Python, through all of the above, and 42 calls that raise | all equal |
 | `str.isalpha`, `isupper`, `isspace`, `re`'s `\w`, `\d`, `\s`, case mappings, NFC, NFKC, NFKD, on all 1,114,112 code points (`test/traps.test.js`) | equal wherever Python 3.12's Unicode 15.0 has a character, except the case of four letters (see below) |
 | the four kinds of input on which 0.3.0 took quadratic time: the new code against the 0.3.0 code on 20,000 random inputs each, and six long inputs timed (`test/linear.test.js`) | the same results; each long input under 1 s |
-| the rules of 0.3.2 (Roman numerals, month names, dates, a word-final ц), with the tables of `tests/test_changes_0_3_2.py` (`test/changes-0.3.2.test.js`) | all equal |
+| the rules of 0.3.2 (Roman numerals, month names, dates, a word-final ц, `toAscii` and U+2011), with the tables of `tests/test_changes_0_3_2.py` (`test/changes-0.3.2.test.js`) | all equal |
 | the JavaScript examples in the library's README (`test/readme.test.js`) | all give what the README says |
 
 The golden test compares values as JSON: a Python tuple is an array, `None`

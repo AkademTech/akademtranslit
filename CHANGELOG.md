@@ -23,7 +23,9 @@ release adds its number in the month.
   a capital, when no full stop follows, `Pyotr I` → `Пётр I`,
   `Nikolay I` → `Николай I` (were `В аср`, `И жаҳон уруши`, `Пётр И`,
   `Николай И`). Otherwise it is a letter, as before: `V` → `В`,
-  `V harfi` → `В ҳарфи`, `I. Boʻriyev` → `И. Бўриев`.
+  `V harfi` → `В ҳарфи`, `I. Boʻriyev` → `И. Бўриев`. A known limit: any
+  capitalised word before one letter makes it a numeral,
+  `Lotin V harfi` → `Лотин V ҳарфи`.
 - Dates: Cyrillic writes no hyphen after the number of a year or of a day of
   the month, as the 1956 spelling rules do, and Latin writes one:
   `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
