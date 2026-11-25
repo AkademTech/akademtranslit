@@ -1,4 +1,5 @@
-"""Changes in 0.3.2: Roman numerals, month names, dates and a word-final ц.
+"""Changes in 0.3.2: Roman numerals, month names, dates and a word-final ц,
+and to_ascii writing U+2011 as a hyphen.
 
 Each rule has a section: the examples it was made for, its boundaries, the
 other direction, ``source="auto"``, and a protected span, which keeps its text
@@ -14,7 +15,7 @@ from pathlib import Path
 
 import pytest
 
-from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, to_cyrillic, to_latin
+from akademtranslit import CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, to_ascii, to_cyrillic, to_latin
 from akademtranslit.rules import cyrillic_word_to_latin_1995, dates, is_roman_numeral
 
 LATIN = (LATIN_1995, LATIN_2026)
@@ -555,6 +556,34 @@ def test_ts_takes_linear_time():
 
 
 # --- the golden inputs added in 0.3.2 ---------------------------------------------------
+
+# --- to_ascii: U+2011 is a hyphen ----------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        # c1211: the date converted to Latin has U+2011, which to_ascii writes as -.
+        (f"1956{NBSP}йил 22{NBSP}сентябрь", "1956-yil 22-sentabr"),
+        (f"1991{NB_HYPHEN}yil 1{NB_HYPHEN}sentabr", "1991-yil 1-sentabr"),  # c1210
+        (f"1991{NB_HYPHEN}йил", "1991-yil"),
+        (f"a{NB_HYPHEN}b", "a-b"),
+        # U+00A0 is a space, as in 0.3.1 (NFKD).
+        (f"1991{NBSP}yil", "1991 yil"),
+        (f"a{NBSP}b", "a b"),
+        ("1956 йил 22 сентябрь", "1956-yil 22-sentabr"),
+    ],
+)
+def test_to_ascii_writes_the_non_breaking_hyphen_as_a_hyphen(text, expected):
+    assert to_ascii(text) == expected
+
+
+def test_to_ascii_after_to_latin():
+    latin = to_latin(f"1956{NBSP}йил 22{NBSP}сентябрь", LATIN_1995)
+    assert latin == f"1956{NB_HYPHEN}yil 22{NB_HYPHEN}sentabr"
+    assert to_ascii(latin) == "1956-yil 22-sentabr"
+    assert to_ascii(to_latin("1956 йил 22 сентябрь", LATIN_1995)) == "1956-yil 22-sentabr"
+
 
 GOLDEN_INPUTS = Path(__file__).resolve().parent.parent / "golden" / "inputs.json"
 

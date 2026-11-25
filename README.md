@@ -328,7 +328,16 @@ spans, so `McDonald` keeps its case. Then it writes `oʻ` and `gʻ` as `o` and
 `SH` or `CH` when the character before or after it is a capital, `Sh` or `Ch`
 otherwise. It removes the tutuq belgisi and the other apostrophe marks, takes
 the accents off other letters (`é` → `e`), and removes whatever is still not
-ASCII. Case, spaces, digits and ASCII punctuation stay.
+ASCII. Case, spaces, digits and ASCII punctuation stay. A date that Latin
+writes with U+2011 NON-BREAKING HYPHEN (from U+00A0 NO-BREAK SPACE in
+Cyrillic; see "Dates and month names") keeps a plain hyphen, from 0.3.2, and
+U+00A0 is a space:
+
+```python
+>>> to_ascii("1956\N{NO-BREAK SPACE}йил 22\N{NO-BREAK SPACE}сентябрь")
+'1956-yil 22-sentabr'
+
+```
 
 | Input | Output |
 | --- | --- |

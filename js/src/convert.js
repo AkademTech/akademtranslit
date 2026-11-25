@@ -273,6 +273,8 @@ export function toAscii(text) {
   if (!text) return text;
   for (const [letter, asciiForm] of ASCII_SCHEME) text = text.replaceAll(letter, asciiForm);
   text = asciiCapitals(text);
+  // Before NFKD, which makes U+2011 U+2010 HYPHEN, not ASCII.
+  text = text.replaceAll("\u{2011}", "-");
   text = text.replace(NO_MARKS_RE, "").normalize("NFKD");
   return text.replace(NOT_ASCII_RE, "");
 }

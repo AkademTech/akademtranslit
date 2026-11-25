@@ -476,7 +476,13 @@ def to_ascii(text: str) -> str:
     3. Other letters lose their accents (``é`` -> ``e``, by NFKD), and
        whatever is still not ASCII is removed.
 
-    Case is kept; spaces, digits and ASCII punctuation stay.
+    Case is kept; spaces, digits and ASCII punctuation stay. U+2011
+    NON-BREAKING HYPHEN, which a date converted to Latin may have, is ``-``,
+    and U+00A0 NO-BREAK SPACE is a space (NFKD), so a date's words do not run
+    together:
+
+    >>> to_ascii("1956\N{NO-BREAK SPACE}йил 22\N{NO-BREAK SPACE}сентябрь")
+    '1956-yil 22-sentabr'
 
     >>> to_ascii("Чўлпон")
     'Cholpon'
@@ -495,5 +501,7 @@ def to_ascii(text: str) -> str:
     for letter, ascii_form in ASCII_SCHEME:
         text = text.replace(letter, ascii_form)
     text = _ascii_capitals(text)
+    # Before NFKD, which makes U+2011 U+2010 HYPHEN, not ASCII.
+    text = text.replace("\N{NON-BREAKING HYPHEN}", "-")
     text = unicodedata.normalize("NFKD", text.translate(_NO_MARKS))
     return "".join(ch for ch in text if ch.isascii())

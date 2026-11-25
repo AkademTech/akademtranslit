@@ -1,5 +1,6 @@
-// Changes in 0.3.2: Roman numerals, month names, dates and a word-final ц (as
-// tests/test_changes_0_3_2.py for the Python library, with the same tables).
+// Changes in 0.3.2: Roman numerals, month names, dates and a word-final ц, and
+// toAscii writing U+2011 as a hyphen (as tests/test_changes_0_3_2.py for the
+// Python library, with the same tables).
 //
 // Each rule has a section: the examples it was made for, its boundaries, the
 // other direction, source "auto", and a protected span, which keeps its text
@@ -8,7 +9,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, toCyrillic, toLatin } from "../src/index.js";
+import { CYRILLIC, LATIN_1995, LATIN_2026, convert, normalize, toAscii, toCyrillic, toLatin } from "../src/index.js";
 import { cyrillicWordToLatin1995, dates, isRomanNumeral } from "../src/rules.js";
 
 const LATIN = [LATIN_1995, LATIN_2026];
@@ -505,4 +506,28 @@ test("ц: linear time", () => {
   convert("ц".repeat(200_000), CYRILLIC, LATIN_1995);
   convert("а" + "цлар".repeat(50_000), CYRILLIC, LATIN_1995);
   assert.ok(performance.now() - start < 1000);
+});
+
+// --- toAscii: U+2011 is a hyphen ------------------------------------------------------
+
+test("toAscii writes the non-breaking hyphen as a hyphen", () => {
+  const cases = [
+    // c1211: the date converted to Latin has U+2011, which toAscii writes as -.
+    ["1956\u{A0}йил 22\u{A0}сентябрь", "1956-yil 22-sentabr"],
+    ["1991\u{2011}yil 1\u{2011}sentabr", "1991-yil 1-sentabr"], // c1210
+    ["1991\u{2011}йил", "1991-yil"],
+    ["a\u{2011}b", "a-b"],
+    // U+00A0 is a space, as in 0.3.1 (NFKD).
+    ["1991\u{A0}yil", "1991 yil"],
+    ["a\u{A0}b", "a b"],
+    ["1956 йил 22 сентябрь", "1956-yil 22-sentabr"],
+  ];
+  for (const [text, expected] of cases) assert.equal(toAscii(text), expected, text);
+});
+
+test("toAscii after toLatin", () => {
+  const latin = toLatin("1956\u{A0}йил 22\u{A0}сентябрь", LATIN_1995);
+  assert.equal(latin, "1956\u{2011}yil 22\u{2011}sentabr");
+  assert.equal(toAscii(latin), "1956-yil 22-sentabr");
+  assert.equal(toAscii(toLatin("1956 йил 22 сентябрь", LATIN_1995)), "1956-yil 22-sentabr");
 });
