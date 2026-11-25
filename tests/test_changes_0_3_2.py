@@ -26,15 +26,30 @@ NBSP, NB_HYPHEN = "\N{NO-BREAK SPACE}", "\N{NON-BREAKING HYPHEN}"
 ROMAN_NUMERALS = [
     ("XIX asr", "XIX аср"),
     ("IV bob", "IV боб"),
-    ("Pyotr I", "Пётр I"),
     ("XXI asrning oxiri", "XXI асрнинг охири"),
     ("MMXXVI", "MMXXVI"),
     ("CD va DVD", "CD ва ДВД"),  # DVD is not a well-formed numeral
     ("XIX.", "XIX."),  # more than one letter: a full stop after it is a full stop
-    ("I", "I"),
+    ("II", "II"),  # two letters: a numeral wherever they stand
+    # One letter, in context: (a) the word after it ...
+    ("V asr", "V аср"),
+    ("X sinf", "X синф"),
+    ("I jahon", "I жаҳон"),
+    ("V ASR", "V АСР"),
+    ("V Asrda", "V Асрда"),
+    ("V\N{NO-BREAK SPACE}asr", "V\N{NO-BREAK SPACE}аср"),
+    ("V bo'lim, V bo‘lim", "V бўлим, V бўлим"),
+    # ... (b) the word before it.
+    ("Pyotr I", "Пётр I"),
+    ("Nikolay I", "Николай I"),
+    ("Pyotr\N{NO-BREAK SPACE}I", "Пётр\N{NO-BREAK SPACE}I"),
+    ("Pyotr I, Nikolay II", "Пётр I, Николай II"),
+    ("Пётр I", "Пётр I"),  # a Cyrillic word before it, with a Latin source
+    # Known limit (README): a capitalised word before a letter makes it a numeral.
+    ("Lotin V harfi", "Лотин V ҳарфи"),
 ]
 
-# Boundaries: an initial, a known limit, and what is not a numeral.
+# Boundaries: an initial, a letter, a known limit, and what is not a numeral.
 NOT_ROMAN_NUMERALS = [
     ("I. Boʻriyev", "И. Бўриев"),
     ("M. Asadullayev", "М. Асадуллаев"),
@@ -43,6 +58,22 @@ NOT_ROMAN_NUMERALS = [
     ("IIII", "ИИИИ"),
     ("Xix", "Хих"),
     ("XIXda", "ХИХда"),  # a numeral with a suffix in one word is not a numeral word
+    # One letter out of context is a letter.
+    ("I", "И"),
+    ("V", "В"),
+    ("X", "Х"),
+    ("V harfi", "В ҳарфи"),
+    ("V  asr", "В  аср"),  # two spaces
+    ("V-asr", "В-аср"),
+    ("V. asr", "В. аср"),
+    ("V, asr", "В, аср"),
+    ("Pyotr  I", "Пётр  И"),  # two spaces
+    ("Pyotr, I", "Пётр, И"),
+    ("pyotr I", "пётр И"),  # no capital before it
+    ("A I", "А И"),  # one letter before it
+    ("Oʻ I", "Ў И"),  # oʻ is one letter
+    ("I va V", "И ва В"),
+    ("V basr", "В баср"),  # asr inside a word does not count
 ]
 
 
@@ -50,6 +81,45 @@ NOT_ROMAN_NUMERALS = [
 @pytest.mark.parametrize("latin,cyrillic", ROMAN_NUMERALS + NOT_ROMAN_NUMERALS)
 def test_roman_numerals_latin_to_cyrillic(latin, cyrillic, source):
     assert convert(latin, source, CYRILLIC) == cyrillic
+
+
+# The words that make one letter before them a numeral, and their 2026 forms.
+COUNTED = [
+    "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
+    "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+]
+COUNTED_2026 = ["bölim", "çorak", "bosqiç", "çaqiriq"]
+
+
+@pytest.mark.parametrize("source", LATIN + ("auto",))
+@pytest.mark.parametrize("word", COUNTED + COUNTED_2026)
+def test_one_letter_before_a_counted_word(word, source):
+    for letter in "IVXLCDM":
+        for text in (f"{letter} {word}", f"{letter} {word.upper()}", f"{letter} {word}lar"):
+            rest = text[2:]
+            assert convert(text, source, CYRILLIC) == f"{letter} " + convert(rest, source, CYRILLIC), text
+
+
+@pytest.mark.parametrize("word", ["harfi", "va", "as", "asos", "boshqa", "minora", "to", "sin", "jahl", "bo"])
+def test_one_letter_before_another_word_is_a_letter(word):
+    """Only a word that begins with a whole counted word: minora is not ming,
+    to is not tom."""
+    assert to_cyrillic(f"V {word}").startswith("В ")
+
+
+@pytest.mark.parametrize("latin_1995,latin_2026,cyrillic", [
+    ("I jahon urushi", "I jahon uruşi", "I жаҳон уруши"),
+    ("V boʻlim", "V bölim", "V бўлим"),
+    ("II chorak va I chorak", "II çorak va I çorak", "II чорак ва I чорак"),
+    ("I bosqich", "I bosqiç", "I босқич"),
+    ("V harfi", "V harfi", "В ҳарфи"),
+    ("Nikolay I", "Nikolay I", "Николай I"),
+])
+def test_roman_numerals_one_letter_in_both_latin_orthographies(latin_1995, latin_2026, cyrillic):
+    assert convert(latin_1995, LATIN_1995, CYRILLIC) == cyrillic
+    assert convert(latin_2026, LATIN_2026, CYRILLIC) == cyrillic
+    assert to_cyrillic(latin_1995) == cyrillic
+    assert to_cyrillic(latin_2026) == cyrillic
 
 
 def test_a_word_in_capitals_that_is_a_numeral_stays_latin():
@@ -85,24 +155,50 @@ def test_roman_numerals_in_a_protected_span():
 
 
 @pytest.mark.parametrize(
-    "word,after,expected",
+    "word,after,previous,following,expected",
     [
-        ("XIX", "", True),
-        ("MMMCMXCIX", "", True),
-        ("I", "", True),
-        ("I", " ", True),
-        ("I", ".", False),
-        ("XIX", ".", True),
-        ("", "", False),
-        ("IIII", "", False),
-        ("MMMM", "", False),
-        ("xix", "", False),
-        ("XIx", "", False),
-        ("IC", "", False),
+        ("XIX", "", "", "", True),
+        ("MMMCMXCIX", "", "", "", True),
+        ("II", " ", "", "harfi", True),
+        ("XIX", ".", "", "", True),
+        ("I", "", "", "", False),
+        ("I", " ", "", "", False),
+        ("I", ".", "", "", False),
+        ("I", " ", "", "asr", True),
+        ("I", " ", "", "Asrlar", True),
+        ("I", " ", "", "bo'lim", True),
+        ("I", " ", "", "BOʼLIM", True),
+        ("I", " ", "", "bōlim", True),  # o with macron: ö in latin_2026
+        ("I", " ", "", "çaqiriq", True),
+        ("I", " ", "", "harfi", False),
+        ("I", " ", "", "as", False),
+        ("I", "", "Pyotr", "", True),
+        ("I", ",", "Pyotr", "", True),
+        ("I", ".", "Pyotr", "", False),
+        ("I", " ", "Pyotr", "harfi", True),
+        ("I", "", "Пётр", "", True),
+        ("I", "", "pyotr", "", False),
+        ("I", "", "A", "", False),
+        ("I", "", "Oʻ", "", False),
+        ("I", "", "Ab", "", True),
+        ("", "", "Pyotr", "asr", False),
+        ("IIII", "", "Pyotr", "asr", False),
+        ("MMMM", "", "", "", False),
+        ("xix", "", "", "", False),
+        ("XIx", "", "", "", False),
+        ("IC", "", "", "", False),
+        ("i", " ", "Pyotr", "asr", False),
     ],
 )
-def test_is_roman_numeral(word, after, expected):
-    assert is_roman_numeral(word, after) is expected
+def test_is_roman_numeral(word, after, previous, following, expected):
+    assert is_roman_numeral(word, after, previous, following) is expected
+
+
+def test_is_roman_numeral_takes_the_character_after_alone():
+    assert is_roman_numeral("XIX") is True
+    assert is_roman_numeral("XIX", ".") is True
+    assert is_roman_numeral("I") is False
+    assert is_roman_numeral("I", ".") is False
 
 
 # --- TRANSLIT-26: month names: sentabr, oktabr; the Cyrillic ь restored -----------------

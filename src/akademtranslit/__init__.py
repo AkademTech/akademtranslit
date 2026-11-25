@@ -234,6 +234,30 @@ def _steps(source: str, target: str):
     return _word
 
 
+# What separates one letter from the word that makes it a Roman numeral.
+_ONE_SPACE = frozenset((" ", "\N{NO-BREAK SPACE}"))
+
+
+def _roman_numeral(match, previous) -> bool:
+    """:func:`~akademtranslit.rules.is_roman_numeral` for the word of
+    ``match``, in the text it was found in. ``previous`` is the match of the
+    word before it, or ``None``. The words beside it count when one space or
+    U+00A0 NO-BREAK SPACE is all that separates them; they are looked up for
+    one letter only."""
+    word, text, start, end = match.group(), match.string, match.start(), match.end()
+    after = text[end:end + 1]
+    if len(word) != 1:
+        return is_roman_numeral(word, after)
+    following = ""
+    if after in _ONE_SPACE:
+        next_word = _WORD_RE.match(text, end + 1)
+        following = next_word.group() if next_word else ""
+    before = ""
+    if previous is not None and previous.end() == start - 1 and text[start - 1] in _ONE_SPACE:
+        before = previous.group()
+    return is_roman_numeral(word, after, before, following)
+
+
 def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protect=True) -> str:
     """Convert ``text`` from one orthography to another.
 
@@ -340,13 +364,14 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     transforms = {script: _steps(script, target) for script in SCRIPTS}
     to_cyrillic = target == CYRILLIC
 
-    def _word(match) -> str:
+    def _word(match, previous) -> str:
         word = match.group()
         script = source_of(word)
         if to_cyrillic and script != CYRILLIC:
-            # The rules that need the whole word as it stands, and what follows it.
-            end = match.end()
-            if is_roman_numeral(word, match.string[end:end + 1]):
+            # The rules that need the whole word as it stands, and the text
+            # around it: the next character, and for one letter the words
+            # beside it (previous is the match of the word before, or None).
+            if _roman_numeral(match, previous):
                 return word
             return month_soft_sign(word, map_word(word, transforms[script]))
         return map_word(word, transforms[script])
@@ -360,14 +385,16 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
         out = []
         crossed = set()
         size = last = 0
+        previous = None
         for match in _WORD_RE.finditer(piece):
             between = piece[last:match.start()]
-            word = _word(match)
+            word = _word(match, previous)
             if (source_of(match.group()) == CYRILLIC) != to_cyrillic:
                 crossed.add(size + len(between))
             out += (between, word)
             size += len(between) + len(word)
             last = match.end()
+            previous = match
         out.append(piece[last:])
         return dates("".join(out), target, crossed)
 

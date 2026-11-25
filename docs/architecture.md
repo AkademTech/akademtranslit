@@ -113,7 +113,8 @@ Two rules need a word as it stands, before `map_word` lowercases it and
 splits it into letter units, so `convert` applies them itself, to a word
 read from a Latin orthography and converted to Cyrillic: a Roman numeral
 stays as it is (`is_roman_numeral`, which also sees the character after the
-word), and a month name standing alone gets its `ь` after the steps
+word, and for one letter the words beside it), and a month name standing
+alone gets its `ь` after the steps
 (`month_soft_sign`). Then, on each converted piece of text, `dates` writes
 the separator after the number of a year or of a day of the month as the
 target does, where the word after the number was read in the other script.
@@ -230,9 +231,16 @@ From 0.3.2 more rules look at a whole word or at the text around it:
   (`_LATIN_MONTHS_WITH_YA`), with any suffix. `month_soft_sign` adds `ь`,
   in the case of the letter before it, when the whole Latin word is a month
   name that Cyrillic writes with one (`_SOFT_SIGN_MONTHS`).
-- Roman numerals: `is_roman_numeral(word, after)` is true for a word that
-  `_ROMAN_NUMERAL_RE` matches in full (1 to 3999, capitals), unless it is one
-  letter and `after` is `.`.
+- Roman numerals: `is_roman_numeral(word, after, previous, following)` is
+  true for a word of two letters or more that `_ROMAN_NUMERAL_RE` matches in
+  full (1 to 3999, capitals). One letter is true only when `following`,
+  lowercased and with its marks and 2026 input forms canonical, begins with
+  a word of `_ROMAN_COUNTED` (the 1995 list and its 2026 forms, written by
+  `latin_1995_word_to_2026`), or when `previous` begins with a capital, has
+  two characters or more besides apostrophe marks, and `after` is not `.`.
+  `convert` (`_roman_numeral`) looks up `previous` and `following` for one
+  letter only, and passes them when one space or U+00A0 is all that
+  separates them from it.
 - Dates: `dates(text, target, crossed)` finds a number with no letter or
   digit before it and one separator after it (`_NUMBER_HYPHEN_RE` for
   Cyrillic, `_NUMBER_SPACE_RE` for Latin). If the word after it starts at

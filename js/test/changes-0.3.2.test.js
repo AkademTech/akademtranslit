@@ -18,15 +18,30 @@ const LATIN = [LATIN_1995, LATIN_2026];
 const ROMAN_NUMERALS = [
   ["XIX asr", "XIX аср"],
   ["IV bob", "IV боб"],
-  ["Pyotr I", "Пётр I"],
   ["XXI asrning oxiri", "XXI асрнинг охири"],
   ["MMXXVI", "MMXXVI"],
   ["CD va DVD", "CD ва ДВД"], // DVD is not a well-formed numeral
   ["XIX.", "XIX."], // more than one letter: a full stop after it is a full stop
-  ["I", "I"],
+  ["II", "II"], // two letters: a numeral wherever they stand
+  // One letter, in context: (a) the word after it ...
+  ["V asr", "V аср"],
+  ["X sinf", "X синф"],
+  ["I jahon", "I жаҳон"],
+  ["V ASR", "V АСР"],
+  ["V Asrda", "V Асрда"],
+  ["V\u{A0}asr", "V\u{A0}аср"],
+  ["V bo'lim, V bo‘lim", "V бўлим, V бўлим"],
+  // ... (b) the word before it.
+  ["Pyotr I", "Пётр I"],
+  ["Nikolay I", "Николай I"],
+  ["Pyotr\u{A0}I", "Пётр\u{A0}I"],
+  ["Pyotr I, Nikolay II", "Пётр I, Николай II"],
+  ["Пётр I", "Пётр I"], // a Cyrillic word before it, with a Latin source
+  // Known limit (README): a capitalised word before a letter makes it a numeral.
+  ["Lotin V harfi", "Лотин V ҳарфи"],
 ];
 
-// Boundaries: an initial, a known limit, and what is not a numeral.
+// Boundaries: an initial, a letter, a known limit, and what is not a numeral.
 const NOT_ROMAN_NUMERALS = [
   ["I. Boʻriyev", "И. Бўриев"],
   ["M. Asadullayev", "М. Асадуллаев"],
@@ -35,6 +50,22 @@ const NOT_ROMAN_NUMERALS = [
   ["IIII", "ИИИИ"],
   ["Xix", "Хих"],
   ["XIXda", "ХИХда"], // a numeral with a suffix in one word is not a numeral word
+  // One letter out of context is a letter.
+  ["I", "И"],
+  ["V", "В"],
+  ["X", "Х"],
+  ["V harfi", "В ҳарфи"],
+  ["V  asr", "В  аср"], // two spaces
+  ["V-asr", "В-аср"],
+  ["V. asr", "В. аср"],
+  ["V, asr", "В, аср"],
+  ["Pyotr  I", "Пётр  И"], // two spaces
+  ["Pyotr, I", "Пётр, И"],
+  ["pyotr I", "пётр И"], // no capital before it
+  ["A I", "А И"], // one letter before it
+  ["Oʻ I", "Ў И"], // oʻ is one letter
+  ["I va V", "И ва В"],
+  ["V basr", "В баср"], // asr inside a word does not count
 ];
 
 test("Roman numerals: Latin to Cyrillic", () => {
@@ -42,6 +73,49 @@ test("Roman numerals: Latin to Cyrillic", () => {
     for (const source of [...LATIN, "auto"]) {
       assert.equal(convert(latin, source, CYRILLIC), cyrillic, `${latin} (${source})`);
     }
+  }
+});
+
+// The words that make one letter before them a numeral, and their 2026 forms.
+const COUNTED = [
+  "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
+  "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+];
+const COUNTED_2026 = ["bölim", "çorak", "bosqiç", "çaqiriq"];
+
+test("Roman numerals: one letter before a counted word", () => {
+  for (const word of [...COUNTED, ...COUNTED_2026]) {
+    for (const source of [...LATIN, "auto"]) {
+      for (const letter of "IVXLCDM") {
+        for (const text of [`${letter} ${word}`, `${letter} ${word.toUpperCase()}`, `${letter} ${word}lar`]) {
+          const rest = text.slice(2);
+          assert.equal(convert(text, source, CYRILLIC), `${letter} ` + convert(rest, source, CYRILLIC), `${text} (${source})`);
+        }
+      }
+    }
+  }
+});
+
+test("Roman numerals: one letter before another word is a letter", () => {
+  for (const word of ["harfi", "va", "as", "asos", "boshqa", "minora", "to", "sin", "jahl", "bo"]) {
+    assert.ok(toCyrillic(`V ${word}`).startsWith("В "), word);
+  }
+});
+
+test("Roman numerals: one letter in both Latin orthographies", () => {
+  const cases = [
+    ["I jahon urushi", "I jahon uruşi", "I жаҳон уруши"],
+    ["V boʻlim", "V bölim", "V бўлим"],
+    ["II chorak va I chorak", "II çorak va I çorak", "II чорак ва I чорак"],
+    ["I bosqich", "I bosqiç", "I босқич"],
+    ["V harfi", "V harfi", "В ҳарфи"],
+    ["Nikolay I", "Nikolay I", "Николай I"],
+  ];
+  for (const [latin1995, latin2026, cyrillic] of cases) {
+    assert.equal(convert(latin1995, LATIN_1995, CYRILLIC), cyrillic, latin1995);
+    assert.equal(convert(latin2026, LATIN_2026, CYRILLIC), cyrillic, latin2026);
+    assert.equal(toCyrillic(latin1995), cyrillic, latin1995);
+    assert.equal(toCyrillic(latin2026), cyrillic, latin2026);
   }
 });
 
@@ -77,20 +151,45 @@ test("Roman numerals: in a protected span", () => {
 
 test("Roman numerals: isRomanNumeral", () => {
   const cases = [
-    ["XIX", "", true],
-    ["MMMCMXCIX", "", true],
-    ["I", "", true],
-    ["I", " ", true],
-    ["I", ".", false],
-    ["XIX", ".", true],
-    ["", "", false],
-    ["IIII", "", false],
-    ["MMMM", "", false],
-    ["xix", "", false],
-    ["XIx", "", false],
-    ["IC", "", false],
+    ["XIX", "", "", "", true],
+    ["MMMCMXCIX", "", "", "", true],
+    ["II", " ", "", "harfi", true],
+    ["XIX", ".", "", "", true],
+    ["I", "", "", "", false],
+    ["I", " ", "", "", false],
+    ["I", ".", "", "", false],
+    ["I", " ", "", "asr", true],
+    ["I", " ", "", "Asrlar", true],
+    ["I", " ", "", "bo'lim", true],
+    ["I", " ", "", "BOʼLIM", true],
+    ["I", " ", "", "bōlim", true], // o with macron: ö in latin_2026
+    ["I", " ", "", "çaqiriq", true],
+    ["I", " ", "", "harfi", false],
+    ["I", " ", "", "as", false],
+    ["I", "", "Pyotr", "", true],
+    ["I", ",", "Pyotr", "", true],
+    ["I", ".", "Pyotr", "", false],
+    ["I", " ", "Pyotr", "harfi", true],
+    ["I", "", "Пётр", "", true],
+    ["I", "", "pyotr", "", false],
+    ["I", "", "A", "", false],
+    ["I", "", "Oʻ", "", false],
+    ["I", "", "Ab", "", true],
+    ["", "", "Pyotr", "asr", false],
+    ["IIII", "", "Pyotr", "asr", false],
+    ["MMMM", "", "", "", false],
+    ["xix", "", "", "", false],
+    ["XIx", "", "", "", false],
+    ["IC", "", "", "", false],
+    ["i", " ", "Pyotr", "asr", false],
   ];
-  for (const [word, after, expected] of cases) assert.equal(isRomanNumeral(word, after), expected, word);
+  for (const [word, after, previous, following, expected] of cases) {
+    assert.equal(isRomanNumeral(word, after, previous, following), expected, `${word} ${previous}|${following}`);
+  }
+  assert.equal(isRomanNumeral("XIX"), true);
+  assert.equal(isRomanNumeral("XIX", "."), true);
+  assert.equal(isRomanNumeral("I"), false);
+  assert.equal(isRomanNumeral("I", "."), false);
 });
 
 // --- TRANSLIT-26: month names: sentabr, oktabr; the Cyrillic ь restored -----------------

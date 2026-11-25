@@ -66,9 +66,10 @@ Month names
 
 Roman numerals
     A word that is a Roman numeral in capitals stays as it is when Latin is
-    converted to Cyrillic (XIX asr -> XIX аср), unless it is one letter
-    followed by a full stop, an initial (I. Boʻriyev -> И. Бўриев):
-    :func:`is_roman_numeral`.
+    converted to Cyrillic (XIX asr -> XIX аср). One letter is a numeral only
+    in context -- before a word such as asr or jahon (V asr -> V аср), or
+    after a name (Pyotr I -> Пётр I) -- and a letter otherwise (V harfi ->
+    В ҳарфи, I. Boʻriyev -> И. Бўриев): :func:`is_roman_numeral`.
 
 Dates
     Cyrillic writes no hyphen after the number of a year or of a day of the
@@ -636,22 +637,54 @@ def latin_2026_word_to_1995(word: str) -> str:
 # A Roman numeral, 1 to 3999, in capitals.
 _ROMAN_NUMERAL_RE = re.compile(r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})")
 
+# The words that make one letter before them a numeral (V asr, I jahon
+# urushi, X sinf): the word after the letter begins with one of these, in
+# latin_1995 or, written by the table, in latin_2026 (bölim, çorak, bosqiç,
+# çaqiriq).
+_ROMAN_COUNTED = (
+    "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
+    "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+)
+_ROMAN_COUNTED = tuple(dict.fromkeys(_ROMAN_COUNTED + tuple(map(latin_1995_word_to_2026, _ROMAN_COUNTED))))
 
-def is_roman_numeral(word: str, after: str = "") -> bool:
+
+def is_roman_numeral(word: str, after: str = "", previous: str = "", following: str = "") -> bool:
     """True if ``word`` is a Roman numeral, which conversion from Latin to
     Cyrillic keeps as it is (XIX asr -> XIX аср, Pyotr I -> Пётр I).
 
     ``word`` is a word as it stands in the text and ``after`` the character
-    that follows it, or ``""``. The word must be only the capitals
-    ``I V X L C D M`` and a well-formed numeral (``XIX``, ``IV``, ``MMXXVI``;
-    not ``IIII`` or ``Xix``). One letter followed by a full stop is an initial,
-    not a numeral: ``I. Boʻriyev`` -> ``И. Бўриев``. Known limits: an Uzbek word
-    in capitals that is also a numeral stays Latin (``MIX``), and ``Pyotr I.``
-    at the end of a sentence is read as an initial.
+    that follows it, or ``""``. ``previous`` and ``following`` are the words
+    before and after it as they stand, when one space or U+00A0 NO-BREAK
+    SPACE is all that separates them from it, or ``""``.
+
+    The word must be only the capitals ``I V X L C D M`` and a well-formed
+    numeral (``XIX``, ``IV``, ``MMXXVI``; not ``IIII`` or ``Xix``). Two
+    letters or more are a numeral wherever they stand. One letter is a letter
+    (``V`` -> ``В``, ``V harfi`` -> ``В ҳарфи``), and a numeral only
+
+    * before a word that begins, in any case, with ``asr ming bob qism jild
+      tom sinf kurs boʻlim guruh chorak bosqich daraja toifa qurultoy syezd
+      sessiya chaqiriq jahon``, or with their ``latin_2026`` forms
+      (``bölim``, ``çorak``, ``bosqiç``, ``çaqiriq``): ``V asr`` -> ``V аср``,
+      ``I jahon urushi`` -> ``I жаҳон уруши``; or
+    * after a word of two letters or more that begins with a capital, and
+      not before a full stop: ``Pyotr I`` -> ``Пётр I``, ``Nikolay I`` ->
+      ``Николай I``.
+
+    One letter followed by a full stop is an initial: ``I. Boʻriyev`` ->
+    ``И. Бўриев``. Known limits: an Uzbek word in capitals that is also a
+    numeral stays Latin (``MIX``), and ``Pyotr I.`` at the end of a sentence
+    is read as an initial.
     """
     if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
         return False
-    return len(word) > 1 or after != "."
+    if len(word) > 1:
+        return True
+    following = latin_2026_canonical_word(canonicalize_marks(following.lower()))
+    if following.startswith(_ROMAN_COUNTED):
+        return True
+    letters = sum(ch not in APOSTROPHE_VARIANTS for ch in previous)
+    return after != "." and previous[:1].isupper() and letters >= 2
 
 
 # The month names that Cyrillic writes with ь when they stand alone (январь,

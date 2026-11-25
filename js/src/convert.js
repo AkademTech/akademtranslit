@@ -115,6 +115,36 @@ function steps(source, target) {
   };
 }
 
+// What separates one letter from the word that makes it a Roman numeral.
+const ONE_SPACE = new Set([" ", "\u{A0}"]);
+const WORD_AT_RE = new RegExp(wordRegExp().source, "uy");
+
+/**
+ * isRomanNumeral for the word of ``match`` (from matchAll over ``piece``);
+ * ``previous`` is the match of the word before it, or null. The words beside
+ * it count when one space or U+00A0 is all that separates them; they are
+ * looked up for one letter only. The characters beside a word here are one
+ * UTF-16 unit each: only ".", " " and U+00A0 count.
+ */
+function romanNumeral(match, previous, piece) {
+  const word = match[0];
+  const start = match.index;
+  const end = start + word.length;
+  const after = piece.slice(end, end + 1);
+  if (word.length !== 1) return isRomanNumeral(word, after);
+  let following = "";
+  if (ONE_SPACE.has(after)) {
+    WORD_AT_RE.lastIndex = end + 1;
+    const next = WORD_AT_RE.exec(piece);
+    following = next === null ? "" : next[0];
+  }
+  let before = "";
+  if (previous !== null && previous.index + previous[0].length === start - 1 && ONE_SPACE.has(piece[start - 1])) {
+    before = previous[0];
+  }
+  return isRomanNumeral(word, after, before, following);
+}
+
 /**
  * Convert ``text`` from one orthography to another. ``source`` is "auto" (the
  * default: each word is read in the orthography it shows) or one of SCRIPTS or
@@ -152,13 +182,13 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
   for (const script of SCRIPTS) transforms[script] = steps(script, target);
   const toCyrillic = target === CYRILLIC;
   const wordRe = wordRegExp();
-  const convertWord = (word, offset, piece) => {
+  const convertWord = (match, previous, piece) => {
+    const word = match[0];
     const script = sourceOf(word);
     if (toCyrillic && script !== CYRILLIC) {
-      // The rules that need the whole word as it stands, and what follows it.
-      // The character after it is one UTF-16 unit: only "." counts.
-      const end = offset + word.length;
-      if (isRomanNumeral(word, piece.slice(end, end + 1))) return word;
+      // The rules that need the whole word as it stands, and the text around
+      // it: the next character, and for one letter the words beside it.
+      if (romanNumeral(match, previous, piece)) return word;
       return monthSoftSign(word, mapWord(word, transforms[script]));
     }
     return mapWord(word, transforms[script]);
@@ -171,11 +201,13 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
     let converted = "";
     const crossed = new Set();
     let last = 0;
+    let previous = null;
     for (const match of piece.matchAll(wordRe)) {
       const between = piece.slice(last, match.index);
       if ((sourceOf(match[0]) === CYRILLIC) !== toCyrillic) crossed.add(converted.length + between.length);
-      converted += between + convertWord(match[0], match.index, piece);
+      converted += between + convertWord(match, previous, piece);
       last = match.index + match[0].length;
+      previous = match;
     }
     converted += piece.slice(last);
     return dates(converted, target, crossed);

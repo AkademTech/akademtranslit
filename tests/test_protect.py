@@ -754,23 +754,20 @@ CHANGED_BY_NFC = ["c0273", "c1090"]
 
 # The golden inputs among c0001-c1139 whose conversion the rules of 0.3.2
 # change (tests/test_changes_0_3_2.py): a Roman numeral stays Latin in
-# Cyrillic -- the capitals D, I, L, M, V and X alone, XXI asr and XXI аср; a
-# month name alone takes ь -- iyun (c0608); a date that changes script has no
-# hyphen after the year in Cyrillic and one in Latin -- 2026 yil, 2026-yil
-# and 2026-йил in c0307, c0325 and c0634.
-CHANGED_BY_0_3_2_RULES = [
-    "c0150", "c0170", "c0182", "c0186", "c0222", "c0226", "c0307", "c0325", "c0608", "c0634",
-    "c1063", "c1064",
-]
+# Cyrillic -- XXI asr and XXI аср (one letter alone, D I L M V X, is a
+# letter, as before); a month name alone takes ь -- iyun (c0608); a date that
+# changes script has no hyphen after the year in Cyrillic and one in Latin
+# -- 2026 yil, 2026-yil and 2026-йил in c0307, c0325 and c0634.
+CHANGED_BY_0_3_2_RULES = ["c0307", "c0325", "c0608", "c0634", "c1063", "c1064"]
 
 # SHA-256 of the conversion output of 0.3.0 before protected spans: the 12
 # fields above on c0001-c1139 except CHANGED_BY_CASE_UNITS,
 # CHANGED_BY_WORD_LEVEL_AUTO, CHANGED_BY_NFC and CHANGED_BY_0_3_2_RULES, from
 # golden-0.3.0.json at that commit, as {id: {field: output}} in the golden
-# files' canonical JSON. (0.3.1 gives the same on these inputs with
+# files' canonical JSON. (0.3.0 and 0.3.1 give the same on these inputs with
 # protect=False; that is how the value was taken when CHANGED_BY_0_3_2_RULES
-# was added.)
-BEFORE_PROTECTION_SHA256 = "bc4d5bfefec9ba87b91722a44eacee9dfd1ba58a8e3b83f86e1d46eb8578ec7c"
+# was added, and again when it lost the six letters alone.)
+BEFORE_PROTECTION_SHA256 = "15d37e4a2821d72e2addf1a443a57bfa275c9160cd371c9db9556c61cffb0054"
 
 # The same with protect=False on CHANGED_BY_CASE_UNITS, after case units.
 CASE_UNITS_SHA256 = "f8a91be6d8cb4556e2312a4794d3c2091fafb57f8218069b0589f127476970b3"
@@ -782,7 +779,7 @@ WORD_LEVEL_AUTO_SHA256 = "4fff68422384a9821c039e91ccb5c6c98aa32cdec7f6855545d2ba
 NFC_SHA256 = "dc141f9ede1bf9346033c6f3cdde36e07d017f62e89ee2ac6872ad2c45acc09b"
 
 # The same on CHANGED_BY_0_3_2_RULES, after the rules of 0.3.2.
-RULES_0_3_2_SHA256 = "eb4c8424bd6754f3ac3f212709bfbf540b7efbc5f1c328b23509a39d803d24bc"
+RULES_0_3_2_SHA256 = "31be906dc1f93bb2077945e249cd6433988b99c375bf648517e0a86067361d79"
 
 
 def _golden_cases_before_protection():

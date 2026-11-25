@@ -422,13 +422,31 @@ export function latin2026WordTo1995(word) {
 /** A Roman numeral, 1 to 3999, in capitals (fullmatch: anchored at both ends). */
 export const ROMAN_NUMERAL_RE = /^M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})$/u;
 
+// The words that make one letter before them a numeral, in latin_1995 and,
+// written by the table, in latin_2026 (see rules.py, _ROMAN_COUNTED).
+const ROMAN_COUNTED_1995 = [
+  "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
+  "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+];
+export const ROMAN_COUNTED = [...new Set([...ROMAN_COUNTED_1995, ...ROMAN_COUNTED_1995.map(latin1995WordTo2026)])];
+
 /**
  * True if ``word``, followed by the character ``after`` (or ""), is a Roman
  * numeral, which conversion from Latin to Cyrillic keeps (see rules.py).
+ * ``previous`` and ``following`` are the words beside it when one space or
+ * U+00A0 is all that separates them, or "". Two letters or more are a
+ * numeral anywhere; one letter only before a word in ROMAN_COUNTED, or after
+ * a word of two letters or more that begins with a capital and not before ".".
  */
-export function isRomanNumeral(word, after = "") {
+export function isRomanNumeral(word, after = "", previous = "", following = "") {
   if (!word || !ROMAN_NUMERAL_RE.test(word)) return false;
-  return word.length > 1 || after !== ".";
+  if (word.length > 1) return true;
+  following = latin2026CanonicalWord(canonicalizeMarks(following.toLowerCase()));
+  if (ROMAN_COUNTED.some((start) => following.startsWith(start))) return true;
+  // Code points, as Python counts them; the first one, as str.isupper sees it.
+  const chars = Array.from(previous);
+  const letters = chars.filter((ch) => !MARKS.has(ch)).length;
+  return after !== "." && chars.length > 0 && isUpper(chars[0]) && letters >= 2;
 }
 
 // The month names that Cyrillic writes with ь when they stand alone.
