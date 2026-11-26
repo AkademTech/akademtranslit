@@ -269,9 +269,12 @@ def _roman_numerals(piece: str, matches: list) -> set:
     letter, even one that is a numeral on its own, and only those of two
     letters or more are kept (Ushbu V va X harflari -> Ушбу В ва Х
     ҳарфлари; V, X va XV harflari -> В, Х ва XV ҳарфлари; and so, a known
-    limit, Nikolay I, V harfi -> Николай И, В ҳарфи). Each word is looked
-    at a fixed number of times, so this is linear in the length of the
-    piece.
+    limit, Nikolay I, V harfi -> Николай И, В ҳарфи). A list numbered with
+    a spaced dash is a known limit too: I – kirish, II – asosiy qism ->
+    И – кириш, II – асосий қисм; with no numeral after the dash, one letter
+    cannot be told from a numeral (X – nomaʼlum, V – tezlik -> Х – номаълум,
+    В – тезлик). Each word is looked at a fixed number of times, so this is
+    linear in the length of the piece.
     """
     count = len(matches)
 

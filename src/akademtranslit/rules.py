@@ -739,8 +739,12 @@ def is_roman_numeral(word: str, after: str = "", previous: str = "", following: 
     letter is a letter, even one that is a numeral on its own, and those of
     two letters or more stay numerals (``Ushbu V va X harflari`` -> ``Ушбу
     В ва Х ҳарфлари``, ``V, X va XV harflari`` -> ``В, Х ва XV ҳарфлари``).
-    A known limit: a ruler's numeral linked to a letter by a comma is read
-    as a letter, ``Nikolay I, V harfi`` -> ``Николай И, В ҳарфи``.
+    Known limits: a ruler's numeral linked to a letter by a comma is read
+    as a letter, ``Nikolay I, V harfi`` -> ``Николай И, В ҳарфи``. So is a
+    list numbered with a spaced dash: ``I – kirish, II – asosiy qism`` ->
+    ``И – кириш, II – асосий қисм``; with no numeral after the dash, one
+    letter cannot be told from a numeral (``X – nomaʼlum, V – tezlik`` ->
+    ``Х – номаълум, В – тезлик``).
     """
     if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
         return False
