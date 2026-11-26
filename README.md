@@ -880,10 +880,14 @@ One letter followed by a full stop is an initial: `I. Boʻriyev` →
 numeral stays Latin (`MIX`, `DIV`); `Pyotr I.` and `Karl V.` at the end of
 a sentence are read as initials, `Пётр И.`, `Карл В.`; any capitalised
 word before one letter makes it a numeral, the first word of a sentence
-too, `Variant V` → `Вариант V`; and a ruler's numeral linked by a comma
-to a letter before `harf` is read as a letter, `Nikolay I, V harfi` →
-`Николай И, В ҳарфи`. From Cyrillic to Latin a numeral is already Latin
-and stays.
+too, `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
+letter before `harf` is read as a letter, `Nikolay I, V harfi` →
+`Николай И, В ҳарфи`; and in a list numbered with a spaced dash one
+letter is a letter, `I – kirish, II – asosiy qism` →
+`И – кириш, II – асосий қисм`: with no numeral after the dash, one letter
+cannot be told from a numeral, as in `X – nomaʼlum, V – tezlik` →
+`Х – номаълум, В – тезлик`. From Cyrillic to Latin a numeral is already
+Latin and stays.
 
 ### The two modifier marks
 

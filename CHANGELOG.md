@@ -52,7 +52,11 @@ release adds its number in the month.
   one letter makes it a numeral, the first of a sentence too,
   `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
   letter before `harf` is read as a letter, `Nikolay I, V harfi` →
-  `Николай И, В ҳарфи`.
+  `Николай И, В ҳарфи`; in a list numbered with a spaced dash one letter
+  is a letter, `I – kirish, II – asosiy qism` →
+  `И – кириш, II – асосий қисм`: with no numeral after the dash, one
+  letter cannot be told from a numeral, `X – nomaʼlum, V – tezlik` →
+  `Х – номаълум, В – тезлик`.
 - Dates: Cyrillic writes no hyphen after the number of a year or of a day of
   the month, as the 1956 spelling rules do, and Latin writes one:
   `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
