@@ -1,13 +1,13 @@
-ICU 74.2, Unicode 15.1, akademtranslit 0.3.1, 1188 golden inputs, 604 inputs in the 2026 orthography (golden and derived)
+ICU 74.2, Unicode 15.1, akademtranslit 0.3.2, 1256 golden inputs, 666 inputs in the 2026 orthography (golden and derived)
 
 ## 1995 -> 2026 and 2026 -> 1995 against the library
 - 1995->2026 c0339 [a lone mark outside a word]: 'ʻ' -> CLDR 'ʻ', library 'ʼ'
-1995->2026: 614 inputs, 1 differ — a lone mark outside a word: 1
+1995->2026: 663 inputs, 1 differ — a lone mark outside a word: 1
 - 2026->1995 c1181 [ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995]: 'Toshkent va Tōkyō' -> CLDR 'Tosʼhkent va Toʻkyoʻ', library 'Toshkent va Toʻkyoʻ'
-2026->1995: 604 inputs, 1 differ — ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1
+2026->1995: 666 inputs, 1 differ — ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1
 
 ## Cyrillic -> 2026
-inputs: 443
+inputs: 456
 differs from existing uz_Cyrl-uz_Latn + 1995->2026: 15
 - c0022: 'Е' -> new 'Ye', via existing 'YE'
 - c0026: 'Ё' -> new 'Yo', via existing 'YO'
@@ -24,7 +24,7 @@ differs from existing uz_Cyrl-uz_Latn + 1995->2026: 15
 - c1136: 'павильон' -> new 'pavilyon', via existing 'pavilon'
 - c1137: 'почтальонлар' -> new 'poçtalyonlar', via existing 'poçtalonlar'
 - c1138: 'медальон' -> new 'medalyon', via existing 'medalon'
-differs from the library: 44 — ц: library ts/s by position, CLDR ts: 29, ъ: library drops it before е ё ю я after a consonant and after ў: 9, letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them: 6
+differs from the library: 55 — ц: library ts/s by position, CLDR ts: 33, ъ: library drops it before е ё ю я after a consonant and after ў: 9, dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have: 7, letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them: 6
 - c0093 [ц: library ts/s by position, CLDR ts]: 'ц' -> CLDR 'ts', library 's'
 - c0094 [ц: library ts/s by position, CLDR ts]: 'Ц' -> CLDR 'Ts', library 'S'
 - c0423 [ц: library ts/s by position, CLDR ts]: 'вакцина' -> CLDR 'vaktsina', library 'vaksina'
@@ -69,10 +69,21 @@ differs from the library: 44 — ц: library ts/s by position, CLDR ts: 29, ъ: 
 - c1114 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'щи' -> CLDR 'щi', library 'şi'
 - c1118 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'Мы здесь' -> CLDR 'Mы zdes', library 'Mi zdes'
 - c1120 [letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them]: 'Қўшиқ ва щи' -> CLDR 'Qöşiq va щi', library 'Qöşiq va şi'
+- c1197 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'Сентябрь, сентябрда, октябрнинг, ноябрь' -> CLDR 'Sentyabr, sentyabrda, oktyabrning, noyabr', library 'Sentabr, sentabrda, oktabrning, noyabr'
+- c1198 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'СЕНТЯБРЬ, СЕНТЯБРда' -> CLDR 'SENTYABR, SENTYABRda', library 'SENTABR, SENTABRda'
+- c1204 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1956 йил 22 сентябрь' -> CLDR '1956 yil 22 sentyabr', library '1956-yil 22-sentabr'
+- c1205 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1991-йилнинг 1-сентябри' -> CLDR '1991-yilning 1-sentyabri', library '1991-yilning 1-sentabri'
+- c1208 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '2000 йил давомида' -> CLDR '2000 yil davomida', library '2000-yil davomida'
+- c1211 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1956\xa0йил 22\xa0сентябрь' -> CLDR '1956\xa0yil 22\xa0sentyabr', library '1956‑yil 22‑sentabr'
+- c1215 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '3 марта, 5-мартаба, 2-майдон, 5 майда' -> CLDR '3 marta, 5-martaba, 2-maydon, 5 mayda', library '3 marta, 5-martaba, 2-maydon, 5-mayda'
+- c1222 [ц: library ts/s by position, CLDR ts]: 'марганец, ненец, шприц, кварц' -> CLDR 'marganets, nenets, şprits, kvarts', library 'marganes, nenes, şpris, kvars'
+- c1223 [ц: library ts/s by position, CLDR ts]: 'ненецлар, шприцни, ненецларнинг, шприцдаги' -> CLDR 'nenetslar, şpritsni, nenetslarning, şpritsdagi', library 'neneslar, şprisni, neneslarning, şprisdagi'
+- c1224 [ц: library ts/s by position, CLDR ts]: 'лицей, боцман, плацдарм, пицца, шприци' -> CLDR 'litsey, botsman, platsdarm, pitstsa, şpritsi', library 'litsey, botsman, platsdarm, pitssa, şpritsi'
+- c1225 [ц: library ts/s by position, CLDR ts]: 'МАРГАНЕЦ, Марганец' -> CLDR 'MARGANETS, Marganets', library 'MARGANES, Marganes'
   (expected: с + ҳ, which the existing transform writes as the digraph sh; ь before о, now y; and a single capital Е Ё Ю Я Ц, now Ye Yo Yu Ya Ts)
 
 ## Round trips
-Cyrillic -> 2026 -> Cyrillic: 362 of 443 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 292)
+Cyrillic -> 2026 -> Cyrillic: 371 of 456 come back unchanged (the existing Cyrillic -> 1995 -> Cyrillic: 296)
 - c0105: 'ъ' -> 'ʼ' -> 'Ъ' (existing 1995 round trip: 'Ъ')
 - c0109: 'ь' -> '' -> '' (existing 1995 round trip: '')
 - c0110: 'Ь' -> '' -> '' (existing 1995 round trip: '')
@@ -154,11 +165,19 @@ Cyrillic -> 2026 -> Cyrillic: 362 of 443 come back unchanged (the existing Cyril
 - c1136: 'павильон' -> 'pavilyon' -> 'павилён' (existing 1995 round trip: 'павилон')
 - c1137: 'почтальонлар' -> 'poçtalyonlar' -> 'почталёнлар' (existing 1995 round trip: 'почталонлар')
 - c1138: 'медальон' -> 'medalyon' -> 'медалён' (existing 1995 round trip: 'мэдалон')
-2026 -> 1995 -> 2026: 593 of 604 come back unchanged; 11 more are the spellings ō ǒ ș, which come back as ö ş
+- c1197: 'Сентябрь, сентябрда, октябрнинг, ноябрь' -> 'Sentyabr, sentyabrda, oktyabrning, noyabr' -> 'Сентябр, сентябрда, октябрнинг, ноябр' (existing 1995 round trip: 'Сэнтябр, сэнтябрда, октябрнинг, ноябр')
+- c1198: 'СЕНТЯБРЬ, СЕНТЯБРда' -> 'SENTYABR, SENTYABRda' -> 'СЕНТЯБР, СЕНТЯБРда' (existing 1995 round trip: 'СЭНТЯБР, СЭНТЯБРда')
+- c1204: '1956 йил 22 сентябрь' -> '1956 yil 22 sentyabr' -> '1956 йил 22 сентябр' (existing 1995 round trip: '1956 йил 22 сэнтябр')
+- c1211: '1956\xa0йил 22\xa0сентябрь' -> '1956\xa0yil 22\xa0sentyabr' -> '1956\xa0йил 22\xa0сентябр' (existing 1995 round trip: '1956\xa0йил 22\xa0сэнтябр')
+2026 -> 1995 -> 2026: 655 of 666 come back unchanged; 11 more are the spellings ō ǒ ș, which come back as ö ş
 
 ## 2026 -> Cyrillic
 - c1181 [ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995]: 'Toshkent va Tōkyō' -> CLDR 'Тосҳкент ва Тўкйў', library 'Тошкент ва Тўкйў'
+- c1196 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'XXI asr Toşkentda' -> CLDR 'ХХИ аср Тошкентда', library 'XXI аср Тошкентда'
+- c1221 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'Toşkentda 2026-yil 1-sentabr' -> CLDR 'Тошкентда 2026-йил 1-сентабр', library 'Тошкентда 2026 йил 1 сентябрь'
+- c1250 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'V–VI asrlar, I bölim, I çorak' -> CLDR 'В–ВИ асрлар, И бўлим, И чорак', library 'V–VI асрлар, I бўлим, I чорак'
 - dc0105 [a lone mark outside a word]: 'ʼ' -> CLDR 'Ъ', library 'ъ'
+- dc0325 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'Ilmiy jurnal, 2026-yil, 12-son' -> CLDR 'Илмий журнал, 2026-йил, 12-сон', library 'Илмий журнал, 2026 йил, 12-сон'
 - dc0353 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsa' -> CLDR 'кеца', library 'кетса'
 - dc0355 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsa' -> CLDR 'айца', library 'айтса'
 - dc0357 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsa' -> CLDR 'туца', library 'тутса'
@@ -206,6 +225,8 @@ Cyrillic -> 2026 -> Cyrillic: 362 of 443 come back unchanged (the existing Cyril
 - dc0574 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'qaytsa' -> CLDR 'қайца', library 'қайтса'
 - dc0576 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tortsa' -> CLDR 'торца', library 'тортса'
 - dc0578 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yurtsiz' -> CLDR 'юрциз', library 'юртсиз'
+- dc0607 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'iyun' -> CLDR 'июн', library 'июнь'
+- dc0634 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'Toşkent davlat universiteti, 2026-yil' -> CLDR 'Тошкент давлат университети, 2026-йил', library 'Тошкент давлат университети, 2026 йил'
 - dc0944 [letters outside the Uzbek alphabet]: 'á' -> CLDR 'а́', library 'á'
 - dc0945 [letters outside the Uzbek alphabet]: 'ó' -> CLDR 'о́', library 'ó'
 - dc0946 [letters outside the Uzbek alphabet]: 'ú' -> CLDR 'у́', library 'ú'
@@ -221,21 +242,59 @@ Cyrillic -> 2026 -> Cyrillic: 362 of 443 come back unchanged (the existing Cyril
 - dc0996 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsayoq' -> CLDR 'кецаёқ', library 'кетсаёқ'
 - dc0997 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'tutsinmikan' -> CLDR 'туцинмикан', library 'тутсинмикан'
 - dc0998 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ketsinu' -> CLDR 'кецину', library 'кетсину'
+- dc1063 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'XXI asr' -> CLDR 'ХХИ аср', library 'XXI аср'
 - dc1099 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'ötsin' -> CLDR 'ўцин', library 'ўтсин'
 - dc1100 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'yetsin' -> CLDR 'ецин', library 'етсин'
 - dc1101 [ts: the library reads т + с before an Uzbek suffix, CLDR always ц]: 'aytsin' -> CLDR 'айцин', library 'айтсин'
-2026 -> Cyrillic: 604 inputs, 67 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, letters outside the Uzbek alphabet: 8, ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1, a lone mark outside a word: 1
+- dc1189 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'XIX asr' -> CLDR 'ХИХ аср', library 'XIX аср'
+- dc1190 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'IV bob, Pyotr I' -> CLDR 'ИВ боб, Пётр И', library 'IV боб, Пётр I'
+- dc1193 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'MIX' -> CLDR 'МИХ', library 'MIX'
+- dc1195 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'CD va DVD, IIII, Xix, XIXda' -> CLDR 'CД ва ДВД, ИИИИ, Хих, ХИХда', library 'CD ва ДВД, ИИИИ, Хих, ХИХда'
+- dc1197 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'Sentabr, sentabrda, oktabrning, noyabr' -> CLDR 'Сентабр, сентабрда, октабрнинг, ноябр', library 'Сентябрь, сентябрда, октябрнинг, ноябрь'
+- dc1198 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'SENTABR, SENTABRda' -> CLDR 'СЕНТАБР, СЕНТАБРда', library 'СЕНТЯБРЬ, СЕНТЯБРда'
+- dc1199 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr' -> CLDR 'январ феврал март апрел май июн июл август сентабр октабр ноябр декабр', library 'январь февраль март апрель май июнь июль август сентябрь октябрь ноябрь декабрь'
+- dc1200 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda' -> CLDR 'январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда', library 'январда февралда апрелда июнда июлда сентябрда сентябрда октябрдаги ноябрда декабрда'
+- dc1201 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'SENTABR, Sentyabr, SENTABRda, sentabri' -> CLDR 'СЕНТАБР, Сентябр, СЕНТАБРда, сентабри', library 'СЕНТЯБРЬ, Сентябрь, СЕНТЯБРда, сентябри'
+- dc1203 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1991-yilning 1-sentabri' -> CLDR '1991-йилнинг 1-сентабри', library '1991 йилнинг 1 сентябри'
+- dc1204 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1956-yil 22-sentabr' -> CLDR '1956-йил 22-сентабр', library '1956 йил 22 сентябрь'
+- dc1206 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1956 yil 22 sentabr' -> CLDR '1956 йил 22 сентабр', library '1956 йил 22 сентябрь'
+- dc1208 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '2000-yil davomida' -> CLDR '2000-йил давомида', library '2000 йил давомида'
+- dc1210 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1991‑yil 1‑sentabr' -> CLDR '1991‑йил 1‑сентабр', library '1991\xa0йил 1\xa0сентябрь'
+- dc1211 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1956‑yil 22‑sentabr' -> CLDR '1956‑йил 22‑сентабр', library '1956\xa0йил 22\xa0сентябрь'
+- dc1215 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '3 marta, 5-martaba, 2-maydon, 5-mayda' -> CLDR '3 марта, 5-мартаба, 2-майдон, 5-майда', library '3 марта, 5-мартаба, 2-майдон, 5 майда'
+- dc1216 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr' -> CLDR '1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр', library '1941–1945 йиллар, 1990-1991 йилларда, 21–22 ноябрь'
+- dc1217 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi' -> CLDR '8-мартда, 9-майи, 31-декабргача, 15-июндаги', library '8 мартда, 9 майи, 31 декабргача, 15 июндаги'
+- dc1218 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1-YANVAR, 2026-YIL' -> CLDR '1-ЯНВАР, 2026-ЙИЛ', library '1 ЯНВАРЬ, 2026 ЙИЛ'
+- dc1219 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'https://x.uz/1991-yil va 1991-yil' -> CLDR 'ҳттпс://х.уз/1991-йил ва 1991-йил', library 'ҳттпс://х.уз/1991 йил ва 1991 йил'
+- dc1220 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil' -> CLDR '01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил', library '01-сентябрь, 0991-йил, 12345-йил, 1991  йил, №1991 йил'
+- dc1228 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'V asr' -> CLDR 'В аср', library 'V аср'
+- dc1229 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I jahon uruşi' -> CLDR 'И жаҳон уруши', library 'I жаҳон уруши'
+- dc1230 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'Nikolay I' -> CLDR 'Николай И', library 'Николай I'
+- dc1233 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: '1991-yil' -> CLDR '1991-йил', library '1991 йил'
+- dc1234 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'V–VI asrlar' -> CLDR 'В–ВИ асрлар', library 'V–VI асрлар'
+- dc1235 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'X–XII asrlarda' -> CLDR 'Х–ХИИ асрларда', library 'X–XII асрларда'
+- dc1236 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I-II kurs talabalari' -> CLDR 'И-ИИ курс талабалари', library 'I-II курс талабалари'
+- dc1237 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I, II va III boblar' -> CLDR 'И, ИИ ва ИИИ боблар', library 'I, II ва III боблар'
+- dc1238 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I va II jahon uruşlari' -> CLDR 'И ва ИИ жаҳон урушлари', library 'I ва II жаҳон урушлари'
+- dc1242 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'V-asr, I-jahon uruşi' -> CLDR 'В-аср, И-жаҳон уруши', library 'V-аср, I-жаҳон уруши'
+- dc1243 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I kvartal, I semestr, I smenada' -> CLDR 'И квартал, И семестр, И сменада', library 'I квартал, I семестр, I сменада'
+- dc1244 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I örinni egalladi' -> CLDR 'И ўринни эгаллади', library 'I ўринни эгаллади'
+- dc1245 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'XX asrning I yarmi' -> CLDR 'ХХ асрнинг И ярми', library 'XX асрнинг I ярми'
+- dc1246 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I Xalqaro ilmiy-amaliy konferensiya' -> CLDR 'И Халқаро илмий-амалий конференсия', library 'I Халқаро илмий-амалий конференсия'
+- dc1253 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'V – VI asrlar, V - VI asrlar' -> CLDR 'В – ВИ асрлар, В - ВИ асрлар', library 'V – VI асрлар, V - VI асрлар'
+- dc1254 [dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have]: 'I VA II JAHON URUŞLARI' -> CLDR 'И ВА ИИ ЖАҲОН УРУШЛАРИ', library 'I ВА II ЖАҲОН УРУШЛАРИ'
+2026 -> Cyrillic: 666 inputs, 111 differ from the library — ts: the library reads т + с before an Uzbek suffix, CLDR always ц: 57, dates, month names and Roman numerals: rules of the library (0.3.2) that a character transform does not have: 44, letters outside the Uzbek alphabet: 8, ō ǒ: the library reads each word in its own orthography and does not count them as 2026 letters, so a word with sh or ch is read as 1995: 1, a lone mark outside a word: 1
 
 ## Collation against the library's sort_key
 - latin_2026 A: library 'ashob' < 'aslmatn', ICU the other way
 - latin_2026 A: library 'ishoqov' < 'iş', ICU the other way
 - latin_2026 A: library 'sh' < 'sikl', ICU the other way
 - latin_2026 A: library 'çorshanbiyev' < 'çorşanbiyev', ICU the other way
-latin_2026 (option A): 531 words, 4 order differences
+latin_2026 (option A): 625 words, 4 order differences
   (option A: a real s + h in 2026 text, as in Ishoq or ashob, meets the 1995 contraction sh)
-latin_2026 (option B): 531 words, 0 order differences
-latin_1995 (option A): 531 words, 0 order differences
-cyrillic: 514 words, 0 order differences
+latin_2026 (option B): 625 words, 0 order differences
+latin_1995 (option A): 625 words, 0 order differences
+cyrillic: 600 words, 0 order differences
 
 test files in tests/: 12 of 12 match
 

@@ -1,8 +1,8 @@
 {
  "schema": "akademtranslit-js-fixture-tables/1",
- "library_version": "0.3.1",
- "rules_version": "uz-2026-alphabet+project-2026.11",
- "inputs_sha256": "11860acfa8a27a51f7c7d6735fe92fcb517c4cd8e5fd7897746754c5b515f143",
+ "library_version": "0.3.2",
+ "rules_version": "uz-2026-alphabet+project-2026.11.2",
+ "inputs_sha256": "3ec5e4ea86d777db03540015296cf7278788c0a2c77782978eeda3db66bbcb47",
  "made_by": "js/tools/make-fixtures.py",
  "tables": {
   "APOSTROPHE_VARIANTS": [
@@ -635,7 +635,7 @@
     "ö"
    ]
   ],
-  "RULES_VERSION": "uz-2026-alphabet+project-2026.11",
+  "RULES_VERSION": "uz-2026-alphabet+project-2026.11.2",
   "SCRIPTS": [
    "cyrillic",
    "latin_1995",

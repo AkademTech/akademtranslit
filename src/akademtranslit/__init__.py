@@ -40,13 +40,20 @@ from .rules import (
     O_FORM_WORD,
     PLAIN_WORD,
     SH_CH_WORD,
+    _names_a_letter,
+    _roman_series_member,
+    convert_cyrillic_word,
     cyrillic_word_to_latin_1995,
+    dates,
+    is_roman_numeral,
     latin_1995_word_to_2026,
     latin_1995_word_to_cyrillic,
     latin_2026_canonical_word,
     latin_2026_word_to_1995,
+    map_word,
     map_words,
     map_words_by,
+    month_soft_sign,
     word_class,
 )
 from .scripts import fold_homoglyphs, homoglyph_spans, script_spans
@@ -68,7 +75,7 @@ from .tables import (
 )
 from .tags import _orthography, script_for_tag, tag_for_script
 
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 
 __all__ = [
     "CYRILLIC",
@@ -118,11 +125,12 @@ _REFORM_LETTERS = frozenset("şçğöŞÇĞÖ" "\u014d\u01d2\u014c\u01d1" "\u021
 # the others, so no pair needs a table of its own. The other input forms of ö
 # and ş (LATIN_2026_INPUT_ALIASES) are read as those letters whenever the
 # source or the target is latin_2026; a pair not listed (cyrillic or
-# latin_1995 to itself) has no steps.
+# latin_1995 to itself) has no steps. Cyrillic is read with
+# convert_cyrillic_word; normalize keeps cyrillic_word_to_latin_1995.
 _PIPELINES: dict[tuple[str, str], tuple] = {
-    (CYRILLIC, LATIN_1995): (cyrillic_word_to_latin_1995,),
+    (CYRILLIC, LATIN_1995): (convert_cyrillic_word,),
     (CYRILLIC, LATIN_2026): (
-        cyrillic_word_to_latin_1995,
+        convert_cyrillic_word,
         latin_1995_word_to_2026,
         latin_2026_canonical_word,  # ō U+014D, ǒ U+01D2 in a Latin word of Cyrillic text
     ),
@@ -228,6 +236,102 @@ def _steps(source: str, target: str):
     return _word
 
 
+# What separates one letter from the words that make it a Roman numeral or
+# a letter: the word before it (Pyotr I) counts after one space or U+00A0,
+# the word after it (V asr, V-asr, V harfi) after one of those, a hyphen or
+# U+2011 NON-BREAKING HYPHEN.
+_ONE_SPACE = frozenset((" ", "\N{NO-BREAK SPACE}"))
+_BEFORE_FOLLOWING = _ONE_SPACE | {"-", "\N{NON-BREAKING HYPHEN}"}
+
+# What links two numerals in a series (V–VI, V – VI, I, II va III, I yoki II,
+# I VA II): one hyphen or dash, with no space around it or with one space or
+# U+00A0 on each side; a comma and one space or U+00A0; or the word va or
+# yoki, in any case, with one space or U+00A0 on each side.
+_SERIES_DASHES = "-\N{HYPHEN}\N{NON-BREAKING HYPHEN}\N{FIGURE DASH}\N{EN DASH}\N{EM DASH}"
+_SERIES_LINKS = frozenset(_SERIES_DASHES) | {
+    ", ", ",\N{NO-BREAK SPACE}",
+} | {a + d + b for d in _SERIES_DASHES for a in _ONE_SPACE for b in _ONE_SPACE}
+_SERIES_WORDS = frozenset(("va", "yoki"))
+
+
+def _roman_numerals(piece: str, matches: list) -> set:
+    """The indices in ``matches``, the words of ``piece`` in order, of the
+    words that conversion to Cyrillic keeps as Roman numerals.
+
+    A word on its own is one when
+    :func:`~akademtranslit.rules.is_roman_numeral` says so, given the
+    character after it and, for one letter, the words beside it (see
+    ``_BEFORE_FOLLOWING``). Members linked into a series (``_SERIES_LINKS``,
+    ``_SERIES_WORDS``; ``_roman_series_member``) go together: when one of
+    two or more is a numeral on its own, all are (V–VI, V – VI asrlar,
+    I va II jahon, I VA II JAHON) -- unless the word after the series
+    begins with harf or tovush, when every member of one letter is a
+    letter, even one that is a numeral on its own, and only those of two
+    letters or more are kept (Ushbu V va X harflari -> Ушбу В ва Х
+    ҳарфлари; V, X va XV harflari -> В, Х ва XV ҳарфлари; and so, a known
+    limit, Nikolay I, V harfi -> Николай И, В ҳарфи). A list numbered with
+    a spaced dash is a known limit too: I – kirish, II – asosiy qism ->
+    И – кириш, II – асосий қисм; with no numeral after the dash, one letter
+    cannot be told from a numeral (X – nomaʼlum, V – tezlik -> Х – номаълум,
+    В – тезлик). Each word is looked at a fixed number of times, so this is
+    linear in the length of the piece.
+    """
+    count = len(matches)
+
+    def between(i: int, j: int) -> str:
+        return piece[matches[i].end():matches[j].start()]
+
+    def after(i: int) -> str:
+        end = matches[i].end()
+        return piece[end:end + 1]
+
+    def following(i: int) -> str:
+        return matches[i + 1].group() if i + 1 < count and between(i, i + 1) in _BEFORE_FOLLOWING else ""
+
+    def alone(i: int) -> bool:
+        word = matches[i].group()
+        if len(word) != 1:
+            return is_roman_numeral(word, after(i))
+        before = matches[i - 1].group() if i > 0 and between(i - 1, i) in _ONE_SPACE else ""
+        return is_roman_numeral(word, after(i), before, following(i))
+
+    def member(i: int) -> bool:
+        return _roman_series_member(matches[i].group(), after(i))
+
+    def linked(i: int):
+        """The index of the member that the member at ``i`` links to, or None."""
+        if i + 1 < count and between(i, i + 1) in _SERIES_LINKS and member(i + 1):
+            return i + 1
+        if (
+            i + 2 < count
+            and matches[i + 1].group().lower() in _SERIES_WORDS
+            and between(i, i + 1) in _ONE_SPACE
+            and between(i + 1, i + 2) in _ONE_SPACE
+            and member(i + 2)
+        ):
+            return i + 2
+        return None
+
+    kept = set()
+    i = 0
+    while i < count:
+        series = [i]
+        if member(i):
+            link = linked(i)
+            while link is not None:
+                series.append(link)
+                link = linked(link)
+        if len(series) == 1:
+            if alone(i):
+                kept.add(i)
+        elif _names_a_letter(following(series[-1])):
+            kept.update(k for k in series if len(matches[k].group()) > 1)
+        elif any(alone(k) for k in series):
+            kept.update(series)
+        i = series[-1] + 1
+    return kept
+
+
 def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protect=True) -> str:
     """Convert ``text`` from one orthography to another.
 
@@ -243,6 +347,20 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
 
     >>> convert("Ilmiy jurnal, 2026-yil, 12-son", target="latin_2026")
     'Ilmiy jurnal, 2026-yil, 12-son'
+
+    The one exception is a date that changes script. Cyrillic writes no
+    hyphen after the number of a year or of a day of the month, Latin writes
+    one (see :func:`~akademtranslit.rules.dates`):
+
+    >>> convert("1991-yilning 1-sentabri", target="cyrillic")
+    '1991 йилнинг 1 сентябри'
+    >>> convert("1956 йил 22 сентябрь", target="latin_2026")
+    '1956-yil 22-sentabr'
+
+    Within one script the separator is the author's and stays as it is:
+
+    >>> convert("2026 yil", source="latin_1995", target="latin_2026")
+    '2026 yil'
 
     URLs, e-mail addresses, DOIs, placeholders, markup, file paths and tokens
     such as ``pH`` and ``SpO2`` come out byte for byte (see
@@ -311,20 +429,50 @@ def convert(text: str, source: str = "auto", target: str = LATIN_2026, *, protec
     ]
     if source == "auto":
         sources = _auto_sources([piece for piece, kind in pieces if kind is None], target)
-        transforms = {script: _steps(script, target) for script in SCRIPTS}
-
-        def _convert(piece: str) -> str:
-            return map_words_by(piece, lambda word: transforms[sources[word]])
-
+        source_of = sources.__getitem__
     else:
-        transform = _steps(source, target)
 
-        def _convert(piece: str) -> str:
-            return map_words(piece, transform)
+        def source_of(word: str) -> str:
+            return source
 
-    # map_words canonicalises the marks even when there are no steps, which is
-    # what makes a same-script conversion a normalising pass rather than a no-op.
-    return "".join(piece if kind is not None else _convert(piece) for piece, kind in pieces)
+    transforms = {script: _steps(script, target) for script in SCRIPTS}
+    to_cyrillic = target == CYRILLIC
+
+    def _word(match, numeral: bool) -> str:
+        word = match.group()
+        script = source_of(word)
+        if to_cyrillic and script != CYRILLIC:
+            # The rules that need the whole word as it stands, and the text
+            # around it: a Roman numeral (numeral, from _roman_numerals,
+            # which sees the words beside it) stays as it is.
+            if numeral:
+                return word
+            return month_soft_sign(word, map_word(word, transforms[script]))
+        return map_word(word, transforms[script])
+
+    def _piece(piece: str) -> str:
+        # map_word canonicalises the marks even when there are no steps, which
+        # is what makes a same-script conversion a normalising pass rather
+        # than a no-op. Then dates: the separator after the number of a year
+        # or a day of the month, as the target writes it, before a word read
+        # in the other script; crossed holds where those words start in out.
+        out = []
+        crossed = set()
+        size = last = 0
+        matches = list(_WORD_RE.finditer(piece))
+        numerals = _roman_numerals(piece, matches) if to_cyrillic else set()
+        for index, match in enumerate(matches):
+            between = piece[last:match.start()]
+            word = _word(match, index in numerals)
+            if (source_of(match.group()) == CYRILLIC) != to_cyrillic:
+                crossed.add(size + len(between))
+            out += (between, word)
+            size += len(between) + len(word)
+            last = match.end()
+        out.append(piece[last:])
+        return dates("".join(out), target, crossed)
+
+    return "".join(piece if kind is not None else _piece(piece) for piece, kind in pieces)
 
 
 def to_latin(text: str, variant: str = LATIN_2026, *, protect=True) -> str:
@@ -402,7 +550,13 @@ def to_ascii(text: str) -> str:
     3. Other letters lose their accents (``é`` -> ``e``, by NFKD), and
        whatever is still not ASCII is removed.
 
-    Case is kept; spaces, digits and ASCII punctuation stay.
+    Case is kept; spaces, digits and ASCII punctuation stay. U+2011
+    NON-BREAKING HYPHEN, which a date converted to Latin may have, is ``-``,
+    and U+00A0 NO-BREAK SPACE is a space (NFKD), so a date's words do not run
+    together:
+
+    >>> to_ascii("1956\N{NO-BREAK SPACE}йил 22\N{NO-BREAK SPACE}сентябрь")
+    '1956-yil 22-sentabr'
 
     >>> to_ascii("Чўлпон")
     'Cholpon'
@@ -421,5 +575,7 @@ def to_ascii(text: str) -> str:
     for letter, ascii_form in ASCII_SCHEME:
         text = text.replace(letter, ascii_form)
     text = _ascii_capitals(text)
+    # Before NFKD, which makes U+2011 U+2010 HYPHEN, not ASCII.
+    text = text.replace("\N{NON-BREAKING HYPHEN}", "-")
     text = unicodedata.normalize("NFKD", text.translate(_NO_MARKS))
     return "".join(ch for ch in text if ch.isascii())

@@ -21,8 +21,9 @@ export const SCRIPTS = freeze([CYRILLIC, LATIN_1995, LATIN_2026]);
 // Which rules convert(), toLatin() and toCyrillic() follow: the official basis
 // (the 2026 alphabet of Law No. O'RQ-1184, without official spelling rules),
 // then this project's rule set, by the year and month of the release that last
-// changed their output. test/golden.test.js checks it against the golden file.
-export const RULES_VERSION = "uz-2026-alphabet+project-2026.11";
+// changed their output, and its number in the month from the second one on
+// (2026.11.2). test/golden.test.js checks it against the golden file.
+export const RULES_VERSION = "uz-2026-alphabet+project-2026.11.2";
 
 // --- the two modifier marks --------------------------------------------------
 

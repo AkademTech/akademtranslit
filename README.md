@@ -328,7 +328,16 @@ spans, so `McDonald` keeps its case. Then it writes `oʻ` and `gʻ` as `o` and
 `SH` or `CH` when the character before or after it is a capital, `Sh` or `Ch`
 otherwise. It removes the tutuq belgisi and the other apostrophe marks, takes
 the accents off other letters (`é` → `e`), and removes whatever is still not
-ASCII. Case, spaces, digits and ASCII punctuation stay.
+ASCII. Case, spaces, digits and ASCII punctuation stay. A date that Latin
+writes with U+2011 NON-BREAKING HYPHEN (from U+00A0 NO-BREAK SPACE in
+Cyrillic; see "Dates and month names") keeps a plain hyphen, from 0.3.2, and
+U+00A0 is a space:
+
+```python
+>>> to_ascii("1956\N{NO-BREAK SPACE}йил 22\N{NO-BREAK SPACE}сентябрь")
+'1956-yil 22-sentabr'
+
+```
 
 | Input | Output |
 | --- | --- |
@@ -362,6 +371,18 @@ and `ASCII_CAPITALS` in `tables.py`, change only in a major release.
 `normalize` is idempotent and folds orthography, case, punctuation and every
 apostrophe style in use: all eight accepted marks (see below) give the same
 key, so `o'zbek`, `o’zbek`, `o´zbek` and `oʻzbek` all match.
+
+Its output does not change in a patch release (see Versioning), so in 0.3.2
+it reads Cyrillic as 0.3.1 did. The word-final `ц` and the month names of
+0.3.2 are conversion rules only: `normalize("Марганец")` is still
+`marganets` and `normalize("Сентябрь")` `sentyabr`, while `to_latin` now
+writes `Marganes` and `Sentabr`, whose keys are `marganes` and `sentabr`.
+
+```python
+>>> normalize("Сентябрь"), normalize(to_latin("Сентябрь"))
+('sentyabr', 'sentabr')
+
+```
 
 ### Sort in alphabetical order
 
@@ -571,7 +592,7 @@ words: 3
 changed: 1
 protected: 1
 round trip: yes
-rules: uz-2026-alphabet+project-2026.11
+rules: uz-2026-alphabet+project-2026.11.2
 to check: 1
 matn.txt:2:1: mark-form: ma'no -> maʼno
 $ echo $?
@@ -623,7 +644,7 @@ Seven readings depend on position rather than on the letter alone:
 | Rule | Example |
 | --- | --- |
 | `е` is `ye` word-initially and after a vowel, `e` otherwise | Ер → Yer, поезд → poyezd, тезда → tezda |
-| `ц` is `ts` after a vowel, `s` otherwise | милиция → militsiya, функция → funksiya, цирк → sirk |
+| `ц` is `s` at the end of a word and before Uzbek suffixes only, `ts` after a vowel elsewhere, `s` otherwise — see below | марганец → marganes, ненецлар → neneslar, милиция → militsiya, функция → funksiya, цирк → sirk |
 | `ts` is `т` + `с` before an Uzbek suffix, `т` + `ш` before `h`, `ц` otherwise — a heuristic, see below | ketsa → кетса, hayotsiz → ҳаётсиз, adabiyotshunos → адабиётшунос, operatsiya → операция |
 | `с` before `ҳ` takes a separator in `latin_1995` | Исҳоқ → Isʼhoq (not `Ishoq`) |
 | `ъ` is dropped after a consonant before `е ё ю я` and after `ў`, `ʼ` otherwise | объект → obyekt, мўъжиза → moʻjiza, маъно → maʼno |
@@ -633,6 +654,23 @@ Seven readings depend on position rather than on the letter alone:
 The `v` exception keeps surnames romanized the Russian way as they are written
 in Cyrillic: Aliev, Alievning and Kiev give Алиев, Алиевнинг and Киев. The
 standard spellings Aliyev and Kiyev give the same Cyrillic.
+
+The `ц` rule, from Cyrillic to Latin, in order (0.3.2):
+
+| Where `ц` is | Latin | Examples |
+| --- | --- | --- |
+| at the end of a word | `s` | марганец → marganes, ненец → nenes, шприц → shpris, кварц → kvars |
+| before Uzbek suffixes only: `-лар`, `-лари`, `-ларим`, `-ларинг`, `-ларимиз`, `-ларингиз`, then `-нинг`, `-ни`, `-га`, `-да`, `-дан`, `-даги` or `-гача`, each if it is there | `s` | ненецлар → neneslar, шприцни → shprisni, ненецларнинг → neneslarning |
+| after a vowel, anywhere else | `ts` | милиция → militsiya, лицей → litsey, боцман → botsman, плацдарм → platsdarm, шприци → shpritsi |
+| at the start of a word or after a consonant | `s` | цирк → sirk, функция → funksiya, the second `ц` of пицца → pitssa |
+
+The first row, measured on the 183 words with `ц` of the 1999
+Cyrillic-Latin spelling dictionary, gives 144 right where the `ts`/`s` rule
+alone gave 142, and breaks none; `ts` only between two vowels would break
+five (`botsman`, `platsdarm`, …). The second row follows the «Oʻzbek
+tilining katta imlo lugʻati» (2023), which writes `neneslar`. Surnames
+follow the rule too: `Кац` → `Kas`, `Швец` → `Şves`. The other direction
+does not change: `marganes` → `марганес` (see "Known lossy mappings").
 
 The separator needs a note. In `latin_1995`, `sh` is a digraph, so a genuine
 s+h sequence has to be separated with the tutuq belgisi or it reads as `ш`. The
@@ -682,6 +720,175 @@ The known misses:
 - pitsa and nitsa are wrong either way: питса and нитса now, пица and ница
   before 0.1.1, пицца and Ницца in fact.
 
+### Dates and month names
+
+Cyrillic writes no hyphen after the number of a year or of a day of the
+month, as the 1956 spelling rules do (paragraph 47); Latin writes one (rule
+56 of Resolution No. 339 of 1995). From 0.3.2 `convert`, `to_latin` and
+`to_cyrillic` write the separator as the target does when a date changes
+script. Within one script — `latin_1995` ↔ `latin_2026`, or an orthography
+to itself — the separator is the author's and stays as written:
+
+```python
+>>> to_cyrillic("1991-yilning 1-sentabri")
+'1991 йилнинг 1 сентябри'
+>>> to_latin("1956 йил 22 сентябрь")
+'1956-yil 22-sentabr'
+>>> to_latin("2026 yil 1 sentabr")
+'2026 yil 1 sentabr'
+>>> convert("1991-йилда", source="cyrillic", target="cyrillic")
+'1991-йилда'
+
+```
+
+The script is the one the word after the number is read in: with a named
+`source`, that source; with `source="auto"`, the one `convert` reads that
+word in, so in a text with both, each date goes by its own word
+(`1956 йил va 1956 yil` to Latin gives `1956-yil va 1956 yil`).
+
+Other ordinals keep the hyphen in both: `5-sinf` ↔ `5-синф`, `39-son` ↔
+`39-сон`, `60-yillar` ↔ `60-йиллар`. A number is a date when no letter or
+digit comes before it, exactly one hyphen or space comes after it, and then
+
+- a year: to Cyrillic, three or four digits and a word that begins with
+  `йил` (`йил`, `йили`, `йилда`, `йилнинг`, `йиллар`, …); to Latin, 1000 to
+  2099 and a word that begins with `yil`, since a smaller number is mostly a
+  count (`5 yil ishladi`, five years);
+- a day: 1 to 31 and a month name, with `ь`, the possessive `-i` and one of
+  the case endings `-ning`, `-ni`, `-ga`, `-da`, `-dan`, `-dagi`, `-gacha`,
+  each if it is there (`1-sentabri`, `8-martda`, `31-dekabrgacha`).
+
+U+2011 NON-BREAKING HYPHEN becomes U+00A0 NO-BREAK SPACE and back, so the
+date stays on one line. Protected spans keep their text.
+
+Month names are written as the «Oʻzbek tilining katta imlo lugʻati» writes
+them: `сентябр` and `октябр`, with any suffix, are `sentabr` and `oktabr`,
+and from Latin a month name standing alone gets back the `ь` that Latin does
+not write:
+
+```python
+>>> to_latin("Сентябрь, октябрнинг, ноябрь")
+'Sentabr, oktabrning, noyabr'
+>>> to_cyrillic("yanvar, iyun, SENTABR, sentabrda")
+'январь, июнь, СЕНТЯБРЬ, сентябрда'
+
+```
+
+`yanvar`, `fevral`, `aprel`, `iyun`, `iyul`, `sentabr` (or `sentyabr`),
+`oktabr` (or `oktyabr`), `noyabr` and `dekabr` alone give `январь`,
+`февраль`, `апрель`, `июнь`, `июль`, `сентябрь`, `октябрь`, `ноябрь` and
+`декабрь`; with a suffix there is no `ь` (`yanvarda` → `январда`), and
+`mart`, `may` and `avgust` have none. `latin_1995` ↔ `latin_2026` keeps the
+spelling: `sentyabr` stays `sentyabr`.
+
+In JavaScript (`js/test/readme.test.js` runs these lines):
+
+```js
+import { toCyrillic, toLatin } from "./akademtranslit/js/src/index.js";
+
+toCyrillic("1991-yilning 1-sentabri"); // "1991 йилнинг 1 сентябри"
+toLatin("1956 йил 22 сентябрь"); // "1956-yil 22-sentabr"
+toLatin("Сентябрь, октябрнинг, ноябрь"); // "Sentabr, oktabrning, noyabr"
+toCyrillic("yanvar, iyun, SENTABR, sentabrda"); // "январь, июнь, СЕНТЯБРЬ, сентябрда"
+toCyrillic("XIX asr, IV bob, Pyotr I"); // "XIX аср, IV боб, Пётр I"
+toCyrillic("V asr, I jahon urushi, Nikolay I"); // "V аср, I жаҳон уруши, Николай I"
+toCyrillic("V harfi"); // "В ҳарфи"
+toLatin("марганец, ненецлар"); // "marganes, neneslar"
+```
+
+The known limits:
+
+- A count of 1000 to 2099 years is read as a year: `2000 йил давомида` (for
+  2000 years) gives `2000-yil davomida`, and `2000 йиллик тарих` gives
+  `2000-yillik tarix`.
+- `5 майда` is read as 5 May, `5-mayda`; `майда` also means "small".
+- A word that only begins like a month name is not one: `3 марта` (three
+  times), `5-мартаба`, `2-майдон` keep their separator.
+- From Cyrillic to Latin a year below 1000 keeps its space (`476 йил` →
+  `476 yil`), while to Cyrillic `476-yil` gives `476 йил`.
+
+### Roman numerals
+
+A Roman numeral stays Latin when Latin text is converted to Cyrillic (0.3.2):
+
+```python
+>>> to_cyrillic("XIX asr, IV bob, Pyotr I")
+'XIX аср, IV боб, Пётр I'
+>>> to_cyrillic("I. Boʻriyev va M. Asadullayev")
+'И. Бўриев ва М. Асадуллаев'
+>>> to_cyrillic("V asr, I jahon urushi, Nikolay I")
+'V аср, I жаҳон уруши, Николай I'
+>>> to_cyrillic("V harfi")
+'В ҳарфи'
+>>> to_cyrillic("D guruhida, M harfi, Lotin V harfi")
+'Д гуруҳида, М ҳарфи, Лотин В ҳарфи'
+>>> to_cyrillic("V–VI asrlar, I, II va III boblar, V-asr, V va X")
+'V–VI асрлар, I, II ва III боблар, V-аср, В ва Х'
+>>> to_cyrillic("V – VI asrlar, I VA II JAHON URUSHLARI")
+'V – VI асрлар, I ВА II ЖАҲОН УРУШЛАРИ'
+>>> to_cyrillic("I Xalqaro ilmiy-amaliy konferensiya")
+'I Халқаро илмий-амалий конференсия'
+
+```
+
+The word must be only the capitals `I V X L C D M` and a well-formed
+numeral from 1 to 3999 (`XIX`, `MMXXVI`; not `IIII`, `Xix` or `XIXda`).
+Two letters or more are a numeral wherever they stand. One `L`, `C`, `D`
+or `M` is always a letter, whatever stands beside it: such numerals are
+rare, the letters are not (`D guruhida` → `Д гуруҳида`, `C toifa` →
+`C тоифа`, `M harfi` → `М ҳарфи`; `C` is not in the alphabet and stays).
+One `I`, `V` or `X` is most often the letter itself (`V` → `В`), so it is
+a numeral only in context:
+
+- before a word that begins, in any case, with `asr`, `ming`, `bob`,
+  `qism`, `jild`, `tom`, `sinf`, `kurs`, `boʻlim`, `guruh`, `chorak`,
+  `bosqich`, `daraja`, `toifa`, `qurultoy`, `syezd`, `sessiya`, `chaqiriq`,
+  `jahon`, `kvartal`, `semestr`, `smena`, `kitob`, `kategoriya`, `oʻrin`,
+  `yarim`, `yarmi`, `xalqaro`, `respublika`, `konferensiya`, `kongress`,
+  `anjuman` or `simpozium`, or with the 2026 form of one (`bölim`,
+  `çorak`, `bosqiç`, `çaqiriq`, `örin`), after one space, U+00A0
+  NO-BREAK SPACE, `-` or U+2011 NON-BREAKING HYPHEN: `V asr` → `V аср`,
+  `V-asr` → `V-аср`, `I kvartal` → `I квартал`;
+- after a word of two letters or more that begins with a capital, with
+  one space or U+00A0 between and no full stop after: `Pyotr I` →
+  `Пётр I`;
+- in a series with a numeral: `V–VI asrlar` → `V–VI асрлар`,
+  `I va II jahon urushlari` → `I ва II жаҳон урушлари`.
+
+A series is two numerals or more linked by a hyphen or dash (`-`, U+2010
+to U+2014) with no space around it or with one space or U+00A0 on each
+side (`V – VI asrlar` → `V – VI асрлар`), by a comma and one space or
+U+00A0, or by `va` or `yoki`, in any case, with one space or U+00A0 on
+each side (`I VA II JAHON URUSHLARI` → `I ВА II ЖАҲОН УРУШЛАРИ`). A member
+is a numeral of two letters or more, or one `I`, `V` or `X` with no full
+stop after it, so a dash before another word links nothing:
+`X – nomaʼlum, V – tezlik` → `Х – номаълум, В – тезлик`. When one member
+is a numeral on its own — two letters or more, or one letter by the two
+rules above — every member is (`I, II va III boblar` →
+`I, II ва III боблар`); otherwise they are letters (`V va X` → `В ва Х`).
+
+Before a word that begins, in any case, with `harf` or `tovush` (2026:
+`tovuş`) one letter is a letter whatever else stands beside it: `V harfi`
+→ `В ҳарфи`, `Lotin V harfi` → `Лотин В ҳарфи`. After a series every
+member of one letter is a letter, even one that is a numeral on its own,
+and the members of two letters or more stay numerals:
+`Ushbu V va X harflari` → `Ушбу В ва Х ҳарфлари`, `V, X va XV harflari`
+→ `В, Х ва XV ҳарфлари`.
+
+One letter followed by a full stop is an initial: `I. Boʻriyev` →
+`И. Бўриев`. The known limits: an Uzbek word in capitals that is also a
+numeral stays Latin (`MIX`, `DIV`); `Pyotr I.` and `Karl V.` at the end of
+a sentence are read as initials, `Пётр И.`, `Карл В.`; any capitalised
+word before one letter makes it a numeral, the first word of a sentence
+too, `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
+letter before `harf` is read as a letter, `Nikolay I, V harfi` →
+`Николай И, В ҳарфи`; and in a list numbered with a spaced dash one
+letter is a letter, `I – kirish, II – asosiy qism` →
+`И – кириш, II – асосий қисм`: with no numeral after the dash, one letter
+cannot be told from a numeral, as in `X – nomaʼlum, V – tezlik` →
+`Х – номаълум, В – тезлик`. From Cyrillic to Latin a numeral is already
+Latin and stays.
+
 ### The two modifier marks
 
 `ʻ` (U+02BB, turned comma) is part of the letters `oʻ` and `gʻ`. `ʼ` (U+02BC,
@@ -711,7 +918,9 @@ Cyrillic → Latin → Cyrillic round-trips exactly over the native Uzbek letter
 inventory, with two gaps: `т` followed by `с` comes back as `ц` unless the `s`
 starts a suffix the `ts` rule knows (`ўтсўндиргич`, `соатсоз`; see
 Context-dependent rules), and `ъ` after `ў` does not come back (`мўъжиза` →
-`moʻjiza` → `мўжиза`). Both are enforced by the test suite.
+`moʻjiza` → `мўжиза`). Both are enforced by the test suite. A date written
+with a hyphen in Cyrillic comes back as the 1956 rules write it, without one
+(`2026-йил` → `2026-yil` → `2026 йил`; see "Dates and month names").
 
 **Case.** Case is kept per letter unit, not re-applied to the whole word. A
 word is split where a lowercase letter is followed by a capital, and each part
@@ -763,8 +972,8 @@ spelling drops it:
 | --- | --- | --- |
 | щ | merges with ш → `sh` | no distinct sound in Uzbek |
 | ы | merges with и → `i` | no distinct sound in Uzbek |
-| ь | dropped, except `y` before `о` (`бульон` → `bulyon`); not reversible | not represented in either Latin alphabet |
-| ц | positional `ts`/`s`, not reversible | a heuristic; loanword spelling is genuinely inconsistent |
+| ь | dropped, except `y` before `о` (`бульон` → `bulyon`); not reversible, except in a month name standing alone (`iyun` → `июнь`) | not represented in either Latin alphabet |
+| ц | `s` at the end of a word and before Uzbek suffixes only, `ts` after a vowel elsewhere, `s` otherwise; not reversible (`марганец` → `marganes` → `марганес`) | a heuristic; loanword spelling is genuinely inconsistent |
 | ъ | dropped after a consonant before `е ё ю я` and after `ў` (`объект` → `obyekt`, `мўъжиза` → `moʻjiza`), `ʼ` elsewhere; not reversible | the 1995 spelling writes no mark there, so the Latin side has nothing to restore it from |
 
 **Script detection is a heuristic.** A `latin_2026` word containing none of
@@ -813,16 +1022,18 @@ follow:
 ```python
 >>> from akademtranslit import RULES_VERSION
 >>> RULES_VERSION
-'uz-2026-alphabet+project-2026.11'
+'uz-2026-alphabet+project-2026.11.2'
 
 ```
 
 The part before `+` is the official basis: `uz-2026-alphabet` is the 2026
 alphabet of Law No. O'RQ-1184, without official spelling rules. The part after
 it is this project's rule set, named by the year and month of the release that
-last changed the output of `convert`, `to_latin` or `to_cyrillic`; a release
-that changes none of their output keeps the value. Store it next to converted
-text to know which rules produced it.
+last changed the output of `convert`, `to_latin` or `to_cyrillic`. When that
+release is the second or a later one in its month to change the output, its
+number in the month follows: 0.3.0 was `2026.11`, 0.3.2 is `2026.11.2`. A
+release that changes none of their output keeps the value. Store it next to
+converted text to know which rules produced it.
 
 ## Golden vectors
 
@@ -913,7 +1124,8 @@ must give `ŞOŞIMOVA` and not `Şoşimova`, and `OʻZBEKISTON` must give
 cross-script normalization contract, sorting, and the golden vectors. The
 examples in this README and in the docstrings run as tests.
 `tests/test_regressions.py`, `tests/test_changes_0_2_0.py`,
-`tests/test_changes_0_3_0.py` and, for protected spans, for words and
+`tests/test_changes_0_3_0.py`, `tests/test_changes_0_3_2.py` and, for
+protected spans, for words and
 homoglyphs, for `validate` and `migration_report` and for the command line,
 `tests/test_protect.py`, `tests/test_scripts.py`, `tests/test_checks.py` and
 `tests/test_cli.py` pin every behaviour change since 0.1.0; see

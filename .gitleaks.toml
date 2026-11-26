@@ -17,7 +17,7 @@ useDefault = true
 description = "the trap fixture: golden field names"
 targetRules = ["generic-api-key"]
 condition = "AND"
-paths = ['''^js/test/fixtures/traps-0\.3\.1\.json$''']
+paths = ['''^js/test/fixtures/traps-0\.3\.2\.json$''']
 regexes = ['''^sort_key_latin_1995$''']
 
 # The same finding where the fixture was added under its 0.3.0 name. It stays

@@ -42,7 +42,7 @@ test("golden header: schema, versions and input hashes", () => {
   assert.equal(golden.rules_version, lib.RULES_VERSION);
   assert.equal(golden.inputs_sha256, sha256(bytes.inputs));
   assert.equal(golden.tag_inputs_sha256, sha256(bytes.tagInputs));
-  assert.equal(cases.length, 1188);
+  assert.equal(cases.length, 1256);
   assert.equal(Object.keys(golden.results).length, cases.length);
   assert.equal(tagInputs.tags.length, 57);
   assert.equal(tagInputs.scripts.length, 6);

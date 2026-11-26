@@ -1,5 +1,5 @@
 {
- "inputs_sha256": "11860acfa8a27a51f7c7d6735fe92fcb517c4cd8e5fd7897746754c5b515f143",
+ "inputs_sha256": "3ec5e4ea86d777db03540015296cf7278788c0a2c77782978eeda3db66bbcb47",
  "library_version": "0.1.1",
  "results": {
   "c0001": {
@@ -8317,6 +8317,482 @@
    "to_cyrillic": "Ӧzbekiston",
    "to_latin_1995": "Ӧzbekiston",
    "to_latin_2026": "Ӧzbekiston"
+  },
+  "c1189": {
+   "detect_script": "latin_1995",
+   "normalize": "xix asr",
+   "to_cyrillic": "ХИХ аср",
+   "to_latin_1995": "XIX asr",
+   "to_latin_2026": "XIX asr"
+  },
+  "c1190": {
+   "detect_script": "latin_1995",
+   "normalize": "iv bob pyotr i",
+   "to_cyrillic": "ИВ боб, Пётр И",
+   "to_latin_1995": "IV bob, Pyotr I",
+   "to_latin_2026": "IV bob, Pyotr I"
+  },
+  "c1191": {
+   "detect_script": "latin_1995",
+   "normalize": "i boriyev va m asadullayev",
+   "to_cyrillic": "И. Бўриев ва М. Асадуллаев",
+   "to_latin_1995": "I. Boʻriyev va M. Asadullayev",
+   "to_latin_2026": "I. Böriyev va M. Asadullayev"
+  },
+  "c1192": {
+   "detect_script": "latin_1995",
+   "normalize": "pyotr i",
+   "to_cyrillic": "Пётр И.",
+   "to_latin_1995": "Pyotr I.",
+   "to_latin_2026": "Pyotr I."
+  },
+  "c1193": {
+   "detect_script": "latin_1995",
+   "normalize": "mix",
+   "to_cyrillic": "МИХ",
+   "to_latin_1995": "MIX",
+   "to_latin_2026": "MIX"
+  },
+  "c1194": {
+   "detect_script": "cyrillic",
+   "normalize": "xix asr va pyotr i",
+   "to_cyrillic": "XIX аср ва Пётр I",
+   "to_latin_1995": "XIX asr va Pyotr I",
+   "to_latin_2026": "XIX asr va Pyotr I"
+  },
+  "c1195": {
+   "detect_script": "latin_1995",
+   "normalize": "cd va dvd iiii xix xixda",
+   "to_cyrillic": "CД ва ДВД, ИИИИ, Хих, Хихда",
+   "to_latin_1995": "CD va DVD, IIII, Xix, Xixda",
+   "to_latin_2026": "CD va DVD, IIII, Xix, Xixda"
+  },
+  "c1196": {
+   "detect_script": "latin_2026",
+   "normalize": "xxi asr toshkentda",
+   "to_cyrillic": "ХХИ аср Тошкентда",
+   "to_latin_1995": "XXI asr Toshkentda",
+   "to_latin_2026": "XXI asr Toşkentda"
+  },
+  "c1197": {
+   "detect_script": "cyrillic",
+   "normalize": "sentyabr sentyabrda oktyabrning noyabr",
+   "to_cyrillic": "Сентябрь, сентябрда, октябрнинг, ноябрь",
+   "to_latin_1995": "Sentyabr, sentyabrda, oktyabrning, noyabr",
+   "to_latin_2026": "Sentyabr, sentyabrda, oktyabrning, noyabr"
+  },
+  "c1198": {
+   "detect_script": "cyrillic",
+   "normalize": "sentyabr sentyabrda",
+   "to_cyrillic": "СЕНТЯБРЬ, Сентябрда",
+   "to_latin_1995": "SENTYABR, Sentyabrda",
+   "to_latin_2026": "SENTYABR, Sentyabrda"
+  },
+  "c1199": {
+   "detect_script": "latin_1995",
+   "normalize": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "to_cyrillic": "январ феврал март апрел май июн июл август сентабр октабр ноябр декабр",
+   "to_latin_1995": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr",
+   "to_latin_2026": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr"
+  },
+  "c1200": {
+   "detect_script": "latin_1995",
+   "normalize": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "to_cyrillic": "январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда",
+   "to_latin_1995": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda",
+   "to_latin_2026": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda"
+  },
+  "c1201": {
+   "detect_script": "latin_1995",
+   "normalize": "sentabr sentyabr sentabrda sentabri",
+   "to_cyrillic": "СЕНТАБР, Сентябр, Сентабрда, сентабри",
+   "to_latin_1995": "SENTABR, Sentyabr, Sentabrda, sentabri",
+   "to_latin_2026": "SENTABR, Sentyabr, Sentabrda, sentabri"
+  },
+  "c1202": {
+   "detect_script": "latin_1995",
+   "normalize": "martaba mayda iyuncha",
+   "to_cyrillic": "Мартаба, майда, июнча",
+   "to_latin_1995": "Martaba, mayda, iyuncha",
+   "to_latin_2026": "Martaba, mayda, iyunça"
+  },
+  "c1203": {
+   "detect_script": "latin_1995",
+   "normalize": "1991 yilning 1 sentabri",
+   "to_cyrillic": "1991-йилнинг 1-сентабри",
+   "to_latin_1995": "1991-yilning 1-sentabri",
+   "to_latin_2026": "1991-yilning 1-sentabri"
+  },
+  "c1204": {
+   "detect_script": "cyrillic",
+   "normalize": "1956 yil 22 sentyabr",
+   "to_cyrillic": "1956 йил 22 сентябрь",
+   "to_latin_1995": "1956 yil 22 sentyabr",
+   "to_latin_2026": "1956 yil 22 sentyabr"
+  },
+  "c1205": {
+   "detect_script": "cyrillic",
+   "normalize": "1991 yilning 1 sentyabri",
+   "to_cyrillic": "1991-йилнинг 1-сентябри",
+   "to_latin_1995": "1991-yilning 1-sentyabri",
+   "to_latin_2026": "1991-yilning 1-sentyabri"
+  },
+  "c1206": {
+   "detect_script": "latin_1995",
+   "normalize": "1956 yil 22 sentabr",
+   "to_cyrillic": "1956 йил 22 сентабр",
+   "to_latin_1995": "1956 yil 22 sentabr",
+   "to_latin_2026": "1956 yil 22 sentabr"
+  },
+  "c1207": {
+   "detect_script": "latin_1995",
+   "normalize": "5 yil ishladi",
+   "to_cyrillic": "5 йил ишлади",
+   "to_latin_1995": "5 yil ishladi",
+   "to_latin_2026": "5 yil işladi"
+  },
+  "c1208": {
+   "detect_script": "cyrillic",
+   "normalize": "2000 yil davomida",
+   "to_cyrillic": "2000 йил давомида",
+   "to_latin_1995": "2000 yil davomida",
+   "to_latin_2026": "2000 yil davomida"
+  },
+  "c1209": {
+   "detect_script": "cyrillic",
+   "normalize": "32 sentabr 32 sentyabr",
+   "to_cyrillic": "32 sentabr, 32-сентябрь",
+   "to_latin_1995": "32 sentabr, 32-sentyabr",
+   "to_latin_2026": "32 sentabr, 32-sentyabr"
+  },
+  "c1210": {
+   "detect_script": "latin_1995",
+   "normalize": "1991 yil 1 sentabr",
+   "to_cyrillic": "1991‑йил 1‑сентабр",
+   "to_latin_1995": "1991‑yil 1‑sentabr",
+   "to_latin_2026": "1991‑yil 1‑sentabr"
+  },
+  "c1211": {
+   "detect_script": "cyrillic",
+   "normalize": "1956 yil 22 sentyabr",
+   "to_cyrillic": "1956 йил 22 сентябрь",
+   "to_latin_1995": "1956 yil 22 sentyabr",
+   "to_latin_2026": "1956 yil 22 sentyabr"
+  },
+  "c1212": {
+   "detect_script": "latin_1995",
+   "normalize": "60 yillar 5 sinf 39 son",
+   "to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "to_latin_2026": "60-yillar, 5-sinf, 39-son"
+  },
+  "c1213": {
+   "detect_script": "cyrillic",
+   "normalize": "60 yillar 5 sinf 39 son",
+   "to_cyrillic": "60-йиллар, 5-синф, 39-сон",
+   "to_latin_1995": "60-yillar, 5-sinf, 39-son",
+   "to_latin_2026": "60-yillar, 5-sinf, 39-son"
+  },
+  "c1214": {
+   "detect_script": "cyrillic",
+   "normalize": "476 yil 476 yil 2100 yil",
+   "to_cyrillic": "476-yil, 476 йил, 2100 йил",
+   "to_latin_1995": "476-yil, 476 yil, 2100 yil",
+   "to_latin_2026": "476-yil, 476 yil, 2100 yil"
+  },
+  "c1215": {
+   "detect_script": "cyrillic",
+   "normalize": "3 marta 5 martaba 2 maydon 5 mayda",
+   "to_cyrillic": "3 марта, 5-мартаба, 2-майдон, 5 майда",
+   "to_latin_1995": "3 marta, 5-martaba, 2-maydon, 5 mayda",
+   "to_latin_2026": "3 marta, 5-martaba, 2-maydon, 5 mayda"
+  },
+  "c1216": {
+   "detect_script": "latin_1995",
+   "normalize": "1941 1945 yillar 1990 1991 yillarda 21 22 noyabr",
+   "to_cyrillic": "1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр",
+   "to_latin_1995": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr",
+   "to_latin_2026": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr"
+  },
+  "c1217": {
+   "detect_script": "latin_1995",
+   "normalize": "8 martda 9 mayi 31 dekabrgacha 15 iyundagi",
+   "to_cyrillic": "8-мартда, 9-майи, 31-декабргача, 15-июндаги",
+   "to_latin_1995": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi",
+   "to_latin_2026": "8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi"
+  },
+  "c1218": {
+   "detect_script": "latin_1995",
+   "normalize": "1 yanvar 2026 yil",
+   "to_cyrillic": "1-ЯНВАР, 2026-ЙИЛ",
+   "to_latin_1995": "1-YANVAR, 2026-YIL",
+   "to_latin_2026": "1-YANVAR, 2026-YIL"
+  },
+  "c1219": {
+   "detect_script": "latin_1995",
+   "normalize": "https x uz 1991 yil va 1991 yil",
+   "to_cyrillic": "ҳттпс://х.уз/1991-йил ва 1991-йил",
+   "to_latin_1995": "https://x.uz/1991-yil va 1991-yil",
+   "to_latin_2026": "https://x.uz/1991-yil va 1991-yil"
+  },
+  "c1220": {
+   "detect_script": "latin_1995",
+   "normalize": "01 sentabr 0991 yil 12345 yil 1991 yil no1991 yil",
+   "to_cyrillic": "01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил",
+   "to_latin_1995": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil",
+   "to_latin_2026": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil"
+  },
+  "c1221": {
+   "detect_script": "latin_2026",
+   "normalize": "toshkentda 2026 yil 1 sentabr",
+   "to_cyrillic": "Тошкентда 2026-йил 1-сентабр",
+   "to_latin_1995": "Toshkentda 2026-yil 1-sentabr",
+   "to_latin_2026": "Toşkentda 2026-yil 1-sentabr"
+  },
+  "c1222": {
+   "detect_script": "cyrillic",
+   "normalize": "marganets nenets shprits kvars",
+   "to_cyrillic": "марганец, ненец, шприц, кварц",
+   "to_latin_1995": "marganets, nenets, shprits, kvars",
+   "to_latin_2026": "marganets, nenets, şprits, kvars"
+  },
+  "c1223": {
+   "detect_script": "cyrillic",
+   "normalize": "nenetslar shpritsni nenetslarning shpritsdagi",
+   "to_cyrillic": "ненецлар, шприцни, ненецларнинг, шприцдаги",
+   "to_latin_1995": "nenetslar, shpritsni, nenetslarning, shpritsdagi",
+   "to_latin_2026": "nenetslar, şpritsni, nenetslarning, şpritsdagi"
+  },
+  "c1224": {
+   "detect_script": "cyrillic",
+   "normalize": "litsey botsman platsdarm pitssa shpritsi",
+   "to_cyrillic": "лицей, боцман, плацдарм, пицца, шприци",
+   "to_latin_1995": "litsey, botsman, platsdarm, pitssa, shpritsi",
+   "to_latin_2026": "litsey, botsman, platsdarm, pitssa, şpritsi"
+  },
+  "c1225": {
+   "detect_script": "cyrillic",
+   "normalize": "marganets marganets",
+   "to_cyrillic": "МАРГАНЕЦ, Марганец",
+   "to_latin_1995": "MARGANETS, Marganets",
+   "to_latin_2026": "MARGANETS, Marganets"
+  },
+  "c1226": {
+   "detect_script": "latin_1995",
+   "normalize": "marganes neneslar shpris",
+   "to_cyrillic": "марганес, ненеслар, шприс",
+   "to_latin_1995": "marganes, neneslar, shpris",
+   "to_latin_2026": "marganes, neneslar, şpris"
+  },
+  "c1227": {
+   "detect_script": "latin_1995",
+   "normalize": "v harfi",
+   "to_cyrillic": "В ҳарфи",
+   "to_latin_1995": "V harfi",
+   "to_latin_2026": "V harfi"
+  },
+  "c1228": {
+   "detect_script": "latin_1995",
+   "normalize": "v asr",
+   "to_cyrillic": "В аср",
+   "to_latin_1995": "V asr",
+   "to_latin_2026": "V asr"
+  },
+  "c1229": {
+   "detect_script": "latin_1995",
+   "normalize": "i jahon urushi",
+   "to_cyrillic": "И жаҳон уруши",
+   "to_latin_1995": "I jahon urushi",
+   "to_latin_2026": "I jahon uruşi"
+  },
+  "c1230": {
+   "detect_script": "latin_1995",
+   "normalize": "nikolay i",
+   "to_cyrillic": "Николай И",
+   "to_latin_1995": "Nikolay I",
+   "to_latin_2026": "Nikolay I"
+  },
+  "c1231": {
+   "detect_script": "latin_1995",
+   "normalize": "x",
+   "to_cyrillic": "Х",
+   "to_latin_1995": "X",
+   "to_latin_2026": "X"
+  },
+  "c1232": {
+   "detect_script": "latin_1995",
+   "normalize": "2026 yil",
+   "to_cyrillic": "2026 йил",
+   "to_latin_1995": "2026 yil",
+   "to_latin_2026": "2026 yil"
+  },
+  "c1233": {
+   "detect_script": "cyrillic",
+   "normalize": "1991 yil",
+   "to_cyrillic": "1991-йил",
+   "to_latin_1995": "1991-yil",
+   "to_latin_2026": "1991-yil"
+  },
+  "c1234": {
+   "detect_script": "latin_1995",
+   "normalize": "v vi asrlar",
+   "to_cyrillic": "В–ВИ асрлар",
+   "to_latin_1995": "V–VI asrlar",
+   "to_latin_2026": "V–VI asrlar"
+  },
+  "c1235": {
+   "detect_script": "latin_1995",
+   "normalize": "x xii asrlarda",
+   "to_cyrillic": "Х–ХИИ асрларда",
+   "to_latin_1995": "X–XII asrlarda",
+   "to_latin_2026": "X–XII asrlarda"
+  },
+  "c1236": {
+   "detect_script": "latin_1995",
+   "normalize": "i ii kurs talabalari",
+   "to_cyrillic": "И-ИИ курс талабалари",
+   "to_latin_1995": "I-II kurs talabalari",
+   "to_latin_2026": "I-II kurs talabalari"
+  },
+  "c1237": {
+   "detect_script": "latin_1995",
+   "normalize": "i ii va iii boblar",
+   "to_cyrillic": "И, ИИ ва ИИИ боблар",
+   "to_latin_1995": "I, II va III boblar",
+   "to_latin_2026": "I, II va III boblar"
+  },
+  "c1238": {
+   "detect_script": "latin_1995",
+   "normalize": "i va ii jahon urushlari",
+   "to_cyrillic": "И ва ИИ жаҳон урушлари",
+   "to_latin_1995": "I va II jahon urushlari",
+   "to_latin_2026": "I va II jahon uruşlari"
+  },
+  "c1239": {
+   "detect_script": "latin_1995",
+   "normalize": "v va x harflari",
+   "to_cyrillic": "В ва Х ҳарфлари",
+   "to_latin_1995": "V va X harflari",
+   "to_latin_2026": "V va X harflari"
+  },
+  "c1240": {
+   "detect_script": "latin_1995",
+   "normalize": "lotin v harfi",
+   "to_cyrillic": "Лотин В ҳарфи",
+   "to_latin_1995": "Lotin V harfi",
+   "to_latin_2026": "Lotin V harfi"
+  },
+  "c1241": {
+   "detect_script": "latin_1995",
+   "normalize": "d guruhida m harfi",
+   "to_cyrillic": "Д гуруҳида, М ҳарфи",
+   "to_latin_1995": "D guruhida, M harfi",
+   "to_latin_2026": "D guruhida, M harfi"
+  },
+  "c1242": {
+   "detect_script": "latin_1995",
+   "normalize": "v asr i jahon urushi",
+   "to_cyrillic": "В-аср, И-жаҳон уруши",
+   "to_latin_1995": "V-asr, I-jahon urushi",
+   "to_latin_2026": "V-asr, I-jahon uruşi"
+  },
+  "c1243": {
+   "detect_script": "latin_1995",
+   "normalize": "i kvartal i semestr i smenada",
+   "to_cyrillic": "И квартал, И семестр, И сменада",
+   "to_latin_1995": "I kvartal, I semestr, I smenada",
+   "to_latin_2026": "I kvartal, I semestr, I smenada"
+  },
+  "c1244": {
+   "detect_script": "latin_1995",
+   "normalize": "i orinni egalladi",
+   "to_cyrillic": "И ўринни эгаллади",
+   "to_latin_1995": "I oʻrinni egalladi",
+   "to_latin_2026": "I örinni egalladi"
+  },
+  "c1245": {
+   "detect_script": "latin_1995",
+   "normalize": "xx asrning i yarmi",
+   "to_cyrillic": "ХХ асрнинг И ярми",
+   "to_latin_1995": "XX asrning I yarmi",
+   "to_latin_2026": "XX asrning I yarmi"
+  },
+  "c1246": {
+   "detect_script": "latin_1995",
+   "normalize": "i xalqaro ilmiy amaliy konferensiya",
+   "to_cyrillic": "И Халқаро илмий-амалий конференсия",
+   "to_latin_1995": "I Xalqaro ilmiy-amaliy konferensiya",
+   "to_latin_2026": "I Xalqaro ilmiy-amaliy konferensiya"
+  },
+  "c1247": {
+   "detect_script": "latin_1995",
+   "normalize": "i karimov va v ivanov",
+   "to_cyrillic": "И. Каримов ва В. Иванов",
+   "to_latin_1995": "I. Karimov va V. Ivanov",
+   "to_latin_2026": "I. Karimov va V. Ivanov"
+  },
+  "c1248": {
+   "detect_script": "latin_1995",
+   "normalize": "a b c va d toifalar",
+   "to_cyrillic": "А, Б, C ва Д тоифалар",
+   "to_latin_1995": "A, B, C va D toifalar",
+   "to_latin_2026": "A, B, C va D toifalar"
+  },
+  "c1249": {
+   "detect_script": "latin_1995",
+   "normalize": "v va x",
+   "to_cyrillic": "В ва Х",
+   "to_latin_1995": "V va X",
+   "to_latin_2026": "V va X"
+  },
+  "c1250": {
+   "detect_script": "latin_2026",
+   "normalize": "v vi asrlar i bolim i chorak",
+   "to_cyrillic": "В–ВИ асрлар, И бўлим, И чорак",
+   "to_latin_1995": "V–VI asrlar, I boʻlim, I chorak",
+   "to_latin_2026": "V–VI asrlar, I bölim, I çorak"
+  },
+  "c1251": {
+   "detect_script": "latin_1995",
+   "normalize": "ushbu v va x harflari",
+   "to_cyrillic": "Ушбу В ва Х ҳарфлари",
+   "to_latin_1995": "Ushbu V va X harflari",
+   "to_latin_2026": "Uşbu V va X harflari"
+  },
+  "c1252": {
+   "detect_script": "latin_1995",
+   "normalize": "lotin v x harflari",
+   "to_cyrillic": "Лотин В, Х ҳарфлари",
+   "to_latin_1995": "Lotin V, X harflari",
+   "to_latin_2026": "Lotin V, X harflari"
+  },
+  "c1253": {
+   "detect_script": "latin_1995",
+   "normalize": "v vi asrlar v vi asrlar",
+   "to_cyrillic": "В – ВИ асрлар, В - ВИ асрлар",
+   "to_latin_1995": "V – VI asrlar, V - VI asrlar",
+   "to_latin_2026": "V – VI asrlar, V - VI asrlar"
+  },
+  "c1254": {
+   "detect_script": "latin_1995",
+   "normalize": "i va ii jahon urushlari",
+   "to_cyrillic": "И ВА ИИ ЖАҲОН УРУШЛАРИ",
+   "to_latin_1995": "I VA II JAHON URUSHLARI",
+   "to_latin_2026": "I VA II JAHON URUŞLARI"
+  },
+  "c1255": {
+   "detect_script": "latin_1995",
+   "normalize": "x nomalum v tezlik",
+   "to_cyrillic": "Х – номаълум, В – тезлик",
+   "to_latin_1995": "X – nomaʼlum, V – tezlik",
+   "to_latin_2026": "X – nomaʼlum, V – tezlik"
+  },
+  "c1256": {
+   "detect_script": "latin_1995",
+   "normalize": "nikolay i v harfi",
+   "to_cyrillic": "Николай И, В ҳарфи",
+   "to_latin_1995": "Nikolay I, V harfi",
+   "to_latin_2026": "Nikolay I, V harfi"
   }
  },
  "schema": "akademtranslit-golden/1"

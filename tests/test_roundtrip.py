@@ -100,7 +100,9 @@ NATIVE_CYRILLIC = [
     "яшил",
     "ҳаёт",
     "Ўзбек тили ва адабиёти",
-    "Тошкент давлат университети, 2026-йил",
+    # The year without a hyphen, as Cyrillic writes it (the 1956 rules); with
+    # one it comes back without it (tests/test_changes_0_3_2.py).
+    "Тошкент давлат университети, 2026 йил",
 ]
 
 

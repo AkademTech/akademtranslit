@@ -1,6 +1,127 @@
 # Changelog
 
-## Unreleased
+## 0.3.2 — 2026-11-26
+
+### Changed
+
+The output of `convert`, `to_latin` and `to_cyrillic` changes in four rules,
+and `to_ascii` writes U+2011 as a hyphen. `RULES_VERSION` is `uz-2026-alphabet+project-2026.11.2`: the release that
+changes the output is the second in November 2026, and from now on such a
+release adds its number in the month.
+
+- Roman numerals stay Latin in Cyrillic: converting `latin_1995` or
+  `latin_2026` to Cyrillic keeps a word that is a well-formed Roman numeral
+  in capitals, `XIX asr` → `XIX аср`, `IV bob` → `IV боб` (were `ХИХ аср`,
+  `ИВ боб`). Two letters or more are a numeral wherever they stand. One
+  `L`, `C`, `D` or `M` is a letter wherever it stands, as before:
+  `D guruhida` → `Д гуруҳида`, `M harfi` → `М ҳарфи`. One `I`, `V` or `X`
+  is most often the letter itself, so it is a numeral only in context:
+  - before a word that begins with `asr`, `ming`, `bob`, `qism`, `jild`,
+    `tom`, `sinf`, `kurs`, `boʻlim`, `guruh`, `chorak`, `bosqich`,
+    `daraja`, `toifa`, `qurultoy`, `syezd`, `sessiya`, `chaqiriq`,
+    `jahon`, `kvartal`, `semestr`, `smena`, `kitob`, `kategoriya`,
+    `oʻrin`, `yarim`, `yarmi`, `xalqaro`, `respublika`, `konferensiya`,
+    `kongress`, `anjuman` or `simpozium` (or the 2026 form of one:
+    `bölim`, `çorak`, `bosqiç`, `çaqiriq`, `örin`), after one space,
+    U+00A0, `-` or U+2011: `V asr` → `V аср`, `V-asr` → `V-аср`,
+    `I jahon urushi` → `I жаҳон уруши`, `I Xalqaro ilmiy-amaliy
+    konferensiya` → `I Халқаро илмий-амалий конференсия`;
+  - after a word of two letters or more that begins with a capital, with
+    one space or U+00A0 between and no full stop after: `Pyotr I` →
+    `Пётр I`, `Nikolay I` → `Николай I`;
+  - in a series with a numeral: two numerals or more linked by a hyphen or
+    dash (U+002D, U+2010 to U+2014) with no space around it or with one
+    space on each side, by a comma and one space, or by `va` or `yoki`,
+    in any case, with one space on each side, of which one is a numeral
+    on its own: `V–VI asrlar` → `V–VI асрлар`, `V – VI asrlar` →
+    `V – VI асрлар`, `I, II va III boblar` → `I, II ва III боблар`,
+    `I va II jahon urushlari` → `I ва II жаҳон урушлари`,
+    `I VA II JAHON URUSHLARI` → `I ВА II ЖАҲОН УРУШЛАРИ` (were `В аср`,
+    `И жаҳон уруши`, `Пётр И`, `В–ВИ асрлар`, `И, ИИ ва ИИИ боблар`). A
+    dash before a word that is not a numeral links nothing:
+    `X – nomaʼlum, V – tezlik` → `Х – номаълум, В – тезлик`.
+
+  Before a word that begins with `harf` or `tovush` it is a letter even
+  so, and after a series every member of one letter is a letter, while
+  those of two letters or more stay numerals: `V harfi` → `В ҳарфи`,
+  `Lotin V harfi` → `Лотин В ҳарфи`, `Ushbu V va X harflari` →
+  `Ушбу В ва Х ҳарфлари`, `V, X va XV harflari` → `В, Х ва XV ҳарфлари`.
+  Otherwise it is a letter, as before: `V` → `В`, `V va X` → `В ва Х`,
+  `I. Boʻriyev` → `И. Бўриев`. Known limits: `Pyotr I.` and `Karl V.` at
+  the end of a sentence are read as initials; any capitalised word before
+  one letter makes it a numeral, the first of a sentence too,
+  `Variant V` → `Вариант V`; a ruler's numeral linked by a comma to a
+  letter before `harf` is read as a letter, `Nikolay I, V harfi` →
+  `Николай И, В ҳарфи`; in a list numbered with a spaced dash one letter
+  is a letter, `I – kirish, II – asosiy qism` →
+  `И – кириш, II – асосий қисм`: with no numeral after the dash, one
+  letter cannot be told from a numeral, `X – nomaʼlum, V – tezlik` →
+  `Х – номаълум, В – тезлик`.
+- Dates: Cyrillic writes no hyphen after the number of a year or of a day of
+  the month, as the 1956 spelling rules do, and Latin writes one:
+  `1991-yilning 1-sentabri` → `1991 йилнинг 1 сентябри`,
+  `1956 йил 22 сентябрь` → `1956-yil 22-sentabr` (were
+  `1991-йилнинг 1-сентабри`, `1956 yil 22 sentyabr`). The separator changes
+  only when the date changes script: the word after the number was read in
+  Latin and the target is Cyrillic, or the other way round. Within one
+  script — `latin_1995` ↔ `latin_2026`, or an orthography to itself — it is
+  the author's and stays: `2026 yil` stays `2026 yil`, `1991-йил` stays
+  `1991-йил`. With `source="auto"` each date goes by the script its word is
+  read in. A year is three or four digits and a word in `йил…` to Cyrillic,
+  1000 to 2099 and a word in `yil…` to Latin; a day is 1 to 31 and a month
+  name. U+2011 NON-BREAKING HYPHEN and U+00A0 NO-BREAK SPACE take each
+  other's place. Other ordinals keep the hyphen (`5-sinf`, `60-yillar`).
+- Month names: Cyrillic `сентябр` and `октябр` are `sentabr` and `oktabr`,
+  with any suffix: `Сентябрь` → `Sentabr`, `октябрнинг` → `oktabrning` (were
+  `Sentyabr`, `oktyabrning`). From Latin, `sentabr` and `oktabr` are
+  `сентябр` and `октябр`, and a month name standing alone gets its `ь`:
+  `iyun` → `июнь`, `sentabr` → `сентябрь` (were `июн`, `сентабр`).
+- A word-final `ц` is `s` from Cyrillic to Latin, and so is a `ц` followed
+  by Uzbek suffixes only: `марганец` → `marganes`, `шприц` → `shpris`,
+  `ненецлар` → `neneslar`, `шприцни` → `shprisni` (were `marganets`,
+  `shprits`, `nenetslar`, `shpritsni`). Surnames too: `Кац` → `Kas`, `Швец`
+  → `Şves`. Latin to Cyrillic does not change: `marganes` → `марганес`.
+- `to_ascii` writes U+2011 NON-BREAKING HYPHEN as `-`. It removed it before,
+  with the other characters that are not ASCII, so a date that Latin writes
+  with it ran together: `1956` U+00A0 `йил 22` U+00A0 `сентябрь` →
+  `1956-yil 22-sentabr` (was `1956yil 22sentabr`). U+00A0 is a space, as
+  before.
+
+`to_ascii`, `migration_report` and the suggestions of `validate` follow
+`convert`. `migration_report` converts within the Latin script, so it keeps
+a date's separator, as `validate` does. `normalize` does not
+change, as in every patch release: it reads
+`марганец` and `сентябрь` as before (`marganets`, `sentyabr`), so their
+keys are not the keys of the new Latin spellings. The same holds for
+`rules.cyrillic_word_to_latin_1995`, which code outside the library builds
+keys with; `convert` reads Cyrillic with the new
+`rules.convert_cyrillic_word`.
+
+### Output changes
+
+Golden diff 0.3.1 → 0.3.2, on 1256 inputs (68 added in 0.3.2):
+`to_cyrillic` 36, `to_latin_1995` 11, `to_latin_2026` 11, `to_ascii` 12,
+`validate_latin_1995` 9, `validate_latin_2026` 9, and `convert` from
+Cyrillic to `latin_1995` and `latin_2026` 14 each and from `latin_1995`
+and `latin_2026` to Cyrillic 43 each. `convert` within one script —
+Cyrillic to Cyrillic and among the Latin orthographies — changes nothing.
+On the 1188 inputs that 0.3.1 had, 6 change, each only where it changes
+script:
+
+- Roman numerals: 2 — `XXI asr` and `XXI аср`, in the Cyrillic fields;
+- dates: 3 — `ilmiy jurnal 2026 yil 12 son` read as Cyrillic and
+  converted to Latin, `Ilmiy jurnal, 2026-yil, 12-son` converted to
+  Cyrillic, and `Тошкент давлат университети, 2026-йил` read as Latin and
+  converted to Cyrillic;
+- month names: 1 — `iyun`;
+- word-final `ц`: none.
+
+The 68 new inputs cover each rule and its limits; 48 of them convert
+differently from 0.3.1. `normalize`, the `sort_key` fields,
+`normalize_apostrophes`, `segments`, `script_spans`, `fold_homoglyphs` and
+the other fields are unchanged. The golden files of 0.1.1, 0.2.0, 0.3.0 and
+0.3.1 are made again from their tags with the new inputs; their results on
+the earlier inputs are unchanged.
 
 ### Documentation
 
@@ -9,12 +130,21 @@
   them are valid BCP 47.
 - `CONTRIBUTING.md`: contributions are accepted under the MIT license, the
   project's license.
+- README: dates and month names, Roman numerals, the `ц` rule as a table,
+  the rules version with a number in the month, their known limits, and
+  that `normalize` keeps its key. `docs/architecture.md`: where the rules
+  for whole words and the date step run.
 
 ### Development
 
 - The JavaScript port's Unicode fixture records only the minor version of
   the Python that made it (`3.12`, not `3.12.13`). CI checks the fixtures on
   any Python 3.12.x.
+- `tests/test_changes_0_3_2.py` and `js/test/changes-0.3.2.test.js` pin the
+  four rules and `to_ascii`'s U+2011; `js/test/readme.test.js` runs the
+  README's JavaScript examples. The JS fixtures are named for 0.3.2 and
+  have six more trap inputs, for the new rules; `.gitleaks.toml` names the
+  renamed trap fixture.
 
 ## 0.3.1 — 2026-11-18
 

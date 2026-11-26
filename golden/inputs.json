@@ -8941,6 +8941,550 @@
     "mixed"
    ],
    "text": "Ӧzbekiston"
+  },
+  {
+   "id": "c1189",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "XIX asr"
+  },
+  {
+   "id": "c1190",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "IV bob, Pyotr I"
+  },
+  {
+   "id": "c1191",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I. Boʻriyev va M. Asadullayev"
+  },
+  {
+   "id": "c1192",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Pyotr I."
+  },
+  {
+   "id": "c1193",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "MIX"
+  },
+  {
+   "id": "c1194",
+   "tags": [
+    "roman-0.3.2",
+    "cyrillic"
+   ],
+   "text": "XIX аср ва Пётр I"
+  },
+  {
+   "id": "c1195",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "CD va DVD, IIII, Xix, XIXda"
+  },
+  {
+   "id": "c1196",
+   "tags": [
+    "roman-0.3.2",
+    "latin_2026"
+   ],
+   "text": "XXI asr Toşkentda"
+  },
+  {
+   "id": "c1197",
+   "tags": [
+    "month-0.3.2",
+    "cyrillic"
+   ],
+   "text": "Сентябрь, сентябрда, октябрнинг, ноябрь"
+  },
+  {
+   "id": "c1198",
+   "tags": [
+    "month-0.3.2",
+    "cyrillic"
+   ],
+   "text": "СЕНТЯБРЬ, СЕНТЯБРда"
+  },
+  {
+   "id": "c1199",
+   "tags": [
+    "month-0.3.2",
+    "latin_1995"
+   ],
+   "text": "yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr"
+  },
+  {
+   "id": "c1200",
+   "tags": [
+    "month-0.3.2",
+    "latin_1995"
+   ],
+   "text": "yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda"
+  },
+  {
+   "id": "c1201",
+   "tags": [
+    "month-0.3.2",
+    "latin_1995"
+   ],
+   "text": "SENTABR, Sentyabr, SENTABRda, sentabri"
+  },
+  {
+   "id": "c1202",
+   "tags": [
+    "month-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Martaba, mayda, iyuncha"
+  },
+  {
+   "id": "c1203",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "1991-yilning 1-sentabri"
+  },
+  {
+   "id": "c1204",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "1956 йил 22 сентябрь"
+  },
+  {
+   "id": "c1205",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "1991-йилнинг 1-сентябри"
+  },
+  {
+   "id": "c1206",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "1956 yil 22 sentabr"
+  },
+  {
+   "id": "c1207",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "5 yil ishladi"
+  },
+  {
+   "id": "c1208",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "2000 йил давомида"
+  },
+  {
+   "id": "c1209",
+   "tags": [
+    "date-0.3.2",
+    "mixed"
+   ],
+   "text": "32 sentabr, 32-сентябрь"
+  },
+  {
+   "id": "c1210",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "1991‑yil 1‑sentabr"
+  },
+  {
+   "id": "c1211",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "1956 йил 22 сентябрь"
+  },
+  {
+   "id": "c1212",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "60-yillar, 5-sinf, 39-son"
+  },
+  {
+   "id": "c1213",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "60-йиллар, 5-синф, 39-сон"
+  },
+  {
+   "id": "c1214",
+   "tags": [
+    "date-0.3.2",
+    "mixed"
+   ],
+   "text": "476-yil, 476 йил, 2100 йил"
+  },
+  {
+   "id": "c1215",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "3 марта, 5-мартаба, 2-майдон, 5 майда"
+  },
+  {
+   "id": "c1216",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr"
+  },
+  {
+   "id": "c1217",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "8-martda, 9-mayi, 31-dekabrgacha, 15-iyundagi"
+  },
+  {
+   "id": "c1218",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "1-YANVAR, 2026-YIL"
+  },
+  {
+   "id": "c1219",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "https://x.uz/1991-yil va 1991-yil"
+  },
+  {
+   "id": "c1220",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil"
+  },
+  {
+   "id": "c1221",
+   "tags": [
+    "date-0.3.2",
+    "latin_2026"
+   ],
+   "text": "Toşkentda 2026-yil 1-sentabr"
+  },
+  {
+   "id": "c1222",
+   "tags": [
+    "ts-0.3.2",
+    "cyrillic"
+   ],
+   "text": "марганец, ненец, шприц, кварц"
+  },
+  {
+   "id": "c1223",
+   "tags": [
+    "ts-0.3.2",
+    "cyrillic"
+   ],
+   "text": "ненецлар, шприцни, ненецларнинг, шприцдаги"
+  },
+  {
+   "id": "c1224",
+   "tags": [
+    "ts-0.3.2",
+    "cyrillic"
+   ],
+   "text": "лицей, боцман, плацдарм, пицца, шприци"
+  },
+  {
+   "id": "c1225",
+   "tags": [
+    "ts-0.3.2",
+    "cyrillic"
+   ],
+   "text": "МАРГАНЕЦ, Марганец"
+  },
+  {
+   "id": "c1226",
+   "tags": [
+    "ts-0.3.2",
+    "latin_1995"
+   ],
+   "text": "marganes, neneslar, shpris"
+  },
+  {
+   "id": "c1227",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V harfi"
+  },
+  {
+   "id": "c1228",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V asr"
+  },
+  {
+   "id": "c1229",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I jahon urushi"
+  },
+  {
+   "id": "c1230",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Nikolay I"
+  },
+  {
+   "id": "c1231",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "X"
+  },
+  {
+   "id": "c1232",
+   "tags": [
+    "date-0.3.2",
+    "latin_1995"
+   ],
+   "text": "2026 yil"
+  },
+  {
+   "id": "c1233",
+   "tags": [
+    "date-0.3.2",
+    "cyrillic"
+   ],
+   "text": "1991-йил"
+  },
+  {
+   "id": "c1234",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V–VI asrlar"
+  },
+  {
+   "id": "c1235",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "X–XII asrlarda"
+  },
+  {
+   "id": "c1236",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I-II kurs talabalari"
+  },
+  {
+   "id": "c1237",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I, II va III boblar"
+  },
+  {
+   "id": "c1238",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I va II jahon urushlari"
+  },
+  {
+   "id": "c1239",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V va X harflari"
+  },
+  {
+   "id": "c1240",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Lotin V harfi"
+  },
+  {
+   "id": "c1241",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "D guruhida, M harfi"
+  },
+  {
+   "id": "c1242",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V-asr, I-jahon urushi"
+  },
+  {
+   "id": "c1243",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I kvartal, I semestr, I smenada"
+  },
+  {
+   "id": "c1244",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I oʻrinni egalladi"
+  },
+  {
+   "id": "c1245",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "XX asrning I yarmi"
+  },
+  {
+   "id": "c1246",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I Xalqaro ilmiy-amaliy konferensiya"
+  },
+  {
+   "id": "c1247",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I. Karimov va V. Ivanov"
+  },
+  {
+   "id": "c1248",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "A, B, C va D toifalar"
+  },
+  {
+   "id": "c1249",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V va X"
+  },
+  {
+   "id": "c1250",
+   "tags": [
+    "roman-0.3.2",
+    "latin_2026"
+   ],
+   "text": "V–VI asrlar, I bölim, I çorak"
+  },
+  {
+   "id": "c1251",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Ushbu V va X harflari"
+  },
+  {
+   "id": "c1252",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Lotin V, X harflari"
+  },
+  {
+   "id": "c1253",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "V – VI asrlar, V - VI asrlar"
+  },
+  {
+   "id": "c1254",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "I VA II JAHON URUSHLARI"
+  },
+  {
+   "id": "c1255",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "X – nomaʼlum, V – tezlik"
+  },
+  {
+   "id": "c1256",
+   "tags": [
+    "roman-0.3.2",
+    "latin_1995"
+   ],
+   "text": "Nikolay I, V harfi"
   }
  ],
  "schema": "akademtranslit-golden-inputs/1"

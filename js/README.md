@@ -5,7 +5,7 @@ Uzbek in its three orthographies: Cyrillic, the 1995 Latin alphabet and the
 2026 Latin alphabet (Law No. O'RQ-1184). ES modules, no dependencies, the same
 files in Node and in a browser.
 
-Version 0.3.1, the same as the Python library. Not on npm: `"private": true`
+Version 0.3.2, the same as the Python library. Not on npm: `"private": true`
 until a decision to publish.
 
 ## What is measured
@@ -15,13 +15,15 @@ Every number below is the output of a test in this directory, run on Node
 
 | Check | Result |
 | --- | --- |
-| `golden/golden-0.3.1.json`, every input and field (`test/golden.test.js`) | 35,640 / 35,640 values (30 fields x 1,188 inputs) |
+| `golden/golden-0.3.2.json`, every input and field (`test/golden.test.js`) | 37,680 / 37,680 values (30 fields x 1,256 inputs) |
 | the same file, `tags` and `scripts` sections | 57 / 57 and 6 / 6 |
-| `migrationReport`, with and without `protect`, on every golden input (`test/migration.test.js`) | 2,376 / 2,376 |
-| calls the golden file does not make (`protect: false`, terms, the strip options, `homoglyphSpans`) on every golden input | 14,256 / 14,256 |
-| 46 inputs made for the places where JavaScript differs from Python, through all of the above, and 42 calls that raise | all equal |
+| `migrationReport`, with and without `protect`, on every golden input (`test/migration.test.js`) | 2,512 / 2,512 |
+| calls the golden file does not make (`protect: false`, terms, the strip options, `homoglyphSpans`) on every golden input | 15,072 / 15,072 |
+| 52 inputs made for the places where JavaScript differs from Python, through all of the above, and 42 calls that raise | all equal |
 | `str.isalpha`, `isupper`, `isspace`, `re`'s `\w`, `\d`, `\s`, case mappings, NFC, NFKC, NFKD, on all 1,114,112 code points (`test/traps.test.js`) | equal wherever Python 3.12's Unicode 15.0 has a character, except the case of four letters (see below) |
 | the four kinds of input on which 0.3.0 took quadratic time: the new code against the 0.3.0 code on 20,000 random inputs each, and six long inputs timed (`test/linear.test.js`) | the same results; each long input under 1 s |
+| the rules of 0.3.2 (Roman numerals, month names, dates, a word-final ц, `toAscii` and U+2011), with the tables of `tests/test_changes_0_3_2.py` (`test/changes-0.3.2.test.js`) | all equal |
+| the JavaScript examples in the library's README (`test/readme.test.js`) | all give what the README says |
 
 The golden test compares values as JSON: a Python tuple is an array, `None`
 is `null`, and order counts. The golden files are checked against

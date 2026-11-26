@@ -12,7 +12,7 @@
 // Only relative imports and no Node built-ins: the same files run in Node and
 // in a browser (a module Worker).
 
-export const VERSION = "0.3.1";
+export const VERSION = "0.3.2";
 
 export {
   CYRILLIC,

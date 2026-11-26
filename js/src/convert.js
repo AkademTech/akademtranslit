@@ -12,13 +12,17 @@ import {
   O_FORM_WORD,
   PLAIN_WORD,
   SH_CH_WORD,
-  cyrillicWordToLatin1995,
+  convertCyrillicWord,
+  dates,
+  isRomanNumeral,
   latin1995WordTo2026,
   latin1995WordToCyrillic,
   latin2026CanonicalWord,
   latin2026WordTo1995,
-  mapWords,
-  mapWordsBy,
+  mapWord,
+  monthSoftSign,
+  namesALetter,
+  romanSeriesMember,
   wordClass,
   wordRegExp,
 } from "./rules.js";
@@ -39,9 +43,10 @@ const REFORM_LETTERS_RE = new RegExp("[şçğöŞÇĞÖ\\u014D\\u01D2\\u014C\\u0
 const CYRILLIC_RE = new RegExp(CYRILLIC_CLASS, "u");
 
 // Every conversion is a chain of word-level steps; latin_1995 is the pivot.
+// Cyrillic is read with convertCyrillicWord; normalize keeps cyrillicWordToLatin1995.
 const PIPELINES = new Map([
-  [`${CYRILLIC}>${LATIN_1995}`, [cyrillicWordToLatin1995]],
-  [`${CYRILLIC}>${LATIN_2026}`, [cyrillicWordToLatin1995, latin1995WordTo2026, latin2026CanonicalWord]],
+  [`${CYRILLIC}>${LATIN_1995}`, [convertCyrillicWord]],
+  [`${CYRILLIC}>${LATIN_2026}`, [convertCyrillicWord, latin1995WordTo2026, latin2026CanonicalWord]],
   [`${LATIN_1995}>${CYRILLIC}`, [latin1995WordToCyrillic]],
   [`${LATIN_1995}>${LATIN_2026}`, [latin2026CanonicalWord, latin1995WordTo2026]],
   [`${LATIN_2026}>${LATIN_1995}`, [latin2026WordTo1995]],
@@ -112,6 +117,80 @@ function steps(source, target) {
   };
 }
 
+// What separates one letter from the words that make it a Roman numeral or a
+// letter: the word before it after one space or U+00A0, the word after it
+// after one of those, a hyphen or U+2011 (see __init__.py).
+const ONE_SPACE = new Set([" ", "\u{A0}"]);
+const BEFORE_FOLLOWING = new Set([...ONE_SPACE, "-", "\u{2011}"]);
+
+// What links two numerals in a series: one hyphen or dash, with no space
+// around it or with one space or U+00A0 on each side; a comma and one space
+// or U+00A0; or va or yoki, in any case, with one space or U+00A0 on each side.
+const SERIES_DASHES = ["-", "\u{2010}", "\u{2011}", "\u{2012}", "\u{2013}", "\u{2014}"];
+const SERIES_LINKS = new Set([
+  ...SERIES_DASHES,
+  ", ",
+  ",\u{A0}",
+  ...SERIES_DASHES.flatMap((dash) => [...ONE_SPACE].flatMap((a) => [...ONE_SPACE].map((b) => a + dash + b))),
+]);
+const SERIES_WORDS = new Set(["va", "yoki"]);
+
+/**
+ * The indices in ``matches`` (from matchAll over ``piece``, in order) of the
+ * words that conversion to Cyrillic keeps as Roman numerals: a word that is
+ * one on its own (isRomanNumeral), and the members of a series of two or more
+ * of which one is, unless the word after the series begins with harf or
+ * tovush, when only the members of two letters or more are kept and every
+ * one letter is a letter (see __init__.py, _roman_numerals). Linear in the
+ * length of the piece. The characters beside a word here are one UTF-16 unit each: only
+ * ".", the spaces, the hyphens and dashes and "," count.
+ */
+function romanNumerals(piece, matches) {
+  const count = matches.length;
+  const end = (i) => matches[i].index + matches[i][0].length;
+  const between = (i, j) => piece.slice(end(i), matches[j].index);
+  const after = (i) => piece.slice(end(i), end(i) + 1);
+  const following = (i) => (i + 1 < count && BEFORE_FOLLOWING.has(between(i, i + 1)) ? matches[i + 1][0] : "");
+  const alone = (i) => {
+    const word = matches[i][0];
+    if (word.length !== 1) return isRomanNumeral(word, after(i));
+    const before = i > 0 && ONE_SPACE.has(between(i - 1, i)) ? matches[i - 1][0] : "";
+    return isRomanNumeral(word, after(i), before, following(i));
+  };
+  const member = (i) => romanSeriesMember(matches[i][0], after(i));
+  const linked = (i) => {
+    if (i + 1 < count && SERIES_LINKS.has(between(i, i + 1)) && member(i + 1)) return i + 1;
+    if (
+      i + 2 < count &&
+      SERIES_WORDS.has(matches[i + 1][0].toLowerCase()) &&
+      ONE_SPACE.has(between(i, i + 1)) &&
+      ONE_SPACE.has(between(i + 1, i + 2)) &&
+      member(i + 2)
+    ) {
+      return i + 2;
+    }
+    return null;
+  };
+
+  const kept = new Set();
+  let i = 0;
+  while (i < count) {
+    const series = [i];
+    if (member(i)) {
+      for (let link = linked(i); link !== null; link = linked(link)) series.push(link);
+    }
+    if (series.length === 1) {
+      if (alone(i)) kept.add(i);
+    } else if (namesALetter(following(series.at(-1)))) {
+      for (const k of series) if (matches[k][0].length > 1) kept.add(k);
+    } else if (series.some(alone)) {
+      for (const k of series) kept.add(k);
+    }
+    i = series.at(-1) + 1;
+  }
+  return kept;
+}
+
 /**
  * Convert ``text`` from one orthography to another. ``source`` is "auto" (the
  * default: each word is read in the orthography it shows) or one of SCRIPTS or
@@ -135,20 +214,50 @@ export function convert(text, source = "auto", target = LATIN_2026, options = un
   const pieces = spans(text, settings).map(([a, b, kind]) =>
     kind !== null ? [text.slice(a, b), kind] : [text.slice(a, b).normalize("NFC"), null],
   );
-  let convertPiece;
+  let sourceOf;
   if (source === "auto") {
     const sources = autoSources(
       pieces.filter(([, kind]) => kind === null).map(([piece]) => piece),
       target,
     );
-    const transforms = {};
-    for (const script of SCRIPTS) transforms[script] = steps(script, target);
-    convertPiece = (piece) => mapWordsBy(piece, (word) => transforms[sources.get(word)]);
+    sourceOf = (word) => sources.get(word);
   } else {
-    const transform = steps(source, target);
-    convertPiece = (piece) => mapWords(piece, transform);
+    sourceOf = () => source;
   }
-  // mapWords canonicalises the marks even when there are no steps.
+  const transforms = {};
+  for (const script of SCRIPTS) transforms[script] = steps(script, target);
+  const toCyrillic = target === CYRILLIC;
+  const wordRe = wordRegExp();
+  const convertWord = (match, numeral) => {
+    const word = match[0];
+    const script = sourceOf(word);
+    if (toCyrillic && script !== CYRILLIC) {
+      // The rules that need the whole word as it stands, and the text around
+      // it: a Roman numeral (numeral, from romanNumerals) stays as it is.
+      if (numeral) return word;
+      return monthSoftSign(word, mapWord(word, transforms[script]));
+    }
+    return mapWord(word, transforms[script]);
+  };
+  // mapWord canonicalises the marks even when there are no steps. Then dates:
+  // the separator after the number of a year or a day of the month, before a
+  // word read in the other script; crossed holds where those words start in
+  // the converted piece (UTF-16 offsets, as dates() reads them).
+  const convertPiece = (piece) => {
+    let converted = "";
+    const crossed = new Set();
+    let last = 0;
+    const matches = [...piece.matchAll(wordRe)];
+    const numerals = toCyrillic ? romanNumerals(piece, matches) : new Set();
+    for (const [index, match] of matches.entries()) {
+      const between = piece.slice(last, match.index);
+      if ((sourceOf(match[0]) === CYRILLIC) !== toCyrillic) crossed.add(converted.length + between.length);
+      converted += between + convertWord(match, numerals.has(index));
+      last = match.index + match[0].length;
+    }
+    converted += piece.slice(last);
+    return dates(converted, target, crossed);
+  };
   let out = "";
   for (const [piece, kind] of pieces) out += kind !== null ? piece : convertPiece(piece);
   return out;
@@ -210,6 +319,8 @@ export function toAscii(text) {
   if (!text) return text;
   for (const [letter, asciiForm] of ASCII_SCHEME) text = text.replaceAll(letter, asciiForm);
   text = asciiCapitals(text);
+  // Before NFKD, which makes U+2011 U+2010 HYPHEN, not ASCII.
+  text = text.replaceAll("\u{2011}", "-");
   text = text.replace(NO_MARKS_RE, "").normalize("NFKD");
   return text.replace(NOT_ASCII_RE, "");
 }

@@ -241,6 +241,24 @@ TRAPS = [
      "a 1995 word with a 2026 letter and a look-alike: latin-2026-word comes first"),
     ("j046", "şahar ğalaba oʻrik Ishoq",
      "source auto: as many 2026 words as 1995 and sh/ch words, with an oʻ: read as 1995"),
+    # 0.3.2: dates, month names, Roman numerals, a word-final ц.
+    ("j047", chr(0x1F600) + "1991-yil " + chr(0x1D400) + "1991-yil " + chr(0x0661) + "1991-yil "
+     + chr(0x00B2) + "1991 yil " + chr(0x216B) + "1991-yil",
+     "dates: before the number an emoji (So), an astral letter, an Arabic-Indic digit (Nd), "
+     "a superscript two (No), a Roman numeral letter (Nl)"),
+    ("j048", "1-" + chr(0x0130) + "YUN, 1-" + chr(0x0130) + "yul, 2026-Y" + chr(0x0130) + "L, 1-iyun" + chr(0x0307)
+     + ", " + chr(0x0130) + "YUN",
+     "dates and month names with İ (lower() gives two code points) and a combining dot"),
+    ("j049", "XIX" + chr(0x0301) + " asr, I" + chr(0x1D400) + ". I. " + chr(0xFF38) + chr(0xFF29) + chr(0xFF38)
+     + " XIX" + chr(0x1F600) + ". I" + chr(0x1F600) + ".",
+     "Roman numerals beside a combining mark, an astral letter, fullwidth letters and an emoji"),
+    ("j050", "марганец" + chr(0x0301) + " шприц" + chr(0x1D400) + " ненец" + chr(0x0306) + "лар ц" + chr(0x1F600),
+     "word-final ц before a combining mark, an astral letter and an emoji"),
+    ("j051", "1991-yil " + chr(0x1F600) + " 1 sentabr" + chr(0x1F600) + " 22" + chr(0x00A0) + chr(0x00A0) + "yil "
+     + "1991" + chr(0x2011) + chr(0x2011) + "йил",
+     "dates beside emoji; two no-break spaces, two non-breaking hyphens"),
+    ("j052", "<b>1991</b>-yil {n}-yil %1$s yil 1991-{yil} https://x.uz/1-sentabr 1-sentabr",
+     "dates next to and inside protected spans"),
 ]
 
 

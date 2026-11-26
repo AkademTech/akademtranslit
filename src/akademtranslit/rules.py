@@ -47,6 +47,39 @@ Seven positional rules are implemented:
     Read ``y`` before ``о`` (бульон -> bulyon, павильон -> pavilyon) and
     dropped everywhere else (альбом -> albom). Not reversible: bulyon comes
     back as булён.
+
+More rules look at the whole word, or at the text around it (0.3.2):
+
+``ц`` at the end of a word
+    Read ``s`` at the end of a word and where only Uzbek suffixes follow it
+    (марганец -> marganes, шприц -> shpris, ненецлар -> neneslar, шприцни ->
+    shprisni), whatever comes before it: :func:`convert_cyrillic_word`. Not
+    reversible: marganes comes back as марганес.
+
+Month names
+    ``сентябр`` and ``октябр`` are read ``sentabr`` and ``oktabr``, with any
+    suffix (сентябрда -> sentabrda): :func:`convert_cyrillic_word`. The other
+    direction writes я again (sentabr, sentyabr -> сентябр), and a month name
+    standing alone gets the ``ь`` the Latin side has nothing to restore it
+    from (yanvar -> январь, iyun -> июнь); with a suffix it has none (yanvarda
+    -> январда): :func:`month_soft_sign`.
+
+Roman numerals
+    A word that is a Roman numeral in capitals stays as it is when Latin is
+    converted to Cyrillic (XIX asr -> XIX аср). One I, V or X is a numeral
+    only in context -- before a word such as asr or jahon (V asr -> V аср,
+    V-asr -> V-аср), after a name (Pyotr I -> Пётр I), or in a series with
+    a numeral (V–VI asrlar -> V–VI асрлар), but never before harf or tovush
+    -- and a letter otherwise (V harfi -> В ҳарфи, V va X -> В ва Х,
+    I. Boʻriyev -> И. Бўриев); one L, C, D or M is always a letter
+    (D guruhi -> Д гуруҳи): :func:`is_roman_numeral`.
+
+Dates
+    Cyrillic writes no hyphen after the number of a year or of a day of the
+    month (1956 йил 22 сентябрь, the 1956 rules), Latin writes one
+    (1956-yil 22-sentabr): :func:`dates` writes the separator as the target
+    does, after the words are converted, when the word after the number
+    comes from the other script. Within one script it stays as written.
 """
 
 from __future__ import annotations
@@ -55,6 +88,7 @@ import re
 
 from .tables import (
     APOSTROPHE_VARIANTS,
+    CYRILLIC,
     CYRILLIC_FIRST,
     CYRILLIC_LAST,
     CYRILLIC_TO_LATIN_1995,
@@ -340,18 +374,71 @@ def word_class(word: str) -> str:
 _CYRILLIC_CONSONANTS = frozenset("бвгджзйклмнпрстфхцчшщқғҳ")
 _CYRILLIC_IOTATED = frozenset("еёюя")
 
+# The month names whose я latin_1995 writes as a, and where the я is:
+# сентябр -> sentabr, октябр -> oktabr, as the Katta lugʻat writes them.
+_CYRILLIC_MONTHS_WITH_A = (("сентябр", 4), ("октябр", 3))
+
+# What may follow a ц that is still read as at the end of a word: nothing, or
+# Uzbek suffixes only -- the plural with a possessive, then a case ending, each
+# if it is there. Each begins with a consonant. The Katta lugʻat writes
+# ненецлар as neneslar.
+_FINAL_TS_SUFFIXES_RE = re.compile(
+    "(?:лар(?:и|им|инг|имиз|ингиз)?)?(?:нинг|ни|га|да|дан|даги|гача)?"
+)
+
 
 def cyrillic_word_to_latin_1995(word: str) -> str:
-    """Convert one lowercase Cyrillic word to ``latin_1995``."""
+    """Convert one lowercase Cyrillic word to ``latin_1995``, by the
+    positional rules of the module docstring, as 0.3.1 had them.
+
+    :func:`~akademtranslit.normalize` reads Cyrillic with it, and so does code
+    that builds its own search key from it: its output does not change in a
+    patch release. :func:`~akademtranslit.convert` uses
+    :func:`convert_cyrillic_word`, which reads some words as wholes.
+    """
+    return _cyrillic_word_to_latin_1995(word, False)
+
+
+def convert_cyrillic_word(word: str) -> str:
+    """Convert one lowercase Cyrillic word to ``latin_1995``, as
+    :func:`~akademtranslit.convert` does: as :func:`cyrillic_word_to_latin_1995`,
+    except that
+
+    * the month names ``сентябр`` and ``октябр``, with any suffix, are
+      ``sentabr`` and ``oktabr`` (сентябрь -> sentabr, октябрнинг ->
+      oktabrning);
+    * a ``ц`` at the end of the word, or followed by Uzbek suffixes only
+      (``лар`` with a possessive, then a case ending), is ``s`` (марганец ->
+      marganes, ненецлар -> neneslar, шприцни -> shprisni; not
+      боцман, плацдарм, лицей: botsman, platsdarm, litsey).
+    """
+    return _cyrillic_word_to_latin_1995(word, True)
+
+
+def _cyrillic_word_to_latin_1995(word: str, whole: bool) -> str:
+    """The two above: ``whole`` adds the rules for whole words."""
+    a = -1
+    if whole:
+        for stem, at in _CYRILLIC_MONTHS_WITH_A:
+            if word.startswith(stem):
+                a = at
     out: list[str] = []
     for i, ch in enumerate(word):
         prev = word[i - 1] if i else ""
         nxt = word[i + 1] if i + 1 < len(word) else ""
 
-        if ch == "е":
+        if i == a:
+            # The я of сентябр, октябр: sentabr, oktabr.
+            out.append("a")
+        elif ch == "е":
             initial_or_after_vowel = i == 0 or prev in CYRILLIC_VOWELS or prev in "ъь"
             out.append("ye" if initial_or_after_vowel else "e")
         elif ch == "ц":
+            if whole and _FINAL_TS_SUFFIXES_RE.fullmatch(word, i + 1):
+                # At the end of the word, before Uzbek suffixes only: s
+                # (марганец -> marganes, ненецлар -> neneslar).
+                out.append("s")
+                continue
             # ts only after a vowel: милиция -> militsiya, революция ->
             # revolyutsiya. Word-initially and after a consonant it reduces to
             # s: цирк -> sirk, функция -> funksiya, концерт -> konsert.
@@ -455,12 +542,31 @@ def _ts_splits(word: str, i: int) -> bool:
     return _TS_SUFFIX_RE.fullmatch(rest) is not None
 
 
+# The month names whose a Cyrillic writes as я, and where the a is: sentabr
+# -> сентябр, oktabr -> октябр. sentyabr and oktyabr have it already.
+_LATIN_MONTHS_WITH_YA = (("sentabr", 4), ("oktabr", 3))
+
+
 def latin_1995_word_to_cyrillic(word: str) -> str:
-    """Convert one lowercase ``latin_1995`` word to Cyrillic."""
+    """Convert one lowercase ``latin_1995`` word to Cyrillic.
+
+    The month names ``sentabr`` and ``oktabr``, with any suffix, are
+    ``сентябр`` and ``октябр``. The ``ь`` of a month name standing alone is
+    added to the whole word by :func:`month_soft_sign`.
+    """
     out: list[str] = []
     i = 0
     length = len(word)
+    ya = -1
+    for stem, at in _LATIN_MONTHS_WITH_YA:
+        if word.startswith(stem):
+            ya = at
     while i < length:
+        if i == ya:
+            # The a of sentabr, oktabr: сентябр, октябр.
+            out.append("я")
+            i += 1
+            continue
         # The e/ye rule outranks the table: ``ye`` is always е. A bare ``e`` is
         # э word-initially and after a vowel, except before v (Aliev ->
         # Алиев), and е everywhere else.
@@ -524,3 +630,249 @@ def latin_2026_word_to_1995(word: str) -> str:
     for source, target in LATIN_2026_TO_1995_STEPS:
         word = word.replace(source, target)
     return word
+
+
+# --- whole words -----------------------------------------------------------------
+#
+# Rules that need the word as it was written, before map_word lowercases it and
+# splits it into letter units. convert applies them.
+
+# A Roman numeral, 1 to 3999, in capitals.
+_ROMAN_NUMERAL_RE = re.compile(r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})")
+
+# The letters that can be a numeral on their own. L, C, D and M alone are
+# letters wherever they stand (D guruhi, C toifa, M harfi).
+_ROMAN_ONE_LETTER = frozenset("IVX")
+
+# The words that make one letter before them a numeral (V asr, I jahon
+# urushi, X sinf, I kvartal, I Xalqaro konferensiya): the word after the
+# letter begins with one of these, in latin_1995 or, written by the table,
+# in latin_2026 (bölim, çorak, bosqiç, çaqiriq, örin).
+_ROMAN_COUNTED = (
+    "asr", "ming", "bob", "qism", "jild", "tom", "sinf", "kurs", "boʻlim", "guruh", "chorak",
+    "bosqich", "daraja", "toifa", "qurultoy", "syezd", "sessiya", "chaqiriq", "jahon",
+)
+_ROMAN_COUNTED += (
+    "kvartal", "semestr", "smena", "kitob", "kategoriya", "oʻrin", "yarim", "yarmi", "xalqaro",
+    "respublika", "konferensiya", "kongress", "anjuman", "simpozium",
+)
+_ROMAN_COUNTED = tuple(dict.fromkeys(_ROMAN_COUNTED + tuple(map(latin_1995_word_to_2026, _ROMAN_COUNTED))))
+
+# The words that make one letter before them a letter, whatever else would
+# make it a numeral (V harfi, Lotin V harfi, I tovushi): the word after it
+# begins with one of these, in latin_1995 or in latin_2026 (tovuş).
+_ROMAN_LETTER_WORDS = ("harf", "tovush")
+_ROMAN_LETTER_WORDS = tuple(dict.fromkeys(
+    _ROMAN_LETTER_WORDS + tuple(map(latin_1995_word_to_2026, _ROMAN_LETTER_WORDS))
+))
+
+
+def _names_a_letter(following: str) -> bool:
+    """True if ``following``, the word after one letter, begins in any case
+    with ``harf`` or ``tovush`` (``tovuş``): the letter is a letter (V harfi,
+    Lotin V harfi, V va X harflari)."""
+    return latin_2026_canonical_word(canonicalize_marks(following.lower())).startswith(_ROMAN_LETTER_WORDS)
+
+
+def _roman_series_member(word: str, after: str = "") -> bool:
+    """True if ``word``, followed by the character ``after``, can be a member
+    of a series of numerals (V–VI, I, II va III): a well-formed numeral of two
+    letters or more, or one ``I``, ``V`` or ``X`` with no full stop after it
+    (``V.`` is an initial)."""
+    if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
+        return False
+    return len(word) > 1 or (word in _ROMAN_ONE_LETTER and after != ".")
+
+
+def is_roman_numeral(word: str, after: str = "", previous: str = "", following: str = "") -> bool:
+    """True if ``word`` is a Roman numeral on its own, which conversion from
+    Latin to Cyrillic keeps as it is (XIX asr -> XIX аср, Pyotr I -> Пётр I).
+
+    ``word`` is a word as it stands in the text and ``after`` the character
+    that follows it, or ``""``. ``previous`` is the word before it as it
+    stands, when one space or U+00A0 NO-BREAK SPACE is all that separates
+    them, or ``""``; ``following`` the word after it, when one space,
+    U+00A0, ``-`` or U+2011 NON-BREAKING HYPHEN is (``V-asr``), or ``""``.
+
+    The word must be only the capitals ``I V X L C D M`` and a well-formed
+    numeral (``XIX``, ``IV``, ``MMXXVI``; not ``IIII`` or ``Xix``). Two
+    letters or more are a numeral wherever they stand. One ``L``, ``C``,
+    ``D`` or ``M`` is always a letter (``D guruhida`` -> ``Д гуруҳида``,
+    ``M harfi`` -> ``М ҳарфи``). One ``I``, ``V`` or ``X`` is a letter
+    (``V`` -> ``В``), and a numeral only
+
+    * (a) before a word that begins, in any case, with ``asr ming bob qism
+      jild tom sinf kurs boʻlim guruh chorak bosqich daraja toifa qurultoy
+      syezd sessiya chaqiriq jahon kvartal semestr smena kitob kategoriya
+      oʻrin yarim yarmi xalqaro respublika konferensiya kongress anjuman
+      simpozium``, or with their ``latin_2026`` forms (``bölim``, ``çorak``,
+      ``bosqiç``, ``çaqiriq``, ``örin``): ``V asr`` -> ``V аср``,
+      ``V-asr`` -> ``V-аср``, ``I jahon urushi`` -> ``I жаҳон уруши``,
+      ``I Xalqaro konferensiya`` -> ``I Халқаро конференсия``; or
+    * (b) after a word of two letters or more that begins with a capital,
+      and not before a full stop: ``Pyotr I`` -> ``Пётр I``, ``Nikolay I``
+      -> ``Николай I``.
+
+    Before a word that begins, in any case, with ``harf`` or ``tovush``
+    (``tovuş``) it is a letter even so: ``V harfi`` -> ``В ҳарфи``,
+    ``Lotin V harfi`` -> ``Лотин В ҳарфи``.
+
+    One letter followed by a full stop is an initial: ``I. Boʻriyev`` ->
+    ``И. Бўриев``. Known limits: an Uzbek word in capitals that is also a
+    numeral stays Latin (``MIX``), ``Pyotr I.`` at the end of a sentence is
+    read as an initial, and any capitalised word before one letter counts,
+    the first of a sentence too (``Variant V`` -> ``Вариант V``).
+
+    :func:`~akademtranslit.convert` also reads numerals in a series
+    together: ``V–VI asrlar`` -> ``V–VI асрлар``, ``I, II va III boblar``
+    -> ``I, II ва III боблар``, while ``V va X`` -> ``В ва Х``. Members are
+    linked by one hyphen or dash (``-`` U+2010 U+2011 U+2012 U+2013
+    U+2014), with no space around it or with one space or U+00A0 on each
+    side (``V – VI asrlar`` -> ``V – VI асрлар``), by a comma and one space
+    or U+00A0, or by ``va`` or ``yoki``, in any case, with one space or
+    U+00A0 on each side (``I VA II JAHON`` -> ``I ВА II ЖАҲОН``); a member is
+    a numeral of two letters or more, or one ``I``, ``V`` or ``X`` with no
+    full stop after it, so a dash before another word links nothing
+    (``X – nomaʼlum`` -> ``Х – номаълум``). When one member of a series of
+    two or more is a numeral on its own, every member is; when the word
+    after the series begins with ``harf`` or ``tovush``, every member of one
+    letter is a letter, even one that is a numeral on its own, and those of
+    two letters or more stay numerals (``Ushbu V va X harflari`` -> ``Ушбу
+    В ва Х ҳарфлари``, ``V, X va XV harflari`` -> ``В, Х ва XV ҳарфлари``).
+    Known limits: a ruler's numeral linked to a letter by a comma is read
+    as a letter, ``Nikolay I, V harfi`` -> ``Николай И, В ҳарфи``. So is a
+    list numbered with a spaced dash: ``I – kirish, II – asosiy qism`` ->
+    ``И – кириш, II – асосий қисм``; with no numeral after the dash, one
+    letter cannot be told from a numeral (``X – nomaʼlum, V – tezlik`` ->
+    ``Х – номаълум, В – тезлик``).
+    """
+    if not word or _ROMAN_NUMERAL_RE.fullmatch(word) is None:
+        return False
+    if len(word) > 1:
+        return True
+    if word not in _ROMAN_ONE_LETTER:
+        return False
+    if _names_a_letter(following):
+        return False
+    following = latin_2026_canonical_word(canonicalize_marks(following.lower()))
+    if following.startswith(_ROMAN_COUNTED):
+        return True
+    letters = sum(ch not in APOSTROPHE_VARIANTS for ch in previous)
+    return after != "." and previous[:1].isupper() and letters >= 2
+
+
+# The month names that Cyrillic writes with ь when they stand alone (январь,
+# сентябрь); with a suffix they have none (январда, сентябрда). mart, may and
+# avgust have none.
+_SOFT_SIGN_MONTHS = frozenset((
+    "yanvar", "fevral", "aprel", "iyun", "iyul",
+    "sentabr", "sentyabr", "oktabr", "oktyabr", "noyabr", "dekabr",
+))
+
+
+def month_soft_sign(word: str, cyrillic: str) -> str:
+    """``cyrillic``, the Cyrillic of the Latin ``word``, with the ``ь`` of a
+    month name that stands alone: yanvar -> январь, SENTABR -> СЕНТЯБРЬ.
+
+    ``word`` is the word as it stands in the text. Only a whole word that is a
+    month name gets the ``ь``: with a suffix it has none (yanvarda ->
+    январда, SENTABRda -> СЕНТЯБРда), and ``mart``, ``may`` and ``avgust``
+    have none. It takes the case of the letter before it.
+    """
+    if word.lower() not in _SOFT_SIGN_MONTHS:
+        return cyrillic
+    return cyrillic + ("Ь" if cyrillic[-1:].isupper() else "ь")
+
+
+# --- dates -------------------------------------------------------------------------
+
+# A number with no letter or digit before it, and the one hyphen (U+002D, or
+# U+2011 NON-BREAKING HYPHEN) or the one space (U+0020, or U+00A0 NO-BREAK
+# SPACE) after it. [^\W_] is a letter or a digit.
+_NUMBER_HYPHEN_RE = re.compile(r"(?<![^\W_])([0-9]+)([-\N{NON-BREAKING HYPHEN}])")
+_NUMBER_SPACE_RE = re.compile(r"(?<![^\W_])([0-9]+)([ \N{NO-BREAK SPACE}])")
+
+# The days of a month as they are written: 1 to 31, without a leading zero.
+_DAYS = frozenset(str(day) for day in range(1, 32))
+
+# A month name, lowercase, with the possessive -i and a case ending, each if
+# it is there. A closed list, not any letters: 3 marta (three times), 5-martaba,
+# 2-maydon are not dates. The Latin side has both spellings of sentabr and
+# oktabr, which latin_1995 <-> latin_2026 keeps, and gacha in both alphabets.
+_CYRILLIC_MONTH_RE = re.compile(
+    "(?:январ|феврал|март|апрел|май|июн|июл|август|сентябр|октябр|ноябр|декабр)ь?"
+    "и?(?:нинг|ни|га|да|дан|даги|гача)?"
+)
+_LATIN_MONTH_RE = re.compile(
+    "(?:yanvar|fevral|mart|aprel|may|iyun|iyul|avgust|sentabr|sentyabr|oktabr|oktyabr|noyabr|dekabr)"
+    "i?(?:ning|ni|ga|da|dan|dagi|gacha|gaça)?"
+)
+
+
+def dates(text: str, target: str, crossed=None) -> str:
+    """``text``, converted to ``target``, with the separator after the number
+    of a year or of a day of the month as ``target`` writes it, where the word
+    after the number comes from the other script.
+
+    Cyrillic writes no hyphen there (the 1956 spelling rules, paragraph 47):
+    ``1956 йил 22 сентябрь``. Latin writes one (Resolution No. 339 of 1995,
+    rule 56): ``1991-yil 1-sentabr``. Other ordinals keep the hyphen in both:
+    ``5-sinf``, ``39-son``, ``60-yillar``.
+
+    ``crossed`` holds the offsets in ``text`` at which a word starts that was
+    read in the other script: in ``latin_1995`` or ``latin_2026`` when
+    ``target`` is Cyrillic, in Cyrillic when ``target`` is Latin. Only a
+    number followed by such a word is written anew. Within one script --
+    ``latin_1995`` <-> ``latin_2026``, or an orthography to itself -- the
+    separator is the author's and stays: ``2026 yil`` stays ``2026 yil``,
+    ``1991-йил`` stays ``1991-йил``. With ``crossed`` left out, every word
+    counts as read in the other script.
+
+    A number counts when no letter or digit comes before it and one hyphen or
+    one space comes after it, and then:
+
+    * to Cyrillic, ``-`` becomes a space and U+2011 NON-BREAKING HYPHEN
+      becomes U+00A0 NO-BREAK SPACE, after a number of three or four digits
+      (no leading zero) followed by a word that begins with ``йил``, or after
+      a day, 1 to 31, followed by a month name;
+    * to ``latin_1995`` and ``latin_2026``, a space becomes ``-`` and U+00A0
+      becomes U+2011, after a year from 1000 to 2099 followed by a word that
+      begins with ``yil`` -- a smaller number is a count, ``5 yil`` -- or
+      after a day followed by a month name.
+
+    A month name is one of the twelve, with ``ь``, the possessive ``-i`` and
+    a case ending (``нинг ни га да дан даги гача``), each if it is there; the
+    word is compared in lowercase. Known limit: ``2000 йил давомида`` (for 2000
+    years) is read as a year and becomes ``2000-yil davomida``.
+    """
+    if target == CYRILLIC:
+        number, date = _NUMBER_HYPHEN_RE, _cyrillic_date
+    else:
+        number, date = _NUMBER_SPACE_RE, _latin_date
+    if crossed is None:
+        return number.sub(date, text)
+    return number.sub(lambda match: date(match) if match.end() in crossed else match.group(), text)
+
+
+def _word_after(match) -> str:
+    """The word right after ``match``, lowercase, or ``""``."""
+    word = _WORD_RE.match(match.string, match.end())
+    return word.group().lower() if word else ""
+
+
+def _cyrillic_date(match) -> str:
+    number, word = match.group(1), _word_after(match)
+    year = 3 <= len(number) <= 4 and number[0] != "0" and word.startswith("йил")
+    day = number in _DAYS and _CYRILLIC_MONTH_RE.fullmatch(word) is not None
+    if not (year or day):
+        return match.group()
+    return number + (" " if match.group(2) == "-" else "\N{NO-BREAK SPACE}")
+
+
+def _latin_date(match) -> str:
+    number, word = match.group(1), _word_after(match)
+    year = len(number) == 4 and 1000 <= int(number) <= 2099 and word.startswith("yil")
+    day = number in _DAYS and _LATIN_MONTH_RE.fullmatch(word) is not None
+    if not (year or day):
+        return match.group()
+    return number + ("-" if match.group(2) == " " else "\N{NON-BREAKING HYPHEN}")

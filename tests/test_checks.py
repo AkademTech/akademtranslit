@@ -197,7 +197,8 @@ def test_the_findings_on_the_golden_inputs_are_well_formed(orthography):
 @pytest.mark.parametrize("orthography", [LATIN_1995, LATIN_2026])
 def test_a_golden_input_without_findings_is_its_own_conversion(orthography):
     # The one exception is a lone mark: convert writes it as the tutuq
-    # belgisi, validate does not take it for a word.
+    # belgisi, validate does not take it for a word. A date's separator
+    # (c0307, c1206) stays within one script (0.3.2).
     changed = [
         case["id"] for case in _golden_cases()
         if not validate(case["text"], orthography) and convert(case["text"], orthography, orthography) != case["text"]
