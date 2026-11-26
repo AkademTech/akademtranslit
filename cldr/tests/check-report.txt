@@ -296,4 +296,6 @@ latin_2026 (option B): 625 words, 0 order differences
 latin_1995 (option A): 625 words, 0 order differences
 cyrillic: 600 words, 0 order differences
 
+test files in tests/: 12 of 12 match
+
 RESULT: ok
