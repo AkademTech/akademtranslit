@@ -2,7 +2,9 @@
 
 Prepared by AkademTranslit (AkademTech) on 8 November 2026 as the data for a
 CLDR ticket. The ticket and the proposal text are AkademTech's; this folder
-holds the rules, the tests and the measurements behind them.
+holds the rules, the tests and the measurements behind them. The results,
+the test files and the check were brought up to `akademtranslit` 0.3.2 on
+26 November 2026; the transforms and collations are unchanged.
 
 Law of the Republic of Uzbekistan No. ZRU-1184 (OʻRQ-1184; signed
 21 October 2026, in force 22 April 2027; https://lex.uz/docs/-8548754)
@@ -132,26 +134,50 @@ root order applies: ё sorts as a variant of е, and ў қ ғ ҳ right after у 
 
 ## Results
 
-ICU 74.2 (Unicode 15.1), `akademtranslit` 0.3.1 and its golden vectors
-(1188 inputs; plus 604 inputs in the 2026 orthography: the golden ones and the
+ICU 74.2 (Unicode 15.1), `akademtranslit` 0.3.2 and its golden vectors
+(1256 inputs; plus 666 inputs in the 2026 orthography: the golden ones and the
 library's 2026 output for every Cyrillic and 1995 input). The library's output
 is taken with `protect=False`, since the transforms protect nothing (URLs,
-tokens such as pH). Full output: `tests/check-report.txt`. With 0.3.0 the
-results were the same.
+tokens such as pH). Full output: `tests/check-report.txt`. With 0.3.1
+(1188 inputs) the kinds of difference were the same, apart from the rules of
+the library that are new in 0.3.2 (below).
 
 | Check | Result |
 | --- | --- |
-| 1995 → 2026, against the library | 614 inputs; 1 differs, explained: a lone mark |
-| 2026 → 1995, against the library | 604 inputs; 1 differs, explained: a text with ō and a word with sh, which the library reads word by word |
-| Cyrillic → 2026 = existing `uz_Cyrl-uz_Latn` then 1995 → 2026 | 443 inputs; 15 differ, all intended: с + ҳ (4), ь before о (6), a single capital Е Ё Ю Я Ц (5) |
-| Cyrillic → 2026 → Cyrillic | 362 of 443 come back unchanged; the existing Cyrillic → 1995 → Cyrillic: 292 |
-| 2026 → 1995 → 2026 | 593 of 604 unchanged; the other 11 are ō ǒ ș, which come back as ö ş |
-| Collation, option A | 1995 words: 531, same order as the library; 2026 words: 531, 4 pairs differ (the s + h words above) |
-| Collation, option B | 2026 words: 531, same order as the library |
-| Collation, `uz_Cyrl` | 514 words, same order as the library |
+| 1995 → 2026, against the library | 663 inputs; 1 differs, explained: a lone mark |
+| 2026 → 1995, against the library | 666 inputs; 1 differs, explained: a text with ō and a word with sh, which the library reads word by word |
+| Cyrillic → 2026 = existing `uz_Cyrl-uz_Latn` then 1995 → 2026 | 456 inputs; 15 differ, all intended: с + ҳ (4), ь before о (6), a single capital Е Ё Ю Я Ц (5) |
+| Cyrillic → 2026 → Cyrillic | 371 of 456 come back unchanged; the existing Cyrillic → 1995 → Cyrillic: 296 |
+| 2026 → 1995 → 2026 | 655 of 666 unchanged; the other 11 are ō ǒ ș, which come back as ö ş |
+| Collation, option A | 1995 words: 625, same order as the library; 2026 words: 625, 4 pairs differ (the s + h words above) |
+| Collation, option B | 2026 words: 625, same order as the library |
+| Collation, `uz_Cyrl` | 600 words, same order as the library |
 
 The test files in `tests/` are the output of the proposed rules under ICU. The
 check regenerates them and fails if they change.
+
+### Rules of the library that the transforms do not have
+
+Since 0.3.2 the library applies three rules that look at whole words and the
+text around them. A character transform cannot apply them, and they are not
+part of this proposal. The check counts a difference as explained when these
+rules are all of it: 7 of 456 Cyrillic inputs and 44 of 666 2026 inputs
+converted to Cyrillic.
+
+- Dates. Cyrillic writes no hyphen after the number of a year or of a day of
+  the month (`1956 йил 22 сентябрь`), Latin writes one (`1956-yil
+  22-sentabr`). The library changes the separator only when a date moves
+  between Cyrillic and Latin.
+- Month names. The 2026 orthography writes `sentabr` and `oktabr`; Cyrillic
+  writes `сентябрь`, `октябрь` and the other months with ь when they stand
+  without a suffix.
+- Roman numerals. Converting Latin to Cyrillic, the library keeps a Roman
+  numeral in Latin letters (`XIX asr` → `XIX аср`). Two letters or more are
+  always a numeral; one letter (`I`, `V`, `X`) only by the words around it,
+  so `V asr` → `V аср` but `V harfi` → `В ҳарфи`.
+
+The transforms convert these words letter by letter, as the existing
+`uz_Cyrl-uz_Latn` does.
 
 ## Left as in the existing transform
 
@@ -165,9 +191,9 @@ the resolution.
 
 | | Existing transform and this proposal | AkademTranslit library | Differences |
 | --- | --- | --- | --- |
-| ц | always ts: tsirk, funktsiya | s at the start of a word and after a consonant: sirk, funksiya; ts after a vowel | 29 of 443 Cyrillic inputs |
-| ъ | always ʼ: obʼyekt, möʼjiza | dropped before е ё ю я after a consonant, and after ў: obyekt, möjiza | 9 of 443 |
-| Latin ts | always ц: ketsa → кеца | т + с before an Uzbek suffix: ketsa → кетса | 57 of 604 2026 inputs |
+| ц | always ts: tsirk, funktsiya | s at the start of a word and after a consonant: sirk, funksiya; ts after a vowel (litsey), but s at the end of a word, also before a suffix (marganes, şpris, şprisni) | 33 of 456 Cyrillic inputs |
+| ъ | always ʼ: obʼyekt, möʼjiza | dropped before е ё ю я after a consonant, and after ў: obyekt, möjiza | 9 of 456 |
+| Latin ts | always ц: ketsa → кеца | т + с before an Uzbek suffix: ketsa → кетса | 57 of 666 2026 inputs |
 
 Following the library would make Cyrillic → Latin closer to published
 spelling, but those words would no longer come back to the same Cyrillic. The
@@ -196,7 +222,7 @@ a separate ticket.
 ## Running the check
 
 ```bash
-pip install PyICU akademtranslit==0.3.1     # PyICU needs the ICU library
+pip install PyICU akademtranslit==0.3.2     # PyICU needs the ICU library
 python tools/check_cldr.py PATH/TO/golden    # golden/ of the akademtranslit repository
 python tools/check_cldr.py PATH/TO/golden --write-tests
 ```

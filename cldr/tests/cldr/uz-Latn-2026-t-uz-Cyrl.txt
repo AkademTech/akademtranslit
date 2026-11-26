@@ -440,3 +440,16 @@
 медальон	medalyon
 ТошДУ ва ЎзМУ	ToşDU va ÖzMU
 АҚШда ва МЧЖнинг	AQŞda va MÇJning
+Сентябрь, сентябрда, октябрнинг, ноябрь	Sentyabr, sentyabrda, oktyabrning, noyabr
+СЕНТЯБРЬ, СЕНТЯБРда	SENTYABR, SENTYABRda
+1956 йил 22 сентябрь	1956 yil 22 sentyabr
+1991-йилнинг 1-сентябри	1991-yilning 1-sentyabri
+2000 йил давомида	2000 yil davomida
+1956 йил 22 сентябрь	1956 yil 22 sentyabr
+60-йиллар, 5-синф, 39-сон	60-yillar, 5-sinf, 39-son
+3 марта, 5-мартаба, 2-майдон, 5 майда	3 marta, 5-martaba, 2-maydon, 5 mayda
+марганец, ненец, шприц, кварц	marganets, nenets, şprits, kvarts
+ненецлар, шприцни, ненецларнинг, шприцдаги	nenetslar, şpritsni, nenetslarning, şpritsdagi
+лицей, боцман, плацдарм, пицца, шприци	litsey, botsman, platsdarm, pitstsa, şpritsi
+МАРГАНЕЦ, Марганец	MARGANETS, Marganets
+1991-йил	1991-yil

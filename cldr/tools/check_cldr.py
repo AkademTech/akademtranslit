@@ -85,6 +85,36 @@ def explain_common(text: str, got: str, lib: str) -> str | None:
     return None
 
 
+_MONTH_STEMS = (
+    ("sentyabr", "sentabr"), ("oktyabr", "oktabr"),
+    ("сентабр", "сентябр"), ("октабр", "октябр"),
+)
+_ROMAN_LOOKALIKE = str.maketrans("ивхлдмс", "ivxldmc")
+_LIBRARY_ONLY = ("dates, month names and Roman numerals: rules of the library (0.3.2) "
+                 "that a character transform does not have")
+
+
+def _neutral(s: str) -> str:
+    """``s`` without the differences that the library's lexical rules make."""
+    s = nfc(s)
+    # Dates: the separator after the number (hyphen, U+2011, space or U+00A0).
+    s = re.sub(r"(?<=\d)[-\u2011 \u00a0](?=\w)", "", s)
+    # Month names: the soft sign and the я of сентябрь and октябрь.
+    low = s.lower()
+    for old, new in _MONTH_STEMS:
+        low = low.replace(old, new)
+    low = re.sub(r"(январ|феврал|апрел|июн|июл|сентябр|октябр|ноябр|декабр)ь", r"\1", low)
+    # Roman numerals: a word of the Roman letters, in either alphabet's look-alikes.
+    return re.sub(r"\b[ivxlcdmивхлдмс]+\b", lambda m: m.group(0).translate(_ROMAN_LOOKALIKE), low)
+
+
+def explain_library_only(got: str, lib: str) -> str | None:
+    """The library's 0.3.2 lexical rules, if they are the whole difference."""
+    if got != lib and _neutral(got) == _neutral(lib):
+        return _LIBRARY_ONLY
+    return None
+
+
 def explain_latin(text: str, got: str, lib: str) -> str:
     """Name the reason a Latin 1995/2026 result differs from the library."""
     common = explain_common(text, got, lib)
@@ -221,6 +251,8 @@ def main() -> int:
                 cause = "ъ: library drops it before е ё ю я after a consonant and after ў"
             elif any(ch.isupper() for ch in text) and got.lower() == lib.lower():
                 cause = "case"
+            elif explain_library_only(got, lib):
+                cause = _LIBRARY_ONLY
             elif set(low) & set("щыңәөүһ"):
                 cause = "letters outside the Uzbek alphabet (щ ы and others): the library folds them, CLDR keeps them"
             else:
@@ -287,6 +319,8 @@ def main() -> int:
             cause = "ts: the library reads т + с before an Uzbek suffix, CLDR always ц"
         elif got.lower() == lib.lower():
             cause = "case"
+        elif explain_library_only(got, lib):
+            cause = _LIBRARY_ONLY
         else:
             cause = "unexplained"
         lc[cause] += 1

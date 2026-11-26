@@ -74,6 +74,9 @@ MÇJ va AQŞ	МЧЖ ва АҚШ
 Toshkent va Tōkyō	Тосҳкент ва Тўкйў
 Ishoq Şoşimov Toşkentda yaşaydi	Исҳоқ Шошимов Тошкентда яшайди
 Toșkent	Тошкент
+XXI asr Toşkentda	ХХИ аср Тошкентда
+Toşkentda 2026-yil 1-sentabr	Тошкентда 2026-йил 1-сентабр
+V–VI asrlar, I bölim, I çorak	В–ВИ асрлар, И бўлим, И чорак
 a	а
 A	А
 baxt	бахт
@@ -598,3 +601,62 @@ ToşDU va ÖzMU	ТошДУ ва ЎзМУ
 AQŞda va MÇJning	АҚШда ва МЧЖнинг
 ToşDUga, SamDUda	ТошДУга, СамДУда
 TerŞ	ТерШ
+XIX asr	ХИХ аср
+IV bob, Pyotr I	ИВ боб, Пётр И
+I. Böriyev va M. Asadullayev	И. Бўриев ва М. Асадуллаев
+Pyotr I.	Пётр И.
+MIX	МИХ
+CD va DVD, IIII, Xix, XIXda	CД ва ДВД, ИИИИ, Хих, ХИХда
+Sentabr, sentabrda, oktabrning, noyabr	Сентабр, сентабрда, октабрнинг, ноябр
+SENTABR, SENTABRda	СЕНТАБР, СЕНТАБРда
+yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr	январ феврал март апрел май июн июл август сентабр октабр ноябр декабр
+yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda	январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда
+SENTABR, Sentyabr, SENTABRda, sentabri	СЕНТАБР, Сентябр, СЕНТАБРда, сентабри
+Martaba, mayda, iyunça	Мартаба, майда, июнча
+1991-yilning 1-sentabri	1991-йилнинг 1-сентабри
+1956-yil 22-sentabr	1956-йил 22-сентабр
+1956 yil 22 sentabr	1956 йил 22 сентабр
+5 yil işladi	5 йил ишлади
+2000-yil davomida	2000-йил давомида
+1991‑yil 1‑sentabr	1991‑йил 1‑сентабр
+1956‑yil 22‑sentabr	1956‑йил 22‑сентабр
+60-yillar, 5-sinf, 39-son	60-йиллар, 5-синф, 39-сон
+3 marta, 5-martaba, 2-maydon, 5-mayda	3 марта, 5-мартаба, 2-майдон, 5-майда
+1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr	1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр
+8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi	8-мартда, 9-майи, 31-декабргача, 15-июндаги
+1-YANVAR, 2026-YIL	1-ЯНВАР, 2026-ЙИЛ
+https://x.uz/1991-yil va 1991-yil	ҳттпс://х.уз/1991-йил ва 1991-йил
+01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil	01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил
+marganes, nenes, şpris, kvars	марганес, ненес, шприс, кварс
+neneslar, şprisni, neneslarning, şprisdagi	ненеслар, шприсни, ненесларнинг, шприсдаги
+litsey, botsman, platsdarm, pitssa, şpritsi	лицей, боцман, плацдарм, пицса, шприци
+MARGANES, Marganes	МАРГАНЕС, Марганес
+marganes, neneslar, şpris	марганес, ненеслар, шприс
+V harfi	В ҳарфи
+V asr	В аср
+I jahon uruşi	И жаҳон уруши
+Nikolay I	Николай И
+2026 yil	2026 йил
+1991-yil	1991-йил
+V–VI asrlar	В–ВИ асрлар
+X–XII asrlarda	Х–ХИИ асрларда
+I-II kurs talabalari	И-ИИ курс талабалари
+I, II va III boblar	И, ИИ ва ИИИ боблар
+I va II jahon uruşlari	И ва ИИ жаҳон урушлари
+V va X harflari	В ва Х ҳарфлари
+Lotin V harfi	Лотин В ҳарфи
+D guruhida, M harfi	Д гуруҳида, М ҳарфи
+V-asr, I-jahon uruşi	В-аср, И-жаҳон уруши
+I kvartal, I semestr, I smenada	И квартал, И семестр, И сменада
+I örinni egalladi	И ўринни эгаллади
+XX asrning I yarmi	ХХ асрнинг И ярми
+I Xalqaro ilmiy-amaliy konferensiya	И Халқаро илмий-амалий конференсия
+I. Karimov va V. Ivanov	И. Каримов ва В. Иванов
+A, B, C va D toifalar	А, Б, C ва Д тоифалар
+V va X	В ва Х
+Uşbu V va X harflari	Ушбу В ва Х ҳарфлари
+Lotin V, X harflari	Лотин В, Х ҳарфлари
+V – VI asrlar, V - VI asrlar	В – ВИ асрлар, В - ВИ асрлар
+I VA II JAHON URUŞLARI	И ВА ИИ ЖАҲОН УРУШЛАРИ
+X – nomaʼlum, V – tezlik	Х – номаълум, В – тезлик
+Nikolay I, V harfi	Николай И, В ҳарфи

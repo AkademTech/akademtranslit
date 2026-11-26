@@ -75,6 +75,9 @@ c1173	MÇJ va AQŞ	МЧЖ ва АҚШ
 c1181	Toshkent va Tōkyō	Тосҳкент ва Тўкйў
 c1182	Ishoq Şoşimov Toşkentda yaşaydi	Исҳоқ Шошимов Тошкентда яшайди
 c1187	Toșkent	Тошкент
+c1196	XXI asr Toşkentda	ХХИ аср Тошкентда
+c1221	Toşkentda 2026-yil 1-sentabr	Тошкентда 2026-йил 1-сентабр
+c1250	V–VI asrlar, I bölim, I çorak	В–ВИ асрлар, И бўлим, И чорак
 dc0001	a	а
 dc0002	A	А
 dc0003	baxt	бахт
@@ -603,3 +606,62 @@ dc1172	ÇatGPT, PhD, AkademID	ЧатГПТ, ПҳД, АкадемИД
 dc1176	AQŞda va MÇJning	АҚШда ва МЧЖнинг
 dc1178	ToşDUga, SamDUda	ТошДУга, СамДУда
 dc1179	TerŞ	ТерШ
+dc1189	XIX asr	ХИХ аср
+dc1190	IV bob, Pyotr I	ИВ боб, Пётр И
+dc1191	I. Böriyev va M. Asadullayev	И. Бўриев ва М. Асадуллаев
+dc1192	Pyotr I.	Пётр И.
+dc1193	MIX	МИХ
+dc1195	CD va DVD, IIII, Xix, XIXda	CД ва ДВД, ИИИИ, Хих, ХИХда
+dc1197	Sentabr, sentabrda, oktabrning, noyabr	Сентабр, сентабрда, октабрнинг, ноябр
+dc1198	SENTABR, SENTABRda	СЕНТАБР, СЕНТАБРда
+dc1199	yanvar fevral mart aprel may iyun iyul avgust sentabr oktabr noyabr dekabr	январ феврал март апрел май июн июл август сентабр октабр ноябр декабр
+dc1200	yanvarda fevralda aprelda iyunda iyulda sentabrda sentyabrda oktabrdagi noyabrda dekabrda	январда февралда апрелда июнда июлда сентабрда сентябрда октабрдаги ноябрда декабрда
+dc1201	SENTABR, Sentyabr, SENTABRda, sentabri	СЕНТАБР, Сентябр, СЕНТАБРда, сентабри
+dc1202	Martaba, mayda, iyunça	Мартаба, майда, июнча
+dc1203	1991-yilning 1-sentabri	1991-йилнинг 1-сентабри
+dc1204	1956-yil 22-sentabr	1956-йил 22-сентабр
+dc1206	1956 yil 22 sentabr	1956 йил 22 сентабр
+dc1207	5 yil işladi	5 йил ишлади
+dc1208	2000-yil davomida	2000-йил давомида
+dc1210	1991‑yil 1‑sentabr	1991‑йил 1‑сентабр
+dc1211	1956‑yil 22‑sentabr	1956‑йил 22‑сентабр
+dc1212	60-yillar, 5-sinf, 39-son	60-йиллар, 5-синф, 39-сон
+dc1215	3 marta, 5-martaba, 2-maydon, 5-mayda	3 марта, 5-мартаба, 2-майдон, 5-майда
+dc1216	1941–1945-yillar, 1990-1991-yillarda, 21–22-noyabr	1941–1945-йиллар, 1990-1991-йилларда, 21–22-ноябр
+dc1217	8-martda, 9-mayi, 31-dekabrgaça, 15-iyundagi	8-мартда, 9-майи, 31-декабргача, 15-июндаги
+dc1218	1-YANVAR, 2026-YIL	1-ЯНВАР, 2026-ЙИЛ
+dc1219	https://x.uz/1991-yil va 1991-yil	ҳттпс://х.уз/1991-йил ва 1991-йил
+dc1220	01-sentabr, 0991-yil, 12345-yil, 1991  yil, №1991-yil	01-сентабр, 0991-йил, 12345-йил, 1991  йил, №1991-йил
+dc1222	marganes, nenes, şpris, kvars	марганес, ненес, шприс, кварс
+dc1223	neneslar, şprisni, neneslarning, şprisdagi	ненеслар, шприсни, ненесларнинг, шприсдаги
+dc1224	litsey, botsman, platsdarm, pitssa, şpritsi	лицей, боцман, плацдарм, пицса, шприци
+dc1225	MARGANES, Marganes	МАРГАНЕС, Марганес
+dc1226	marganes, neneslar, şpris	марганес, ненеслар, шприс
+dc1227	V harfi	В ҳарфи
+dc1228	V asr	В аср
+dc1229	I jahon uruşi	И жаҳон уруши
+dc1230	Nikolay I	Николай И
+dc1232	2026 yil	2026 йил
+dc1233	1991-yil	1991-йил
+dc1234	V–VI asrlar	В–ВИ асрлар
+dc1235	X–XII asrlarda	Х–ХИИ асрларда
+dc1236	I-II kurs talabalari	И-ИИ курс талабалари
+dc1237	I, II va III boblar	И, ИИ ва ИИИ боблар
+dc1238	I va II jahon uruşlari	И ва ИИ жаҳон урушлари
+dc1239	V va X harflari	В ва Х ҳарфлари
+dc1240	Lotin V harfi	Лотин В ҳарфи
+dc1241	D guruhida, M harfi	Д гуруҳида, М ҳарфи
+dc1242	V-asr, I-jahon uruşi	В-аср, И-жаҳон уруши
+dc1243	I kvartal, I semestr, I smenada	И квартал, И семестр, И сменада
+dc1244	I örinni egalladi	И ўринни эгаллади
+dc1245	XX asrning I yarmi	ХХ асрнинг И ярми
+dc1246	I Xalqaro ilmiy-amaliy konferensiya	И Халқаро илмий-амалий конференсия
+dc1247	I. Karimov va V. Ivanov	И. Каримов ва В. Иванов
+dc1248	A, B, C va D toifalar	А, Б, C ва Д тоифалар
+dc1249	V va X	В ва Х
+dc1251	Uşbu V va X harflari	Ушбу В ва Х ҳарфлари
+dc1252	Lotin V, X harflari	Лотин В, Х ҳарфлари
+dc1253	V – VI asrlar, V - VI asrlar	В – ВИ асрлар, В - ВИ асрлар
+dc1254	I VA II JAHON URUŞLARI	И ВА ИИ ЖАҲОН УРУШЛАРИ
+dc1255	X – nomaʼlum, V – tezlik	Х – номаълум, В – тезлик
+dc1256	Nikolay I, V harfi	Николай И, В ҳарфи
